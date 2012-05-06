@@ -54,19 +54,19 @@
 	</div>
 	<div class='panel' id="second_panel" style="visibility:hidden;">
 	
-	<?php // echo $this->loadTemplate ('board_defence'); ?>
+	<?php  echo $this->loadTemplate ('board_defence'); ?>
 	</div>
 	<div class='panel' id="third_panel" style="visibility:hidden;">
 	
-	<?php // echo $this->loadTemplate ('board_distr'); ?>
+	<?php  echo $this->loadTemplate ('board_distr'); ?>
 	</div>
 	<div class='panel' id="fourth_panel" style="visibility:hidden;">
 	
-	<?php // echo $this->loadTemplate ('board_hr'); ?>
+	<?php  echo $this->loadTemplate ('board_hr'); ?>
 	</div>
 	<div class='panel' id="fifth_panel" style="visibility:hidden;">
 	
-	<?php // echo $this->loadTemplate ('board_energy'); ?>
+	<?php  echo $this->loadTemplate ('board_energy'); ?>
 	</div>
 </div>
 

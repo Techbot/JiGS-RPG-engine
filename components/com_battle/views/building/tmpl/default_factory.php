@@ -1,11 +1,16 @@
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
 $factories=$this->factories;
+
+//	 echo '<pre>' ;
+// print_r($factories);
+//	 echo '</pre>';
+
+
+
 $x=count($factories);
 foreach ($factories as $row){
-//	 echo '<pre>' ;
-//	 print_r($row);
-//	 echo '</pre>';
+
 }
 // Imagelist
 $javascript			= 'onchange="changeDisplayImage(blueprints);"';
@@ -46,6 +51,9 @@ $lists['blueprints']	=  JHTML::_('select.genericlist',$factories , 'blueprints',
 <input type="text" title="Object ID" name="id1" id="id1"value="<?php echo $factories[0]->id ;?>" size="1" style="width: 10px;" maxlength="2" readonly="readonly" />
 <?php echo '' .  $lists['blueprints'] . '';?>
 
+
+
+
 <label title="Quantity of Objects Required" for="quantity_adjust">qty:</label>
 
 <input type="text" id="quantity_adjust" name="quantity_adjust" value="0" style="width:20px;" size="2" onchange="alterQuantity(this.form)" /> 
@@ -69,10 +77,10 @@ $lists['blueprints']	=  JHTML::_('select.genericlist',$factories , 'blueprints',
 <input class="inputbox" type="text" size="1" maxlength="2" name="q1" id="q1" style="width: 20px;" value="<?php echo $factories[0]->quantity_1 ;?>" /> 
 
 <label title="Total Units" for="q1t">total:</label>
- <input class="inputbox" type="text" size="1" maxlength="2" name="q1t" id="q1t" value="0" style="width: 20px;" /> 
+ <input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $factories[0]->metal_1_stock ;?>" name="q1t" id="q1t" style="width: 20px;" /> 
 <label title="In Stock" for="q2t">In Stock:</label>
 
-<input class="inputbox" type="text" size="1" maxlength="2" name="stock" id="stock" value="" style="width: 20px;" />
+<input class="inputbox" type="text" size="1" maxlength="2" name="stock" id="stock"  style="width: 20px;" />
  </fieldset>
 
 <fieldset>
@@ -82,9 +90,9 @@ $lists['blueprints']	=  JHTML::_('select.genericlist',$factories , 'blueprints',
  
   <input class="inputbox" type="text" size="1" maxlength="1" name="q2" id="q2" style="width: 20px;" value="<?php echo $factories[0]->quantity_2 ;?>" /> 
 <label title="Total Units" for="q2t">total:</label>
- <input class="inputbox" type="text" size="1" maxlength="2" name="q2t" id="q2t" value="0" style="width: 20px;" />
+ <input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $factories[0]->metal_2_stock ;?>" name="q2t" id="q2t"  style="width: 20px;" />
  <label title="In Stock" for="q2t">In Stock:</label> 
-<input class="inputbox" type="text" size="1" maxlength="2" name="stock2" id="stock2" value="" style="width: 20px;" />
+<input class="inputbox" type="text" size="1" maxlength="2" name="stock2" id="stock2"  style="width: 20px;" />
 
 
 
@@ -365,18 +373,35 @@ function request_metals(){
 }
 
 function check_stock_control(){
-	//	if whats in stock is less than required total hide submit button and change background to red
-//  else change to green and show submit 
+//	if whats in stock is less than required total hide submit button and change background to red
+//  else change to green and show submit
 
-	if (document.adminForm.stock.value < document.adminForm.q1t.value || document.adminForm.stock2.value < document.adminForm.q2t.value)
+    var stck = document.getElementById('stock');
+	var ct1 = parseInt(stck.value);
+
+	var stck2 = document.getElementById('stock2');
+	var ct2 = parseInt(stck2.value);
+
+	var qy1 = document.getElementById('q1t');
+	var q_y1 = parseInt(qy1.value);
+
+	var qy2 = document.getElementById('q2t');
+	var q_y2 = parseInt(qy2.value);
+
+ 
+//
+//
+//
+
+	if ((ct1 < q_y1) || (ct2 < q_y2))
 		{
 		$('q1t').setStyle('background','red');
 		$('q2t').setStyle('background','red');
 		$('submit_c').setStyle('visibility','hidden');
 		}
-	if(document.adminForm.stock.value > document.adminForm.q1t.value && document.adminForm.stock2.value > document.adminForm.q2t.value)
+	if((ct1 > q_y1)  && (ct2 > q_y2))
 		{
-				$('q1t').setStyle('background','black');
+		$('q1t').setStyle('background','black');
 		$('q2t').setStyle('background','black');
 		$('submit_c').setStyle('visibility','visible');
 		}

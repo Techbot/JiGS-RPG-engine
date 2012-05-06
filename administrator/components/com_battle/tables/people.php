@@ -9,6 +9,15 @@ class Tablepeople extends JTable
     var $image = null;
 	var $money = null;
 	var $comment = null;
+
+	var $attack= null;
+	var $defence = null;
+	var $nbrattacks = null;
+	var $nbrkills = null;	
+	
+	
+	
+	
 	var $health = null;
 	var $humeur = null;
 	var $posx = null;
@@ -25,7 +34,7 @@ class Tablepeople extends JTable
 	var $taxi = null;
 	var $reserve = null;
 	var $munition = null;
-
+	var $published = null;
 
 	function __construct(&$db)
 	{

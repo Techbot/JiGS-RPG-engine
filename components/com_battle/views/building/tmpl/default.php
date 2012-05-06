@@ -124,7 +124,7 @@ if ($this->player->id == 0){
 if ($this->buildings->owner == 0){?>
 
 <div class="buy" >
-<a href="#" class= "buy" id = "<?php echo $this->buildings->id ; ?>">Buy this <?php echo $this->buildings->option ; ?></a>
+<a href="#" class= "buy" id = "<?php echo $this->buildings->id ; ?>">Buy this <?php echo $this->buildings->type ; ?></a>
 </div> <!--buy-->
 <?php }?>
  
@@ -134,7 +134,7 @@ if ($this->buildings->owner == 0){?>
 if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){?>
 
 <div class= "attack" >
-<a href="#" class= "attack" id = "<?php echo $this->buildings->id ; ?>"> Attack this  <?php echo $this->buildings->option ; ?></a>
+<a href="#" class= "attack" id = "<?php echo $this->buildings->id ; ?>"> Attack this  <?php echo $this->buildings->type ; ?></a>
 </div><!-- attack-->
 
 
@@ -172,6 +172,9 @@ if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 
 
 
 <script type='text/javascript'>
+
+ buy_building();
+ 
 function buy_building() {
    	   	 $$('.buy').addEvent('click', function(){
 		 		 var a = new Request.JSON({
@@ -187,7 +190,7 @@ function buy_building() {
   		 });
     }	
  
- buy_building();
+
 
 
  function buy1(itemID){

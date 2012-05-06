@@ -28,7 +28,7 @@ if ($this->row->id) {
         Name:
       </td>
       <td>
-        <input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->nom;?>" />
+        <input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
       </td>
     </tr>
     <tr>
@@ -69,7 +69,7 @@ if ($this->row->id) {
   </fieldset>
  <?php echo JHTML::_( 'form.token' ); ?>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />	
-  <input type="hidden" name="option" value="<?php echo $option; ?>" />
+  <input type="hidden" name="option" value="com_battle" />
   <input type="hidden" name="controller" value="Cars" />
   <input type="hidden" name="task" value="" />
 </form>

@@ -301,9 +301,20 @@ function get_factories(){
 	$query ="SELECT name FROM jos_jigs_metal_names 	WHERE jos_jigs_metal_names.id = $blueprint->metal_1 ";
 	$db->setQuery($query);
 	$blueprint->metal_1_name = $db->loadResult();
+	
 	$query ="SELECT name FROM jos_jigs_metal_names 	WHERE jos_jigs_metal_names.id = $blueprint->metal_2 ";
 	$db->setQuery($query);
 	$blueprint->metal_2_name = $db->loadResult();
+	
+	$query ="SELECT quantity FROM jos_jigs_metals 	WHERE jos_jigs_metals.player_id = $user->id AND jos_jigs_metals.item_id = $blueprint->metal_1 ";
+	$db->setQuery($query);
+	$blueprint->metal_1_stock = $db->loadResult();
+
+	$query ="SELECT quantity FROM jos_jigs_metals 	WHERE jos_jigs_metals.player_id = $user->id AND jos_jigs_metals.item_id = $blueprint->metal_2 ";
+	$db->setQuery($query);
+	$blueprint->metal_2_stock = $db->loadResult();
+	
+	
 	}
 	
 	return $result ;

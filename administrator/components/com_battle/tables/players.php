@@ -13,6 +13,7 @@ class TablePlayers extends JTable
 	var $defence = null;
     var $nbrattacks = null;		
     var $nbrkills = null;
+    
   	var $health = null;	  
  	var $xp = null;   
 	var $intelligence = null;    
@@ -20,7 +21,7 @@ class TablePlayers extends JTable
     	
 	var $posx = null;	
 	var $posy = null;	
-
+	var $published = null;
 /*	var $image = null;	
 	var $coffre = null;	
 	var $option = null;

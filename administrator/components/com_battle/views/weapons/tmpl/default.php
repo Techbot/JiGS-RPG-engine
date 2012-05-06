@@ -23,7 +23,7 @@ JToolBarHelper::addNew();
 	   <th class="20%">Name</th>
       <th width="15%">Munitions</th>
       <th width="10%">attack</th>
-      <th width="10%">defense</th>
+      <th width="10%">defence</th>
       <th width="10%">Precision</th>
       <th width="10%">Detente</th>
     </tr>
@@ -37,7 +37,7 @@ JToolBarHelper::addNew();
     $row = &$this->rows[$i];
     $checked = JHTML::_('grid.id', $i, $row->id );
     $published = JHTML::_('grid.published', $row, $i );
-	$link = JFilterOutput::ampReplace( 'index.php?option=' . $option . '&task=edit&controller=weapons&cid[]='. $row->id );
+	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=weapons&cid[]='. $row->id );
     ?>
     <tr class="<?php echo "row$k"; ?>">
       <td>
@@ -61,7 +61,7 @@ JToolBarHelper::addNew();
         <?php echo $row->attack; ?>
       </td>
       <td>
-        <?php echo $row->defense; ?>
+        <?php echo $row->defence; ?>
       </td>
      <td>
         <?php echo $row->precision; ?>
@@ -76,7 +76,7 @@ JToolBarHelper::addNew();
   }
   ?>
 </table>
-<input type="hidden" name="option" value="<?php echo $option;?>" />
+<input type="hidden" name="option" value="com_battle" />
 <input type="hidden" name="controller" value="weapons" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />

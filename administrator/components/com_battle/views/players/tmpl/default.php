@@ -19,8 +19,10 @@ JToolBarHelper::addNew();
              value="" onclick="checkAll(<?php echo 
              count( $this->rows ); ?>);" />
       </th>
+      <th class="title">Id</th>
+       <th class="title">Pic</th>   
       <th class="title">Name</th>
-      <th class="title">Pic</th>      
+   
       <th width="15%">Money</th>
       <th width="10%">xp</th>
       <th width="10%">intelligence  </th>  
@@ -43,20 +45,25 @@ JToolBarHelper::addNew();
     $row = &$this->rows[$i];
     $checked = JHTML::_('grid.id', $i, $row->id );
     $published = JHTML::_('grid.published', $row, $i );
-	$link = JFilterOutput::ampReplace( 'index.php?option=' . $option . '&task=edit&controller=players&cid[]='. $row->id );
+	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=players&cid[]='. $row->id );
     ?>
     <tr class="<?php echo "row$k"; ?>">
       <td>
         <?php echo $checked; ?>
       </td>
+      
+            <td>
+       <?php echo $row->id; ?>
+      </td>
+               <td>
+      
+      <img src="<?php echo JURI::root(); ?>/images/comprofiler/<?php echo $row->avatar ?>" height = '50px' width='50px' >
+       </td>
       <td>
         <a href="<?php echo $link; ?>"><?php echo $row->username; ?></a>
       </td>
          
-           <td>
-      
-      <img src="<?php echo JURI::root(); ?>/images/comprofiler/<?php echo $row->avatar ?>" height = '50px' width='50px' >
-       </td>
+  
       
       
       <td>

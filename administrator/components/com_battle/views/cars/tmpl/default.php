@@ -19,6 +19,7 @@ JToolBarHelper::addNew();
              value="" onclick="checkAll(<?php echo 
              count( $this->rows ); ?>);" />
       </th>
+             <th class="title">Id</th>
        <th class="title">Image</th>
       <th class="title">Name</th>
       <th width="15%">Reservoir</th>
@@ -36,11 +37,15 @@ JToolBarHelper::addNew();
     $row = &$this->rows[$i];
     $checked = JHTML::_('grid.id', $i, $row->id );
     $published = JHTML::_('grid.published', $row, $i );
-	$link = JFilterOutput::ampReplace( 'index.php?option=' . $option . '&task=edit&controller=cars&cid[]='. $row->id );
+	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=cars&cid[]='. $row->id );
     ?>
     <tr class="<?php echo "row$k"; ?>">
-      <td>
+
+            <td>
         <?php echo $checked; ?>
+      </td> 
+           <td>
+        <?php echo $row->id; ?>
       </td>
         <td>
        <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/cars/<?php echo $row->image ?>" height = '50px' width='50px' ></a>  
@@ -65,7 +70,7 @@ JToolBarHelper::addNew();
   }
   ?>
 </table>
-<input type="hidden" name="option" value="<?php echo $option;?>" />
+<input type="hidden" name="option" value="com_battle" />
 <input type="hidden" name="controller" value="cars" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />

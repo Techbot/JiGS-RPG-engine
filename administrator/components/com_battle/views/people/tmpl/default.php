@@ -18,6 +18,7 @@ JToolBarHelper::addNew();
              value="" onclick="checkAll(<?php echo 
              count( $this->rows ); ?>);" />
       </th>
+            <th class="title">Id</th>
            <th class="title">Image</th>
       <th class="title">Name</th>
       <th width="15%">Health</th>
@@ -42,6 +43,9 @@ JToolBarHelper::addNew();
     <tr class="<?php echo "row$k"; ?>">
       <td>
         <?php echo $checked; ?>
+      </td>
+       <td>
+        <?php echo $row->id; ?>
       </td>
              <td>
        <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/ennemis/<?php echo $row->image ?>" height = '50px' width='50px' ></a> 

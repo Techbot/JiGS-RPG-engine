@@ -22,6 +22,7 @@ class TableBuildings extends JTable
 	var $timestamp = null;
 	var $grid = null;
 	var $map = null;
+	var $published = null;
 
 
 	function __construct(&$db)
