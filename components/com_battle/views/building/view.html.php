@@ -34,8 +34,16 @@ class BattleViewBuilding extends JView
 		$this->assignRef('backlink', $backlink);
 		
 		$model = &$this->getModel();
-		$board_info_1 = $model->get_board_messages($id);
+		$board_info_1 = $model->get_board_messages($id,$type=2);
+		
+		
+
+		
+		
 		$this->assignRef('board_info_1',$board_info_1);
+		
+		
+		
 		
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
 	// This is where we make an object specific to each building type 	

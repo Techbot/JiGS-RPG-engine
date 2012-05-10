@@ -375,7 +375,7 @@ if (($result[timestamp] > 0) && ($now-$result[timestamp] > 50) ){
 
 
 
-	function get_board_messages($id){
+	function get_board_messages($id,$type){
 		
 		
 		
@@ -383,6 +383,7 @@ if (($result[timestamp] > 0) && ($now-$result[timestamp] > 50) ){
 		$query="SELECT messages FROM jos_jigs_buildings WHERE id =" . $id;
 		$db->setQuery($query);
 		$string = $db->loadResult();
+		$result = array();
 		$numbers = array();
 		$numbers= explode( ',' ,  $string );
 		
@@ -391,18 +392,25 @@ if (($result[timestamp] > 0) && ($now-$result[timestamp] > 50) ){
 		
 		foreach ($numbers as $message_id){
 			$db =& JFactory::getDBO();
-			$query="SELECT string FROM jos_jigs_messages WHERE id =" . $message_id;
+			$query="SELECT string FROM jos_jigs_messages WHERE (id =" . $message_id . " AND type=". $type .") OR ( id =" . $message_id . " AND type=99)";
+			
 			$db->setQuery($query);
-			$result[] = $db->loadResult();
-					
+			
+			if($db->loadResult())
+			{
+				$result[] = $db->loadResult();
+			}
+			
 		}
 		
-				return $result;
 		
-	
+		print_r($result);
+	//	exit();
+				
+		return $result;
+
 
 	}
-
 
 
 	

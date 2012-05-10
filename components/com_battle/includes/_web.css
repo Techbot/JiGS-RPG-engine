@@ -1,11 +1,13 @@
+/*
 * {margin:0;padding:0}
-body{/*background:#666;*/font-family:'Lucida Sans Unicode',Arial,sans-serif;/*color:#333;*/text-align:center;padding:0}
+body{background:#666;font-family:'Lucida Sans Unicode',Arial,sans-serif;color:#333;text-align:center;padding:0}
 div,li{margin:0}
 li{margin-left:16px;}
 h1{color:#009999;text-align:center;padding-bottom:10px}
 h2{color:#999;font-size:16px;font-weight:normal}
 pre{background:#666; color:#fff; padding:10px; margin:10px; height:auto; overflow:auto; font:12px Verdana,Courier,sans-serif}
 * html pre {width:100%}
+*/
 
 .description{padding:16px;margin:10px 0;background:#eee}
 

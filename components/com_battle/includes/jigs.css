@@ -1,7 +1,4 @@
-#demo {
-z-index:999 !important;
-position:relative;
-}
+
 
 a#withdraw,a#deposit,#submit_c{
 	background:#333;
@@ -434,7 +431,6 @@ div#profile+div#inventory {
 
 div#action {
 	margin:0 10px 10px;
-	clear:both;
 }
 
 div.buy, div.attack, div.recruit, div.kick, div.punch, div.shoot, div.bribe, div.rob, div.talk  {
@@ -581,10 +577,10 @@ min-width:40px;}
 form.conveyor .object{
 text-align:left; 
 display:inline-block;
-width:210px;
+width:190px;
 float:left;
-margin:0 5px 0 5px;
-padding:0 5px 5px;
+margin:0 5px 0 10px;
+padding:0 10px 10px;
 border:1px dotted #F00;
 height:72px;
 }
@@ -593,10 +589,10 @@ height:72px;
 form.conveyor .metal {
 text-align:left; 
 display:inline-block;
-width:380px;
-float:left;
-margin:0 5px 0 5px;
-padding:0 5px 5px;
+width:370px;
+float:right;
+margin:0 10px 0 5px;
+padding:0 10px 10px;
 border:1px dotted #FF0;
 height:72px;
 }
@@ -692,6 +688,8 @@ div#eat_burger {
 cursor:pointer;
 }
 
+
+
 .board_buttons #primary {
 height:40px;
 width:40px;
@@ -738,3 +736,4 @@ background:url(../images/buildings/board_sprites.png) -160px 0 no-repeat #000;
 .board_buttons #energy.active  {
 background:url(../images/buildings/board_sprites.png) -160px -40px no-repeat #000;
 }
+

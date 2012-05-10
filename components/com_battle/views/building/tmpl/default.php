@@ -93,7 +93,12 @@ if ($this->player->id == 0){
 
 </div><!-- end info -->
 <div class="extra clearfix">
-<img src = "<?php echo JURI::base() ?>/images/stories/steampunk_gears.jpg" height="100%" width="100%"; /> </div>
+<div class="message_board">
+<?php echo $this->loadTemplate ('board_message'); ?>
+
+</div></div>
+
+
 </div><!--end building_left-->
 
 

@@ -12,10 +12,42 @@ $x=count($factories);
 foreach ($factories as $row){
 
 }
+
+// $factories = array_unshift_assoc( $factories , 'id' , "SELECT" );
+
+
+
+function array_unshift_assoc(&$arr, $key, $val)
+{
+	$arr = array_reverse($arr, true);
+	$arr[$key] = $val;
+	return  array_reverse($arr, true);
+}
+
+
+
+
+
 // Imagelist
 $javascript			= 'onchange="changeDisplayImage(blueprints);"';
 $directory			= '/images/banners';
-$lists['blueprints']	=  JHTML::_('select.genericlist',$factories , 'blueprints',$javascript, 'id', 'name', 'select','select');
+$lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints',$javascript, 'id', 'name', 'select','select');
+
+
+// echo '<pre>' ;
+// print_r($factories);
+// echo '</pre>';
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 <div id="factory_noob" class="sample">
@@ -48,10 +80,11 @@ $lists['blueprints']	=  JHTML::_('select.genericlist',$factories , 'blueprints',
 
 <legend>Object</legend>
 
-<input type="text" title="Object ID" name="id1" id="id1"value="<?php echo $factories[0]->id ;?>" size="1" style="width: 10px;" maxlength="2" readonly="readonly" />
+<input type="text" title="Object ID" name="id1" id="id1" value = "Select" size="1" style="width: 10px;" maxlength="2" 
+readonly="readonly" />
+
+
 <?php echo '' .  $lists['blueprints'] . '';?>
-
-
 
 
 <label title="Quantity of Objects Required" for="quantity_adjust">qty:</label>
