@@ -24,6 +24,6 @@ class Tablecars extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_cars', 'id', $db );
+		parent::__construct( '#__jigs_cars', 'id', $db );
 	}
 }

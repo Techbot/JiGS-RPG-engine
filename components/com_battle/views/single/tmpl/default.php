@@ -21,7 +21,7 @@ $grid_index = $this->grid;
 grid_index = parseInt(<?php echo $grid_index;?>);
 
 </script>
-<script type="text/javascript" src="/jigs/components/com_battle/includes/jigs.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseurl; ?>/components/com_battle/includes/jigs.js"></script>
 
 <style type="text/css">
   #demo { 

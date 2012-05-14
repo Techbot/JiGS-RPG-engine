@@ -15,7 +15,6 @@ class TablePages extends JTable
 	var $grid = null;
 	var $map = null;
 
-
 	function __construct(&$db)
 	{
 		parent::__construct( '#__jigs_pages', 'id', $db );

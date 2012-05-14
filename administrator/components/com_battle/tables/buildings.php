@@ -27,6 +27,6 @@ class TableBuildings extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_buildings', 'id', $db );
+		parent::__construct( '#__jigs_buildings', 'id', $db );
 	}
 }

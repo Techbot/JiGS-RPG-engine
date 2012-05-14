@@ -1,6 +1,5 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 jimport( 'joomla.application.component.view');
 
 class BattleViewportal extends JView
@@ -12,12 +11,8 @@ class BattleViewportal extends JView
 		$id = $cid[0];
 		$row->load($id);
 		$this->assignRef('row', $row);
-		
 		$editor =& JFactory::getEditor();
 		$this->assignRef('editor', $editor);
-		
-		
-		
 		parent::display($tpl);
 	}
 }

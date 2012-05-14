@@ -1,6 +1,5 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 JToolBarHelper::title( JText::_( 'People' ), 'generic.png' );
 JToolBarHelper::publishList();
 JToolBarHelper::unpublishList();
@@ -14,12 +13,12 @@ JToolBarHelper::addNew();
   <thead>
     <tr>
       <th width="20">
-        <input type="checkbox" name="toggle" 
-             value="" onclick="checkAll(<?php echo 
-             count( $this->rows ); ?>);" />
+	<input type="checkbox" name="toggle" 
+	value="" onclick="checkAll(<?php echo 
+	count( $this->rows ); ?>);" />
       </th>
-            <th class="title">Id</th>
-           <th class="title">Image</th>
+	<th class="title">Id</th>
+	<th class="title">Image</th>
       <th class="title">Name</th>
       <th width="15%">Health</th>
       <th width="10%">Money</th>
@@ -29,53 +28,49 @@ JToolBarHelper::addNew();
       <th width="10%">Humour</th>   
     </tr>
   </thead>
-
-  <?php
-  jimport('joomla.filter.output');
-  $k = 0;
-  for ($i=0, $n=count( $this->rows ); $i < $n; $i++) 
-  {
-    $row = &$this->rows[$i];
-    $checked = JHTML::_('grid.id', $i, $row->id );
-    $published = JHTML::_('grid.published', $row, $i );
+<?php
+	jimport('joomla.filter.output');
+$k = 0;
+for ($i=0, $n=count( $this->rows ); $i < $n; $i++) 
+{
+	$row = &$this->rows[$i];
+	$checked = JHTML::_('grid.id', $i, $row->id );
+	$published = JHTML::_('grid.published', $row, $i );
 	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&cid[]='. $row->id );
-    ?>
+?>
     <tr class="<?php echo "row$k"; ?>">
       <td>
-        <?php echo $checked; ?>
+	<?php echo $checked; ?>
       </td>
        <td>
-        <?php echo $row->id; ?>
+	<?php echo $row->id; ?>
       </td>
-             <td>
+	     <td>
        <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/ennemis/<?php echo $row->image ?>" height = '50px' width='50px' ></a> 
-        </td>
+	</td>
       <td>
-        <a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
+	<a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
       </td>
       <td>
-        <?php echo $row->health; ?>
+	<?php echo $row->health; ?>
       </td>
       <td>
-        <?php echo $row->money; ?>
+	<?php echo $row->money; ?>
       </td>
       <td>
-        <?php echo $row->humeur; ?>
+	<?php echo $row->humeur; ?>
       </td>
- 
   <td>	 <?php echo $row->id_weapon; ?>    </td>
 	 <td> <?php echo $row->money;	 ?>    </td>
  <td>	 <?php echo $row->attack;	 ?>    </td>
  <td>	 <?php echo $row->defence; ?>    </td>
   <td>   <?php echo $row->nbrattacks;	 ?>	    </td>
   <td>   <?php echo $row->nbrkills; ?>    </td>
-  
- 
     </tr>
-    <?php
-    $k = 1 - $k;
-  }
-  ?>
+<?php
+	$k = 1 - $k;
+}
+?>
 </table>
 <input type="hidden" name="option" value="com_battle" />
 <input type="hidden" name="task" value="" />

@@ -24,6 +24,6 @@ class TableDrugs extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos__wub_drogues', 'id', $db );
+		parent::__construct( '#___wub_drogues', 'id', $db );
 	}
 }

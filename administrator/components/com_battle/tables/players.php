@@ -11,17 +11,18 @@ class TablePlayers extends JTable
 	var $money = null;	
 	var $attack= null;	
 	var $defence = null;
-    var $nbrattacks = null;		
-    var $nbrkills = null;
-    
-  	var $health = null;	  
- 	var $xp = null;   
+	var $nbrattacks = null;		
+	var $nbrkills = null;
+
+	var $health = null;	  
+	var $xp = null;   
 	var $intelligence = null;    
 	var $strength = null;    
-    	
+
 	var $posx = null;	
 	var $posy = null;	
 	var $published = null;
+
 /*	var $image = null;	
 	var $coffre = null;	
 	var $option = null;
@@ -50,10 +51,10 @@ class TablePlayers extends JTable
 	var $volearme = null;	
 	var $voleargent = null;
 
-*/	
+ */	
 
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_players', 'iduser', $db );
+		parent::__construct( '#__jigs_players', 'iduser', $db );
 	}
 }

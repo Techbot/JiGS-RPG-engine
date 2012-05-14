@@ -23,12 +23,12 @@ class BattleModelPeople extends JModel
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
 		$character_id= JRequest::getvar(character_id);
-		$db->setQuery("SELECT jos_jigs_inventory.item_id, " .
-				"jos_jigs_objects.name " .
-				"FROM jos_jigs_inventory " .
-				"LEFT JOIN jos_jigs_objects " .
-				"ON jos_jigs_inventory.item_id = jos_jigs_objects.id " .
-				"WHERE jos_jigs_inventory.player_id =".$character_id);
+		$db->setQuery("SELECT #__jigs_inventory.item_id, " .
+				"#__jigs_objects.name " .
+				"FROM #__jigs_inventory " .
+				"LEFT JOIN #__jigs_objects " .
+				"ON #__jigs_inventory.item_id = #__jigs_objects.id " .
+				"WHERE #__jigs_inventory.player_id =".$character_id);
 		$result = $db->loadAssocList();
 			return $result;
 }

@@ -1,23 +1,25 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
-
-if ($this->row->id) {
+if ($this->row->id)
+{
 	JToolBarHelper::title( JText::_( 'Edit Car Profile' ), 'addedit.png' );
-} else {
+}
+else
+{
 	JToolBarHelper::title( JText::_( 'Add Car Profile' ), 'addedit.png' );
 }
-
 JToolBarHelper::save();
 JToolBarHelper::apply();
-if ($this->row->id) {
+if ($this->row->id)
+{
 	JToolBarHelper::cancel( 'cancel', 'Close' );
-} else {
+}
+else
+{
 	JToolBarHelper::cancel();
 }
-
 ?>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
   <fieldset class="adminform">
@@ -25,10 +27,10 @@ if ($this->row->id) {
     <table class="admintable">
     <tr>
       <td width="100" align="right" class="key">
-        Name:
+	Name:
       </td>
       <td>
-        <input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
+	<input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
       </td>
     </tr>
     <tr>
@@ -36,35 +38,33 @@ if ($this->row->id) {
        Reservoir:
       </td>
       <td>
-        <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->reservoir;?>" />
+	<input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->reservoir;?>" />
       </td>
     </tr>
     <tr>
       <td width="100" align="right" class="key">
-        Consumation:
+	Consumation:
       </td>
       <td>
-         <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->consommation;?>" />
+	 <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->consommation;?>" />
       </td>
     </tr>
     <tr>
       <td width="100" align="right" class="key">
-        Comment:
+	Comment:
       </td>
       <td>
-          <input class="text_area" type="text" name="address" id="address" size="250" maxlength="250" value="<?php echo $this->row->commentaire;?>" />
+	  <input class="text_area" type="text" name="address" id="address" size="250" maxlength="250" value="<?php echo $this->row->commentaire;?>" />
       </td>
     </tr>
-        <tr>
+	<tr>
       <td width="100" align="right" class="key">
-        Rapidite:
+	Rapidite:
       </td>
       <td>
-            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->rapidite;?>" />
+	    <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->rapidite;?>" />
       </td>
     </tr>
-
-
     </table>
   </fieldset>
  <?php echo JHTML::_( 'form.token' ); ?>

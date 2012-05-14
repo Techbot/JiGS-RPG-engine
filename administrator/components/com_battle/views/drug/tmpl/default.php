@@ -1,23 +1,25 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
-
-if ($this->row->id) {
+if ($this->row->id)
+{
 	JToolBarHelper::title( JText::_( 'Edit Drug Profile' ), 'addedit.png' );
-} else {
+}
+else
+{
 	JToolBarHelper::title( JText::_( 'Add Drug Profile' ), 'addedit.png' );
 }
-
 JToolBarHelper::save();
 JToolBarHelper::apply();
-if ($this->row->id) {
+if ($this->row->id)
+{
 	JToolBarHelper::cancel( 'cancel', 'Close' );
-} else {
+}
+else
+{
 	JToolBarHelper::cancel();
 }
-
 ?>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
   <fieldset class="adminform">
@@ -154,7 +156,6 @@ if ($this->row->id) {
           <input class="text_area" type="text" name="timer" id="timer" size="250" maxlength="250" value="<?php echo $this->row->timer;?>" />
       </td>
     </tr>
-
     </table>
   </fieldset>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />

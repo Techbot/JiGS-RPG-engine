@@ -1,5 +1,4 @@
 <?php
-
 defined('_JEXEC') or die('Restricted access');
 
 class TableWeapons extends JTable
@@ -20,10 +19,8 @@ class TableWeapons extends JTable
 	var $xp = null;
 	var $special = null;
 	
-	
-
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_weapons', 'id', $db );
+		parent::__construct( '#__jigs_weapons', 'id', $db );
 	}
 }

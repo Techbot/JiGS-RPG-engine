@@ -1,23 +1,16 @@
 <?php
-
 defined('_JEXEC') or die('Restricted access');
-
 class Tablepeople extends JTable
 {
 	var $id = null;
 	var $name = null;
-    var $image = null;
+	var $image = null;
 	var $money = null;
 	var $comment = null;
-
 	var $attack= null;
 	var $defence = null;
 	var $nbrattacks = null;
 	var $nbrkills = null;	
-	
-	
-	
-	
 	var $health = null;
 	var $humeur = null;
 	var $posx = null;
@@ -38,6 +31,6 @@ class Tablepeople extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_characters', 'id', $db );
+		parent::__construct( '#__jigs_characters', 'id', $db );
 	}
 }

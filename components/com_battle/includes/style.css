@@ -43,21 +43,21 @@
 }
 #box4 h3 {
 	padding:0;
-background: none repeat scroll 0 0 #333333;
-    color: #FFFFFF;
-    font-weight: bold;
+	background: none repeat scroll 0 0 #333333;
+	color: #FFFFFF;
+	font-weight: bold;
 	font-size:100%;
-    margin: 0 0 10px;
-    text-align: center;
-    text-transform: uppercase;}
+	margin: 0 0 10px;
+	text-align: center;
+	text-transform: uppercase;}
 #box4 p{
 	text-indent:16px;
 }
 #box4 img{
 	/*width:200px;
 	width:150px;*/
-	float:left;
-	margin:0 10px 10px 15px;
+float:left;
+margin:0 10px 10px 15px;
 }
 #box4 img.none{
 	float:left;

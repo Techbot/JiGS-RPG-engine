@@ -12,19 +12,19 @@
 	<description>battle the ultimate mailing system for Joomla CMS.</description>
 
 	<install>
-  		<sql>
-  			<file driver="mysql">tables.sql</file>
-    		<file charset="utf8" driver="mysql">tables.sql</file>
- 		</sql>
- 	</install>
+		<sql>
+			<file driver="mysql">tables.sql</file>
+			<file charset="utf8" driver="mysql">tables.sql</file>
+		</sql>
+	</install>
 
 	<installfile>install.jnews.php</installfile>
 	<uninstallfile>uninstall.jnews.php</uninstallfile>
 
-    <files folder="site">
-        <folder>css</folder>
-        <folder>images</folder>
-        <folder>includes</folder>
+	<files folder="site">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>includes</folder>
 		<folder>modules</folder>
 		<folder>params</folder>
 		<folder>templates</folder>
@@ -67,14 +67,14 @@
 
 		<menu img="../administrator/components/com_jnews/images/16/jnewsletter_icon.png" link="option=com_battle">Battle</menu>
 		<submenu>
-		  <menu link="option=com_battle&amp;act=list" img="../administrator/components/com_jnews/images/16/lists.png">Lists</menu>
-		  <menu link="option=com_battle&amp;act=subscribers" img="../administrator/components/com_jnews/images/16/subscribers.png">Subscribers</menu>
-		  <menu link="option=com_battle&amp;act=mailing&amp;listype=1" img="../administrator/components/com_jnews/images/16/newsletter.png">Newsletters</menu>
-		  <menu link="option=com_battle&amp;act=statistics" img="../administrator/components/com_jnews/images/16/statistics.png">Statistics</menu>
-		  <menu link="option=com_battle&amp;act=queue" img="../administrator/components/com_jnews/images/16/queue.png">Queue</menu>
-		  <menu link="option=com_battle&amp;act=templates" img="../administrator/components/com_jnews/images/16/templates.png">Templates</menu>
-		  <menu link="option=com_battle&amp;act=configuration" img="../administrator/components/com_jnews/images/16/configuration.png">Configuration</menu>
-		  <menu link="option=com_battle&amp;act=about" img="../administrator/components/com_jnews/images/16/about.png">About</menu>
+			<menu link="option=com_battle&amp;act=list" img="../administrator/components/com_jnews/images/16/lists.png">Lists</menu>
+			<menu link="option=com_battle&amp;act=subscribers" img="../administrator/components/com_jnews/images/16/subscribers.png">Subscribers</menu>
+			<menu link="option=com_battle&amp;act=mailing&amp;listype=1" img="../administrator/components/com_jnews/images/16/newsletter.png">Newsletters</menu>
+			<menu link="option=com_battle&amp;act=statistics" img="../administrator/components/com_jnews/images/16/statistics.png">Statistics</menu>
+			<menu link="option=com_battle&amp;act=queue" img="../administrator/components/com_jnews/images/16/queue.png">Queue</menu>
+			<menu link="option=com_battle&amp;act=templates" img="../administrator/components/com_jnews/images/16/templates.png">Templates</menu>
+			<menu link="option=com_battle&amp;act=configuration" img="../administrator/components/com_jnews/images/16/configuration.png">Configuration</menu>
+			<menu link="option=com_battle&amp;act=about" img="../administrator/components/com_jnews/images/16/about.png">About</menu>
 		</submenu>
 	</administration>
 

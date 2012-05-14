@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class Tableportals extends JTable
+class TablePortals extends JTable
 {
 	var $id		= null;
 	var $from_x	= null;
@@ -16,6 +16,6 @@ class Tableportals extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_portals', 'id', $db );
+		parent::__construct( '#__jigs_portals', 'id', $db );
 	}
 }

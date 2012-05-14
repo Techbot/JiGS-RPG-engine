@@ -16,10 +16,8 @@ class TableMaps extends JTable
 	var $row6 = null;
 	var $row7 = null;
 
-	
-
 	function __construct(&$db)
 	{
-		parent::__construct( 'jos_jigs_maps', 'id', $db );
+		parent::__construct( '#__jigs_maps', 'id', $db );
 	}
 }

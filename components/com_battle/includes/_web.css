@@ -1,13 +1,13 @@
 /*
-* {margin:0;padding:0}
-body{background:#666;font-family:'Lucida Sans Unicode',Arial,sans-serif;color:#333;text-align:center;padding:0}
-div,li{margin:0}
-li{margin-left:16px;}
-h1{color:#009999;text-align:center;padding-bottom:10px}
-h2{color:#999;font-size:16px;font-weight:normal}
-pre{background:#666; color:#fff; padding:10px; margin:10px; height:auto; overflow:auto; font:12px Verdana,Courier,sans-serif}
-* html pre {width:100%}
-*/
+ * {margin:0;padding:0}
+ body{background:#666;font-family:'Lucida Sans Unicode',Arial,sans-serif;color:#333;text-align:center;padding:0}
+ div,li{margin:0}
+ li{margin-left:16px;}
+ h1{color:#009999;text-align:center;padding-bottom:10px}
+ h2{color:#999;font-size:16px;font-weight:normal}
+ pre{background:#666; color:#fff; padding:10px; margin:10px; height:auto; overflow:auto; font:12px Verdana,Courier,sans-serif}
+ * html pre {width:100%}
+ */
 
 .description{padding:16px;margin:10px 0;background:#eee}
 
@@ -38,45 +38,45 @@ ol.buttons span{color:#666;border:1px solid #3F3F3F;background:#333;padding:0 5p
 ol.buttons span.active, ol.buttons span:hover{background:#0080FF;color:#fff}
 
 #handles {
-   float:left;
-   width:100%;
-   border-bottom:4px solid #000;
-   overflow:hidden;
-   position:relative;
+	float:left;
+	width:100%;
+	border-bottom:4px solid #000;
+	overflow:hidden;
+	position:relative;
 }
 #handles ol {
-   clear:left;
-   float:left;
-   margin:0;
-   padding:0;
-   position:relative;
-   left:50%;
-   text-align:center;
+	clear:left;
+	float:left;
+	margin:0;
+	padding:0;
+	position:relative;
+	left:50%;
+	text-align:center;
 }
 #handles ol li {
-   display:block;
-   float:left;
-   margin:0;
-   padding:0;
-   position:relative;
-   right:50%;
+	display:block;
+	float:left;
+	margin:0;
+	padding:0;
+	position:relative;
+	right:50%;
 }
 #handles ol li a {
-   display:block;
-   margin:0 0 0 1px;
-   padding:3px 10px;
-   background:#ddd;
-   color:#000;
-   text-decoration:none;
-   line-height:1.3em;
+	display:block;
+	margin:0 0 0 1px;
+	padding:3px 10px;
+	background:#ddd;
+	color:#000;
+	text-decoration:none;
+	line-height:1.3em;
 }
 #handles ol li a:hover {
-   background:#369;
-   color:#fff;
+	background:#369;
+	color:#fff;
 }
 #handles ol li a.active,
 #handles ol li a.active:hover {
-   color:#fff;
-   background:#000;
-   font-weight:bold;
+	color:#fff;
+	background:#000;
+	font-weight:bold;
 }

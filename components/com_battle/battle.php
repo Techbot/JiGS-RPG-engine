@@ -1,37 +1,34 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 jimport('joomla.application.component.controller');
 class BattleController extends JController
 {
-
-	function action(){
-
-	 $model = $this->getModel('jigs');
-	 $action = JRequest::getVar('action');
-	 $result = $model->$action();
-	 echo Json_encode($result);
-
+	function action()
+	{
+		$model = $this->getModel('jigs');
+		$action = JRequest::getVar('action');
+		$result = $model->$action();
+		echo Json_encode($result);
 	}
 
-	function eat(){
+	function eat()
+	{
 		$model = $this->getModel('building');
 		$model->eat();
 		$result = 100;
 		echo Json_encode($result);
 	}
 
-
-	function energy_time(){
+	function energy_time()
+	{
 		$building_id = JRequest::getvar(building_id);
 		$model = $this->getModel('building');
 		$result = $model->check_turbines($building_id);
 		echo Json_encode($result);
 	}
 
-
-	function work_turbine(){
-
+	function work_turbine()
+	{
 		$building_id = JRequest::getvar(building_id);
 		$line = JRequest::getvar(line);
 		$type = JRequest::getvar(type);
@@ -41,8 +38,8 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
-	function work_conveyer(){
-
+	function work_conveyer()
+	{
 		$building_id = JRequest::getvar(building_id);
 		$line = JRequest::getvar(line);
 		$type = JRequest::getvar(type);
@@ -52,43 +49,44 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
-	function work_flat() {
+	function work_flat()
+	{
 		$model = $this->getModel('building');
 		$result = $model->work_flat();
-
 		echo Json_encode($result);
 	}
-	
-	function check_mines(){
+
+	function check_mines()
+	{
 		$building_id = JRequest::getvar(building_id);
 		$model = $this->getModel('jigs');
-
 		$result = $model->check_mines($building_id);
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
 
-	function check_factories(){
+	function check_factories()
+	{
 		$building_id = JRequest::getvar('building_id');
 		$line = JRequest::getvar('line');
 		$model = $this->getModel('jigs');
-
 		$result = $model->check_mines($building_id,$line);
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
 
-	function display(){
+	function display()
+	{
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
 		$view = JRequest::getVar('view');
-
-		if ($user->id==0){
+		if ($user->id==0)
+		{
 			JRequest::setVar('view', 'loggedout');
 		}
-		if (!$view) {
+		if (!$view)
+		{
 			JRequest::setVar('view', 'single');
-				
 			$db->setQuery("Select active FROM jos_jigs_players WHERE iduser =".$user->id);
 			$db->query();
 			$player_status = $db->loadResult();
@@ -102,7 +100,6 @@ class BattleController extends JController
 		parent::display();
 	}
 }
-
 // Get an instance of the controller prefixed by HelloWorld
 $controller = JController::getInstance('Battle');
 // Perform the Request task

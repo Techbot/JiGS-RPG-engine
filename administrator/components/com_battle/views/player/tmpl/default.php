@@ -1,23 +1,25 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
-
-if ($this->row->id) {
+if ($this->row->id)
+{
 	JToolBarHelper::title( JText::_( 'Edit Car Profile' ), 'addedit.png' );
-} else {
+}
+else
+{
 	JToolBarHelper::title( JText::_( 'Add Car Profile' ), 'addedit.png' );
 }
-
 JToolBarHelper::save();
 JToolBarHelper::apply();
-if ($this->row->id) {
+if ($this->row->id)
+{
 	JToolBarHelper::cancel( 'cancel', 'Close' );
-} else {
+}
+else
+{
 	JToolBarHelper::cancel();
 }
-
 ?>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
   <fieldset class="adminform">
@@ -63,13 +65,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->image ;?>" />
       </td>
     </tr>
-
-	
-	
-	
-	
-	
-	
         <tr>
       <td width="100" align="right" class="key">
        coffre :
@@ -78,7 +73,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->coffre ;?>" />
       </td>
     </tr>
-	
 	        <tr>
       <td width="100" align="right" class="key">
       option :
@@ -102,8 +96,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->defense ;?>" />
       </td>
     </tr>	
-
-	
 			        <tr>
       <td width="100" align="right" class="key">
       discretoion :
@@ -119,7 +111,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->rapidte ;?>" />
       </td>
     </tr>	
-	
 				        <tr>
       <td width="100" align="right" class="key">
       visibilite :
@@ -165,8 +156,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->xp  ;?>" />
       </td>
     </tr>
-	
-	
 					        <tr>
       <td width="100" align="right" class="key">
      idvoiture  :
@@ -182,7 +171,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->reservoir ;?>" />
       </td>
     </tr>
-	
 					        <tr>
       <td width="100" align="right" class="key">
     idarme :
@@ -228,8 +216,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->tempsmove;?>" />
       </td>
     </tr>	
-
-
 	<tr>
       <td width="100" align="right" class="key">
   ip :
@@ -245,8 +231,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->commentaire;?>" />
       </td>
     </tr>
-
-
 				        <tr>
       <td width="100" align="right" class="key">
   casier :
@@ -262,7 +246,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->mort ;?>" />
       </td>
     </tr>
-
 					        <tr>
       <td width="100" align="right" class="key">
   parrainage  :
@@ -278,7 +261,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->stupefiant ;?>" />
       </td>
     </tr>
-	
 				        <tr>
       <td width="100" align="right" class="key">
   volevoiture  :
@@ -308,13 +290,6 @@ if ($this->row->id) {
             <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->nbrattaque ;?>" />
       </td>
     </tr>
-
-	
-	
-
-	
-	
-	
     </table>
   </fieldset>
  <?php echo JHTML::_( 'form.token' ); ?>
