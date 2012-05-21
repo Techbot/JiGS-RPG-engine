@@ -70,7 +70,7 @@ window.addEvent('domready',function()
 						onSuccess : function(result)
 						{
 							portal_array = result;
-							for (i = 0; i <= portal_array.length; i++)
+							for (i = 0; i <= portal_array.length-1; i++)
 							{
 								from_x[i] = portal_array[i].from_x;
 								from_y[i] = portal_array[i].from_y;
@@ -149,6 +149,7 @@ function MoveRight()
 // //////////////////////////////////////////////////////////
 function MoveLeft()
 {
+	Portal_Check();
 	var left1 = parseInt(PosX) - 1;
 	if (PosX == 0)
 	{
@@ -173,6 +174,7 @@ function MoveLeft()
 // //////////////////////////////////////////////////////////
 function MoveUp()
 {
+	Portal_Check();
 	var up = parseInt(PosY) - 1;
 	if (PosY == 0)
 	{
@@ -197,6 +199,7 @@ function MoveUp()
 // /////////////////////////////////////////////////////////
 function MoveDown()
 {
+	Portal_Check();
 	var down = parseInt(PosY) + 1;
 	// first check if portal
 	// check if player is at edge of current map
@@ -266,6 +269,7 @@ function Move_Player()
 
 function Portal_Check()
 {
+
 	// alert (portal_array.length);
 	for (i = 0; i < portal_array.length; i++)
 	{
