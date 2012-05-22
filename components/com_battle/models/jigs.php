@@ -26,8 +26,6 @@ class BattleModeljigs extends JModel{
 		return $result;
 	}
 
-
-
 	function add_message($message_id){
 
 		$db =& JFactory::getDBO();

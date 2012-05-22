@@ -10,6 +10,7 @@ var to_x = new Array();
 var to_y = new Array();
 var to_map = new Array();
 var to_grid = new Array();
+var dir = new Array();
 var from_x = new Array();
 var from_y = new Array();
 var from_map = new Array();
@@ -17,6 +18,7 @@ var from_grid = new Array();
 document.onkeydown = check;
 mycells = new Array(8);
 cell = new Array(8);
+
 for ( var i = 0; i < 8; i++)
 {
 	cell[i] = new Array(8);
@@ -25,6 +27,7 @@ for ( var i = 0; i < 8; i++)
 		cell[i][j] = '';
 	}
 }
+
 // Beginning of initialise process via json calls
 window.addEvent('domready',function()
 {
@@ -72,14 +75,15 @@ window.addEvent('domready',function()
 							portal_array = result;
 							for (i = 0; i <= portal_array.length-1; i++)
 							{
-								from_x[i] = portal_array[i].from_x;
-								from_y[i] = portal_array[i].from_y;
-								from_map[i] = portal_array[i].from_map;
-								from_grid[i] = portal_array[i].from_grid;
-								to_x[i] = portal_array[i].to_x;
-								to_y[i] = portal_array[i].to_y;
-								to_map[i] = portal_array[i].to_map;
-								to_grid[i] = portal_array[i].to_grid;
+								dir[i]			=       portal_array[i].direction;
+								from_x[i]		=		portal_array[i].from_x;
+								from_y[i]		=		portal_array[i].from_y;
+								from_map[i]		=		portal_array[i].from_map;
+								from_grid[i]	=		portal_array[i].from_grid;
+								to_x[i]			=		portal_array[i].to_x;
+								to_y[i]			=		portal_array[i].to_y;
+								to_map[i]		=		portal_array[i].to_map;
+								to_grid[i]		=		portal_array[i].to_grid;
 							}
 						}
 					}).get();
@@ -123,7 +127,8 @@ function check(e)
 // ////////////////////////////////////////////////////////
 function MoveRight()
 {
-	Portal_Check();
+	direction = 'R';
+	Portal_Check(direction);
 	var right1 = parseInt(PosX) + 1;
 
 	if (PosX == 7)
@@ -148,8 +153,9 @@ function MoveRight()
 }
 // //////////////////////////////////////////////////////////
 function MoveLeft()
-{
-	Portal_Check();
+{	
+	direction = 'L';
+	Portal_Check(direction);
 	var left1 = parseInt(PosX) - 1;
 	if (PosX == 0)
 	{
@@ -174,7 +180,8 @@ function MoveLeft()
 // //////////////////////////////////////////////////////////
 function MoveUp()
 {
-	Portal_Check();
+	direction = 'U';
+	Portal_Check(direction);
 	var up = parseInt(PosY) - 1;
 	if (PosY == 0)
 	{
@@ -199,7 +206,8 @@ function MoveUp()
 // /////////////////////////////////////////////////////////
 function MoveDown()
 {
-	Portal_Check();
+	direction = 'D';
+	Portal_Check(direction);
 	var down = parseInt(PosY) + 1;
 	// first check if portal
 	// check if player is at edge of current map
@@ -267,14 +275,14 @@ function Move_Player()
 	}).get();
 }
 
-function Portal_Check()
+function Portal_Check(direction)
 {
 
 	// alert (portal_array.length);
 	for (i = 0; i < portal_array.length; i++)
 	{
 		// alert(to_grid[i]);
-		if (PosX == from_x[i] && PosY == from_y[i])
+		if (PosX == from_x[i] && PosY == from_y[i] && direction == dir[i] )
 		{
 			PosX = to_x[i];
 			PosY = to_y[i];
