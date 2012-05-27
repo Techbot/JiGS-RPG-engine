@@ -845,7 +845,9 @@ class BattleModeljigs extends JModel{
 	function heartbeat(){
 		$result_1 = $this->check_factories();
 		$result_2 = $this->check_mines();
+		$result_3 = $this->respawn()
 		$result = $this->get_players();
+		
 		return $result;
 	}
 
@@ -1369,15 +1371,12 @@ class BattleModeljigs extends JModel{
 		$query="SELECT #__jigs_factories.type,
 				   #__jigs_buildings.owner, 
 	               #__jigs_objects.name
-	FROM #__jigs_factories 
-	
-	LEFT JOIN #__jigs_buildings
-	ON #__jigs_factories.building = #__jigs_buildings.id 
-	
-	LEFT JOIN #__jigs_objects
-	ON #__jigs_factories.type = #__jigs_objects.id 	
-	
-	WHERE timestamp!=0 AND timestamp < ". $duration;
+	               FROM #__jigs_factories
+	               LEFT JOIN #__jigs_buildings
+	               ON #__jigs_factories.building = #__jigs_buildings.id
+	               LEFT JOIN #__jigs_objects
+	               ON #__jigs_factories.type = #__jigs_objects.id
+		WHERE timestamp!=0 AND timestamp < ". $duration;
 		$db->setQuery($query);
 		$result = $db->loadObjectlist();
 
