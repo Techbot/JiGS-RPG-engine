@@ -9,7 +9,7 @@ class BattleModelRoom extends JModel
 	function enter_room(){
 	$db =& JFactory::getDBO();
 	$user =& JFactory::getUser();
-	$query = "Update jos_jigs_players SET active = 2 WHERE iduser = ". $user->id;
+	$query = "Update #__jigs_players SET active = 2 WHERE iduser = ". $user->id;
 	$db->setQuery($query);
 	$result = $db->loadResult();
 	return true ; 

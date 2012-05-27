@@ -2,12 +2,10 @@
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-more_.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/clientcide.2.2.0.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/_class.noobSlide.packed.js"></script>
-
+<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.js"></script>
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' );
-
-
 
 ?>
 
@@ -18,13 +16,8 @@ echo '<pre>';
 echo '</pre>'; 
 */ 
   ?>
-<?php 
 
-require_once ( JPATH_SITE . '/components/com_battle/includes/JIGS.js.php');
 
-?>
-
- 
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/views/person/tmpl/style.css.php" />
 
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" />

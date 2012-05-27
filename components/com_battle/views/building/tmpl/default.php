@@ -101,23 +101,12 @@ if ($this->player->id == 0){
 
 </div><!--end building_left-->
 
-
-
 <div class="building_right">
 <div id="status">
-
-
-
-
 
 <div class="instructions">
 <?php echo $this->loadTemplate ('board_info1'); ?>
 </div>
-
-
-
-
-
 
 
 <div id="action" class="clearfix">
@@ -165,15 +154,10 @@ if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
 <?php
 
 if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 ){
-
-
-	
 	echo $this->loadTemplate ($this->buildings->type);
-
 	
 }
  ?>
-
 
 
 <script type='text/javascript'>
@@ -187,17 +171,12 @@ function buy_building() {
     onSuccess: function(result){
     	
     	$('<?php echo $this->buildings->id ; ?>').setStyle('visibility','hidden');
-;
-
     	    
     	}
     }).get();
   		 });
     }	
  
-
-
-
  function buy1(itemID){
   
  	var a = new Request.JSON({
@@ -218,11 +197,6 @@ function buy_building() {
      }).get();
   
  }
-
-
-
-
-
 
  
  </script>

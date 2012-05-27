@@ -27,23 +27,18 @@ class BattleViewBuilding extends JView
 		$this->assignRef('cropper', $cropper);		
 		
 		$this->assignRef('buildings', $buildings);		
-		$now= time();
-		$timestamp =  $this->buildings->timestamp ;
-		$this->buildings->elapsed  = $now - $timestamp;
-		$this->buildings->now = $now;
+		$now						= time();
+		$timestamp					= $this->buildings->timestamp ;
+		$this->buildings->elapsed	= $now - $timestamp;
+		$this->buildings->now		= $now;
 		$this->assignRef('backlink', $backlink);
 		
-		$model = &$this->getModel();
-		$board_info_1 = $model->get_board_messages($id,$type=2);
+		$model						= &$this->getModel();
+		$board_info_1				= $model->get_board_messages($id,$type=2);
 		
-		
-
-		
+	
 		
 		$this->assignRef('board_info_1',$board_info_1);
-		
-		
-		
 		
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
 	// This is where we make an object specific to each building type 	
@@ -56,10 +51,10 @@ class BattleViewBuilding extends JView
 		}
 		
 		if($this->buildings->type=='apartment'){
-			$resident = array();
-			$pics = array();
-			$message = array();
-			$model = &$this->getModel();
+			$resident	= array();
+			$pics		= array();
+			$message	= array();
+			$model		= &$this->getModel();
 
 			$flats_array		= 		$model->get_flats($id);
 
@@ -75,8 +70,8 @@ class BattleViewBuilding extends JView
 		}
 
 		if($this->buildings->type=='food'){
-					$model = &$this->getModel();
-					$crops= $model->get_crops();
+					$model	= &$this->getModel();
+					$crops	= $model->get_crops();
 					$this->assignRef('crops', $crops);
 					}
 		
@@ -84,15 +79,15 @@ class BattleViewBuilding extends JView
 			
 		//	echo $this->buildings->id;
 			
-					$model = &$this->getModel();
-					$mines= $model->get_mines($this->buildings->id);
+					$model	= &$this->getModel();
+					$mines	= $model->get_mines($this->buildings->id);
 					$this->assignRef('mines', $mines);
 					}	
 					
 		if($this->buildings->type=='factory'){
 		//	echo $this->buildings->id;
-					$model = &$this->getModel();
-		 	    	$factories = $model->get_factories($this->buildings->id);
+					$model		= &$this->getModel();
+		 	    	$factories	= $model->get_factories($this->buildings->id);
 					$this->assignRef('factories', $factories);
 					}	
 		

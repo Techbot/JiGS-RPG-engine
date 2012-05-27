@@ -266,11 +266,17 @@ class BattleModelBuilding extends JModel
 	{
 		$user =& JFactory::getUser();
 		$db =& JFactory::getDBO();
-		$query ="SELECT * FROM `#__jigs_blueprints`
-			LEFT JOIN `#__jigs_objects` ON `#__jigs_blueprints.object` = `#__jigs_objects.id`
-			WHERE `#__jigs_blueprints.user_id` = '$user->id'";
+		$query ="SELECT * FROM `#__jigs_blueprints` LEFT JOIN `#__jigs_objects` ON `#__jigs_blueprints.object` = `#__jigs_objects.id`
+			WHERE `#__jigs_blueprints.user_id` = $user->id ";
 		$db->setQuery($query);
 		$result = $db->loadObjectList();
+		
+	//	echo $query;
+	//	exit();
+		
+		
+		
+		
 		foreach($result as $blueprint)
 		{
 			$query ="SELECT `name` FROM `#__jigs_metal_names` WHERE `#__jigs_metal_names.id` = $blueprint->metal_1 ";
@@ -337,13 +343,13 @@ class BattleModelBuilding extends JModel
 
 	function get_board_messages($id,$type)
 	{
-		$db =& JFactory::getDBO();
-		$query="SELECT `messages` FROM `#__jigs_buildings` WHERE `id` =" . $id;
+		$db			=& JFactory::getDBO();
+		$query		="SELECT `messages` FROM `#__jigs_buildings` WHERE `id` =" . $id;
 		$db->setQuery($query);
-		$string = $db->loadResult();
-		$result = array();
-		$numbers = array();
-		$numbers= explode( ',' ,  $string );
+		$string		= $db->loadResult();
+		$result		= array();
+		$numbers	= array();
+		$numbers	= explode( ',' ,  $string );
 		foreach ($numbers as $message_id)
 		{
 			$db =& JFactory::getDBO();
@@ -355,7 +361,7 @@ class BattleModelBuilding extends JModel
 				$result[] = $db->loadResult();
 			}
 		}
-		print_r($result);
+	//	print_r($result);
 		//	exit();
 		return $result;
 	}

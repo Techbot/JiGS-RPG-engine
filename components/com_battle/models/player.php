@@ -23,11 +23,11 @@ class BattleModelPlayer extends JModel
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
 		$character_id= JRequest::getvar(id);
-		$db->setQuery("SELECT jos_jigs_weapons.item_id, jos_jigs_weapon_names.name, jos_jigs_weapon_names.sell_price, jos_jigs_weapon_names.image " .
-				"FROM jos_jigs_weapons " .
-				"LEFT JOIN jos_jigs_weapon_names " .
-				"ON jos_jigs_weapons.item_id = jos_jigs_weapon_names.id " .
-				"WHERE jos_jigs_weapons.player_id =".$id);
+		$db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.name, #__jigs_weapon_names.sell_price, #__jigs_weapon_names.image " .
+				"FROM #__jigs_weapons " .
+				"LEFT JOIN #__jigs_weapon_names " .
+				"ON #__jigs_weapons.item_id = #__jigs_weapon_names.id " .
+				"WHERE #__jigs_weapons.player_id =".$id);
 		$result = $db->loadAssocList();
 			return $result;
 }
@@ -36,7 +36,7 @@ class BattleModelPlayer extends JModel
 
 function get_avatar($iduser){
 		$db =& JFactory::getDBO();
-		$db->setQuery("SELECT jos_comprofiler.avatar FROM jos_comprofiler WHERE jos_comprofiler.id =".$iduser);
+		$db->setQuery("SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =".$iduser);
     	$result = $db->loadresult();
 	
 return $result;
