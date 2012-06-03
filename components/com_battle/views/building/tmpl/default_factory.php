@@ -1,21 +1,37 @@
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
-$factories=$this->factories;
 
-//	 echo '<pre>' ;
-// print_r($factories);
-//	 echo '</pre>';
+	$factories=$this->factories;
+	$x=count($factories);
+	$index= $x+1;
+	
+ /*  $arr = new object;
 
+           $arr[id] = 0;
+           $arr[object] = 0;
+           $arr[user_id] = 63;
+           $arr[sell_price] = 1;
+           $arr[name] = 'Select';
+           $arr[description] = 'Select';
+           $arr[metal_1] = 0;
+           $arr[quantity_1] = 0;
+           $arr[metal_2] = 0;
+           $arr[quantity_2] = 0;
+           $arr[metal_1_name] = 'Kryptonite';
+           $arr[metal_2_name] = 'Carbon';
+           $arr[metal_1_stock] = 0;
+           $arr[metal_2_stock] = 0;
+           
+           */
 
+   //        echo '<pre>';
+  //        print_r($factories);
+  //        echo '</pre>';
+  //        exit();
+           
+//$factories = array_unshift_assoc( $factories , '' , $arr);
 
-$x=count($factories);
-foreach ($factories as $row){
-
-}
-
-// $factories = array_unshift_assoc( $factories , 'id' , "SELECT" );
-
-
+//$factories[$index]='Select';
 
 function array_unshift_assoc(&$arr, $key, $val)
 {
@@ -24,29 +40,9 @@ function array_unshift_assoc(&$arr, $key, $val)
 	return  array_reverse($arr, true);
 }
 
-
-
-
-
-// Imagelist
 $javascript			= 'onchange="changeDisplayImage(blueprints);"';
 $directory			= '/images/banners';
-$lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints',$javascript, 'id', 'name', 'select','select');
-
-
-// echo '<pre>' ;
-// print_r($factories);
-// echo '</pre>';
-
-
-
-
-
-
-
-
-
-
+$lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints',$javascript, 'id', 'name' );
 
 ?>
 
@@ -80,7 +76,7 @@ $lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints'
 
 <legend>Object</legend>
 
-<input type="text" title="Object ID" name="id1" id="id1" value = "Select" size="1" style="width: 10px;" maxlength="2" 
+<input type="text" title="Object ID" name="id1" id="id1" value = "Select" size="2" style="width: 10px;" maxlength="2" 
 readonly="readonly" />
 
 
@@ -105,31 +101,34 @@ readonly="readonly" />
 <fieldset>
 <label title="Type of Metal required" for="n1">Metal:</label> 
 <input class="inputbox" type="text" size="4" maxlength="6" name="n1" id="n1" style="width: 70px;" value="<?php echo $factories[0]->metal_1_name ;?>" /> 
-<label title="Units per Object" for="q1">units:</label> 
 
+<label title="Units per Object" for="q1">units:</label> 
 <input class="inputbox" type="text" size="1" maxlength="2" name="q1" id="q1" style="width: 20px;" value="<?php echo $factories[0]->quantity_1 ;?>" /> 
 
 <label title="Total Units" for="q1t">total:</label>
- <input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $factories[0]->metal_1_stock ;?>" name="q1t" id="q1t" style="width: 20px;" /> 
-<label title="In Stock" for="q2t">In Stock:</label>
+ <input class="inputbox" type="text" size="1" maxlength="2"  name="q1t" id="q1t" style="width: 20px;" /> 
 
-<input class="inputbox" type="text" size="1" maxlength="2" name="stock" id="stock"  style="width: 20px;" />
+ <label title="In Stock" for="stock">In Stock:</label>
+<input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $factories[0]->metal_1_stock ;?>" name="stock" id="stock"  style="width: 20px;" />
  </fieldset>
 
 <fieldset>
 <label title="Type of Metal required" for="n2">Metal:</label>
 <input class="inputbox" type="text" size="4" maxlength="6" name="n2" id="n2" style="width: 70px;" value="<?php echo $factories[0]->metal_2_name ;?>" /> 
- <label title="Units per Object" for="q2">units:</label>
  
+ 
+ <label title="Units per Object" for="q2" >units:</label>
   <input class="inputbox" type="text" size="1" maxlength="1" name="q2" id="q2" style="width: 20px;" value="<?php echo $factories[0]->quantity_2 ;?>" /> 
-<label title="Total Units" for="q2t">total:</label>
- <input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $factories[0]->metal_2_stock ;?>" name="q2t" id="q2t"  style="width: 20px;" />
- <label title="In Stock" for="q2t">In Stock:</label> 
-<input class="inputbox" type="text" size="1" maxlength="2" name="stock2" id="stock2"  style="width: 20px;" />
+
+  
+  <label title="Total Units" for="qt2" >total:</label>
+<input class="inputbox" type="text" size="1" maxlength="2"  name="q2t" id="q2t" style="width: 20px;"  />
 
 
+<label title="In Stock" for="stock2">In Stock:</label> 
+<input class="inputbox" type="text" size="1" maxlength="2" name="stock2" id="stock2"  style="width: 20px;" value="<?php echo $factories[0]->metal_2_stock ;?>" />
 
-						</fieldset>
+</fieldset>
 
 					</fieldset>
 					<input type="hidden" name="c" value="banner" /> <input
@@ -312,8 +311,8 @@ function changeDisplayImage() {
 	var id1 = new Array();
 	var metal_name_1 = new Array();
 	var metal_name_2 = new Array();
-	var mystock1 = 0;
-	var mystock2 = 0; 
+	//var mystock1 = 0;
+	//var mystock2 = 0; 
 			var q_1 = new Array();
 			var q_2 = new Array();			
 			<?php 

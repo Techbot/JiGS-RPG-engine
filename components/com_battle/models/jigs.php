@@ -845,7 +845,7 @@ class BattleModeljigs extends JModel{
 	function heartbeat(){
 		$result_1 = $this->check_factories();
 		$result_2 = $this->check_mines();
-		$result_3 = $this->respawn()
+		$result_3 = $this->respawn();
 		$result = $this->get_players();
 		
 		return $result;

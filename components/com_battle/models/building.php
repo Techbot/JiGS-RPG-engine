@@ -266,8 +266,8 @@ class BattleModelBuilding extends JModel
 	{
 		$user =& JFactory::getUser();
 		$db =& JFactory::getDBO();
-		$query ="SELECT * FROM `#__jigs_blueprints` LEFT JOIN `#__jigs_objects` ON `#__jigs_blueprints.object` = `#__jigs_objects.id`
-			WHERE `#__jigs_blueprints.user_id` = $user->id ";
+		$query ="SELECT * FROM #__jigs_blueprints LEFT JOIN #__jigs_objects ON #__jigs_blueprints.object = #__jigs_objects.id
+			WHERE #__jigs_blueprints.user_id = $user->id ";
 		$db->setQuery($query);
 		$result = $db->loadObjectList();
 		
@@ -279,16 +279,17 @@ class BattleModelBuilding extends JModel
 		
 		foreach($result as $blueprint)
 		{
-			$query ="SELECT `name` FROM `#__jigs_metal_names` WHERE `#__jigs_metal_names.id` = $blueprint->metal_1 ";
+			$user =& JFactory::getUser();
+			$query ="SELECT name FROM #__jigs_metal_names WHERE #__jigs_metal_names.id = $blueprint->metal_1 ";
 			$db->setQuery($query);
 			$blueprint->metal_1_name = $db->loadResult();
-			$query ="SELECT `name` FROM `#__jigs_metal_names` WHERE `#__jigs_metal_names.id` = $blueprint->metal_2 ";
+			$query ="SELECT name FROM #__jigs_metal_names WHERE #__jigs_metal_names.id = $blueprint->metal_2 ";
 			$db->setQuery($query);
 			$blueprint->metal_2_name = $db->loadResult();
-			$query ="SELECT `quantity` FROM `#__jigs_metals` WHERE `#__jigs_metals.player_id` = $user->id AND `#__jigs_metals.item_id` = $blueprint->metal_1 ";
+			$query ="SELECT quantity FROM #__jigs_metals WHERE #__jigs_metals.player_id = $user->id AND #__jigs_metals.item_id = $blueprint->metal_1 ";
 				$db->setQuery($query);
 				$blueprint->metal_1_stock = $db->loadResult();
-			$query ="SELECT `quantity` FROM `#__jigs_metals` WHERE `#__jigs_metals.player_id` = $user->id AND `#__jigs_metals.item_id` = $blueprint->metal_2 ";
+			$query ="SELECT quantity FROM #__jigs_metals WHERE #__jigs_metals.player_id = $user->id AND #__jigs_metals.item_id = $blueprint->metal_2 ";
 				$db->setQuery($query);
 				$blueprint->metal_2_stock = $db->loadResult();
 		}

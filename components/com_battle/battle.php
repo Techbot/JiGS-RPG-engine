@@ -8,6 +8,7 @@ class BattleController extends JController
 		$model = $this->getModel('jigs');
 		$action = JRequest::getVar('action');
 		$result = $model->$action();
+		$heartbeat = $model->heartbeat();
 		echo Json_encode($result);
 	}
 
