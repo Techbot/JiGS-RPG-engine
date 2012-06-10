@@ -916,7 +916,7 @@ class BattleModeljigs extends JModel{
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
 		$user_id =$user->id;
-		$character_id = JRequest::getvar(character);
+		$character_id = JRequest::getvar('character');
 
 
 
@@ -934,15 +934,15 @@ class BattleModeljigs extends JModel{
 		$attack_type = JRequest::getvar(type);
 
 		switch ($attack_type) {
-			/////////////////// If Player shoots test shooting skills + speed + dexterity against NPCs speed ////////////////////////////////
+///// If Player shoots test shooting skills + speed + dexterity against NPCs speed //////////////
 			case 'shoot':
 				if ($player_dice > $character_dice){
-					$player_v=$player_v+1;
+					
 					$char_v=$char_v-30;
 				}
 				else {
-					$player_v=$player_v-1;
-					$char_v=$char_v+10;
+					$player_v=$player_v-10;
+					
 				}
 
 
@@ -950,27 +950,27 @@ class BattleModeljigs extends JModel{
 
 
 				break;
-				/////////////////// If Player kicks test kicking and other fighting skills + speed + dexterity against NPCs speed ////////////////////////////////
+//====== If Player kicks test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
 			case 'kick':
 
 				if ($player_dice > $character_dice){
-					$player_v=$player_v+1;
+				
 					$char_v=$char_v-30;
 				}
 				else {
-					$player_v=$player_v-1;
-					$char_v=$char_v+10;
+					
+					$player_v=$player_v-10;
 				}
 				break;
 				/////////////////// If Player punches test punch and other fighting skills + speed + dexterity against NPCs speed ////////////////////////////////
 			case 'punch':
 				if ($player_dice > $character_dice){
-					$player_v=$player_v+1;
+		
 					$char_v=$char_v-30;
 				}
 				else {
-					$player_v=$player_v-1;
-					$char_v=$char_v+10;
+					
+					$player_v=$player_v-10;
 				}
 				break;
 		}
@@ -978,22 +978,22 @@ class BattleModeljigs extends JModel{
 
 		if ($char_v <= 0) {
 			$now=time();
-			$db->setQuery("UPDATE #__jigs_characters SET active = 0, empty= 1 , time_killed = " . $now . " WHERE id ='".$character_id."'");
+			$db->setQuery("UPDATE #__jigs_characters SET active =0, empty= 1 , time_killed =" . $now . " WHERE id ='".$character_id."'");
 			$db->query();
-			$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = ".$user->id." WHERE #__jigs_inventory.player_id = ".$character_id );
+			$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id =".$user->id." WHERE #__jigs_inventory.player_id = ".$character_id );
 			$result = $db->query();
 
 
 			//// Upate specific and General stats and payout when applicable
 
 			$xp_type = 'nbr_kills';
-			$test = $this->increment_xp($xp_type ,$char_m,$user_id);
+			$test = $this->increment_xp($xp_type, $char_m,$user_id);
 
 
 
 			$text= 'Citizen ' . $char_name  . ' was killed by citizen ' . $user->username ;
 			$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
-			$db->query() ;
+			$db->query();
 		}
 
 		$db->setQuery("UPDATE #__jigs_players SET health='".$player_v."'  WHERE iduser ='".$user->id."'");
