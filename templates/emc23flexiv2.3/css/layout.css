@@ -1,0 +1,206 @@
+		/*---------------------------------------*/
+			/*** LAYOUT - MAIN CONTAINERS ***/
+		/*---------------------------------------*/
+		
+/* General site layout */
+body {
+margin: 0; 
+padding: 0;
+text-align: center;
+}
+
+.left {float: left;}
+.right {float: right;}
+	
+/*---------------------------------------
+Note: Container Divs each have a nested div.inside for styling purposes. 
+Padding, Margins, and Borders are added to the div.inside only. This ensures widths of parent divs do not fluctuate.
+Master Template displays div.inside with a hatched background. This can be removed in theme.css.
+Unless specified, each div.inside has the same margin value of 10px.
+To specify, add a parent div rule eg. #left div.inside {margin: 0px;}
+---------------------------------------*/
+
+div.inside {margin:10px 10px 10px 10px;} 
+
+/*---------------------------------------
+Note: All elements in index.php are contained within a wrapper (div#wrapper).
+---------------------------------------*/
+div#wrapper {
+width: 1000px;
+margin: 0 auto;  /* center hack */
+padding: 0;
+}
+
+/* Maincontent */
+
+/* this container holds the left column and mainbody content. We load this container first for SEO Source Ordering purposes. We set the width of this container based upon the content layout logic. (see includes/template_config.php) */
+
+#both #LoadFirst {width: 830px !important; width:710px;} /* The available width minus the width of the right container */
+#left-only #LoadFirst {width: 100%;} /* The available width because we no longer have the right container */
+#right-only #LoadFirst {width: 830px;} /* The available width minus the width of the right container */
+#wide #LoadFirst {width: 100%;} /* The available width because we no longer have the left or right containers */
+
+/* The #MiddleCol container holds the mainbody content. We load this container before we load the left column for SEO Source Ordering purposes. We set the width of this container based upon the content layout logic. (see template_config.php) */
+#both #MiddleCol {width: 660px !important; width:540px;} /* The available width */
+#left-only #MiddleCol {width: 830px;} /* The available width minus the width of the left container */
+#right-only #MiddleCol {width: 830px;} /* The available width minus the width of the right container */
+#wide #MiddleCol {width: 100%;} /* The available width */
+
+/* this container holds the left column content. We load this container before we load the right column for SEO Source Ordering purposes. */
+#left {width: 170px;}
+
+/* this container holds the right column content. */
+#right {width: 170px;}
+
+
+	
+/*  HEADER */
+div#header {
+margin: 0;
+padding: 0px;
+}
+
+
+		/*---------------------------------------*/
+				/***HEADER & LOGO***/
+		/*--------------------------based on BEEZ---------*/
+div#logo {
+width:355px;
+height:55px;
+float:right;
+margin: 20px 40px 0 0; 
+padding: 0; 
+text-align: left;
+} /* we set the width to 40% to allow for the left padding on this div and the right padding on the top-module div below. 10 pixels top padding, 0 pixels right padding, 10 pixels bottom padding and 20 pixels left padding */
+
+/* logo.png linked to index.php*/
+#logo a img {
+	display:block;
+	float:left;
+	position: relative;
+	z-index: 100;
+}
+
+#logo div#sitename {
+	display:block;
+	margin: 0px 0 2px 60px !important; /* margin indents Site Name and Tag Line*/
+}
+
+#logo div#slogan {
+	display:block;
+	margin:0 0 2px 60px !important; /* margin indents Site Name and Tag Line*/
+}
+
+
+/* -- Top module container -- */			
+div#top-module {
+float: right; 
+width: 615px; 
+margin: 0; 
+padding: 0px 0px 0 10px; 
+}
+
+div#top-module div.moduletable {
+margin-bottom: 0px;
+}
+
+/* -- Breadcrumbs container -- */	
+div#breadcrumbs {
+clear: both; 
+float:left; 
+margin:0; 
+padding:0;
+} 
+/* because the above divs have widths equalling 89% and 40pixels horizontal padding (left padding + right padding) there may be a gap between those two modules. We want to ensure that the breadcrumbs module clears both of these modules */
+
+div#breadcrumbs p {
+margin: 0; 
+padding: 0;
+}
+
+/* -- Search container -- */	
+div#search {
+float:right; 
+margin:0 0 0 0; 
+padding:0;
+} 
+
+/* -- Nav container -- */	
+#nav {
+width: 565px;
+position:relative; 
+margin:30px 0 0 40px; 
+z-index:900;
+float:left;
+}
+
+	/* MAIN */
+
+/*---------------------------------------
+Note: Main content container includes divs MiddleCol, top-user-modules, mainbody, bottom-user-modules, left, and right columns
+---------------------------------------*/
+#BodyContent {
+padding: 0px; 
+margin: 0px; 
+text-align: left;
+}
+
+#LoadFirst {
+float: left;
+}
+
+/*---------------------------------------
+Note: This Layout
+The #MiddleCol container holds the mainbody content. 
+We load this container before we load the left column for SEO Source Ordering purposes.
+We set the width of this container based upon the content layout logic. (see template_config.php) 
+---------------------------------------*/
+#MiddleCol {padding:0px;}
+#both #MiddleCol {float:right;}
+#left-only #MiddleCol {float:right;}
+#right-only #MiddleCol {float:left;}
+#wide #MiddleCol {float:left;}
+
+#MiddleCol div.inside {margin:10px 20px;}
+
+#mainbody {overflow: hidden;}
+
+/* -- Teaser Modules -- */
+div#top-user-modules {margin:0; padding:0;}
+div#top-user-modules div.inside {margin:10px 5px;}
+
+div#bottom-user-modules {margin:0; padding:0;}
+div#bottom-user-modules div.inside {margin:10px 5px;}
+
+div#footer-user-modules {margin:0; padding:0;}
+
+
+/*---------------------------------------
+Note: To work out the widths of the teaser modules we are going to have to know how many are published in a row 
+(up to four modules per row). See includes/template_config.php
+---------------------------------------*/
+div.count1 {width:100%; float:left;}
+div.count2 {width:50%; float:left;}
+div.count3 {width:33.3%; float:left;}
+div.count4 {width:25%; float:left;}
+
+	/* LEFT COLUMN */
+/*---------------------------------------
+Note: this container holds the left column content. We load this container before we load the right column for SEO Source Ordering purposes.
+---------------------------------------*/
+#left {float: left;}
+#left div.inside {margin:10px 0px 10px 0px;}
+#left p {margin: 0 5px;}
+
+	/* RIGHT COLUMN */
+#right {float: right;}
+#right div.inside {margin:10px 0px 10px 0px;}
+#right p {margin: 0 5px;}
+
+	/* FOOTER */
+#footer {}
+#footer div.inside {margin:0px;}
+
+	/* BANNER */
+#banner {padding: 10px 0 0;}
+

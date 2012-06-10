@@ -1,0 +1,62 @@
+/* pane-sliders  */
+.pane-sliders .title {
+	margin: 0;
+	padding: 0px 2px;
+	color: #CCC;
+	text-shadow:1px 1px 1px #000;
+	cursor: pointer;
+}
+
+.pane-sliders .panel   { border: 1px solid #666;border-bottom: 1px solid #333; margin-bottom:0px;}
+
+.pane-sliders .panel h3 {
+text-align:left;
+background: #333; 	
+color: #CCC;
+text-shadow:1px 1px 1px #000;
+}
+
+.pane-sliders .content { background: transparent; padding:0 5px;}
+
+.pane-sliders .adminlist     { border: 0 none; }
+.pane-sliders .adminlist td  { border: 0 none; }
+
+.jpane-toggler  span     { background: transparent url(../images/j_arrow.png) 5px 50% no-repeat; padding-left: 20px;}
+.jpane-toggler-down span { background: transparent url(../images/j_arrow_down.png) 5px 50% no-repeat; padding-left: 20px;}
+
+.jpane-toggler-down {  border-bottom: 1px solid #ccc; }
+
+/* tabs */
+
+dl.tabs {
+	float: left;
+	margin: 10px 0 -1px 0;
+	z-index: 50;
+}
+
+dl.tabs dt {
+	float: left;
+	padding: 4px 10px;
+	border: 1px solid #333;
+	margin-left: 3px;
+	background: #666;
+	color: #000;
+}
+
+dl.tabs dt.open {
+	background: #828282;
+	border: 1px solid #FFF;
+	z-index: 100;
+	color: #FFF;
+}
+
+div.current {
+	clear: both;
+	border: 0px solid #666;
+	padding: 10px 10px;
+}
+
+div.current dd {
+	padding: 0;
+	margin: 0;
+}

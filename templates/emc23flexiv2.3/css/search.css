@@ -1,0 +1,19 @@
+/* -- Joomla Search Form Override -- */
+
+/******FORM******/
+
+div.search input {
+padding:3px 5px;
+}
+
+div.search input.button {
+margin: 0 10px 0 5px;
+}
+
+
+/******STYLE******/
+		/* Search */
+		
+form.search {}
+
+input#mod_search_searchword.inputbox {}

@@ -1,0 +1,121 @@
+/* RTL Stylesheets */
+@import url('menus_rtl.css');
+
+/* -- Layout-- */
+
+/* SITE SPECIFIC LAYOUT */
+ul#access li{
+float:right;
+direction: rtl;
+}
+
+
+div#logo {
+float: right;
+text-align: right;
+direction: rtl;
+}
+
+div#top-module {
+float: left;
+text-align: right;
+direction: rtl;
+}
+
+/* END HEADER */
+
+/* NAVIGATION DIV 
+div#nav {
+See css/menus_rtl.css
+}
+*/
+
+/* END NAVIGATION DIV */
+
+/* MAINCONTENT */
+#BodyContent {
+	padding: 0px;
+	margin: 0px;
+	text-align: right;
+	direction: rtl;
+}
+
+/* this container holds the left column and mainbody content. We load this container first for SEO Source Ordering purposes.
+We set the width of this container based upon the content layout logic. (see includes/template_config.php) */
+#LoadFirst-both {
+	float: right;
+}
+#LoadFirst-left-only {
+	float: right;
+}
+#LoadFirst-right-only {
+	float: right;
+}
+#LoadFirst-wide {
+	float: right;
+}
+
+#MiddleCol-both {
+	float: left;
+	text-align: right;
+	direction: rtl;
+}
+
+#MiddleCol-left-only {
+	float: left;
+	text-align: right;
+	direction: rtl;
+}
+
+#MiddleCol-right-only {
+	float: right;
+	text-align: right;
+	direction: rtl;
+}
+
+#MiddleCol-wide {
+	float: right;
+	text-align: right;
+	direction: rtl;
+}
+
+/* this container holds the right column content in an RTL layout (Joomla's default left layout). We load this container before we load the right column for SEO Source Ordering purposes. */
+#left {
+	float: right;
+}
+/* this container holds the left column content in an RTL layout (Joomla's default right layout). */
+#right {
+	float: left;
+	
+}
+
+/* -- Teaser Modules -- */
+/* To work out the widths of the teaser modules we are going to have to know how many are published in a row (upto four modules per row).
+See includes/template_config.php */ 
+div.count1 {
+float:right;
+direction: rtl;
+}
+div.count2 {
+float:right;
+direction: rtl;
+}
+div.count3 {
+float:right;
+direction: rtl;
+}
+div.count4 {
+float:right;
+direction: rtl;
+}
+div.count5 {
+float:right;
+direction: rtl;
+}
+div.count6 {
+float:right;
+direction: rtl;
+}
+
+/* end MAINCONTENT */
+/* end Layout */

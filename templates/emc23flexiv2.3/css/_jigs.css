@@ -1,0 +1,405 @@
+
+
+a#withdraw,a#deposit,#submit_c{
+	background:#333;
+	padding:3px 10px;
+	border:1px solid #fff;
+	text-decoration:none;
+	
+	
+}
+
+a#withdraw:hover,a#deposit:hover,#submit_c:hover{
+	background:red;
+	}
+
+.quantity_box_button_up {
+    background: url(../images/arrow2.png) no-repeat scroll 50% 50% transparent;
+    border: 0 solid #111111;
+    margin:0 5px 0 10px;
+    
+}
+
+.quantity_box_button_down {
+    background: url(../images/arrow3.png) no-repeat scroll 50% 50% transparent;
+    border: 0 solid #111111;
+    margin:0 10px 0 5px;
+}
+
+
+
+#bank_right {
+	width : 50%;
+	float:right;
+	
+
+}
+
+#bank_left {
+	width:50%;
+	float:left;
+	
+}
+
+#bank_cash {
+	background:#333;
+}
+
+
+
+
+.q1 {
+	width:30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.clr, .clear {
+clear:both;
+}
+
+div#container {
+font-family:arial;
+color:white;
+}
+
+div#building_info_table {
+border-right:1px dotted #333;
+float:left;
+}
+div#building_info_table td:first-child {
+text-transform:uppercase;
+font-size:75%;
+color:#666;
+}
+
+table.shade-table {
+width:100%;
+text-align:center;
+margin:0;}
+
+table.shade-table th{
+font-weight:bold;
+text-transform:uppercase;
+background:#1F1F1F;
+color:#333;
+}
+
+div#spec{
+margin:10px;
+}
+
+div#container {
+color:#fff;
+font-family:arial, sans-serif;
+font-size:80%;
+margin-bottom:20px;
+}
+
+div#vacant {
+width:260px;
+float:right;
+border:1px solid #333;
+padding:5px;
+}
+
+div#vacant p {
+margin:0 0 1em 0;
+}
+
+div#mine_board{
+text-align:center;
+font-weight:bold;
+background:#666;
+border:1px solid #333;
+padding:3px;
+width:400px;
+float:right;
+}
+
+.upgrade{
+width:28%;
+float:left;
+padding:0 3px;
+border:1px solid #333;
+margin:0 5px 0 0;
+}
+
+.upgrade:last-child{
+margin:0;
+}
+
+.upgrade_main{
+margin:5px 0;
+}
+
+div#crystals_board{
+text-align:center;
+font-weight:bold;
+background:#666;
+border:1px solid #333;
+padding:3px;
+}
+
+div#crystals_board ul{
+margin:0;
+padding:0;
+}
+
+div#crystals_board ul li{
+display:inline;
+}
+div#crystals_board ul li a:link,
+div#crystals_board ul li a:visited{}
+div#crystals_board ul li a:hover {}
+
+/* end JIGS.CSS early version - delete eventually */
+
+.clr, .clear {
+clear:both;
+}
+.clearfix:after {
+content: "."; 
+display: block; 
+height: 0; 
+clear: both; 
+visibility: hidden;
+}
+
+.clearfix {
+min-width: 0; 
+display: inline-block; /* \*/	
+display: block;
+}
+
+body {
+	background:#000;
+	font-family:Arial, Helvetica, sans-serif;
+color:#fff;}
+
+a:link, a:visited {
+color:#ccc;}
+a:hover {color:#fff;}
+
+/* Containers per view */
+
+#building {
+	background:#000;
+	color:#fff;
+	margin-bottom:10px;
+}
+#profile {
+	background:#000;
+	color:#fff;
+	margin-bottom:10px;
+	border:1px solid #252525;
+}
+
+
+
+
+/* Images, description, stats etc. */
+div#info {
+	width:60%;
+	float:left;
+	border:1px solid #252525;
+}
+div.name {
+	background:#333;
+	color:#fff;
+	text-align:center;
+	font-weight:bold;
+	margin:0 0 10px;
+	padding: 5px;
+	text-transform:uppercase;
+}
+div.desc {
+	width:65%;
+	float:left;
+}
+div#profile div.desc {
+	width:50%;
+	float:left;
+}
+img.thumbnail {
+	float: left;
+	margin: 0 10px 10px;
+	border: 3px solid #333;
+}
+p.desc {
+	margin:0;
+	padding: 0 5px 10px 10px;
+	font-size:8pt;
+	text-align:left;
+}
+div.stats {
+	float: right;
+	width: 30%;
+	margin:0 10px 10px 0;
+}
+table.stats {
+	width: 100%;
+	border-left:1px solid #252525;
+	border-right:1px solid #252525;
+	border-top:1px solid #252525;
+	white-space:wrap;
+	margin:0;
+}
+table.stats th {
+	width: 50%;
+	text-align:left;
+	background:#333;
+	border-bottom:1px solid #252525;
+	padding: 0 2px 0 5px;
+	font-size:8pt;
+}
+table.stats td{
+	width: 50%;
+	text-align:left;
+	border-bottom:1px solid #252525;
+	padding: 0 2px;
+	font-size:8pt;
+}
+div#status {
+	float: right;
+	width: 37.5%;
+	border:1px solid #252525;
+	margin-left:10px;
+}
+
+
+
+tr.d0 td {
+	background-color: #CC9999; color: black;
+}
+tr.d1 td {
+	background-color: #9999CC; color: black;
+}
+
+
+/* Specific management details */
+
+div.ownership {}
+p.owner {
+	background:#333;
+	color:#fff;
+	text-align:center;
+	font-weight:bold;
+	margin:0 0 10px;
+	padding: 5px;
+}
+p.instructions {
+	margin:0;
+	padding:0 10px 10px;
+	font-size:8pt;
+}
+
+/* Inventory */
+div#inventory {}
+
+div#profile+div#inventory {
+	width:32%;
+	float:left;
+	border:1px solid #252525;
+	margin:0 10px 10px 0;
+}
+
+/* Player Actions */
+
+div#action {
+	margin:0 10px 10px;
+}
+
+div.buy, div.attack, div.recruit, div.kick, div.punch, div.shoot, div.bribe, div.rob, div.talk  {
+	float: left;
+	background:#333;
+	padding:3px 10px;
+	border:1px solid #fff;
+	margin: 3px 3px 0 0;
+}
+div.buy:hover, div.attack:hover, div.recruit:hover, div.kick:hover, div.punch:hover, div.shoot:hover, div.bribe:hover, div.rob:hover, div.talk:hover {
+	background:red;
+	border:1px solid #fff;
+}
+a.buy, a.attack, a.recruit, a.kick, a.punch, a.shoot, a.bribe, a.rob, a.talk {
+	color:#FFF;
+	text-decoration:none;
+}
+a.buy:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover {	
+	color:#CCC;
+	text-decoration:none;
+}
+
+
+
+/* NPC and Player Layout */
+div.vitals {
+	float: left;
+	width: 45%;
+	margin:0 10px 10px 0;
+}
+
+div.gauge {
+    background: none repeat scroll 0 0 #0F0F0F;
+    border: 1px solid #333333;
+    border-radius: 25px 25px 25px 25px;
+    color: #000000;
+    width: 80%;
+	float:right;
+	margin:5px 0;
+}
+
+div.gauge span {
+    padding-left: 15px;
+}
+
+div.label {
+	color:#fff;
+	text-align:right;
+	font-size:8pt;
+    width: 18%;
+	float:left;
+	margin:10px 0 2px;
+}
+
+div.xp {
+    background: none repeat scroll 0 0 #00FF00;
+    border-radius: 25px 0 0 25px;
+    padding: 0 0 0 15px;
+}
+div.intel {
+    background: none repeat scroll 0 0 #FFFF00;
+    border-radius: 25px 0 0 25px;
+    padding: 0 0 0 15px;
+}
+div.strength {
+    background: none repeat scroll 0 0 #0000FF;
+    border-radius: 25px 0 0 25px;
+    padding: 0 0 0 15px;
+}
+div.health {
+    background: none repeat scroll 0 0 #FF0000;
+    border-radius: 25px 0 0 25px;
+    padding: 0 0 0 15px;
+}

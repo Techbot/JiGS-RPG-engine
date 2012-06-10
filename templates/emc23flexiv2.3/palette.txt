@@ -1,0 +1,8 @@
+
+turquoise 00ffff
+ 
+dark turquoise 009999
+
+teal 006262
+
+dark teal 003535
