@@ -1168,15 +1168,7 @@ class BattleModeljigs extends JModel{
 		return $result;
 	}
 
-	function work_conveyer($building_id,$quantity,$type,$line){
-		$now=time();
-		$db =& JFactory::getDBO();
-		$q="INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp) VALUES
-	 ($building_id,$line, $type,$quantity,$now ) ON DUPLICATE KEY UPDATE type  =  $type , quantity = $quantity , timestamp= $now";
-		$db->setQuery($q);
-		$result = $db->query();
-		return $result;
-	}
+
 
 	function deposit(){
 
@@ -1364,25 +1356,32 @@ class BattleModeljigs extends JModel{
 
 		$user =& JFactory::getUser();
 		$now= time();
-		$duration= $now - 50;
 		$db =& JFactory::getDBO();
-		// Find all factories where time remaining is below zero
+		// Find all factories where finished(unix time) has passed 
 
-		$query="SELECT #__jigs_factories.type,
-				   #__jigs_buildings.owner, 
-	               #__jigs_objects.name
+		$query="SELECT 
+					#__jigs_factories.finished,
+					#__jigs_factories.quantity,
+					#__jigs_factories.type,
+					#__jigs_buildings.owner, 
+					#__jigs_objects.name
 	               FROM #__jigs_factories
 	               LEFT JOIN #__jigs_buildings
 	               ON #__jigs_factories.building = #__jigs_buildings.id
 	               LEFT JOIN #__jigs_objects
 	               ON #__jigs_factories.type = #__jigs_objects.id
-		WHERE timestamp!=0 AND timestamp < ". $duration;
+		WHERE #__jigs_factories.finished !=0 AND  #__jigs_factories.finished < ". $now;
 		$db->setQuery($query);
 		$result = $db->loadObjectlist();
 
 		// loop through factory array giving out rewards of type
 
+		$quantity = $result->quanity;
+		
 		foreach ($result as $row){
+			
+			for ($i=1;$i <= $quantity ;$i++){
+			
 			$query1 ="INSERT INTO #__jigs_inventory (player_id , item_id) VALUES ($row->owner ,$row->type)";
 			$db->setQuery($query1);
 			$db->query();
@@ -1398,11 +1397,13 @@ class BattleModeljigs extends JModel{
 			$db->query();
 
 			// end wavy lines
-
+			}
+			
+			
 		}
 
 		// Now Simply reset all factories where remainging time is less that zero
-		$query="UPDATE #__jigs_factories SET timestamp = 0 WHERE timestamp !=0 AND timestamp < " . $duration;
+		$query="UPDATE #__jigs_factories SET timestamp = 0,finished = 0 WHERE finished !=0 AND finished < " . $now;
 		$db->setQuery($query);
 		$db->query();
 
@@ -1412,19 +1413,18 @@ class BattleModeljigs extends JModel{
 
 	function check_factory($building_id,$line_id){
 
-		$building_id = JRequest::getvar(building);
-		$line_id= JRequest::getvar(line);
+		$building_id = JRequest::getvar('building');
+		$line_id= JRequest::getvar('line');
 		//$user =& JFactory::getUser();
 		$now= time();
 		$db =& JFactory::getDBO();
-		$query="SELECT timestamp FROM #__jigs_factories WHERE building = $building_id AND line = $line_id";
+		$query="SELECT timestamp,finished FROM #__jigs_factories WHERE building = $building_id AND line = $line_id";
 		$db->setQuery($query);
-		$result['timestamp'] = $db->loadResult();
-
-		$result[now] = date('l jS \of F Y h:i:s A',$now);
-		$result[since] = date('l jS \of F Y h:i:s A',$result['timestamp']);
-		$result[elapsed] = (int)(($now-$result['imestamp']));
-		$result[remaining]=(int)(50-((($now-$result['timestamp']))));
+		$result = $db->loadAssoc();
+		$result['now'] = date('l jS \of F Y h:i:s A',$now);
+		$result['since'] = date('l jS \of F Y h:i:s A',$result['timestamp']);
+		$result['elapsed'] = (int)(($now-$result['timestamp']));
+		$result['remaining']=(int)($result['finished'] - $now );
 
 		return $result;
 	}

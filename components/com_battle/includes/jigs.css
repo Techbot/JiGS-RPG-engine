@@ -464,7 +464,7 @@ form.conveyor select#blueprints {
 form.conveyor .object{
 	text-align:left; 
 	display:inline-block;
-	width:190px;
+	width:220px;
 	float:left;
 	margin:0 5px 0 10px;
 	padding:0 10px 10px;
@@ -474,7 +474,7 @@ form.conveyor .object{
 form.conveyor .metal {
 	text-align:left; 
 	display:inline-block;
-	width:370px;
+	width:340px;
 	float:right;
 	margin:0 10px 0 5px;
 	padding:0 10px 10px;

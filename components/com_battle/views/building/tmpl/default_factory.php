@@ -1,9 +1,10 @@
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
-
-	$factories=$this->factories;
-	$x=count($factories);
+ 
+	$blueprints = $this->blueprints;
+	$x=count($this->blueprints);
 	$index= $x+1;
+	$now=time();
 	
  /*  $arr = new object;
 
@@ -33,16 +34,15 @@
 
 //$factories[$index]='Select';
 
-function array_unshift_assoc(&$arr, $key, $val)
-{
+	function array_unshift_assoc(&$arr, $key, $val)
+	{
 	$arr = array_reverse($arr, true);
 	$arr[$key] = $val;
 	return  array_reverse($arr, true);
-}
-
-$javascript			= 'onchange="changeDisplayImage(blueprints);"';
-$directory			= '/images/banners';
-$lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints',$javascript, 'id', 'name' );
+	}
+	$javascript			= 'onchange="changeDisplayImage(blueprints);"';
+	$directory			= '/images/banners';
+	$lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
 
 ?>
 
@@ -76,7 +76,7 @@ $lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints'
 
 <legend>Object</legend>
 
-<input type="text" title="Object ID" name="id1" id="id1" value = "Select" size="2" style="width: 10px;" maxlength="2" 
+<input type="text" title="Object ID" name="id1" id="id1" value = "" size="2" style="width: 10px;" maxlength="2" 
 readonly="readonly" />
 
 
@@ -91,6 +91,9 @@ readonly="readonly" />
 
 <input title="Decrease Quantity" type="button" id="quantity_box_button_down" value="-" size="4" /> 
 
+<label title="Time To Manufacture Required" >Time:</label>
+<input type="text" id="time" name="time" readonly='readonly' value="<?php echo $blueprints[0]->man_time ;?>" style="width:20px;" size="2" onchange="alterQuantity(this.form)" /> 
+
 <span title="Start Manufacturing" id='submit_c'>Submit</span>
 </fieldset>
 
@@ -100,25 +103,25 @@ readonly="readonly" />
 
 <fieldset>
 <label title="Type of Metal required" for="n1">Metal:</label> 
-<input class="inputbox" type="text" size="4" maxlength="6" name="n1" id="n1" style="width: 70px;" value="<?php echo $factories[0]->metal_1_name ;?>" /> 
+<input class="inputbox" type="text" size="4" maxlength="6" name="n1" id="n1" style="width: 70px;" value="<?php echo $blueprints[0]->metal_1_name ;?>" /> 
 
 <label title="Units per Object" for="q1">units:</label> 
-<input class="inputbox" type="text" size="1" maxlength="2" name="q1" id="q1" style="width: 20px;" value="<?php echo $factories[0]->quantity_1 ;?>" /> 
+<input class="inputbox" type="text" size="1" maxlength="2" name="q1" id="q1" style="width: 20px;" value="<?php echo $blueprints[0]->quantity_1 ;?>" /> 
 
 <label title="Total Units" for="q1t">total:</label>
  <input class="inputbox" type="text" size="1" maxlength="2"  name="q1t" id="q1t" style="width: 20px;" /> 
 
  <label title="In Stock" for="stock">In Stock:</label>
-<input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $factories[0]->metal_1_stock ;?>" name="stock" id="stock"  style="width: 20px;" />
+<input class="inputbox" type="text" size="1" maxlength="2" value="<?php echo $blueprints[0]->metal_1_stock ;?>" name="stock" id="stock"  style="width: 20px;" />
  </fieldset>
 
 <fieldset>
 <label title="Type of Metal required" for="n2">Metal:</label>
-<input class="inputbox" type="text" size="4" maxlength="6" name="n2" id="n2" style="width: 70px;" value="<?php echo $factories[0]->metal_2_name ;?>" /> 
+<input class="inputbox" type="text" size="4" maxlength="6" name="n2" id="n2" style="width: 70px;" value="<?php echo $blueprints[0]->metal_2_name ;?>" /> 
  
  
  <label title="Units per Object" for="q2" >units:</label>
-  <input class="inputbox" type="text" size="1" maxlength="1" name="q2" id="q2" style="width: 20px;" value="<?php echo $factories[0]->quantity_2 ;?>" /> 
+  <input class="inputbox" type="text" size="1" maxlength="1" name="q2" id="q2" style="width: 20px;" value="<?php echo $blueprints[0]->quantity_2 ;?>" /> 
 
   
   <label title="Total Units" for="qt2" >total:</label>
@@ -126,7 +129,7 @@ readonly="readonly" />
 
 
 <label title="In Stock" for="stock2">In Stock:</label> 
-<input class="inputbox" type="text" size="1" maxlength="2" name="stock2" id="stock2"  style="width: 20px;" value="<?php echo $factories[0]->metal_2_stock ;?>" />
+<input class="inputbox" type="text" size="1" maxlength="2" name="stock2" id="stock2"  style="width: 20px;" value="<?php echo $blueprints[0]->metal_2_stock ;?>" />
 
 </fieldset>
 
@@ -258,11 +261,14 @@ function increment(){
 	var cost_el = document.getElementById('q1'); 
 	var cost = cost_el.value;
 
-	var cost_el_2 = document.getElementById('q2'); 
-	var cost_2 = cost_el_2.value;
+	var cost_el_2	= document.getElementById('q2'); 
+	var cost_2		= cost_el_2.value;
+
+	var time		= <?php echo $blueprints[0]->man_time ;?>;
 	
 	document.adminForm.q1t.value = (cost * (parseInt(qty) + 1));
 	document.adminForm.q2t.value = (cost_2 * (parseInt(qty) + 1));
+	document.adminForm.time.value = (time * (parseInt(qty) + 1));	
 
 	check_stock_control();
 
@@ -283,9 +289,12 @@ function decrement(){
 	var cost_el_2 = document.getElementById('q2');
 	var cost_2 = cost_el_2.value;
 
+	var time		= <?php echo $blueprints[0]->man_time ;?>;
+
 	document.adminForm.q1t.value = cost * (qty-1);
 	document.adminForm.q2t.value = cost_2 * (qty-1);
-
+	document.adminForm.time.value = (time * (parseInt(qty) - 1));	
+	
 	check_stock_control();
 
 	 return false;
@@ -299,7 +308,7 @@ function work_conveyer() {
 
 function work(){
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=work_conveyer&quantity=1&building_id=<?php echo $this->buildings->id ?>&line=1&type=" + document.adminForm.id1.value  ,
+		url: "index.php?option=com_battle&format=raw&task=work_conveyer&quantity=" + document.adminForm.time.value + "&building_id=<?php echo $this->buildings->id ?>&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
 			$('adminForm').setStyle('visibility','hidden');
 			$('conveyor_progress').setStyle('visibility','visible');
@@ -317,7 +326,7 @@ function changeDisplayImage() {
 			var q_2 = new Array();			
 			<?php 
 			$i=1;
-			foreach ($factories as $row){
+			foreach ($this->blueprints as $row){
 			
 			?>
 			id1[<?php echo  $row->id ?>]="<?php echo $row->id ?>";
@@ -381,7 +390,7 @@ function test_rob(){
 
 function check_factory(){
 			var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=check_factory&line=1&building=<?php echo $this->buildings->id ; ?>" , 
+			url: "index.php?option=com_battle&format=raw&task=check_factory&line=1&building=<?php echo $this->buildings->id ; ?>" , 
 		    onSuccess: function(result){
 			    document.getElementById('since').innerHTML = result['since'];
 			    document.getElementById('now').innerHTML = result['now'];
