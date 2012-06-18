@@ -3,7 +3,17 @@
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-more_.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/clientcide.2.2.0.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.js"></script>
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
+<?php 
+/*
+ * 
+ *   
+ *   
+ *   
+ *   */
+
+
+
+defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' );
 ?>
 
@@ -17,7 +27,7 @@ jimport( 'joomla.methods' );
 <div class="desc">
 <img src="<?php echo $this->baseurl; ?>/components/com_battle/images/ennemis/<?php echo $this->people->image;?>" class="thumbnail" alt="<?php $this->people->name ; ?>" title="<?php $this->people->name ; ?>" width="100" height="100" id="character_image" />
 <div class="stats">
-<table class="stats" cellspacing="0" cellpadding="0">
+<table class="stats" >
   <tr>
     <th scope="row">ID</th>
     <td><?php echo $this->people->id ; ?></td>
@@ -26,7 +36,7 @@ jimport( 'joomla.methods' );
     <th scope="row">Name</th>
     <td><?php echo $this->people->name ; ?></td>
   </tr>
-  <tr>
+  <tr>		
     <th scope="row">Money</th>
     <td><?php echo $this->people->money ; ?></td>
   </tr>
@@ -50,7 +60,7 @@ jimport( 'joomla.methods' );
 <?php
 foreach ($this->inv as $inv_object)
 {
-echo '<br>' . $inv_object[name] ;
+echo '<br>' . $inv_object['name'] ;
 }
 ?>
 </div><!-- end inventory -->
@@ -78,23 +88,20 @@ function shoot(character_id){
 		var a = new Request.JSON({
 			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=shoot&character=" + character_id,
 			onSuccess: function(result){
-			
-			if (result[1] > 0 ) {
-				
-				alert('me: ' + result[0] + '   Him: ' + result[1]);
-			}
-			
-			else {
-				alert('me: ' + result[0] + '   Him: ' + result[1]);	
-		close(); 
-		jump();
-				
-				
-				}
+
+				alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+
+				if (result[0].health <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1].health <= 0 ) {
+					close();
+					jump();
+					}		
 				}
 			}).get();
-		
-}
+	}
 
 function kick(character_id){
 	var d = document.getElementById('kick');
@@ -103,17 +110,16 @@ function kick(character_id){
 			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=kick&character=" + character_id,
 			onSuccess: function(result){
 			
-			if (result[1] > 0 ) {
-				
-				alert('me: ' + result[0] + '   Him: ' + result[1]);
-			}
-			
-			else {
-				alert('me: ' + result[0] + '   Him: ' + result[1]);	
-		close();
-				jump();
-				
-				}
+				alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+
+				if (result[0].health <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1].health <= 0 ) {
+					close();
+					jump();
+					}		
 				}
 			}).get();
 		
@@ -126,17 +132,16 @@ function punch(character_id){
 			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=punch&character=" + character_id,
 			onSuccess: function(result){
 			
-			if (result[1] > 0 ) {
-				
-				alert('me: ' + result[0] + '   Him: ' + result[1]);
-			}
-			
-			else {
-				alert('me: ' + result[0] + '   Him: ' + result[1]);	
-		close();
-				jump();
-				
-				}
+				alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+
+				if (result[0].health <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1].health <= 0 ) {
+					close();
+					jump();
+					}		
 				}
 			}).get();
 		

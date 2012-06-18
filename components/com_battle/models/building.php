@@ -164,17 +164,17 @@ class BattleModelBuilding extends JModel
 		$i=0;
 		foreach ($result as $row)
 		{
-			if ($result[$i][timestamp] !=0)
+			if ($result[$i]['timestamp'] !=0)
 			{
 				$now						= time();
 				$leasetime					= 1 * 60 * 60 * 24 * 7; // one week
-				$result[$i][remaining]		= ($result[$i][timestamp] + $leasetime - $now)/(60*60*24);
-				$result[$i][remaining_days] = intval(($result[$i][timestamp]+$leasetime-$now)/(60*60*24));
-				$result[$i][remaining_hours]= intval(($result[$i][remaining] - $result[$i][remaining_days])*24);
+				$result[$i]['remaining']		= ($result[$i]['timestamp'] + $leasetime - $now)/(60*60*24);
+				$result[$i]['remaining_days'] = intval(($result[$i]['timestamp']+$leasetime-$now)/(60*60*24));
+				$result[$i]['remaining_hours']= intval(($result[$i]['remaining'] - $result[$i]['remaining_days'])*24);
 			}
 			else
 			{
-				$result[$i][remaining]		= 0 ; 
+				$result[$i]['remaining']		= 0 ; 
 			}
 			$i++;
 		}

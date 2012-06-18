@@ -11,9 +11,9 @@ class BattleModelWard extends JModel
 	$user =& JFactory::getUser();
 	$query = "Update #__jigs_players SET active=3 WHERE iduser = ". $user->id;
 	$db->setQuery($query);
-	$result = $db->loadResult();
-	return true ; 
-}
+	$db->query();
+	return ;
+	}
 
 
 	

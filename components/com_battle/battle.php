@@ -101,7 +101,9 @@ class BattleController extends JController
 		if (!$view)
 		{
 			JRequest::setVar('view', 'single');
-			$db->setQuery("Select active FROM jos_jigs_players WHERE iduser =".$user->id);
+		}
+		
+			$db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
 			$db->query();
 			$player_status = $db->loadResult();
 			if ($player_status == 2){
@@ -110,7 +112,7 @@ class BattleController extends JController
 			if ($player_status == 3){
 				JRequest::setVar('view', 'ward');
 			}
-		}
+		
 		parent::display();
 	}
 }

@@ -40,7 +40,7 @@ function request_inventory(){
     onSuccess: function(result){
        	    	
    for (i = 0; i < result.length; ++ i){
-  var row = "<br>Item " + (i+1) + ":" + result[i].name ;
+  var row = "<br>Item " + (i+1) + ":" + result[i].name + ":" + result[i].quantity ;
   all= all + row;  
     	}
     	$('inventory').innerHTML = all;	
