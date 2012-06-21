@@ -11,6 +11,12 @@ class BattleController extends JController
 		$heartbeat = $model->heartbeat();
 		echo Json_encode($result);
 	}
+	
+	
+	
+	
+	
+	
 
 	function eat()
 	{
