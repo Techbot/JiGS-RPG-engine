@@ -15,7 +15,7 @@ class BattleController extends JController
 	
 	
 	
-	
+	///test
 	
 
 	function eat()
