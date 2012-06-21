@@ -80,9 +80,14 @@ echo '<br>' . $inv_object['name'] ;
 
 
 
-<script type="text/javascript">
+<script type="text/javascript">       
+
+
 
 function shoot(character_id){
+
+
+	
 	var d = document.getElementById('shoot');
 
 		var a = new Request.JSON({
