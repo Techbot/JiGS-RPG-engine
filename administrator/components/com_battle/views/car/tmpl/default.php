@@ -38,7 +38,7 @@ else
        Reservoir:
       </td>
       <td>
-	<input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->reservoir;?>" />
+	<input class="text_area" type="text" name="reservoir" id="reservoir" size="50" maxlength="250" value="<?php echo $this->row->reservoir;?>" />
       </td>
     </tr>
     <tr>
@@ -46,7 +46,7 @@ else
 	Consumation:
       </td>
       <td>
-	 <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->consommation;?>" />
+	 <input class="text_area" type="text" name="consommation" id="consommation" size="50" maxlength="250" value="<?php echo $this->row->consommation;?>" />
       </td>
     </tr>
     <tr>
@@ -54,15 +54,24 @@ else
 	Comment:
       </td>
       <td>
-	  <input class="text_area" type="text" name="address" id="address" size="250" maxlength="250" value="<?php echo $this->row->commentaire;?>" />
+	  <!--input class="text_area" type="text" name="address" id="address" size="250" maxlength="250" value="<?php /*echo $this->row->commentaire;*/ ?>" /-->
+	  <textarea class="text_area" name="commentaire" id="commentaire" rows="5" cols="100" ><?php echo 'this-row-commentaire';?></textarea>
       </td>
     </tr>
-	<tr>
+    <tr>
       <td width="100" align="right" class="key">
 	Rapidite:
       </td>
       <td>
-	    <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->rapidite;?>" />
+	    <input class="text_area" type="text" name="rapidite" id="rapidite" size="50" maxlength="250" value="<?php echo $this->row->rapidite;?>" />
+      </td>
+    </tr>
+    <tr>
+      <td width="100" align="right" class="key">
+	XP:
+      </td>
+      <td>
+	    <input class="text_area" type="text" name="xp" id="xp" size="50" maxlength="250" value="<?php echo $this->row->xp;?>" />
       </td>
     </tr>
     </table>
@@ -70,6 +79,6 @@ else
  <?php echo JHTML::_( 'form.token' ); ?>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />	
   <input type="hidden" name="option" value="com_battle" />
-  <input type="hidden" name="controller" value="Cars" />
+  <input type="hidden" name="controller" value="cars" />
   <input type="hidden" name="task" value="" />
 </form>

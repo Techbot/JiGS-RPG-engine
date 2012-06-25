@@ -33,7 +33,8 @@ class BattleControllerCars extends JController
 		{
 			JError::raiseError(500, $row->getError() );
 		}
-		$this->setRedirect('index.php?option=' . $option.'&controller=cars', 'Car Saved');
+		//$this->setRedirect('index.php?option=' . $option.'&controller=cars', 'Car Saved');
+		$this->setRedirect('index.php?option=com_battle&controller=cars', 'Car Saved');
 	}
 	function display()
 	{
