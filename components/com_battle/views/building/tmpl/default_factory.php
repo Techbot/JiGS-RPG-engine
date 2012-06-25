@@ -34,18 +34,7 @@
 
 //$factories[$index]='Select';
 
-<<<<<<< HEAD
-function array_unshift_assoc(&$arr, $key, $val)
-{
-	$arr = array_reverse($arr, true);
-	$arr[$key] = $val;
-	return  array_reverse($arr, true);
-}
 
-$javascript			= 'onchange="changeDisplayImage(blueprints);"';
-$directory			= '/images/banners';
-$lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints',$javascript, 'id', 'name' );
-=======
 	function array_unshift_assoc(&$arr, $key, $val)
 	{
 	$arr = array_reverse($arr, true);
@@ -55,7 +44,7 @@ $lists['blueprints']	=  JHTML::_('select.genericlist', $factories , 'blueprints'
 	$javascript			= 'onchange="changeDisplayImage(blueprints);"';
 	$directory			= '/images/banners';
 	$lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
->>>>>>> upstream/master
+
 
 ?>
 
