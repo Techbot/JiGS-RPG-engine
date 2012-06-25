@@ -1,0 +1,8 @@
+/* ie6 css hacks should go in here */
+
+#nav ul li a, #nav ul li a:visited {display:inline;}
+
+/* fix for IE display issue */
+#LoadFirst {height: 1%;} /* we apply a height expression so that ie6 accepts the has content rule */
+
+#right {position: relative; top: 0px; left: 0px; height: 1%; padding:0px;} /* we position the right column relative to its parent container div#BodyContent. The right column container is positioned 0 pixels from the top edge of its parent container div#BodyContent and 0 pixels from the left of its parent container's top left corner, but because we have already loaded the #LoadFirst container the right column is positioned 0 pixels from its top right corner we also apply a height expression so that ie6 accepts the has content rule */

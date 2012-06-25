@@ -200,6 +200,7 @@ class="character" style="
  * 
  *****************************/
 
+
  
  
 foreach ($this->buildings as $building){ 
@@ -257,17 +258,17 @@ class="pages_class" style="
 }
  if ($page->type=='article'){
 
-	$page_article=$page->details;
+	$page_article = $page->details;
 	$link= 'index.php?option=com_content&view=article&tmpl=component&id=' . $page_article;
 
-	//$rel='{handler: "iframe", size: {x: 640, y: 600}}';
+	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
 	$class='modal';
 }
 	?>
 
 
-<a href= '<?php echo $link?>' title='<?php echo $page->name?>' rel='<?php echo $rel?>' class='<?php echo $class ?>'>
-<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image ?>" >
+<a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'>
+<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>" >
 </a>
 </div>
 <?php

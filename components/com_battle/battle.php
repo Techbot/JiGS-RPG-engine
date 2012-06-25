@@ -11,6 +11,12 @@ class BattleController extends JController
 		$heartbeat = $model->heartbeat();
 		echo Json_encode($result);
 	}
+	
+	
+	
+	
+	///test
+	
 
 	function eat()
 	{
@@ -41,10 +47,10 @@ class BattleController extends JController
 
 	function work_conveyer()
 	{
-		$building_id = JRequest::getvar(building_id);
-		$line = JRequest::getvar(line);
-		$type = JRequest::getvar(type);
-		$quantity = JRequest::getvar(quantity);
+		$building_id = JRequest::getvar('building_id');
+		$line = JRequest::getvar('line');
+		$type = JRequest::getvar('type');
+		$quantity = JRequest::getint('quantity');
 		$model = $this->getModel('building');
 		$result = $model->work_conveyer($building_id,$quantity,$type,$line);
 		echo Json_encode($result);
@@ -57,7 +63,7 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
-	function check_mines()
+	function check_mines()#_jigs_objects.
 	{
 		$building_id = JRequest::getvar(building_id);
 		$model = $this->getModel('jigs');
@@ -71,11 +77,24 @@ class BattleController extends JController
 		$building_id = JRequest::getvar('building_id');
 		$line = JRequest::getvar('line');
 		$model = $this->getModel('jigs');
-		$result = $model->check_mines($building_id,$line);
+		$result = $model->check_factories($building_id,$line);
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
 
+	
+	function check_factory()
+	{
+		$building_id = JRequest::getvar('building_id');
+		$line = JRequest::getvar('line');
+		$model = $this->getModel('jigs');
+		$result = $model->check_factory($building_id,$line);
+		//$result= 'helllo';
+		echo Json_encode($result);
+	}
+	
+	
+	
 	function display()
 	{
 		$db =& JFactory::getDBO();
@@ -88,7 +107,9 @@ class BattleController extends JController
 		if (!$view)
 		{
 			JRequest::setVar('view', 'single');
-			$db->setQuery("Select active FROM jos_jigs_players WHERE iduser =".$user->id);
+		}
+		
+			$db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
 			$db->query();
 			$player_status = $db->loadResult();
 			if ($player_status == 2){
@@ -97,7 +118,7 @@ class BattleController extends JController
 			if ($player_status == 3){
 				JRequest::setVar('view', 'ward');
 			}
-		}
+		
 		parent::display();
 	}
 }

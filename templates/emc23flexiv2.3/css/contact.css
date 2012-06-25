@@ -1,0 +1,44 @@
+/* -- Joomla Contact Form Override -- */
+
+/******FORM******/
+
+.contact {padding: 5px;}
+.contact fieldset {}
+	.contact legend {}
+	.contact label {}
+	.contact .inputbox {display:block; margin-bottom: 1em; padding: 2px; width:60%;}	
+	.contact #contact_text  {width:90%;}
+.contact span.marker img {margin-right:0.5em;}
+
+
+
+/******STYLE******/
+
+.contact address {
+font-style: normal;}
+
+.contact h3 {
+color: #313131;}
+
+.contact p {
+color: #313131;}
+
+.contact legend { 
+color: #00A4DF;
+}
+.contact label {
+font-size: 85%;
+font-weight:bold;
+text-transform: uppercase;
+color: #4B4B4B;
+}
+.contact .inputbox { 
+border-color: #7C7C7C rgb(195, 195, 195) rgb(221, 221, 221); 
+border-style: solid; 
+border-width: 1px;
+}
+.marker {
+font-size: 85%;
+font-weight:bold;
+text-transform: uppercase;
+color: #4B4B4B;}

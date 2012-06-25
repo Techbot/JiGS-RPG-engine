@@ -6,7 +6,7 @@ jimport('joomla.application.component.model');
 class BattleModelmetals extends JModel
 {
 	var $_data = null;
-	
+
 	function &getData()
 	{
 		if (empty($this->_data)) {
@@ -25,9 +25,9 @@ class BattleModelmetals extends JModel
 			$db->setQuery($query);
 			$this->_data =  $db->loadObjectlist();
 		}
-				
-	//	print_r($this->_data);
-		
+
+		//	print_r($this->_data);
+
 		$i=0;
 		foreach( $this->_data as $row ){
 
@@ -37,8 +37,8 @@ class BattleModelmetals extends JModel
 			$this->_data[$i]->name = $db->loadresult();
 			$i++;
 		}
-		
-		
+
+
 		return $this->_data;
 	}
 }

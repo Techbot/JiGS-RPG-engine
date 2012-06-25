@@ -22,7 +22,7 @@ class BattleModelPerson extends JModel
 
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
-		$character_id= JRequest::getvar(character_id);
+		$character_id= JRequest::getvar('character_id');
 		$db->setQuery("SELECT #__jigs_inventory.item_id, " .
 				"#__jigs_objects.name " .
 				"FROM #__jigs_inventory " .

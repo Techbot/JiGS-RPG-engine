@@ -59,11 +59,10 @@ class BattleModeljigs extends JModel{
 	function get_stats() {
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
-		$test = self::set_final_stats();
-		$db->setQuery("
-		SELECT level, health, strength, intelligence,speed, posx, posy, xp, money, bank, defence, final_defence, attack, final_attack, nbr_attacks, nbr_kills
-		FROM #__jigs_players 
-		WHERE iduser =".$user->id);
+	//	$test = self::set_final_stats();
+		$sql = "SELECT level, health, strength, intelligence,speed, posx, posy, xp, money, bank, defence, final_defence, attack, final_attack, nbrattacks, nbrkills FROM #__jigs_players WHERE iduser = " . $user->id;
+		
+		$db->setQuery($sql);
 		$result = $db->loadAssocList();
 		return $result;
 	}
@@ -276,16 +275,22 @@ class BattleModeljigs extends JModel{
 
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
-		$building_id= JRequest::getvar(building_id);
-		$db->setQuery("SELECT #__jigs_inventory.item_id, " .
+		$building_id= JRequest::getvar('building_id');
+		$db->setQuery("SELECT DISTINCT 
+				#__jigs_inventory.item_id, " .
 				"#__jigs_objects.name " .
 				"FROM #__jigs_inventory " .
                	"LEFT JOIN #__jigs_objects " .
 				"ON #__jigs_inventory.item_id = #__jigs_objects.id " .
 				"WHERE #__jigs_inventory.player_id = ". $user->id  
-
 		);
-		$result = $db->loadAssocList();
+		$result = $db->loadObjectList();
+		foreach ($result as $row){
+			$sql			="SELECT id FROM #__jigs_inventory WHERE #__jigs_inventory.player_id = $user->id  and #__jigs_inventory.item_id = $row->item_id";
+			$db->setQuery($sql);
+			$quantity		= $db->loadAssocList();
+			$row->quantity	= count($quantity);
+		}
 		return $result;
 	}
 
@@ -906,106 +911,154 @@ class BattleModeljigs extends JModel{
 			$db->query();
 		}
 		$now= time();
-		$db->setQuery("UPDATE #__jigs_characters SET active= 1, health= 100  WHERE  #__jigs_characters.time_killed < (" . $now . "- (1 * 60))");
+		$db->setQuery("UPDATE #__jigs_characters SET active= 1, time_killed=0,  health= 100  WHERE  #__jigs_characters.time_killed < (" . $now . "- (1 * 60)) AND #__jigs_characters.time_killed !=0");
 		$db->query();
 	}
 
 
 	function attack() {
 
-		$db =& JFactory::getDBO();
-		$user =& JFactory::getUser();
-		$user_id =$user->id;
-		$character_id = JRequest::getvar('character');
+		$db				=& JFactory::getDBO();
+		$user			=& JFactory::getUser();
+		$user_id		= $user->id;
+		$character_id	= JRequest::getvar('character');
 
+		$db->setQuery("SELECT id, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE iduser = " . $user->id);
+		$player = $db->loadObject();
 
+	
+		$player->dice= rand(0, 15);
 
-		$player_dice= rand(0, 15);
-		$character_dice=rand(0, 5);
-		$db->setQuery("SELECT health,money,final_attack,final_defense FROM #__jigs_players WHERE iduser =".$user->id);
-		$result = $db->loadRow();
-		$player_v= $result[0];
-		$player_m= $result[1];
-		$db->setQuery("SELECT health,money,name FROM #__jigs_characters WHERE id =".$character_id);
-		$result = $db->loadRow();
-		$char_v= $result[0];
-		$char_m= $result[1];
-		$char_name = $result[2];
-		$attack_type = JRequest::getvar(type);
+		$db->setQuery("SELECT id, name, health, money FROM #__jigs_characters WHERE id =" . $character_id);
+		$npc = $db->loadObject();
+		
+		
+		$npc->dice=rand(0, 5);
+		$attack_type = JRequest::getCmd('type');
 
 		switch ($attack_type) {
 ///// If Player shoots test shooting skills + speed + dexterity against NPCs speed //////////////
 			case 'shoot':
-				if ($player_dice > $character_dice){
+
+				if ($player->dice > $npc->dice){
 					
-					$char_v=$char_v-30;
-				}
-				else {
-					$player_v=$player_v-10;
+					$npc->health	= intval($npc->health - 10);
 					
+					$attack_message	= "You shoot " . $npc->name . "and inflict 30 damage points to his health";
 				}
+				
+				else{
+				
+					
+					$attack_message	= "You shoot " . $npc->name . "and miss.";
 
-
-
-
+				}
+				
+				$player->ammunition--;
 
 				break;
-//====== If Player kicks test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
+//====== If Player kicks, test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
 			case 'kick':
 
-				if ($player_dice > $character_dice){
+				if ($player->dice > $npc->dice){
 				
-					$char_v=$char_v-30;
+					$npc->health	= intval($npc->health - 10);
+					
+					$attack_message	= "You kick " . $npc->name . "and inflict 30 damage points to his health";
+				
 				}
 				else {
 					
-					$player_v=$player_v-10;
+					$player->health		=	intval($player->health - 10);
+
+					$attack_message	=	"You kick " . $npc->name . "and miss and incur 10 damage points to your health";
 				}
 				break;
-				/////////////////// If Player punches test punch and other fighting skills + speed + dexterity against NPCs speed ////////////////////////////////
+
+		/////////////////// If Player punches test punch and other fighting skills + speed + dexterity against NPCs speed ////////////////////////////////
 			case 'punch':
 				if ($player_dice > $character_dice){
 		
-					$char_v=$char_v-30;
+					$npc->health	=	intval($npc->health - 20);
+					$attack_message	= "You punch " . $npc->name . "and inflict 30 damage points to his health";
 				}
 				else {
 					
-					$player_v=$player_v-10;
+					$player->health	= intval($player->health - 10);
+					$attack_message	= "You punch " . $npc->name . "and miss and incur 10 damage points to your health";
 				}
 				break;
 		}
-		////////////////////////////////////////// If NPC is DEAD ////////////////////////////////////
+		////////////////////////////////////////// If NPC is dead ////////////////////////////////////
 
-		if ($char_v <= 0) {
-			$now=time();
-			$db->setQuery("UPDATE #__jigs_characters SET active =0, empty= 1 , time_killed =" . $now . " WHERE id ='".$character_id."'");
+		if ($npc->health <= 0) {
+			$npc->health	= 0;
+			$now			= time();
+			$db->setQuery("UPDATE #__jigs_characters SET active =0, empty = 1 , time_killed =" . $now . " WHERE id ='".$npc->id."'");
 			$db->query();
-			$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id =".$user->id." WHERE #__jigs_inventory.player_id = ".$character_id );
-			$result = $db->query();
-
-
+			$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id =".$user->id." WHERE #__jigs_inventory.player_id = ".$npc->id );
+			$db->query();
 			//// Upate specific and General stats and payout when applicable
 
-			$xp_type = 'nbr_kills';
-			$test = $this->increment_xp($xp_type, $char_m,$user_id);
+			$xp_type		= 'nbr_kills';
+			$this->increment_xp($xp_type, $npc->money,$user->id);
 
-
-
-			$text= 'Citizen ' . $char_name  . ' was killed by citizen ' . $user->username ;
+			$text			= 'Citizen ' . $npc->name  . ' was killed by citizen ' . $user->username ;
 			$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
 			$db->query();
 		}
+		
+		////////////////////////////////////////// If Player is dead ////////////////////////////////////
+				
+		if ($player->health <= 0) {
+			$player->health = 0;
+			$this->dead_player($npc->name);		
+		}
+		
+		/////////////////////////////////////// Now update everybodys stats to database //////////////////
 
-		$db->setQuery("UPDATE #__jigs_players SET health='".$player_v."'  WHERE iduser ='".$user->id."'");
+		$sql = "UPDATE #__jigs_players SET health = $player->health, ammunition = $player->ammunition WHERE iduser = $user->id ";
+		$db->setQuery($sql);
 		$db->query();
-		$db->setQuery("UPDATE #__jigs_characters SET health='".$char_v."'  WHERE id ='".$character_id."'");
+	
+		$sql = "UPDATE #__jigs_characters SET health = $npc->health WHERE id = $npc->id";
+		$db->setQuery($sql);
 		$db->query();
-		$v[0]=$player_v;
-		$v[1]=$char_v;
-
-		return $v;
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		$result[0]	= $player;
+		$result[1]	= $npc;
+		$result[2]  = $attack_message;
+		return $result;
 
 	}
+	
+	
+	function dead_player($winner){
+		$user			=& JFactory::getUser();
+		$db				=& JFactory::getDBO();		
+		$now=time();
+		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
+				WHERE iduser ='".$user->id."'");
+		$db->query();
+		
+		$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $winner WHERE #__jigs_inventory.player_id = " . $user->id );
+		$result = $db->query();
+		
+		
+		$db->setQuery("UPDATE #__jigs_players SET money = 0 WHERE #__jigs_players.iduser = " .   $user->id ) ;
+		$result = $db->query();
+		
+		//	$text= 'Citizen ' . $character_id  . ' was killed by citizen ' . $user->username ;
+		//	$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
+		//	$db->query() ;
+		
+		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
+		$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
+		$db->query() ;
+		}
 
 	function increment_xp($xp_type ,$payment,$user_id){
 
@@ -1103,9 +1156,6 @@ class BattleModeljigs extends JModel{
 			$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
 			$db->query() ;
 
-
-
-
 		}
 		$db->setQuery("UPDATE #__jigs_players SET health='".$player_v."'  WHERE iduser ='".$user->id."'");
 		$db->query();
@@ -1168,15 +1218,7 @@ class BattleModeljigs extends JModel{
 		return $result;
 	}
 
-	function work_conveyer($building_id,$quantity,$type,$line){
-		$now=time();
-		$db =& JFactory::getDBO();
-		$q="INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp) VALUES
-	 ($building_id,$line, $type,$quantity,$now ) ON DUPLICATE KEY UPDATE type  =  $type , quantity = $quantity , timestamp= $now";
-		$db->setQuery($q);
-		$result = $db->query();
-		return $result;
-	}
+
 
 	function deposit(){
 
@@ -1203,20 +1245,20 @@ class BattleModeljigs extends JModel{
 
 	function withdraw(){
 
-		$db =& JFactory::getDBO();
-		$user =& JFactory::getUser();
-		$qty = JRequest::getvar(amount);
-		$building_id = JRequest::getvar(building_id);
-		$now= time();
+		$db				=& JFactory::getDBO();
+		$user			=& JFactory::getUser();
+		$qty			= JRequest::getvar(amount);
+		$building_id	= JRequest::getvar(building_id);
+		$now			= time();
 		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser =".$user->id);
-		$result = $db->loadRow();
-		$money = $result[0];
-		$bank = $result[1];
+		$result			= $db->loadRow();
+		$money			= $result[0];
+		$bank			= $result[1];
 
 		if ($qty <= $bank){
-			$money = $money + $qty;
-			$bank = $bank - $qty;
-			$query = "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE iduser =" . $user->id;
+			$money		= $money + $qty;
+			$bank		= $bank - $qty;
+			$query		= "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE iduser =" . $user->id;
 			$db->setQuery($query);
 			$db->query();
 		}
@@ -1339,7 +1381,6 @@ class BattleModeljigs extends JModel{
 		return ;
 	}
 
-
 	function check_mine(){
 
 		$now= time();
@@ -1356,33 +1397,39 @@ class BattleModeljigs extends JModel{
 		return $result;
 	}
 
-
-
-
-
 	function check_factories(){
 
 		$user =& JFactory::getUser();
 		$now= time();
-		$duration= $now - 50;
 		$db =& JFactory::getDBO();
-		// Find all factories where time remaining is below zero
+		// Find all factories where finished(unix time) has passed 
 
-		$query="SELECT #__jigs_factories.type,
-				   #__jigs_buildings.owner, 
-	               #__jigs_objects.name
+		$query="SELECT 
+					#__jigs_factories.finished,
+					#__jigs_factories.quantity,
+					#__jigs_factories.type,
+					#__jigs_buildings.owner, 
+					#__jigs_objects.name
 	               FROM #__jigs_factories
 	               LEFT JOIN #__jigs_buildings
 	               ON #__jigs_factories.building = #__jigs_buildings.id
 	               LEFT JOIN #__jigs_objects
 	               ON #__jigs_factories.type = #__jigs_objects.id
-		WHERE timestamp!=0 AND timestamp < ". $duration;
+		WHERE #__jigs_factories.finished !=0 AND  #__jigs_factories.finished < ". $now;
 		$db->setQuery($query);
 		$result = $db->loadObjectlist();
 
 		// loop through factory array giving out rewards of type
 
+		if ($result){
+		
+		
+		$quantity = $result->quantity;
+		
 		foreach ($result as $row){
+			
+			for ($i=1;$i <= $quantity ;$i++){
+			
 			$query1 ="INSERT INTO #__jigs_inventory (player_id , item_id) VALUES ($row->owner ,$row->type)";
 			$db->setQuery($query1);
 			$db->query();
@@ -1398,34 +1445,30 @@ class BattleModeljigs extends JModel{
 			$db->query();
 
 			// end wavy lines
-
+			}
 		}
-
 		// Now Simply reset all factories where remainging time is less that zero
-		$query="UPDATE #__jigs_factories SET timestamp = 0 WHERE timestamp !=0 AND timestamp < " . $duration;
+		$query="UPDATE #__jigs_factories SET timestamp = 0,finished = 0 WHERE finished !=0 AND finished < " . $now;
 		$db->setQuery($query);
 		$db->query();
+		}// end if
 
 		return $query;
 	}
 
-
 	function check_factory($building_id,$line_id){
-
-		$building_id = JRequest::getvar(building);
-		$line_id= JRequest::getvar(line);
+		$building_id		= JRequest::getvar('building');
+		$line_id			= JRequest::getvar('line');
 		//$user =& JFactory::getUser();
-		$now= time();
-		$db =& JFactory::getDBO();
-		$query="SELECT timestamp FROM #__jigs_factories WHERE building = $building_id AND line = $line_id";
+		$now				= time();
+		$db					=& JFactory::getDBO();
+		$query				="SELECT timestamp,finished FROM #__jigs_factories WHERE building = $building_id AND line = $line_id";
 		$db->setQuery($query);
-		$result['timestamp'] = $db->loadResult();
-
-		$result[now] = date('l jS \of F Y h:i:s A',$now);
-		$result[since] = date('l jS \of F Y h:i:s A',$result['timestamp']);
-		$result[elapsed] = (int)(($now-$result['imestamp']));
-		$result[remaining]=(int)(50-((($now-$result['timestamp']))));
-
+		$result				= $db->loadAssoc();
+		$result['now']		= date('l jS \of F Y h:i:s A',$now);
+		$result['since']	= date('l jS \of F Y h:i:s A',$result['timestamp']);
+		$result['elapsed']	= (int)(($now-$result['timestamp']));
+		$result['remaining']=(int)($result['finished'] - $now );
 		return $result;
 	}
 

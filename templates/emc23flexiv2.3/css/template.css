@@ -1,0 +1,477 @@
+/* Additional Style sheets */
+@import url('initial.css');
+@import url('clearing.css');
+@import url('basic_typography.css');
+@import url('layout.css');
+@import url('modules.css');
+@import url('menus.css');
+@import url('joomla.css');
+@import url('joomla1.7.css');
+@import url('contact.css');
+@import url('search.css');
+@import url('login.css');
+
+@import url('slimbox.css');
+@import url('tabslidercssfromadmincss.css');
+@import url('mod_shoutbox.css');
+
+
+/* Forms */
+form { 
+margin:0; 
+padding:0; 
+}
+textarea { 
+font-size:100%; 
+font-family: arial, serif; 
+}
+input.button, .button   { 
+padding:3px 8px;
+margin: 2px;
+}
+
+
+
+/***********************************************Core Joomla Output with Beez Overrides */
+		
+
+
+		/*---------------------------------------*/
+
+				/*** CONTENT LAYOUTS ***/
+
+		/*---------------------------------------*/
+
+
+
+		/*** PAGE LAYOUT - Frontpage, Section & Catgeory Blog ***/
+
+/* Page Title */
+.blog h1,
+.item-page h1,
+h1.componentheading,
+.categories-list h1{
+padding:0.5em 1em;}
+
+div.componentheading {
+padding:0.5em 0;
+text-align:center;}
+
+/* Blog Layout*/
+table.blog, table.blog table{margin:0;}
+/* Article Layout */
+
+.blog,
+.item-page,
+div#page,
+div.categories-list {
+padding: 0 5px 20px;
+}
+
+div#page h2,
+.blog h2,
+.item-page h2 {
+}
+
+p.articleinfo {
+margin: 0;
+}
+p.articleinfo span.createdby {
+display: block;}
+/* Create Date & Time */
+p.articleinfo span.createdate{
+display: block;}
+/* Modified Date & Time */
+p.articleinfo span.modifydate{
+display: block;}
+
+/* User Rating */
+span.content_rating {}
+/* Vote */
+span.content_vote {}
+
+/* Leading Article */
+div.leading {padding: 0 5px 15px;}
+div.leading h2 {
+margin:0 -5px;
+}
+
+/* Article Title */
+.blog h2,
+.item-page h2,
+h2.contentheading {
+padding:0.5em;
+margin:0 -5px;
+}
+/* Article Title */
+table.blog .contentheading {
+margin: 0;
+}
+
+/* Article Title Linkable*/
+a.contentpagetitle {}
+
+
+/** ICONS **/
+p.buttonheading {
+margin: 2px 0 0;}
+
+.buttonheading img {border:0;}
+/* PDF, Print, Email links & icons */
+p.buttonheading a img {border: 0 none; margin: 0 2px;}
+
+p.buttonheading a:link,
+p.buttonheading a:visited{}
+p.buttonheading a:hover {}
+p.buttonheading a:active,
+p.buttonheading a:focus{}
+
+/** PAGE INFO **/
+p.pageinfo {display: block;}
+/* Section Name & Category Title Linkable */
+p.pageinfo span a{}
+
+
+/** ITEM INFO **/
+p.iteminfo {
+margin: 0px;
+padding: 0 5px;}
+/* Author Name */
+p.iteminfo span.createdby {
+display: block;}
+/* Create Date & Time */
+p.iteminfo span.createdate{
+display: block;}
+/* Modified Date & Time */
+p.iteminfo span.modifydate{
+display: block;}
+
+/* Leading Article Separator */
+span.leading_separator {
+display: block;
+clear: both;
+height: 0px;
+margin: 0;
+}
+
+/* Article Separator */
+span.article_separator {
+display: block;
+height: 0px;
+margin: 0;
+}
+
+div.column2 h2.contentheading {
+margin-top: 24px;} /*aligns second column header with first*/
+
+/* Columns - may need to be adjusted to suit multiple column layout*/
+
+/* First Column */
+div.article_column column1 cols2 {}
+/* Second Column */
+div.article_column column2 cols2 {}
+
+div.article_row {clear: both;}
+
+.article_column p {text-align: left;}
+
+div.column1,
+div.column2,
+div.column3,
+div.column4 {float:left;margin:0;padding-right:10px;}
+div.cols1 {float:left;margin:0;padding-right:0px; width: 100%;}
+div.cols2 {width: 47%;}
+div.cols3 {width: 31%;}
+div.cols4 {width: 24%;}
+
+/* Row Separator */
+span.row_separator {
+clear: both;
+display: block;
+}
+
+/* Main Content Text */
+div.blog p{}
+
+/* Read More */
+a.readon {
+margin:0;
+padding:2px 0 4px 20px;
+}
+a.readon:hover {}
+div.blog p a.readon {}
+
+
+/* More Articles (Links) */
+div.blog_more  {}
+
+/* More Articles Header */
+.blog_more h2 {
+margin:0;
+}
+
+/* More Articles List (Links) */
+
+div.blog_more ul {
+margin:0;
+padding:10px 10px 30px;
+}
+
+div.blog_more ul li  {
+padding:10px;
+}
+
+div.blog_more ul li a{
+display:inline;
+margin:0;
+padding:0;
+padding:2px 0 4px 30px;
+}
+
+div.blog_more ul li a:hover {}
+div.blog_more ul li a:active, 
+div.blog_more ul li a:active, 
+div.blog_more ul li a:focus, 
+div.blog_more ul li a:focus {}
+
+/* Pagination */
+
+/* Page 1 of _ */
+p.counter {
+margin: 15px 0 0;
+}
+
+
+/** Pagination << Start Prev 1 2 3 Next End >>  **/
+
+/* << Start Prev 1 2 3 Next End >> we add div#mainbody to specify*/
+div.blog ul.pagination {
+clear: left;
+float: left;
+list-style-type: none;
+margin: 0;
+padding: 0;
+position: relative;
+left: 50%;
+text-align: center;
+}
+
+div.blog ul.pagination li {
+background-image: none;
+display: block;
+position: relative;
+right: 50%;
+list-style-type: none;
+float: left;
+padding: 2px 5px;
+margin: 0 2px;}
+
+ul.pagination li strong a {}
+ul.pagination li strong a:hover, 
+ul.pagination li strong a:active, 
+ul.pagination li strong a:focus {}
+
+
+		/*** TOC ***/
+		
+/* Article Index Container*/
+table.contenttoc {
+float: right;
+margin: 10px 10px 0;
+}
+/* Article Index Header*/
+table.contenttoc th{}
+table.contenttoc td {
+padding: 0 5px;
+}
+/* Article Index Linked Items*/
+table.contenttoc td a.toclink {}
+table.contenttoc td a.toclink:hover {}
+table.contenttoc td a.toclink.active {}
+/* Page Nav Counter */
+div.pagenavcounter {
+margin: 0 10px 0 0;
+float: right;
+clear: both;
+}
+
+/******/
+
+
+		/*** PAGE NAVIGATION ***/
+		
+		
+	/** TOC Nav  <<Prev - Next>>  **/
+div.pagenavbar {margin: 0; padding: 5px 0 0;}
+div.pagenavbar a {}
+div.pagenavbar a:hover {}
+
+
+	/** General Page Nav  <Prev  Next>  **/
+table.pagenav {
+margin:0;width: 100%;}
+/* Both */
+table.pagenav th {
+width: 50%;}
+/* Prev */
+table.pagenav th.pagenav_prev{padding: 0 5px;}
+table.pagenav th.pagenav_prev a {}
+table.pagenav th.pagenav_prev a:hover {}
+/* Next */
+table.pagenav th.pagenav_next{padding: 0 5px;}
+table.pagenav th.pagenav_next a {}
+table.pagenav th.pagenav_next a:hover {}
+
+
+
+
+
+
+
+
+
+
+
+
+		/*** Section Table Blog Layout ***/
+
+/* Section/Category Description */
+div.contentdescription {}
+div.contentdescription img{margin: 0 5px;}
+/* Section Image */
+.image_left {margin: 0 5px 0 0;}
+.image_right {margin: 0  0 0 5px;}
+
+/* Category Links */
+
+ul li a.category {}
+ul li a.category:hover {}
+/*Number of Articles */
+ul li span.small {}
+
+
+	/*** Category Table Layout ***/
+		
+/* Filter Input Field*/
+div.filter {}
+div.filter p input.inputbox{}
+/* Display Drop-down */
+div.display {}
+div.display select#limit.inputbox{}
+		
+table.category {
+width:100%;}
+/* Table Headers */
+.sectiontableheader{
+padding: 0.5em;
+height: 23px;
+}
+.sectiontableheader a {}
+.sectiontableheader a:hover {}
+/* Table Row 1 */
+tr.sectiontableentry1 {
+padding: 0.5em;
+height: 23px;
+}
+tr.sectiontableentry1 a {}
+tr.sectiontableentry1 a:hover {}
+/* Table Row 2 */
+tr.sectiontableentry2 {
+padding: 0.5em;	
+height: 23px;
+}
+tr.sectiontableentry2 a {}
+tr.sectiontableentry2 a:hover {}
+
+/* First Column */
+td.sectiontableheader:first-child,
+		.sectiontableentry1 td:first-child,
+		.sectiontableentry2 td:first-child {}
+/* Last Column */
+td.sectiontableheader:last-child,
+		.sectiontableentry1 td:last-child,
+		.sectiontableentry2 td:last-child {}
+.sectiontableentry1 img, .sectiontableentry2 img {vertical-align: middle; margin-right: 5px;}
+	
+.sectiontablefooter {}
+
+/* Table Headers IDs & Columns */
+#count {}
+#tableOrdering {} /*Article Title*/
+#tableOrdering2 {} /*Date*/
+#author {}
+#hits {}
+
+table.weblinks {
+clear: both;}
+
+/* Lists in the content */
+
+ul.toc,
+div.blog ul,
+div#page ul,
+div.categories-list ul {
+list-style-type: none;
+padding: 0;
+margin: 0 20px;
+}
+
+ul.toc li,
+div.blog li,
+div#page li,
+div.categories-list ul li li{
+background-image: url(../images/arrow.png);
+background-repeat: no-repeat;
+background-position: 0 6px;
+padding-left: 15px;
+}
+
+span.item-title a {
+color: #009999;
+text-decoration: none;
+}
+
+span.item-title a:hover {
+color:#00ffff;
+text-decoration: underline;
+}
+
+div.blog ol,
+div#page ol  {
+list-style-type: decimal;
+padding: 0;
+margin-left: 30px;
+}
+
+div.blog ol li, 
+div#page ol li {
+background-image: none;
+padding: 0px;
+}
+
+div.blog ol li ul, div.blog ul li ul, 
+div#page ol li ul, div#page ul li ul {
+list-style-type: disc;
+padding: 0;
+margin-left: 10px;
+}
+
+div.blog ol li ul li, div.blog ul li ul li,
+div#page ol li ul li, div#page ul li ul li{
+background-image: none;
+padding: 0px;
+}
+
+/* WYSIWYG Editor */
+
+img.right {
+margin: 0 0 0 10px;}
+
+img.left {
+margin: 0 10px 0 0;}
+
+
+/* WYSIWYG Editor */
+
+div.ucd_introtext {
+margin:0;}

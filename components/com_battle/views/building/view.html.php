@@ -87,8 +87,8 @@ class BattleViewBuilding extends JView
 		if($this->buildings->type=='factory'){
 		//	echo $this->buildings->id;
 					$model		= &$this->getModel();
-		 	    	$factories	= $model->get_factories($this->buildings->id);
-					$this->assignRef('factories', $factories);
+		 	    	$blueprints	= $model->get_blueprints($this->buildings->id);
+					$this->assignRef('blueprints', $blueprints);
 					}	
 		
 		

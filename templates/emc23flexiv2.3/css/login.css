@@ -1,0 +1,35 @@
+/* -- Joomla Login Form Override -- */
+
+/******FORM******/
+
+form#login {
+margin:10px 0 0;
+padding:0 10px;}
+
+form.form-login {margin:0; padding:5px;}
+form.form-login p {margin:0; padding:0;}
+
+form.form-login input.button {}
+
+
+/******STYLE******/
+
+form.form-login {}
+
+/* Username */
+form.form-login input#mod_login_username.inputbox {}
+
+/* Password */
+form.form-login input#mod_login_password.inputbox {}
+
+/* Remember Me */
+label.remember {}
+input#mod_login_remember.checkbox {}
+
+/* button */
+form.form-login input.button {}
+
+/* Forgot your password?, Forgot your username?, Create an account */
+form.form-login p a {}
+form.form-login p a:hover {}
+
