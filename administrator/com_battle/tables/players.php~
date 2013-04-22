@@ -1,0 +1,50 @@
+<?php
+
+defined('_JEXEC') or die('Restricted access');
+
+class TablePlayers extends JTable
+{
+	var $id = null;
+	var $iduser = null;
+	var $username = null;	
+	var $posx = null;	
+	var $posy = null;	
+	var $vie = null;	
+	var $image = null;	
+	var $coffre = null;	
+	var $option = null;
+	var $attaque= null;	
+	var $defense = null;
+	var $discretion = null;
+	var $rapidte = null;
+	var $visibilite = null;
+	var $puissance = null;
+	var $intelligence = null;
+	var $equipe = null;
+	var $argent = null;
+	var $xp = null;
+	var $idvoiture = null;
+	var $reservoir = null;	
+	var $idarme = null;	
+	var $munition = null;	
+	var $actif = null;
+	var $tempsplanque = null;	
+	var $tempsmove = null;
+	var $ip = null;	
+	var $commentaire = null;	
+	var $banque = null;	
+	var $casier = null;	
+	var $mort = null;
+	var $parrainage = null;
+	var $stupefiant = null;
+	var $volevoiture = null;	
+	var $volearme = null;	
+	var $voleargent = null;
+	var $nbrattaque = null;
+	
+
+	function __construct(&$db)
+	{
+		parent::__construct( '#__wub_personnage', 'id', $db );
+	}
+}

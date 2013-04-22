@@ -1,7 +1,11 @@
-//<?php
+<?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.application.component.view');
+jimport( 'joomla.application.component.helper' );
+jimport( 'joomla.html.parameter' );
+
+
 
 JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'tables');
 
@@ -9,8 +13,9 @@ class battleViewSingle extends JView
 {	
 	function display($tpl = null)
 	{
-		
-		$model = &$this->getModel();
+
+
+		$model = & JModel::getInstance('single','BattleModel');
 		$backlink = JRoute::_('index.php?option=com_battle');
 		$this->assignRef('backlink', $backlink);
 		$model->savecoord();

@@ -12,7 +12,7 @@ else { ?>
 </div>
 
 
-<?php if ($this->mines[timestamp] != 0 )
+<?php if ($this->mines['timestamp'] != 0 )
  { ?> 
 <div id ="mine_progress" style="visibility:visible;">
 <?php }
@@ -34,6 +34,4 @@ else { ?>
 <span id ="remaining"> </span>secs</div>
 
 
-</div> <!-- end of mine_progress -->	
-
-Notice: Undefined offset: 0 in /var/www/JiGS/components/com_battle/views/building/tmpl/default_board_message.php on line 294 Call Stack: 0.0002 342316 1. {main}() /var/www/JiGS/index.php:0 0.0668 6250576 2. 
+</div> <!-- end of mine_progress -->

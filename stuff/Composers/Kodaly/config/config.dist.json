@@ -1,0 +1,8 @@
+{
+	"db_driver":"mysqli",
+	"db_host":"127.0.0.1",
+	"db_user":"root",
+	"db_pass":"",
+	"db_name":"joomla-cms-database-name",
+	"db_prefix":"joomla-cms-table-prefix",
+}

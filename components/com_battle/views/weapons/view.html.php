@@ -9,27 +9,20 @@ class BattleViewweapons extends JView
 {	
 	function display($tpl = null)
 	{
-	//	$id = (int) JRequest::getVar('id', 0);
+
 		
-		$user =& JFactory::getUser();
-		$id= $user->id;			
+		$user			= JFactory::getUser();
+		$id				= $user->id;			
 		
-		$players =& JTable::getInstance('players', 'Table');
+		$players		= JTable::getInstance('players', 'Table');
 		$players->load($id);
-			
-	
-	//		echo '<pre>';
-	//		echo	$gun_number;
-	//	print_r($mygun);
-	//	echo '</pre>';
-		
-		$model = &$this->getModel();
+		$model			= $this->getModel();
 		$this->assignRef('inv',$model->get_weapons($id));
 
 				
-		$backlink = JRoute::_('index.php?option=com_battle');
+		$backlink		= JRoute::_('index.php?option=com_battle');
 		
-		$user =& JFactory::getUser();
+		$user			= JFactory::getUser();
 		
 		$this->assignRef('players', $players);		
 		$this->assignRef('backlink', $backlink);

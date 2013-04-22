@@ -66,7 +66,7 @@ padding: 0px;
 		/*--------------------------based on BEEZ---------*/
 div#logo {
 width:355px;
-height:55px;
+height:25px;
 float:right;
 margin: 20px 40px 0 0; 
 padding: 0; 
@@ -129,7 +129,7 @@ padding:0;
 #nav {
 width: 565px;
 position:relative; 
-margin:30px 0 0 40px; 
+margin:21px 0 0 40px; 
 z-index:900;
 float:left;
 }
@@ -198,7 +198,7 @@ Note: this container holds the left column content. We load this container befor
 #right p {margin: 0 5px;}
 
 	/* FOOTER */
-#footer {}
+#footer {position:fixed;bottom:0;left:0;width:100%;margin:0 auto;z-index:999;padding:5px 0;}
 #footer div.inside {margin:0px;}
 
 	/* BANNER */

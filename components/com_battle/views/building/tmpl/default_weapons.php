@@ -1,20 +1,22 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
-<div id="inventory" style="
-width:49%;
-float:left;
-">
 
+<div id="inventory" style="width:49%;float:left;">
 
 <div class="name">Building Weapons Inventory</div>
+
 <table id="building_inventory_table" class="shade-table">
 <tbody>
 <tr></tr>
 </tbody>
 </table>
+
 </div>
-<div style="width:49%;float:right";>
+
+<div id="inventory" style="width:49%;float:right;">
+
 <div class="name">My Inventory</div>
+
 <table id="my_inventory" class="shade-table">
 <tbody>
 <tr></tr>
@@ -26,7 +28,9 @@ float:left;
 <tr></tr>
 </tbody>
 </table>
+
 </div><!--end inventory-->
+
 
 
 <script type='text/javascript'>

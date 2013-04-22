@@ -1,12 +1,9 @@
-Stat Points    <- 3 ->  <br />
-
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/raphael-min.js"></script>
-
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/g.raphael-min.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/g.pie-min.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/g.line-min.js"></script>
 
-
+Stat Points    =- 3 -=   <br />
 
 
 

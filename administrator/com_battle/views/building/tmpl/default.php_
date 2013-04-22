@@ -1,0 +1,113 @@
+<?php
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+JHTML::_('behavior.calendar');
+$editor =& JFactory::getEditor();
+
+if ($this->row->id) {
+	JToolBarHelper::title( JText::_( 'Edit Building Profile' ), 'addedit.png' );
+} else {
+	JToolBarHelper::title( JText::_( 'Add Building Profile' ), 'addedit.png' );
+}
+
+JToolBarHelper::save();
+JToolBarHelper::apply();
+if ($this->row->id) {
+	JToolBarHelper::cancel( 'cancel', 'Close' );
+} else {
+	JToolBarHelper::cancel();
+}
+
+?>
+<form action="index.php" method="post" name="adminForm" id="adminForm">
+  <fieldset class="adminform">
+    <legend>Details</legend>
+    <table class="admintable">
+    <tr>
+      <td width="100" align="right" class="key">
+        Name:
+      </td>
+      <td>
+        <input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
+      </td>
+    </tr>
+    <tr>
+      <td width="100" align="right" class="key">
+        Protection:
+      </td>
+      <td>
+        <input class="text_area" type="text" name="protection" id="protection" size="50" maxlength="250" value="<?php echo $this->row->protection;?>" />
+      </td>
+    </tr>
+    <tr>
+      <td width="100" align="right" class="key">
+        Coffre:
+      </td>
+      <td>
+        <?php echo $this->row->coffre; ?>
+      </td>
+    </tr>
+  <tr>
+      <td width="100" align="right" class="key">
+        type:
+      </td>
+      <td>
+        <?php echo $this->row->type; ?>
+      </td>
+    </tr>
+  <tr>
+      <td width="100" align="right" class="key">
+        xp:
+      </td>
+      <td>
+     <input class="text_area" type="text" name="xp" id="xp" size="50" maxlength="250" value="<?php echo $this->row->xp;?>" />
+      </td>
+    </tr>  <tr>
+      <td width="100" align="right" class="key">
+        owner:
+      </td>
+      <td>
+        <?php echo $this->row->owner; ?>
+      </td>
+    </tr> 
+
+	<tr>
+	
+	
+      <td width="100" align="right" class="key">
+       price:
+      </td>
+      <td>
+        <?php echo $this->row->price; ?>
+      </td>
+    </tr>    
+
+  <tr>
+	
+      <td width="100" align="right" class="key">
+        Notes:
+      </td>
+      <td>
+        <textarea class="text_area" cols="20" rows="4" name="notes" id="notes" style="width:500px"><?php echo $this->row->comment; ?></textarea>
+      </td>
+    </tr>
+
+    </table>
+  </fieldset>
+  <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
+  <input type="hidden" name="option" value="<?php echo $option;?>" />
+      <input type="hidden" name="controller" value="buildings" />
+  <input type="hidden" name="task" value="" />
+  <?php echo JHTML::_( 'form.token' ); ?>
+</form>
+
+
+
+<?php
+
+jimport( 'joomla.application.component.view' );
+ echo $this->loadTemplate ($this->row->type); ?>
+
+
+
+

@@ -21,27 +21,21 @@ if (file_exists($path))
 	require ($path);
 
 	}
-	
-	
-	
-	?>
-
+?>
 
 
 <script type='text/javascript'>
 
 function request_inventory(){
 	
-	 var all = '';
-		var details = this.details;
-	
+	var all = '';
+	var details = this.details;
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory2", 
     onSuccess: function(result){
-       	    	
-   for (i = 0; i < result.length; ++ i){
-  var row = "<br>Item " + (i+1) + ":" + result[i].name + ":" + result[i].quantity ;
-  all= all + row;  
+    for (i = 0; i < result.length; ++ i){
+  var row = "<span class=\"label\">Item" + (i+1) + ":</span>" + result[i].name ;
+  all= all + row + "<br />";  
     	}
     	$('inventory').innerHTML = all;	
     }	
@@ -49,21 +43,7 @@ function request_inventory(){
     }).get();
 
 }
-
-
-
-
-
-
 request_inventory();
-request_inventory.periodical(10000);	
-
-
-
-
-
+request_inventory.periodical(100000);	
 </script>
-
-	
-
 	

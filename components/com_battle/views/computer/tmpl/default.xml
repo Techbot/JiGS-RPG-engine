@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<layout title="COM_BATTLE_VIEW_COMPUTER_TITLE">
+<message>COM_BATTLE_VIEW_MAP_DESC</message>
+</layout>
+<fields name="request" addfieldpath="/administrator/components/com_dojogames/models/fields">
+<fieldset name="request">
+<field name="id" type="object" extension="com_dojogames" label="COM_BATTLE_VIEW_OBJECT_FIELD_OBJECT_LABEL" description="COM_BATTLE_VIEW_OBJECT_FIELD_OBJECT_LABEL" required="true" />
+</fieldset>
+</fields>
+</metadata>
+

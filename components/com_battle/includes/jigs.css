@@ -45,7 +45,6 @@ div#container {
 	color:white;
 }
 div#building_info_table {
-	border-right:1px dotted #333;
 	float:left;
 }
 div#building_info_table td:first-child {
@@ -53,16 +52,49 @@ div#building_info_table td:first-child {
 	font-size:75%;
 	color:#666;
 }
+
+
+
+
 table.shade-table {
 	width:100%;
-	text-align:center;
-	margin:0;}
+	text-align:left;
+	margin:0;
+}
+
 table.shade-table th{
 	font-weight:bold;
 	text-transform:uppercase;
 	background:#1F1F1F;
-	color:#333;
+	color:#FFF;
+padding:0 0 0 15px;
+vertical-align:middle;
 }
+table.shade-table td{
+padding:0 0 0 5px;
+vertical-align:middle;
+}
+
+tr.d0 td,
+table.shade-table tr:nth-child(even) {
+background-color: #080808;
+color: #ccc;
+border-bottom:1px dotted #333;
+}
+
+tr.d1 td,
+table.shade-table tr:nth-child(odd) {
+background-color: #131313;
+color: #ccc;
+border-bottom:1px dotted #333;
+}
+
+
+
+
+
+
+
 div#spec{
 	margin:10px;
 }
@@ -285,6 +317,7 @@ table.stats {
 	margin:0;
 }
 table.stats th {
+font-weight:normal;
 	width: 50%;
 	text-align:left;
 	background:#333;
@@ -312,12 +345,7 @@ div.extra {
 	border:1px solid #252525;
 	margin:10px 0 0 0;
 }
-tr.d0 td {
-	background-color: #CC9999; color: black;
-}
-tr.d1 td {
-	background-color: #9999CC; color: black;
-}
+
 /* Specific management details */
 div.ownership {}
 p.owner {
@@ -334,13 +362,50 @@ p.instructions {
 	font-size:8pt;
 }
 /* Inventory */
-div#inventory {}
+div#inventory {overflow:auto;height:210px;}
+div#inventory div.name {margin:0;padding:0 0 0 5px;text-align:left;}
 div#profile+div#inventory {
 	width:32%;
 	float:left;
 	border:1px solid #252525;
 	margin:0 10px 10px 0;
 }
+div#inventory div.object {
+display:block;float:left;
+padding:2px; 
+background:#000;
+border:#222 dotted 1px;
+margin:2px 2px 0 0;
+}
+div#inventory div.object a {
+background:#000;
+}
+div#inventory div.object a:hover {
+background:#111;
+}
+div#inventory a.buy,
+div#inventory a.sell {
+cursor:pointer;
+background:green;
+padding:0 5px;
+display:inline-block;
+}
+div#inventory a.buy:hover,
+div#inventory a.sell:hover {
+background:red;
+}
+div#inventory a.buy:focus,
+div#inventory a.sell:focus {
+background:blue;
+}
+div#inventory span.price {
+display:block;
+background:#222;
+color:#ccc;
+font-size:85%;
+}
+
+
 /* Player Actions */
 div#action {
 	margin:0 10px 10px;
@@ -355,27 +420,28 @@ div.buy, div.attack, div.recruit, div.kick, div.punch, div.shoot, div.bribe, div
 div.buy:hover, div.attack:hover, div.recruit:hover, div.kick:hover, div.punch:hover, div.shoot:hover, div.bribe:hover, div.rob:hover, div.talk:hover {
 	background:red;
 	border:1px solid #fff;
+	cursor:pointer;
 }
-a.buy, a.attack, a.recruit, a.kick, a.punch, a.shoot, a.bribe, a.rob, a.talk {
+a.buy, a.sell, a.attack, a.recruit, a.kick, a.punch, a.shoot, a.bribe, a.rob, a.talk {
 	color:#FFF;
 	text-decoration:none;
 }
-a.buy:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover {	
+a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover {	
 	color:#CCC;
 	text-decoration:none;
 }
 /* NPC and Player Layout */
 div.vitals {
 	float: left;
-	width: 45%;
+	width: 33%;
 	margin:0 10px 10px 0;
 }
 div.gauge {
 	background: none repeat scroll 0 0 #0F0F0F;
-	border: 1px solid #333333;
+	border: 1px solid #333;
 	border-radius: 25px 25px 25px 25px;
 	color: #000000;
-	width: 80%;
+	width: 130px;
 	float:right;
 	margin:5px 0;
 }
@@ -384,30 +450,30 @@ div.gauge span {
 }
 div.label {
 	color:#fff;
-	text-align:right;
+	text-align:left;
 	font-size:8pt;
-	width: 18%;
+	text-transform:uppercase;
 	float:left;
 	margin:10px 0 2px;
 }
-div.xp {
+div#xp {
 	background: none repeat scroll 0 0 #00FF00;
-	border-radius: 25px 0 0 25px;
+	border-radius: 25px;
 	padding: 0 0 0 15px;
 }
-div.intel {
+div#intel {
 	background: none repeat scroll 0 0 #FFFF00;
-	border-radius: 25px 0 0 25px;
+	border-radius: 25px;
 	padding: 0 0 0 15px;
 }
-div.strength {
+div#strength {
 	background: none repeat scroll 0 0 #0000FF;
-	border-radius: 25px 0 0 25px;
+	border-radius: 25px;
 	padding: 0 0 0 15px;
 }
-div.health {
+div#health {
 	background: none repeat scroll 0 0 #FF0000;
-	border-radius: 25px 0 0 25px;
+	border-radius: 25px;
 	padding: 0 0 0 15px;
 }
 /* /23\ ################ NOOB SLIDE ############*/
@@ -461,6 +527,11 @@ form.conveyor input .inputbox{
 form.conveyor select#blueprints {
 	max-width:100px;
 	min-width:40px;}
+
+
+
+
+
 form.conveyor .object{
 	text-align:left; 
 	display:inline-block;
@@ -481,6 +552,45 @@ form.conveyor .metal {
 	border:1px dotted #FF0;
 	height:72px;
 }
+
+
+form.conveyor .object2{
+	text-align:left; 
+	display:inline-block;
+	width:260px;
+	float:left;
+	margin:0 5px 0 10px;
+	padding:0 10px 10px;
+	border:1px dotted #F00;
+	height:72px;
+}
+form.conveyor .metal2 {
+	text-align:left; 
+	display:inline-block;
+	width:300px;
+	float:right;
+	margin:0 10px 0 5px;
+	padding:0 10px 10px;
+	border:1px dotted #FF0;
+	height:72px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #box4 div#time_elapsed{
 	text-align:center; 
 	display:inline-block;
@@ -514,6 +624,13 @@ div#sell_crops:hover {
 	color:#CCC;
 	text-decoration:none;
 }
+
+div.work_field {text-align:center;}
+div.work_field  img{float:none !important;}
+
+div#batteries .label,
+div#metal .label,
+div#inventory .label,
 div#stats .label {
 	text-align:left;
 	display:inline-block;
@@ -523,6 +640,7 @@ div#stats .label {
 	color:#999;
 	margin:0 5px 0 0;
 }
+
 /* Apartment Layout */
 #leave {
 	background:#FF0000;
@@ -601,3 +719,196 @@ div#eat_burger {
 .board_buttons #energy.active  {
 	background:url(../images/buildings/board_sprites.png) -160px -40px no-repeat #000;
 }
+
+
+
+.black {
+color:#000;}
+.highlight{
+color:#000;background:#666;
+padding:0 2px; margin:0 2px;}
+.red{
+color:#000;background:red;
+padding:0 2px; margin:0 2px;}
+.red a{
+color:#000;font-weight:bold;text-decoration:none;}
+
+
+
+
+
+div#flats {overflow:auto;height:210px;}
+div#flats div.name {
+  margin: 0;
+  padding: 0 0 0 5px;
+  text-align: left;
+}
+div#flats div {float:left;display:inline-block;}
+div#flats div.row {float:none;display:block;clear:both;  text-align: left;
+}
+
+div#flats div.row div:first-child {width:100px;}
+div#flats div.row div:nth-child(2) {width:20px; padding: 0 0 0 5px;}
+div#flats div.row div:nth-child(3) {width:320px; padding: 0 0 0 10px;}
+div#flats div.row div:last-child {width:175px; padding: 0 0 0 5px;}
+
+div#flats h4 {
+margin:0;
+text-align:center;
+}
+div#flats h4 a {
+background:red;
+color:white;
+display:block;
+border-bottom:1px solid #333;
+padding:0 3px;
+}
+div#flats h4 a:hover {
+text-decoration:none;
+}
+
+/* ends with" substring matching attribute selector - Click here to rent = Vacant */
+div#flats h4 a[title$="Rent"]{
+background:green;
+}
+
+/*
+ #demo { 
+  background:#fa0000; 
+  color:#fff; 
+  padding:0px; 
+  border:1px solid #000;
+  width:37px;
+  height:37px;
+position:absolute;
+z-index:1;
+}
+.character { 
+  background:#fa0000; 
+  color:#fff; 
+  padding:0px; 
+  border:1px solid #000;
+  width:48px;
+  height:48px;
+position:absolute;
+z-index:888;
+}
+
+.character a { 
+display:block;
+}
+.character a img.npc { 
+display:block;
+}
+
+
+
+#demo  {
+-webkit-transition: z-index 1s ease-in-out;
+-moz-transition: z-index 1s ease-in-out;
+-o-transition: z-index 1s ease-in-out;
+transition: z-index 1s ease-in-out;
+}
+
+
+#demo:hover {
+z-index:999;
+}
+
+.character a img.npc{
+-webkit-transition: z-index 1s ease-in-out;
+-moz-transition: z-index 1s ease-in-out;
+-o-transition: z-index 1s ease-in-out;
+transition: z-index 1s ease-in-out;
+}
+.character a img.npc:hover {
+z-index:1;
+}
+
+*/
+
+
+/* Tooltips */
+.tip-title {font-weight: bold;}
+
+
+.tip-wrap {    z-index: 10000;
+
+background-color:rgb(185,224,247);
+color:rgb(0,52,107);
+}
+.tip {
+background-color:rgb(185,224,247) !important;
+border: 1px solid rgb(0,52,107);
+   padding: 5px;
+   max-width: 200px;
+text-align:left;   float: left;
+}
+
+
+
+div#messages {
+padding-top:5px;
+/*max-height:180px;
+overflow-y:auto;*/
+}
+
+
+div#messages p {
+color: #ccc;
+border-bottom:1px dotted #333;
+margin:0;
+padding:0 3px;
+font-size:10px;
+}
+
+div#messages p[display=table-row] {
+border-bottom:1px dotted #009999;
+animation: fadeout 5s;
+-moz-animation: fadeout 5s; /* Firefox */
+-webkit-animation: fadeout 5s; /* Safari and Chrome */
+-o-animation: fadeout 5s; /* Opera */
+}
+
+div#messages p:nth-child(odd) {
+background-color: #080808;
+}
+
+div#messages p:nth-child(even) {
+background-color: #131313;
+}
+
+
+
+@keyframes fadeout
+{
+from {background:#009999;color:#fff;}
+to {background: transparent;color:#ccc;}
+}
+
+@-moz-keyframes fadeout /* Firefox */
+{
+from {background:#009999;color:#fff;}
+to {background: transparent;color:#ccc;}
+}
+
+@-webkit-keyframes fadeout /* Safari and Chrome */
+{
+from {background:#009999;color:#fff;}
+to {background: transparent;color:#ccc;}
+}
+
+@-o-keyframes fadeout /* Opera */
+{
+from {background:#009999;color:#fff;}
+to {background: transparent;color:#ccc;}
+} 
+
+
+
+
+
+
+
+/* NPC - new compact layout */
+

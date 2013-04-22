@@ -30,7 +30,7 @@ It is based on the skeleton-template-tableless by Waseem Sadiq of www.bulletproo
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-
+JHTML::_('behavior.tooltip');
 include_once("includes/template_config.php");
 $url = clone(JURI::getInstance());
 $user =& JFactory::getUser();
@@ -281,6 +281,11 @@ $app = Jfactory::getApplication();
             			<?php endif; ?>
 						
         
+
+		     
+		
+</div><!-- end wrapper -->
+
 <div id="footer" class="clearfix"><!--footer-->
 		
 <?php if ($this->countModules('user15')) : ?><!-- footer nav-->
@@ -289,16 +294,15 @@ $app = Jfactory::getApplication();
 </div>
 <?php endif; ?>
 			
+<?php if ($this->countModules('messenger')) : ?>
+<jdoc:include type="modules" name="messenger" style="html" />
+<?php endif; ?>
+					
 <?php if ($this->countModules('footer')) : ?>
-<div class="inside">		
 <jdoc:include type="modules" name="footer" style="raw" />
-</div><!-- end inside -->
 <?php endif; ?>
 		
 </div><!-- end footer -->
-		     
-		
-</div><!-- end wrapper -->
 	
 <?php if ($this->countModules('banner')) : ?><!--banner-->
 <div id="banner" class="clearfix">

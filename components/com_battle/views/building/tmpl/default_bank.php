@@ -1,15 +1,25 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
-
+<script>
+function display_alert_deposit()
+  {
+  alert("Thank you for the deposit.\nYour money is safe with us.");
+  }
+function display_alert_withdraw()
+  {
+  alert("Thank you for your valued custom.\nWe hope to see you again soon.");
+  }
+</script>
 <div id = "bank"> 
 <div class="name">Teller</div>
 <div id = "bank_left">
 
 
-<input type="text" class="inputboxquantity" size="4" id="quantity_adjust" name="quantity_adjust" value="1" style="vertical-align: middle;" onchange="alterQuantity(this.form)"/>
-<input type="button" class="quantity_box_button quantity_box_button_up" onclick="var qty_el = document.getElementById('quantity_adjust'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;;alterQuantity(this.form);return false;" />
-<input type="button" class="quantity_box_button quantity_box_button_down" onclick="var qty_el = document.getElementById('quantity_adjust'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty > 0 ) qty_el.value--;alterQuantity(this.form);return false;" />
-<a href = '#' id = 'deposit' class = 'deposit'>Deposit</a>
+
+<input type="text" class="inputboxquantity" size="4" id="quantity_adjust" name="quantity_adjust" placeholder="credits" style="vertical-align: middle;" onchange="alterQuantity(this.form)"/>
+<input type="button" class="quantity_box_button quantity_box_button_up" onclick="var qty_el = document.getElementById('quantity_adjust'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;;alterQuantity(this.form);return false;" value="+" />
+<input type="button" class="quantity_box_button quantity_box_button_down" onclick="var qty_el = document.getElementById('quantity_adjust'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty > 0 ) qty_el.value--;alterQuantity(this.form);return false;" value="-" />
+<a onclick="display_alert_deposit()" href = '#' id = 'deposit' class = 'deposit'>Deposit</a>
 <br />  <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
   <input type="hidden" name="option" value="<?php echo $option;?>" />
   <input type="hidden" name="controller" value="buildings" />
@@ -18,15 +28,15 @@
 
 <div id = "bank_right">
 
-<input type="text" class="inputboxquantity" size="4" id="quantity_adjust2" name="quantity_adjust2" value="1" style="vertical-align: middle;"/>
-<input type="button" class="quantity_box_button quantity_box_button_up" onclick="var qty_el = document.getElementById('quantity_adjust2'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;return false;" />
-<input type="button" class="quantity_box_button quantity_box_button_down" onclick="var qty_el = document.getElementById('quantity_adjust2'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty > 0 ) qty_el.value--;return false;" />
+<input type="text" class="inputboxquantity" size="4" id="quantity_adjust2" name="quantity_adjust2" placeholder="credits" style="vertical-align: middle;"/>
+<input type="button" class="quantity_box_button quantity_box_button_up" onclick="var qty_el = document.getElementById('quantity_adjust2'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;return false;" value="+" />
+<input type="button" class="quantity_box_button quantity_box_button_down" onclick="var qty_el = document.getElementById('quantity_adjust2'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty > 0 ) qty_el.value--;return false;" value="-" />
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
   <input type="hidden" name="option" value="<?php echo $option;?>" />
   <input type="hidden" name="controller" value="buildings" />
   <input type="hidden" name="task" value="withdraw" />
 
-<a href = '#' id = 'withdraw' class = 'withdraw'>Withdraw</a>
+<a onclick="display_alert_withdraw()" href = '#' id = 'withdraw' class = 'withdraw'>Withdraw</a>
  </div>
  </div>
 <?php 

@@ -24,18 +24,18 @@
  -->
 
 
-<style type="text/css">
+<!--<style type="text/css">
 tr.d0 td {
 	background-color: #CC9999; color: black;
 }
 tr.d1 td {
 	background-color: #9999CC; color: black;
 }
-</style>
+</style>-->
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' ); 
 
-if ($this->player->id == 0){
+if ($this->player->iduser == 0){
  	$this->player->username = 'Nobody';
  } 
 //echo 'test:';
@@ -45,7 +45,13 @@ if ($this->player->id == 0){
 <div id="building" class="clearfix"><!-- This should replace div#container -->
 <div class="building_left">
 <div id="info" class=" clearfix">
-<div class="name"><?php echo $this->player->username; ?> owns <?php echo $this->buildings->name; ?></div>
+<div class="name"><?php echo $this->player->username; ?> owns <?php echo $this->buildings->name; ?> 
+<span class="small">[Level 1]</span>
+<span class="red"><a href="#" title="Allocate stats points">-</a></span>
+<span class="small"><span class="highlight">3 Stats Pts</span>
+<span class="red"><a href="#" title="Allocate stats points">-</a></span>
+</span>
+</div>
 <div class="desc">
 <img src="components/com_battle/images/buildings/<?php echo $this->buildings->image ; ?>" class="thumbnail" alt="<?php echo $this->buildings->name ; ?>" title="<?php echo $this->buildings->name ; ?>" width="100" height="100" id="building_image" />
 <p class="desc"><?php echo $this->buildings->comment  ; ?></p>
@@ -63,8 +69,8 @@ if ($this->player->id == 0){
     <td><?php echo $this->buildings->protection ; ?></td>
   </tr>
   <tr>
-    <th scope="row">Coffers</th>
-    <td><?php echo $this->buildings->coffre  ; ?></td>
+    <th scope="row">Energy</th>
+    <td><?php echo $this->buildings->energy  ; ?></td>
   </tr>
   <tr>
     <th scope="row">Type</th>
@@ -87,6 +93,7 @@ if ($this->player->id == 0){
     <th scope="row">Timer</th>
     <td><?php echo $this->buildings->timer ; ?></td>
   </tr>
+
 </table> 
 </div><!-- end stats -->
 
@@ -154,6 +161,7 @@ if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
 <?php
 
 if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 ){
+	
 	echo $this->loadTemplate ($this->buildings->type);
 	
 }
@@ -176,11 +184,11 @@ function buy_building() {
     }).get();
   		 });
     }	
- 
+ /*
  function buy1(itemID){
   
  	var a = new Request.JSON({
-     url: 'index.php?option=com_battle&format=raw&task=action&action=buy&building_id=' + <?php echo $this->buildings->id ; ?> + '&item=' + itemID, 
+     url: 'index.php?option=com_battle&format=raw&task=action&action=buy&building_id=<?php echo $this->buildings->id ; ?> &item=' + itemID, 
      onSuccess: function(result){
      	    
      	}
@@ -197,6 +205,6 @@ function buy_building() {
      }).get();
   
  }
-
+*/
  
  </script>

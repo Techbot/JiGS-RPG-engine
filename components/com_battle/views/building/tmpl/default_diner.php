@@ -9,10 +9,12 @@
 		
 			<div>
 		
-			 <div id="eat_burger" style="visibility:visible;">
-			<img style="margin-left:30px;" src="<?php echo $this->baseurl ?>/components/com_battle/images/burger.png" alt="McGuffin Burger" />
-<h4>Increase your health by 10pts with<br />
-a SuperSized  McGuffin Burger</h4>I'm lovin it</div>
+				 <div id="eat_burger" style="visibility:visible;">
+				<img style="margin-left:30px;" 
+				src="<?php echo $this->baseurl ?>/components/com_battle/images/burger.png" alt="McGuffin Burger" />
+				<h4>Increase your health by 10pts with<br />
+				a SuperSized  McGuffin Burger</h4>I'm lovin it
+				</div>
 
 			</div>	
 
@@ -60,7 +62,9 @@ a SuperSized  McGuffin Burger</h4>I'm lovin it</div>
 		<span>8. Ocho</span>>-->
 	</p>
 </div>
-	<script type="text/javascript">
+</div>
+
+<script type="text/javascript">
 
 //SAMPLE 4 (walk to item)
 		var nS4 = new noobSlide({
@@ -69,32 +73,31 @@ a SuperSized  McGuffin Burger</h4>I'm lovin it</div>
 			size: 640,
 			handles: $$('#handles4 span'),
 			onWalk: function(currentItem,currentHandle){
-				$('info4').set('html',currentItem.getFirst().innerHTML);
+				// $('info4').set('html',currentItem.getFirst().innerHTML);
 				this.handles.removeClass('active');
 				currentHandle.addClass('active');
 			}
 		});
-			</script>
-			
-			
-			
-			
-<script type='text/javascript'>
-
 
 	   	 $('eat_burger').addEvent('click', function(){
 		  var itemID = this.get('id');
  		  eat(itemID);
   		 });
   		 
-function eat(itemID){
- 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=eat", 
-    onSuccess: function(result){
-   	   	$('eat_burger').setStyle('visibility','hidden'); 
-    	}
-    }).get();
- 
-}
+	function eat(itemID){
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=eat",
+			onSuccess: function(result){
+				if (result=="success"){
+						alert("You gained 10 health points which cost you 10 credits");
+						$('eat_burger').setStyle('visibility','hidden');
+						}
+				if (result=="broke"){
+						alert("You don't have enough money. Get out of here! Go get a job you waster!");
+						$('eat_burger').setStyle('visibility','hidden');
+						}
+			}
+		}).get();
+	}
 </script>
- </div>
+		
