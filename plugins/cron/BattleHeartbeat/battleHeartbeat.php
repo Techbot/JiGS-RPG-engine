@@ -140,7 +140,7 @@ class plgBattleHeartbeat extends JPlugin
 		$now		= time();
 		$db 		= JFactory::getDBO();
 		// Find all factories where finished(unix time) has passed 
-		$expire		= $now - (1*60*60*60);
+		$expire		= $now - (1*60*60);
 		$query		= "SELECT * FROM #__jigs_flats WHERE timestamp < $expire AND timestamp !=0";
 		$db->setQuery($query);
 		$result		= $db->loadObjectlist();
@@ -188,7 +188,7 @@ class plgBattleHeartbeat extends JPlugin
 						$db->query();
 		
 						// send wavy lines & feedback
-						$txt = "Your lease was renewed were evicted";
+						$txt = "Your lease was renewed";
 						
 						$this->sendFeedback($user->id ,$txt);
 						
