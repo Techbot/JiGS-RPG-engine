@@ -99,8 +99,14 @@ else
     </tr>	 
       <tr>
       <td width="100" align="right" class="key">
-	owner	proprio_equipe	price	timer	acces		
+	owner	owner team	price	timer	access		
       </td>
+      
+      
+      
+      
+      
+      
       <td>
 	<input class="text_area" type="text" name="map3333" id="grid" size="50" maxlength="250" value="" />
       </td>
@@ -108,7 +114,7 @@ else
     </table>
   </fieldset>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-  <input type="hidden" name="option" value="<?php echo $option;?>" />
+  <input type="hidden" name="option" value="com_battle" />
       <input type="hidden" name="controller" value="pages" />
   <input type="hidden" name="task" value="" />
   <?php echo JHTML::_( 'form.token' ); ?>

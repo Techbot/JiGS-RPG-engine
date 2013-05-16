@@ -4,8 +4,13 @@ jimport( 'joomla.application.component.view');
 
 class BattleViewPlayers extends JView
 {	
+	protected $items;
+	protected $pagination;
+	protected $state;
+	
 	function display($tpl = null)
-	{
+	{		
+	$this->state = $this->get('State');
 		$rows =& $this->get('data');
 		$pagination =& $this->get('pagination');
 		$search =& $this->get('search');

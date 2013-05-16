@@ -5,6 +5,9 @@ jimport( 'joomla.application.component.view');
 
 class BattleViewBuildings extends JView{	
 
+
+
+
 	protected $items;
 	protected $pagination;
 	protected $state;
@@ -30,6 +33,9 @@ class BattleViewBuildings extends JView{
 				
 		
 		$rows =& $this->get('data');
+	
+		
+		
 		$this->assignRef('rows', $rows);
 		
 
