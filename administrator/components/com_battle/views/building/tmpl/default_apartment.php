@@ -6,7 +6,7 @@ print_r($this->flats);
 echo'</pre>';
 */
 ?> 
-<form action="index.php" method="post" name="flat" id="flat">
+<form action="index.php" method="get" name="flat" id="flat">
 <table class="admintable">
 <?php for($i=0;$i<=7;$i++){ ?>
   <tr>

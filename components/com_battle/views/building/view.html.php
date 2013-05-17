@@ -9,34 +9,34 @@ class BattleViewBuilding extends JView
 {	
 	function display($tpl = null)
 	{
-		$id = (int) JRequest::getVar('id', 0);
-		
-		$buildings =& JTable::getInstance('buildings', 'Table');
+		$id							= (int) JRequest::getVar('id', 0);
+		$model						= $this->getModel();
+		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
-		$owner = $buildings->owner;
-		$players =& JTable::getInstance('players', 'Table');
+		$model2 = JModel::getInstance('jigs','BattleModel');					
+		$buildings->energy			= $model2->get_total_energy($id);
+		$owner						= $buildings->owner;
+		$players					= JTable::getInstance('players', 'Table');
 		$players->load($owner);	
 		$this->assignRef('player', $players);	
-
-		$backlink = JRoute::_('index.php?option=com_battle');
-		$user =& JFactory::getUser();
+		$backlink					= JRoute::_('index.php?option=com_battle');
+		$user						= JFactory::getUser();
 		$this->assignRef('user', $user);
-		
-		$cropper =& JTable::getInstance('players', 'Table');
+		$cropper					= JTable::getInstance('players', 'Table');
 		$cropper->load($user->id);	
 		$this->assignRef('cropper', $cropper);		
-		
 		$this->assignRef('buildings', $buildings);		
 		$now						= time();
 		$timestamp					= $this->buildings->timestamp ;
 		$this->buildings->elapsed	= $now - $timestamp;
 		$this->buildings->now		= $now;
 		$this->assignRef('backlink', $backlink);
+		//$model						= $this->getModel();
 		
-		$model						= &$this->getModel();
-		$board_info_1				= $model->get_board_messages($id,$type=2);
 		
-	
+		$board_info_1				= $model->get_board_messages($id,$this->buildings->type);
+		
+		
 		
 		$this->assignRef('board_info_1',$board_info_1);
 		
@@ -45,8 +45,18 @@ class BattleViewBuilding extends JView
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
 		
 		if($this->buildings->type=='farm'){
-		$fields =& JTable::getInstance('fields', 'Table');
-		$fields->load($id);		
+		
+		
+		$fields = $model->get_fields($id);
+		
+////////////////////////////////////////////////////////////////////////////////////		
+		
+		
+		
+
+//print_r($fields);
+
+//////////////////////////////////////////////////////////////////////////////
 		$this->assignRef('fields', $fields);	
 		}
 		
@@ -54,7 +64,7 @@ class BattleViewBuilding extends JView
 			$resident	= array();
 			$pics		= array();
 			$message	= array();
-			$model		= &$this->getModel();
+			
 
 			$flats_array		= 		$model->get_flats($id);
 
@@ -78,18 +88,37 @@ class BattleViewBuilding extends JView
 		if($this->buildings->type=='mine'){
 			
 		//	echo $this->buildings->id;
-			
-					$model	= &$this->getModel();
-					$mines	= $model->get_mines($this->buildings->id);
-					$this->assignRef('mines', $mines);
+			        $model			= $this->getModel('jigs');
+				//	$model	= &$this->getModel();
+				//	$mines	= $model->get_mines($this->buildings->id);
+			//		$this->assignRef('mines', $mines);
 					}	
 					
 		if($this->buildings->type=='factory'){
 		//	echo $this->buildings->id;
 					$model		= &$this->getModel();
 		 	    	$blueprints	= $model->get_blueprints($this->buildings->id);
+		 	    	
+		 	    	$blueprints	= $model->get_metals_required($blueprints);
+		 	    	
 					$this->assignRef('blueprints', $blueprints);
+					
 					}	
+					
+		if($this->buildings->type=='reprocessor'){
+		//	echo $this->buildings->id;
+					$model				= $this->getModel();
+		 	    	$blueprints			= $model->get_blueprints($this->buildings->id);
+					$this->blueprints	= $model->get_objects_required($blueprints);
+					}					
+					
+		
+		if($this->buildings->type=='scrapyard'){
+					//	echo $this->buildings->id;
+					//$model		= &$this->getModel();
+					//$blueprints	= $model->get_metals($this->buildings->id);
+					//$this->assignRef('metals', $metals);
+					}		
 		
 		
 		parent::display($tpl);

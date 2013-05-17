@@ -1,19 +1,15 @@
  
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" />
-<style type="text/css">
-tr.d0 td {
-	background-color: #CC9999; color: black;
-}
-tr.d1 td {
-	background-color: #9999CC; color: black;
-}
-</style>
-You are in a recovery ward. You were found beaten to a pulp. <br />
-Everything you had on you was taken. <br />
-You apparently have no insurance so we took a pint of blood as payment.<br />
-<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/ward.jpg" >
+<p>
+You are in a recovery ward. You were found beaten to a pulp. 
+Everything you had on you was taken. 
+You apparently have no insurance so we took a pint of blood as payment.</p>
 
-<div id='leave'>Checkout</div>
+<div class="ward_bg">
+
+<div id="leave">Check Out</div>
+
+</div>
 
 <script type='text/javascript'>
 

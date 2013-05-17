@@ -11,10 +11,9 @@ class TableBuildings extends JTable
 	var $posx = null;	
 	var $protection = null;	
 	var $image = null;	
-	var $coffre = null;	
+	var $coffers = null;	
 	var $type = null;
 	var $public = null;
-	var $couleur = null;
 	var $xp = null;	
 	var $owner = null;
 	var $owner_team = null;
@@ -22,8 +21,8 @@ class TableBuildings extends JTable
 	var $timestamp = null;
 	var $grid = null;
 	var $map = null;
+	var $messages = null;
 	var $published = null;
-
 
 	function __construct(&$db)
 	{

@@ -78,8 +78,16 @@ function getchars()
         $grid = $result[1];		
 		$db->setQuery("SELECT * FROM #__jigs_buildings WHERE grid ='".$grid."' AND map='".$map."'");
 		$result = $db->loadObjectlist();
+		
+		foreach ($result as $building){
+		$db->setQuery("SELECT username FROM #__jigs_players WHERE iduser= $building->owner");
+		$building->ownername = $db->loadResult();
+		}
 		return $result;
 	}
+	
+	
+	
 	
 	function getpages() 
 	{
@@ -97,13 +105,15 @@ function getchars()
 	
 function getplayers()
 	{
-		$db =& JFactory::getDBO();
-		$user =& JFactory::getUser();
+		$db		= JFactory::getDBO();
+		$user	= JFactory::getUser();
 		$db->setQuery("SELECT map,grid FROM #__jigs_players WHERE iduser =".$user->id);
 		$result = $db->loadRow();
-		$map = $result[0];
-        $grid = $result[1];		
-				$db->setQuery("SELECT #__jigs_players.iduser, 
+		$map	= $result[0];
+        $grid	= $result[1];		
+		$db->setQuery("SELECT #__jigs_players.iduser,
+
+		#__jigs_players.username,
 				#__jigs_players.posx, 
 				#__jigs_players.posy, 
 				#__comprofiler.avatar

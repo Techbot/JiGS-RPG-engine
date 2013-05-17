@@ -4,11 +4,11 @@ JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
 if ($this->row->id)
 {
-	JToolBarHelper::title( JText::_( 'Edit Car Profile' ), 'addedit.png' );
+	JToolBarHelper::title( JText::_( 'Edit Player Profile' ), 'addedit.png' );
 }
 else
 {
-	JToolBarHelper::title( JText::_( 'Add Car Profile' ), 'addedit.png' );
+	JToolBarHelper::title( JText::_( 'Add Player Profile' ), 'addedit.png' );
 }
 JToolBarHelper::save();
 JToolBarHelper::apply();
@@ -38,7 +38,7 @@ else
        Latitude:
       </td>
       <td>
-        <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->lat;?>" />
+        <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->posx;?>" />
       </td>
     </tr>
     <tr>
@@ -46,7 +46,7 @@ else
        Longitude:
       </td>
       <td>
-         <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->lng;?>" />
+         <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->posy;?>" />
       </td>
     </tr>
     <tr>
@@ -54,7 +54,7 @@ else
         Health:
       </td>
       <td>
-          <input class="text_area" type="text" name="address" id="address" size="250" maxlength="250" value="<?php echo $this->row->vie;?>" />
+          <input class="text_area" type="text" name="address" id="address" size="250" maxlength="250" value="<?php echo $this->row->health;?>" />
       </td>
     </tr>
         <tr>
@@ -86,14 +86,14 @@ else
       attaque :
       </td>
       <td>
-            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->attaque ;?>" />
+            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->attack ;?>" />
       </td>
     </tr>		        <tr>
       <td width="100" align="right" class="key">
       defense :
       </td>
       <td>
-            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->defense ;?>" />
+            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->defence ;?>" />
       </td>
     </tr>	
 			        <tr>
@@ -146,7 +146,7 @@ else
       argent  :
       </td>
       <td>
-            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->argent  ;?>" />
+            <input class="text_area" type="text" name="address" id="address" size="50" maxlength="250" value="<?php echo $this->row->money  ;?>" />
       </td>
     </tr>		        <tr>
       <td width="100" align="right" class="key">

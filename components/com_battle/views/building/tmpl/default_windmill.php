@@ -1,26 +1,26 @@
-
-
-
-<div id = "crystal_actions">- Insert Crystals - Remove Crystals - Charge Crystals - </div>
-
 <div id = "charge">Charge Battery </div>
 <div id = 'charge_progress' style='visibility:hidden;'>Battery Charge Process in Progress</div>	
+
+
+
+<?php echo $this->loadTemplate ('board_batteries'); ?>
+
 
 
 <script type="text/javascript">
 
 
 work_turbine();
-energy_time.periodical(1000);
+energy_time.periodical(100000);
 
 //noobslide
-		function work_turbine() {
+	function work_turbine() {
 			$('charge').addEvent('click', function(){				
 				work();
 				});
 		    }	
 		    
-		    function work(){	
+	function work(){	
 		    var a = new Request.JSON({
 		    url: "index.php?option=com_battle&format=raw&task=work_turbine&quantity=1&building_id=<?php echo $this->buildings->id ?>&line=1"  ,
 		    onSuccess: function(result){
@@ -34,7 +34,7 @@ energy_time.periodical(1000);
 		    }).get();}
 
 
-			function energy_time(){
+	function energy_time(){
 			var a = new Request.JSON({
 				url: "index.php?option=com_battle&format=raw&task=energy_time&building_id=<?php echo $this->buildings->id ; ?>" , 
 		    onSuccess: function(result){

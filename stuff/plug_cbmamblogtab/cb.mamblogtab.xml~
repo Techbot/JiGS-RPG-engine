@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cbinstall version="1.0" type="plugin" group="user">
+	<name>CB Mamblog Tab</name>
+	<author>JoomlaJoe - Thanks to Jeffrey Hill for pagination and search additions</author>
+	<creationDate>2009-01-26</creationDate>
+	<copyright>(C) 2005-2009 joomlapolis.com</copyright>
+	<license>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU/GPL version 2</license>
+	<authorEmail>beat@joomlapolis.com</authorEmail>
+	<authorUrl>www.joomlapolis.com</authorUrl>
+	<version>1.2</version>
+	<description>Provides a User Tab that shows all Mamblog entries written by the user.</description>
+	<files>
+		<filename plugin="cb.mamblogtab">cb.mamblogtab.php</filename>
+		<filename>cb.mamblogtab.xml</filename>
+		<filename>index.html</filename>
+	</files>
+    <params>	
+    </params>	
+    <tabs>
+    	<tab name="_UE_BLOGTAB" description="" class="getBlogTab" fields="0" position="cb_main" displaytype="tab">
+			<params>
+				<param name="@spacer" type="spacer" default="List Settings" label="Blog Entries:" description="" />
+				<param name="entriesNumber" type="text" size="10" default="10" label="Number of blog entries to display" description="If showing all posts, this is the number of posts per page. If showing only last ones, this is the number of blog entries to show. Default is 10" />
+	    		<param name="pagingEnabled" type="radio" default="0" label="Show all blogs with paging" description="If set to -show all- all blog entries will become visible in the user profile. Otherwise, only the last entries will be visible.">
+	     			<option value="0">Only last ones</option>
+	     			<option value="1">Show all</option>
+	   			</param>
+	    		<param name="searchEnabled" type="radio" default="0" label="Allow search function" description="IMPORTANT: Show all blog entries must also be set. Allows a search on user blog entries.">
+	     			<option value="0">Disabled</option>
+	     			<option value="1">Enabled</option>
+	   			</param>
+			</params>
+			<fields>
+			</fields>
+		</tab>
+    </tabs>   
+    <install>
+    	<queries>
+    	</queries>
+    </install>
+    <uninstall>
+        <queries>
+    	</queries>
+    </uninstall>
+	<database>
+	</database>
+</cbinstall>

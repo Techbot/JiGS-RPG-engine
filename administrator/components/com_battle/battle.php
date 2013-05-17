@@ -12,7 +12,7 @@ default:
 	case 'people';
 	case 'cars';
 	case 'buildings';
-	case 'drugs';
+	case 'main';
 	case 'weapons';	
 	case 'players';	
 	case 'pages';

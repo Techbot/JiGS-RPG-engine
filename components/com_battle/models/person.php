@@ -18,21 +18,6 @@ class BattleModelPerson extends JModel
 	}
 	
 	
-	function get_character_inventory($id) {
-
-		$db =& JFactory::getDBO();
-		$user =& JFactory::getUser();
-		$character_id= JRequest::getvar('character_id');
-		$db->setQuery("SELECT #__jigs_inventory.item_id, " .
-				"#__jigs_objects.name " .
-				"FROM #__jigs_inventory " .
-				"LEFT JOIN #__jigs_objects " .
-				"ON #__jigs_inventory.item_id = #__jigs_objects.id " .
-				"WHERE #__jigs_inventory.player_id =".$id);
-		$result = $db->loadAssocList();
-			return $result;
-}
-	
 	
 	
 	

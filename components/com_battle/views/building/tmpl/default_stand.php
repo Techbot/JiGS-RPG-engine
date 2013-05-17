@@ -2,52 +2,32 @@
 ?>
 
 
-<div
-	id="inventory">
+<div id="inventory">
 
-	<div id='left''>
+	<div id="left" style="width: 49.5%; float: left;">
 
-		<div class="name">Available to buy</div>
-		<table id="building_inventory_table" class="shade-table">
-			<tbody>
-				<tr>
+		<div id="building_inventory_table">
+			
+				<div class="name">Available to Buy</div>
 
-				</tr>
-			</tbody>
-		</table>
+				
+		</div>
 
 	</div>
 	<!--end of left -->
 
 
 
-	<div id="middle" style="width: 40%; float: left;">
-		<div class="name">Available for Sale</div>
+	<div id="middle" style="width: 49.5%; float: left;">
 
-		<table id="my_inventory" class="shade-table">
-			<tbody>
-				<tr>
-
-				</tr>
-			</tbody>
-		</table>
+		<div id="my_inventory">
+				<div class="name">Available to Sell</div>
+		</div>
 
 	</div>
 	<!-- end of middle -->
 
-	<div id="right" style="width: 30%; float: left;">
 
-		<div class="name">My Inventory</div>
-
-		<table id="my_inventory2" class="shade-table">
-			<tbody>
-				<tr>
-
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<!-- end of right -->
 
 	<div>
 		<!-- end of inventory -->
@@ -59,7 +39,7 @@
 		<!--end inventory-->
 		<script type='text/javascript'>
 function request_shop_inventory(){
-	var all = '<table class="shade-table"><tbody>';
+	var all = '<div id="building_inventory_table"><div class="name">Available to Buy</div>';
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON({
@@ -67,11 +47,11 @@ function request_shop_inventory(){
     onSuccess: function(result){
        	    	
     for (i = 0; i < result.length; ++ i){
-        var row = "<tr class=\"d" + (i & 1) + "\"><td>" + (i+1) + ": " + result[i].name + ":</td><td>$" + result[i].sell_price + "<a href='#' class='buy' id='" + result[i].item_id + "'>[BUY]</a></td></tr>"; 
+        var row = "<div class='object'><a href='#' title='" + result[i].name + "' class='buy' id='" + result[i].item_id + "'><img src='/components/com_battle/images/objects/" + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" + result[i].sell_price + "</span></div>"; 
   		all= all + row;
   		}
 		id=0;
-		all= all + '</tbody></table>';
+		all= all + '</div>';
 		$('building_inventory_table').innerHTML = all;
 		$$('.buy').addEvent('click', function(){
 			var itemID = this.get('id');
@@ -82,16 +62,16 @@ function request_shop_inventory(){
 	}
 
 function request_inventory(){
-	var all = '<table class="shade-table"><tbody>';
+	var all = '<div id="my_inventory"><div class="name">Available to Sell</div>';
 	var details = this.details;
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory&building_id=<?php echo $this->buildings->id; ?>", 
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory_to_sell&building_id=<?php echo $this->buildings->id; ?>", 
         onSuccess: function(result){
             for (i = 0; i < result.length; ++ i){
-                var row = "<tr class=\"d" + (i & 1) + "\"><td>" +result[i].name + "<td>"  + " COST:" + result[i].buy_price + "<a class= 'sell' id='" + result[i].item_id + "' > [SELL] </a></td></tr>"; 
+                var row = "<div class='object'><a href='#' title='" + result[i].name + "' class='sell' id='" + result[i].item_id + "'><img src='/components/com_battle/images/objects/" + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" + result[i].buy_price + "</span></div>"; 
  				all= all + row;
  				}
-				all= all + '</tbody></table>';
+				all= all + '</div>';
 				$('my_inventory').innerHTML = all;
 				$$('.sell').addEvent('click', function(){
 					var itemID = this.get('id');
@@ -101,22 +81,7 @@ function request_inventory(){
 	}).get();
 	}
 
-function request_inventory2(){
-	var all = '<table class="shade-table"><tbody>';
-	var details = this.details;
-	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory2&building_id=<?php echo $this->buildings->id; ?>", 
-    	onSuccess: function(result){
-        	for (i = 0; i < result.length; ++ i){
-            	var row = "<tr class=\"d" + (i & 1) + "\"><td>" +result[i].name + " </td></tr>";
-            	all= all + row;
-            	}
-        	all= all + '</tbody></table>';
-        	$('my_inventory2').innerHTML = all;
-        	}
-	}).get();
-	}
-	
+
 function buy1(itemID){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=buy&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
@@ -139,7 +104,6 @@ function sell1(itemID){
 }
 
 request_shop_inventory();
-request_inventory2();
 request_inventory.periodical(1000);	
 
 </script>

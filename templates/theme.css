@@ -1,0 +1,116 @@
+
+
+
+
+/* Memegrid */
+table.memegrid {}
+
+.meme {
+	margin:0 auto;	
+	position:relative;
+	z-index:111;
+	height:70px;
+	width:70px;	
+}
+.meme img {
+	position:absolute;
+	left:0;
+	-webkit-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	-o-transition: opacity 1s ease-in-out;
+	-ms-transition: opacity 1s ease-in-out;	
+	transition: opacity 1s ease-in-out;
+}
+.meme img.top:hover {
+	opacity:0;
+}
+
+
+
+
+
+
+@-webkit-keyframes glow {
+	0% {
+		-webkit-box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@-moz-keyframes glow {
+	0% {
+		-moz-box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		-moz-box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@-ms-keyframes glow {
+	0% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@-o-keyframes glow {
+	0% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@keyframes glow {
+	0% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+
+.meme:hover, .meme.hover_effect  {
+	z-index:999;
+	
+	-webkit-animation-name: glow;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+
+	-moz-animation-name: glow;
+	-moz-animation-duration: 1s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-direction: alternate;
+	-moz-animation-timing-function: ease-in-out;
+
+	-ms-animation-name: glow;
+	-ms-animation-duration: 1s;
+	-ms-animation-iteration-count: infinite;
+	-ms-animation-direction: alternate;
+	-ms-animation-timing-function: ease-in-out;
+
+	-o-animation-name: glow;
+	-o-animation-duration: 1s;
+	-o-animation-iteration-count: infinite;
+	-o-animation-direction: alternate;
+	-o-animation-timing-function: ease-in-out;
+
+	animation-name: glow;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}

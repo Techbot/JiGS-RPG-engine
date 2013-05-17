@@ -12,62 +12,100 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 	
-	
-	
-	
-	///test
-	
-
-	function eat()
-	{
-		$model = $this->getModel('building');
-		$model->eat();
-		$result = 100;
+	function computer_action()
+	{	
+		
+		$model			= $this->getModel('jigs');
+		$heartbeat		= $model->heartbeat();
+		$player			= $model->get_stats();
+		$model			= $this->getModel ('computer');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action($player);
 		echo Json_encode($result);
 	}
+	
 
 	function energy_time()
 	{
-		$building_id = JRequest::getvar(building_id);
-		$model = $this->getModel('building');
-		$result = $model->check_turbines($building_id);
+		$building_id		= JRequest::getvar('building_id');
+		$model			= $this->getModel('building');
+		$result			= $model->check_turbines($building_id);
 		echo Json_encode($result);
 	}
 
 	function work_turbine()
 	{
-		$building_id = JRequest::getvar(building_id);
-		$line = JRequest::getvar(line);
-		$type = JRequest::getvar(type);
-		$quantity = JRequest::getvar(quantity);
-		$model = $this->getModel('building');
-		$result = $model->work_turbine($building_id,$line,$type,$quantity);
+		$building_id		= JRequest::getvar('building_id');
+		$line			= JRequest::getvar('line');
+		$type			= JRequest::getvar('type');
+		$quantity		= JRequest::getvar('quantity');
+		$model			= $this->getModel('building');
+		$result			= $model->work_turbine($building_id,$line,$type,$quantity);
 		echo Json_encode($result);
 	}
 
 	function work_conveyer()
 	{
-		$building_id = JRequest::getvar('building_id');
-		$line = JRequest::getvar('line');
-		$type = JRequest::getvar('type');
-		$quantity = JRequest::getint('quantity');
-		$model = $this->getModel('building');
-		$result = $model->work_conveyer($building_id,$quantity,$type,$line);
+		$energy_unit	= 1;
+		$building_id	= JRequest::getvar('building_id');
+		$line			= JRequest::getvar('line');
+		$type			= JRequest::getvar('type');
+		$quantity		= JRequest::getint('quantity');
+		$energy_units	= $energy_unit * $quantity;
+		$model			= $this->getModel('jigs');
+		$result			= $model->use_battery($building_id, $energy_units);
+		if($result){
+			$model			= $this->getModel('building');
+			$result			= $model->work_conveyer($building_id,$quantity,$type,$line);
+		}
 		echo Json_encode($result);
 	}
+	
+	
+		function work_reprocessor()
+	{
+		$energy_unit	= 1;
+		$building_id	= JRequest::getvar('building_id');
+		$line			= JRequest::getvar('line');
+		$type			= JRequest::getvar('type');
+		$quantity		= JRequest::getint('quantity');
+		$energy_units	= $energy_unit * $quantity;
+		$model			= $this->getModel('jigs');
+		$result			= $model->use_battery($building_id, $energy_units);
+		if($result){
+			$model			= $this->getModel('building');
+			$result			= $model->work_reprocessor($building_id,$quantity,$type,$line);
+		}
+		echo Json_encode($result);
+	}
+	
+		function check_reprocessor()
+	{
+		$building_id = JRequest::getvar('building_id');
+		$line = JRequest::getvar('line');
+		$model = $this->getModel('jigs');
+		$result = $model->check_reprocessor($building_id,$line);
+		//$result= 'helllo';
+		echo Json_encode($result);
+	}
+	
+	
+	
+	
+	
 
 	function work_flat()
 	{
-		$model = $this->getModel('building');
-		$result = $model->work_flat();
+		$model			= $this->getModel('building');
+		$result			= $model->work_flat();
 		echo Json_encode($result);
 	}
 
-	function check_mines()#_jigs_objects.
+	function check_mines()//#_jigs_objects.
 	{
-		$building_id = JRequest::getvar(building_id);
-		$model = $this->getModel('jigs');
-		$result = $model->check_mines($building_id);
+		$building_id		= JRequest::getvar(building_id);
+		$model			= $this->getModel('jigs');
+		$result			= $model->check_mines($building_id);
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
@@ -97,16 +135,33 @@ class BattleController extends JController
 	
 	function display()
 	{
+		
+			//$app		= JFactory::getApplication();
+			//$sbid		= $app->getCfg('shoutbox_category');
+			
+	
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
 		$view = JRequest::getVar('view');
+		
 		if ($user->id==0)
 		{
-			JRequest::setVar('view', 'loggedout');
+			//JRequest::setVar('view', 'loggedout');
+		$url ="/index.php?option=com_comprofiler&task=login";
+		$this->setRedirect( $url );
+		
 		}
+		
+		
+		
 		if (!$view)
 		{
 			JRequest::setVar('view', 'single');
+			$view = $this->getView('single', 'html') ;
+			$view->setModel( $this->getModel( 'jigs' )) ;
+			$view->setModel( $this->getModel( 'computer'),true ) ;
+			$view->display();
+			
 		}
 		
 			$db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
@@ -118,7 +173,7 @@ class BattleController extends JController
 			if ($player_status == 3){
 				JRequest::setVar('view', 'ward');
 			}
-		
+			
 		parent::display();
 	}
 }

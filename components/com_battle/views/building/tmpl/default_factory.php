@@ -374,17 +374,18 @@ function changeDisplayImage() {
                 document.adminForm.imagelib.src='images/blank.png';
                 }
             }
-            var nS4 = new noobSlide({
-			box: $('box4'),
-			items: $$('#box4 div'),
-			size: 640,
-			handles: $$('#handles4 span'),
-			onWalk: function(currentItem,currentHandle){
-				$('info4').set('html',currentItem.getFirst().innerHTML);
-				this.handles.removeClass('active');
-				currentHandle.addClass('active');
-			}
-		});
+//          var nS4 = new noobSlide({
+//			box: $('box4'),
+//			items: $$('#box4 div'),
+//			size: 640,
+//			handles: $$('#handles4 span'),
+//			onWalk: function(currentItem,currentHandle){
+//				$('info4').set('html',currentItem.getFirst().innerHTML);
+//				this.handles.removeClass('active');
+//				currentHandle.addClass('active');
+//			}
+//		});
+
 		
 function test_rob(){
 	alert();
@@ -450,3 +451,25 @@ function check_stock_control(){
 		}
 	}
 </script>
+
+
+
+<script type="text/javascript">
+
+//SAMPLE 4 (walk to item)
+		var nS4 = new noobSlide({
+			box: $('box4'),
+			items: $$('#box4 div'),
+			size: 640,
+			handles: $$('#handles4 span'),
+			onWalk: function(currentItem,currentHandle){
+				// $('info4').set('html',currentItem.getFirst().innerHTML);
+				this.handles.removeClass('active');
+				currentHandle.addClass('active');
+			}
+		});
+
+</script>
+		
+		
+		

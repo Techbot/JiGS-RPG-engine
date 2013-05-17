@@ -242,7 +242,7 @@
    width: 385px;
    max-width:385px;
    position: relative;
-   bottom: 60px;
+   bottom: 100px;
    left: -320px;
    border:0px solid #000;
    left: 0px;}

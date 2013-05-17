@@ -21,7 +21,7 @@ JToolBarHelper::addNew();
       <th class="title" width="10%">image</th>
       <th class="title" width="10%">name</th>
      <th class="title" width="10%">type</th>
-	  <th class="title" width="5%">xp</th>
+	  <th class="title" width="5%">level</th>
       <th>comment</th>
 	<th width="5%">grid</th>    
       <th width="5%">posx</th>
@@ -37,9 +37,9 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 	$row = &$this->rows[$i];
 	$checked = JHTML::_('grid.id', $i, $row->id );
 	$published = JHTML::_('grid.published', $row, $i );
-	$link = JFilterOutput::ampReplace( 'index.php?option=' . $option . '&task=edit&controller=pages&cid[]='. $row->id );
+	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=pages&cid[]='. $row->id );
 ?>
-    <tr class="<?php echo "row$k"; ?>">
+    <tr class="<?php echo "$k"; ?>">
       <td>
 	<?php echo $checked; ?>
       </td>
@@ -56,7 +56,7 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
       <?php echo $row->type; ?>
       </td>   
 	 <td>
-      <?php echo $row->xp; ?>
+      <?php echo $row->level; ?>
       </td>        
       <td>
 	<?php echo $row->comment; ?>
@@ -76,7 +76,7 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 }
 ?>
 </table>
-<input type="hidden" name="option" value="<?php echo $option;?>" />
+<input type="hidden" name="option" value="com_battle" />
 <input type="hidden" name="controller" value="pages" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />
