@@ -34,6 +34,7 @@
 
 //$factories[$index]='Select';
 
+
 	function array_unshift_assoc(&$arr, $key, $val)
 	{
 	$arr = array_reverse($arr, true);
@@ -43,6 +44,7 @@
 	$javascript			= 'onchange="changeDisplayImage(blueprints);"';
 	$directory			= '/images/banners';
 	$lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
+
 
 ?>
 

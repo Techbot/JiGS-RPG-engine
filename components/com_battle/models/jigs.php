@@ -1591,6 +1591,29 @@ $text .='</div> --><!-- end inventory -->
 	
 	
 	function dead_player($winner){
+<<<<<<< HEAD
+		$user			=& JFactory::getUser();
+		$db				=& JFactory::getDBO();		
+		$now=time();
+		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
+				WHERE iduser ='".$user->id."'");
+		$db->query();
+		
+		$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $winner WHERE #__jigs_inventory.player_id = " . $user->id );
+		$result = $db->query();
+		
+		
+		$db->setQuery("UPDATE #__jigs_players SET money = 0 WHERE #__jigs_players.iduser = " .   $user->id ) ;
+		$result = $db->query();
+		
+		//	$text= 'Citizen ' . $character_id  . ' was killed by citizen ' . $user->username ;
+		//	$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
+		//	$db->query() ;
+		
+		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
+		$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
+		$db->query() ;
+=======
 		$user			= JFactory::getUser();
 		$db				= JFactory::getDBO();		
 		$now			= time();
@@ -1607,6 +1630,7 @@ $text .='</div> --><!-- end inventory -->
 		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
 		$this->sendWavyLines($text);
 		return;
+>>>>>>> 5edf718efa5c80ab253c75b72835e24681967599
 		}
 
 	function increment_xp($xp_type ,$payment,$user_id){

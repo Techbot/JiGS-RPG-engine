@@ -26,7 +26,7 @@ function request_messages(){
 	var all = '';
 	var details = this.details;
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_message", 
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_messages", 
     onSuccess: function(result)
     {
 		

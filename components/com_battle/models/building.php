@@ -77,9 +77,30 @@ class BattleModelBuilding extends JModel
 
 	function work_conveyer($building_id, $quantity, $type, $line)
 	{
+<<<<<<< HEAD
+		$now			= time();
+		$db				= & JFactory::getDBO();
+		$sql			= "SELECT * FROM #__jigs_objects WHERE id = " . $type;
+		$db->setQuery($sql);
+		$product		= $db->loadObject();
+		$user			=& JFactory::getUser();
+		$name			= $product->name;
+		$description	= $product->description;
+		$level			= $product->level;
+		$man_time		= $product->man_time;
+		$metal_1		= $product->metal_1;
+		$quantity_1		= $product->quantity_1;
+		$metal_2		= $product->metal_2;
+		$quantity_2		= $product->quantity_2;
+
+		
+		
+		$sql= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_1 . " AND player_id = " . $user->id ;
+=======
 		$now				= time();
 		$db					= JFactory::getDBO();
 		$sql				= "SELECT * FROM #__jigs_objects WHERE id = " . $type;
+>>>>>>> 5edf718efa5c80ab253c75b72835e24681967599
 		$db->setQuery($sql);
 		$product			= $db->loadObject();
 		$user				= JFactory::getUser();
@@ -92,6 +113,11 @@ class BattleModelBuilding extends JModel
 		$metal_2			= $product->metal_2;
 		$quantity_2			= $product->quantity_2;
 		
+<<<<<<< HEAD
+		$sql= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_2 . " AND player_id = " . $user->id ;
+		$db->setQuery($sql);
+		$player_qty_2			= $db->loadResult();		
+=======
 		$sql				= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_1 . " AND player_id = " . $user->id ;
 		$resource 			= $db->setQuery($sql);
 		$player_qty_1		= $db->loadResult();
@@ -99,6 +125,7 @@ class BattleModelBuilding extends JModel
 		$sql				= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_2 . " AND player_id = " . $user->id ;
 		$resource 			= $db->setQuery($sql);
 		$player_qty_2		= $db->loadResult();		
+>>>>>>> 5edf718efa5c80ab253c75b72835e24681967599
 		
 		$model				= JModel::getInstance('jigs','BattleModel');
 		
@@ -123,15 +150,30 @@ class BattleModelBuilding extends JModel
 	 		ON DUPLICATE KEY UPDATE type =  $type , quantity = $quantity , timestamp= $now ,finished = $finished";
 	 		$db->setQuery($sql);
 	 	
+<<<<<<< HEAD
+	 	$finished		= $now + ($quantity * $man_time * 60 );
+	 	$finished		= $now + (1 * 1 * 60);
+	 	$sql			= "INSERT INTO `#__jigs_factories` (`building`,`line`,`type`, `quantity`,`timestamp`,`finished`) VALUES ($building_id, $line, $type, $quantity, $now, $finished ) ON DUPLICATE KEY UPDATE `type` =  $type , `quantity` = $quantity , `timestamp`= $now ,`finished` = $finished";
+	 	$db->setQuery($sql);
+	 	
+	 	If (!$db->query()){
+=======
 	 		If (!$db->query()){
+>>>>>>> 5edf718efa5c80ab253c75b72835e24681967599
 
 	 			echo Json_encode($sql);
 	 			return false;
 	 		};
 	 	
+<<<<<<< HEAD
+	 	$sql			= "UPDATE `#__jigs_metals` SET quantity = $player_qty_1 WHERE `item_id` = " . $metal_1 . " AND player_id =". $user->id;
+	 	$db->setQuery($sql);
+	 	If (!$db->query()){
+=======
 	 		$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_1 WHERE item_id = " . $metal_1 . " AND player_id =". $user->id;
 	 		$db->setQuery($sql);
 	 		If (!$db->query()){
+>>>>>>> 5edf718efa5c80ab253c75b72835e24681967599
 
 	 			echo Json_encode($sql);
 	 			return false;
@@ -140,9 +182,15 @@ class BattleModelBuilding extends JModel
 	 	
 	 	
 	 	
+<<<<<<< HEAD
+	 	$sql			= "UPDATE `#__jigs_metals` SET quantity = $player_qty_2 WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
+	 	$db->setQuery($sql);
+	 	If (!$db->query()){
+=======
 	 		$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_2 WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
 	 		$db->setQuery($sql);
 	 		If (!$db->query()){
+>>>>>>> 5edf718efa5c80ab253c75b72835e24681967599
 
 	 			echo Json_encode($sql);
 	 			return false;
