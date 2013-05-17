@@ -1,8 +1,0 @@
-{
-	"db_driver":"mysql",
-	"db_host":"localhost",
-	"db_user":"root",
-	"db_pass":"cyberia23",
-	"db_name":"zipped4",
-	"db_prefix":"saas_"
-}

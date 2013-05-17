@@ -1,5 +1,0 @@
-find the four digit code to the brief case.
-the counters go from 0 to 5
-somebody else has tried the case four time another wrong try and the case will automatically distroy its content
-white light indicates a digit that is in the code but in a different place in the sequence. an orange light indicates a digit that is in the code and in the correct position.
-
