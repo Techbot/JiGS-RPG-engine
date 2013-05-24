@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.modellist');
 
-class battleModelCars extends JModellist
+class BattleModelCars extends JModellist
 {
 	var $_data = null;
 	public function __constuct($config = array())
@@ -41,7 +41,7 @@ class battleModelCars extends JModellist
 		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
-		$params = JComponentHelper::getParams('com_Battle');
+		$params = JComponentHelper::getParams('com_battle');
 		$this->setState('params',$params);
 		//List state information
 		//	parent::populateState ('a.name','asc');

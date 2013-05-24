@@ -22,7 +22,8 @@ class BattleControllerPlayers extends JController
 	function save()
 	{
 		JRequest::checkToken() or jexit( 'Invalid Token' );
-		global $option;
+		//global $option;
+		$option = 'com_battle';
 		$row =& JTable::getInstance('players', 'Table');
 		if (!$row->bind(JRequest::get('post'))) 
 		{
@@ -32,7 +33,14 @@ class BattleControllerPlayers extends JController
 		{
 			JError::raiseError(500, $row->getError() );
 		}
-		$this->setRedirect('index.php?option=' . $option.'&controller=players', 'Player Saved');
+
+		if(JRequest::getVar('task')=='apply'){
+			$this->setRedirect('index.php?option=' . $option . '&controller=players&task=edit&cid=' . $row->id, 'Player Saved');
+		}
+		else{
+			$this->setRedirect('index.php?option=' . $option . '&controller=players', 'Player Saved');
+		}
+
 	}
 	function display()
 	{

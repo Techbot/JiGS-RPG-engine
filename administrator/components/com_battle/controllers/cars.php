@@ -22,8 +22,9 @@ class BattleControllerCars extends JController
 	}
 	function save()
 	{
+		//global $option;
+		$option = 'com_battle';
 		JRequest::checkToken() or jexit( 'Invalid Token' );
-		global $option;
 		$row =& JTable::getInstance('cars', 'Table');
 		if (!$row->bind(JRequest::get('post'))) 
 		{
@@ -33,7 +34,7 @@ class BattleControllerCars extends JController
 		{
 			JError::raiseError(500, $row->getError() );
 		}
-		$this->setRedirect('index.php?option=' . $option.'&controller=cars', 'Car Saved');
+		$this->setRedirect('index.php?option=' . $option.'&controller=cars', "Car Saved");
 	}
 	function display()
 	{
