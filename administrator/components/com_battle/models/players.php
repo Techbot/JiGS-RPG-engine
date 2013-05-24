@@ -41,7 +41,7 @@ class battleModelPlayers extends JModellist
 		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
-		$params = JComponentHelper::getParams('com_Battle');
+		$params = JComponentHelper::getParams('com_battle');
 		$this->setState('params',$params);
 		//List state information
 		//	parent::populateState ('a.name','asc');
@@ -152,7 +152,7 @@ class battleModelPlayers extends JModellist
 		{
 			$query = "SELECT a.*, b.avatar,c.*  FROM #__users AS a";
 			$query .= " LEFT JOIN #__comprofiler AS b ON a.id = b.user_id";
-			$query .= " LEFT JOIN #__jigs_players AS c ON c.iduser = a.id";
+			$query .= " LEFT JOIN #__jigs_players AS c ON c.id = a.id";
 
 			$data  = $this->_getList($query);
 			$list = $this->getFactions($data);
@@ -165,7 +165,7 @@ class battleModelPlayers extends JModellist
 		{
 
 			$db				=& JFactory::getDBO();
-			$query			= "SELECT group_id FROM #__user_usergroup_map WHERE user_id =$row->iduser";
+			$query			= "SELECT group_id FROM #__user_usergroup_map WHERE user_id =$row->id";
 			$db->setQuery($query);
 			$groups	= $db->loadResultArray();
 			if($groups)

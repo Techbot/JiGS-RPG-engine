@@ -40,7 +40,7 @@ class battleModelBuildings extends JModellist
 		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
-		$params = JComponentHelper::getParams('com_Battle');
+		$params = JComponentHelper::getParams('com_battle');
 		$this->setState('params',$params);
 		//List state information
 		//	parent::populateState ('a.name','asc');

@@ -23,11 +23,11 @@ class BattleHelper
 	public static function addSubmenu($vName = 'Battles')
 	{
 		JSubMenuHelper::addEntry(
-				JText::_('COM_BATTLE_SUBMENU_MAIN'),
-				'index.php?option=com_battle&view=main',
-				$vName == 'main'
+			JText::_('COM_BATTLE_SUBMENU_MAIN'),
+			'index.php?option=com_battle&view=main',
+			$vName == 'main'
 		);
-		
+
 		JSubMenuHelper::addEntry(
 			JText::_('COM_BATTLE_SUBMENU_PLAYERS'),
 			'index.php?option=com_battle&view=players',
@@ -63,14 +63,14 @@ class BattleHelper
 			'index.php?option=com_battle&view=portals',
 			$vName == 'portals'
 		);
-		
-				JSubMenuHelper::addEntry(
+
+		JSubMenuHelper::addEntry(
 			JText::_('COM_BATTLE_SUBMENU_PAGES'),
 			'index.php?option=com_battle&view=pages',
 			$vName == 'pages'
 		);
-		
-				
+
+		/*
 		JSubMenuHelper::addEntry(
 			JText::_('COM_BATTLE_SUBMENU_CATEGORIES'),
 			'index.php?option=com_categories&extension=com_weblinks',
@@ -81,5 +81,6 @@ class BattleHelper
 				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_weblinks')),
 				'weblinks-categories');
 		}
+		 */
 	}
 }
