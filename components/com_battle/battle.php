@@ -11,10 +11,9 @@ class BattleController extends JController
 		$heartbeat = $model->heartbeat();
 		echo Json_encode($result);
 	}
-	
+
 	function computer_action()
 	{	
-		
 		$model			= $this->getModel('jigs');
 		$heartbeat		= $model->heartbeat();
 		$player			= $model->get_stats();
@@ -23,7 +22,6 @@ class BattleController extends JController
 		$result			= $model->$action($player);
 		echo Json_encode($result);
 	}
-	
 
 	function energy_time()
 	{
@@ -60,9 +58,8 @@ class BattleController extends JController
 		}
 		echo Json_encode($result);
 	}
-	
-	
-		function work_reprocessor()
+
+	function work_reprocessor()
 	{
 		$energy_unit	= 1;
 		$building_id	= JRequest::getvar('building_id');
@@ -78,8 +75,8 @@ class BattleController extends JController
 		}
 		echo Json_encode($result);
 	}
-	
-		function check_reprocessor()
+
+	function check_reprocessor()
 	{
 		$building_id = JRequest::getvar('building_id');
 		$line = JRequest::getvar('line');
@@ -88,11 +85,6 @@ class BattleController extends JController
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
-	
-	
-	
-	
-	
 
 	function work_flat()
 	{
@@ -120,7 +112,6 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
-	
 	function check_factory()
 	{
 		$building_id = JRequest::getvar('building_id');
@@ -130,30 +121,24 @@ class BattleController extends JController
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
-	
-	
-	
+
 	function display()
 	{
-		
-			//$app		= JFactory::getApplication();
-			//$sbid		= $app->getCfg('shoutbox_category');
-			
-	
+
+		//$app		= JFactory::getApplication();
+		//$sbid		= $app->getCfg('shoutbox_category');
+
 		$db =& JFactory::getDBO();
 		$user =& JFactory::getUser();
 		$view = JRequest::getVar('view');
-		
+
 		if ($user->id==0)
 		{
 			//JRequest::setVar('view', 'loggedout');
-		$url ="/index.php?option=com_comprofiler&task=login";
-		$this->setRedirect( $url );
-		
+			$url ="/index.php?option=com_comprofiler&task=login";
+			$this->setRedirect( $url );
 		}
-		
-		
-		
+
 		if (!$view)
 		{
 			JRequest::setVar('view', 'single');
@@ -161,19 +146,18 @@ class BattleController extends JController
 			$view->setModel( $this->getModel( 'jigs' )) ;
 			$view->setModel( $this->getModel( 'computer'),true ) ;
 			$view->display();
-			
 		}
-		
-			$db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
-			$db->query();
-			$player_status = $db->loadResult();
-			if ($player_status == 2){
-				JRequest::setVar('view', 'room');
-			}
-			if ($player_status == 3){
-				JRequest::setVar('view', 'ward');
-			}
-			
+
+		$db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->query();
+		$player_status = $db->loadResult();
+		if ($player_status == 2){
+			JRequest::setVar('view', 'room');
+		}
+		if ($player_status == 3){
+			JRequest::setVar('view', 'ward');
+		}
+
 		parent::display();
 	}
 }
