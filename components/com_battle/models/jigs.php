@@ -666,7 +666,9 @@ class BattleModeljigs extends JModellist{
 		return $player_money;
 	}
 
-	function get_total_energy($id){
+	///// ADD UP ALL ENERGY FROM ALL BATTERIES FOR ONE USER /////
+	function get_total_energy($id)
+	{
 		$batteries	= $this->get_all_energy($id);
 		$total		= 0;
 		foreach ($batteries as $battery)
@@ -676,7 +678,9 @@ class BattleModeljigs extends JModellist{
 		return $total;
 	}
 
-	function get_all_energy($id){
+	///// GET ALL BATTERIES FOR ONE USER /////
+	function get_all_energy($id)
+	{
 		$db		= JFactory::getDBO();
 		$sql		= "SELECT * FROM #__jigs_batteries WHERE iduser = " . $id;
 		$db->setQuery($sql);
@@ -684,15 +688,17 @@ class BattleModeljigs extends JModellist{
 		return $_all_energy;
 	}
 
+	///// TAKE ENERGY FROM USER'S BATTERIES UNTIL $energy_units_required IS REACHED /////
 	function use_battery($id, $energy_units_required)
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$message	= "Energy Required : " . $energy_units_required;
 		$this->sendFeedback($user->id,$message);
+
 		$batteries	= $this->get_all_energy($id);
 		$total		= $this->get_total_energy($id);
-		$message="Total Energy available : " . $total;
+		$message	= "Total Energy available : " . $total;
 		$this->sendFeedback($user->id,$message);
 
 		if ($total < $energy_units_required)
@@ -709,9 +715,9 @@ class BattleModeljigs extends JModellist{
 			{
 				if ($energy_units_required < $battery->units)
 				{
-					$db		= JFactory::getDBO();
-					$battery->units = $battery->units - $energy_units_required;
-					$message	= $energy_units_required . " unit(s) deducted from  battery " . $i ;
+					$db			= JFactory::getDBO();
+					$battery->units 	= $battery->units - $energy_units_required;
+					$message		= $energy_units_required . " unit(s) deducted from  battery " . $i ;
 					$energy_units_required	= 0;
 					$this->sendFeedback($user->id,$message);
 				}
@@ -738,11 +744,12 @@ class BattleModeljigs extends JModellist{
 		}
 
 		$total		= $this->get_total_energy($id);
-		$message	=  $total . " remaining energy units";
+		$message	= $total . " remaining energy units";
 		$this->sendFeedback($user->id,$message);
 		return true;
 	}
 
+	/// GIVE BATTERY FROM USER TO BUILDING ///
 	function swap_battery()
 	{
 		$db		= JFactory::getDBO();
@@ -750,7 +757,7 @@ class BattleModeljigs extends JModellist{
 		$id		= JRequest::getvar('id');
 		$sql		= "UPDATE #__jigs_batteries SET iduser = $building_id where id = $id";
 		$db->setQuery($sql);
-		$result			= $db->query();	
+		$result		= $db->query();	
 		return $sql;
 	}
 
@@ -758,6 +765,7 @@ class BattleModeljigs extends JModellist{
 	{
 	}
 
+	///// PLAYER BUYS BATTERY FROM THIN AIR. GETS 100 UNITS MONEY DEDUCTED /////
 	function buy_battery()
 	{
 		$db		= JFactory::getDBO();
@@ -774,6 +782,7 @@ class BattleModeljigs extends JModellist{
 			$sql		= "INSERT INTO #__jigs_batteries (charge_percentage,capacity,iduser) VALUES (100,10,$user->id)";
 			$db->setQuery($sql);
 			$result		= $db->query();
+
 			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
 			$result2	= $db->query();
 			$result3	= 'true';
@@ -782,18 +791,22 @@ class BattleModeljigs extends JModellist{
 		return $player_money;
 	}
 
+	///// PLAYER SELLS BATTERY TO BUILDING /////
 	function sell_battery()
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
+
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
 		$player_money	= $db->loadResult();
 		$sell_price	= 90;
 		$player_money	= $player_money + $sell_price;
-		$sql2		= "Update #__jigs_batteries SET iduser = $building_id WHERE iduser = " . $user->id . " LIMIT 1";
+
+		$sql2		= "UPDATE #__jigs_batteries SET iduser = $building_id WHERE iduser = " . $user->id . " LIMIT 1";
 		$db->setQuery($sql2);
 		$result		= $db->query();
+
 		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
 		$result2	= $db->query();
 		$result3	= 'true';
@@ -801,7 +814,9 @@ class BattleModeljigs extends JModellist{
 		return $sql2;
 	}
 
-	function get_batteries() {
+	///// SELECT ALL BATTERIES FOR A USER /////
+	function get_batteries()
+	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$sql		= "SELECT * FROM #__jigs_batteries WHERE iduser =" . $user->id;
@@ -811,8 +826,8 @@ class BattleModeljigs extends JModellist{
 		return $result;
 	}
 
-	function get_character_inventory($id) {
-
+	function get_character_inventory($id)
+	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 
@@ -837,12 +852,13 @@ class BattleModeljigs extends JModellist{
 		$db->setQuery($query);
 		$people->avatar	= $db->loadresult();
 
-		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center; background:#000; float:left; position:relative; left:0px; top:0px;">
-
+		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center;
+				background:#000; float:left; position:relative; left:0px; top:0px;">
 			<div id="profile_" class="clearfix">
 			<div class="name">' . $people->username . '</div>
 			<div class="desc">
-			<img src="/images/comprofiler/' . $people->avatar .'" class="thumbnail" alt="' . $people->username .'" title="<' .  $people->username .'" width="100" height="100" id="character_image" />
+			<img src="/images/comprofiler/' . $people->avatar .'" class="thumbnail" alt="' . $people->username .
+				'" title="<' .  $people->username .'" width="100" height="100" id="character_image" />
 			<div class="stats">
 			<table class="stats" >
 			<tr>
@@ -871,7 +887,8 @@ class BattleModeljigs extends JModellist{
 			<div class="label">Strength:</div>
 			<div class="gauge"><div id="strength"><span>'. $people->strength  .'</span></div></div>
 			<div class="label">Health:</div>
-			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .'</span></div></div>
+			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .
+				'</span></div></div>
 			</div><!-- end vitals -->
 			</div><!-- end profile -->
 
@@ -1866,7 +1883,8 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $result;
 	}
 
-	function check_factory($building_id,$line_id){
+	function check_factory($building_id,$line_id)
+	{
 		$building_id		= JRequest::getvar('building');
 		$line_id		= JRequest::getvar('line');
 		//$user =& JFactory::getUser();
