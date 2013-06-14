@@ -826,6 +826,29 @@ class BattleModeljigs extends JModellist{
 		return $result;
 	}
 
+	function check_generators($building_id)
+	{
+		$db     = JFactory::getDBO();
+		$user   = JFactory::getUser();
+
+		$query  ="SELECT * FROM `#__jigs_generators` WHERE `building` =" . $building_id;
+		$db->setQuery($query);
+		$result = $db->loadAssoc();
+
+		if(count($result) > 0)
+		{
+			$now    = time();
+			$type   = $result['type'];
+
+			$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`, `timestamp`)
+				VALUES($user->id, 100, 100, $now)";
+			$db->setQuery($query);
+
+			return $result['timestamp'] ;
+		}
+		return 0;
+	}
+
 	function get_character_inventory($id)
 	{
 		$db		= JFactory::getDBO();
@@ -853,12 +876,12 @@ class BattleModeljigs extends JModellist{
 		$people->avatar	= $db->loadresult();
 
 		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center;
-				background:#000; float:left; position:relative; left:0px; top:0px;">
+		background:#000; float:left; position:relative; left:0px; top:0px;">
 			<div id="profile_" class="clearfix">
 			<div class="name">' . $people->username . '</div>
 			<div class="desc">
 			<img src="/images/comprofiler/' . $people->avatar .'" class="thumbnail" alt="' . $people->username .
-				'" title="<' .  $people->username .'" width="100" height="100" id="character_image" />
+			'" title="<' .  $people->username .'" width="100" height="100" id="character_image" />
 			<div class="stats">
 			<table class="stats" >
 			<tr>
@@ -888,7 +911,7 @@ class BattleModeljigs extends JModellist{
 			<div class="gauge"><div id="strength"><span>'. $people->strength  .'</span></div></div>
 			<div class="label">Health:</div>
 			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .
-				'</span></div></div>
+			'</span></div></div>
 			</div><!-- end vitals -->
 			</div><!-- end profile -->
 
@@ -1171,7 +1194,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
 		$result2	= $db->query();
 		$sql		= "UPDATE #__jigs_metals SET quantity = quantity - 1 WHERE #__jigs_metals.player_id = " . $user->id .
-				" AND item_id= $item ";
+			" AND item_id= $item ";
 		$db->setQuery($sql);
 		$result		= $db->query();
 		return $result;

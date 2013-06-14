@@ -89,7 +89,8 @@ class plgBattleHeartbeat extends JPlugin
 		}
 	}
 
-	function getName(){
+	function getName()
+	{
 	}
 
 	function respawn()
@@ -425,11 +426,11 @@ class plgBattleHeartbeat extends JPlugin
 				}
 				//////////////////////////////////////////////////////////////////////////////////////////
 				$query		= "UPDATE #__jigs_farms SET status	= $row->status,
-						timestamp = $now,
-						total = $row->total,
-						finished = $row->finished
-						WHERE building	= $row->building
-						AND field = 1";
+					timestamp = $now,
+					total = $row->total,
+					finished = $row->finished
+					WHERE building	= $row->building
+					AND field = 1";
 
 				$db->setQuery($query);
 				$db->query();
@@ -512,6 +513,37 @@ class plgBattleHeartbeat extends JPlugin
 
 		$this->sendMessage($now,'factories checked');
 		return $query;
+	}
+
+	function check_generators()
+	{    
+		$db     = JFactory::getDBO();
+		$user   = JFactory::getUser();
+
+		$now    = time();
+
+		$query  ="SELECT * FROM `#__jigs_generators` ";
+		$db->setQuery($query);
+		$result = $db->loadObjectList();
+
+		foreach($result as $row) 
+		{    
+			$type   = $row['type'];
+
+			//if (($row['timestamp'] > 0) && ($now - $row['timestamp'] > 50) )
+			//{    
+				//$row['timestamp'] = 0; 
+
+				//$query="UPDATE `#__jigs_generators` SET `timestamp` = 0 WHERE `building` =" . $row['building_id'];
+				//$db->setQuery($query);
+				//$db->query();
+
+				$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`) VALUES ($user->id, 100, 100)";
+				$db->setQuery($query);
+				$db->query();
+			//}            
+		}    
+		return 0;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////

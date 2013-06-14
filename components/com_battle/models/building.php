@@ -454,29 +454,6 @@ class BattleModelBuilding extends JModel
 		return $result[timestamp] ;
 	}
 
-	function check_turbines($building_id)
-	{
-		$user	= JFactory::getUser();
-		$now	= time();
-		$db	= JFactory::getDBO();
-		$query	="SELECT * FROM #__jigs_generators WHERE building =" . $building_id;
-		$db->setQuery($query);
-		$result	= $db->loadAssoc();
-		$type	= $result['type'];
-		$name	= $user->id;	
-		if (($result['timestamp'] > 0) && ($now-$result['timestamp'] > 50) )
-		{
-			$query="UPDATE #__jigs_generators SET timestamp = 0 WHERE building =" . $building_id;
-			$db->setQuery($query);
-			$db->query();
-			$result[timestamp]=0;
-			$query ="INSERT INTO #__jigs_batteries (user_id , charge_percentage )VALUES($name ,100)";
-			$db->setQuery($query);
-			$db->query();
-		}
-		return $result['timestamp'] ;
-	}
-
 	function get_board_messages($id,$type)
 	{
 
