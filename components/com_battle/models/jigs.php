@@ -24,7 +24,7 @@ class BattleModeljigs extends JModellist{
 		//		$user_username= $user['username'];
 
 		$db		= JFactory::getDBO();
-		$query		= "INSERT INTO `jos_jigs_players2` ( `iduser`) VALUES (1)";
+		$query		= "INSERT INTO jos_jigs_players2 ( iduser) VALUES (1)";
 		$db->setQuery($query);
 		$result		= $db->query();
 		return;
@@ -826,12 +826,12 @@ class BattleModeljigs extends JModellist{
 		return $result;
 	}
 
-	function check_generators($building_id)
+	function check_generators($building)
 	{
 		$db     = JFactory::getDBO();
 		$user   = JFactory::getUser();
 
-		$query  ="SELECT * FROM `#__jigs_generators` WHERE `building` =" . $building_id;
+		$query  ="SELECT * FROM #__jigs_generators WHERE building = $building";
 		$db->setQuery($query);
 		$result = $db->loadAssoc();
 
@@ -840,8 +840,8 @@ class BattleModeljigs extends JModellist{
 			$now    = time();
 			$type   = $result['type'];
 
-			$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`, `timestamp`) " .
-				"VALUES($user->id, 100, 100, $now)";
+			$query	= "INSERT INTO #__jigs_batteries (iduser , units, max_units, timestamp) " .
+				  "VALUES($user->id, 100, 100, $now)";
 			$db->setQuery($query);
 
 			return $result['timestamp'] ;
@@ -1657,7 +1657,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		//	$result = array() ;
 		$now		= time();
 		$db		= JFactory::getDBO();
-		$query		="SELECT * FROM `#__jigs_mines` WHERE `building` =" . $building_id;
+		$query		="SELECT * FROM #__jigs_mines WHERE building =" . $building_id;
 		$db->setQuery($query);
 		$result		= $db->loadAssoc();
 		$payment	= 100;
@@ -1675,7 +1675,7 @@ $text .= "<br>" . $inv_object["name"] ;
 				$query		= "INSERT INTO #__jigs_crystals (player_id , item_id, quantity )
 					VALUES($name ,$type_crystal, 1)
 					ON DUPLICATE KEY 
-					UPDATE `quantity` = `quantity` + 1";
+					UPDATE quantity = quantity + 1";
 				$db->setQuery($query);
 				$db->query();
 			}
@@ -1695,11 +1695,11 @@ $text .= "<br>" . $inv_object["name"] ;
 			}
 			else
 			{
-				$query_1	= "SELECT money` FROM #__jigs_players WHERE iduser = '$user->id'";
+				$query_1	= "SELECT money FROM #__jigs_players WHERE iduser = '$user->id'";
 				$db->setQuery($query_1);
 				$money_saved	= $db->loadResult();
 				$money		= $money_saved + $payment;
-				$x		=	"Update #__jigs_players SET `money` = $money WHERE iduser= " . $user->id;
+				$x		=	"Update #__jigs_players SET money = $money WHERE iduser= " . $user->id;
 				$db->setQuery($x);
 				$db->query();
 			}
