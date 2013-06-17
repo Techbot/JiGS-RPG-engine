@@ -840,8 +840,8 @@ class BattleModeljigs extends JModellist{
 			$now    = time();
 			$type   = $result['type'];
 
-			$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`, `timestamp`)
-				VALUES($user->id, 100, 100, $now)";
+			$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`, `timestamp`) " .
+				"VALUES($user->id, 100, 100, $now)";
 			$db->setQuery($query);
 
 			return $result['timestamp'] ;
