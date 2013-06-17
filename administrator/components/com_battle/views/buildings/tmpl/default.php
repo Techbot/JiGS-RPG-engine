@@ -39,21 +39,20 @@ $this->type = JRequest::getVar('filter_type');
 			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
-	
+
 		GRID:<?php echo $this->grid; ?>Type:<?php echo $this->type; ?><div class="filter-select fltrt">
- 
+
 			<select name="filter_grid" class="inputbox"  onchange="this.form.submit()">
-		 		<option value=""  <?php if($this->grid ==""){echo "selected ='TRUE'";}?>>SELECT GRID</option>
+				<option value=""  <?php if($this->grid ==""){echo "selected ='TRUE'";}?>>SELECT GRID</option>
 				<option value="1" <?php if($this->grid ==1){echo "selected ='TRUE'";}?>>1</option>
 				<option value="2" <?php if($this->grid ==2){echo "selected ='TRUE'";}?>>2</option>
 				<option value="3" <?php if($this->grid ==3){echo "selected ='TRUE'";}?>>3</option>
 				<option value="4" <?php if($this->grid ==4){echo "selected ='TRUE'";}?>>4</option>
 				<option value="5" <?php if($this->grid ==5){echo "selected ='TRUE'";}?>>5</option>
 				<option value="6" <?php if($this->grid ==6){echo "selected ='TRUE'";}?>>6</option>
-			
+
 			</select>
-			
-			
+
 			<select name="filter_published" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
@@ -64,11 +63,8 @@ $this->type = JRequest::getVar('filter_type');
 				<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_weblinks'), 'value', 'text', $this->state->get('filter.category_id'));?>
 			</select>
 
+	    <select name="filter_type" class="inputbox" onchange="this.form.submit()">
 
-
-
-            <select name="filter_type" class="inputbox" onchange="this.form.submit()">
-				
 				<option value=""  <?php if($this->type ==""){echo "selected ='TRUE'";}?>>SELECT Type</option>
 				<option value="stand" <?php if($this->type =="stand"){echo "selected ='TRUE'";}?>>Stand</option>
 				<option value="mine" <?php if($this->type =="mine"){echo "selected ='TRUE'";}?>>Mine</option>
@@ -76,11 +72,8 @@ $this->type = JRequest::getVar('filter_type');
 				<option value="flat" <?php if($this->type =="flat"){echo "selected ='TRUE'";}?>>Flat</option>
 				<option value="farm" <?php if($this->type =="farm"){echo "selected ='TRUE'";}?>>Farm</option>
 				<option value="scrapyard" <?php if($this->type =="scrapyard"){echo "selected ='TRUE'";}?>>Scrapyard</option>
-			
-			
+
 			</select>
-			
-			
 
 			<select name="filter_language" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_LANGUAGE');?></option>
@@ -94,89 +87,54 @@ $this->type = JRequest::getVar('filter_type');
   <thead>
     <tr>
       <th class="title" width="5%">
-        <input type="checkbox" name="toggle" 
-             value="" onclick="checkAll(<?php echo 
-             count( $this->rows ); ?>);" />
+	<input type="checkbox" name="toggle" 
+	value="" onclick="checkAll(<?php echo 
+	count( $this->rows ); ?>);" />
       </th>   
-            <th class="title" width="5%">id</th>   
+	    <th class="title" width="5%">id</th>   
       <th class="title" width="10%">image</th>
       <th class="title" width="10%">name</th>
      <th class="title" width="10%">type</th>
-          <th class="title" width="5%">xp</th>
+	  <th class="title" width="5%">xp</th>
       <th>comment</th>
-        <th width="5%">grid</th>
-        <th width="5%">map</th>      
+	<th width="5%">grid</th>
+	<th width="5%">map</th>      
       <th width="5%">posx</th>
       <th width="5%">posy</th>
       <th width="5%">published</th>    
     </tr>
   </thead>
-  
 
-  <?php
-  
-  
-  //print_r($this->rows);
-  
-  
-  jimport('joomla.filter.output');
-  $k = 0;
-  for ($i=0, $n=count( $this->rows ); $i < $n; $i++) 
+<?php
+	//print_r($this->rows);
+	jimport('joomla.filter.output');
+$k = 0;
+for ($i=0, $n=count( $this->rows ); $i < $n; $i++) 
 
-  {
-    $row = &$this->rows[$i];
-    $checked = JHTML::_('grid.id', $i, $row->id );
-    $published = JHTML::_('grid.published', $row, $i );
+{
+	$row = &$this->rows[$i];
+	$checked = JHTML::_('grid.id', $i, $row->id );
+	$published = JHTML::_('grid.published', $row, $i );
 	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=buildings&cid[]='. $row->id );
-    ?>
-    <tr class="<?php echo "row$k"; ?>">
-      <td>
-        <?php echo $checked; ?>
-      </td>
-     
-            <td>
-      <?php echo $row->id; ?>
-      </td>   
-           <td>
-    <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/buildings/<?php echo $row->image ?>" height = '50px' width='50px' ></a>
-      </td>
-     
-     
-     
-      <td>
-        <a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
-      </td>
-      
-         <td>
-      <?php echo $row->type; ?>
-      </td>   
-         <td>
-      <?php echo $row->xp; ?>
-      </td>        
-      
-      <td>
-        <?php echo $row->comment; ?>
-      </td>
-       <td>
-        <?php echo $row->grid; ?>
-      </td> 
-         <td>
-        <?php echo $row->map; ?>
-      </td>    
-      <td>
-        <?php echo $row->posx; ?>
-      </td>
-      <td>
-        <?php echo $row->posy; ?>
-      </td>
-       <td>
-        <?php //echo $row->published; ?>
-      </td>
-    </tr>
-    <?php
-    $k = 1 - $k;
-  }
-  ?>
+?>
+<tr class="<?php echo "row$k"; ?>">
+	<td> <?php echo $checked; ?> </td>
+	<td> <?php echo $row->id; ?> </td>   
+	<td> <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/buildings/<?php echo $row->image ?>" height = '50px' width='50px' ></a> </td>
+	<td> <a href="<?php echo $link; ?>"><?php echo $row->name; ?></a> </td>
+	<td> <?php echo $row->type; ?> </td>   
+	<td> <?php echo $row->xp; ?> </td>        
+	<td> <?php echo $row->comment; ?> </td>
+	<td> <?php echo $row->grid; ?> </td> 
+	<td> <?php echo $row->map; ?> </td>    
+	<td> <?php echo $row->posx; ?> </td>
+	<td> <?php echo $row->posy; ?> </td>
+	<td> <?php //echo $row->published; ?> </td>
+</tr>
+<?php
+	$k = 1 - $k;
+}
+?>
 </table>
 <input type="hidden" name="option" value="com_battle" />
 <input type="hidden" name="controller" value="buildings" />
