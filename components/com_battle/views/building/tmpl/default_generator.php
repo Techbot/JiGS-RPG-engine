@@ -13,21 +13,21 @@ function work_turbine() {
 function work(){	
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=work_turbine&quantity=1&building_id=<?php echo $this->buildings->id ?>&line=1"  ,
-			onSuccess: function(result){
-				$('charge').setStyle('visibility','hidden');
-				$('charge_progress').setStyle('visibility','visible');  	
-			}
+		onSuccess: function(result){
+			$('charge').setStyle('visibility','hidden');
+			$('charge_progress').setStyle('visibility','visible');  	
+		}
 	}).get();
 }
 function energy_time(){
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=energy_time&building_id=<?php echo $this->buildings->id ; ?>" , 
-			onSuccess: function(result){
-				if (result==0){
-					$('charge').setStyle('visibility','visible');
-					$('charge_progress').setStyle('visibility','hidden');  	    
-				}
+		onSuccess: function(result){
+			if (result==0){
+				$('charge').setStyle('visibility','visible');
+				$('charge_progress').setStyle('visibility','hidden');  	    
 			}
+		}
 	}).get();
 }
 </script>

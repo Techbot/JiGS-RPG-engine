@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.modellist');
 
-class BattleModeljigs extends JModellist{
+class BattleModelJigs extends JModellist{
 
 	function heartbeat(){
 		//	$result_1		= $this->check_factories();
@@ -831,7 +831,11 @@ class BattleModeljigs extends JModellist{
 		$db     = JFactory::getDBO();
 		$user   = JFactory::getUser();
 
-		$query  ="SELECT * FROM #__jigs_generators WHERE building = $building";
+		$query  =
+			"SELECT * " .
+			"FROM   #__jigs_generators   " .
+			"WHERE  building = $building ";
+
 		$db->setQuery($query);
 		$result = $db->loadAssoc();
 
@@ -843,10 +847,8 @@ class BattleModeljigs extends JModellist{
 			$query	= "INSERT INTO #__jigs_batteries (iduser , units, max_units, timestamp) " .
 				  "VALUES($user->id, 100, 100, $now)";
 			$db->setQuery($query);
-
-			return $result['timestamp'] ;
 		}
-		return 0;
+		return $result;
 	}
 
 	function get_character_inventory($id)
