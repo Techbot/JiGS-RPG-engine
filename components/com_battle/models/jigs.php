@@ -828,8 +828,6 @@ class BattleModelJigs extends JModellist{
 
 	function check_generators($building)
 	{
-		$fp = fopen("/home/jk/sites/jigs.nilnullvoid.com/public/logs/log.txt","w");
-
 		$db     = JFactory::getDBO();
 		$user   = JFactory::getUser();
 		$now    = time();
@@ -842,8 +840,6 @@ class BattleModelJigs extends JModellist{
 			AND    b.id = $building
 			";
 
-		fwrite($fp,"$query\n",strlen($query));
-
 		$db->setQuery($query);
 		$result = $db->loadAssoc();
 		$owner = $result['owner'];
@@ -854,10 +850,8 @@ class BattleModelJigs extends JModellist{
 			WHERE iduser = $owner
 			";
 
-		fwrite($fp,"$query\n",strlen($query)+10);
 		$db->setQuery($query);
 		$batteries = $db->loadAssocList();
-		fwrite($fp, count($batteries), 4);
 
 		foreach($batteries as $battery)
 		{
@@ -887,12 +881,10 @@ class BattleModelJigs extends JModellist{
 					";
 			}
 
-		fwrite($fp,"$query\n",strlen($query));
 
 			$db->setQuery($query);
 			$db->query();
 		}
-		fclose($fp);
 		return $result;
 	}
 
