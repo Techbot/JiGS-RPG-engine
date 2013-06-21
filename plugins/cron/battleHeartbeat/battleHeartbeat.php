@@ -522,7 +522,7 @@ class plgBattleHeartbeat extends JPlugin
 
 		$now    = time();
 
-		$query  ="SELECT * FROM `#__jigs_generators` ";
+		$query  ="SELECT * FROM #__jigs_generators ";
 		$db->setQuery($query);
 		$result = $db->loadObjectList();
 
@@ -530,18 +530,9 @@ class plgBattleHeartbeat extends JPlugin
 		{    
 			$type   = $row['type'];
 
-			//if (($row['timestamp'] > 0) && ($now - $row['timestamp'] > 50) )
-			//{    
-				//$row['timestamp'] = 0; 
-
-				//$query="UPDATE `#__jigs_generators` SET `timestamp` = 0 WHERE `building` =" . $row['building_id'];
-				//$db->setQuery($query);
-				//$db->query();
-
-				$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`) VALUES ($user->id, 100, 100)";
-				$db->setQuery($query);
-				$db->query();
-			//}            
+			$query ="INSERT INTO #__jigs_batteries (iduser , units, max_units, timestamp) VALUES ($user->id, 100, 100, $now)";
+			$db->setQuery($query);
+			return $db->query();
 		}    
 		return 0;
 	}
