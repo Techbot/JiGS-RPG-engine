@@ -828,26 +828,71 @@ class BattleModelJigs extends JModellist{
 
 	function check_generators($building)
 	{
+		$fp = fopen("/home/jk/sites/jigs.nilnullvoid.com/public/logs/log.txt","w");
+
 		$db     = JFactory::getDBO();
 		$user   = JFactory::getUser();
+		$now    = time();
+		$factor = 10;
 
-		$query  =
-			"SELECT * " .
-			"FROM   #__jigs_generators   " .
-			"WHERE  building = $building ";
+		$query = "
+			SELECT b.*, g.type as gentype
+			FROM   #__jigs_buildings b, #__jigs_generators g
+			WHERE  b.id = g.building
+			AND    b.id = $building
+			";
+
+		fwrite($fp,"$query\n",strlen($query));
 
 		$db->setQuery($query);
 		$result = $db->loadAssoc();
+		$owner = $result['owner'];
 
-		if(count($result) > 0)
+		$query  = "
+			SELECT * 
+			FROM #__jigs_batteries
+			WHERE iduser = $owner
+			";
+
+		fwrite($fp,"$query\n",strlen($query)+10);
+		$db->setQuery($query);
+		$batteries = $db->loadAssocList();
+		fwrite($fp, count($batteries), 4);
+
+		foreach($batteries as $battery)
 		{
-			$now    = time();
-			$type   = $result['type'];
+			$id        = $battery['id'];
+			$timestamp = $battery['timestamp'];
+			$elapsed   = $now - $timestamp;
+			$units     = $battery['units'];
+			$max_units = $battery['max_units'];
+			$new_units = intVal($elapsed/$factor);
 
-			$query	= "INSERT INTO #__jigs_batteries (iduser , units, max_units, timestamp) " .
-				  "VALUES($user->id, 100, 100, $now)";
+			if($units + $new_units < $max_units)
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = units + $new_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+			else
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = max_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+
+		fwrite($fp,"$query\n",strlen($query));
+
 			$db->setQuery($query);
+			$db->query();
 		}
+		fclose($fp);
 		return $result;
 	}
 

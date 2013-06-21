@@ -12,6 +12,7 @@ class BattleViewBuilding extends JView
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
 		$model2 = JModel::getInstance('jigs','BattleModel');					
+
 		$buildings->energy				= $model2->get_total_energy($id);
 		$owner						= $buildings->owner;
 		$players					= JTable::getInstance('players', 'Table');
@@ -110,14 +111,14 @@ class BattleViewBuilding extends JView
 
 		if($this->buildings->type=='generator')
 		{
-			$model     = $this->getModel('jigs');
-			$generator = $model->check_generators();
+			//$model     = $this->getInstance('jigs','BattleModel');
+			$generator = $model2->check_generators($this->buildings->id);
 			$tpl       = "generator";
 			$type      = "organic";
 
 			if($generator)
 			{
-				switch($generator->type)
+				switch($generator->gentype)
 				{
 				case 1:
 					$type = "wind";
