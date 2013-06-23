@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.modellist');
 
-class BattleModeljigs extends JModellist{
+class BattleModelJigs extends JModellist{
 
 	function heartbeat(){
 		//	$result_1		= $this->check_factories();
@@ -24,7 +24,7 @@ class BattleModeljigs extends JModellist{
 		//		$user_username= $user['username'];
 
 		$db		= JFactory::getDBO();
-		$query		= "INSERT INTO `jos_jigs_players2` ( `iduser`) VALUES (1)";
+		$query		= "INSERT INTO jos_jigs_players2 ( iduser) VALUES (1)";
 		$db->setQuery($query);
 		$result		= $db->query();
 		return;
@@ -826,27 +826,66 @@ class BattleModeljigs extends JModellist{
 		return $result;
 	}
 
-	function check_generators($building_id)
+	function check_generators($building)
 	{
 		$db     = JFactory::getDBO();
 		$user   = JFactory::getUser();
+		$now    = time();
+		$factor = 10;
 
-		$query  ="SELECT * FROM `#__jigs_generators` WHERE `building` =" . $building_id;
+		$query = "
+			SELECT b.*, g.type as gentype
+			FROM   #__jigs_buildings b, #__jigs_generators g
+			WHERE  b.id = g.building
+			AND    b.id = $building
+			";
+
 		$db->setQuery($query);
 		$result = $db->loadAssoc();
+		$owner = $result['owner'];
 
-		if(count($result) > 0)
+		$query  = "
+			SELECT * 
+			FROM #__jigs_batteries
+			WHERE iduser = $owner
+			";
+
+		$db->setQuery($query);
+		$batteries = $db->loadAssocList();
+
+		foreach($batteries as $battery)
 		{
-			$now    = time();
-			$type   = $result['type'];
+			$id        = $battery['id'];
+			$timestamp = $battery['timestamp'];
+			$elapsed   = $now - $timestamp;
+			$units     = $battery['units'];
+			$max_units = $battery['max_units'];
+			$new_units = intVal($elapsed/$factor);
 
-			$query ="INSERT INTO `#__jigs_batteries` (`iduser` , `units`, `max_units`, `timestamp`) " .
-				"VALUES($user->id, 100, 100, $now)";
+			if($units + $new_units < $max_units)
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = units + $new_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+			else
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = max_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+
+
 			$db->setQuery($query);
-
-			return $result['timestamp'] ;
+			$db->query();
 		}
-		return 0;
+		return $result;
 	}
 
 	function get_character_inventory($id)
@@ -1657,7 +1696,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		//	$result = array() ;
 		$now		= time();
 		$db		= JFactory::getDBO();
-		$query		="SELECT * FROM `#__jigs_mines` WHERE `building` =" . $building_id;
+		$query		="SELECT * FROM #__jigs_mines WHERE building =" . $building_id;
 		$db->setQuery($query);
 		$result		= $db->loadAssoc();
 		$payment	= 100;
@@ -1675,7 +1714,7 @@ $text .= "<br>" . $inv_object["name"] ;
 				$query		= "INSERT INTO #__jigs_crystals (player_id , item_id, quantity )
 					VALUES($name ,$type_crystal, 1)
 					ON DUPLICATE KEY 
-					UPDATE `quantity` = `quantity` + 1";
+					UPDATE quantity = quantity + 1";
 				$db->setQuery($query);
 				$db->query();
 			}
@@ -1695,11 +1734,11 @@ $text .= "<br>" . $inv_object["name"] ;
 			}
 			else
 			{
-				$query_1	= "SELECT money` FROM #__jigs_players WHERE iduser = '$user->id'";
+				$query_1	= "SELECT money FROM #__jigs_players WHERE iduser = '$user->id'";
 				$db->setQuery($query_1);
 				$money_saved	= $db->loadResult();
 				$money		= $money_saved + $payment;
-				$x		=	"Update #__jigs_players SET `money` = $money WHERE iduser= " . $user->id;
+				$x		=	"Update #__jigs_players SET money = $money WHERE iduser= " . $user->id;
 				$db->setQuery($x);
 				$db->query();
 			}
