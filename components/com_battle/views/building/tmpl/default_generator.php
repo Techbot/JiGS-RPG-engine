@@ -1,6 +1,19 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' );
-echo $this->loadTemplate ('board_batteries'); ?>
-<div id="Not_Defined">Coming Soon</div>
+<?php 
+
+defined( '_JEXEC' ) or die( 'Restricted access' );
+echo $this->loadTemplate ('board_batteries'); 
+
+//print_r($this->buildings->battery_slots);
+
+
+foreach ($this->buildings->battery_slots as $battery_slot)
+{
+		echo $battery_slot['id'] . " : " . $battery_slot['units'] . "/" .  $battery_slot['max_units'] . "<br>";
+}
+
+
+?>
+
 <script type="text/javascript">
 work_turbine();
 energy_time.periodical(100000);

@@ -431,7 +431,86 @@ class BattleModelBuilding extends JModel
 		return $blueprints ;
 	}	
 
-	function check_factories($building_id)
+
+
+
+	function get_gen_type($building){
+		
+		$db     = JFactory::getDBO();
+		$user   = JFactory::getUser();
+		$now    = time();
+		$factor = 10;
+
+		$query = "SELECT *
+			FROM    #__jigs_generators 
+			WHERE   building = $building
+			";
+
+		$db->setQuery($query);
+		$result = $db->loadAssoc();
+		
+		return $result;
+		
+		}
+
+	function get_battery_slots($building)
+		{
+			$db     = JFactory::getDBO();
+			$now    = time();
+			$factor = 10;
+
+			$query  = "
+			SELECT * 
+			FROM #__jigs_batteries
+			WHERE iduser = $building
+			";
+
+			$db->setQuery($query);
+			$batteries = $db->loadAssocList();
+
+		/*	foreach($batteries as $battery)
+		{
+			$id        = $battery['id'];
+			$timestamp = $battery['timestamp'];
+			$elapsed   = $now - $timestamp;
+			$units     = $battery['units'];
+			$max_units = $battery['max_units'];
+			$new_units = intVal($elapsed/$factor);
+
+			if($units + $new_units < $max_units)
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = units + $new_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+			else
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = max_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+
+
+			$db->setQuery($query);
+			$db->query();
+		
+		
+		}*/
+		return $batteries;
+	}
+
+
+
+
+
+
+/*	function obsolete_check_factories($building_id)
 	{
 		$user	= JFactory::getUser();
 		$now	= time();
@@ -453,6 +532,8 @@ class BattleModelBuilding extends JModel
 		}
 		return $result[timestamp] ;
 	}
+	
+	*/
 
 	function get_board_messages($id,$type)
 	{

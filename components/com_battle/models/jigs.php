@@ -826,67 +826,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function check_generators($building)
-	{
-		$db     = JFactory::getDBO();
-		$user   = JFactory::getUser();
-		$now    = time();
-		$factor = 10;
 
-		$query = "
-			SELECT b.*, g.type as gentype
-			FROM   #__jigs_buildings b, #__jigs_generators g
-			WHERE  b.id = g.building
-			AND    b.id = $building
-			";
-
-		$db->setQuery($query);
-		$result = $db->loadAssoc();
-		$owner = $result['owner'];
-
-		$query  = "
-			SELECT * 
-			FROM #__jigs_batteries
-			WHERE iduser = $owner
-			";
-
-		$db->setQuery($query);
-		$batteries = $db->loadAssocList();
-
-		foreach($batteries as $battery)
-		{
-			$id        = $battery['id'];
-			$timestamp = $battery['timestamp'];
-			$elapsed   = $now - $timestamp;
-			$units     = $battery['units'];
-			$max_units = $battery['max_units'];
-			$new_units = intVal($elapsed/$factor);
-
-			if($units + $new_units < $max_units)
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = units + $new_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-			else
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = max_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-
-
-			$db->setQuery($query);
-			$db->query();
-		}
-		return $result;
-	}
 
 	function get_character_inventory($id)
 	{

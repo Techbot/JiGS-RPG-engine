@@ -7,13 +7,13 @@ class BattleViewBuilding extends JView
 {	
 	function display($tpl = null)
 	{
-		$id						= (int) JRequest::getVar('id', 0);
+		$id							= (int) JRequest::getVar('id', 0);
 		$model						= $this->getModel();
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
 		$model2 = JModel::getInstance('jigs','BattleModel');					
 
-		$buildings->energy				= $model2->get_total_energy($id);
+		$buildings->energy			= $model2->get_total_energy($id);
 		$owner						= $buildings->owner;
 		$players					= JTable::getInstance('players', 'Table');
 		$players->load($owner);	
@@ -27,11 +27,11 @@ class BattleViewBuilding extends JView
 		$this->assignRef('buildings', $buildings);		
 		$now						= time();
 		$timestamp					= $this->buildings->timestamp ;
-		$this->buildings->elapsed			= $now - $timestamp;
-		$this->buildings->now				= $now;
+		$this->buildings->elapsed	= $now - $timestamp;
+		$this->buildings->now		= $now;
 		$this->assignRef('backlink', $backlink);
 		//$model					= $this->getModel();
-		$board_info_1					= $model->get_board_messages($id,$this->buildings->type);
+		$board_info_1				= $model->get_board_messages($id,$this->buildings->type);
 
 		$this->assignRef('board_info_1',$board_info_1);
 
@@ -50,8 +50,8 @@ class BattleViewBuilding extends JView
 
 		if($this->buildings->type=='apartment')
 		{
-			$resident	= array();
-			$pics		= array();
+			$resident				= array();
+			$pics		=	 array();
 			$message	= array();
 
 			$flats_array	= $model->get_flats($id);
@@ -112,11 +112,10 @@ class BattleViewBuilding extends JView
 		if($this->buildings->type=='generator')
 		{
 			//$model     = $this->getInstance('jigs','BattleModel');
-			$generator = $model2->check_generators($this->buildings->id);
-			$tpl       = "generator";
-			$type      = "organic";
+			$this->buildings->gentype 		= $model->get_gen_type($this->buildings->id);
+			$this->buildings->battery_slots	= $model->get_battery_slots($this->buildings->id);
 
-			if($generator)
+		/*	if($generator)
 			{
 				switch($generator->gentype)
 				{
@@ -137,8 +136,9 @@ class BattleViewBuilding extends JView
 					break;
 				}
 			}
-			$generator->type = $type;
-			$this->assignRef('generator',$generator);
+		*/	
+		
+		
 		}
 		parent::display($tpl);
 	}

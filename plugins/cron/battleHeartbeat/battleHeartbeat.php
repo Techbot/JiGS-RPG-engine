@@ -41,6 +41,7 @@ class plgBattleHeartbeat extends JPlugin
 	{
 		$now		= time();
 		$this->sendMessage($now,'heartbeat begun');
+		
 		$result_1	= $this->check_factories();
 		$result_2	= $this->check_reprocessors();
 		$result_3	= $this->check_mines();
@@ -48,11 +49,93 @@ class plgBattleHeartbeat extends JPlugin
 		$result_5	= $this->respawn();
 		$result_6	= $this->check_apartments();
 		//$result	= $this->get_players();
-
+		$result_7	= $this->events();
+ 		$result_8	= $this->check_generators();
 		$now		= time();
 		$this->sendMessage($now,'heartbeat complete');
 		return ;
 	}
+	
+	function events(){
+	
+		$choice = rand (0,2);
+	
+		switch ($choice){
+	
+			case 0:
+			$text				= $this->local();
+			break;
+	
+			case 1:
+			$text				= $this->npc_v_npc();
+			break;
+	
+			case 2:
+			$text				= $this->personel();
+			break;
+		}
+		$this->sendWavyLines($text);
+	}
+	
+	function local(){
+	
+		$local = rand (0,5);
+				
+				switch ($local){
+					
+					case 0:
+					$text				= "Something Happens";
+					break;
+					
+					case 1:
+					$text				= "Time Passes";
+					break;
+					
+					case 2:
+					$text				= "A Virus Spreads";
+					break;
+					
+					case 3:
+					$text				= "A terrorist attack!";
+					break;
+			
+					case 4:
+					$text				= "A Zombie attack!";
+					break;
+			
+			
+			
+			
+				}
+		return $text;				
+	}
+	
+	function personel(){
+	
+	$personel = rand (0,2);
+				
+				switch ($personel){
+					
+					case 0:
+					$text				= $this->converted_to();
+					break;
+					
+					case 1:
+					$text				= $this->is_afraid_of();
+					break;
+					
+					case 2:
+					$text				= $this->is_feeling();
+					break;
+					}
+	return $text		;		
+	
+	}
+	
+	
+	
+	
+	
 
 	function increment_xp($xp_type ,$payment,$user_id)
 	{
@@ -180,7 +263,7 @@ class plgBattleHeartbeat extends JPlugin
 					$db->query();
 
 					// send wavy lines & feedback
-					$txt = "Your lease was renewed were evicted";
+					$txt = "Your lease was renewed.";
 
 					$this->sendFeedback($user->id ,$txt);
 					$text	= "Citizen  $playa_name  renewed a lease";
@@ -522,19 +605,19 @@ class plgBattleHeartbeat extends JPlugin
 
 		$now    = time();
 
-		$query  ="SELECT * FROM #__jigs_generators ";
+		$query  = "SELECT * FROM #__jigs_generators ";
 		$db->setQuery($query);
 		$result = $db->loadObjectList();
 
 		foreach($result as $row) 
 		{    
-			$type   = $row['type'];
-
-			$query ="INSERT INTO #__jigs_batteries (iduser , units, max_units, timestamp) VALUES ($user->id, 100, 100, $now)";
+			$query ="Update #__jigs_batteries SET  units = units + 1, timestamp =  $now WHERE iduser = $row->building";
 			$db->setQuery($query);
-			return $db->query();
-		}    
-		return 0;
+			$db->query();
+		}   
+		
+		$this->sendMessage($now,'generators checked'); 
+		return ;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,5 +656,95 @@ class plgBattleHeartbeat extends JPlugin
 		$db->setQuery($query);
 		$db->query();
 		return ;
+	}
+
+
+	
+	function get_spiritual($id){
+		$db			= JFactory::getDBO();
+		$query		= "SELECT name FROM #__jigs_spiritual where id = $id";
+		$db->setQuery($query);
+		$name		= $db->loadResult();
+		return $name;
+	
+	}
+	function get_phobia($id){
+		$db			= JFactory::getDBO();
+		$query		= "SELECT name FROM #__jigs_phobias where id = $id";
+		$db->setQuery($query);
+		$name		= $db->loadResult();
+		return $name;
+	}
+	function get_mood($id){
+		$db			= JFactory::getDBO();
+		$query		= "SELECT name FROM #__jigs_mood where id = $id";
+		$db->setQuery($query);
+		$name		= $db->loadResult();
+		return $name;
+	}
+	
+
+	function is_afraid_of(){
+		
+		$player		= $this->get_player();	
+		$id			= rand(1,30);
+		$name		=$this->get_phobia($id);
+		$text 		= $player->username . " is afraid of " . $name ;
+		return $text;
+	}
+	
+	function is_feeling(){
+		
+		$player		= $this->get_player();	
+		$id			= rand(1,30);
+		$name		= $this->get_mood($id);
+		$text 		= $player->username . " is " . $name ;
+		return $text;
+	}
+	
+	function converted_to(){
+		
+		$player		= $this->get_player();	
+		$id			= rand(1,30);
+		$name 		= $this->get_spiritual($id);
+		$text 		= $player->username . " converted to " . $name ;
+		return $text;
+	}
+
+	function get_player(){
+		$db					= JFactory::getDBO();
+		$id					= rand(3000,3100);
+		$player->dice		= rand(0, 5);
+		$query				= "SELECT health,money,name FROM #__jigs_characters WHERE id > $id LIMIT 0,1";
+		$db->setQuery($query);
+		$result				= $db->loadRow();
+		$player->health		= $result[0];
+		$player->money		= $result[1];
+		$player->username	= $result[2];
+		
+		return $player;
+	}
+
+	function npc_v_npc()
+	{
+		$player		= $this->get_player();		
+		$player2	= $this->get_player();
+
+		if ($player->dice > $player2->dice)
+		{
+			$player->health		= $player->health -1;
+			$player2->health	= $player2->health-30;
+			$text				= $player->username . " attacked " . $player2->username .
+				" and inflicted 30 points of damage. ";
+		}
+		else
+		{
+			$player->health		= $player->health - 10;
+			$player2->health	= $player2->health + 10;
+			$text				= $player->username ." attacked " . $player2->username . " and missed. " . $player2->username .
+					" retaliated and inflicted 10 points of damage. ";
+		}
+
+		return ($text);
 	}
 }
