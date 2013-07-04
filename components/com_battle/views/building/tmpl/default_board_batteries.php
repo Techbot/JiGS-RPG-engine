@@ -1,9 +1,10 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
 <div id="crystals_board" class="clearfix">
-	<div>Battery Cells</div>
-	<div id="buy_battery"  class="buy_battery"><a href="#">Buy_</a></div>
-	<div id="sell_battery" class="sell_battery"><a href="#">Sell_</a></div>
+	<div class="name">Battery Cells
+	<div id="buy_battery"  class="buy_battery"><a href="#">Buy</a></div>
+	<div id="sell_battery" class="sell_battery"><a href="#">Sell</a></div>
+	</div>
 </div>
 <script type='text/javascript'>
 $$('.buy_battery' ).addEvent('click', function(){ buy_battery();  });

@@ -1,3 +1,8 @@
+
+/* Introduce this later
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }*/
+
+
 a#withdraw,a#deposit,#submit_c{
 	background:#333;
 	padding:3px 10px;
@@ -410,23 +415,23 @@ font-size:85%;
 div#action {
 	margin:0 10px 10px;
 }
-div.buy, div.attack, div.recruit, div.kick, div.punch, div.shoot, div.bribe, div.rob, div.talk  {
+div.buy, div.attack, div.recruit, div.kick, div.punch, div.shoot, div.bribe, div.rob, div.talk, div.buy_battery, div.sell_battery  {
 	float: left;
 	background:#333;
 	padding:3px 10px;
 	border:1px solid #fff;
 	margin: 10px 3px 0 0;
 }
-div.buy:hover, div.attack:hover, div.recruit:hover, div.kick:hover, div.punch:hover, div.shoot:hover, div.bribe:hover, div.rob:hover, div.talk:hover {
+div.buy:hover, div.attack:hover, div.recruit:hover, div.kick:hover, div.punch:hover, div.shoot:hover, div.bribe:hover, div.rob:hover, div.talk:hover, div.buy_battery:hover, div.sell_battery:hover {
 	background:red;
 	border:1px solid #fff;
 	cursor:pointer;
 }
-a.buy, a.sell, a.attack, a.recruit, a.kick, a.punch, a.shoot, a.bribe, a.rob, a.talk {
+a.buy, a.sell, a.attack, a.recruit, a.kick, a.punch, a.shoot, a.bribe, a.rob, a.talk, div.buy_battery a, div.sell_battery a   {
 	color:#FFF;
 	text-decoration:none;
 }
-a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover {	
+a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover, div.buy_battery a:hover, div.sell_battery a:hover {	
 	color:#CCC;
 	text-decoration:none;
 }
@@ -580,13 +585,31 @@ form.conveyor .metal2 {
 
 
 
+.generator,
+.batteries_inv {
+width:50%;
+padding:0 10px;
+float:left;
+-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
+}
+.generator ul li,
+.batteries_inv ul li {
+  border-bottom: 1px dotted #333333;
+  color: #CCCCCC;
+  font-size: 10px;
+  margin: 0;
+  padding: 0 3px;
+}
 
+.generator li:nth-child(2n),
+.batteries_inv li:nth-child(2n) {
+  background-color: #080808;
+}
 
-
-
-
-
-
+.generator li:nth-child(2n+1),
+.batteries_inv li:nth-child(2n+1) {
+  background-color: #131313;
+}
 
 
 
@@ -598,7 +621,9 @@ form.conveyor .metal2 {
 	float:left;
 	margin:0 5px 0 10px;
 	padding:0;
-	color:#FFF;border:1px solid #333;background:green;}
+	color:#FFF;border:1px solid #333;background:green;
+}
+	
 #box4 div#time_remaining{
 	text-align:center; 
 	display:inline-block;
@@ -606,7 +631,9 @@ form.conveyor .metal2 {
 	float:right;
 	margin:0 10px 0 5px;
 	padding:0;
-	color:#FFF;border:1px solid #333;background:red;}
+	color:#FFF;border:1px solid #333;background:red;
+}
+
 #box4 ul {
 	list-style-type: disc;
 }
@@ -618,6 +645,7 @@ div#sell_crops  {
 	margin: 10px 3px 0 0;
 	color:#FFF;
 }
+
 div#sell_crops:hover {
 	background:red;
 	border:1px solid #fff;
