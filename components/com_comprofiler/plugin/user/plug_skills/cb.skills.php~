@@ -12,6 +12,7 @@
 // ensure this file is being included by a parent file
 if ( ! ( defined( '_VALID_CB' ) || defined( '_JEXEC' ) || defined( '_VALID_MOS' ) ) ) { die( 'Direct Access to this location is not allowed.' ); }
 
+
 class getBlogTab3 extends cbTabHandler {
 	
 	function getBlogTab3() {
@@ -22,6 +23,7 @@ class getBlogTab3 extends cbTabHandler {
 		$return		= "";
 
 		//global $_CB_database, $_CB_framework, $mainframe;
+
 		$total_crop	= 0;
 		$db		= JFactory::getDBO();
 	//	$user		= JFactory::getUser();
@@ -29,24 +31,38 @@ class getBlogTab3 extends cbTabHandler {
 		$db->setQuery($query);
 		$result		= $db->loadObjectList(); 
 		$this->skills	= $this->get_skills($user);
-		$return .=  '<div style= "width:250px ; float:left;" >';
-		$return .=  '<table class="shade-table">';
-		$return .=  '<tr><td>' . $this->skills->name_1 . '</td><td>Level : 1</td></tr>';
-		$return .=  '<tr><td>' . $this->skills->name_2 . '</td><td>Level : 1</td></tr>';
-		$return .= ' <tr><td>' . $this->skills->name_3 . '</td><td>Level : 1</td></tr>';
-		$return .=  '<tr><td>' . $this->skills->name_4 . '</td><td>Level : 1</td></tr>';	
-		$return .=  '<tr><td>' . $this->skills->name_5 . '</td><td>Level : 1</td></tr>';
-		$return .=  '<tr><td>' . $this->skills->name_6 . '</td><td>Level : 1</td></tr>';
-		$return .=  '<tr><td>' . $this->skills->name_7 . '</td><td>Level : 1</td></tr>';
-		$return .=  '<tr><td>' . $this->skills->name_8 . '</td><td>Level : 1</td></tr>';	
+
+	//print_r($user->_frontendNonComprofilerVars);
+		//print_r($user->id);
+		//exit();
+
+$return .=  '<div style= "width:250px ; float:left;" >';
+$return .=  '<table class="shade-table">';
+
+//print_r ($this->skills);
+$return .=  '<tr><td>' . $this->skills->name_1 . '</td><td>Level : 1</td></tr>';
+$return .=  '<tr><td>' . $this->skills->name_2 . '</td><td>Level : 1</td></tr>';
+$return .= ' <tr><td>' . $this->skills->name_3 . '</td><td>Level : 1</td></tr>';
+$return .=  '<tr><td>' . $this->skills->name_4 . '</td><td>Level : 1</td></tr>';	
+$return .=  '<tr><td>' . $this->skills->name_5 . '</td><td>Level : 1</td></tr>';
+$return .=  '<tr><td>' . $this->skills->name_6 . '</td><td>Level : 1</td></tr>';
+$return .=  '<tr><td>' . $this->skills->name_7 . '</td><td>Level : 1</td></tr>';
+$return .=  '<tr><td>' . $this->skills->name_8 . '</td><td>Level : 1</td></tr>';	
 		
-		$return .= '	</table></div>	';
+$return .= '	</table></div>	';
+
+
 		
-		 foreach ($result as $row){
-				//	$return .=  $row->id . " " . $row->type . "<br>";
-				}
-				return $return; 
-		 } 
+ foreach ($result as $row){
+		//	$return .=  $row->id . " " . $row->type . "<br>";
+		}
+		
+		
+
+
+		return $return; 
+    } 
+
 
 	function get_skills($user){
 		$db =& JFactory::getDBO($user);
@@ -69,5 +85,22 @@ class getBlogTab3 extends cbTabHandler {
 		}
 		return $this->_data;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }	
 ?>
