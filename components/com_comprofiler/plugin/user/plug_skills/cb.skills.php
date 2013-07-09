@@ -25,9 +25,9 @@ class getBlogTab3 extends cbTabHandler {
 		$total_crop	= 0;
 		$db		= JFactory::getDBO();
 	//	$user		= JFactory::getUser();
-		$query		= "SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.owner = $user->id ORDER BY type;";
-		$db->setQuery($query);
-		$result		= $db->loadObjectList(); 
+		//$query		= "SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.owner = $user->id ORDER BY type;";
+		//$db->setQuery($query);
+		//$result		= $db->loadObjectList(); 
 		$this->skills	= $this->get_skills($user);
 		$return .=  '<div style= "width:250px ; float:left;" >';
 		$return .=  '<table class="shade-table">';
