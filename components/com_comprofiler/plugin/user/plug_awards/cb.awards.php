@@ -20,46 +20,23 @@ class getBlogTab2 extends cbTabHandler {
 	}
 
 	function getDisplayTab($tab,$user,$ui) {
-		$return		= "";
 
-		//global $_CB_database, $_CB_framework, $mainframe;
-
-		$total_crop	= 0;
 		$db		= JFactory::getDBO();
-	//	$user		= JFactory::getUser();
-		$query		= "SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.owner = $user->id ORDER BY type;";
+		//$user		= JFactory::getUser();
+		$query		= "SELECT a.id, n.name FROM #__jigs_awards a, #__jigs_award_names n " .
+				  "WHERE  a.name_id = n.id AND a.iduser = $user->id ORDER BY a.id";
 		$db->setQuery($query);
 		$result		= $db->loadObjectList(); 
 	
-	//print_r($user->_frontendNonComprofilerVars);
-		//print_r($user->id);
-		//exit();
-
-$return .=  '<div style= "width:250px ; float:left;" >';
-$return .=  '<table class="shade-table">';
-
-//print_r ($this->skills);
-//$return .=  '<tr><td>' . $this->skills->name_1 . '</td><td>Level : 1</td></tr>';
-//$return .=  '<tr><td>' . $this->skills->name_2 . '</td><td>Level : 1</td></tr>';
-///$return .= ' <tr><td>' . $this->skills->name_3 . '</td><td>Level : 1</td></tr>';
-//$return .=  '<tr><td>' . $this->skills->name_4 . '</td><td>Level : 1</td></tr>';	
-//$return .=  '<tr><td>' . $this->skills->name_5 . '</td><td>Level : 1</td></tr>';
-//$return .=  '<tr><td>' . $this->skills->name_6 . '</td><td>Level : 1</td></tr>';
-//$return .=  '<tr><td>' . $this->skills->name_7 . '</td><td>Level : 1</td></tr>';
-//$return .=  '<tr><td>' . $this->skills->name_8 . '</td><td>Level : 1</td></tr>';	
+		$return  =  '<div style="width:250px;float:left;">';
+		$return .=  '<table class="shade-table">';
 		
-$return .= '	</table></div>	';
-
-
-		
- foreach ($result as $row){
-		//	$return .=  $row->id . " " . $row->type . "<br>";
+		foreach ($result as $row){
+			$return .=  "<tr><td>$row->id</td><td>$row->name</td></tr>";
 		}
 		
-		
-
-
-		return $return; 
-    } 
-}	
+		$return .= '</table></div>';
+		return $return;
+	}
+}
 ?>
