@@ -7,7 +7,6 @@ class BattleModelAwards extends JModel
 	function get_awards()
 	{
 		$db	= JFactory::getDBO();
-		$user	= JFactory::getUser();
 
 		$query	= "
 			SELECT   a.id , a.iduser, n.name as award_name,
@@ -17,6 +16,26 @@ class BattleModelAwards extends JModel
 			         #__users u
 			WHERE    a.name_id = n.id
 			AND      a.iduser  = u.id
+			ORDER BY a.id
+			";
+
+		$db->setQuery($query);
+		$result	= $db->loadAssoc();
+
+		return $result;
+	}
+
+	function get_user_awards()
+	{
+		$db	= JFactory::getDBO();
+		$user	= JFactory::getUser();
+
+		$query	= "
+			SELECT   a.id , a.iduser, n.name as award_name
+			FROM     #__jigs_awards a ,
+			         #__jigs_award_names n
+			WHERE    a.name_id = n.id
+			AND      a.iduser  = $user->id
 			ORDER BY a.id
 			";
 
