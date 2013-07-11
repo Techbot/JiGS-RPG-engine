@@ -12,6 +12,7 @@
 // ensure this file is being included by a parent file
 if ( ! ( defined( '_VALID_CB' ) || defined( '_JEXEC' ) || defined( '_VALID_MOS' ) ) ) { die( 'Direct Access to this location is not allowed.' ); }
 
+jimport('joomla.application.component.model');
 
 class getBlogTab2 extends cbTabHandler {
 	
@@ -21,18 +22,16 @@ class getBlogTab2 extends cbTabHandler {
 
 	function getDisplayTab($tab,$user,$ui) {
 
-		$db		= JFactory::getDBO();
-		//$user		= JFactory::getUser();
-		$query		= "SELECT a.id, n.name FROM #__jigs_awards a, #__jigs_award_names n " .
-				  "WHERE  a.name_id = n.id AND a.iduser = $user->id ORDER BY a.id";
-		$db->setQuery($query);
-		$result		= $db->loadObjectList(); 
+		JLoader::import('awards', JPATH_ROOT . '/components/com_battle/models');
+
+		$model  = JModel::getInstance('awards', 'BattleModel');
+		$result = $model->getUserAwards();
 	
 		$return  =  '<div style="width:250px;float:left;">';
 		$return .=  '<table class="shade-table">';
 		
 		foreach ($result as $row){
-			$return .=  "<tr><td>$row->id</td><td>$row->name</td></tr>";
+			$return .=  "<tr><td>$row->id</td><td>$row->award_name</td></tr>";
 		}
 		
 		$return .= '</table></div>';
