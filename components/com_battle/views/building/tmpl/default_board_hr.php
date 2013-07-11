@@ -67,18 +67,6 @@ paper.piechart(50, 50, 50, [33, 33, 33 ]);
 
 
         </script>
- 
-    
-
-
-
-
-
-
-
-</script>
-
-
 
 
 

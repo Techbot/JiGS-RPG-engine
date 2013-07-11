@@ -111,20 +111,21 @@ if ($this->buildings->owner == 0){?>
         <div class="buy" >
           <a href="#" class= "buy" id = "<?php echo $this->buildings->id ; ?>">Buy this <?php echo $this->buildings->type ; ?></a>
         </div> <!--buy-->
-<?php }?>
+<?php 
+
+}?>
 <?php
 /////////////////////////////////////// Owned but not Player Owned //////////////////////////
 if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){?>
         <div class= "attack" >
           <a href="#" class= "attack" id = "<?php echo $this->buildings->id ; ?>"> Attack this  <?php echo $this->buildings->type ; ?></a>
         </div><!-- attack-->
-<?php } 
-
+<?php 
+} 
 ///////////////////////////////////// Owned by Player  ////////////////////////// 
 if ($this->buildings->owner == $this->user->id){
 	// echo $this->loadTemplate ('board_info1'); 
 	//  echo $this->loadTemplate ('board_crystals'); 
-
 }
 ?>
       </div><!-- end action -->
@@ -132,8 +133,17 @@ if ($this->buildings->owner == $this->user->id){
   </div><!--end building_right-->
 </div><!-- end building -->
 <?php
-if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 ){
+if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 )
+{
 	echo $this->loadTemplate ($this->buildings->type);
+}
+elseif ($this->buildings->owner == 0 )
+{
+	//echo $this->loadTemplate ($this->buildings->type . "_not_owned");
+}
+elseif($this->buildings->owner != $this->user->id )
+{
+	//echo $this->loadTemplate ($this->buildings->type . "_owned");
 }
 ?>
 <script type='text/javascript'>

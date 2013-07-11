@@ -77,16 +77,16 @@ class BattleViewBuilding extends JView
 		if($this->buildings->type=='mine')
 		{
 			//	echo $this->buildings->id;
-			//$model		= $this->getModel('jigs');
-				$model	= $this->getModel();
-				$mines	= $model->get_drills($this->buildings->id);
-				$this->assignRef('mines', $mines);
+			$model		= $this->getModel('jigs');
+			//	$model	= &$this->getModel();
+			//	$mines	= $model->get_mines($this->buildings->id);
+			//		$this->assignRef('mines', $mines);
 		}	
 
 		if($this->buildings->type=='factory')
 		{
 			//	echo $this->buildings->id;
-			$model		= $this->getModel();
+			$model		= &$this->getModel();
 			$blueprints	= $model->get_blueprints($this->buildings->id);
 			$blueprints	= $model->get_metals_required($blueprints);
 			$this->assignRef('blueprints', $blueprints);
