@@ -22,7 +22,6 @@ class getBlogTab2 extends cbTabHandler {
 	function getDisplayTab($tab,$user,$ui) {
 
 		$db		= JFactory::getDBO();
-		//$user		= JFactory::getUser();
 		$query		= "SELECT a.id, n.name FROM #__jigs_awards a, #__jigs_award_names n " .
 				  "WHERE  a.name_id = n.id AND a.iduser = $user->id ORDER BY a.id";
 		$db->setQuery($query);
