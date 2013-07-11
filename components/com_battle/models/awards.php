@@ -4,7 +4,7 @@ jimport('joomla.application.component.model');
 
 class BattleModelAwards extends JModel
 {
-	function get_awards()
+	function getAwards()
 	{
 		$db	= JFactory::getDBO();
 
@@ -20,12 +20,12 @@ class BattleModelAwards extends JModel
 			";
 
 		$db->setQuery($query);
-		$result	= $db->loadAssoc();
+		$result	= $db->loadObjectList();
 
 		return $result;
 	}
 
-	function get_user_awards()
+	function getUserAwards()
 	{
 		$db	= JFactory::getDBO();
 		$user	= JFactory::getUser();
@@ -40,12 +40,12 @@ class BattleModelAwards extends JModel
 			";
 
 		$db->setQuery($query);
-		$result	= $db->loadAssoc();
+		$result	= $db->loadObjectList();
 
 		return $result;
 	}
 
-	function get_award_names()
+	function getAwardNames()
 	{
 		$db	= JFactory::getDBO();
 		$user	= JFactory::getUser();
@@ -57,9 +57,8 @@ class BattleModelAwards extends JModel
 			";
 
 		$db->setQuery($query);
-		$result	= $db->loadAssoc();
+		$result	= $db->loadObjectList();
 
 		return $result;
 	}
-
 }
