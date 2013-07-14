@@ -137,6 +137,7 @@ background-image: url(../images/arrow.png);
 background-repeat: no-repeat;
 background-position: 0 6px;
 padding: 0 0 0 15px;
+margin:0;
 }
 ul.category-module h5{
 margin:0;

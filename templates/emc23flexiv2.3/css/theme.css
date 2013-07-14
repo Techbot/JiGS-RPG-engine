@@ -438,9 +438,9 @@ background: url(../images/trans.png) transparent center top repeat;
 #right .moduletable,
 #right .moduletable_menu,
 #right .moduletable_text {
--moz-border-radius: 15px 15px 15px 15px;
-border-radius: 15px 15px 15px 15px;
-border: 1px solid #333;
+-moz-border-radius: 0;
+border-radius: 0;
+border: 0 solid #333;
 background: url(../images/trans_dark.png) transparent center top repeat;
 }
 
@@ -1170,3 +1170,24 @@ em.responseTime {
 }
 .jwts_slider {margin: 0;}
 
+.jwts_title {
+  background: none #333;
+}
+.jwts_title_left {
+  background: none #333;
+}
+a.jwts_title_text, a.jwts_title_text:link {
+  color: #fff;
+}
+
+/*forum*/
+
+#Kunena div.kblock div.kbody {
+  border-color: rgba(0, 0, 0, 1);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#Kunena tr.krow1 td,
+#Kunena tr.krow2 td {
+  border-bottom: 1px solid #333 !important;
+}

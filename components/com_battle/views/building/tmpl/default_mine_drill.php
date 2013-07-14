@@ -1,14 +1,34 @@
-<?php if ($this->mines['timestamp'] !=0 ){ ?>
-<div id="mine_board" style="visibility:hidden;">
+xxx
+<?php
+
+// echo $this->mines['timestamp'];
+
+
+
+ if ($this->mines['timestamp'] !=0 )
+
+ { ?>
+	<div id="mine_board" style="visibility:hidden;">
 <?php } 
+
+
+
+
+
 else { ?>
-<div id="mine_board" style="visibility:visible;">
-<div>
-<a href="#" class="mine" type= "1"><img title="Crystal" src="<?php echo $this->baseurl ?>/components/com_battle/images/crystal.png"></a>
-<a href="#"class="mine" type= "2"><img title="Metal" src="<?php echo $this->baseurl ?>/components/com_battle/images/metal.png"></a>
-<a href="#"class="mine" type= "3"><img title="Fuel" src="<?php echo $this->baseurl ?>/components/com_battle/images/fuel.png"></a>
-</div>
-<?php } ?>	
+	<div id="mine_board" style="visibility:visible;">
+	
+		<?php } ?>	
+	
+		
+		
+		<a href="#" class="mine" type= "1"><img title="Crystal" width ="100px" src="<?php echo $this->baseurl ?>/components/com_battle/images/crystal.jpg"></a>
+		<a href="#" class="mine" type= "2"><img title="Metal"  width ="100px" src="<?php echo $this->baseurl ?>/components/com_battle/images/metal.jpg"></a>
+		<a href="#" class="mine" type= "3"><img title="Fuel"  width ="100px" src="<?php echo $this->baseurl ?>/components/com_battle/images/fuel.jpg"></a>
+	
+		
+	
+
 </div>
 
 

@@ -132,19 +132,25 @@ if ($this->buildings->owner == $this->user->id){
     </div><!-- end status. Is this being used? I mean, really?? -->
   </div><!--end building_right-->
 </div><!-- end building -->
+
 <?php
+
+
 if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 )
 {
 	echo $this->loadTemplate ($this->buildings->type);
 }
-elseif ($this->buildings->owner == 0 )
+elseif ($this->buildings->owner == 0 ||$this->buildings->owner == "")
 {
-	//echo $this->loadTemplate ($this->buildings->type . "_not_owned");
+	
+	echo $this->loadTemplate ($this->buildings->type . "_not_owned");
 }
 elseif($this->buildings->owner != $this->user->id )
 {
-	//echo $this->loadTemplate ($this->buildings->type . "_owned");
+	
+	echo $this->loadTemplate ($this->buildings->type . "_owned");
 }
+
 ?>
 <script type='text/javascript'>
 buy_building();

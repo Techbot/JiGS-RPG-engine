@@ -1251,6 +1251,78 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $result;
 	}
 
+
+
+
+	function get_battery_slots()
+		{
+			$db     	= JFactory::getDBO();
+			$building	= JRequest::getvar('building_id');
+			$now    	= time();
+			$factor		= 10;
+
+			$query		= "
+			SELECT * 
+			FROM #__jigs_batteries
+			WHERE iduser = $building
+			";
+
+			$db->setQuery($query);
+			$batteries = $db->loadAssocList();
+
+		/*	foreach($batteries as $battery)
+		{
+			$id        = $battery['id'];
+			$timestamp = $battery['timestamp'];
+			$elapsed   = $now - $timestamp;
+			$units     = $battery['units'];
+			$max_units = $battery['max_units'];
+			$new_units = intVal($elapsed/$factor);
+
+			if($units + $new_units < $max_units)
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = units + $new_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+			else
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = max_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+
+
+			$db->setQuery($query);
+			$db->query();
+		
+		
+		}*/
+		return $batteries;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	function get_shop_metals()
 	{
 		$db		= JFactory::getDBO();
@@ -1630,66 +1702,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $result;
 	}
 
-	function get_mines($building_id)
-	{
-		$user		= JFactory::getUser();
-		//	$result = array() ;
-		$now		= time();
-		$db		= JFactory::getDBO();
-		$query		="SELECT * FROM #__jigs_mines WHERE building =" . $building_id;
-		$db->setQuery($query);
-		$result		= $db->loadAssoc();
-		$payment	= 100;
-		$type		= $result['type'];
-		$name		= $user->id;
-		if (($result[timestamp] > 0) && ($now-$result[timestamp] > 50))
-		{
-			$query	= "UPDATE #__jigs_mines SET timestamp = 0 WHERE building = " . $building_id;
-			$db->setQuery($query);
-			$db->query();
-			$result[timestamp] = 0;
-			if ($type==1)
-			{
-				$type_crystal	= rand( 1 , 30 ) ;
-				$query		= "INSERT INTO #__jigs_crystals (player_id , item_id, quantity )
-					VALUES($name ,$type_crystal, 1)
-					ON DUPLICATE KEY 
-					UPDATE quantity = quantity + 1";
-				$db->setQuery($query);
-				$db->query();
-			}
-			if ($type==2)
-			{
-				$type_metal	= rand( 1 , 60 ) ; //30 limit see next line
-				if ($type_metal >30)
-				{
-					$type_metal 	= 1; // this is to increase the chances that carbon will be excavated.
-				};
-				$query		= "INSERT INTO #__jigs_metals (player_id , item_id, quantity )
-					VALUES( $name ,$type_metal, 1) 
-					ON DUPLICATE KEY 
-					UPDATE quantity = quantity + 1";
-				$db->setQuery($query);
-				$db->query();
-			}
-			else
-			{
-				$query_1	= "SELECT money FROM #__jigs_players WHERE iduser = '$user->id'";
-				$db->setQuery($query_1);
-				$money_saved	= $db->loadResult();
-				$money		= $money_saved + $payment;
-				$x		=	"Update #__jigs_players SET money = $money WHERE iduser= " . $user->id;
-				$db->setQuery($x);
-				$db->query();
-			}
-		}
-		//exit();
-		$result[now]		= date('l jS \of F Y h:i:s A',$now);
-		$result[since]		= date('l jS \of F Y h:i:s A',$result[timestamp]);
-		$result[elapsed]	= (int)(($now-$result[timestamp]));
-		$result[remaining]	=(int)(50-((($now-$result[timestamp]))));
-		return $result;
-	}
+	
 
 	function mine()
 	{
@@ -1900,5 +1913,28 @@ $text .= "<br>" . $inv_object["name"] ;
 		$result['elapsed']	= (int)(($now-$result['timestamp']));
 		$result['remaining']= (int)($result['finished'] - $now );
 		return $result;
+	}
+	function get_battery()
+	{
+		$db			= JFactory::getDBO();
+		$building_id		= JRequest::getvar('building_id');
+		$battery_id		= JRequest::getvar('item');
+		$user			= JFactory::getUser();
+		$query			= "Update #__jigs_batteries SET iduser = $user->id  WHERE #__jigs_batteries.id = $battery_id";
+		$db->setQuery($query);
+		$db->query();
+		return $battery_id;
+	}
+
+
+	function put_battery()
+	{
+		$db			= JFactory::getDBO();
+		$building_id		= JRequest::getvar('building_id');
+		$battery_id		= JRequest::getvar('item');
+		$query			= "Update #__jigs_batteries SET iduser = $building_id WHERE #__jigs_batteries.id = $battery_id";
+		$db->setQuery($query);
+		$db->query();
+		return $battery_id;
 	}
 }
