@@ -22,10 +22,23 @@ class BattleHelper
 	 */
 	public static function addSubmenu($vName = 'Battles')
 	{
+
 		JSubMenuHelper::addEntry(
 			JText::_('COM_BATTLE_SUBMENU_MAIN'),
 			'index.php?option=com_battle&view=main',
 			$vName == 'main'
+		);
+
+		JSubMenuHelper::addEntry(
+			JText::_('COM_BATTLE_SUBMENU_AWARDS'),
+			'index.php?option=com_battle&view=awards',
+			$vName == 'awards'
+		);
+
+		JSubMenuHelper::addEntry(
+			JText::_('COM_BATTLE_SUBMENU_AWARD_NAMES'),
+			'index.php?option=com_battle&view=awardnames',
+			$vName == 'awardnames'
 		);
 
 		JSubMenuHelper::addEntry(

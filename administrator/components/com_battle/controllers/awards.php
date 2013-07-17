@@ -36,14 +36,30 @@ class BattleControllerAwards extends JController
 		
 		if(JRequest::getVar('task')=='apply')
 		{
-			$this->setRedirect('index.php?option=com_battle&controller=awards&task=edit&cid='.$row->id,
-				'Award Saved');
+			$this->setRedirect('index.php?option=com_battle&controller=awards&task=edit&cid='.$row->id, 'Award Saved');
 		}
 		else
 		{
 			$this->setRedirect('index.php?option=com_battle&view=awards', 'Award Saved');
 		}
 	}
+	function remove()
+	{
+		$cid = JRequest::getVar( 'cid', array(0), '', 'array' );
+		$model = $this->getModel('Awards');
+
+		if(!$model->deleteAwards($cid))
+		{
+			$msg = JText::_("One or more awards could not be deleted");
+		}
+		else
+		{
+			$msg = JText::_("Awards deleted");
+		}
+
+		$this->setRedirect('index.php?option=com_battle&view=awards', $msg);
+	}
+
 	function display()
 	{
 		$view = JRequest::getVar('view');

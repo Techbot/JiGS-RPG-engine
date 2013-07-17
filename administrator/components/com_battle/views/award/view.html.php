@@ -2,39 +2,53 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.application.component.view');
 
-class BattleViewBuilding extends JView
+class BattleViewAward extends JView
 {
-	function display($tpl = null)
+	function getUsersList($selected)
 	{
-		$row	= JTable::getInstance('Buildings', 'Table');
-		$cid	= JRequest::getVar( 'cid', array(0), '', 'array' );
-		$id	= $cid[0];
-		$row->load($id);
+		$model = JModel::getInstance('awards', 'BattleModel');
+		$users = $model->getAwardUsers();
+		$options = array();
 
-		$this->assignRef('row', $row);
-		$editor	= JFactory::getEditor();
-		$this->assignRef('editor', $editor);
-
-		if ($row->type=='apartment')
+		foreach($users as $user)
 		{
-			$model		= JModel::getInstance('buildings','BattleModel');
-			$flats		= $model->get_flats($id);
-			$this->assignRef('flats', $flats);
+			$options[] = JHTML::_('select.option', $user->iduser, $user->username);
 		}
 
-		if($row->type=='mine'){
+		$html = JHTML::_('select.genericlist',$options,'iduser','class="inputbox"','value','text',$selected);
 
-			$model		= JModel::getInstance('buildings','BattleModel');
-			$this->mines	= $model->get_mines($id);
+		return $html;
+	}
 
-		}		
+	function getAwardNamesList($selected)
+	{
+		$model      = JModel::getInstance('awards', 'BattleModel');
+		$awardNames = $model->getAwardNames();
+		$options    = array();
 
-		if($row->type=='farm'){
+		foreach($awardNames as $awardName)
+		{
+			$options[] = JHTML::_('select.option', $awardName->id, $awardName->name);
+		}
 
-			$model		= JModel::getInstance('buildings','BattleModel');
-			$this->fields	= $model->get_fields($id);
+		$html = JHTML::_('select.genericlist',$options,'name_id','class="inputbox"','value','text',$selected);
 
-		}		
+		return $html;
+	}
+
+	function display($tpl = null)
+	{
+		$model  = JModel::getInstance('awards', 'BattleModel');
+		$cid	= JRequest::getVar( 'cid', array(0), '', 'array' );
+		$id	= $cid[0];
+
+		$award       = $model->getAward($id);
+		$users       = $this->getUsersList($award->iduser);
+		$awardNames  = $this->getAwardNamesList($award->name_id);
+
+		$this->assignRef('id'         , $id);
+		$this->assignRef('users'      , $users);
+		$this->assignRef('awardNames' , $awardNames);
 
 		parent::display($tpl);
 	}

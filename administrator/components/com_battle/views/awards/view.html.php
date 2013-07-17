@@ -1,31 +1,16 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 jimport( 'joomla.application.component.view');
 
-class BattleViewBuildings extends JView
+class BattleViewAwards extends JView
 {
-	protected $items;
-	protected $pagination;
-	protected $state;
-	
-	public function display($tpl = null)
+	function display($tpl = null)
 	{
-		$this->state = $this->get('State');
-	//	$this->items = $this->get('Items');
-	//	$this->pagination = $this->get('Pagination');
-		
-		//Check for errors
-		if(count($errors= $this->get('errors)'))){
-			JError::raiseError(500,implode('\n',$errors));
-			return false;
-		}
-				
-		
-		$rows =& $this->get('data');
-		$this->assignRef('rows', $rows);
-	//	$this->addToolbar();
+		$model = JModel::getInstance('awards', 'BattleModel');
+		$rows  = $model->getAwards();
 
-    		parent::display($tpl);
+		$this->assignRef('rows', $rows);
+
+		parent::display($tpl);
 	}
 }
