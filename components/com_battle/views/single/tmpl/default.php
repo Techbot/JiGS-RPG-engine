@@ -245,10 +245,6 @@ class="character" style="
 <?php
 } // end of foreach
 
-
-
-
-
 /************************
  * 
  * 
@@ -262,9 +258,6 @@ class="character" style="
  * 
  * 
  *****************************/
-
-
- 
  
 foreach ($this->buildings as $building){ 
 $building_id		= $building->id;
@@ -274,18 +267,9 @@ $buildingposx		= $building->posx;
 $buildingposy		= $building->posy;
 $buildingOwner		= $building->ownername;
 
-
-
-
 if ($building->owner == 0){
  	$buildingOwner = 'Nobody';
  } 
-
-
-
-
-
-
 ?>
 <div id="<?php echo $building_id ?>" 
 
@@ -423,19 +407,19 @@ style="
 		foreach ($arr[$y] as $row){
 			?>
 <div class="squares" style="
-background:url(<?php echo $this->baseurl; ?>/components/com_battle/images/map/<?php echo $row ?>.jpg);
-display:inline; 
-position:absolute; 
-width:40px; 
-height:40px; 
-padding:5px;
-margin:0px;
-text-align:center;
-top:<?php echo ($y*50)+0?>px; 
-left: <?php echo $x*50?>px;
-"> 
-<?php // echo $row ?></div>
-<?php	
+	background:url(<?php echo $this->baseurl; ?>/components/com_battle/images/map/<?php echo $row ?>.jpg);
+	display:inline; 
+	position:absolute; 
+	width:40px; 
+	height:40px; 
+	padding:5px;
+	margin:0px;
+	text-align:center;
+	top:<?php echo ($y*50)+0?>px; 
+	left: <?php echo $x*50?>px;
+	"> 
+	<?php // echo $row ?></div>
+	<?php
 $x= $x+1;
 	}
 }
@@ -443,63 +427,52 @@ $x= $x+1;
 </div> 
 <!--  end of grid -->
 
-
-
 </div><!-- div world -->
-
-
-
-
-
-
 
 <script>
 
-
 $$('.character').addEvent('click', function(){
-var itemID = this.get('id');
-var a = new Request.JSON({
-//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
-onSuccess: function(result){
-mything = new Element ('div',{'id':"NPC",
-html:result,
-'style':'border 1px solid #F00; '});
-mything.replaces($('screen_grid'));
-}
-}).get();
+	var itemID = this.get('id');
+	var a = new Request.JSON({
+	//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
+	
+		url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
+		onSuccess: function(result){
+			mything = new Element ('div',{'id':"NPC",
+			html:result,
+			'style':'border 1px solid #F00; '});
+			mything.replaces($('screen_grid'));
+		}
+	}).get();
 });
 
 $$('.players').addEvent('click', function(){
-var itemID = this.get('id');
-var a = new Request.JSON({
-//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
-onSuccess: function(result){
-mything = new Element ('div',{'id':"PLAYERS",
-html:result,
-'style':'border 1px solid #F00; '});
-mything.replaces($('screen_grid'));
-}
-}).get();
+	var itemID = this.get('id');
+	var a = new Request.JSON({
+		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
+		url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
+		onSuccess: function(result){
+			mything = new Element ('div',{'id':"PLAYERS",
+			html:result,
+			'style':'border 1px solid #F00; '});
+			mything.replaces($('screen_grid'));
+		}
+	}).get();
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</script>   					
-            					
-            					
+/*
+$$('.buildings_class').addEvent('click', function(){
+	var itemID = this.get('id');
+	var a = new Request.JSON({
+		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
+		url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
+		onSuccess: function(result){
+			mything = new Element ('div',{'id':"PLAYERS",
+			html:result,
+			'style':'border 1px solid #F00; '});
+			mything.replaces($('screen_grid'));
+		}
+	}).get();
+});
+*/
+</script>

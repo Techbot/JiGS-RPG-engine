@@ -1,5 +1,5 @@
  <?php defined( '_JEXEC' ) or die( 'Restricted access' );
- $now= time();
+ $now = time();
 ?>
 <?php // echo $this->buildings->type ; ?>
 <div id = "mine_noob" class="sample">
