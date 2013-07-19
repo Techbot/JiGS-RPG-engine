@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset name="component"
+		label="COM_BATTLE_FIELDSET_CONFIG_CLIENT_OPTIONS_LABEL"
+		description="COM_BATTLE_FIELDSET_CONFIG_CLIENT_OPTIONS_DESC">
+		
+		<field
+			name="shoutbox_category"
+			type="text"
+			label="COM_BATTLE_FIELD_SHOUTBOX_CATEGORY_LABEL"
+			description="COM_BATTLE_FIELD_shoutbox_category_DESC" />
+
+		<field
+			name="navigation_style"
+			type="text"
+			label="COM_BATTLE_FIELD_NAVIGATION_STYLE_LABEL"
+			description="COM_BATTLE_FIELD_navigation_style_DESC" />
+						
+	</fieldset>
+
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			filter="rules"
+			validate="rules"
+			component="com_battle"
+			section="component" />
+	</fieldset>
+</config>

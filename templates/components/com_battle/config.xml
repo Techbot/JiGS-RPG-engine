@@ -1,0 +1,17 @@
+<root>
+  <params>
+    <url addpath="/administrator/components/com_battle/elements">
+      <param name="cid" type="JELEMENT_TYPE_NAME" scope="com_battle" default="0" label="LABEL" description="DESCRIPTION" />
+    </url>
+    <param type="type" name="name" description="description" />
+ 
+    <!-- Example: the following will produce a text box 3 characters wide with the label 'Font size:'.  
+    When the user hovers the mouse over the label, a tooltip will pop up which states 'Please enter the 
+    required font size'.  On saving, a value entered into the text box will be saved as the 'font_size' 
+    parameter value. -->
+ 
+    <param type="text" name="font_size" size="3" label="Font size:" description="Please enter the required font size" />
+ 
+    ...
+  </params>
+</root>
