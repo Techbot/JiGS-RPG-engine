@@ -1112,12 +1112,21 @@ $text .= "<br>" . $inv_object["name"] ;
 		$building_id	= JRequest::getvar(building_id);
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
 		$player_money	= $db->loadResult();
-		$db->setQuery("SELECT price FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
-		$sell_price	= $db->loadResult();
+
+		//$db->setQuery("SELECT price FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
+		//$sell_price	= $db->loadResult();
+		
+		$db->setQuery("SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
+		$result 	= $db->loadObject();
+
+		$sell_price = $result->price;
+		$type  = $result->type;
 
 		// If the Player has enough money
 		if ($player_money >= $sell_price)
 		{
+			$this->buy_building_award($type);
+
 			// player loses cost of building
 			$player_money = $player_money - $sell_price;
 
@@ -1139,6 +1148,82 @@ $text .= "<br>" . $inv_object["name"] ;
 		$this->sendFeedback($user->id,$message);
 
 		return $result;
+	}
+
+	function buy_building_award($type)
+	{
+		//$fh = fopen("/home/jk/sites/jigs.nilnullvoid.com/public/tmp/buybuilding","a");
+		$db     = JFactory::getDBO();
+		$user   = JFactory::getUser();
+		
+		$msg1 = "You bought your first building";
+
+		$query1 = "SELECT * FROM #__jigs_buildings WHERE owner = ".$user->id;
+		$query2 = $query1;
+
+		switch($type)
+		{
+		case 'factory':
+			$msg2 = "You bought your first factory";
+			$query2 .= " AND type = 'factory'";
+			break;
+		
+		case 'farm':
+			$msg2 = "You bought your first farm";
+			$query2 .= " AND type = 'farm'";
+			break;
+		
+		case 'mine':
+			$msg2 = "You bought your first mine";
+			$query2 .= " AND type = 'mine'";
+			break;
+		
+		default:
+			break;
+		}
+
+		
+		$db->setQuery($query1);
+		$res1 = $db->query();
+		$result1  = $db->loadObjectList();
+		$numRows1 = count($result1);  //$db->getNumRows();
+
+		//fwrite($fh, "query1=$query1\nnumRows1=$numRows1\n".print_r($result1,true));
+
+		if($numRows1 == 0)
+		{
+			$model =& JModel::getInstance('award','BattleModel');
+
+			$awardNameId = $model->get_award_id($msg1);
+			if(null == $awardNameId)
+			{
+				$awardNameId = $model->insert_award_name($msg1);
+			}
+			$id = $model->insert_award($awardNameId);
+			//fwrite($fh, "insert_award 1 $awardNameId id=$id\n");
+		}
+
+		$db->setQuery($query2);
+		$res2 = $db->query();
+		$result2  = $db->loadObjectList();
+		$numRows2 = count($result2); //$db->getNumRows();
+
+		//fwrite($fh, "query2=$query2\nnumRows2=$numRows2\n".print_r($result2,true));
+
+		if($numRows2 == 0)
+		{
+			$awardNameId = $model->get_award_id($msg2);
+			if(null == $awardNameId)
+			{
+				$awardNameId = $model->insert_award_name($msg2);
+			}
+			$id = $model->insert_award($awardNameId);
+			//fwrite($fh, "insert_award 2 $awardNameId id=$id\n");
+		}
+
+		//fclose($fh);
+
+		return 1;
 	}
 
 	function sell()
