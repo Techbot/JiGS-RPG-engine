@@ -1,0 +1,30 @@
+/* Community Builder 1.2.2 template file */
+/* Name: Default : rtl */
+
+/* Profile */
+.cbMenu {margin-right:0 !important; margin-left:0.5em !important;}
+.cbMenu, .cbSSmenu {float:right;}
+.cbSSmenu a, .cbSSmenu a:link, .cbSSmenu a:visited, .cbSSmenu a:hover {padding-right:5px; padding-left:3px;}
+.cbSSmenu img {margin-left:8px; margin-right:0;}
+.cbSSmenu a {text-align:right;}
+
+.fieldCell, table.content_table td.fieldCell, .fieldCell td, .tab_Description,
+.titleCell, .captionCell, table.content_table td.titleCell, table.content_table td.captionCell {text-align:right!important;}
+.fieldCell, table.content_table td.fieldCell, .fieldCell td, .tab_Description {padding:3px 6px 4px 3px;}
+
+.cb_offline,.cb_online {padding:0 20px 0 0; background-position:100% -1px; display:block}
+
+.dynamic-tab-pane-control .tab-row .tab {float:right; margin:1px 4px 1px -1px;}
+.dynamic-tab-pane-control .tab-row .tab.selected {margin:1px 0 -1px -3px;}
+
+/* Registration & Forms */
+form.cb_form .cb_form_instructions {text-align:right;}
+.cb_result_container {text-align:right;line-height:11px;margin-top:6px;}
+.cb_result_ok,.cb_result_error {float:right;background-position:98% 3px;padding:5px 30px 5px 5px;}
+
+/* CB Search */
+div.cbUserListChanger {float:left;}
+form.cb_form .cb_form_line {text-align:right; padding:3px 6px 4px 3px;}
+form.cb_form .cb_form_line .cb_field, form.cb_form .cb_form_line label {float:right;}
+
+span.cbSnglCtrlLbl {float:right; width:50%;}
