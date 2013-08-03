@@ -538,6 +538,7 @@ class BattleModelBuilding extends JModel
 	
 	*/
 
+
 	function get_board_messages($id,$type)
 	{
 
@@ -564,4 +565,7 @@ class BattleModelBuilding extends JModel
 		//	exit();
 		return $result;
 	}
+	
+	
+
 }// end of class

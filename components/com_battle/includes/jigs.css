@@ -940,3 +940,39 @@ to {background: transparent;color:#ccc;}
 
 /* NPC - new compact layout */
 
+
+
+
+
+
+
+
+div.owner_status_msg {
+  border: 1px solid #333333;
+  margin: 0;
+  padding: 0;
+  min-height:165px
+}
+
+
+div.owner_status_msg.owned {
+background:url(../images/nova_police.jpg) no-repeat 0 0 #000;
+}
+div.factory.owner_status_msg.not_owned {
+background:url(../images/buy_factory.jpg) no-repeat 0 0 #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

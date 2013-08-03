@@ -1,4 +1,3 @@
-xxx
 <?php
 
 // echo $this->mines['timestamp'];

@@ -15,8 +15,8 @@ class battleViewSingle extends JView
 	{
 
 
-		$model = & JModel::getInstance('single','BattleModel');
-		$backlink = JRoute::_('index.php?option=com_battle');
+		$model			= JModel::getInstance('single','BattleModel');
+		$backlink		= JRoute::_('index.php?option=com_battle');
 		$this->assignRef('backlink', $backlink);
 		$model->savecoord();
 		$this->assignRef('player_pos',$model->getcoord());
@@ -24,7 +24,7 @@ class battleViewSingle extends JView
 		$this->assignRef('characters',$model->getchars());
 
 		
-		$map =& JTable::getInstance('maps', 'Table');
+		$map			= JTable::getInstance('maps', 'Table');
 		$map->load($this->player_pos[2]);
 		$this->assignRef('row', $map);
 		$this->assignRef('players',$model->getplayers());

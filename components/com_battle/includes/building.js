@@ -1,25 +1,43 @@
 
-alert("popup");
+
+
 
 (function(){
-//  buy_building();
+
+buy_building();
   
-//  var metals = new Array();
-alert("popup");
-//request_metals();
-//prepare();
-//prepare2();
-//work_conveyer();
-//check_factory.periodical(5000);
- //changeDisplayImage()
+var metals = new Array();
+
+var refTab = document.getElementById("stats");
+
+var row = refTab.rows[0];
+var col = row.cells[1]; 
+alert(col.firstChild.nodeValue);
+
+
+
+
+//var  col =   refTab.rows[1].cells[1]; 
+//alert(col.firstChild.nodeValue);
+building_id = col.firstChild.nodeValue;
+
+
+
+
+request_metals();
+prepare();
+prepare2();
+work_conveyer();
+check_factory.periodical(5000);
+changeDisplayImage();
 //noobslide
-      
+     
 })();
 
 function buy_building() {
 	$$('.buy').addEvent('click', function(){
 		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=<?php echo $this->buildings->id ; ?>", 
+			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=" + building_id , 
 				onSuccess: function(result){
 					$('<?php echo $this->buildings->id ; ?>').setStyle('visibility','hidden');
 				}
@@ -57,7 +75,7 @@ function increment(){
 	var cost_el_2	= document.getElementById('q2'); 
 	var cost_2		= cost_el_2.value;
 
-	var time		= <?php echo $blueprints[0]->man_time ;?>;
+	//var time		= <?php echo $blueprints[0]->man_time ;?>;
 	
 	document.adminForm.q1t.value = (cost * (parseInt(qty) + 1));
 	document.adminForm.q2t.value = (cost_2 * (parseInt(qty) + 1));
@@ -82,7 +100,7 @@ function decrement(){
 	var cost_el_2 = document.getElementById('q2');
 	var cost_2 = cost_el_2.value;
 
-	var time		= <?php echo $blueprints[0]->man_time ;?>;
+	//var time		= <?php echo $blueprints[0]->man_time ;?>;
 
 	document.adminForm.q1t.value = cost * (qty-1);
 	document.adminForm.q2t.value = cost_2 * (qty-1);
@@ -101,7 +119,7 @@ function work_conveyer() {
 
 function work(){
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=work_conveyer&quantity=" + document.adminForm.time.value + "&building_id=<?php echo $this->buildings->id ?>&line=1&type=" + document.adminForm.id1.value  ,
+		url: "index.php?option=com_battle&format=raw&task=work_conveyer&quantity=" + document.adminForm.time.value + "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
 			$('adminForm').setStyle('visibility','hidden');
 			$('conveyor_progress').setStyle('visibility','visible');
@@ -117,6 +135,8 @@ function changeDisplayImage() {
 	//var mystock2 = 0; 
 			var q_1 = new Array();
 			var q_2 = new Array();			
+			
+		/*	
 			<?php 
 			$i=1;
 			foreach ($this->blueprints as $row){
@@ -133,6 +153,8 @@ function changeDisplayImage() {
 			$i++ ; 
 			 }
 			?>
+			
+			*/
 			if (document.adminForm.blueprints.value !='') {
 
 				index = id1[document.adminForm.blueprints.value];
@@ -184,7 +206,7 @@ function test_rob(){
 
 function check_factory(){
 			var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=check_factory&line=1&building=<?php echo $this->buildings->id ; ?>" , 
+			url: "index.php?option=com_battle&format=raw&task=check_factory&line=1&building=" + building_id , 
 		    onSuccess: function(result){
 			    document.getElementById('since').innerHTML = result['since'];
 			    document.getElementById('now').innerHTML = result['now'];

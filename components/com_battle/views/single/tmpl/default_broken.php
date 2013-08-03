@@ -22,75 +22,6 @@ grid_index = parseInt(<?php echo $grid_index;?>);
 
 </script>
 <script type="text/javascript" src="<?php echo $this->baseurl; ?>/components/com_battle/includes/jigs.js"></script>
-<script type="text/javascript">
-window.addEvent('domready',function()
-{
-
-	$$('.buildings_class').addEvent('click', function(){
-		var itemID = this.get('id');
-	//	var head = document.getElementsByTagName('head')[0];
-	//	var script = document.createElement('script');
-		var a = new Request.JSON({
-		
-			url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
-			onSuccess: function(result)
-			{
-				
-				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
-		//		script.type = "text/javascript";
-		//		script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/building.js';  
-				//document.body.appendChild(script);
-				mything.replaces($('world'));
-			
-			
-			
-			}
-		}).get();
-	});
-
-	$$('.character').addEvent('click', function(){
-		var itemID = this.get('id');
-		var a = new Request.JSON({
-		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-	
-			url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
-			onSuccess: function(result){
-				mything = new Element ('div',{'id':"NPC",
-				html:result,
-				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
-				var head = document.getElementsByTagName('head')[0] ;
-				var script = document.createElement('script');
-				script.type = "text/javascript";
-				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';  
-				head.appendChild(script);
-			}
-		}).get();
-	});
-
-	$$('.players').addEvent('click', function(){
-		var itemID = this.get('id');
-		var a = new Request.JSON({
-			//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-			url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
-			onSuccess: function(result){
-				mything = new Element ('div',{'id':"PLAYERS",
-				html:result,
-				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
-				var head = document.getElementsByTagName('head')[0];
-				script = document.createElement('script');
-				script.type = "text/javascript";
-				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/players.js';  
-				head.appendChild(script);
-			}
-		}).get();
-	});
-
-
-
-}
-</script>
 
 <style type="text/css">
 #demo { 
@@ -498,35 +429,76 @@ $x= $x+1;
 
 </div><!-- div world -->
 
-<script type="text/javascript">
+<script>
 
-	//	var head = document.getElementsByTagName('head')[0];
-	//	var script = document.createElement('script');
-	//	script.type = "text/javascript";
-	///	script.src = '/components/com_battle/includes/building.js';  
-	//	document.body.appendChild(script);
 
-	$$('.buildings_class').addEvent('click', function(){
-		var itemID = this.get('id');
+/*
+$$('.buildings_class').addEvent('click', function(){
+	var itemID = this.get('id');
+//	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	var a = new Request.JSON({
 		
-		var a = new Request.JSON({
-		
-			url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
-			onSuccess: function(result)
-			{
+		url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
+		onSuccess: function(result)
+		{
 				
-				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
-				
-				
-				
-				
-				 document.getElementById('loadarea').src= '/components/com_battle/includes/building.js';
-				mything.replaces($('world'));
+			mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
+	//		script.type = "text/javascript";
+	//		script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/building.js';  
+			//document.body.appendChild(script);
+			mything.replaces($('world'));
 			
 			
 			
-			}
-		}).get();
-	});
-</script>	
+		}
+	}).get();
+});
+
+$$('.character').addEvent('click', function(){
+	var itemID = this.get('id');
+	var a = new Request.JSON({
+	//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
 	
+		url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
+		onSuccess: function(result){
+			mything = new Element ('div',{'id':"NPC",
+			html:result,
+			'style':'border 1px solid #F00; '});
+			mything.replaces($('screen_grid'));
+			var head = document.getElementsByTagName('head')[0] ;
+			var script = document.createElement('script');
+			script.type = "text/javascript";
+			script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';  
+			head.appendChild(script);
+		}
+	}).get();
+});
+
+$$('.players').addEvent('click', function(){
+	var itemID = this.get('id');
+	var a = new Request.JSON({
+		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
+		url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
+		onSuccess: function(result){
+			mything = new Element ('div',{'id':"PLAYERS",
+			html:result,
+			'style':'border 1px solid #F00; '});
+			mything.replaces($('screen_grid'));
+			var head = document.getElementsByTagName('head')[0];
+			script = document.createElement('script');
+			script.type = "text/javascript";
+			script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/players.js';  
+			head.appendChild(script);
+		}
+	}).get();
+});
+
+
+*/
+
+  
+
+
+
+</script>

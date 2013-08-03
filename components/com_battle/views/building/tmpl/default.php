@@ -152,33 +152,4 @@ elseif($this->buildings->owner != $this->user->id )
 }
 
 ?>
-<script type='text/javascript'>
-buy_building();
-function buy_building() {
-	$$('.buy').addEvent('click', function(){
-		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=<?php echo $this->buildings->id ; ?>", 
-				onSuccess: function(result){
-					$('<?php echo $this->buildings->id ; ?>').setStyle('visibility','hidden');
-				}
-		}).get();
-	});
-}
-/*
-function buy1(itemID){
-	var a = new Request.JSON({
-		url: 'index.php?option=com_battle&format=raw&task=action&action=buy&building_id=<?php echo $this->buildings->id ; ?> &item=' + itemID,
-		onSuccess: function(result){
-		}
-	}).get();
-}
-function sell1(itemID){
-	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=sell&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
-     
-		onSuccess: function(result){
-		}
-	}).get();
-}
-*/
-</script>
+

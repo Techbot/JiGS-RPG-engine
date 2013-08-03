@@ -5,7 +5,7 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'t
 
 class BattleViewBuilding extends JView
 {	
-	function display($tpl = null)
+	function display($tpl = "json")
 	{
 		$id							= (int) JRequest::getVar('id', 0);
 		$model						= $this->getModel();

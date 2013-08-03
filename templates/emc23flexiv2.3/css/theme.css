@@ -1191,3 +1191,14 @@ a.jwts_title_text, a.jwts_title_text:link {
 #Kunena tr.krow2 td {
   border-bottom: 1px solid #333 !important;
 }
+#Kunena .kforum-pathway {
+    background: rgba(0, 0, 0, 0.6);
+}
+#Kunena .kpostbuttonset, #Kunena tr.krow1 .kpostbuttons, #Kunena table#kpostmessage .ktxtarea, #Kunena #kbbcode-preview, #Kunena #kpost-result div, #Kunena div#kcolor-palette, #Kunena div#link, #Kunena div#image, #Kunena div#video, #Kunena form.kform-report input, #Kunena form.kform-report textarea, #Kunena .kfile-input-button:hover, #Kunena .kfile-input-button:focus, #Kunena .kcredits-intro, #Kunena .kcredits-language, #Kunena .kwholegend, #Kunena .kwhoonline, #Kunena div.kmoderate-message, #Kunena div.current, #Kunena #kprofilebox-toggle, #Kunena #kpost-message .invalid, #lbImage {
+color:#FFF !important;
+}
+
+#Kunena .kiconsel {
+  display:inline-block;
+  float:left;
+}

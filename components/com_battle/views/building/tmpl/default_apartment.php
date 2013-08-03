@@ -13,7 +13,9 @@
 // print_r($this->flats);
 // echo '</pre>';
 
-
+	$status			= 0;
+	$remaining		= 0;
+	$remaining2		= 0;
 
 
 for ($room = 0 ; $room <= 7 ;$room++){
@@ -54,7 +56,7 @@ for ($room = 0 ; $room <= 7 ;$room++){
 	
 	
 	
-	<div id="message_<?php echo $room ?>" ><?php echo $this->message[$room]; ?>
+	<div id="message_<?php echo $room ?>" ><?php //echo $this->message[$room]; ?>
 	</div>
 	
 	<div id="timer_<?php echo $room ?>" > <?php echo $remaining ?> days <?php echo $remaining2 ?> hrs
