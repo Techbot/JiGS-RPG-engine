@@ -1756,21 +1756,7 @@ $text .= "<br>" . $inv_object["name"] ;
 
 	
 
-	function mine()
-	{
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$type		= JRequest::getvar(type);
-		$building_id	= JRequest::getvar(building_id);
-		$now		= time();
-		$query		= "INSERT INTO #__jigs_mines (building, type, timestamp ) values  ($building_id,$type,$now) ON DUPLICATE KEY	UPDATE type =  $type , timestamp = " . $now;
-		$db->setQuery($query);
-		$db->query();
-		$result[0]	= $type;
-		//$result[1]	= $now;
-		$result[1]	= $query;
-		return $result;
-	}
+
 
 
 

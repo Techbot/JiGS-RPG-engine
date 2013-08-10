@@ -224,5 +224,12 @@ readonly="readonly" />
 		<span title="Conveyor 7">C 7</span> <span title="Conveyor 8">C 8</span>
 	</p>
 </div>
+<script>
 
+	alert ('factory');
+	prepare();
+	prepare2();
+	work_conveyer();
+	check_factory.periodical(5000);
+</script>
 		

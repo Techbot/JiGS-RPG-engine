@@ -1,5 +1,7 @@
 <?php
 
+$now= time();
+
 // echo $this->mines['timestamp'];
 
 

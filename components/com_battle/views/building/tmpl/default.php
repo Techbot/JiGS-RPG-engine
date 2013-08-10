@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-core.js"></script>
+<!-- <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-core.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-more_.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/clientcide.2.2.0.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/_class.noobSlide.packed.js"></script>
@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/_web.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/style.css" type="text/css" media="screen" />
 
-<!-- 
+
 <link rel="stylesheet" href="< ?php echo $this->baseurl ?>/templates/emc23flexiv2.3/css/jigs.css" type="text/css" /> 
 <link rel="stylesheet" href="< ?php echo $this->baseurl ?>/templates/emc23flexiv2.3/css/jigs2.css" type="text/css" />
 -->

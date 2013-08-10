@@ -14,26 +14,43 @@
 
 	var row = refTab.rows[0];
 	var col = row.cells[1]; 
-	alert(col.firstChild.nodeValue);
+	//alert(col.firstChild.nodeValue);
 
 	//var  col =   refTab.rows[1].cells[1]; 
 	//alert(col.firstChild.nodeValue);
 	building_id = col.firstChild.nodeValue;
-	prepare();
-	prepare2();
-	work_conveyer();
-	check_factory.periodical(5000);
-	
-	change();
+
+	var row = refTab.rows[3];
+	var col = row.cells[1]; 
+	//alert(col.firstChild.nodeValue);
+
+	//var  col =   refTab.rows[1].cells[1]; 
+	//alert(col.firstChild.nodeValue);
+	window.building_type = col.firstChild.nodeValue;	
+	//change();
 	//noobslide
+    
+    if (window.building_type=="mine"){
+    
+		
+		dig();
+		check_mine();
+		check_mine.periodical(2000);
+    
+    
+    }
+    
+    
+    
     
 })();
 
 
 
-function change(blueprint)
-{
-	var a = new Request.JSON({
+
+function get_blueprints(){
+
+var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_blueprints&blueprints=" +
 		document.adminForm.id1.value,
 		onSuccess: function(result)
@@ -48,7 +65,8 @@ function change(blueprint)
 				    var attrValue		= row[key];
 			  		var x				= row.id;
 			  		//console.log(x);
-			  		window.id1[x]				= row.id;		  		
+			  		//window.id1[x]				= row.id;		  		
+					window.id1[x]				= x ;
 					window.q_1[x]				= row.quantity_1;
 					window.q_2[x]				= row.quantity_2;
 					window.metal_name_1[x]		= row.metal_1_name;
@@ -57,6 +75,14 @@ function change(blueprint)
 			}	
 		}
 	}).get();
+}
+
+
+
+
+function change(blueprint)
+{
+	
 	if (document.adminForm.blueprints.value !='')
 	{
 		index							= id1[document.adminForm.blueprints.value];
@@ -121,7 +147,7 @@ function increment()
 	var cost 							= cost_el.value;
 	var cost_el_2						= document.getElementById('q2'); 
 	var cost_2							= cost_el_2.value;
-	//var time		= <?php echo $blueprints[0]->man_time ;?>;
+	var time							= 1;
 	document.adminForm.q1t.value		= (cost * (parseInt(qty) + 1));
 	document.adminForm.q2t.value		= (cost_2 * (parseInt(qty) + 1));
 	document.adminForm.time.value		= (time * (parseInt(qty) + 1));	
@@ -135,14 +161,14 @@ function decrement(){
 	var qty								= qty_el.value ;
 
 	if( !isNaN( qty ) && qty > 0 ) qty_el.value--;
-	var cost_el = document.getElementById('q1');
-	var cost = cost_el.value;
-	var cost_el_2 = document.getElementById('q2');
-	var cost_2 = cost_el_2.value;
-	//var time		= <?php echo $blueprints[0]->man_time ;?>;
-	document.adminForm.q1t.value = cost * (qty-1);
-	document.adminForm.q2t.value = cost_2 * (qty-1);
-	document.adminForm.time.value = (time * (parseInt(qty) - 1));	
+	var cost_el 						= document.getElementById('q1');
+	var cost 							= cost_el.value;
+	var cost_el_2 						= document.getElementById('q2');
+	var cost_2 							= cost_el_2.value;
+	var time							= 1;
+	document.adminForm.q1t.value		= cost * (qty-1);
+	document.adminForm.q2t.value		= cost_2 * (qty-1);
+	document.adminForm.time.value		= (time * (parseInt(qty) - 1));	
 	check_stock_control();
 	 return false;
 	}
@@ -220,6 +246,54 @@ function check_stock_control(){
 		$('submit_c').setStyle('visibility','visible');
 	}
 }
+
+
+
+
+function check_mine(){
+	var a = new Request.JSON(
+	{
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_mine&building_id=" + building_id , 
+    onSuccess: function(result)
+		{
+
+			document.getElementById('since').innerHTML = result['since'];
+			document.getElementById('now').innerHTML = result['now'];
+			document.getElementById('elapsed').innerHTML = result['elapsed'];
+			document.getElementById('remaining').innerHTML = result['remaining'];        
+
+			if(result['remaining']<=0)
+			{
+		 		$$('#mine_board').setStyle('visibility','visible');
+		   		$$('#mine_progress').setStyle('visibility','hidden');
+			}
+          
+    	}
+    }).get();
+}
+
+
+
+function dig() {
+	$$('.mine').addEvent('click', function(){
+		var type = this.get('type');
+		mine(type);
+		});
+	}	
+
+
+function mine(type){
+	var a = new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_mine&building_id=" + building_id + "&type=" + type, 
+    onSuccess: function(result){
+               	
+    	$$('#mine_board').setStyle('visibility','hidden');
+        $$('#mine_progress').setStyle('visibility','visible');  	    
+    	}
+    }).get();
+}
+
+
 //SAMPLE 4 (walk to item)
 	var nS4 = new noobSlide({
 			box: $('box4'),
