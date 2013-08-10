@@ -97,9 +97,31 @@ else
       <td width="100" align="right" class="key">
 	type:
       </td>
-      <td> <input class="text_area" type="text" name="type" id="type" size="50" maxlength="250" value="<?php echo $this->row->type; ?>" />
+      
+      
+      <td>
+      
+
+	<?php echo $this->dropdown; ?>
+      
+           
+      
+      
+      
+      
+      
+     
+      
+      
+      
+      
       </td>
     </tr>
+    
+    
+    
+    
+    
     <tr>
       <td width="100" align="right" class="key">
 	image:

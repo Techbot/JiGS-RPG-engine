@@ -5,10 +5,10 @@ class BattleController extends JController
 {
 	function action()
 	{
-		$model = $this->getModel('jigs');
-		$action = JRequest::getVar('action');
-		$result = $model->$action();
-		$heartbeat = $model->heartbeat();
+		$model			= $this->getModel('jigs');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
+		$heartbeat		= $model->heartbeat();
 		echo Json_encode($result);
 	}
 
@@ -23,17 +23,18 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
-	function energy_time()
-	{
-		$building_id		= JRequest::getvar('building_id');
+	function building_action()
+	{	
 		$model			= $this->getModel('building');
-		$result			= $model->check_turbines($building_id);
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
 		echo Json_encode($result);
 	}
 
-	function work_turbine()
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*	function work_turbine()
 	{
-		$building_id		= JRequest::getvar('building_id');
+		$building_id	= JRequest::getvar('building_id');
 		$line			= JRequest::getvar('line');
 		$type			= JRequest::getvar('type');
 		$quantity		= JRequest::getvar('quantity');
@@ -76,22 +77,28 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
-	function check_reprocessor()
-	{
-		$building_id = JRequest::getvar('building_id');
-		$line = JRequest::getvar('line');
-		$model = $this->getModel('jigs');
-		$result = $model->check_reprocessor($building_id,$line);
-		//$result= 'helllo';
-		echo Json_encode($result);
-	}
-
+	
 	function work_flat()
 	{
 		$model			= $this->getModel('building');
 		$result			= $model->work_flat();
 		echo Json_encode($result);
 	}
+	
+	*/
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+/*
+
+		function check turbines()// 
+	{
+		$building_id	= JRequest::getvar('building_id');
+		$model			= $this->getModel('building');
+		$result			= $model->check_turbines($building_id);
+		echo Json_encode($result);
+	}
+
 
 	function check_mines()//#_jigs_objects.
 	{
@@ -112,6 +119,19 @@ class BattleController extends JController
 		echo Json_encode($result);
 	}
 
+
+	function check_reprocessor()
+	{
+		$building_id = JRequest::getvar('building_id');
+		$line = JRequest::getvar('line');
+		$model = $this->getModel('jigs');
+		$result = $model->check_reprocessor($building_id,$line);
+		//$result= 'helllo';
+		echo Json_encode($result);
+	}
+	
+
+
 	function check_factory()
 	{
 		$building_id = JRequest::getvar('building_id');
@@ -121,16 +141,13 @@ class BattleController extends JController
 		//$result= 'helllo';
 		echo Json_encode($result);
 	}
-
+*/
 	function display()
 	{
 
-		//$app		= JFactory::getApplication();
-		//$sbid		= $app->getCfg('shoutbox_category');
-
-		$db =& JFactory::getDBO();
-		$user =& JFactory::getUser();
-		$view = JRequest::getVar('view');
+		$db			= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$view		= JRequest::getVar('view');
 
 		if ($user->id==0)
 		{

@@ -40,7 +40,7 @@
 	$arr[$key] = $val;
 	return  array_reverse($arr, true);
 	}
-	$javascript			= 'onchange="changeDisplayImage(blueprints);"';
+	$javascript			= 'onchange="change();"';
 	$directory			= '/images/banners';
 	$lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
 
@@ -76,7 +76,7 @@
 
 <legend>Object</legend>
 
-<input type="text" title="Object ID" name="id1" id="id1" value = "" size="2" style="width: 10px;" maxlength="2" 
+<input type="text" title="Object ID" name="id1" id="id1" value = "1" size="2" style="width: 10px;" maxlength="2" 
 readonly="readonly" />
 
 
@@ -85,7 +85,7 @@ readonly="readonly" />
 
 <label title="Quantity of Objects Required" for="quantity_adjust">qty:</label>
 
-<input type="text" id="quantity_adjust" name="quantity_adjust" value="0" style="width:20px;" size="2" onchange="alterQuantity(this.form)" /> 
+<input type="text" id="quantity_adjust" name = "quantity_adjust" value = "0" style = "width:20px;" size="2" onchange = "alterQuantity(this.form)" /> 
 
 <input title="Increase Quantity" type="button" id="quantity_box_button_up" value="+" size="4" /> 
 
@@ -225,5 +225,4 @@ readonly="readonly" />
 	</p>
 </div>
 
-		
 		

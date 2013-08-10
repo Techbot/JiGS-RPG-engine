@@ -1,56 +1,14 @@
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
  
-	$blueprints = $this->blueprints;
-	
-	
-	
+	$blueprints				= $this->blueprints;
 	//print_r($blueprints);
-	
-	
-	
-	
-	
-	$x=count($this->blueprints);
-	$index= $x+1;
-	$now=time();
-	
- /*  $arr = new object;
 
-           $arr[id] = 0;
-           $arr[object] = 0;
-           $arr[user_id] = 63;
-           $arr[sell_price] = 1;
-           $arr[name] = 'Select';
-           $arr[description] = 'Select';
-           $arr[metal_1] = 0;
-           $arr[quantity_1] = 0;
-           $arr[metal_2] = 0;
-           $arr[quantity_2] = 0;
-           $arr[metal_1_name] = 'Kryptonite';
-           $arr[metal_2_name] = 'Carbon';
-           $arr[metal_1_stock] = 0;
-           $arr[metal_2_stock] = 0;
-           
-           */
-
-   //        echo '<pre>';
-  //        print_r($factories);
-  //        echo '</pre>';
-  //        exit();
-           
-//$factories = array_unshift_assoc( $factories , '' , $arr);
-
-//$factories[$index]='Select';
-
-	function array_unshift_assoc(&$arr, $key, $val)
-	{
-	$arr = array_reverse($arr, true);
-	$arr[$key] = $val;
-	return  array_reverse($arr, true);
-	}
-	$javascript			= 'onchange="changeDisplayImage(blueprints);"';
-	$directory			= '/images/banners';
+	$x						= count($this->blueprints);
+	$index					= $x+1;
+	$now					= time();
+	$javascript				= 'onchange="changeDisplayImage(blueprints);"';
+	$directory				= '/images/banners';
 	$lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
 
 ?>
@@ -416,7 +374,7 @@ function test_rob(){
 
 function check_factory(){
 			var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=check_factory&line=1&building=<?php echo $this->buildings->id ; ?>" , 
+			url: "index.php?option=com_battle&format=raw&task=building_action&action=check_factory&line=1&building=<?php echo $this->buildings->id ; ?>" , 
 		    onSuccess: function(result){
 			    document.getElementById('since').innerHTML = result['since'];
 			    document.getElementById('now').innerHTML = result['now'];

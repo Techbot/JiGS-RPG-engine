@@ -16,6 +16,25 @@ class BattleViewBuilding extends JView
 		$editor			= JFactory::getEditor();
 		$this->assignRef('editor', $editor);
 		
+		
+		## A default value -- this will be the selected item in the dropdown ##
+		$default = 1;
+	
+		## An array of $key=>$value pairs ##
+		$types = array(1 => 'apartment', 2 => 'papier', 3 => 'mine', 4 => 'factory', 5 => 'farm');
+	
+		## Initialize array to store dropdown options ##
+		$options = array();
+	
+		foreach($types as $key=>$value) :
+			## Create $value ##
+			$options[] = JHTML::_('select.option', $key, $value);
+		endforeach;
+	
+		## Create <select name="month" class="inputbox"></select> ##
+		$this->dropdown = JHTML::_('select.genericlist', $options, 'type', 'class="inputbox"', 'value', 'text', $default);
+	
+
 	/////////////////////////////////////////	
 		if ($row->type=='apartment')
 		{

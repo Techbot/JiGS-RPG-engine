@@ -101,11 +101,16 @@ function work_field() {
 
     function work(itemID){	 	
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=work_field&building_id=<?php echo $this->buildings->id ?>&crop=1&field=" + itemID  ,
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=<?php echo $this->buildings->id ?>&crop=1&field=" + itemID  ,
     onSuccess: function(result){
    
     	//new tmp element that contains the new div
-    	var tmpDiv = new Element('div',{html:'<div id="'+itemID+'"><img src ="components/com_battle/images/jigs_loader.gif" /></div>'});
+    	var tmpDiv = new Element('div',
+    	{
+    	html:'<div id="'+itemID+'"><img src ="components/com_battle/images/jigs_loader.gif"/></div>'
+    	
+    	}
+    	);
 
     	//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
     	tmpDiv.getFirst().replaces($(itemID));
