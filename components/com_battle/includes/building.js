@@ -31,19 +31,200 @@
 	//noobslide
     
     if (window.building_type=="mine"){
-    
-		
-		dig();
+ 
+ 		dig();
 		check_mine();
 		check_mine.periodical(2000);
     
     
     }
     
-    
-    
-    
+    if (window.building_type=="blueprints")
+	{
+     	get_my_blueprints.periodical(1000);
+		get_shop_blueprints.periodical(1000);
+	}
+  
+    if (window.building_type=="apartment")
+	{
+     	$$('.work_flat').addEvent('click', function(){
+		var itemID = this.get('id');
+		work_flat(itemID);
+		});
+	}
+	if (window.building_type=="farm")
+	{
+     	$$('.work_field').addEvent('click',function(){
+			var itemID = this.get('id');
+			work_field(itemID);
+		
+		});
+ 		
+ 		check_farm.periodical(5000)
+
+	}
+	   
+	if (window.building_type=="food")
+	{
+     	$('sell_crops').addEvent('click', function(){
+		 // var itemID = this.get('id');
+ 		  sell_crops();
+  		});
+
+	}
+
+
 })();
+
+function sell_crops(){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell_crops", 
+    onSuccess: function(result){
+   	   	$('sell_crops').setStyle('visibility','hidden'); 
+    	}
+    }).get();
+ 
+}
+
+
+function work_field(itemID){	 	
+    var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" + building_id + "&crop=1&field=" + itemID  ,
+    onSuccess: function(result){
+   
+    	//new tmp element that contains the new div
+    	var tmpDiv = new Element('div',
+    	{
+    		html:'<div id="'+itemID+'"><img src ="components/com_battle/images/jigs_loader.gif"/></div>'
+    	
+    	}
+    	);
+    	//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
+    	tmpDiv.getFirst().replaces($(itemID));
+   
+		$('farm_progress').setStyle('visibility','visible');
+	    
+    	}
+    }).get();}
+
+ 
+    function check_farm(){
+		var a = new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building=" + building_id , 
+	    onSuccess: function(result){
+ 
+		    document.getElementById('since').innerHTML = result['since'];
+		    document.getElementById('now').innerHTML = result['now'];
+		    document.getElementById('elapsed').innerHTML = result['elapsed'];
+		    document.getElementById('remaining').innerHTML = result['remaining'];
+			itemID = result['field'];
+			status = result['status'];
+	        if (result['remaining'] <= 0 ){
+		       // $('adminForm').setStyle('visibility','visible');
+			    $('farm_progress').setStyle('visibility','hidden');
+				var tmpDiv = new Element('div',{html:'<div id="'+itemID+'" class ="work_field"><img src ="components/com_battle/images/'+result['status'] +'.gif" /></div>'});
+				//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
+				tmpDiv.getFirst().replaces($(itemID));
+				$$('.work_field').removeEvent('click', test);
+				
+				
+				
+				$$('.work_field').addEvent('click',function(){
+			var itemID = this.get('id');
+			work_field(itemID);
+		
+		});
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			    }
+		    }
+	    }).get();
+	    }
+
+    
+    function work_flat(itemID){	 	
+    var a = new Request.JSON({
+    	url: "index.php?option=com_battle&format=raw&task=work_flat&building_id=" + building_id + "&flat=" + itemID  ,
+    	onSuccess: function(result){
+    
+    	if (result[0]=="broke"){
+    
+    	alert(result[0] + '.You need 1000 credits IN THE BANK to rent an apartment. Then you will be safe from attack! 1000 Credits will be withdrawn from your account every week.')
+    
+    	}
+     	else {
+				 alert(result[2]);
+				$(result[0]).innerHTML = result[1];	
+				$(result[2]).innerHTML = result[3];	
+				$(result[4]).innerHTML = result[5];
+				$(result[6]).innerHTML = result[7];
+  	    }
+   	}
+    }).get();
+}
+
+
+function get_shop_blueprints(id)
+{
+	var all		= '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a		= new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_blueprints&building_id=" + building_id,
+		onSuccess: function(result){
+			for (i = 0; i < result.length; ++ i){
+				var row = "<tr class=\"d" + (i & 1) + "\"><td> Blueprint for " 
+				+ (i+1) + ": " 
+				+ result[i].name + ":</td><td>$" + result[i].sell_price 
+				+ "<a href='#' class='buy' id='" 
+				+ result[i].object + "'>[BUY]</a></td></tr>";
+				all= all + row;
+				}
+				all= all + '</tbody></table>';
+				$('building_papers_table').innerHTML = all;
+				$$('.buy').addEvent('click', function(){
+				var itemID = this.get('id');
+				buy(itemID);
+				});
+				}
+}).get();
+
+}
+
+function get_my_blueprints(){
+	var all = '<table class="shade-table"><tbody>';
+	//var details = this.details;
+	var a = new Request.JSON({
+	url: "index.php?option=com_battle&format=raw&task=action&action=get_blueprints",
+	onSuccess: function(result){
+		for (i = 0; i < result.length; ++ i){
+			var row = "<tr class=\"d" + (i & 1) + "\"><td> Blueprint for " + result[i].name + "</td></tr>";
+			all= all + row;
+		}
+		all= all + '</tbody></table>';
+		$('my_papers').innerHTML = all;
+	}
+	}).get();
+
+}
+
+function buy_blueprint(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy_blueprints&building_id=" + building_id + "&item=" + itemID, 
+    onSuccess: function(result){
+    	    
+    	}
+    }).get();
+ 
+}
+
 
 
 

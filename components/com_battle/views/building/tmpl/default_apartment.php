@@ -71,35 +71,3 @@ for ($room = 0 ; $room <= 7 ;$room++){
 
 </div><!--flats -->
 
-<script type='text/javascript'>
-function work_flat() {
-	$$('.work_flat').addEvent('click', function(){
-		var itemID = this.get('id');
-		work(itemID);
-		});
-    }	
-    
-    function work(itemID){	 	
-    var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=work_flat&building_id=<?php echo $this->buildings->id ?>&flat=" + itemID  ,
-    onSuccess: function(result){
-    
-    if (result[0]=="broke"){
-    
-    alert(result[0] + '.You need 1000 credits IN THE BANK to rent an apartment. Then you will be safe from attack! 1000 Credits will be withdrawn from your account every week.')
-    
-    }
-     else {
-	  alert(result[2]);
-    $(result[0]).innerHTML = result[1];	
-    $(result[2]).innerHTML = result[3];	
-    $(result[4]).innerHTML = result[5];
-    $(result[6]).innerHTML = result[7];
-  	    }
-
-
-    	}
-    }).get();}
-
- work_flat();
- </script>

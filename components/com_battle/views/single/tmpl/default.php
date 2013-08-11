@@ -48,44 +48,7 @@ window.addEvent('domready',function()
 		}).get();
 	});
 
-	$$('.character').addEvent('click', function(){
-		var itemID = this.get('id');
-		var a = new Request.JSON({
-		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
 	
-			url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
-			onSuccess: function(result){
-				mything = new Element ('div',{'id':"NPC",
-				html:result,
-				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
-				var head = document.getElementsByTagName('head')[0] ;
-				var script = document.createElement('script');
-				script.type = "text/javascript";
-				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';  
-				head.appendChild(script);
-			}
-		}).get();
-	});
-
-	$$('.players').addEvent('click', function(){
-		var itemID = this.get('id');
-		var a = new Request.JSON({
-			//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-			url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
-			onSuccess: function(result){
-				mything = new Element ('div',{'id':"PLAYERS",
-				html:result,
-				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
-				var head = document.getElementsByTagName('head')[0];
-				script = document.createElement('script');
-				script.type = "text/javascript";
-				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/players.js';  
-				head.appendChild(script);
-			}
-		}).get();
-	});
 
 
 
@@ -528,5 +491,60 @@ $x= $x+1;
 			}
 		}).get();
 	});
+	
+	
+	$$('.character').addEvent('click', function(){
+		var itemID = this.get('id');
+		var a = new Request.JSON({
+		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
+	
+			url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
+			onSuccess: function(result){
+				mything = new Element ('div',{'id':"NPC",
+				html:result,
+				'style':'border 1px solid #F00; '});
+				mything.replaces($('screen_grid'));
+				var head = document.getElementsByTagName('head')[0] ;
+				var script = document.createElement('script');
+				script.type = "text/javascript";
+				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';  
+				head.appendChild(script);
+			}
+		}).get();
+	});
+
+	$$('.players').addEvent('click', function(){
+		var itemID = this.get('id');
+		var a = new Request.JSON({
+			//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
+			url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
+			onSuccess: function(result){
+				mything = new Element ('div',{'id':"PLAYERS",
+				html:result,
+				'style':'border 1px solid #F00; '});
+				mything.replaces($('screen_grid'));
+				var head = document.getElementsByTagName('head')[0];
+				script = document.createElement('script');
+				script.type = "text/javascript";
+				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/players.js';  
+				head.appendChild(script);
+			}
+		}).get();
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>	
 	
