@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="2.5" type="plugin" group="content">
+	<name>Content - Slimbox</name>
+	<author>AmyStephen</author>
+	<creationDate>February 2008</creationDate>
+	<copyright>(C) 2008 Open Source Matters. All rights reserved.</copyright>
+	<license>This Joomla! plugin is licensed GNU/GPL http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL. Slimbox is free software released under MIT License. http://www.opensource.org/licenses/mit-license.php</license>
+	<authorEmail>AmyStephen@OpenSourceCommunity.org</authorEmail>
+	<authorUrl>OpenSourceCommunity.org</authorUrl>
+	<version>1.0</version>
+	<description>SLIMBOXDESCINPLUGIN</description>
+	<files>
+		<filename plugin="slimbox">slimbox.php</filename>
+		<folder>slimbox</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_content_slimbox.ini</language>
+	</languages>
+	<params>
+	</params>
+</install>
