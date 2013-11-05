@@ -21,35 +21,42 @@ $params = $this->form->params;
 		<?php echo JHTML::_( 'form.token' ); ?>
 	</form>
 	
-	<form action="index.php" method="get" name="adminForm4" id="adminForm2">Sync Players
+	<form action="index.php" method="get" name="adminForm4" id="adminForm4">Sync Players
 		<input type="hidden" name="task" value="sync_players"></input>
 		<input type="hidden" name="option" value="com_battle" /><input type="hidden" name="controller" value="main" />
 		<input type="submit" name="submit"/>
 	</form>
 
-	<form action="index.php" method="get" name="adminForm5" id="adminForm2">Sync Players Health
+	<form action="index.php" method="get" name="adminForm5" id="adminForm5">Sync Players Health
 		<input type="hidden" name="task" value="sync_players_health"></input>
 		<input type="hidden" name="option" value="com_battle" />
 		<input type="hidden" name="controller" value="main" />
 		<input type="submit" name="submit"/>
 	</form>
 	
-	<form action="index.php" method="get" name="adminForm6" id="adminForm2">Sync Players Batteries
+	<form action="index.php" method="get" name="adminForm6" id="adminForm6">Sync Players Batteries
 		<input type="hidden" name="task" value="sync_players_batteries"></input>
 		<input type="hidden" name="option" value="com_battle" />
 		<input type="hidden" name="controller" value="main" />
 		<input type="submit" name="submit"/>
 	</form>
 
-	<form action="index.php" method="get" name="adminForm7" id="adminForm2">Sync Players Message
+	<form action="index.php" method="get" name="adminForm7" id="adminForm7">Sync Players Message
 		<input type="hidden" name="task" value="sync_players_message"></input>
 		<input type="hidden" name="option" value="com_battle" />
 		<input type="hidden" name="controller" value="main" />
 		<input type="submit" name="submit"/>
 	</form>
 	
-	<form action="index.php" method="get" name="adminForm8" id="adminForm2">Sync Players Leases
+	<form action="index.php" method="get" name="adminForm8" id="adminForm8">Sync Players Leases
 		<input type="hidden" name="task" value="sync_players_leases"></input>
+		<input type="hidden" name="option" value="com_battle" />
+		<input type="hidden" name="controller" value="main" />
+		<input type="submit" name="submit"/>
+	</form>
+	
+		<form action="index.php" method="get" name="adminForm9" id="adminForm9">Sync Players Skills
+		<input type="hidden" name="task" value="sync_players_skills"></input>
 		<input type="hidden" name="option" value="com_battle" />
 		<input type="hidden" name="controller" value="main" />
 		<input type="submit" name="submit"/>

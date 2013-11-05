@@ -208,6 +208,16 @@ $app = Jfactory::getApplication();
             		
             			</div><!-- end bottom-user-modules -->
             			<?php endif; ?>
+			
+			
+
+<?php if ($this->countModules('messenger')) : ?>
+<jdoc:include type="modules" name="messenger" style="html" />
+<?php endif; ?>
+
+		
+
+
             		</div><!-- end inside -->
 				</div><!-- end MiddleCol -->
 	
@@ -294,9 +304,6 @@ $app = Jfactory::getApplication();
 </div>
 <?php endif; ?>
 			
-<?php if ($this->countModules('messenger')) : ?>
-<jdoc:include type="modules" name="messenger" style="html" />
-<?php endif; ?>
 					
 <?php if ($this->countModules('footer')) : ?>
 <jdoc:include type="modules" name="footer" style="raw" />

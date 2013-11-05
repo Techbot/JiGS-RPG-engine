@@ -33,7 +33,7 @@
 	};
 </script>
 	
-	<div id="shoutbox<?php echo $sbid ?>" class="shoutbox">
+	<div id="shoutbox<?php echo $sbid ?>" class="shoutbox test">
 		<div id="shoutboxtop<?php echo $sbid ?>" class="shoutboxtop">
 		<?php if($params->get('latestmessage')) : ?>
 			<?php echo $sound; ?>
@@ -54,10 +54,15 @@
 			</ul>
 		</div>
 		</div>
-		<?php if(file_exists('components/com_shoutbox')) : ?>
+		
+		
+		<!--<?php if(file_exists('components/com_shoutbox')) : ?>
 			<?php $link = JRoute::_('index.php?option=com_shoutbox&view=category&sbid='.$sbid); ?>
 			<a href="<?php echo $link; ?>"><?php echo JText::_( 'ARCHIVE'); ?></a>
-		<?php endif; ?>
+		<?php endif; ?>-->
+		
+		
+		
 		<?php if ($params->get('tag')) : ?>
 		<p><?php echo JText::_( 'GUESTTAG');?></p>
 		<?php endif; ?>
@@ -103,7 +108,7 @@
 			echo $smilies;
 			?>
 			<?php endif; ?>
-			<br />
+			
 			<?php if ($params->get('captcha') && $session->get('shoutcaptcha') != 'ok' && $loggedin == 'guest') : ?>
 			<div id="shoutbox_captcha<?php echo $sbid ?>">
 				<input type="hidden" name="shoutboxControl<?php echo $sbid ?>" id="shoutboxControl<?php echo $sbid ?>" value="<?php echo md5($total.$params->get( 'phrase', '')); ?>"/>

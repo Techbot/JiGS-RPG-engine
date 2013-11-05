@@ -202,35 +202,6 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_papers() {
-
-		$db			= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_paper_names.name, #__jigs_papers.buy_price " .
-			"FROM #__jigs_papers " .
-			"LEFT JOIN #__jigs_paper_names " .
-			"ON #__jigs_papers.item_id = #__jigs_paper_names.id " .
-			"WHERE #__jigs_papers.player_id =".$user->id);
-		$result		= $db->loadAssocList();
-		return $result;
-
-	}
-
-
-	function get_shop_papers() {
-
-		$db				= JFactory::getDBO();
-		$user			= JFactory::getUser();
-		$building_id	= JRequest::getvar('building_id');
-		$db->setQuery("SELECT #__jigs_papers.item_id, " .
-			"#__jigs_papers.sell_price, " . 
-			"#__jigs_paper_names.name " .
-			"FROM #__jigs_papers LEFT JOIN  #__jigs_paper_names ON #__jigs_papers.item_id = #__jigs_paper_names.id " .
-			"WHERE #__jigs_papers.player_id =" . $building_id);
-		$result			= $db->loadAssocList();
-		return $result;
-
-	}
 
 	function get_blueprints() {
 		$db			= JFactory::getDBO();
@@ -1337,7 +1308,7 @@ $text .= "<br>" . $inv_object["name"] ;
 
 
 
-
+/*
 	function get_battery_slots()
 		{
 			$db     	= JFactory::getDBO();
@@ -1387,14 +1358,14 @@ $text .= "<br>" . $inv_object["name"] ;
 			$db->query();
 		
 		
-		}*/
+		}
 		return $batteries;
 	}
 
 
 
 
-
+*/
 
 
 

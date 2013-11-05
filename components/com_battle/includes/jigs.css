@@ -963,7 +963,12 @@ background:url(../images/buy_factory.jpg) no-repeat 0 0 #000;
 }
 
 
-
+div.buildings_class,
+div.pages_class,
+div.character,
+div.players{
+cursor:pointer;
+}
 
 
 

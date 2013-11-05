@@ -161,9 +161,9 @@ We set the width of this container based upon the content layout logic. (see tem
 #right-only #MiddleCol {float:left;}
 #wide #MiddleCol {float:left;}
 
-#MiddleCol div.inside {margin:10px 20px;}
+#MiddleCol div.inside {margin:10px 20px;position:relative;}
 
-#mainbody {overflow: hidden;}
+#mainbody {overflow: hidden;margin-bottom:95px;}
 
 /* -- Teaser Modules -- */
 div#top-user-modules {margin:0; padding:0;}
@@ -197,9 +197,13 @@ Note: this container holds the left column content. We load this container befor
 #right div.inside {margin:10px 0px 10px 0px;}
 #right p {margin: 0 5px;}
 
-	/* FOOTER */
-#footer {position:fixed;bottom:0;left:0;width:100%;margin:0 auto;z-index:999;padding:5px 0;}
+	/* Message */
+#messages {position:fixed;bottom:0;width:660px;margin:0 auto;z-index:999;padding:5px 0;}
+
+
+#footer {position:fixed;bottom:0;right:0;width:42px;height:42px;margin:0;z-index:999;}
 #footer div.inside {margin:0px;}
+
 
 	/* BANNER */
 #banner {padding: 10px 0 0;}

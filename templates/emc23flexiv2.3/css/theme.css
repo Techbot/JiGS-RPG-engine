@@ -75,9 +75,13 @@ div#footer-user-modules {}
 
 div#user11, div#user12, div#user13, div#user14 {}
 
-div#footer {
+div#messages {
 background: url(../images/footer.png) #000 50% 0% no-repeat;
 }
+
+/*div#footer {
+background: url(../images/footer.png) #000 50% 0% no-repeat;
+}*/
 
 div.copyright {
 font-size: 85%;
@@ -1129,6 +1133,7 @@ div#messages {
   height:80px;
   overflow:auto;
   margin:0 auto;
+  text-align:center;
 }
 
 .shoutbox .inputbox {
@@ -1136,7 +1141,7 @@ div#messages {
 	border: 1px solid #009999;
 	color: #999999;
 	width:120px;
-	margin:2px 0 0 2px;
+	margin:2px 0 0 0;
 	padding:2px 1px;
 	float:left;
 	height:15px;
@@ -1152,16 +1157,29 @@ div#messages {
 .shoutbox .button {
 	font-size: 10px;
 	border-left: 0 #009999 solid;
-	width:40px;
+	width:37px;
 	margin:2px 2px 0 0;
-	padding:2px 8px;
+	padding:2px 0;
 	float:right;
+	text-align:center;
 }
 
 .shoutbox p {
-	font-size: 11px;
+	font-size: 10px;
 	line-height:14px;
 	margin:0;
+}
+.shoutbox label {
+	color: #999999;
+}
+.shoutbox label em {
+	color: #FFFFFF;
+}
+.shoutbox a {
+	margin:0 2px;
+}
+.lastMessage {
+  color: #999999;
 }
 
 em.responseTime {

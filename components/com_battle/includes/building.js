@@ -1,42 +1,53 @@
-(function(){
+(function()
+{
 
 	buy_building();
-	window.id1 = new Array();
+	window.id1			= new Array();
 	window.metal_name_1 = new Array();
 	window.metal_name_2 = new Array();
-	window.mystock1 = 0;
-	window.mystock2 = 0; 
-	window.q_1 = new Array();
-	window.q_2 = new Array();	  
-	window.metals = new Array();
+	window.mystock1		= 0;
+	window.mystock2		= 0; 
+	window.q_1			= new Array();
+	window.q_2			= new Array();	  
+	window.metals		= new Array();
 	request_metals();
-	var refTab = document.getElementById("stats");
-
-	var row = refTab.rows[0];
-	var col = row.cells[1]; 
+	var refTab			= document.getElementById("stats");
+	var row				= refTab.rows[0];
+	var col				= row.cells[1]; 
+	// alert(col.firstChild.nodeValue);
+	// var  col =   refTab.rows[1].cells[1]; 
+	// alert(col.firstChild.nodeValue);
+	building_id			= col.firstChild.nodeValue;
+	var row				= refTab.rows[3];
+	var col				= row.cells[1]; 
 	//alert(col.firstChild.nodeValue);
 
 	//var  col =   refTab.rows[1].cells[1]; 
-	//alert(col.firstChild.nodeValue);
-	building_id = col.firstChild.nodeValue;
-
-	var row = refTab.rows[3];
-	var col = row.cells[1]; 
-	//alert(col.firstChild.nodeValue);
-
-	//var  col =   refTab.rows[1].cells[1]; 
-	//alert(col.firstChild.nodeValue);
+	alert(col.firstChild.nodeValue);
 	window.building_type = col.firstChild.nodeValue;	
 	//change();
 	//noobslide
     
-    if (window.building_type=="mine"){
- 
- 		dig();
+    
+    if (window.building_type=="papier")
+	{
+	    alert ('factory');
+	    get_shop_papers();
+        get_papers.periodical(1000);				
+	}
+    
+    
+    
+    
+    
+    
+    
+    if (window.building_type=="mine")
+    {
+    alert ('mine');
+  		dig();
 		check_mine();
 		check_mine.periodical(2000);
-    
-    
     }
     
     if (window.building_type=="blueprints")
@@ -52,9 +63,15 @@
 		work_flat(itemID);
 		});
 	}
+	
+	
+	
+	
+	
 	if (window.building_type=="farm")
 	{
-     	$$('.work_field').addEvent('click',function(){
+     	$$('.work_field').addEvent('click',function()
+     	{
 			var itemID = this.get('id');
 			work_field(itemID);
 		
@@ -63,18 +80,285 @@
  		check_farm.periodical(5000)
 
 	}
+	
+	
+	
+	
+	
+	if (window.building_type=="factory")
+	{
+        alert ('factory');
+	    prepare();
+	    prepare2();
+	    work_conveyer();
+	    check_factory.periodical(5000);
+
+	}
+	
+	if (window.building_type=="diner")
+	{
+        //SAMPLE 4 (walk to item)
+		var nS4 = new noobSlide({
+			box: $('box4'),
+			items: $$('#box4 div'),
+			size: 640,
+			handles: $$('#handles4 span'),
+			onWalk: function(currentItem,currentHandle){
+				// $('info4').set('html',currentItem.getFirst().innerHTML);
+				this.handles.removeClass('active');
+				currentHandle.addClass('active');
+			}
+		});
+
+	   	 $('eat_burger').addEvent('click', function(){
+		  var itemID = this.get('id');
+ 		  eat(itemID);
+  		 });
+  		 
+	function eat(itemID){
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=eat",
+			onSuccess: function(result){
+				if (result=="success"){
+						alert("You gained 10 health points which cost you 10 credits");
+						$('eat_burger').setStyle('visibility','hidden');
+						}
+				if (result=="broke"){
+						alert("You don't have enough money. Get out of here! Go get a job you waster!");
+						$('eat_burger').setStyle('visibility','hidden');
+						}
+			}
+		}).get();
+	}
+
+	}
+	
+
 	   
 	if (window.building_type=="food")
 	{
-     	$('sell_crops').addEvent('click', function(){
+     	$('sell_crops').addEvent('click', function()
+     	{
 		 // var itemID = this.get('id');
  		  sell_crops();
   		});
 
+		get_papers.periodical(1000);
+		get_shop_papers.periodical(1000);
 	}
+	
+	
+	if (window.building_type=="stand")
+	{
+	    request_shop_inventory();
+        request_inventory.periodical(1000);				
+	}
+	
+	
 
+	
 
+	if (window.building_type=="generator")
+	{
+	    request_batteries();
+        request_batteries.periodical(5085);
+        request_battery_slots();
+        request_battery_slots.periodical(5000);				
+	}	
+	
+	
+	
+	
+	
+	
+	
+			
 })();
+
+
+
+
+
+
+
+function request_batteries(){
+	 var all = '';
+	//	var details = this.details;
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_batteries", 
+    onSuccess: function(result){
+       	    	
+   for (i = 0; i < result.length; ++ i){
+  var row = "<div class='put' id='" + result[i][0] + "'><span class='label'>Battery " + (i+1) + ":</span>" + result[i][1]  + " : " + result[i][2]+ "</div>";
+  
+	all= all + row;  
+    	}
+    	$('generator').innerHTML = all;	
+
+	$$('.put').addEvent('click', function(){
+			var itemID = this.get('id');
+			put_battery(itemID);
+			});
+
+    }	
+    	
+    }).get();
+}
+function request_battery_slots(){
+	 var all = '';
+	//	var details = this.details;
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery_slots&building_id=<?php echo $this->buildings->id;?>", 
+    onSuccess: function(result){
+   for (i = 0; i < result.length; ++ i){
+  	var row = "<div class='get' id='" + result[i]['id'] + "'><span class=\"label\">Battery " + (i+1) + ":</span>" + result[i]['id']  + " : " + result[i]['units'] +"</div>";
+  	all= all + row ;  
+    	}
+    	$('batteries_inv').innerHTML = all;
+
+	$$('.get').addEvent('click', function(){
+			var itemID = this.get('id');
+			get_battery(itemID);
+			});
+    }	
+    }).get();
+}
+function get_battery(itemID){
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    onSuccess: function(result){
+     	}
+    }).get();
+ 
+}
+
+function put_battery(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=put_battery&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    onSuccess: function(result){
+   	   
+    	}
+    }).get();
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function get_shop_papers(){
+	
+	var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a = new Request.JSON(
+	{
+    	url: "index.php?option=com_battle&format=raw&task=building_action&action=get_shop_papers&building_id=" + building_id, 
+   		onSuccess: function(result)
+   		{
+			for (i = 0; i < result.length; ++ i)
+			{
+   	
+   				var row = "<tr class=\"d" 
+   				+ (i & 1) + "\"><td>" 
+   				+ (i+1) 
+   				+ ": " 
+   				+ result[i].name 
+   				+ ":</td><td>$" + result[i].sell_price + "<a href='#' class='buy' id='" 
+   				+ result[i].item_id 
+   				+ "'>[BUY]</a></td></tr>"; 
+  				all= all + row;  
+   			}
+
+			all= all + '</tbody></table>';
+	
+		   	$('building_papers_table').innerHTML = all;	
+		   	$$('.buy').addEvent('click', function()
+		   	{
+		  		var itemID = this.get('id');
+		 		buy_papers(itemID);
+		 	});
+   	
+   		}	
+   }).get();
+}
+
+function get_papers(){
+	var all		= '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a		= new Request.JSON(
+	{
+   		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_papers", 
+    	onSuccess: function(result)
+    	{
+       		for (i = 0; i < result.length; ++ i)
+       		{
+				var row = "<tr class=\"d" 
+				+ (i & 1) 
+				+ "\"><td>" + (i+1) + ":" 
+				+ result[i].name + " COST:" 
+				+ result[i].buy_price 
+				+ "<a href='#' class= 'sell' id='" 
+				+ result[i].item_id 
+				+ "' > [SELL] </a></td></tr>";
+				all= all + row;  
+    		}
+			all = all + '</tbody></table>';	
+			$('my_papers').innerHTML = all;	
+			$$('.sell').addEvent('click', function()
+			{
+				var itemID = this.get('id');
+	 			sell_papers(itemID);
+	 		});
+    	}	
+   }).get();
+}
+
+function buy_papers(itemID)
+{
+	var a = new Request.JSON(
+	{
+    	url: "index.php?option=com_battle&format=raw&task=buy_papers&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    	onSuccess: function(result)
+    	{
+    	
+    	}
+    }).get();
+ 
+}
+
+function sell_papers(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=sell_papers&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    onSuccess: function(result){
+   	   
+    	}
+    }).get();
+ 
+}
 
 function sell_crops(){
  
@@ -86,7 +370,6 @@ function sell_crops(){
     }).get();
  
 }
-
 
 function work_field(itemID){	 	
     var a = new Request.JSON({
@@ -109,8 +392,8 @@ function work_field(itemID){
     }).get();}
 
  
-    function check_farm(){
-		var a = new Request.JSON({
+function check_farm(){
+	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building=" + building_id , 
 	    onSuccess: function(result){
  
@@ -120,36 +403,24 @@ function work_field(itemID){
 		    document.getElementById('remaining').innerHTML = result['remaining'];
 			itemID = result['field'];
 			status = result['status'];
-	        if (result['remaining'] <= 0 ){
+	        if (result['remaining'] <= 0 )
+	        {
 		       // $('adminForm').setStyle('visibility','visible');
 			    $('farm_progress').setStyle('visibility','hidden');
 				var tmpDiv = new Element('div',{html:'<div id="'+itemID+'" class ="work_field"><img src ="components/com_battle/images/'+result['status'] +'.gif" /></div>'});
 				//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
 				tmpDiv.getFirst().replaces($(itemID));
 				$$('.work_field').removeEvent('click', test);
-				
-				
-				
 				$$('.work_field').addEvent('click',function(){
-			var itemID = this.get('id');
-			work_field(itemID);
-		
-		});
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			    }
+					var itemID = this.get('id');
+					work_field(itemID);
+				});
+    		}
 		    }
 	    }).get();
 	    }
-
     
-    function work_flat(itemID){	 	
+function work_flat(itemID){	 	
     var a = new Request.JSON({
     	url: "index.php?option=com_battle&format=raw&task=work_flat&building_id=" + building_id + "&flat=" + itemID  ,
     	onSuccess: function(result){
@@ -175,26 +446,34 @@ function get_shop_blueprints(id)
 {
 	var all		= '<table class="shade-table"><tbody>';
 	var details = this.details;
-	var a		= new Request.JSON({
+	var a		= new Request.JSON(
+	{
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_blueprints&building_id=" + building_id,
-		onSuccess: function(result){
-			for (i = 0; i < result.length; ++ i){
-				var row = "<tr class=\"d" + (i & 1) + "\"><td> Blueprint for " 
-				+ (i+1) + ": " 
-				+ result[i].name + ":</td><td>$" + result[i].sell_price 
+		onSuccess: function(result)
+		{
+			for (i = 0; i < result.length; ++ i)
+			{
+				var row = "<tr class=\"d" 
+				+ (i & 1) 
+				+ "\"><td> Blueprint for " 
+				+ (i+1) 
+				+ ": " 
+				+ result[i].name + ":</td><td>$" 
+				+ result[i].sell_price 
 				+ "<a href='#' class='buy' id='" 
-				+ result[i].object + "'>[BUY]</a></td></tr>";
-				all= all + row;
-				}
-				all= all + '</tbody></table>';
-				$('building_papers_table').innerHTML = all;
-				$$('.buy').addEvent('click', function(){
+				+ result[i].object 
+				+ "'>[BUY]</a></td></tr>";
+				all = all + row;
+			}
+			all = all + '</tbody></table>';
+			$('building_papers_table').innerHTML = all;
+			$$('.buy').addEvent('click', function()
+			{
 				var itemID = this.get('id');
 				buy(itemID);
-				});
-				}
-}).get();
-
+			});
+		}
+	}).get();
 }
 
 function get_my_blueprints(){
@@ -225,10 +504,6 @@ function buy_blueprint(itemID){
  
 }
 
-
-
-
-
 function get_blueprints(){
 
 var a = new Request.JSON({
@@ -257,9 +532,6 @@ var a = new Request.JSON({
 		}
 	}).get();
 }
-
-
-
 
 function change(blueprint)
 {
@@ -365,7 +637,7 @@ function work_conveyer()
 function work(){
 	var a = new Request.JSON(
 	{
-		url: "index.php?option=com_battle&format=raw&task=work_conveyer&quantity=" + document.adminForm.time.value 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_conveyer&quantity=" + document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
 			$('adminForm').setStyle('visibility','hidden');
@@ -382,7 +654,7 @@ function test_rob()
 
 function check_factory(){
 			var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=check_factory&line=1&building=" + building_id , 
+			url: "index.php?option=com_battle&format=raw&task=building_action&action=check_factory&line=1&building=" + building_id , 
 		    onSuccess: function(result){
 			    document.getElementById('since').innerHTML = result['since'];
 			    document.getElementById('now').innerHTML = result['now'];
@@ -395,6 +667,7 @@ function check_factory(){
 			    }
 		    }).get();
 		    }
+
 function request_metals(){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=get_metals2", 
@@ -428,9 +701,6 @@ function check_stock_control(){
 	}
 }
 
-
-
-
 function check_mine(){
 	var a = new Request.JSON(
 	{
@@ -453,8 +723,6 @@ function check_mine(){
     }).get();
 }
 
-
-
 function dig() {
 	$$('.mine').addEvent('click', function(){
 		var type = this.get('type');
@@ -462,8 +730,8 @@ function dig() {
 		});
 	}	
 
-
-function mine(type){
+function mine(type)
+{
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_mine&building_id=" + building_id + "&type=" + type, 
     onSuccess: function(result){
@@ -474,9 +742,9 @@ function mine(type){
     }).get();
 }
 
-
 //SAMPLE 4 (walk to item)
-	var nS4 = new noobSlide({
+	var nS4 = new noobSlide(
+	{
 			box: $('box4'),
 			items: $$('#box4 div'),
 			size: 640,
@@ -485,5 +753,82 @@ function mine(type){
 				// $('info4').set('html',currentItem.getFirst().innerHTML);
 				this.handles.removeClass('active');
 				currentHandle.addClass('active');
-			}
-		});	
+	}
+			
+});				
+			
+function request_shop_inventory(){
+	var all = '<div id="building_inventory_table"><div class="name">Available to Buy</div>';
+	var details = this.details;
+	//	var id = $('image').get('number');
+	var a = new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_inventory&building_id=" + building_id, 
+    onSuccess: function(result){
+       	    	
+    for (i = 0; i < result.length; ++ i){
+        var row = "<div class='object'><a href='#' title='" + result[i].name + "' class='buy' id='" + result[i].item_id + "'><img src='/components/com_battle/images/objects/" + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" + result[i].sell_price + "</span></div>"; 
+  		all= all + row;
+  		}
+		id=0;
+		all= all + '</div>';
+		$('building_inventory_table').innerHTML = all;
+		$$('.buy').addEvent('click', function(){
+			var itemID = this.get('id');
+			buy1(itemID);
+			});
+		}
+	}).get();
+	}
+
+function request_inventory(){
+	var all = '<div id="my_inventory"><div class="name">Available to Sell</div>';
+	var details = this.details;
+	var a = new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory_to_sell&building_id=" + building_id, 
+        onSuccess: function(result){
+            for (i = 0; i < result.length; ++ i){
+                var row = "<div class='object'><a href='#' title='" + result[i].name + "' class='sell' id='" + result[i].item_id + "'><img src='/components/com_battle/images/objects/" + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" + result[i].buy_price + "</span></div>"; 
+ 				all= all + row;
+ 				}
+				all= all + '</div>';
+				$('my_inventory').innerHTML = all;
+				$$('.sell').addEvent('click', function(){
+					var itemID = this.get('id');
+					sell1(itemID);
+					});
+				}
+	}).get();
+	}
+
+
+function buy1(itemID){
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy&building_id=" + building_id +"&item=" + itemID, 
+    onSuccess: function(result){
+    	    
+    	}
+    }).get();
+ 
+}
+
+function sell1(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell&building_id=" + building_id + "&item=" + itemID, 
+    onSuccess: function(result){
+   	   
+    	}
+    }).get();
+ 
+}
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+

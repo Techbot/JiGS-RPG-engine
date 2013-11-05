@@ -385,7 +385,7 @@ class BattleModelBuilding extends JModel
 		return $result;
 	}
 
-	function check_factory($building_id,$line_id)
+	function check_factory()
 	{
 		$building_id			= JRequest::getvar('building');
 		$line_id				= JRequest::getvar('line');
@@ -719,6 +719,108 @@ class BattleModelBuilding extends JModel
 		//	exit();
 		return $result;
 	}
+	
+	
+	
+	
+	
+		function get_battery_slots()
+		{
+			$db     	= JFactory::getDBO();
+			$building	= JRequest::getvar('building_id');
+			$now    	= time();
+			$factor		= 10;
+
+			$query		= "
+			SELECT * 
+			FROM #__jigs_batteries
+			WHERE iduser = $building
+			";
+
+			$db->setQuery($query);
+			$batteries = $db->loadAssocList();
+
+		/*	foreach($batteries as $battery)
+		{
+			$id        = $battery['id'];
+			$timestamp = $battery['timestamp'];
+			$elapsed   = $now - $timestamp;
+			$units     = $battery['units'];
+			$max_units = $battery['max_units'];
+			$new_units = intVal($elapsed/$factor);
+
+			if($units + $new_units < $max_units)
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = units + $new_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+			else
+			{
+				$query	= "
+					UPDATE #__jigs_batteries SET
+					units      = max_units,
+					timestamp  = $now
+					WHERE id   = $id
+					";
+			}
+
+
+			$db->setQuery($query);
+			$db->query();
+		
+		
+		}*/
+		return $batteries;
+	}
+
+	
+	
+	
+	
+	function get_papers() {
+
+		$db			= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_paper_names.name, #__jigs_papers.buy_price " .
+			"FROM #__jigs_papers " .
+			"LEFT JOIN #__jigs_paper_names " .
+			"ON #__jigs_papers.item_id = #__jigs_paper_names.id " .
+			"WHERE #__jigs_papers.player_id =".$user->id);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
+
+
+	function get_shop_papers() {
+
+		$db				= JFactory::getDBO();
+		$user			= JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		$db->setQuery("SELECT #__jigs_papers.item_id, " .
+			"#__jigs_papers.sell_price, " . 
+			"#__jigs_paper_names.name " .
+			"FROM #__jigs_papers LEFT JOIN  #__jigs_paper_names ON #__jigs_papers.item_id = #__jigs_paper_names.id " .
+			"WHERE #__jigs_papers.player_id =" . $building_id);
+		$result			= $db->loadAssocList();
+		return $result;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

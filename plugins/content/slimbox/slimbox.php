@@ -67,10 +67,10 @@ class plgContentSlimbox extends JPlugin
 		JHTML::_( 'behavior.mootools' );
  		
 		//	Add CSS		
-		$document->addStyleSheet( JURI::base() . 'plugins/content/slimbox/slimbox.css' );
+		$document->addStyleSheet( JURI::base() . 'plugins/content/slimbox/css/slimbox.css' );
 
 		//	Add Javascript
-		$document->addScript( JURI::base() .'plugins/content/slimbox/slimbox.js');
+		$document->addScript( JURI::base() .'plugins/content/slimbox/js/slimbox.js');
 
  		//	Find all plugin occurrences 
  		$firsttime = true;

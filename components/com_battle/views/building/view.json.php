@@ -108,6 +108,17 @@ class BattleViewBuilding extends JView
 			//$this->assignRef('metals', $metals);
 		}
 
+		if($this->buildings->type=='diner')
+		{
+			//	echo $this->buildings->id;
+			//$model	= &$this->getModel();
+			//$blueprints	= $model->get_metals($this->buildings->id);
+			//$this->assignRef('metals', $metals);
+		}
+
+
+
+
 		if($this->buildings->type=='generator')
 		{
 			//$model     = $this->getInstance('jigs','BattleModel');

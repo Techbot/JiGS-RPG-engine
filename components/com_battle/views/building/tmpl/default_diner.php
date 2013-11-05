@@ -64,40 +64,4 @@
 </div>
 </div>
 
-<script type="text/javascript">
 
-//SAMPLE 4 (walk to item)
-		var nS4 = new noobSlide({
-			box: $('box4'),
-			items: $$('#box4 div'),
-			size: 640,
-			handles: $$('#handles4 span'),
-			onWalk: function(currentItem,currentHandle){
-				// $('info4').set('html',currentItem.getFirst().innerHTML);
-				this.handles.removeClass('active');
-				currentHandle.addClass('active');
-			}
-		});
-
-	   	 $('eat_burger').addEvent('click', function(){
-		  var itemID = this.get('id');
- 		  eat(itemID);
-  		 });
-  		 
-	function eat(itemID){
-		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=eat",
-			onSuccess: function(result){
-				if (result=="success"){
-						alert("You gained 10 health points which cost you 10 credits");
-						$('eat_burger').setStyle('visibility','hidden');
-						}
-				if (result=="broke"){
-						alert("You don't have enough money. Get out of here! Go get a job you waster!");
-						$('eat_burger').setStyle('visibility','hidden');
-						}
-			}
-		}).get();
-	}
-</script>
-		
