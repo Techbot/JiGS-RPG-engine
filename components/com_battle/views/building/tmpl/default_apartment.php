@@ -50,8 +50,8 @@ for ($room = 0 ; $room <= 7 ;$room++){
 	<!--<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buttons/flat<?php echo $status; ?>.jpg">-->
 	</div>
 
-	<div>
-	<img id="avatar_<?php echo $room ?>" src="<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $this->pics[$room] ;?>" height="20px" width="20px">
+	<div id="avatar_<?php echo $room ?>">
+	<img  src="<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $this->pics[$room] ;?>" height="20px" width="20px">
 	</div>
 	
 	

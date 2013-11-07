@@ -12,11 +12,10 @@ class BattleModelfactions extends JModel
 		foreach ($factions as $faction_name=>$faction_id) 
 		{
 		
-		
+		    $faction_list->$faction_name->name      = $faction_name;
 			$faction_list->$faction_name->groups    = $this->get_group_ids($faction_id);
-			$faction_list->$faction_name->name      = $faction_name;
 		    $faction_list->$faction_name->groupnames= $this->get_group_names($faction_list->$faction_name->groups);
-		
+		    $faction_list->$faction_name->groupstats= $this->get_group_stats($faction_list->$faction_name->groups);		
 		}
 		
 		//$faction_list	= $this->get_group_members($faction_list);
@@ -47,7 +46,19 @@ class BattleModelfactions extends JModel
 	return $groupnames;
 	}
 	
+	function get_group_stats($groups)
+	{
+	    $db         = JFactory::getDBO();
+		$groupstats = array();
+	    foreach ($groups as $group_id) 
+	    {
+            $query				        = "SELECT * FROM #__jigs_groups WHERE id = " . $group_id;
+	        $db->setQuery($query);
+		    $groupstats[]		        =  $db->loadObject(); 
+		}
 	
+	return $groupstats;
+	}	
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

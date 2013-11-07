@@ -50,6 +50,17 @@ $this->type = JRequest::getVar('filter_type');
 				<option value="4" <?php if($this->grid ==4){echo "selected ='TRUE'";}?>>4</option>
 				<option value="5" <?php if($this->grid ==5){echo "selected ='TRUE'";}?>>5</option>
 				<option value="6" <?php if($this->grid ==6){echo "selected ='TRUE'";}?>>6</option>
+				<option value="7" <?php if($this->grid ==7){echo "selected ='TRUE'";}?>>7</option>
+				<option value="8" <?php if($this->grid ==8){echo "selected ='TRUE'";}?>>8</option>
+				<option value="9" <?php if($this->grid ==9){echo "selected ='TRUE'";}?>>9</option>
+				<option value="10" <?php if($this->grid ==10){echo "selected ='TRUE'";}?>>10</option>
+				<option value="11" <?php if($this->grid ==11){echo "selected ='TRUE'";}?>>11</option>
+				<option value="12" <?php if($this->grid ==12){echo "selected ='TRUE'";}?>>12</option>				
+				
+				
+				
+				
+				
 
 			</select>
 

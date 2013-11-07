@@ -80,7 +80,6 @@ $row->id = $cid[0];
 	{
 		$model = $this->getModel('buildings');
 		$array = JRequest::get('get');
-	
 		
 		$building = $array['building'];
 		$message = $model->save_fields($array);

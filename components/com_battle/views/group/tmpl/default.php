@@ -14,7 +14,7 @@ echo "</pre>";
         {    
                     echo '<tr>
                     <td> <img src="/images/comprofiler/' . $player['avatar'] .'" class="thumbnail" alt="' . $player['username'] .
-			'" title="' .  $player['username'] .'" width="100" height="100" id="character_image" />
+			'" title="' .  $player['username'] .'" width="50" height="50" id="character_image" />
 			
 			
 			</td>    

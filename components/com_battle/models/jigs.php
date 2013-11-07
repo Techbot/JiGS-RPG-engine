@@ -203,18 +203,7 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_blueprints() {
-		$db			= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
-			"FROM #__jigs_blueprints " .
-			"LEFT JOIN #__jigs_objects " .
-			"ON #__jigs_blueprints.object = #__jigs_objects.id " .
-			"WHERE #__jigs_blueprints.user_id =".$user->id);
-		$result		= $db->loadAssocList();
-		return $result;
 
-	}
 
 	function get_shop_blueprints() {
 
@@ -1095,7 +1084,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		// If the Player has enough money
 		if ($player_money >= $sell_price)
 		{
-			$this->buy_building_award($type);
+		//	$this->buy_building_award($type);
 
 			// player loses cost of building
 			$player_money = $player_money - $sell_price;

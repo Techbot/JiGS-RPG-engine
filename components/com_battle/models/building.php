@@ -19,8 +19,7 @@ class BattleModelBuilding extends JModel
 		$quantity			= JRequest::getvar(quantity);
 		$now				= time();
 		$db					=  JFactory::getDBO();
-		$q					= "INSERT INTO #__jigs_generators (building, quantity, timestamp) VALUES
-			($building_id,$quantity,$now ) ON DUPLICATE KEY UPDATE quantity = $quantity , timestamp= $now";
+		$q					= "INSERT INTO #__jigs_generators (building, quantity, timestamp) VALUES ($building_id,$quantity,$now ) ON DUPLICATE KEY UPDATE quantity = $quantity , timestamp= $now";
 		$db->setQuery($q);
 		$result				= $db->query();
 		return $result;
@@ -34,7 +33,6 @@ class BattleModelBuilding extends JModel
 		$type				= JRequest::getvar('type');
 		$quantity			= JRequest::getint('quantity');
 		$energy_units		= $energy_unit * $quantity;
-		
 		$now				= time();
 		$db					= JFactory::getDBO();
 		$sql				= "SELECT * FROM #__jigs_objects WHERE id = " . $type;
@@ -49,19 +47,14 @@ class BattleModelBuilding extends JModel
 		$quantity_1			= $product->quantity_1;
 		$metal_2			= $product->metal_2;
 		$quantity_2			= $product->quantity_2;
-
 		$sql				= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_1 . " AND player_id = " . $user->id ;
 		$resource 			= $db->setQuery($sql);
 		$player_qty_1		= $db->loadResult();
-
 		$sql				= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_2 . " AND player_id = " . $user->id ;
 		$resource 			= $db->setQuery($sql);
 		$player_qty_2		= $db->loadResult();		
-
 		$model				= JModel::getInstance('jigs','BattleModel');
-
 		$energy_required	= $quantity * 1;	 	
-
 		if (!$model->use_battery($building_id, $energy_required))
 		{
 			return false;
@@ -71,20 +64,16 @@ class BattleModelBuilding extends JModel
 		{
 			$player_qty_1	= $player_qty_1 - $quantity_1;
 			$player_qty_2	= $player_qty_2 - $quantity_2;
-
 			$finished		= $now + ($quantity * $man_time * 60 );
 			$finished		= $now + (1 * 1 * 60);
-			$sql			= "INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp,finished) 
-				VALUES ($building_id, $line, $type, $quantity, $now, $finished ) 
+			$sql			= "INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp,finished) VALUES ($building_id, $line, $type, $quantity, $now, $finished ) 
 				ON DUPLICATE KEY UPDATE type =  $type , quantity = $quantity , timestamp= $now ,finished = $finished";
 			$db->setQuery($sql);
-
 			if (!$db->query())
 			{
 				echo Json_encode($sql);
 				return false;
 			};
-
 			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_1 WHERE item_id = " . $metal_1 . " AND player_id =". $user->id;
 			$db->setQuery($sql);
 			if (!$db->query())
@@ -92,7 +81,6 @@ class BattleModelBuilding extends JModel
 				echo Json_encode($sql);
 				return false;
 			};
-
 			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_2 WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
 			$db->setQuery($sql);
 			if (!$db->query())
@@ -100,7 +88,6 @@ class BattleModelBuilding extends JModel
 				echo Json_encode($sql);
 				return false;
 			}; 	
-
 		}
 
 		else{
@@ -117,23 +104,23 @@ class BattleModelBuilding extends JModel
 
 	function work_reprocessor($building_id, $quantity, $type, $line)
 	{
-		$now			= time();
-		$db			= JFactory::getDBO();
-		$sql			= "SELECT * FROM #__jigs_objects WHERE id = " . $type;
+		$now			    = time();
+		$db			        = JFactory::getDBO();
+		$sql			    = "SELECT * FROM #__jigs_objects WHERE id = " . $type;
 		$db->setQuery($sql);
-		$product		= $db->loadObject();
-		$user			= JFactory::getUser();
-		$name			= $product->name;
+		$product		    = $db->loadObject();
+		$user			    = JFactory::getUser();
+		$name			    = $product->name;
 		$description		= $product->description;
-		$level			= $product->level;
-		$man_time		= $product->man_time;
-		$metal_1		= $product->metal_1;
-		$quantity_1		= $quantity * $product->quantity_1;
-		$metal_2		= $product->metal_2;
-		$quantity_2		= $quantity * $product->quantity_2;
+		$level			    = $product->level;
+		$man_time		    = $product->man_time;
+		$metal_1		    = $product->metal_1;
+		$quantity_1		    = $quantity * $product->quantity_1;
+		$metal_2		    = $product->metal_2;
+		$quantity_2		    = $quantity * $product->quantity_2;
 
-		$query			= "SELECT id FROM #_jigs_inventory WHERE item_id = $type player_id = " . $user->id ;
-		$resource 		= $db->setQuery($sql);
+		$query			    = "SELECT id FROM #_jigs_inventory WHERE item_id = $type player_id = " . $user->id ;
+		$resource 		    = $db->setQuery($sql);
 		$player_items		= $db->loadAssocList();		
 		$player_items_count = count($player_items);
 
@@ -145,7 +132,7 @@ class BattleModelBuilding extends JModel
 		$resource 		= $db->setQuery($sql);
 		$player_qty_2		= $db->loadResult();		
 	 */	
-		$model			= JModel::getInstance('jigs','BattleModel');
+		$model			    = JModel::getInstance('jigs','BattleModel');
 
 		$energy_required	= $quantity * 1;	 	
 
@@ -198,12 +185,27 @@ class BattleModelBuilding extends JModel
 		$db->setQuery($query);
 		$result			= $db->loadRowList();
 
-		$status			= $result[0][0];
-		$crop			= $result[0][1];
+		if (isset ($result[0][0]))
+		{ 
+		    $status			= $result[0][0];
+		}
+		else
+		{
+		    $status			= 0;
+		}   
+		    
+		if (isset ($result[0][1]))
+		{ 
+		    $crop			= $result[0][1];
+		}
+		else
+		{
+		    $crop			= 0;
+		} 		    
+	
 		$status++;
 
-		$sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) " .  " 
-			values  ($building_id,$field, $status,$now , $crop, $finished) 
+		$sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) values  ($building_id,$field, $status,$now , $crop, $finished) 
 			ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
 
 		$db->setQuery($sql);
@@ -219,6 +221,16 @@ class BattleModelBuilding extends JModel
 	}
 ///////////////////////////////////////////////////////
 
+	function get_avatar($resident)
+	{
+		$db		= JFactory::getDBO();
+		$db->setQuery("SELECT #__comprofiler.avatar
+			FROM #__comprofiler 
+			WHERE #__comprofiler.user_id = ". $resident);
+		$result		= $db->loadResult();
+		return $result;
+	}
+
 	function work_flat()
 	{
 		$db				= JFactory::getDBO();
@@ -230,20 +242,21 @@ class BattleModelBuilding extends JModel
 		$result			= $db->loadAssoc();		
 		$status			= $result['status'];
 		$resident		= $result['resident'];
+		$now			= time();
+		$date			= date('jS-m-y :  h:i',$now);	
 
 		//////////// if place is currently occupied
 		if ($resident == 0)
 		{
 			$query		= "SELECT bank FROM #__jigs_players WHERE iduser = ". $user->id;
 			$db->setQuery($query);
-			$bank = $db->loadResult();
-			if ($bank > 1000)
+			$bank       = $db->loadResult();
+			if ($bank >= 1000)
 			{
 				$bank			= $bank - 1000;
 				$resident		= $user->id;
 				$status			= 1; // occupied
-				$now			= time();
-				$date			= date('jS-m-y :  h:i',$now);
+
 				$avatar			= $this->get_avatar($user->id);
 				$query			= "UPDATE #__jigs_players set bank = $bank WHERE iduser = " . $user->id;
 				$db->setQuery($query);
@@ -501,6 +514,11 @@ class BattleModelBuilding extends JModel
 		$total_crop	= 0;
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
+		
+		for ($i=0 ;$i<=7;$i++){
+		$fields->status_field[$i] = 0 ;
+		}
+		
 		$query		= "SELECT * FROM #__jigs_farms WHERE building = $building_id";
 		$db->setQuery($query);
 		$result		= $db->loadObjectList();
@@ -514,6 +532,13 @@ class BattleModelBuilding extends JModel
 
 		return ($fields);
 	}
+
+
+
+
+
+
+
 
 	function old_sell_crops()
 	{
@@ -536,15 +561,7 @@ class BattleModelBuilding extends JModel
 		return($money_saved);
 	}
 
-	function get_avatar($resident)
-	{
-		$db		= JFactory::getDBO();
-		$db->setQuery("SELECT #__comprofiler.avatar
-			FROM #__comprofiler 
-			WHERE #__comprofiler.user_id = ". $resident);
-		$result		= $db->loadResult();
-		return $result;
-	}
+
 
 	function get_flats($building_id)
 	{
@@ -812,7 +829,18 @@ class BattleModelBuilding extends JModel
 	}
 	
 	
-	
+		function get_my_blueprints_list() {
+		$db			= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
+			"FROM #__jigs_blueprints " .
+			"LEFT JOIN #__jigs_objects " .
+			"ON #__jigs_blueprints.object = #__jigs_objects.id " .
+			"WHERE #__jigs_blueprints.user_id =".$user->id);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
 	
 	
 	

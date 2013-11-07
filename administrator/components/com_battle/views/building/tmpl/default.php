@@ -25,15 +25,7 @@ else
   <fieldset class="adminform">
     <legend>Details</legend>
     <table class="admintable">    
-    <tr>
-      <td width="100" align="right" class="key">
-	id:
-      </td>
-      <td>
-	<input class="text_area" type="text" name="name" id="name" size="10" maxlength="250" value="<?php echo $this->row->id;?>" />
-      </td>
-    </tr>
-    <tr>
+   
       <td width="100" align="right" class="key">
 	Name:
       </td>
@@ -103,17 +95,6 @@ else
       
 
 	<?php echo $this->dropdown; ?>
-      
-           
-      
-      
-      
-      
-      
-     
-      
-      
-      
       
       </td>
     </tr>
@@ -203,18 +184,7 @@ else
       </td>
      
     </tr>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     </table>
   </fieldset>
   <input type="hidden" name="cid" value="<?php echo $this->row->id; ?>" />

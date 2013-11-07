@@ -1,15 +1,6 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
-<script>
-function display_alert_deposit()
-  {
-  alert("Thank you for the deposit.\nYour money is safe with us.");
-  }
-function display_alert_withdraw()
-  {
-  alert("Thank you for your valued custom.\nWe hope to see you again soon.");
-  }
-</script>
+
 <div id = "bank"> 
 <div class="name">Teller</div>
 <div id = "bank_left">
@@ -43,51 +34,3 @@ function display_alert_withdraw()
 /** This template is used for the quantity box of a product, which has a radio-style add to cart form */ 
 ?>
 
-<script type='text/javascript'>
-
-function deposit() {
-
-	$$('#deposit').addEvent('click', function(){
-
-		var qty_el = document.getElementById('quantity_adjust'); 
-		var qty = qty_el.value; 
-		var a = new Request.JSON({
-			    url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id=<?php echo $this->buildings->id ?>&amount=" + qty  ,
-			    onSuccess: function(result){
-			      
-			   // $(result[0]).innerHTML = result[1];	
-			   // $(result[2]).innerHTML = result[3];	
-			  //  $(deposit).setStyle('visibility','hidden');
-		  	    
-			    	}
-			    }).get();
-		    
-		
-		});	
-    }
-function withdraw() {
-
-    	$$('#withdraw').addEvent('click', function(){
-
-    		var qty_el = document.getElementById('quantity_adjust2'); 
-    		var qty = qty_el.value; 
-    		var a = new Request.JSON({
-    			    url: "index.php?option=com_battle&format=raw&task=action&action=withdraw&building_id=<?php echo $this->buildings->id ?>&amount=" + qty  ,
-    			    onSuccess: function(result){
-    			      
-    			   // $(result[0]).innerHTML = result[1];	
-    			   // $(result[2]).innerHTML = result[3];	
-    			  //  $(deposit).setStyle('visibility','hidden');
-    		  	    
-    			    	}
-    			    }).get();
-    		    
-    		
-    		});	
-        }	
-    
-deposit();
-withdraw();
-
-
- </script>

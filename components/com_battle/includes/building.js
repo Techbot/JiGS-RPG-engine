@@ -53,7 +53,7 @@
     if (window.building_type=="blueprints")
 	{
      	get_my_blueprints.periodical(1000);
-		get_shop_blueprints.periodical(1000);
+		get_shop_blueprints();
 	}
   
     if (window.building_type=="apartment")
@@ -87,7 +87,7 @@
 	
 	if (window.building_type=="factory")
 	{
-        alert ('factory');
+ 
 	    prepare();
 	    prepare2();
 	    work_conveyer();
@@ -166,14 +166,89 @@
         request_battery_slots.periodical(5000);				
 	}	
 	
+		if (window.building_type=="bank")
+	{
 	
-	
+	deposit();
+    withdraw();				
+	}
+
 	
 	
 	
 	
 			
 })();
+
+function display_alert_deposit()
+  {
+  alert("Thank you for the deposit.\nYour money is safe with us.");
+  }
+function display_alert_withdraw()
+  {
+  alert("Thank you for your valued custom.\nWe hope to see you again soon.");
+  }
+
+
+
+
+
+function deposit() {
+
+	$$('#deposit').addEvent('click', function(){
+
+		var qty_el = document.getElementById('quantity_adjust'); 
+		var qty = qty_el.value; 
+		var a = new Request.JSON({
+			    url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id=<?php echo $this->buildings->id ?>&amount=" + qty  ,
+			    onSuccess: function(result){
+			      
+			   // $(result[0]).innerHTML = result[1];	
+			   // $(result[2]).innerHTML = result[3];	
+			  //  $(deposit).setStyle('visibility','hidden');
+		  	    
+			    	}
+			    }).get();
+		    
+		
+		});	
+    }
+function withdraw() {
+
+    	$$('#withdraw').addEvent('click', function(){
+
+    		var qty_el = document.getElementById('quantity_adjust2'); 
+    		var qty = qty_el.value; 
+    		var a = new Request.JSON({
+    			    url: "index.php?option=com_battle&format=raw&task=action&action=withdraw&building_id=<?php echo $this->buildings->id ?>&amount=" + qty  ,
+    			    onSuccess: function(result){
+    			      
+    			   // $(result[0]).innerHTML = result[1];	
+    			   // $(result[2]).innerHTML = result[3];	
+    			  //  $(deposit).setStyle('visibility','hidden');
+    		  	    
+    			    	}
+    			    }).get();
+    		    
+    		
+    		});	
+        }	
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -422,7 +497,7 @@ function check_farm(){
     
 function work_flat(itemID){	 	
     var a = new Request.JSON({
-    	url: "index.php?option=com_battle&format=raw&task=work_flat&building_id=" + building_id + "&flat=" + itemID  ,
+    	url: "index.php?option=com_battle&format=raw&task=building_action&action=work_flat&building_id=" + building_id + "&flat=" + itemID  ,
     	onSuccess: function(result){
     
     	if (result[0]=="broke"){
@@ -431,7 +506,7 @@ function work_flat(itemID){
     
     	}
      	else {
-				 alert(result[2]);
+				 alert(result[3]);
 				$(result[0]).innerHTML = result[1];	
 				$(result[2]).innerHTML = result[3];	
 				$(result[4]).innerHTML = result[5];
@@ -470,7 +545,7 @@ function get_shop_blueprints(id)
 			$$('.buy').addEvent('click', function()
 			{
 				var itemID = this.get('id');
-				buy(itemID);
+				buy_blueprint(itemID);
 			});
 		}
 	}).get();
@@ -480,7 +555,7 @@ function get_my_blueprints(){
 	var all = '<table class="shade-table"><tbody>';
 	//var details = this.details;
 	var a = new Request.JSON({
-	url: "index.php?option=com_battle&format=raw&task=action&action=get_blueprints",
+	url: "index.php?option=com_battle&format=raw&task=building_action&action=get_my_blueprints_list",
 	onSuccess: function(result){
 		for (i = 0; i < result.length; ++ i){
 			var row = "<tr class=\"d" + (i & 1) + "\"><td> Blueprint for " + result[i].name + "</td></tr>";
@@ -821,14 +896,4 @@ function sell1(itemID){
     }).get();
  
 }
-
-
-			
-			
-			
-			
-			
-			
-			
-			
 

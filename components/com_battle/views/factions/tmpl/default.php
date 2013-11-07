@@ -10,7 +10,7 @@ foreach ($this->factions as $faction)
 
 {
         echo "<table class='shade-table' border='1px' >";
-        echo '<th><td> ' .$faction->name .'</td></th>';
+        echo '<th>' .$faction->name .'</th><th> Total Members</th>  <th> Total Money</th> <th> Total Bank</th> <th>Total XP</th>         ';
         $i=0;
         foreach ($faction->groups as $group)
        
@@ -19,7 +19,14 @@ foreach ($this->factions as $faction)
             <a href="http://eclecticmeme.com/index.php?option=com_battle&view=group&gid='. $group .'" >' . $faction->groupnames[$i] .'</a>
             
             
-            </td></tr>';
+            </td>
+            
+          <td>  ' . $faction->groupstats[$i]->total_members . '</td>
+          <td>  ' . $faction->groupstats[$i]->total_money . '</td>  
+          <td>  ' . $faction->groupstats[$i]->total_bank . '</td>
+           <td>  ' . $faction->groupstats[$i]->total_xp . '</td>
+            
+            </tr>';
 			
 		 //	foreach ($faction->$groupname->ids as $id)
 		//		{

@@ -110,37 +110,19 @@ class battleModelBuildings extends JModellist
 	
 			$search			= $this->getState('filter.search');
 	    	$grid = JRequest::getVar('filter_grid', 1, '', 'int');			
-	//		 print_r($this->state);
-				
-				
-	
-			// echo $search ;
-	
-			//   exit();
-	
 	
 			if (!empty($search))
 			{
 				$search = $db->Quote('%' . $db->getEscaped($search, true) . '%');
 				$query->where('name LIKE ' . $search );
-			
 			}
-		
 			if (!empty($grid))
 			{
 				$query->where('grid = ' . $grid );
-					
 			}		
-		
 			$db->setQuery($query, $this->getState('limitstart'), $this->getState('limit'));
-			
 			echo $query;
-			
-			
-		
 			$this->_data = $db->loadObjectList();
-			 
-			 
 		}
 	
 		return $this->_data;
@@ -176,47 +158,59 @@ class battleModelBuildings extends JModellist
 	
 	function save_fields($array)
 	{
-	$db =& JFactory::getDBO();
-		
-		
-	$building 		= $array['building'];
-	$status_field_1	= $array['status_field_1'];
-	$status_field_2	= $array['status_field_2'];
-	$status_field_3	= $array['status_field_3'];
-	$status_field_4	= $array['status_field_4'];
-	$status_field_5	= $array['status_field_5'];
-	$status_field_6	= $array['status_field_6'];
-	$status_field_7	= $array['status_field_7'];
-	$status_field_8	= $array['status_field_8'];
-	//	global $option;
-	$row =& JTable::getInstance('Fields', 'Table');
-	$sql= "INSERT INTO #__jigs_fields (
-	building,
-	status_field_1,status_field_2,status_field_3,status_field_4,
-	status_field_5,status_field_6,status_field_7,status_field_8
-	) VALUES 
-	(
-	$building,
-	$status_field_1,$status_field_2,$status_field_3,$status_field_4,
-	$status_field_5,$status_field_6,$status_field_7,$status_field_8
-	) 
-	ON DUPLICATE KEY UPDATE 
-	status_field_1 = $status_field_1,
-	status_field_2 = $status_field_2,
-	status_field_3 = $status_field_3,
-	status_field_4 = $status_field_4,
-	status_field_5 = $status_field_5,
-	status_field_6 = $status_field_6,
-	status_field_7 = $status_field_7,
-	status_field_8 = $status_field_8
-	";
-	$db->setQuery($sql);
-	$db->query();
+	   $db =& JFactory::getDBO();
+      $building  = $array['building'];
+
+   	  $status_array[1]     = $array['status_field_1'];
+   	  $status_array[2]     = $array['status_field_2'];
+   	  $status_array[3]     = $array['status_field_3'];
+   	  $status_array[4]     = $array['status_field_4'];
+   	  $status_array[5]     = $array['status_field_5'];
+   	  $status_array[6]     = $array['status_field_6'];
+   	  $status_array[7]     = $array['status_field_7'];
+   	  $status_array[8]     = $array['status_field_8'];
 	
-	
+
+	foreach ($status_array as $status)
+	{
+			
+		$query = "INSERT INTO #__jigs_farms (building,field,status)
+			VALUES ($building, $i,$status)
+			ON DUPLICATE KEY UPDATE status = $status ";
+       	$db->setQuery($sql);
+	    $db->query();
+    }
+   
 	return " Fields saved Successfully";
-		
 	}	
+	
+	function get_fields($id)
+	{
+	    $db = JFactory::getDBO();
+		$query = "SELECT * FROM #__jigs_farms WHERE building =" . $id ;
+		$db->setQuery($query);
+		$fields = $db->loadObjectList();
+		return $fields;
+		
+		
+		
+	}
+	
+	
+	function get_my_blueprints_list() {
+		$db			= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
+			"FROM #__jigs_blueprints " .
+			"LEFT JOIN #__jigs_objects " .
+			"ON #__jigs_blueprints.object = #__jigs_objects.id " .
+			"WHERE #__jigs_blueprints.user_id =".$user->id);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
+	
+	
 	
 	
 	

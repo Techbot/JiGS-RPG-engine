@@ -1,17 +1,34 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+//print_r ($this->fields);
+
+
 
 ?>
+
+
+
+
 <form action="index.php" method="get" name="field" id="field">
 <table class="admintable">
-<?php for($i=1;$i<=8;$i++){ ?>
+<?php for($i=0;$i<=7;$i++){ ?>
   <tr>
   <td>
- status_field <?php echo $i;?>: <input class="text" type="text" name="status_field_<?php echo $i;?>" id="status_field_<?php echo $i;?>" size="10" maxlength="10" value="<?php echo $this->fields->status_field[$i];?>" />
+  
+ status_field <?php echo $i;?>: 
+ <input 
+ 
+ class="text" type="text" 
+ name="status_field_<?php echo $i;?>" 
+ id="status_field_<?php echo $i;?>" size="10" maxlength="10" 
+ value="<?php echo $this->fields[$i]->status;?>"
+ 
+ 
+  />
   </td> 
    <td>
- timestamp <?php echo $this->fields->timestamp[$i]; ?> 
+ timestamp <?php echo $this->fields[$i]->timestamp; ?> 
   </td> 
 <?php   	
 }

@@ -34,9 +34,99 @@ class plgBattleHeartbeat extends JPlugin
 		$this->sendMessage($now,$message);
 		$this->heartbeat();
 		return ;
-		//	return "hello";
+		
+	}
+	
+	public function run_daily()
+	{
+		$now			= time();
+		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
+		$message		= "Cron activated at " . $time_string;
+		$this->sendMessage($now,$message);
+		$this->daily();
+		return ;
+		
 	}
 
+	
+	public function daily()
+	{
+	    $db 	    = JFactory::getDBO();
+		$now		= time();
+		$this->sendMessage($now,'Daily begun');
+		$factions    = array(35,36,42);
+		foreach ($factions as $faction)
+		{		
+		    
+		   $groups = $this->get_faction_groups($faction);
+		   if ($groups)
+		   {
+		    
+                  foreach ($groups as $group)
+	            {
+	                $total->$group->members = 0;
+	            
+		            $userlist = $this->get_userlist($group);
+		            
+		            foreach ($userlist as $user)
+	                {
+		                $result	= $this->get_user($user);
+		                $total->$group->members = $total->$group->members + 1; 
+		                $total->$group->xp += $result->xp;
+	                    $total->$group->money += $result->money;
+		                $total->$group->bank += $result->bank;  
+      	       
+		            }
+		            
+		                $one        = $total->$group->members; 
+		                $two        = $total->$group->xp ;
+	                    $three      = $total->$group->money;
+		                $four       = $total->$group->bank ;  
+	            
+		           $query = " INSERT INTO #__jigs_groups (id,total_members, total_xp , total_money ,total_bank ) VALUES 
+		                (
+		                    $group,$one,$two,$three,$four
+		                )
+		                ON DUPLICATE KEY UPDATE 
+		                 
+		                total_members =  $one,
+		                total_xp  =  $two,
+		                total_money = $three,
+		                total_bank = $four
+		                ";
+		                $db->setQuery($query);
+		                $db->query(); 
+     		    }
+		    }
+		}
+		return ;
+	}	
+	
+	public function get_faction_groups($faction)
+	{
+		$db         = JFactory::getDBO();
+		$query      = "SELECT id FROM #__usergroups where parent_id = $faction";
+		$db->setQuery($query);
+		return $db->loadColumn();
+	}
+	
+	public function get_userlist($group)
+	{
+        $db         = JFactory::getDBO();
+        $query      = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = $group";
+		$db->setQuery($query);
+		return $db->loadColumn();
+	}
+	
+	
+	public function get_user($user)
+	{
+        	    $db             = JFactory::getDBO();
+		        $query          = "SELECT * FROM #__jigs_players WHERE iduser = $user";
+		        $db->setQuery($query);
+		        return $db->loadObject();
+	}    
+	
 	function heartbeat()
 	{
 		$now		= time();
@@ -677,7 +767,7 @@ class plgBattleHeartbeat extends JPlugin
 	}
 	function get_mood($id){
 		$db			= JFactory::getDBO();
-		$query		= "SELECT name FROM #__jigs_mood where id = $id";
+		$query		= "SELECT name FROM #__jigs_moods where id = $id";
 		$db->setQuery($query);
 		$name		= $db->loadResult();
 		return $name;
