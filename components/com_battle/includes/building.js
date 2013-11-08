@@ -235,27 +235,6 @@ function withdraw() {
         }	
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function request_batteries(){
 	 var all = '';
 	//	var details = this.details;
@@ -653,17 +632,41 @@ function buy_building() {
 	});
 } 
 
-function prepare(){
+function prepare()
+{
+
+var foo = document.id('quantity_box_button_up'); 
+
+// if it returns an Element object, it will be truthy.
+if (foo) {
+
 	$('quantity_box_button_up').addEvent('click', function(){
 		increment();
 		});
-	}
+		
+	}	
+		
+		
+		
+		
+		
+		
+		
+}
 
 function prepare2()
 {
+    var foo = document.id('quantity_box_button_up'); 
+if (foo) {
+
+
 	$('quantity_box_button_down').addEvent('click', function(){
 		decrement();
 		});
+
+}
+
+
 }
 
 function increment()
@@ -703,10 +706,14 @@ function decrement(){
 
 function work_conveyer()
 {
+    var foo = document.id('submit_c'); 
+    if (foo) {
 	$('submit_c').addEvent('click', function()
 	{
 		work();
 	});
+
+}
 }
 
 function work(){
