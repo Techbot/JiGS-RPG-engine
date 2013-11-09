@@ -673,19 +673,24 @@ class BattleModelBuilding extends JModel
 		}	
 	}
 
-	function get_objects_required()
+	function get_objects_required($blueprints)
 	{
-		$blueprints	= JRequest::getVar('blueprints');
+
 		$db		= JFactory::getDBO();
 		$user	= JFactory::getUser();
-		foreach($blueprints as $blueprint)
+		
+		if(isset($blueprints))
 		{
-			$query	= "SELECT id FROM #__jigs_inventory 
-				WHERE #__jigs_inventory.player_id = $user->id
-				AND #__jigs_inventory.item_id = $blueprint->object ";
-			$db->setQuery($query);
-			$blueprint->object_total = count($db->loadObjectlist());
+		    foreach($blueprints as $blueprint)
+		    {
+			    $query	= "SELECT id FROM #__jigs_inventory 
+				    WHERE #__jigs_inventory.player_id = $user->id
+				    AND #__jigs_inventory.item_id = $blueprint->object ";
+			    $db->setQuery($query);
+			    $blueprint->object_total = count($db->loadObjectlist());
+		    }
 		}
+		
 		return $blueprints ;
 	}	
 

@@ -594,17 +594,18 @@ class BattleModelJigs extends JModellist{
 
 	function buy_metal() {
 
-		$db			= JFactory::getDBO();
-		$user			= JFactory::getUser();
-		$building_id		= JRequest::getvar(building_id);
-		$item			= JRequest::getvar(metal);
+		$db			        = JFactory::getDBO();
+		$user			    = JFactory::getUser();
+		$building_id		= JRequest::getvar('building_id');
+		$item			    = JRequest::getvar('metal');
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
 		$player_money		= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_shop_metal_prices WHERE #__jigs_shop_metal_prices.item_id = " . $item .
 			" AND #__jigs_shop_metal_prices.shop_id = " . $building_id);
 		$sell_price = $db->loadResult();
 
-		if ($player_money > $sell_price) {
+		if ($player_money > $sell_price) 
+		{
 			$player_money	= $player_money - $sell_price;
 
 			$sql		= "INSERT INTO #__jigs_metals (player_id , item_id,quantity) 
@@ -618,9 +619,16 @@ class BattleModelJigs extends JModellist{
 
 			$result2	= $db->query();
 			$result3	= 'true';
-
-			return $player_money;
+			$message    = "You bought the metal";
 		}
+		else
+		{
+		
+		    $message= "You do not have enough cash";
+		
+		
+		}
+		$this->sendFeedback($user->id,$message);
 
 		return $player_money;
 	}
@@ -802,7 +810,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_players_view()
+	function old_get_players_view()
 	{
 		$id		= substr(JRequest::getvar('id'), 5);
 		$people		= JTable::getInstance('players', 'Table');
@@ -882,7 +890,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $text;
 	}	
 
-	function get_character_view()
+	function old_get_character_view()
 	{
 		$id= JRequest::getvar('id');
 		$people = JTable::getInstance('people', 'Table');

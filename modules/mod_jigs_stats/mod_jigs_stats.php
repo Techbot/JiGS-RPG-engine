@@ -1,11 +1,10 @@
 <?php ?>
 
-<div id="stats"></div>
+<div id="stats_module"></div>
 
 <script type='text/javascript'>
 
 function request_stats(){
-	
 	
 		var details = this.details;
 	
@@ -17,7 +16,7 @@ function request_stats(){
     	
    // 	alert('health: ' + result[0].health + '   strenght: ' + result[0].strenght + '   Intelligence: ' + result[0].intelligence);
     
-   $('stats').innerHTML = 
+   $('stats_module').innerHTML = 
     
        "<span class=\"label\">Level:</span>                   " +result[0].level +
        "<br /><span class=\"label\">   Experience:</span>     "    +	result[0].xp + 
@@ -35,8 +34,7 @@ function request_stats(){
        "<input type='button' value='Update' onclick= 'request_stats();'></button>"
          ;
      
-    
-			//	update: $('stats')
+    	//	update: $('stats')
 
     
     

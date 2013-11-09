@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
- require_once (dirname(__FILE__).DS.'helper.php');
+require_once (dirname(__FILE__).DS.'helper.php');
 
 $layout = $params->get('style','default'); 
 
@@ -37,7 +37,7 @@ function request_inventory(){
   var row = "<span class=\"label\">Item" + (i+1) + ":</span>" + result[i].name ;
   all= all + row + "<br />";  
     	}
-    	$('inventory').innerHTML = all;	
+    	$('inventory_module').innerHTML = all;	
     }	
     	
     }).get();

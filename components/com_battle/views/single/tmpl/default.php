@@ -498,7 +498,7 @@ $x= $x+1;
 		var a = new Request.JSON({
 		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
 	
-			url:"index.php?option=com_battle&format=raw&task=action&action=get_character_view&id="+itemID,
+			url:"index.php?option=com_battle&format=json&view=character&id="+itemID,
 			onSuccess: function(result){
 				mything = new Element ('div',{'id':"NPC",
 				html:result,
@@ -517,7 +517,7 @@ $x= $x+1;
 		var itemID = this.get('id');
 		var a = new Request.JSON({
 			//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-			url:"index.php?option=com_battle&format=raw&task=action&action=get_players_view&id="+itemID,
+			url:"index.php?option=com_battle&format=json&view=player&id="+itemID,
 			onSuccess: function(result){
 				mything = new Element ('div',{'id':"PLAYERS",
 				html:result,

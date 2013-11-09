@@ -1,34 +1,4 @@
-<!-- <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-core.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-more_.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/clientcide.2.2.0.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/_class.noobSlide.packed.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/raphael-min.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/g.raphael-min.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/g.pie-min.js"></script>
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/g.line-min.js"></script>
 
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/emc23flexiv2.3/css/template.css" type="text/css" /> 
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/emc23flexiv2.3/css/theme.css" type="text/css" />
-
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/_web.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/style.css" type="text/css" media="screen" />
-
-
-<link rel="stylesheet" href="< ?php echo $this->baseurl ?>/templates/emc23flexiv2.3/css/jigs.css" type="text/css" /> 
-<link rel="stylesheet" href="< ?php echo $this->baseurl ?>/templates/emc23flexiv2.3/css/jigs2.css" type="text/css" />
--->
-
-
-<!--<style type="text/css">
-tr.d0 td {
-	background-color: #CC9999; color: black;
-}
-tr.d1 td {
-	background-color: #9999CC; color: black;
-}
-</style>-->
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' ); 

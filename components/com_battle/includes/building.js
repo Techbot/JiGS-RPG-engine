@@ -23,7 +23,7 @@
 	//alert(col.firstChild.nodeValue);
 
 	//var  col =   refTab.rows[1].cells[1]; 
-	alert(col.firstChild.nodeValue);
+	//alert(col.firstChild.nodeValue);
 	window.building_type = col.firstChild.nodeValue;	
 	//change();
 	//noobslide
@@ -31,7 +31,7 @@
     
     if (window.building_type=="papier")
 	{
-	    alert ('factory');
+
 	    get_shop_papers();
         get_papers.periodical(1000);				
 	}
@@ -44,7 +44,7 @@
     
     if (window.building_type=="mine")
     {
-    alert ('mine');
+
   		dig();
 		check_mine();
 		check_mine.periodical(2000);
@@ -83,7 +83,12 @@
 	
 	
 	
-	
+	if (window.building_type=="reprocessor")
+	{
+  work_conveyer()
+	    prepare();
+	    prepare2();
+	}
 	
 	if (window.building_type=="factory")
 	{
@@ -94,7 +99,216 @@
 	    check_factory.periodical(5000);
 
 	}
+
+	if (window.building_type=="scrapyard")
+	{
 	
+	
+ 
+        request_shop_metals();
+        // request_metals2();
+        // request_metals2.periodical(10000);
+        request_get_metals_to_sell();
+        request_get_metals_to_sell.periodical(10000);
+
+	}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+function prepare()
+{
+
+var foo = document.id('quantity_box_button_up'); 
+
+// if it returns an Element object, it will be truthy.
+if (foo) {
+
+	$('quantity_box_button_up').addEvent('click', function(){
+		increment();
+		});
+		
+	}	
+		
+		
+		
+		
+		
+		
+		
+}
+
+function prepare2()
+{
+    var foo = document.id('quantity_box_button_up'); 
+if (foo) {
+
+
+	$('quantity_box_button_down').addEvent('click', function(){
+		decrement();
+		});
+
+}
+
+
+}
+
+function increment()
+{
+	var qty_el							= document.getElementById('quantity_adjust'); 
+	var qty								= qty_el.value;
+	if( !isNaN( qty )) qty_el.value++;
+	var cost_el							= document.getElementById('q1'); 
+	var cost 							= cost_el.value;
+	var cost_el_2						= document.getElementById('q2'); 
+	var cost_2							= cost_el_2.value;
+	var time							= 1;
+	document.adminForm.q1t.value		= (cost * (parseInt(qty) + 1));
+	document.adminForm.q2t.value		= (cost_2 * (parseInt(qty) + 1));
+	document.adminForm.time.value		= (time * (parseInt(qty) + 1));	
+	check_stock_control();
+	return false;
+}
+
+function decrement(){
+
+	var qty_el							= document.getElementById('quantity_adjust');
+	var qty								= qty_el.value ;
+
+	if( !isNaN( qty ) && qty > 0 ) qty_el.value--;
+	var cost_el 						= document.getElementById('q1');
+	var cost 							= cost_el.value;
+	var cost_el_2 						= document.getElementById('q2');
+	var cost_2 							= cost_el_2.value;
+	var time							= 1;
+	document.adminForm.q1t.value		= cost * (qty-1);
+	document.adminForm.q2t.value		= cost_2 * (qty-1);
+	document.adminForm.time.value		= (time * (parseInt(qty) - 1));	
+	check_stock_control();
+	 return false;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function request_shop_metals(){
+	var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+	//	var id = $('image').get('number');
+	var a = new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_metals&building_id=" + building_id , 
+    onSuccess: function(result){
+       	    	
+    for (i = 0; i < result.length; ++ i){
+        var row = "<tr class=\"d" + (i & 1) + "\"><td>" + (i+1) + ": " + result[i].name + ":</td><td>$" + result[i].sell_price + "</td><td><a href='#' class='buy' id='" + result[i].item_id + "'>BUY</a></td></tr>"; 
+  		all= all + row;
+  		}
+		id=0;
+		all= all + '</tbody></table>';
+		$('building_inventory_table').innerHTML = all;
+		$$('.buy').addEvent('click', function(){
+			var itemID = this.get('id');
+			buy_metal(itemID);
+			});
+		}
+	}).get();
+	}
+
+function request_get_metals_to_sell(){
+	var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a = new Request.JSON({
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_metals_to_sell&building_id=" + building_id , 
+        onSuccess: function(result){
+            for (i = 0; i < result.length; ++ i){
+                var row = "<tr class=\"d" + (i & 1) + "\"><td>" +result[i].name + "<td>"  + " COST:" + result[i].buy_price + "</td><td><a href='#' class= 'sell' id='" + result[i].item_id + "' >SELL</a></td></tr>"; 
+ 				all= all + row;
+ 				}
+				all= all + '</tbody></table>';
+				$('my_inventory').innerHTML = all;
+				$$('.sell').addEvent('click', function(){
+					var itemID = this.get('id');
+					sell_metal(itemID);
+					});
+				}
+	}).get();
+	}
+
+function request_metals2(){
+	var total_metals = parseInt(0);
+	 var all = '';
+	//var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a = new Request.JSON({
+		url: 'index.php?option=com_battle&format=raw&task=action&action=get_metals2&building_id=' + building_id , 
+    	onSuccess: function(result){
+        	 for (i = 0; i < result.length; ++i){
+        	 var row = '<br/>Metal ' + (i+1) + ':' + result[i].name  + ' : ' + result[i].quantity;
+        	 all= all + row;
+        	 total_metals = parseInt(total_metals) + parseInt(result[i].quantity);
+        	 }
+        	 all = all + '<br/>Total Metals: ' + total_metals;
+        	 $('my_inventory2').innerHTML = all;
+        	 }
+        	 }).get();
+        	 }
+        	 
+        	 function buy_metal(itemID){
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy_metal&building_id=" + building_id + "&metal=" + itemID, 
+    onSuccess: function(result){
+    	    
+    	}
+    }).get();
+}
+
+function sell_metal(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell_metal&building_id=" + building_id + "&metal=" + itemID, 
+    onSuccess: function(result){
+   	   
+    	}
+    }).get();
+}
+
+
 	if (window.building_type=="diner")
 	{
         //SAMPLE 4 (walk to item)
@@ -200,7 +414,7 @@ function deposit() {
 		var qty_el = document.getElementById('quantity_adjust'); 
 		var qty = qty_el.value; 
 		var a = new Request.JSON({
-			    url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id=<?php echo $this->buildings->id ?>&amount=" + qty  ,
+			    url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id=" + building_id + "&amount=" + qty  ,
 			    onSuccess: function(result){
 			      
 			   // $(result[0]).innerHTML = result[1];	
@@ -220,7 +434,7 @@ function withdraw() {
     		var qty_el = document.getElementById('quantity_adjust2'); 
     		var qty = qty_el.value; 
     		var a = new Request.JSON({
-    			    url: "index.php?option=com_battle&format=raw&task=action&action=withdraw&building_id=<?php echo $this->buildings->id ?>&amount=" + qty  ,
+    			    url: "index.php?option=com_battle&format=raw&task=action&action=withdraw&building_id=" + building_id + "&amount=" + qty  ,
     			    onSuccess: function(result){
     			      
     			   // $(result[0]).innerHTML = result[1];	
@@ -262,7 +476,7 @@ function request_battery_slots(){
 	 var all = '';
 	//	var details = this.details;
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery_slots&building_id=<?php echo $this->buildings->id;?>", 
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery_slots&building_id=" + building_id , 
     onSuccess: function(result){
    for (i = 0; i < result.length; ++ i){
   	var row = "<div class='get' id='" + result[i]['id'] + "'><span class=\"label\">Battery " + (i+1) + ":</span>" + result[i]['id']  + " : " + result[i]['units'] +"</div>";
@@ -279,7 +493,7 @@ function request_battery_slots(){
 }
 function get_battery(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery&building_id=" + building_id + "&item=" + itemID, 
     onSuccess: function(result){
      	}
     }).get();
@@ -289,7 +503,7 @@ function get_battery(itemID){
 function put_battery(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=put_battery&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=put_battery&building_id=" + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -394,7 +608,7 @@ function buy_papers(itemID)
 {
 	var a = new Request.JSON(
 	{
-    	url: "index.php?option=com_battle&format=raw&task=buy_papers&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    	url: "index.php?option=com_battle&format=raw&task=buy_papers&building_id=" + building_id + "&item=" + itemID, 
     	onSuccess: function(result)
     	{
     	
@@ -406,7 +620,7 @@ function buy_papers(itemID)
 function sell_papers(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=sell_papers&building_id=<?php echo $this->buildings->id ; ?>&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=sell_papers&building_id=" + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -632,77 +846,7 @@ function buy_building() {
 	});
 } 
 
-function prepare()
-{
 
-var foo = document.id('quantity_box_button_up'); 
-
-// if it returns an Element object, it will be truthy.
-if (foo) {
-
-	$('quantity_box_button_up').addEvent('click', function(){
-		increment();
-		});
-		
-	}	
-		
-		
-		
-		
-		
-		
-		
-}
-
-function prepare2()
-{
-    var foo = document.id('quantity_box_button_up'); 
-if (foo) {
-
-
-	$('quantity_box_button_down').addEvent('click', function(){
-		decrement();
-		});
-
-}
-
-
-}
-
-function increment()
-{
-	var qty_el							= document.getElementById('quantity_adjust'); 
-	var qty								= qty_el.value;
-	if( !isNaN( qty )) qty_el.value++;
-	var cost_el							= document.getElementById('q1'); 
-	var cost 							= cost_el.value;
-	var cost_el_2						= document.getElementById('q2'); 
-	var cost_2							= cost_el_2.value;
-	var time							= 1;
-	document.adminForm.q1t.value		= (cost * (parseInt(qty) + 1));
-	document.adminForm.q2t.value		= (cost_2 * (parseInt(qty) + 1));
-	document.adminForm.time.value		= (time * (parseInt(qty) + 1));	
-	check_stock_control();
-	return false;
-}
-
-function decrement(){
-
-	var qty_el							= document.getElementById('quantity_adjust');
-	var qty								= qty_el.value ;
-
-	if( !isNaN( qty ) && qty > 0 ) qty_el.value--;
-	var cost_el 						= document.getElementById('q1');
-	var cost 							= cost_el.value;
-	var cost_el_2 						= document.getElementById('q2');
-	var cost_2 							= cost_el_2.value;
-	var time							= 1;
-	document.adminForm.q1t.value		= cost * (qty-1);
-	document.adminForm.q2t.value		= cost_2 * (qty-1);
-	document.adminForm.time.value		= (time * (parseInt(qty) - 1));	
-	check_stock_control();
-	 return false;
-	}
 
 function work_conveyer()
 {

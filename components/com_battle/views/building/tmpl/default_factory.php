@@ -18,7 +18,15 @@
 	
 	$javascript			= 'onchange="change();"';
 	$directory			= '/images/banners';
+
+
+if (isset ($this->blueprints)){
+
+
 	$this->lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
+
+}
+
 
 ?>
 
