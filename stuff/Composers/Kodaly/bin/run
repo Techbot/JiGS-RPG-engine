@@ -1,0 +1,43 @@
+#!/usr/bin/php
+<?php
+/**
+ * Command line script to run the Bach Application.
+ *
+ * @package    Kodaly.Application
+ *
+ * @copyright  Copyright (C) {COPYRIGHT}. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE
+ */
+
+// Bootstrap the application.
+$path = getenv('KODALY_HOME');
+if ($path)
+{
+	require_once $path . '/bootstrap.php';
+}
+else
+{
+	require_once realpath(__DIR__ . '/../code/bootstrap.php');
+}
+
+// Set all loggers to echo.
+JLog::addLogger(array('logger' => 'echo'), JLog::ALL);
+
+// Instantiate the application.
+$application = JApplicationCli::getInstance('KodalyApplicationCli');
+
+// Store the application.
+JFactory::$application = $application;
+
+// Wrap the execution in a try statement to catch any exceptions thrown anywhere in the script.
+try
+{
+	// Execute the application.
+	$application->execute();
+}
+catch (Exception $e)
+{
+	// An exception has been caught, just echo the message.
+	fwrite(STDOUT, $e->getMessage() . "\n");
+	exit($e->getCode());
+}

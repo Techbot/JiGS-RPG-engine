@@ -24,4 +24,23 @@
 			<filename>battle.php</filename>
 		</files>
 	</administration>
+	
+	<install>
+
+  <params>
+    <param />
+ 
+    <!-- Example: the following will create a line in the parameters field 
+    reading 'font_size=16\n': -->
+    <param name="font_size" default="16" />
+ 
+    ...
+  </params>
+  <url addpath="....">
+    <param />
+  </url>
+
+</install>
+	
+	
 </extension>

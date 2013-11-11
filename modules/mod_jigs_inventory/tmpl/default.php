@@ -3,6 +3,6 @@
 
 
 
-<div id="inventory">x</div>
+<div id="inventory_module">x</div>
 
 

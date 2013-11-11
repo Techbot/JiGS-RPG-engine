@@ -20,7 +20,7 @@ class Tablecars extends JTable
 	var $nombre = null;	
 	var $xp = null;
 	var $special = null;	
-
+	var $grid = null;	
 
 	function __construct(&$db)
 	{

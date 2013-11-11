@@ -1,15 +1,21 @@
  <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
 <div id="flats">
-<table class="shade-table" >
-<tr style="text-align:center;" ><th width = "20px" >Flat:</th><th width = "20px" >Status:</th><th width = "20px" >Id:</th><th width = "320px" >Message:</th><th>Lease Remaining</th></tr>
+<div class="row">
+<div class="name">Status:</div>
+<div class="name">Id:</div>
+<div class="name">Message:</div>
+<div class="name">Lease Remaining</div>
+</div>
 
  <?php
  //echo '<pre>';
 // print_r($this->flats);
 // echo '</pre>';
 
-
+	$status			= 0;
+	$remaining		= 0;
+	$remaining2		= 0;
 
 
 for ($room = 0 ; $room <= 7 ;$room++){
@@ -23,56 +29,45 @@ for ($room = 0 ; $room <= 7 ;$room++){
 		$this->pics[$room] = 'gallery/black.gif';
 	}
 	
-	?>
-	<tr>
-<td><?php echo $room ?></td>
+ 
+ // Lisa
+	if($status == "0")  
+   {  
+      $status_word = "Vacant"; 
+		$status_tooltip = "Rent";	  
+   }  
+	else 
+   {  
+      $status_word = "Occupied";  
+		$status_tooltip = "Vacate";	  
+   }  
+   
+?>
+	<div class="row">
 
-	<td id="<?php echo $room ?>" class="work_flat" >
-	<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buttons/flat<?php echo $status; ?>.jpg">
-	</td>
+	<div id="<?php echo $room ?>" class="work_flat" >
+	<h4><a href="#" title="Click Here to <?php echo $status_tooltip; ?>"><?php echo $status_word; ?></a></h4>
+	<!--<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buttons/flat<?php echo $status; ?>.jpg">-->
+	</div>
 
-	<td>
-	<img id="avatar_<?php echo $room ?>" src="<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $this->pics[$room] ;?>" height="20px" width="20px">
-	</td>
+	<div id="avatar_<?php echo $room ?>">
+	<img  src="<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $this->pics[$room] ;?>" height="20px" width="20px">
+	</div>
 	
 	
 	
-	<td id="message_<?php echo $room ?>" ><?php echo $this->message[$room]; ?>
-	</td>
+	<div id="message_<?php echo $room ?>" ><?php //echo $this->message[$room]; ?>
+	</div>
 	
-	<td id="timer_<?php echo $room ?>" > <?php echo $remaining ?> days <?php echo $remaining2 ?> hrs
-	</td>
+	<div id="timer_<?php echo $room ?>" > <?php echo $remaining ?> days <?php echo $remaining2 ?> hrs
+	</div>
 	
 	
 	
-	</tr>
+	</div>
 <?php
 } // end of 
 ?>
 
- </table>
 </div><!--flats -->
 
-<script type='text/javascript'>
-function work_flat() {
-	$$('.work_flat').addEvent('click', function(){
-		var itemID = this.get('id');
-		work(itemID);
-		});
-    }	
-    
-    function work(itemID){	 	
-    var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=work_flat&building_id=<?php echo $this->buildings->id ?>&flat=" + itemID  ,
-    onSuccess: function(result){
-      
-    $(result[0]).innerHTML = result[1];	
-    $(result[2]).innerHTML = result[3];	
-    $(result[4]).innerHTML = result[5];
-    $(result[6]).innerHTML = result[7];
-  	    
-    	}
-    }).get();}
-
- work_flat();
- </script>

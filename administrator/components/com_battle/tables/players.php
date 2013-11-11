@@ -4,7 +4,6 @@ defined('_JEXEC') or die('Restricted access');
 
 class TablePlayers extends JTable
 {
-	var $id = null;
 	var $iduser = null;
 	var $username = null;
 	var $id_weapon = null;
@@ -19,13 +18,13 @@ class TablePlayers extends JTable
 	var $intelligence = null;    
 	var $strength = null;    
 
+	var $grid = null;	
 	var $posx = null;	
 	var $posy = null;	
 	var $published = null;
 
-/*	var $image = null;	
+	var $image = null;	
 	var $coffre = null;	
-	var $option = null;
 
 	var $discretion = null;
 	var $rapidte = null;
@@ -41,7 +40,7 @@ class TablePlayers extends JTable
 	var $tempsplanque = null;	
 	var $tempsmove = null;
 	var $ip = null;	
-	var $commentaire = null;	
+	var $comment = null;	
 	var $banque = null;	
 	var $casier = null;	
 	var $mort = null;
@@ -51,7 +50,7 @@ class TablePlayers extends JTable
 	var $volearme = null;	
 	var $voleargent = null;
 
- */	
+ 	
 
 	function __construct(&$db)
 	{

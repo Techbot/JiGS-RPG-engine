@@ -6,15 +6,24 @@ class battleModelBuildings extends JModellist
 	var $_data = null;
 	public function __constuct($config = array())
 	{ 
-	/*	if (empty($config['filter_fields'])) {
-			$config['filter_fields'] = array(
-					'id', 'a.id' ,
-					'title', 'a.name',
-					'alias', 'a.comment'
-					);
-		}
+		$this->db =& JFactory::getDBO();
+		$user = JFactory::getUser();
+		$this->idJoomlaUser = $user->id;
+		$app = JFactory::getApplication();
+		
+		// Get pagination request variables
+		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+		$limitstart = JRequest::getVar('limitstart', 0, '', 'int');
+		// In case limit has been changed, adjust it
+		$grid = JRequest::getVar('filter_grid', 1, '', 'int');		
+		$limitstart = ($limit != 0 ? (floor($limitstart / $limit) * $limit) : 0);
+		
 		parent::__constuct($config);
-	 */
+		
+		$this->setState('limit', $limit);
+		$this->setState('limitstart', $limitstart);
+		$this->setState('filter.search', $search);
+		$this->setState('filter.grid', $grid);	
 	}
 	/**
 	 */
@@ -31,7 +40,7 @@ class battleModelBuildings extends JModellist
 		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
-		$params = JComponentHelper::getParams('com_Battle');
+		$params = JComponentHelper::getParams('com_battle');
 		$this->setState('params',$params);
 		//List state information
 		//	parent::populateState ('a.name','asc');
@@ -56,20 +65,77 @@ class battleModelBuildings extends JModellist
 		$id.= ':' . $this->getState('filter.category_id');
 		return parent::getStoreId($id);
 	}
-	function &getData()
+	
+	
+	
+	
+	
+	function getPagination()
 	{
-		if (empty($this->_data)) {
-			$query = "SELECT * FROM `#__jigs_buildings`";
-			$this->_data = $this->_getList($query);
+		// Load the content if it doesn't already exist
+		if (empty($this->_pagination)) {
+			jimport('joomla.html.pagination');
+			$this->_pagination = new JPagination($this->getTotal(), $this->getState('limitstart'), $this->getState('limit') );
 		}
+		return $this->_pagination;
+	}
+	
+	
+	function getTotal()
+	{
+		// Load the content if it doesn't already exist
+		if (empty($this->_total)) {
+			 
+			 
+			// $query = $this->_buildQuery();
+	
+	
+			$query = "SELECT * FROM #__jigs_buildings";
+	
+			$this->_total = $this->_getListCount($query);
+		}
+		return $this->_total;
+	}
+	
+	function getData()
+	{
+		// if data hasn't already been obtained, load it
+		if (empty($this->_data))
+		{
+			$db				= $this->getDbo();
+			$query			= $db->getQuery(true);
+			 
+			$query->select('*');
+			$query->from($db->quoteName('#__jigs_buildings'));
+	
+			$search			= $this->getState('filter.search');
+	    	$grid = JRequest::getVar('filter_grid', 1, '', 'int');			
+	
+			if (!empty($search))
+			{
+				$search = $db->Quote('%' . $db->getEscaped($search, true) . '%');
+				$query->where('name LIKE ' . $search );
+			}
+			if (!empty($grid))
+			{
+				$query->where('grid = ' . $grid );
+			}		
+			$db->setQuery($query, $this->getState('limitstart'), $this->getState('limit'));
+			echo $query;
+			$this->_data = $db->loadObjectList();
+		}
+	
 		return $this->_data;
 	}
+
+	
 	function get_flats($id)
 	{
-		$query = "SELECT * FROM `#__jigs_flats` WHERE `building` =" . $id . " ORDER BY `flat` ASC" ;
+		$query = "SELECT * FROM #__jigs_flats WHERE building =" . $id . " ORDER BY flat ASC" ;
 		$this->_data2 = $this->_getList($query);		
 		return $this->_data2;
 	}
+	
 	function save_flats($x)
 	{
 		$db =& JFactory::getDBO();
@@ -81,12 +147,80 @@ class battleModelBuildings extends JModellist
 			$status    = $x['status_'   . $i];
 			$timestamp = $x['timestamp_'. $i];		
 
-			$query = "INSERT INTO `#__jigs_flats` (`building`,`flat`,`resident`,`status`,`timestamp`)
+			$query = "INSERT INTO #__jigs_flats (building,flat,resident,status,timestamp)
 				VALUES ($building, $flat,$resident,$status,$timestamp)
-				ON DUPLICATE KEY UPDATE `resident` = $resident,`status` = $status, `timestamp` = $timestamp ";
+				ON DUPLICATE KEY UPDATE resident = $resident,status = $status, timestamp = $timestamp ";
 			$db->setQuery($query);
 			$db->query();		
 		}
 		return $query ;
 	}	
+	
+	function save_fields($array)
+	{
+	   $db =& JFactory::getDBO();
+      $building  = $array['building'];
+
+   	  $status_array[1]     = $array['status_field_1'];
+   	  $status_array[2]     = $array['status_field_2'];
+   	  $status_array[3]     = $array['status_field_3'];
+   	  $status_array[4]     = $array['status_field_4'];
+   	  $status_array[5]     = $array['status_field_5'];
+   	  $status_array[6]     = $array['status_field_6'];
+   	  $status_array[7]     = $array['status_field_7'];
+   	  $status_array[8]     = $array['status_field_8'];
+	
+
+	foreach ($status_array as $status)
+	{
+			
+		$query = "INSERT INTO #__jigs_farms (building,field,status)
+			VALUES ($building, $i,$status)
+			ON DUPLICATE KEY UPDATE status = $status ";
+       	$db->setQuery($sql);
+	    $db->query();
+    }
+   
+	return " Fields saved Successfully";
+	}	
+	
+	function get_fields($id)
+	{
+	    $db = JFactory::getDBO();
+		$query = "SELECT * FROM #__jigs_farms WHERE building =" . $id ;
+		$db->setQuery($query);
+		$fields = $db->loadObjectList();
+		return $fields;
+		
+		
+		
+	}
+	
+	
+	function get_my_blueprints_list() {
+		$db			= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
+			"FROM #__jigs_blueprints " .
+			"LEFT JOIN #__jigs_objects " .
+			"ON #__jigs_blueprints.object = #__jigs_objects.id " .
+			"WHERE #__jigs_blueprints.user_id =".$user->id);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

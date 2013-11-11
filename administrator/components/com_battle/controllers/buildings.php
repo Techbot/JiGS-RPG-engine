@@ -21,18 +21,33 @@ class BattleControllerbuildings extends JController
 	}
 	function save()
 	{
-		JRequest::checkToken() or jexit( 'Invalid Token' );
-		global $option;
+		//JRequest::checkToken() or jexit( 'Invalid Token' );
+	//	global $option;
 		$row =& JTable::getInstance('buildings', 'Table');
-		if (!$row->bind(JRequest::get('post'))) 
+					$cid = JRequest::getVar( 'cid', array(0), '', 'array' );
+$row->id = $cid[0];
+		if (!$row->bind(JRequest::get('get'))) 
 		{
 			JError::raiseError(500, $row->getError() );
 		}
 		if (!$row->store()) 
 		{
 			JError::raiseError(500, $row->getError() );
+			
+		//	print_r($row->getError());
+		//	exit();
+			
 		}
-		$this->setRedirect('index.php?option=com_battle&controller=buildings', 'Building Saved');
+		
+		if(JRequest::getVar('task')=='apply'){
+
+			$this->setRedirect('index.php?option=com_battle&controller=buildings&task=edit&cid='.$row->id, 'Building Saved');
+		}
+		
+		else{
+		
+		$this->setRedirect('index.php?option=com_battle&view=buildings', 'Building Saved');
+		}
 	}
 	function display()
 	{
@@ -53,10 +68,21 @@ class BattleControllerbuildings extends JController
 	}
 	function save_flats()
 	{
+		$model		= $this->getModel('buildings');
+		$x			= JRequest::get('get');
+		$building	= $x['building_0'];
+
+		$message	= $model->save_flats($x);
+		$this->setRedirect('index.php?option=com_battle&controller=buildings&task=edit&cid[]=' . $building . '', $message);
+		$this->display();
+	}
+	function save_fields()
+	{
 		$model = $this->getModel('buildings');
-		$x= JRequest::get('post');
-		$building= $x['building_0'];
-		$message = $model->save_flats($x);
+		$array = JRequest::get('get');
+		
+		$building = $array['building'];
+		$message = $model->save_fields($array);
 		$this->setRedirect('index.php?option=com_battle&controller=buildings&task=edit&cid[]=' . $building . '', $message);
 		$this->display();
 	}

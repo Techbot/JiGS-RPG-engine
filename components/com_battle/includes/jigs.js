@@ -292,3 +292,267 @@ function Portal_Check(direction)
 		}
 	}
 }
+
+
+
+var npc_health = 0;
+
+function shoot(character_id){
+	var d = document.getElementById('shoot');
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=shoot&character=" + character_id,
+			onSuccess: function(result){
+			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			
+			text_message = (result[2]);
+			
+			var new_message = new Element('p',{
+			'display':'table-row',
+			'html': text_message });
+			
+			
+			new_message.inject('message_table','top');
+			
+			
+				if (result[0].health <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1].health <= 0 ) {
+					close();
+					jump();
+					}		
+				}
+			}).get();
+	}
+
+function kick(character_id){
+	var d = document.getElementById('kick');
+	
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=kick&character=" + character_id,
+			onSuccess: function(result){
+			
+//	 alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			text_message = (result[2]);
+
+myElement = $('health');
+	
+//	alert (text_message);
+myElement.set('html', result[1]['health']);	
+if(result[1]['health']<30){
+
+
+
+
+}
+else{
+	
+	
+myElement.setStyle('width', result[1]['health']);
+
+
+}
+
+			var new_message = new Element('p',{
+			'display':'table-row',
+			'html': text_message});
+			
+			
+			new_message.inject('message_table','top');
+				 
+
+
+				if (result[0].health <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1].health <= 0 ) {
+					close();
+					jump();
+					}		
+				}
+			}).get();
+		
+}
+
+function punch(character_id){
+    
+	var d = document.getElementById('punch');
+	var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=punch&character=" + character_id,
+			onSuccess: function(result){
+
+			text_message = (result[2]);
+			var new_message = new Element('p',{
+			'display':'table-row',
+			'html': text_message });
+			
+			new_message.inject('message_table','top');
+
+				 npc_health = result[1].health;
+
+				if (result[0].health <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1].health <= 0 ) {
+					close();
+					jump();
+					}		
+				}
+			}).get();
+}
+
+
+
+
+
+
+
+function shoot_person(character_id){
+	var d = document.getElementById('shoot');
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_playa&type=shoot&character=" + character_id,
+			onSuccess: function(result){
+			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			
+			text_message = (result[2]);
+			
+			var new_message = new Element('p',{
+			'display':'table-row',
+			'html': text_message });
+			
+			
+			new_message.inject('message_table','top');
+			
+			
+				if (result[0] <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1] <= 0 ) {
+					close();
+					jump();
+					}		
+				}
+			}).get();
+	}
+
+function kick_person(character_id){
+	var d = document.getElementById('kick');
+	
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_playa&type=kick&character=" + character_id,
+			onSuccess: function(result){
+			
+			
+			
+//	 alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			text_message = (result[2]);
+
+//myElement = $('health');
+	
+	alert (text_message);
+	
+//	alert(result[1]['health']);
+	
+//myElement.setStyle('width', result[1][2]);
+//myElement.innerhtml(result[1][2]);
+			
+			
+			var new_message = new Element('p',{
+			'display':'table-row',
+			'html': text_message});
+			
+			
+			new_message.inject('message_table','top');
+				 
+
+
+				if (result[0] <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1] <= 0 ) {
+					close();
+					jump();
+					}		
+				}
+			}).get();
+		
+}
+
+function punch_person(character_id){
+    
+	var d = document.getElementById('punch');
+	var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_playa&type=punch&character=" + character_id,
+			onSuccess: function(result){
+
+			text_message = (result[2]);
+			var new_message = new Element('p',{
+			'display':'table-row',
+			'html': text_message });
+			
+			new_message.inject('message_table','top');
+
+				 npc_health = result[1];
+
+				if (result[0] <= 0 )  {
+					close();
+					jump();			
+					}
+				if (result[1] <= 0 ) {
+					close();
+					jump();
+					}		
+				}
+			}).get();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ function do_stuff(){
+      //  var paper = Raphael('diagram', 60, 60), rad = 43, defaultText = 'Stats', speed = 250;
+      var paper = Raphael('diagram', 60, 60);
+ alert(npc_health);
+
+paper.circle(30, 30, npc_health).attr({ stroke: 'none', fill: '#193340' });
+//var circle = paper.circle(50, 40, 10);
+ //  circle.attr("fill", "#f00");
+ //  circle.attr("stroke", "#fff");
+}
+   
+//var circle2 = paper.circle(50, 40, 10);
+//   circle.attr("fill", "#f00");
+//   circle.attr("stroke", "#fff");
+//}
+  // do_stuff();
+
+
+
+
+
+function moo(){
+
+
+myElement.setStyle(property, value);
+
+
+}
+
+

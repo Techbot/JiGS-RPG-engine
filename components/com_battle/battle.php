@@ -5,83 +5,41 @@ class BattleController extends JController
 {
 	function action()
 	{
-		$model = $this->getModel('jigs');
-		$action = JRequest::getVar('action');
-		$result = $model->$action();
-		$heartbeat = $model->heartbeat();
+		$model			= $this->getModel('jigs');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
+		$heartbeat		= $model->heartbeat();
 		echo Json_encode($result);
 	}
-	
-	
-	
-	
-	///test
-	
 
-	function eat()
+	function computer_action()
+	{	
+		$model			= $this->getModel('jigs');
+		$heartbeat		= $model->heartbeat();
+		$player			= $model->get_stats();
+		$model			= $this->getModel ('computer');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action($player);
+		echo Json_encode($result);
+	}
+
+	function building_action()
+	{	
+		$model			= $this->getModel('building');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
+		echo Json_encode($result);
+	}
+
+
+    function display()
 	{
-		$model = $this->getModel('building');
-		$model->eat();
-		$result = 100;
-		echo Json_encode($result);
-	}
 
-	function energy_time()
-	{
-		$building_id = JRequest::getvar(building_id);
-		$model = $this->getModel('building');
-		$result = $model->check_turbines($building_id);
-		echo Json_encode($result);
-	}
+		$db			= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$view		= JRequest::getVar('view');
 
-	function work_turbine()
-	{
-		$building_id = JRequest::getvar(building_id);
-		$line = JRequest::getvar(line);
-		$type = JRequest::getvar(type);
-		$quantity = JRequest::getvar(quantity);
-		$model = $this->getModel('building');
-		$result = $model->work_turbine($building_id,$line,$type,$quantity);
-		echo Json_encode($result);
-	}
-
-	function work_conveyer()
-	{
-		$building_id = JRequest::getvar('building_id');
-		$line = JRequest::getvar('line');
-		$type = JRequest::getvar('type');
-		$quantity = JRequest::getint('quantity');
-		$model = $this->getModel('building');
-		$result = $model->work_conveyer($building_id,$quantity,$type,$line);
-		echo Json_encode($result);
-	}
-
-	function work_flat()
-	{
-		$model = $this->getModel('building');
-		$result = $model->work_flat();
-		echo Json_encode($result);
-	}
-
-	function check_mines()#_jigs_objects.
-	{
-		$building_id = JRequest::getvar(building_id);
-		$model = $this->getModel('jigs');
-		$result = $model->check_mines($building_id);
-		//$result= 'helllo';
-		echo Json_encode($result);
-	}
-
-	function check_factories()
-	{
-		$building_id = JRequest::getvar('building_id');
-		$line = JRequest::getvar('line');
-		$model = $this->getModel('jigs');
-		$result = $model->check_factories($building_id,$line);
-		//$result= 'helllo';
-		echo Json_encode($result);
-	}
-
+<<<<<<< HEAD
 	
 	function check_factory()
 	{
@@ -101,24 +59,54 @@ class BattleController extends JController
 		$user =& JFactory::getUser();
 		$view = JRequest::getVar('view');
 		if ($user->id==0)
+=======
+		
+		if ($view=='factions'||$view=='group')
+>>>>>>> upstream/master
 		{
-			JRequest::setVar('view', 'loggedout');
+			JRequest::setVar('view', $view);
+			//$view = $this->getView($view, 'html') ;
+			//$view->setModel( $this->getModel( 'factions' )) ;
+			//$view->setModel( $this->getModel( 'computer'),true ) ;
+			//parent::display();
+					
 		}
+		
+		
+		elseif ($user->id==0)
+		{
+			//JRequest::setVar('view', 'loggedout');
+			$url ="/index.php?option=com_comprofiler&task=login";
+			$this->setRedirect( $url );
+		}
+
 		if (!$view)
 		{
 			JRequest::setVar('view', 'single');
+			$view = $this->getView('single', 'html') ;
+			$view->setModel( $this->getModel( 'jigs' )) ;
+			$view->setModel( $this->getModel( 'computer'),true ) ;
+			$view->display();
 		}
-		
-			$db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
-			$db->query();
-			$player_status = $db->loadResult();
-			if ($player_status == 2){
-				JRequest::setVar('view', 'room');
-			}
-			if ($player_status == 3){
-				JRequest::setVar('view', 'ward');
-			}
-		
+
+		if ($user->id!=0)
+		{
+		    $db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
+		    $db->query();
+		    $player_status = $db->loadResult();
+		    if ($player_status == 2)
+		    {
+			    JRequest::setVar('view', 'room');
+		    }
+		    if ($player_status == 3)
+		    {
+			    JRequest::setVar('view', 'ward');
+		    }
+		}
+
+
+
+
 		parent::display();
 	}
 }

@@ -1,9 +1,9 @@
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-core.js"></script>
+<!--<script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-core.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/mootools-more_.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/clientcide.2.2.0.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/_class.noobSlide.packed.js"></script>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.js"></script>
-
+-->
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' );
 
@@ -28,13 +28,13 @@ echo '</pre>';
   
 <div class="desc">
 
-<img src="<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $this->player->avatar ?>" class="thumbnail" alt="<?php $this->people->name ; ?>" title="<?php $this->people->name ; ?>" width="100" height="100" id="character_image" />
+<img src="<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $this->player->avatar ?>" class="thumbnail" alt="<?php $this->player->username ; ?>" title="<?php $this->player->username ; ?>" width="100" height="100" id="character_image" />
 
 <div class="stats">
 <table class="stats" cellspacing="0" cellpadding="0">
   <tr>
     <th scope="row">ID</th>
-    <td><?php echo $this->player->id ; ?></td>
+    <td><?php echo $this->player->iduser ; ?></td>
   </tr>
   <tr>
     <th scope="row">Name</th>
@@ -77,39 +77,36 @@ echo '</pre>';
 
 <?php
 /////foreach ($this->inv as $inv_object)
-{
-echo '<br>' . $inv_object[name] ;
-}
+//{
+//echo '<br>' . $inv_object['name'] ;
+//}
 ?>
 
 </div><!-- end inventory -->
 
 
 <div id="action" class="clearfix">
-  <div class="recruit"><a class="recruit" href="#">Recruit</a></div>
-  <div class="attack"><a onclick="attack_playa(<?php echo $this->player->iduser ; ?>)" id="attack">Attack</a></div>
-  <div class="kick"><a class="kick" href="#">Kick</a></div>
+<!--   <div class="recruit"><a class="recruit" href="#">Recruit</a></div>  -->
+
+
+<div class="attack"><a onclick="attack_playa(<?php echo $this->player->iduser ; ?>)" id="attack">Attack</a></div>
+ <!--  <div class="kick"><a class="kick" href="#">Kick</a></div>
   <div class="punch"><a class="punch" href="#">Punch</a></div>
   <div class="shoot"><a class="shoot" href="#">Shoot</a></div>
-  <div class="bribe"><a class="bribe" href="#">Bride</a></div>
+  <div class="bribe"><a class="bribe" href="#">Bribe</a></div>
   <div class="rob"><a class="rob" href="#">Rob</a></div>
-  <div class="talk"><a class="talk" href="#">Talk</a></div>
-</div><!-- end action -->
+  <div class="talk"><a class="talk" href="#">Talk</a></div>-->
+
+  
+  </div><!-- end action -->
 
 
-
-
-
-
+<script type="text/javascript">
 ///////////////////////////////////////////////////////////////////////
 
-// Fighting functions
+//Fighting functions
 
-
-
-////////////////////////////////////////////
-<script type="text/javascript">
-
+///////////////////////////////////////////
 function attack_playa(player_id){
 	var d = document.getElementById('attack');
 
@@ -119,11 +116,11 @@ function attack_playa(player_id){
 			
 			if (result[1] > 0 ) {
 				
-				alert('me: ' + result[0] + '   Him: ' + result[1]);
+				alert(result[2] + 'me: ' + result[0] + '   Him: ' + result[1]);
 			}
 			
 			else {
-				alert('me: ' + result[0] + '   Him: ' + result[1]);	
+				alert(result[2] + 'me: ' + result[0] + '   Him: ' + result[1]);	
 		close();
 				jump();
 				
@@ -142,11 +139,11 @@ function kick_playa(player_id){
 			
 			if (result[1] > 0 ) {
 				
-				alert('me: ' + result[0] + '   Him: ' + result[1]);
+				alert(result[2] + '  me: ' + result[0] + '   Him: ' + result[1]);
 			}
 			
 			else {
-				alert('me: ' + result[0] + '   Him: ' + result[1]);	
+				alert(result[2] + '  me: ' + result[0] + '   Him: ' + result[1]);	
 		close();
 				jump();
 				

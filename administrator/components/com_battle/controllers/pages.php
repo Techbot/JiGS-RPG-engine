@@ -21,8 +21,8 @@ class BattleControllerPages extends JController
 	}
 	function save()
 	{
-		JRequest::checkToken() or jexit( 'Invalid Token' );
-		global $option;
+		//JRequest::checkToken() or jexit( 'Invalid Token' );
+		
 		$row =& JTable::getInstance('pages', 'Table');
 		if (!$row->bind(JRequest::get('post'))) 
 		{
@@ -32,8 +32,27 @@ class BattleControllerPages extends JController
 		{
 			JError::raiseError(500, $row->getError() );
 		}
-		$this->setRedirect('index.php?option=' . $option.'&controller=pages', 'Page Saved');
+		
+		
+			if(JRequest::getVar('task')=='apply'){
+
+			$this->setRedirect('index.php?option=com_battle&controller=pages&task=edit&cid='.$row->id, 'Page Saved');
+		}
+		
+		else{
+		
+		$this->setRedirect('index.php?option=com_battle&view=pages', 'Page Saved');
+	
+	
+		}
+			$this->display();
+	
 	}
+	
+	
+	
+	
+	
 	function display()
 	{
 		$view = JRequest::getVar('view');
@@ -49,12 +68,5 @@ class BattleControllerPages extends JController
 		}
 		parent::display();
 	}
-	function save_flats()
-	{
-		global $option;
-		$page= JRequest::getVar('page');
-		echo $page;
-		$model = $this->getModel('pages');
-		$this->display();
-	}
+
 }

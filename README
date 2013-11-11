@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 test
 
 Left Test
 
 stuff
+=======
+/**
+ * @package		jiGS
+ * @copyright	Copyright (C) 2005 - 2013 EMC23, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+ 
+ JiGS - JiGS InterActive Game System
+>>>>>>> upstream/master

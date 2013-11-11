@@ -75,9 +75,13 @@ div#footer-user-modules {}
 
 div#user11, div#user12, div#user13, div#user14 {}
 
-div#footer {
+div#messages {
 background: url(../images/footer.png) #000 50% 0% no-repeat;
 }
+
+/*div#footer {
+background: url(../images/footer.png) #000 50% 0% no-repeat;
+}*/
 
 div.copyright {
 font-size: 85%;
@@ -438,9 +442,9 @@ background: url(../images/trans.png) transparent center top repeat;
 #right .moduletable,
 #right .moduletable_menu,
 #right .moduletable_text {
--moz-border-radius: 15px 15px 15px 15px;
-border-radius: 15px 15px 15px 15px;
-border: 1px solid #333;
+-moz-border-radius: 0;
+border-radius: 0;
+border: 0 solid #333;
 background: url(../images/trans_dark.png) transparent center top repeat;
 }
 
@@ -556,7 +560,7 @@ color: #FFFFFF;
 
 .inputbox {
 border:1px solid #009999;
-background-image: url(../images/table_bg01.png);
+background:#101010;
 color: #999999;
 }
 
@@ -993,12 +997,226 @@ td.sectiontableheader:last-child,
 
 
 a.fnord img {
-margin: 10px 10px 0 0;
+margin: 10px 10px 10px 0;
 height:32px;
 width:32px;
-display:inline;
+position:absolute;
+right:0;
+bottom:0;
+float:right;
+display:inline-block;
 }
 
 #globalWrapper {/*Wiki wrapper*/
 padding:10px;
+}
+
+
+
+
+
+
+/* Memegrid */
+table.memegrid {}
+
+.meme {
+	margin:0 auto;	
+	position:relative;
+	z-index:111;
+	height:70px;
+	width:70px;	
+}
+.meme img {
+	position:absolute;
+	left:0;
+	-webkit-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+}
+.meme img.top:hover {
+	opacity:0;
+}
+
+
+
+
+
+
+@-webkit-keyframes glow {
+	0% {
+		-webkit-box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@-moz-keyframes glow {
+	0% {
+		-moz-box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		-moz-box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@-ms-keyframes glow {
+	0% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@-o-keyframes glow {
+	0% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+@keyframes glow {
+	0% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 0.5);
+		border-color: rgba(0,0,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 16px rgba(66, 140, 240, 1.0), 0 0 36px rgba(0, 140, 255, 1.0);
+		border-color: rgba(0,0,255,1.0);
+	}
+}
+
+.meme:hover, .meme.hover_effect  {
+	z-index:999;
+	
+	-webkit-animation-name: glow;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+
+	-moz-animation-name: glow;
+	-moz-animation-duration: 1s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-direction: alternate;
+	-moz-animation-timing-function: ease-in-out;
+
+	-ms-animation-name: glow;
+	-ms-animation-duration: 1s;
+	-ms-animation-iteration-count: infinite;
+	-ms-animation-direction: alternate;
+	-ms-animation-timing-function: ease-in-out;
+
+	-o-animation-name: glow;
+	-o-animation-duration: 1s;
+	-o-animation-iteration-count: infinite;
+	-o-animation-direction: alternate;
+	-o-animation-timing-function: ease-in-out;
+
+	animation-name: glow;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+
+div#messages {
+  padding-top: 5px;
+  width:620px;
+  height:80px;
+  overflow:auto;
+  margin:0 auto;
+  text-align:center;
+}
+
+.shoutbox .inputbox {
+	background: #101010;
+	border: 1px solid #009999;
+	color: #999999;
+	width:120px;
+	margin:2px 0 0 0;
+	padding:2px 1px;
+	float:left;
+	height:15px;
+	line-height:22px;
+	font-size: 10px;
+}
+
+.shoutbox .inputbox:hover, 
+.shoutbox .inputbox:focus {
+	border:1px solid #666;
+}
+
+.shoutbox .button {
+	font-size: 10px;
+	border-left: 0 #009999 solid;
+	width:37px;
+	margin:2px 2px 0 0;
+	padding:2px 0;
+	float:right;
+	text-align:center;
+}
+
+.shoutbox p {
+	font-size: 10px;
+	line-height:14px;
+	margin:0;
+}
+.shoutbox label {
+	color: #999999;
+}
+.shoutbox label em {
+	color: #FFFFFF;
+}
+.shoutbox a {
+	margin:0 2px;
+}
+.lastMessage {
+  color: #999999;
+}
+
+em.responseTime {
+  display: inline-block;
+  text-transform: lowercase;
+}
+.jwts_slider {margin: 0;}
+
+.jwts_title {
+  background: none #333;
+}
+.jwts_title_left {
+  background: none #333;
+}
+a.jwts_title_text, a.jwts_title_text:link {
+  color: #fff;
+}
+
+/*forum*/
+
+#Kunena div.kblock div.kbody {
+  border-color: rgba(0, 0, 0, 1);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#Kunena tr.krow1 td,
+#Kunena tr.krow2 td {
+  border-bottom: 1px solid #333 !important;
+}
+#Kunena .kforum-pathway {
+    background: rgba(0, 0, 0, 0.6);
+}
+#Kunena .kpostbuttonset, #Kunena tr.krow1 .kpostbuttons, #Kunena table#kpostmessage .ktxtarea, #Kunena #kbbcode-preview, #Kunena #kpost-result div, #Kunena div#kcolor-palette, #Kunena div#link, #Kunena div#image, #Kunena div#video, #Kunena form.kform-report input, #Kunena form.kform-report textarea, #Kunena .kfile-input-button:hover, #Kunena .kfile-input-button:focus, #Kunena .kcredits-intro, #Kunena .kcredits-language, #Kunena .kwholegend, #Kunena .kwhoonline, #Kunena div.kmoderate-message, #Kunena div.current, #Kunena #kprofilebox-toggle, #Kunena #kpost-message .invalid, #lbImage {
+color:#FFF !important;
+}
+
+#Kunena .kiconsel {
+  display:inline-block;
+  float:left;
 }

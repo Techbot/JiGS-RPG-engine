@@ -21,11 +21,11 @@ else
 	JToolBarHelper::cancel();
 }
 ?>
-<form action="index.php" method="post" name="adminForm" id="adminForm">
+<form action="index.php" method="get" name="adminForm" id="adminForm">
   <fieldset class="adminform">
     <legend>Details</legend>
-    <table class="admintable">
-    <tr>
+    <table class="admintable">    
+   
       <td width="100" align="right" class="key">
 	Name:
       </td>
@@ -89,16 +89,27 @@ else
       <td width="100" align="right" class="key">
 	type:
       </td>
-      <td> <input class="text_area" type="text" name="type" id="type" size="50" maxlength="250" value="<?php echo $this->row->type; ?>" />
+      
+      
+      <td>
+      
+
+	<?php echo $this->dropdown; ?>
+      
       </td>
     </tr>
+    
+    
+    
+    
+    
     <tr>
       <td width="100" align="right" class="key">
 	image:
       </td>
       <td> <input class="text_area" type="text" name="image" id="image" size="50" maxlength="250" value="<?php echo $this->row->image; ?>" />
       </td>
-    </tr>
+    </tr> 
   <tr>
       <td width="100" align="right" class="key">
 	coleur:
@@ -156,13 +167,28 @@ else
 	Notes:
       </td>
       <td>
-	<textarea class="text_area" cols="20" rows="4" name="notes" id="notes" style="width:500px"><?php echo $this->row->comment; ?></textarea>
+
+	<textarea class="text_area" cols="20" rows="4" name="comment" id="comment" style="width:500px"><?php echo $this->row->comment; ?></textarea>
       </td>
+     
     </tr>
+    
+    
+      <tr>
+      <td width="100" align="right" class="key">
+	Messages:
+      </td>
+      <td>
+
+	<textarea class="text_area" cols="20" rows="4" name="messages" id="messages" style="width:500px"><?php echo $this->row->messages; ?></textarea>
+      </td>
+     
+    </tr>
+
     </table>
   </fieldset>
-  <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-  <input type="hidden" name="option" value="<?php echo $option;?>" />
+  <input type="hidden" name="cid" value="<?php echo $this->row->id; ?>" />
+  <input type="hidden" name="option" value="com_battle" />
   <input type="hidden" name="controller" value="buildings" />
   <input type="hidden" name="task" value="" />
   <?php echo JHTML::_( 'form.token' ); ?>
