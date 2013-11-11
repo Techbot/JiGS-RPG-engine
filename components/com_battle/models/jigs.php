@@ -795,7 +795,7 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_character_inventory($id)
+	function moved_get_character_inventory($id)
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -1444,7 +1444,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $result;
 	}
 
-	function attack_playa()
+	function attack_player()
 	{
 		$db		= JFactory::getDBO();
 		$player		= JFactory::getUser();
@@ -1541,22 +1541,22 @@ $text .= "<br>" . $inv_object["name"] ;
 	}
 
 
-	function attack()
+	function attack_character()
 	{
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$db				= JFactory::getDBO();
+		$user			= JFactory::getUser();
 		$character_id	= JRequest::getInt('character');
-		$sql= "SELECT iduser, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
+		$sql			= "SELECT iduser, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
 		$db->setQuery($sql);
-		$player		= $db->loadObject();
+		$player			= $db->loadObject();
 
 		$player->dice	= rand(0, 15);
 
 		$db->setQuery("SELECT id, name, health, money FROM #__jigs_characters WHERE id =" . $character_id);
-		$npc		= $db->loadObject();
+		$npc			= $db->loadObject();
 
-		$npc->dice=rand(0, 5);
-		$attack_type = JRequest::getCmd('type');
+		$npc->dice		= rand(0, 5);
+		$attack_type	= JRequest::getCmd('type');
 
 		switch ($attack_type)
 		{
@@ -1564,12 +1564,12 @@ $text .= "<br>" . $inv_object["name"] ;
 		case 'shoot':
 			if ($player->dice > $npc->dice)
 			{
-				$npc->health	= intval($npc->health - 10);
-				$attack_message	= "You shoot " . $npc->name . " and inflict 30 damage points to his health.";
+				$npc->health	= intval($npc->health - 30);
+				$attack_message	= "You shoot " . $npc->name . " and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
 			}
 			else
 			{
-				$attack_message	= "You shoot " . $npc->name . " and miss.";
+				$attack_message	= "You shoot " . $npc->name . " and miss.You: $player->health ,Opponent: $npc->health";
 			}
 			$player->ammunition--;
 			break;
@@ -1578,13 +1578,13 @@ $text .= "<br>" . $inv_object["name"] ;
 		case 'kick':
 			if ($player->dice > $npc->dice)
 			{
-				$npc->health	= intval($npc->health - 10);
-				$attack_message	= "You kick " . $npc->name . "and inflict 30 damage points to his health.";
+				$npc->health		= intval($npc->health - 30);
+				$attack_message		= "You kick " . $npc->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
 			}
 			else
 			{
 				$player->health		=	intval($player->health - 10);
-				$attack_message	=	"You kick " . $npc->name . "and miss and incur 10 damage points to your health.";
+				$attack_message		=	"You kick " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
 			}
 			break;
 
@@ -1593,12 +1593,12 @@ $text .= "<br>" . $inv_object["name"] ;
 			if ($player->dice >= $npc->dice)
 			{
 				$npc->health	=	intval($npc->health - 20);
-				$attack_message	= "You punch " . $npc->name . "and inflict 30 damage points to his health.";
+				$attack_message	= "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
 			}
 			else
 			{
 				$player->health	= intval($player->health - 10);
-				$attack_message	= "You punch " . $npc->name . "and miss and incur 10 damage points to your health.";
+				$attack_message	= "You punch " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health";
 			}
 			break;
 		}
@@ -1628,8 +1628,8 @@ $text .= "<br>" . $inv_object["name"] ;
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		$this->sendFeedback($player->iduser,$attack_message);
 
-		$result[0]	= $player;
-		$result[1]	= $npc;
+		$result[0]	= $player->health;
+		$result[1]	= $npc->health;
 		$result[2]	= $attack_message;
 		return $result;
 	}
