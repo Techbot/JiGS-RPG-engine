@@ -872,6 +872,29 @@ function work(){
 	}).get();
 }
 
+function work_reprocessor()
+{
+    var foo = document.id('submit_c'); 
+    if (foo) {
+	$('submit_c').addEvent('click', function()
+	{
+		reprocess();
+	});
+
+}
+}
+
+function reprocess(){
+	var a = new Request.JSON(
+	{
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=reprocess&quantity=" + document.adminForm.time.value 
+		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
+		onSuccess: function(result){
+			$('adminForm').setStyle('visibility','hidden');
+			$('conveyor_progress').setStyle('visibility','visible');
+			}
+	}).get();
+}
 
 function test_rob()
 {

@@ -81,17 +81,24 @@ vertical-align:middle;
 }
 
 tr.d0 td,
-table.shade-table tr:nth-child(even) {
+table.shade-table tr:nth-child(even),
+.sectiontableentry1  {
 background-color: #080808;
 color: #ccc;
 border-bottom:1px dotted #333;
 }
 
 tr.d1 td,
-table.shade-table tr:nth-child(odd) {
+table.shade-table tr:nth-child(odd),
+.sectiontableentry2 {
 background-color: #131313;
 color: #ccc;
 border-bottom:1px dotted #333;
+}
+
+.cbft_image {
+background-color: transparent;
+border-bottom:0 dotted #333;
 }
 
 
@@ -659,7 +666,8 @@ div.work_field  img{float:none !important;}
 div#batteries .label,
 div#metal .label,
 div#inventory .label,
-div#stats .label {
+div#stats .label ,
+div#inventory_module .label {
 	text-align:left;
 	display:inline-block;
 	text-transform: uppercase;
@@ -971,8 +979,17 @@ cursor:pointer;
 }
 
 
+input[type="button"]{
+background: #009999;
+color:#000000;
+border: 1px solid #333333;
+}
 
-
+input[type="button"]:hover{
+background: #00FFFF;
+color:#000000;
+border: 1px solid #333333;
+}
 
 
 

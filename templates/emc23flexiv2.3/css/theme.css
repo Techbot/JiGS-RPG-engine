@@ -1220,3 +1220,40 @@ color:#FFF !important;
   display:inline-block;
   float:left;
 }
+
+
+
+
+
+.cbProfile {
+color:#333;
+}
+
+
+.cbProfile label {
+color:#333;
+}
+
+.cbProfile .cb_tabmain {
+background:#111111;
+}
+
+.dynamic-tab-pane-control .tab-page {
+  background: #080808;
+  color: #ffffff;
+}
+.dynamic-tab-pane-control .tab-row .tab {
+  background: #222;
+}
+.dynamic-tab-pane-control .tab-row .tab a:link, 
+.dynamic-tab-pane-control .tab-row .tab a:visited {
+  color: #ffffff;
+}
+.dynamic-tab-pane-control .tab-row .tab.hover {
+background: #009999;
+color:#000000;
+}
+
+.dynamic-tab-pane-control .tab-row .tab.selected {
+  background:#080808;
+}
