@@ -297,7 +297,7 @@ div.name {
 	text-transform:uppercase;
 }
 div.desc {
-	width:60%;
+	/*width:60%;*/
 	float:left;
 }
 div#profile div.desc {

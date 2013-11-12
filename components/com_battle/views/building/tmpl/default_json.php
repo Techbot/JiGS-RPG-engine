@@ -31,12 +31,17 @@ $body ='<div id="building" class="clearfix"><!-- This should replace div#contain
           <span class="red"><a href="#" title="Allocate stats points">-</a></span>
         </span>
       </div>
+      
+      
       <div class="desc">
         <img src="components/com_battle/images/buildings/'.$this->buildings->image  . '"
 		class="thumbnail" alt="' . $this->buildings->name . ' title="' . $this->buildings->name . '"
 		width="100" height="100" id="building_image" />
         <p class="desc">' . $this->buildings->comment  . '</p>
       </div><!-- end desc -->
+
+     
+     
       <div class="stats">
         <table class="stats" id="stats" >
           <tr>
@@ -49,7 +54,7 @@ $body ='<div id="building" class="clearfix"><!-- This should replace div#contain
           </tr>
           <tr>
             <th scope="row">Energy</th>
-            <td>' . $this->buildings->energy  . '></td>
+            <td>' . $this->buildings->energy  . '</td>
           </tr>
           <tr>
             <th scope="row">Type</th>

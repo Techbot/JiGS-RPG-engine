@@ -10,9 +10,7 @@ class BattleViewRoom extends JView
 	function display($tpl = null)
 	{
 	//	$id = (int) JRequest::getVar('iduser', 0);
-	
-		
-		$model = &$this->getModel();
+		$model = $this->getModel();
 		$model->enter_room();
 		
 	//	echo '<pre>';
