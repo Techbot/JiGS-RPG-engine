@@ -11,10 +11,9 @@ defined('_JEXEC') or die('Restricted access');
 
 require_once (dirname(__FILE__).DS.'helper.php');
 
-$layout = $params->get('style','default'); 
+$layout     = $params->get('style','default'); 
 
-$path = JModuleHelper::getLayoutPath('mod_jigs_inventory', $layout);
-
+$path       = JModuleHelper::getLayoutPath('mod_jigs_inventory', $layout);
 
 if (file_exists($path))
 	{
@@ -22,28 +21,26 @@ if (file_exists($path))
 
 	}
 ?>
-
-
 <script type='text/javascript'>
-
-function request_inventory(){
-	
-	var all = '';
-	var details = this.details;
-	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory2", 
-    onSuccess: function(result){
-    for (i = 0; i < result.length; ++ i){
-  var row = "<span class=\"label\">Item" + (i+1) + ":</span>" + result[i].name ;
-  all= all + row + "<br />";  
-    	}
-    	$('inventory_module').innerHTML = all;	
-    }	
-    	
+function request_inventory()
+{
+	var all         = '';
+	var details     = this.details;
+	var a           = new Request.JSON(
+	{
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory2", 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+                var row = "<span class=\"label\">Item" + (i+1) + ":</span>" + result[i].name ;
+                all = all + row + "<br />"; 
+            }
+        	all = all + "<input type='button' value='Update' onclick= 'request_inventory();'></button>";
+        	$('inventory_module').innerHTML = all;	
+        }	
     }).get();
 
 }
 request_inventory();
-request_inventory.periodical(100000);	
 </script>
-	

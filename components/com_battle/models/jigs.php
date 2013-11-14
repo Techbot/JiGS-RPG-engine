@@ -1027,8 +1027,8 @@ $text .= "<br>" . $inv_object["name"] ;
 	{
 		$db			= JFactory::getDBO();
 		$user			= JFactory::getUser();
-		$building_id		= JRequest::getvar(building_id);
-		$item			= JRequest::getvar(item);
+		$building_id		= JRequest::getvar('building_id');
+		$item			= JRequest::getvar('item');
 
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
 		$player_money		= $db->loadResult();
@@ -1713,20 +1713,14 @@ $text .= "<br>" . $inv_object["name"] ;
 
 	function swap()
 	{
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$weapon_id	= JRequest::getvar(weapon_id);
+		$weapon_id	= JRequest::getvar('weapon_id');
 		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE iduser =".$user->id);
 		$db->query();
 		$result		= $weapon_id ;
 		return $result;
 	}
-
-	
-
-
-
-
 
 	function deposit()
 	{

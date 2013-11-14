@@ -5,50 +5,33 @@
 	<div class="sample diner">
 		<div class="mask3">
 			<div id="box4">
-			
-
-
 				<?php
-					for ($land = 1 ; $land <= 8 ;$land++){
-	
+					for ($land = 1 ; $land <= 8 ;$land++)
+					{
 					$status = $this->fields->status_field[$land];
-
-				?>
+				    ?>
 					<div>
- 						<div style = "visibility: visible;">Field <?php echo $land ?> :
- 						</div>
-	
+  						<div style = "visibility: visible;">Field <?php echo $land ?> :	</div>
 						<div id = "<?php echo $land ?>" class="work_field" style="visibility:visible;text-align:center;">
 						<a href="#"   class = "field" ><img src="/components/com_battle/images/<?php  echo $status; ?>.gif"></a>
-						</div>
-
-							 Status: Field is Barren. Click to begin Tilling.					
-					
-							<div id='farm_progress' style='visibility: hidden;'>
-					<label title="when manufactoring began">Started: </label><span id="since"></span>
-					<label>Current Time: </label><span id="now"><?php echo date('l jS \of F Y h:i:s A',$now) ; ?></span>
-					
-					<div id="time_elapsed" class='wrapper sec'>
-					<label title="since manufactoring began">Time Elapsed: </label> <span id="elapsed"> </span> secs
 					</div>
-					<div id="time_remaining" class='wrapper sec'>
-					<label title="until manufactoring is complete">Time Remaining: </label>
-					<span id="remaining"> </span>secs
-					</div>
-					</div>
+                        <div id = "status_message">Status: Field is Barren. Click to begin Tilling.</div>
+					    <div id='farm_progress' style='visibility: hidden;'>
+					    <img src ="components/com_battle/images/5.gif"/>
+					        <label title="when manufactoring began">Started: </label><span id="since"></span>
+					        <label>Current Time: </label><span id="now"><?php echo date('l jS \of F Y h:i:s A',$now) ; ?></span>
+					        <div id="time_elapsed" class='wrapper sec'>
+					        <label title="since manufactoring began">Time Elapsed: </label> <span id="elapsed"> </span> secs
+					        </div>
+    				        <div id="time_remaining" class='wrapper sec'>
+					        <label title="until manufactoring is complete">Time Remaining: </label>
+					        <span id="remaining"> </span>secs
+					        </div>
+					    </div>
 					<!-- end of conveyor_progress -->
-					
- 
-						<div class='clear'>
-						</div>
+						<div class='clear'></div>
 					</div>
-					
-				
-					
-	 <?php		
- }
-?>
-
+	         <?php } ?>
 	</div>
 </div>
 	<p class="buttons" id="handles4">

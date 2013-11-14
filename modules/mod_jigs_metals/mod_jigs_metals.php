@@ -26,44 +26,25 @@ if (file_exists($path))
 <script type='text/javascript'>
 
 function request_metals(){
-
 	var total_metals = parseInt(0);
-	 var all = '';
+	var all = '';
 	//	var details = this.details;
-	
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_metals2", 
-    onSuccess: function(result){
-       	    	
-   for (i = 0; i < result.length; ++ i){
-	   
-  var row = "<span class=\"label\">Metal" + (i+1) + ":</span>" + result[i].name  + " : " + result[i].quantity;
-  all= all + row;  
-
-  total_metals = parseInt(total_metals) + parseInt(result[i].quantity);
-  
-   all = all + '<br />';
-
-
-    	}
-   all = all + '<hr />Total Metals: ' + total_metals;
-   
-   all = all + '<br /><input type="button" value="Update" onclick= "request_metals();"></button>'; 
-	
-    	$('metal').innerHTML = all;	
-
-		
-		
-    }	
-    	
-    }).get();
-
-}
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_metals2", 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+                var row         = "<span class=\"label\">Metal" + (i+1) + ":</span>" + result[i].name  + " : " + result[i].quantity;
+                all             = all + row;  
+                total_metals    = parseInt(total_metals) + parseInt(result[i].quantity);
+                all             = all + '<br />';
+            }
+            all = all + '<hr />Total Metals: ' + total_metals;
+            all = all + '<br /><input type="button" value="Update" onclick= "request_metals();"></button>'; 
+            $('metal').innerHTML = all;	
+        }).get();
+    }
     request_metals();
-	request_metals.periodical(55285);
-
-</script>
-
 	
-
-	
+</script>	

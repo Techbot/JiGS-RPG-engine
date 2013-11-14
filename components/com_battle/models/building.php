@@ -216,7 +216,7 @@ class BattleModelBuilding extends JModel
 		}
 		else
 		{
-			return true;
+			return $this->get_field_status_text($status);
 		}
 	}
 ///////////////////////////////////////////////////////
@@ -362,24 +362,61 @@ class BattleModelBuilding extends JModel
 	{
 		$building_id			= JRequest::getvar('building');
 		$field_id				= JRequest::getvar('field');
-		//$user =& JFactory::getUser();
 		$now					= time();
 		$db						= JFactory::getDBO();
-		$query					= "SELECT status,timestamp,finished 
-			FROM #__jigs_farms 
-			WHERE building = $building_id 
-			AND field = $field_id";
+		$query					= "SELECT status,timestamp,finished
+		                            FROM #__jigs_farms
+		                            WHERE building = $building_id
+		                            AND field = $field_id";
 		$db->setQuery($query);
-		$result					= $db->loadAssoc();
-		$result['now']			= date('l jS \of F Y h:i:s A',$now);
-		$result['since']		= date('l jS \of F Y h:i:s A',$result['timestamp']);
-		$result['elapsed']		= (int)(($now-$result['timestamp']));
-		$result['remaining']	= (int)($result['finished'] - $now );
-		$result['status']		= (int)($result['status']);
+		$result					    = $db->loadAssoc();
+		$result['now']			    = date('l jS \of F Y h:i:s A',$now);
+		$result['since']		    = date('l jS \of F Y h:i:s A',$result['timestamp']);
+		$result['elapsed']		    = (int)(($now-$result['timestamp']));
+		$result['remaining']	    = (int)($result['finished'] - $now );
+		$result['status']		    = (int)($result['status']);
+		$result['status_message']   = $this->get_field_status_text($result['status']);
+		
+		
 		$result['field']		= $field_id;
 
 		return $result;
 	}
+
+    function get_field_status_text($status)
+    {
+    
+    
+            if ($status==0) 
+		    {
+        	    $status_message = "Status: Field is Barren. Click to begin Tilling.";
+		    }  
+		    if ($status==1) 
+		    {
+        	    $status_message = "Status: Field is being tilled.";
+		    }		
+		    if ($status==2) 
+		    {
+        	    $status_message = "Status: Field is tilled. Click to begin sowing.";
+		    }		
+		
+		    if ($status==3) 
+		    {
+        	    $status_message = "Status: Field is being sowed.";
+		    }		
+		    if ($status==4) 
+		    {
+        	    $status_message = "Status: Field is sowed. Click to begin harvesting.";
+		    }		
+		
+		    if ($status==5) 
+		    {
+        	    $status_message = "Status: Field is being harvested.";
+		    }		
+		    
+		    return $status_message;
+    
+    }
 
 	function check_reprocessor($building_id,$line_id)
 	{
@@ -515,8 +552,9 @@ class BattleModelBuilding extends JModel
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		
-		for ($i=0 ;$i<=7;$i++){
-		$fields->status_field[$i] = 0 ;
+		for ($i=0 ;$i<=7;$i++)
+		{
+		    $fields->status_field[$i] = 0 ;
 		}
 		
 		$query		= "SELECT * FROM #__jigs_farms WHERE building = $building_id";
@@ -846,15 +884,6 @@ class BattleModelBuilding extends JModel
 		return $result;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }// end of class

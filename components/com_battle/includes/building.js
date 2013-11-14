@@ -27,7 +27,55 @@
 	window.building_type = col.firstChild.nodeValue;	
 	//change();
 	//noobslide
-    
+	
+	
+	$$('.b_button').addEvent('click', function(){
+	
+		var itemID = this.get('id');
+ 		
+ 		switch(itemID)
+ 		{
+ 		
+ 	case 'primary':
+ 		$$('.panel').set('styles',{visibility:'hidden'});
+ 		$('first_panel').set('styles',{visibility:'visible'});
+  		$$('.b_button').set('class','b_button inactive');
+		$('primary').set('class', 'b_button active');
+ 		break;
+ 	case 'defence':
+ 		$$('.panel').set('styles',{visibility: 'hidden'});
+ 		$('second_panel').set('styles',{visibility: 'visible'});
+  		$$('.b_button').set('class','b_button inactive');
+		$('defence').set('class', 'b_button active');
+ 		break;	
+   	case 'distr':
+ 		$$('.panel').set('styles',{visibility:'hidden'});
+ 		$('third_panel').set('styles',{visibility:'visible'});
+ 		$$('.b_button').set('class','b_button inactive');
+		$('distr').set('class','b_button active');		
+ 		break;		
+    	case 'hr':
+ 		$$('.panel').set('styles',{visibility:'hidden'});
+ 		$('fourth_panel').set('styles',{visibility:'visible'});
+		$$('.b_button').set('class', 'b_button inactive');
+		$('hr').set('class', 'b_button active');		
+ 		break;			
+     case 'energy':
+ 		$$('.panel').set('styles',{visibility:'hidden'});
+ 		$('fifth_panel').set('styles',{visibility:'visible'});
+ 		$$('.b_button').set('class','b_button inactive');
+		$('energy').set('class','b_button active');		
+  		break;
+ 	default:
+ 		$$('panel').set('styles',{visibility:'hidden'});
+ 		$$('.b_button').set('class','b_button inactive');
+  		}
+    		 });
+	
+	
+	
+	
+   
     
     if (window.building_type=="papier")
 	{
@@ -35,11 +83,6 @@
 	    get_shop_papers();
         get_papers.periodical(1000);				
 	}
-    
-    
-    
-    
-    
     
     
     if (window.building_type=="mine")
@@ -112,6 +155,61 @@
         request_get_metals_to_sell.periodical(10000);
 
 	}
+
+
+
+
+	if (window.building_type=="food")
+	{
+     	$('sell_crops').addEvent('click', function()
+     	{
+		 // var itemID = this.get('id');
+ 		  sell_crops();
+  		});
+
+		get_papers.periodical(1000);
+		get_shop_papers.periodical(1000);
+	}
+	
+	
+	if (window.building_type=="stand")
+	{
+	    request_shop_inventory();
+        request_inventory.periodical(1000);				
+	}
+	
+	
+
+	
+
+	if (window.building_type=="generator")
+	{
+	    request_batteries();
+        request_batteries.periodical(5085);
+        request_battery_slots();
+        request_battery_slots.periodical(5000);				
+	}	
+	
+		if (window.building_type=="bank")
+	{
+	
+	deposit();
+    withdraw();				
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -349,43 +447,7 @@ function sell_metal(itemID){
 	
 
 	   
-	if (window.building_type=="food")
-	{
-     	$('sell_crops').addEvent('click', function()
-     	{
-		 // var itemID = this.get('id');
- 		  sell_crops();
-  		});
 
-		get_papers.periodical(1000);
-		get_shop_papers.periodical(1000);
-	}
-	
-	
-	if (window.building_type=="stand")
-	{
-	    request_shop_inventory();
-        request_inventory.periodical(1000);				
-	}
-	
-	
-
-	
-
-	if (window.building_type=="generator")
-	{
-	    request_batteries();
-        request_batteries.periodical(5085);
-        request_battery_slots();
-        request_battery_slots.periodical(5000);				
-	}	
-	
-		if (window.building_type=="bank")
-	{
-	
-	deposit();
-    withdraw();				
-	}
 
 	
 	
@@ -608,7 +670,7 @@ function buy_papers(itemID)
 {
 	var a = new Request.JSON(
 	{
-    	url: "index.php?option=com_battle&format=raw&task=buy_papers&building_id=" + building_id + "&item=" + itemID, 
+    	url: "index.php?option=com_battle&format=raw&task=action&action=buy_papers&building_id=" + building_id + "&item=" + itemID, 
     	onSuccess: function(result)
     	{
     	
@@ -620,7 +682,7 @@ function buy_papers(itemID)
 function sell_papers(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=sell_papers&building_id=" + building_id + "&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action==sell_papers&building_id=" + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -647,7 +709,7 @@ function work_field(itemID){
     	//new tmp element that contains the new div
     	var tmpDiv = new Element('div',
     	{
-    		html:'<div id="'+itemID+'"><img src ="components/com_battle/images/jigs_loader.gif"/></div>'
+    		html:'<div id="'+itemID+'"><img src ="components/com_battle/images/5.gif"/></div>'
     	
     	}
     	);
@@ -655,6 +717,7 @@ function work_field(itemID){
     	tmpDiv.getFirst().replaces($(itemID));
    
 		$('farm_progress').setStyle('visibility','visible');
+		//$('status_message').setStyle('visibility','hidden');
 	    
     	}
     }).get();}
@@ -665,20 +728,28 @@ function check_farm(){
 		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building=" + building_id , 
 	    onSuccess: function(result){
  
-		    document.getElementById('since').innerHTML = result['since'];
-		    document.getElementById('now').innerHTML = result['now'];
-		    document.getElementById('elapsed').innerHTML = result['elapsed'];
-		    document.getElementById('remaining').innerHTML = result['remaining'];
-			itemID = result['field'];
-			status = result['status'];
+		    document.getElementById('since').innerHTML              = result['since'];
+		    document.getElementById('now').innerHTML                = result['now'];
+		    document.getElementById('elapsed').innerHTML            = result['elapsed'];
+		    document.getElementById('remaining').innerHTML          = result['remaining'];
+		    document.getElementById('status_message').innerHTML     = result['status_message'];
+			itemID                                                  = result['field'];
+			status                                                  = result['status'];
+			
 	        if (result['remaining'] <= 0 )
 	        {
 		       // $('adminForm').setStyle('visibility','visible');
 			    $('farm_progress').setStyle('visibility','hidden');
-				var tmpDiv = new Element('div',{html:'<div id="'+itemID+'" class ="work_field"><img src ="components/com_battle/images/'+result['status'] +'.gif" /></div>'});
-				//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
-				tmpDiv.getFirst().replaces($(itemID));
+			    $('status_message').setStyle('visibility','visible');
+			    
+		        var tmpDiv = new Element('div',
+		            {html:'<div id="'+itemID+'" class ="work_field"><img src ="components/com_battle/images/'
+		            +result['status'] +'.gif" /></div>'});
+		            
+		       tmpDiv.getFirst().replaces($(itemID));
+				
 				$$('.work_field').removeEvent('click', test);
+				
 				$$('.work_field').addEvent('click',function(){
 					var itemID = this.get('id');
 					work_field(itemID);

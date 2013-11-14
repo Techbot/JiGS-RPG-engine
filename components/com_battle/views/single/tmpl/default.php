@@ -311,7 +311,7 @@ class="buildings_class" style="
 
 ">
 <!--a href="index.php?option=com_battle&view=building&tmpl=component&id=<?php echo $building_id?>" title="<?php echo $buildingOwner ?> owns <?php echo $building_name?>" rel="{handler: 'iframe', size: {x: 640, y: 600}}" class="modal" -->
-<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buildings/miniatures/<?php echo $building_image ?>" >
+<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buildings/miniatures/<?php echo $building_image ?>" title="<?php echo $buildingOwner ?> owns <?php echo $building_name?>" >
 <!--/a-->
 </div>
 <?php

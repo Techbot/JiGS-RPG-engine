@@ -29,12 +29,12 @@ function request_weapon(){
 			url: "index.php?option=com_battle&format=raw&task=action&action=get_weapon", 
    			onSuccess: function(result)
 			{
-				$('weapon').innerHTML = result;
+				$('weapon_module').innerHTML = result;
 			}	
     	}).get();
 }
 request_weapon();
-request_weapon.periodical(10000);
+
 </script>
 
 	
