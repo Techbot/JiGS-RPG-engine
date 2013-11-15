@@ -13,12 +13,12 @@ class BattleModelBuilding extends JModel
 	///// CREATE NEW GENERATOR FROM A BUILDING /////
 	function work_turbine()
 	{
-		$building_id		= JRequest::getvar(building_id);
-		$line				= JRequest::getvar(line);
-		$type				= JRequest::getvar(type);
-		$quantity			= JRequest::getvar(quantity);
+		$building_id		= JRequest::getvar('building_id');
+		$line				= JRequest::getvar('line');
+		$type				= JRequest::getvar('type');
+		$quantity			= JRequest::getvar('quantity');
 		$now				= time();
-		$db					=  JFactory::getDBO();
+		$db					= JFactory::getDBO();
 		$q					= "INSERT INTO #__jigs_generators (building, quantity, timestamp) VALUES ($building_id,$quantity,$now ) ON DUPLICATE KEY UPDATE quantity = $quantity , timestamp= $now";
 		$db->setQuery($q);
 		$result				= $db->query();
@@ -102,8 +102,16 @@ class BattleModelBuilding extends JModel
 	
 /////////////////////////////////////////////////////////////	
 
-	function work_reprocessor($building_id, $quantity, $type, $line)
+	function work_reprocessor()
 	{
+	
+	
+	    $building_id		= JRequest::getVar('building_id'); 
+	    $quantity			= JRequest::getVar('quantity'); 
+	    $type			    = JRequest::getVar('type');
+	    $line			    = JRequest::getVar('line');
+	
+	
 		$now			    = time();
 		$db			        = JFactory::getDBO();
 		$sql			    = "SELECT * FROM #__jigs_objects WHERE id = " . $type;
@@ -119,7 +127,7 @@ class BattleModelBuilding extends JModel
 		$metal_2		    = $product->metal_2;
 		$quantity_2		    = $quantity * $product->quantity_2;
 
-		$query			    = "SELECT id FROM #_jigs_inventory WHERE item_id = $type player_id = " . $user->id ;
+		$query			    = "SELECT id FROM #_jigs_inventory WHERE item_id = $type AND player_id = " . $user->id ;
 		$resource 		    = $db->setQuery($sql);
 		$player_items		= $db->loadAssocList();		
 		$player_items_count = count($player_items);
@@ -791,54 +799,39 @@ class BattleModelBuilding extends JModel
 			$now    	= time();
 			$factor		= 10;
 
-			$query		= "
-			SELECT * 
-			FROM #__jigs_batteries
-			WHERE iduser = $building
-			";
+			$query		= "	SELECT * FROM #__jigs_batteries	WHERE iduser = $building";
 
 			$db->setQuery($query);
 			$batteries = $db->loadAssocList();
 
-		/*	foreach($batteries as $battery)
-		{
-			$id        = $battery['id'];
-			$timestamp = $battery['timestamp'];
-			$elapsed   = $now - $timestamp;
-			$units     = $battery['units'];
-			$max_units = $battery['max_units'];
-			$new_units = intVal($elapsed/$factor);
 
-			if($units + $new_units < $max_units)
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = units + $new_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-			else
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = max_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-
-
-			$db->setQuery($query);
-			$db->query();
-		
-		
-		}*/
 		return $batteries;
 	}
 
 	
-	
+		function get_battery()
+	{
+		$db			= JFactory::getDBO();
+		$building_id		= JRequest::getvar('building_id');
+		$battery_id		= JRequest::getvar('item');
+		$user			= JFactory::getUser();
+		$query			= "Update #__jigs_batteries SET iduser = $user->id  WHERE #__jigs_batteries.id = $battery_id";
+		$db->setQuery($query);
+		$db->query();
+		return $battery_id;
+	}
+
+
+	function put_battery()
+	{
+		$db			= JFactory::getDBO();
+		$building_id		= JRequest::getvar('building_id');
+		$battery_id		= JRequest::getvar('item');
+		$query			= "Update #__jigs_batteries SET iduser = $building_id WHERE #__jigs_batteries.id = $battery_id";
+		$db->setQuery($query);
+		$db->query();
+		return $battery_id;
+	}
 	
 	
 	function get_papers() {

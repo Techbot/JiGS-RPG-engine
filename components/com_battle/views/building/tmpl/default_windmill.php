@@ -1,10 +1,24 @@
 <div id = "charge">Charge Battery </div>
 <div id = 'charge_progress' style='visibility:hidden;'>Battery Charge Process in Progress</div>	
+
+
+
+
 <?php echo $this->loadTemplate ('board_batteries'); ?>
+
+
+
+
+
+
 <script type="text/javascript">
 work_turbine();
 energy_time.periodical(100000);
 //noobslide
+
+
+
+
 function work_turbine() {
 	$('charge').addEvent('click', function(){				
 		work();

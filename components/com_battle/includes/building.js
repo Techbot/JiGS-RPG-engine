@@ -71,23 +71,15 @@
  		$$('.b_button').set('class','b_button inactive');
   		}
     		 });
-	
-	
-	
-	
-   
-    
+  
     if (window.building_type=="papier")
 	{
-
 	    get_shop_papers();
         get_papers.periodical(1000);				
 	}
     
-    
     if (window.building_type=="mine")
     {
-
   		dig();
 		check_mine();
 		check_mine.periodical(2000);
@@ -107,10 +99,6 @@
 		});
 	}
 	
-	
-	
-	
-	
 	if (window.building_type=="farm")
 	{
      	$$('.work_field').addEvent('click',function()
@@ -124,18 +112,16 @@
 
 	}
 	
-	
-	
 	if (window.building_type=="reprocessor")
 	{
-  work_conveyer()
 	    prepare();
 	    prepare2();
+	    work_reprocessor();
+	    //change()
 	}
 	
 	if (window.building_type=="factory")
 	{
- 
 	    prepare();
 	    prepare2();
 	    work_conveyer();
@@ -145,19 +131,12 @@
 
 	if (window.building_type=="scrapyard")
 	{
-	
-	
- 
         request_shop_metals();
         // request_metals2();
         // request_metals2.periodical(10000);
         request_get_metals_to_sell();
         request_get_metals_to_sell.periodical(10000);
-
 	}
-
-
-
 
 	if (window.building_type=="food")
 	{
@@ -166,21 +145,15 @@
 		 // var itemID = this.get('id');
  		  sell_crops();
   		});
-
 		get_papers.periodical(1000);
 		get_shop_papers.periodical(1000);
 	}
-	
-	
+
 	if (window.building_type=="stand")
 	{
 	    request_shop_inventory();
         request_inventory.periodical(1000);				
 	}
-	
-	
-
-	
 
 	if (window.building_type=="generator")
 	{
@@ -190,28 +163,11 @@
         request_battery_slots.periodical(5000);				
 	}	
 	
-		if (window.building_type=="bank")
+	if (window.building_type=="bank")
 	{
-	
-	deposit();
-    withdraw();				
+	    deposit();
+        withdraw();				
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -228,29 +184,17 @@ if (foo) {
 	$('quantity_box_button_up').addEvent('click', function(){
 		increment();
 		});
-		
 	}	
-		
-		
-		
-		
-		
-		
-		
 }
 
 function prepare2()
 {
     var foo = document.id('quantity_box_button_up'); 
 if (foo) {
-
-
 	$('quantity_box_button_down').addEvent('click', function(){
 		decrement();
 		});
-
 }
-
 
 }
 
@@ -290,40 +234,7 @@ function decrement(){
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function request_shop_metals(){
 	var all = '<table class="shade-table"><tbody>';
@@ -444,15 +355,7 @@ function sell_metal(itemID){
 	}
 
 	}
-	
 
-	   
-
-
-	
-	
-	
-	
 			
 })();
 
@@ -464,10 +367,6 @@ function display_alert_withdraw()
   {
   alert("Thank you for your valued custom.\nWe hope to see you again soon.");
   }
-
-
-
-
 
 function deposit() {
 
@@ -538,7 +437,7 @@ function request_battery_slots(){
 	 var all = '';
 	//	var details = this.details;
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery_slots&building_id=" + building_id , 
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery_slots&building_id=" + building_id , 
     onSuccess: function(result){
    for (i = 0; i < result.length; ++ i){
   	var row = "<div class='get' id='" + result[i]['id'] + "'><span class=\"label\">Battery " + (i+1) + ":</span>" + result[i]['id']  + " : " + result[i]['units'] +"</div>";
@@ -555,7 +454,7 @@ function request_battery_slots(){
 }
 function get_battery(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery&building_id=" + building_id + "&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery&building_id=" + building_id + "&item=" + itemID, 
     onSuccess: function(result){
      	}
     }).get();
@@ -572,32 +471,6 @@ function put_battery(itemID){
     }).get();
  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function get_shop_papers(){
 	
@@ -872,6 +745,70 @@ var a = new Request.JSON({
 	}).get();
 }
 
+///////////////////////////////
+function changeDisplayImage(blueprint) {
+	var id1					= new Array();
+	var metal_name_1		= new Array();
+	var metal_name_2		= new Array();
+	var object_quantity		= new Array();
+	//var mystock1 = 0;
+	//var mystock2 = 0; 
+	var q_1 = new Array();
+	var q_2 = new Array();			
+	
+		
+				Array.each(metals, function( )
+		{
+			if (metals[i].name == metal_name_1[index]) {
+				window.mystock1 = metals[i].quantity;
+				}
+			if (metals[i].name == metal_name_2[index]) {
+				window.mystock2 = metals[i].quantity;
+				}
+			i++;
+		});
+		
+		
+		
+		
+		
+			if (document.adminForm.blueprints.value !='') {
+
+				index = id1[document.adminForm.blueprints.value];
+
+				document.adminForm.id1.value = id1[index];
+				document.adminForm.q1.value = q_1[index];
+				document.adminForm.n1.value = metal_name_1[index];
+                document.adminForm.q2.value = q_2[index];
+                document.adminForm.n2.value = metal_name_2[index]  ;
+                document.adminForm.stock.value = object_quantity[index];
+              //  document.adminForm.stock.value = 7;                  		
+				i=0;
+
+				Array.each(metals, function( ){
+					if (metals[i].name == metal_name_1[index]) {
+						
+						mystock1 = metals[i].quantity;
+						}
+					if (metals[i].name == metal_name_2[index]) {
+						
+						mystock2 = metals[i].quantity;
+						}
+					i++;
+					}); 
+
+
+                	
+                   // document.adminForm.stock2.value = mystock2;
+                    check_stock_control();
+                    }
+            else {
+                document.adminForm.imagelib.src='images/blank.png';
+                }
+            }
+
+///////////////////////////////
+
 function change(blueprint)
 {
 	
@@ -917,18 +854,17 @@ function buy_building() {
 	});
 } 
 
-
-
 function work_conveyer()
 {
     var foo = document.id('submit_c'); 
-    if (foo) {
+    if (foo) 
+    {
 	$('submit_c').addEvent('click', function()
 	{
 		work();
 	});
 
-}
+    }
 }
 
 function work(){
@@ -958,7 +894,7 @@ function work_reprocessor()
 function reprocess(){
 	var a = new Request.JSON(
 	{
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=reprocess&quantity=" + document.adminForm.time.value 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_reprocessor&quantity=" + document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
 			$('adminForm').setStyle('visibility','hidden');

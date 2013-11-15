@@ -1833,27 +1833,5 @@ $text .= "<br>" . $inv_object["name"] ;
 		return ;
 	}
 
-	function get_battery()
-	{
-		$db			= JFactory::getDBO();
-		$building_id		= JRequest::getvar('building_id');
-		$battery_id		= JRequest::getvar('item');
-		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_batteries SET iduser = $user->id  WHERE #__jigs_batteries.id = $battery_id";
-		$db->setQuery($query);
-		$db->query();
-		return $battery_id;
-	}
 
-
-	function put_battery()
-	{
-		$db			= JFactory::getDBO();
-		$building_id		= JRequest::getvar('building_id');
-		$battery_id		= JRequest::getvar('item');
-		$query			= "Update #__jigs_batteries SET iduser = $building_id WHERE #__jigs_batteries.id = $battery_id";
-		$db->setQuery($query);
-		$db->query();
-		return $battery_id;
-	}
 }
