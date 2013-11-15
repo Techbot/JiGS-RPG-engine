@@ -426,7 +426,7 @@ class BattleModelBuilding extends JModel
     
     }
 
-	function check_reprocessor($building_id,$line_id)
+	function check_reprocessor()
 	{
 		$building_id			= JRequest::getvar('building');
 		$line_id				= JRequest::getvar('line');

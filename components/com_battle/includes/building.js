@@ -28,6 +28,9 @@
 	//change();
 	//noobslide
 	
+	request_batteries_cp();
+	//request_batteries.periodical(50085);	 
+	
 	
 	$$('.b_button').addEvent('click', function(){
 	
@@ -71,8 +74,46 @@
  		$$('.b_button').set('class','b_button inactive');
   		}
     		 });
-  
-    if (window.building_type=="papier")
+    		 
+    		 
+    		 
+    		 
+   function insert(id)
+   {
+	    var a = new Request.JSON(
+	    {
+            url: "index.php?option=com_battle&format=raw&building_id=" + building_id + "&task=action&action=swap_battery&id="+id, 
+            onSuccess: function(result)
+            {
+              	request_batteries_cp();
+            }	
+        	
+        }
+        ).get();
+
+    }
+
+    function request_batteries_cp(){
+	
+	 var all = '';
+	//	var details = this.details;
+	
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=get_batteries", 
+    onSuccess: function(result){
+    	for (i = 0; i < result.length; ++ i){
+    	var row = "<span class=\"label\">Battery " + (i+1) + ":</span>" + result[i][1]  + " : " + result[i][2] 
+    	+ "<a href='#' onclick='insert(" + result[i][0] +")'> [insert] </a> ";
+  all= all + row + "<br/>";  
+    	}
+    	$('batteries').innerHTML = all;	
+    }	
+    	
+    }).get();
+
+}
+
+   if (window.building_type=="papier")
 	{
 	    get_shop_papers();
         get_papers.periodical(1000);				
@@ -117,6 +158,7 @@
 	    prepare();
 	    prepare2();
 	    work_reprocessor();
+	    check_reprocessor.periodical(5000);
 	    //change()
 	}
 	
@@ -908,6 +950,33 @@ function test_rob()
 	alert();
 }
 
+
+
+
+function check_reprocessor(){
+			var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=building_action&action=check_reprocessor&line=1&building=" + building_id , 
+		    onSuccess: function(result){
+			    document.getElementById('since').innerHTML = result['since'];
+			    document.getElementById('now').innerHTML = result['now'];
+			    document.getElementById('elapsed').innerHTML = result['elapsed'];
+			    document.getElementById('remaining').innerHTML = result['remaining'];        
+		        if (result['remaining'] <= 0){
+			        $('adminForm').setStyle('visibility','visible');
+				    $('conveyor_progress').setStyle('visibility','hidden');
+				    }
+			    }
+		    }).get();
+		    }
+
+
+
+
+
+
+
+
+
 function check_factory(){
 			var a = new Request.JSON({
 			url: "index.php?option=com_battle&format=raw&task=building_action&action=check_factory&line=1&building=" + building_id , 
@@ -923,6 +992,16 @@ function check_factory(){
 			    }
 		    }).get();
 		    }
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
 
 function request_metals(){
 	var a = new Request.JSON({
