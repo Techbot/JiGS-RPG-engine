@@ -36,7 +36,7 @@
 
 })();	
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function set_type()
 {
@@ -96,7 +96,6 @@ function set_type()
         prepare2();
         work_conveyer();
         check_factory.periodical(5000);
-
     }
 
     if (window.building_type=="scrapyard")
@@ -160,8 +159,16 @@ function set_type()
 	     });
 	 
     }
+    
+    if (window.building_type=="weapons")
+    {   
+            request_shop_weapons();
+            //request_weapons2();
+            request_weapons.periodical(1000);	
+    }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////
 function control_panel_system()
 {
 	
@@ -207,53 +214,178 @@ function control_panel_system()
       	}
 	});
 }
-	 
-   function insert(id)
-   {
-	    var a = new Request.JSON(
-	    {
-            url: "index.php?option=com_battle&format=raw&building_id=" + building_id + "&task=action&action=swap_battery&id="+id, 
-            onSuccess: function(result)
-            {
-              	request_batteries_cp();
-            }	
-        	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////	 
+
+function buy_weapon(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy_weapon&building_id=" 
+    + building_id + "&item=" + itemID, 
+    onSuccess: function(result){
+    	    
+    	}
+    }).get();
+ 
+}
+
+function sell_weapon(itemID)
+{
+ 	var a = new Request.JSON(
+ 	{
+        url: "index.php?option=com_battle&format=raw&task=action&action=sell_weapon&building_id=" 
+        + building_id 
+        + "&item=" 
+        + itemID, 
+        onSuccess: function(result)
+        {
+       	   
         }
-        ).get();
+    }).get();
 
-    }
-
-    function request_batteries_cp()
+}
+  
+function request_shop_weapons()
+{
+    var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+    //	var id = $('image').get('number'); 
+    var a = new Request.JSON(
     {
-	    var all = '';
-	//	var details = this.details;
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_weapons&building_id=" 
+        + building_id , 
+        onSuccess: function(result)
+        {
+       	    for (i = 0; i < result.length; ++ i)
+       	    {
+                var row = "<tr class=\"d" 
+                + (i & 1) + "\"><td>" 
+                + (i+1) + ": " 
+                + result[i].name 
+                + ":</td><td>$" 
+                + result[i].sell_price 
+                + "<a href='#' class='buy' id='" 
+                + result[i].item_id + "'>[BUY]</a></td></tr>"; 
+                all= all + row;  
+        	}
+        	id=0;
+
+            all= all + '</tbody></table>';
 	
-	    var a = new Request.JSON(
-	    {
-            url: "index.php?option=com_battle&format=raw&task=action&action=get_batteries", 
-            onSuccess: function(result)
+       	    $('building_inventory_table').innerHTML = all;	
+       	    $$('.buy').addEvent('click', function()
+       	    {
+      	
+                var itemID = this.get('id');
+                buy_weapon(itemID);
+      		 });
+        }	
+    }).get();
+}
+
+function request_weapons()
+{
+	var price = 0 ;
+	var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a = new Request.JSON(
+	{
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_weapons&building_id=" 
+        + building_id , 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
             {
-                for (i = 0; i < result.length; ++ i)
-                {
-    	            var row = "<span class=\"label\">Battery " + (i+1) + ":</span>" 
-    	            + result[i][1]  + " : " + result[i][2] 
-                    + "<a href='#' onclick='insert(" 
-                    + result[i][0] +")'> [insert] </a> ";
-                
-                    all= all + row + "<br/>";  
-    	        }
+                price = result[i].sell_price / 2 ;
+                var row = "<tr class=\"d" 
+                + (i & 1) + "\"><td>" +result[i].name 
+                + "<td>"  + " COST:" 
+                +  price + "<a href='#' class= 'sell' id='" + result[i].item_id 
+                + "' > [SELL] </a></td></tr>";
+                all= all + row;
+            }
+    	    all= all + '</tbody></table>';
+    	    $('my_inventory').innerHTML = all;	
+            $$('.sell').addEvent('click', function()
+            {
+                var itemID = this.get('id');
+ 		        sell_weapon(itemID);
+  		    });
+        }	
+    }).get();
+}
 
-    	        $('batteries').innerHTML = all;	
-            }	
+function request_weapons2()
+{
+    var all = '<table class="shade-table"><tbody>';
+	var details = this.details;
+	var a = new Request.JSON(
+	{
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_weapons2&building_id="
+        + building_id, 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+                var row = "<tr class=\"d" 
+                + (i & 1) + "\"><td>" 
+                +result[i].name 
+                + " </td></tr>";
+                all= all + row;
+            }
+            all= all + '</tbody></table>';
+        	$('my_inventory2').innerHTML = all;	
+        }	
+    }).get();
+}
+
+function insert(id)
+{
+    var a = new Request.JSON(
+    {
+        url: "index.php?option=com_battle&format=raw&building_id=" 
+        + building_id + "&task=action&action=swap_battery&id="
+        +id, 
+        onSuccess: function(result)
+        {
+          	request_batteries_cp();
+        }	
     	
-        }).get();
     }
+    ).get();
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+function request_batteries_cp()
+{
+    var all = '';
+//	var details = this.details;
+
+    var a = new Request.JSON(
+    {
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_batteries", 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+	            var row = "<span class=\"label\">Battery " + (i+1) + ":</span>" 
+	            + result[i][1]  + " : " + result[i][2] 
+                + "<a href='#' onclick='insert(" 
+                + result[i][0] +")'> [insert] </a> ";
+            
+                all= all + row + "<br/>";  
+	        }
+
+	        $('batteries').innerHTML = all;	
+        }	
+	
+    }).get();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -327,7 +459,8 @@ function request_shop_metals()
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_metals&building_id=" + building_id , 
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_metals&building_id=" 
+		+ building_id , 
     onSuccess: function(result){
        	    	
     for (i = 0; i < result.length; ++ i){
@@ -352,10 +485,13 @@ function request_get_metals_to_sell(){
 	var all = '<table class="shade-table"><tbody>';
 	var details = this.details;
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_metals_to_sell&building_id=" + building_id , 
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_metals_to_sell&building_id=" 
+		+ building_id , 
         onSuccess: function(result){
             for (i = 0; i < result.length; ++ i){
-                var row = "<tr class=\"d" + (i & 1) + "\"><td>" +result[i].name + "<td>"  + " COST:" + result[i].buy_price + "</td><td><a href='#' class= 'sell' id='" + result[i].item_id + "' >SELL</a></td></tr>"; 
+                var row = "<tr class=\"d" + (i & 1) + "\"><td>" +result[i].name + "<td>"  + " COST:" 
+                + result[i].buy_price + "</td><td><a href='#' class= 'sell' id='" + result[i].item_id 
+                + "' >SELL</a></td></tr>"; 
  				all= all + row;
  				}
 				all= all + '</tbody></table>';
@@ -368,28 +504,34 @@ function request_get_metals_to_sell(){
 	}).get();
 	}
 
-function request_metals2(){
-	var total_metals = parseInt(0);
-	 var all = '';
+function request_metals2()
+{
+	var total_metals    = parseInt(0);
+	var all             = '';
 	//var all = '<table class="shade-table"><tbody>';
-	var details = this.details;
-	var a = new Request.JSON({
-		url: 'index.php?option=com_battle&format=raw&task=action&action=get_metals2&building_id=' + building_id , 
-    	onSuccess: function(result){
-        	 for (i = 0; i < result.length; ++i){
-        	 var row = '<br/>Metal ' + (i+1) + ':' + result[i].name  + ' : ' + result[i].quantity;
-        	 all= all + row;
-        	 total_metals = parseInt(total_metals) + parseInt(result[i].quantity);
+	var details         = this.details;
+	var a               = new Request.JSON(
+	{
+		url: 'index.php?option=com_battle&format=raw&task=action&action=get_metals2&building_id=' 
+		+ building_id , 
+    	onSuccess: function(result)
+    	{
+        	 for (i = 0; i < result.length; ++i)
+        	 {
+            	 var row = '<br/>Metal ' + (i+1) + ':' + result[i].name  + ' : ' + result[i].quantity;
+            	 all= all + row;
+            	 total_metals = parseInt(total_metals) + parseInt(result[i].quantity);
         	 }
         	 all = all + '<br/>Total Metals: ' + total_metals;
         	 $('my_inventory2').innerHTML = all;
-        	 }
-        	 }).get();
-        	 }
+        }
+      }).get();
+}
         	 
-        	 function buy_metal(itemID){
+function buy_metal(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=buy_metal&building_id=" + building_id + "&metal=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy_metal&building_id=" 
+    + building_id + "&metal=" + itemID, 
     onSuccess: function(result){
     	    
     	}
@@ -399,7 +541,8 @@ function request_metals2(){
 function sell_metal(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=sell_metal&building_id=" + building_id + "&metal=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell_metal&building_id=" 
+    + building_id + "&metal=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -443,7 +586,8 @@ function deposit()
 		var qty_el = document.getElementById('quantity_adjust'); 
 		var qty = qty_el.value; 
 		var a = new Request.JSON({
-			    url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id=" + building_id + "&amount=" + qty  ,
+			    url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id=" 
+			    + building_id + "&amount=" + qty  ,
 			    onSuccess: function(result){
 			      
 			   // $(result[0]).innerHTML = result[1];	
@@ -545,7 +689,8 @@ function request_battery_slots()
 
 function get_battery(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery&building_id=" + building_id + "&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery&building_id=" 
+    + building_id + "&item=" + itemID, 
     onSuccess: function(result){
      	}
     }).get();
@@ -555,7 +700,8 @@ function get_battery(itemID){
 function put_battery(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=put_battery&building_id=" + building_id + "&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=put_battery&building_id=" 
+    + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -569,7 +715,8 @@ function get_shop_papers(){
 	var details = this.details;
 	var a = new Request.JSON(
 	{
-    	url: "index.php?option=com_battle&format=raw&task=building_action&action=get_shop_papers&building_id=" + building_id, 
+    	url: "index.php?option=com_battle&format=raw&task=building_action&action=get_shop_papers&building_id=" 
+    	+ building_id, 
    		onSuccess: function(result)
    		{
 			for (i = 0; i < result.length; ++ i)
@@ -634,7 +781,8 @@ function buy_papers(itemID)
 {
 	var a = new Request.JSON(
 	{
-    	url: "index.php?option=com_battle&format=raw&task=action&action=buy_papers&building_id=" + building_id + "&item=" + itemID, 
+    	url: "index.php?option=com_battle&format=raw&task=action&action=buy_papers&building_id=" 
+    	+ building_id + "&item=" + itemID, 
     	onSuccess: function(result)
     	{
     	
@@ -646,7 +794,8 @@ function buy_papers(itemID)
 function sell_papers(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action==sell_papers&building_id=" + building_id + "&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action==sell_papers&building_id=" 
+    + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -667,7 +816,8 @@ function sell_crops(){
 
 function work_field(itemID){	 	
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" + building_id + "&crop=1&field=" + itemID  ,
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" 
+    + building_id + "&crop=1&field=" + itemID  ,
     onSuccess: function(result){
    
     	//new tmp element that contains the new div
@@ -689,7 +839,8 @@ function work_field(itemID){
  
 function check_farm(){
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building=" + building_id , 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building=" 
+		+ building_id , 
 	    onSuccess: function(result){
  
 		    document.getElementById('since').innerHTML              = result['since'];
@@ -725,7 +876,8 @@ function check_farm(){
     
 function work_flat(itemID){	 	
     var a = new Request.JSON({
-    	url: "index.php?option=com_battle&format=raw&task=building_action&action=work_flat&building_id=" + building_id + "&flat=" + itemID  ,
+    	url: "index.php?option=com_battle&format=raw&task=building_action&action=work_flat&building_id=" 
+    	+ building_id + "&flat=" + itemID  ,
     	onSuccess: function(result){
     
     	if (result[0]=="broke"){
@@ -751,7 +903,8 @@ function get_shop_blueprints(id)
 	var details = this.details;
 	var a		= new Request.JSON(
 	{
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_blueprints&building_id=" + building_id,
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_blueprints&building_id=" 
+		+ building_id,
 		onSuccess: function(result)
 		{
 			for (i = 0; i < result.length; ++ i)
@@ -817,8 +970,8 @@ function buy_blueprint(itemID){
 function get_blueprints(){
 
 var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_blueprints&blueprints=" +
-		document.adminForm.id1.value,
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_blueprints&blueprints=" 
+		+ document.adminForm.id1.value,
 		onSuccess: function(result)
 		{
 			for(var i=0;i<result.length;i++)
@@ -891,12 +1044,13 @@ function changeDisplayImage(blueprint)
 		}); 
         // document.adminForm.stock2.value = mystock2;
         check_stock_control();
-       else 
-       {
-            document.adminForm.imagelib.src='images/blank.png';
-       }
+    }
+    else 
+    {
+        document.adminForm.imagelib.src='images/blank.png';
     }
 }
+
 ///////////////////////////////
 
 function change(blueprint)
@@ -933,7 +1087,8 @@ function change(blueprint)
 function buy_building() {
 	$$('.buy').addEvent('click', function(){
 		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=" + building_id , 
+			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=" 
+			+ building_id , 
 				onSuccess: function(result){
 					$('building_id').setStyle('visibility','hidden');
 				}
@@ -957,7 +1112,8 @@ function work_conveyer()
 function work(){
 	var a = new Request.JSON(
 	{
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_conveyer&quantity=" + document.adminForm.time.value 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_conveyer&quantity=" 
+		+ document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
 			$('adminForm').setStyle('visibility','hidden');
@@ -981,7 +1137,8 @@ function work_reprocessor()
 function reprocess(){
 	var a = new Request.JSON(
 	{
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_reprocessor&quantity=" + document.adminForm.time.value 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_reprocessor&quantity=" 
+		+ document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
 			$('adminForm').setStyle('visibility','hidden');
@@ -995,21 +1152,26 @@ function test_rob()
 	alert();
 }
 
-function check_reprocessor(){
-			var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=building_action&action=check_reprocessor&line=1&building=" + building_id , 
-		    onSuccess: function(result){
-			    document.getElementById('since').innerHTML = result['since'];
-			    document.getElementById('now').innerHTML = result['now'];
-			    document.getElementById('elapsed').innerHTML = result['elapsed'];
-			    document.getElementById('remaining').innerHTML = result['remaining'];        
-		        if (result['remaining'] <= 0){
-			        $('adminForm').setStyle('visibility','visible');
-				    $('conveyor_progress').setStyle('visibility','hidden');
-				    }
-			    }
-		    }).get();
+function check_reprocessor()
+{
+	var a = new Request.JSON(
+	{
+	    url: "index.php?option=com_battle&format=raw&task=building_action&action=check_reprocessor&line=1&building=" 
+	    + building_id , 
+        onSuccess: function(result)
+        {
+	        document.getElementById('since').innerHTML      = result['since'];
+	        document.getElementById('now').innerHTML        = result['now'];
+	        document.getElementById('elapsed').innerHTML    = result['elapsed'];
+	        document.getElementById('remaining').innerHTML  = result['remaining'];        
+            if (result['remaining'] <= 0)
+            {
+	            $('adminForm').setStyle('visibility','visible');
+		        $('conveyor_progress').setStyle('visibility','hidden');
 		    }
+	     }
+	}).get();
+}
 
 function check_factory()
 {
@@ -1067,7 +1229,8 @@ function check_stock_control(){
 function check_mine(){
 	var a = new Request.JSON(
 	{
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_mine&building_id=" + building_id , 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_mine&building_id=" 
+		+ building_id , 
     onSuccess: function(result)
 		{
 
@@ -1096,7 +1259,8 @@ function dig() {
 function mine(type)
 {
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_mine&building_id=" + building_id + "&type=" + type, 
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_mine&building_id=" 
+		+ building_id + "&type=" + type, 
     onSuccess: function(result){
                	
     	$$('#mine_board').setStyle('visibility','hidden');
@@ -1120,53 +1284,76 @@ function mine(type)
 			
 });				
 			
-function request_shop_inventory(){
+function request_shop_inventory()
+{
 	var all = '<div id="building_inventory_table"><div class="name">Available to Buy</div>';
 	var details = this.details;
 	//	var id = $('image').get('number');
-	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_inventory&building_id=" + building_id, 
-    onSuccess: function(result){
-       	    	
-    for (i = 0; i < result.length; ++ i){
-        var row = "<div class='object'><a href='#' title='" + result[i].name + "' class='buy' id='" + result[i].item_id + "'><img src='/components/com_battle/images/objects/" + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" + result[i].sell_price + "</span></div>"; 
-  		all= all + row;
-  		}
-		id=0;
-		all= all + '</div>';
-		$('building_inventory_table').innerHTML = all;
-		$$('.buy').addEvent('click', function(){
-			var itemID = this.get('id');
-			buy1(itemID);
-			});
+	var a = new Request.JSON(
+	{
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_inventory&building_id=" 
+		+ building_id, 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+                var row = "<div class='object'><a href='#' title='" 
+                + result[i].name + "' class='buy' id='" 
+                + result[i].item_id + "'><img src='/components/com_battle/images/objects/" 
+                + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" 
+                + result[i].sell_price + "</span></div>"; 
+  		        all= all + row;
+  		    }
+		    id      = 0;
+		    all     = all + '</div>';
+		    $('building_inventory_table').innerHTML = all;
+		    $$('.buy').addEvent('click', function()
+		    {
+			    var itemID = this.get('id');
+			    buy1(itemID);
+		    });
 		}
 	}).get();
-	}
+}
 
-function request_inventory(){
+function request_inventory()
+{
 	var all = '<div id="my_inventory"><div class="name">Available to Sell</div>';
 	var details = this.details;
 	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory_to_sell&building_id=" + building_id, 
-        onSuccess: function(result){
-            for (i = 0; i < result.length; ++ i){
-                var row = "<div class='object'><a href='#' title='" + result[i].name + "' class='sell' id='" + result[i].item_id + "'><img src='/components/com_battle/images/objects/" + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" + result[i].buy_price + "</span></div>"; 
+		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory_to_sell&building_id=" 
+		+ building_id, 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+                var row = "<div class='object'><a href='#' title='" 
+                + result[i].name + "' class='sell' id='" 
+                + result[i].item_id 
+                + "'><img src='/components/com_battle/images/objects/" 
+                + result[i].name + ".png' height='32' width='32' /></a><span class='price'>$" 
+                + result[i].buy_price 
+                + "</span></div>"; 
  				all= all + row;
- 				}
-				all= all + '</div>';
-				$('my_inventory').innerHTML = all;
-				$$('.sell').addEvent('click', function(){
-					var itemID = this.get('id');
-					sell1(itemID);
-					});
-				}
+ 			}
+			all= all + '</div>';
+			$('my_inventory').innerHTML = all;
+			$$('.sell').addEvent('click', function()
+			{
+				var itemID = this.get('id');
+				sell1(itemID);
+			});
+		}
 	}).get();
-	}
+}
 
 
 function buy1(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=buy&building_id=" + building_id +"&item=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy&building_id=" 
+    + building_id 
+    +"&item=" 
+    + itemID, 
     onSuccess: function(result){
     	    
     	}
@@ -1179,10 +1366,12 @@ function sell1(itemID)
  
 	var a = new Request.JSON(
 	{
-        url: "index.php?option=com_battle&format=raw&task=action&action=sell&building_id=" + building_id + "&item=" + itemID, 
+        url: "index.php?option=com_battle&format=raw&task=action&action=sell&building_id=" 
+        + building_id + "&item=" 
+        + itemID, 
         onSuccess: function(result)
         {
        	   
         }
-        }).get();
+    }).get();
 }
