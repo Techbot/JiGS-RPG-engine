@@ -1,6 +1,5 @@
 (function()
 {
-
 	buy_building();
 	window.id1			= new Array();
 	window.metal_name_1 = new Array();
@@ -10,7 +9,6 @@
 	window.q_1			= new Array();
 	window.q_2			= new Array();	  
 	window.metals		= new Array();
-	request_metals();
 	var refTab			= document.getElementById("stats");
 	var row				= refTab.rows[0];
 	var col				= row.cells[1]; 
@@ -21,16 +19,13 @@
 	var row				= refTab.rows[3];
 	var col				= row.cells[1]; 
 	//alert(col.firstChild.nodeValue);
-
 	//var  col =   refTab.rows[1].cells[1]; 
 	//alert(col.firstChild.nodeValue);
 	window.building_type = col.firstChild.nodeValue;	
 	//change();
 	//noobslide
-	
 	request_batteries_cp();
 	//request_batteries.periodical(50085);	 
-	
 	control_panel_system();
 	set_type();
 
@@ -87,7 +82,7 @@ function set_type()
         prepare2();
         work_reprocessor();
         check_reprocessor.periodical(5000);
-        //change()
+        //change();
     }
 
     if (window.building_type=="factory")
@@ -95,7 +90,9 @@ function set_type()
         prepare();
         prepare2();
         work_conveyer();
-        check_factory.periodical(5000);
+        get_blueprints();
+        //check_factory.periodical(5000);
+        request_metals();
     }
 
     if (window.building_type=="scrapyard")
@@ -152,12 +149,12 @@ function set_type()
 			    currentHandle.addClass('active');
 		    }
 	    });
-
-       	 $('eat_burger').addEvent('click', function(){
-	      var itemID = this.get('id');
-	      eat(itemID);
-	     });
-	 
+       	$('eat_burger').addEvent('click', function()
+       	{
+	        var itemID = this.get('id');
+	        eat(itemID);
+	    });
+ 
     }
     
     if (window.building_type=="weapons")
@@ -216,16 +213,17 @@ function control_panel_system()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////	 
 
-function buy_weapon(itemID){
- 
-	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=buy_weapon&building_id=" 
-    + building_id + "&item=" + itemID, 
-    onSuccess: function(result){
-    	    
-    	}
+function buy_weapon(itemID)
+{
+ 	var a               = new Request.JSON(
+ 	{
+        url: "index.php?option=com_battle&format=raw&task=action&action=buy_weapon&building_id=" 
+        + building_id + "&item=" + itemID, 
+        onSuccess: function(result)
+        {
+        	    
+        }
     }).get();
- 
 }
 
 function sell_weapon(itemID)
@@ -659,7 +657,7 @@ function request_batteries()
 
 function request_battery_slots()
 {
-	 var all = '';
+	var all = '';
 	//	var details = this.details;
 	var a = new Request.JSON(
 	{
@@ -967,37 +965,10 @@ function buy_blueprint(itemID){
  
 }
 
-function get_blueprints(){
 
-var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_blueprints&blueprints=" 
-		+ document.adminForm.id1.value,
-		onSuccess: function(result)
-		{
-			for(var i=0;i<result.length;i++)
-			{
-				var row = result[i];
-				console.log(row);
-				for(var key in row)
-				{
-				    var attrName		= key;
-				    var attrValue		= row[key];
-			  		var x				= row.id;
-			  		//console.log(x);
-			  		//window.id1[x]				= row.id;		  		
-					window.id1[x]				= x ;
-					window.q_1[x]				= row.quantity_1;
-					window.q_2[x]				= row.quantity_2;
-					window.metal_name_1[x]		= row.metal_1_name;
-					window.metal_name_2[x]		= row.metal_2_name;
-				}
-			}	
-		}
-	}).get();
-}
 
 ///////////////////////////////
-function changeDisplayImage(blueprint)
+function changeDisplayImage()
 {
 	var id1					= new Array();
 	var metal_name_1		= new Array();
@@ -1051,14 +1022,71 @@ function changeDisplayImage(blueprint)
     }
 }
 
+
+
+
+
+
+function get_blueprints()
+{
+
+    var a = new Request.JSON(
+    {
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_blueprints&blueprints=" 
+		+ document.adminForm.id1.value,
+		onSuccess: function(result)
+		{
+			for(var i=0;i<result.length;i++)
+			{
+				var row = result[i];
+				console.log(row);
+				for(var key in row)
+				{
+				    var attrName		= key;
+				    var attrValue		= row[key];
+			  		var x				= row.id;
+			  		//console.log(x);
+			  		//window.id1[x]				= row.id;		  		
+					window.id1[x]				= x ;
+					window.q_1[x]				= row.quantity_1;
+					window.q_2[x]				= row.quantity_2;
+					window.metal_name_1[x]		= row.metal_1_name;
+					window.metal_name_2[x]		= row.metal_2_name;
+				}
+			}	
+		}
+	}).get();
+}
 ///////////////////////////////
 
-function change(blueprint)
+function change()
 {
+    i=0;
+    index							= window.id1[document.adminForm.blueprints.value];
+	Array.each(window.metals, function( )
+	{
+		if (window.metals[i].name == window.metal_name_1[index])
+		{
+			window.mystock1 = window.metals[i].quantity;
+		}
+		if (window.metals[i].name == window.metal_name_2[index])
+		{
+			window.mystock2 = window.metals[i].quantity;
+		}
+		i++;
+	});
+
 	if (document.adminForm.blueprints.value !='')
 	{
-		index							= id1[document.adminForm.blueprints.value];
-		document.adminForm.id1.value	= window.id1[index];
+		index							= window.id1[document.adminForm.blueprints.value];
+		
+		//document.adminForm.id1.value	= window.id1[index];
+		
+		
+		document.adminForm.id1.value	= window.id1[2];
+		//document.adminForm.id1.value	= 2;
+		
+		
     	document.adminForm.q1.value		= window.q_1[index];
 		document.adminForm.n1.value		= window.metal_name_1[index];
         document.adminForm.q2.value		= window.q_2[index];
@@ -1083,6 +1111,10 @@ function change(blueprint)
 		document.adminForm.imagelib.src='images/blank.png';
 	}
 }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function buy_building() {
 	$$('.buy').addEvent('click', function(){
@@ -1194,13 +1226,22 @@ function check_factory()
 		    
 
 function request_metals(){
+
+
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=get_metals2", 
     onSuccess: function(result){
-    metals= result;
+    window.metals= result;
+    
+    
+    
     }
     }).get();
 }
+
+
+
+
 function check_stock_control(){
 //	if whats in stock is less than required total hide submit button and change background to red
 //  else change to green and show submit
