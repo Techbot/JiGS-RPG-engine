@@ -297,7 +297,7 @@ div.name {
 	text-transform:uppercase;
 }
 div.desc {
-	/*width:60%;*/
+	width:60%;
 	float:left;
 }
 div#profile div.desc {
@@ -667,7 +667,9 @@ div#batteries .label,
 div#metal .label,
 div#inventory .label,
 div#stats .label ,
-div#inventory_module .label {
+div#inventory_module .label,
+div#stats_module .label,
+div#weapon_module .label {
 	text-align:left;
 	display:inline-block;
 	text-transform: uppercase;
@@ -675,6 +677,12 @@ div#inventory_module .label {
 	font-weight: bold;
 	color:#999;
 	margin:0 5px 0 0;
+}
+
+div#weapon_module a {
+	text-align:center;
+	display:block;
+	margin:0 auto;
 }
 
 /* Apartment Layout */

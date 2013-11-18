@@ -468,11 +468,11 @@ class BattleModelJigs extends JModellist{
 		$result = $db->loadRow();
 
 		$image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
-			'<img src="components/com_battle/images/weapons/' . $result[1] . '"></a><br>' .
-			'Id: ' . $result[0] .'| Bullets per clip: ' . $result[2] .
-			'<br>Attack: ' . $result[3] .'| Defence: ' . $result[4] .
-			'<br>Precision: ' . $result[5] .'| Detente: ' . $result[6] .
-			'<br>Price: ' . $result[7] .'| Ammunition Price: ' . $result[8] 
+			'<img src="components/com_battle/images/weapons/' . $result[1] . '"></a>' .
+			'<span class="label">Id: </span>' . $result[0] .'<br><span class="label">Bullets per clip:</span> ' . $result[2] .
+			'<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
+			'<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
+			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8] 
 			;
 
 		return $image;

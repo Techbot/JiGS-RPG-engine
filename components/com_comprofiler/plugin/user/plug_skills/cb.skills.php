@@ -29,7 +29,7 @@ class getBlogTab3 extends cbTabHandler {
 		//$db->setQuery($query);
 		//$result		= $db->loadObjectList(); 
 		$this->skills	= $this->get_skills($user);
-		$return .=  '<div style= "width:250px ; float:left;" >';
+		$return .=  '<div style= "width:250px ;">';
 		$return .=  '<table class="shade-table">';
 		$return .=  '<tr><td>' . $this->skills->name_1 . '</td><td>Level : 1</td></tr>';
 		$return .=  '<tr><td>' . $this->skills->name_2 . '</td><td>Level : 1</td></tr>';
@@ -42,9 +42,9 @@ class getBlogTab3 extends cbTabHandler {
 		
 		$return .= '	</table></div>	';
 		
-		 foreach ($result as $row){
+		/* foreach ($result as $row){
 				//	$return .=  $row->id . " " . $row->type . "<br>";
-				}
+				}*/
 				return $return; 
 		 } 
 

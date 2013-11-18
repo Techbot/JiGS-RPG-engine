@@ -13,7 +13,7 @@ if ($this->player->iduser == 0){
 $body ='<div id="building" class="clearfix"><!-- This should replace div#container -->
   <div class="building_left">
   
-<div style="width:54px;height:54px;float:left;margin:0 15px 0 0;" class="compass">
+<div  class="compass">
 
 <a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
 
