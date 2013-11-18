@@ -554,6 +554,7 @@ class plgBattleHeartbeat extends JPlugin
 		// Find all fields where finished(unix time) has passed 
 		$query="SELECT 
 			#__jigs_farms.finished,
+			#__jigs_farms.field,
 			#__jigs_farms.status,
 			#__jigs_farms.total,
 			#__jigs_farms.building,
@@ -603,7 +604,7 @@ class plgBattleHeartbeat extends JPlugin
 					total = $row->total,
 					finished = $row->finished
 					WHERE building	= $row->building
-					AND field = 1";
+					AND field = $row->field";
 
 				$db->setQuery($query);
 				$db->query();
