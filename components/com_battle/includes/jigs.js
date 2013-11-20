@@ -369,7 +369,24 @@ function kick_player(character_id){
 
 
 
+function reload(){
+	
+		var a = new Request.JSON(
+		{
+			url: "index.php?option=com_battle&format=raw&task=action&action=reload",
+			onSuccess: function(result)
+			{
+			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			
+	
+			myElement= $('magazine');
 
+			myElement.set('html', result);	
+			
+			
+			}
+		}).get();
+	}
 
 
 

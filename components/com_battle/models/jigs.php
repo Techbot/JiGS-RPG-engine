@@ -452,6 +452,17 @@ class BattleModelJigs extends JModellist{
 		$result		= $db->loadAssocList();
 		return $result;
 	}
+	
+	
+	function reload(){
+	
+	
+	return 10;
+	
+	}
+	
+	
+	
 
 	function get_weapon() {
 
@@ -460,10 +471,23 @@ class BattleModelJigs extends JModellist{
 		$char		= 62;
 
 		$db->setQuery(
-			"SELECT #__jigs_weapon_names.* " .
-			"FROM #__jigs_players " .
-			"LEFT JOIN #__jigs_weapon_names ON #__jigs_players.id_weapon = #__jigs_weapon_names.id " .
-			"WHERE #__jigs_players.iduser = " . $user->id);
+			"SELECT 
+			#__jigs_weapon_names.* ,
+			#__jigs_weapons.magazine 
+			
+			FROM #__jigs_players
+			
+			LEFT JOIN #__jigs_weapon_names 
+			ON #__jigs_players.id_weapon = #__jigs_weapon_names.id 
+			
+			LEFT JOIN #__jigs_weapons 
+			ON #__jigs_players.id_weapon = #__jigs_weapons.item_id
+			
+			
+			WHERE #__jigs_players.iduser = " . $user->id);
+
+
+
 
 		$result = $db->loadRow();
 
@@ -472,8 +496,8 @@ class BattleModelJigs extends JModellist{
 			'<span class="label">Id: </span>' . $result[0] .'<br><span class="label">Bullets per clip:</span> ' . $result[2] .
 			'<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
 			'<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
-			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8] 
-			;
+			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8]. 
+			'<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. "</div><input type='button' value='Reload' onclick= 'reload();'></button>";
 
 		return $image;
 	}
