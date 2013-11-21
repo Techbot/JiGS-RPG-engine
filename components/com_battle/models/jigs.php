@@ -441,8 +441,8 @@ class BattleModelJigs extends JModellist{
 
 	function get_clothing() {
 
-		$db		=& JFactory::getDBO();
-		$user		=& JFactory::getUser();
+		$db		= JFactory::getDBO();
+		$user	= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_clothing.item_id, #__jigs_clothing_names.name " .
 			"FROM #__jigs_clothing " .
@@ -454,21 +454,83 @@ class BattleModelJigs extends JModellist{
 	}
 	
 	
-	function reload(){
-	
-	
-	return 10;
-	
-	}
-	
-	
-	
+	function reload()
+	{
+		$db		            = JFactory::getDBO();
+		$user	            = JFactory::getUser();
+		
+		// Get all the info from the database
+		// There are three tables. 
+		// 1) The player table which includes the player stats ,what actual gun and how many spare bullets
+		// 2) The weapons table which is a list of every instance of weapon in the game 
+		//    and how many bullets are in that particular gun
+		// 3) The weapon_name  table which lists various stats for a gun type including the max number of bullets in a clip
+		//
+		
+		$query              = "SELECT id_weapon,ammunition FROM #__jigs_players WHERE #__jigs_players.iduser = " . $user->id;
+	    $db->setQuery($query);
+	    $_result		    = $db->loadAssocList();
+	    $id_weapon          = $_result['id_weapon'];// current weapon
+		$ammunition         = $_result['ammunition'];// total ammunition
+		
+		$query              = "Select magazine,item_id from #__jigs_weapon WHERE id = $id_weapon";
+		$db->setQuery($query); 
+		$_result		    = $db->loadAssocList(); //load assoc is a joomla method that loads an associated array
+	    $current_clip       = $_result['magazine']; //current ammunition
+	    $id                 = $_result['item_id']; //current weapon_type
+		
+		$query              = "Select ammunition from #__jigs_weapon_names WHEREid = $id";
+		$db->setQuery($query);
+		$max_ammunition     = $db->loadResult();// loadresult is a joomla method that loads a single value
+	    
+	    $empty_slots        = $max_ammunition - $current_magazine ;
+
+        /* 
+        If current magazine is less than maximun that can be help in clip and the amount of ammunition the player has 
+        is greater than the amount of epty slots in the clip then the clip is filled and the amount of ammunition 
+        is reduced by the number of empty slots.
+        */
+
+
+	    if ($current_magazine < $max_ammunition && $ammunition > $empty_slots )
+	    {
+	        $current_magazine   = $max_ammunition;
+	        $ammunition         = $ammunition -$empty_slots; //$empty_slots equals number of bullets added to clip
+ 
+	    }   
+	    
+	    // the current magazine has more empty slots than player has bullets, 
+	    // so whatever bullets player has is added to the clip 
+	    // and the player now has no remaining bullets            
+	    
+		else 
+	    {
+	        $current_clip = $current_clip + $ammunition;
+	        $ammuntion        = 0
+	    }   
+	    
+	    
+	    // now we need to save the info back to two tables
+	    // 1) the players table with number of bullets remaining in backpack
+	    // 2) number of bullets in this instance of weapon
+	    // The third table with weapon_type stats does not get updated with anything
+    
+	    $query              = "UPDATE #__jigs_players (ammunition) values ($ammunition)  WHERE iduser = $user->id";
+	    $db->setQuery($query);
+	    $db->query();
+	    
+        $query              = "UPDATE #__jigs_weapon (magazine) values ($current_clip)  WHERE id = $id_weapon";
+	    $db->setQuery($query);
+	    $db->query();
+	    
+	    return $current_clip;
+    }
 
 	function get_weapon() {
 
-		$db		=& JFactory::getDBO();
+		$db		    =& JFactory::getDBO();
 		$user		=& JFactory::getUser();
-		$char		= 62;
+		//$char		= 62;
 
 		$db->setQuery(
 			"SELECT 
