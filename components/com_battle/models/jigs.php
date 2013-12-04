@@ -458,7 +458,6 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		            = JFactory::getDBO();
 		$user	            = JFactory::getUser();
-		
 		// Get all the info from the database
 		// There are three tables. 
 		// 1) The player table which includes the player stats ,what actual gun and how many spare bullets
@@ -466,64 +465,66 @@ class BattleModelJigs extends JModellist{
 		//    and how many bullets are in that particular gun
 		// 3) The weapon_name  table which lists various stats for a gun type including the max number of bullets in a clip
 		//
-		
-		$query              = "SELECT id_weapon,ammunition FROM #__jigs_players WHERE #__jigs_players.iduser = " . $user->id;
+		$query              = "SELECT id_weapon,ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
 	    $db->setQuery($query);
-	    $_result		    = $db->loadAssocList();
+	    $_result		    = $db->loadAssoc();
 	    $id_weapon          = $_result['id_weapon'];// current weapon
 		$ammunition         = $_result['ammunition'];// total ammunition
-		
-		$query              = "Select magazine,item_id from #__jigs_weapon WHERE id = $id_weapon";
-		$db->setQuery($query); 
-		$_result		    = $db->loadAssocList(); //load assoc is a joomla method that loads an associated array
-	    $current_clip       = $_result['magazine']; //current ammunition
-	    $id                 = $_result['item_id']; //current weapon_type
-		
-		$query              = "Select ammunition from #__jigs_weapon_names WHEREid = $id";
-		$db->setQuery($query);
-		$max_ammunition     = $db->loadResult();// loadresult is a joomla method that loads a single value
-	    
-	    $empty_slots        = $max_ammunition - $current_magazine ;
-
-        /* 
-        If current magazine is less than maximun that can be help in clip and the amount of ammunition the player has 
-        is greater than the amount of epty slots in the clip then the clip is filled and the amount of ammunition 
-        is reduced by the number of empty slots.
+		 /* 
+        If ammuntion is empty let player know and exit ,else continue
         */
-
-
-	    if ($current_magazine < $max_ammunition && $ammunition > $empty_slots )
+	    if ($ammunition ==0)
 	    {
-	        $current_magazine   = $max_ammunition;
-	        $ammunition         = $ammunition -$empty_slots; //$empty_slots equals number of bullets added to clip
- 
-	    }   
-	    
-	    // the current magazine has more empty slots than player has bullets, 
-	    // so whatever bullets player has is added to the clip 
-	    // and the player now has no remaining bullets            
-	    
-		else 
-	    {
-	        $current_clip = $current_clip + $ammunition;
-	        $ammuntion        = 0
-	    }   
-	    
-	    
-	    // now we need to save the info back to two tables
-	    // 1) the players table with number of bullets remaining in backpack
-	    // 2) number of bullets in this instance of weapon
-	    // The third table with weapon_type stats does not get updated with anything
-    
-	    $query              = "UPDATE #__jigs_players (ammunition) values ($ammunition)  WHERE iduser = $user->id";
-	    $db->setQuery($query);
-	    $db->query();
-	    
-        $query              = "UPDATE #__jigs_weapon (magazine) values ($current_clip)  WHERE id = $id_weapon";
-	    $db->setQuery($query);
-	    $db->query();
-	    
-	    return $current_clip;
+	        $message = "You have no ammunition";
+	        $current_magazine = 0; // current magazine = no change
+	    }
+	    else
+		{
+		    $query              = "Select magazine,item_id from #__jigs_weapons WHERE id = $id_weapon";
+		    $db->setQuery($query); 
+		    $_result		    = $db->loadAssoc(); //load assoc is a joomla method that loads an associated array
+	        $current_magazine   = $_result['magazine']; //current ammunition
+	        $id                 = $_result['item_id']; //current weapon_type
+		    $query              = "Select ammunition from #__jigs_weapon_names WHERE id = $id";
+		    $db->setQuery($query);
+		    $max_ammunition     = $db->loadResult();// loadresult is a joomla method that loads a single value
+	        $empty_slots        = $max_ammunition - $current_magazine ;
+            /* 
+            If current magazine is less than maximun that can be held in clip and the amount of ammunition the player has 
+            is greater than the amount of empty slots in the clip then the clip is filled and the amount of ammunition 
+            is reduced by the number of empty slots.
+            */
+	        if ($current_magazine < $max_ammunition && $ammunition > $empty_slots )
+	        {
+	            $current_magazine   = $max_ammunition;
+	            $ammunition         = $ammunition - $empty_slots; //$empty_slots equals number of bullets added to clip
+                $message= "Your clip is now full ";
+	        }   
+	        // the current magazine has more empty slots than player has bullets, 
+	        // so whatever bullets player has is added to the clip 
+	        // and the player now has no remaining bullets            
+		    else 
+	        {
+	            $current_magazine = $current_magazine + $ammunition;
+	            $ammunition        = 0;
+	            $message= "You reload your weapon to $current_magazine bullets ";
+	        }   
+	        // now we need to save the info back to two tables
+	        // 1) the players table with number of bullets remaining in backpack
+	        // 2) number of bullets in this instance of weapon
+	        // The third table with weapon_type stats does not get updated with anything
+	        $query              = "UPDATE #__jigs_players (ammunition) values ($ammunition)  WHERE iduser = $user->id";
+	        $db->setQuery($query);
+	        $db->query();
+            $query              = "UPDATE #__jigs_weapons (magazine) values ($current_magazine)  WHERE id = $id_weapon AND player_id = $user->id";
+	        $db->setQuery($query);
+	        $db->query();
+	     }
+	$this->sendFeedback($user->id,$message);
+	return $current_magazine;
+	//return $ammunition;
+	
+	
     }
 
 	function get_weapon() {
@@ -558,24 +559,27 @@ class BattleModelJigs extends JModellist{
 			'<span class="label">Id: </span>' . $result[0] .'<br><span class="label">Bullets per clip:</span> ' . $result[2] .
 			'<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
 			'<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
-			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8]. 
-			'<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. "</div><input type='button' value='Reload' onclick= 'reload();'></button>";
-
-		return $image;
+			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8];
+			
+			
+			if ($user->id>0)
+			{
+			$image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. "</div><input type='button' value='Reload' onclick= 'reload();'></button>";
+            }
+		    return $image;
 	}
-
 
 	function get_weapons() {
 
-		$db		=& JFactory::getDBO();
-		$user		=& JFactory::getUser();
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.name, #__jigs_weapon_names.sell_price " .
 			" FROM #__jigs_weapons " .
 			" LEFT JOIN #__jigs_weapon_names ON #__jigs_weapons.item_id =  #__jigs_weapon_names.id " .
 			"WHERE #__jigs_weapons.player_id =".$user->id);
 
-		$result = $db->loadAssocList();
+		$result     = $db->loadAssocList();
 		return $result;
 	}
 
@@ -896,171 +900,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function old_get_players_view()
-	{
-		$id		= substr(JRequest::getvar('id'), 5);
-		$people		= JTable::getInstance('players', 'Table');
-		$people->load($id);
-		$inv		= $this->get_character_inventory($id);
-		$db		= JFactory::getDBO();
-		$query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
-		$db->setQuery($query);
-		$people->avatar	= $db->loadresult();
 
-		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center;
-		background:#000; float:left; position:relative; left:0px; top:0px;">
-			<div id="profile_" class="clearfix">
-			<div class="name">' . $people->username . '</div>
-			<div class="desc">
-			<img src="/images/comprofiler/' . $people->avatar .'" class="thumbnail" alt="' . $people->username .
-			'" title="<' .  $people->username .'" width="100" height="100" id="character_image" />
-			<div class="stats">
-			<table class="stats" >
-			<tr>
-			<th scope="row">ID</th>
-			<td>'.$id .'</td>
-			</tr>
-			<tr>
-			<th scope="row">Name</th>
-			<td>'. $people->username .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Money</th>
-			<td>'. $people->money .'</td>
-			</tr>
-			</table>
-			</div><!-- end stats -->
-
-
-			<p class="desc">'. $people->comment .'</p>
-			</div><!-- end desc -->
-			<div class="vitals">
-			<div class="label">Experience:</div>
-			<div class="gauge"><div id="xp"><span>'. $people->xp .'</span></div></div>
-			<div class="label">Intelligence:</div>
-			<div class="gauge"><div id="intel"><span>'. $people->intelligence .'</span></div></div>
-			<div class="label">Strength:</div>
-			<div class="gauge"><div id="strength"><span>'. $people->strength  .'</span></div></div>
-			<div class="label">Health:</div>
-			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .
-			'</span></div></div>
-			</div><!-- end vitals -->
-			</div><!-- end profile -->
-
-			<div id="_inventory" class="clearfix">
-			<div class="name">Inventory</div>
-			';
-
-/*
-foreach ($inv as $inv_object)
-{
-$text .= "<br>" . $inv_object["name"] ;
-}
-
- */
-		$text .='</div><!-- end inventory -->
-
-			<div id="action" class="clearfix">
-			<!-- <div class="recruit"><a class="recruit" href="#">Recruit</a></div> --> 
-			<div class="shoot"><a onclick="shoot_person(' . $id . ')" id="shoot" >Shoot</a></div>
-			<div class="kick"><a onclick="kick_person('. $id . ')" id="kick" >Kick</a> </div>
-			<div class="punch"><a onclick="punch_person('. $id . ')" id="punch">Punch</a> </div>
-			<div class="talk"><a onclick="talk_person('. $id . ')" id="talk">Talk</a> </div>
-			<!--   <div class="bribe"><a class="bribe" href="#">Bribe</a></div>
-			<div class="rob"><a class="rob" href="#">Rob</a></div>
-			<div class="talk"><a class="talk" href="#">Talk</a></div>--> 
-			</div>
-
-			</div>
-			';
-		return $text;
-	}	
-
-	function old_get_character_view()
-	{
-		$id= JRequest::getvar('id');
-		$people = JTable::getInstance('people', 'Table');
-		$people->load($id);
-		$inv = $this->get_character_inventory($id);
-		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center; background:#000; float:left; position:relative; left:0px; top:0px;">
-
-			<div id="profile_" class="clearfix">
-			<div class="name">' . $people->name . '</div>
-			<div class="desc">
-			<img src="/components/com_battle/images/ennemis/' . $people->image . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" />
-			<div class="stats">
-			<table class="stats" >
-			<tr>
-			<th scope="row">ID</th>
-			<td>'.$people->id .'</td>
-			</tr>
-			<tr>
-			<th scope="row">Name</th>
-			<td>'. $people->name .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Money</th>
-			<td>'. $people->money .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">XP</th>
-			<td>'. $people->xp .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Intelligence</th>
-			<td>'. $people->intelligence .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Strength</th>
-			<td>'. $people->strength .'</td>
-			</tr>
-
-			</table>
-			</div><!-- end stats -->
-
-			<p class="desc">'. $people->comment .'</p>
-			</div><!-- end desc -->
-			<div class="vitals">
-			<!--<div class="label">Experience:</div>
-			<div class="gauge"><div id="xp"><span>'. $people->xp .'</span></div></div>
-			<div class="label">Intelligence:</div>
-			<div class="gauge"><div id="intel"><span>'. $people->intelligence .'</span></div></div>
-			<div class="label">Strength:</div>
-			<div class="gauge"><div id="strength"><span>'. $people->strength  .'</span></div></div>-->
-			<div class="label">Health:</div>
-			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .'</span></div></div>
-			</div><!-- end vitals -->
-			</div><!-- end profile -->
-
-			<!--<div id="_inventory" class="clearfix">
-			<div class="name">Inventory</div>
-			';
-
-/*
-foreach ($inv as $inv_object)
-{
-$text .= "<br>" . $inv_object["name"] ;
-}
-
- */
-		$text .='</div> --><!-- end inventory -->
-
-			<div id="action" class="clearfix">
-			<!-- <div class="recruit"><a class="recruit" href="#">Recruit</a></div> --> 
-			<div class="shoot"><a onclick="shoot(' . $people->id . ')" id="shoot" >Shoot</a></div>
-			<div class="kick"><a onclick="kick('. $people->id . ')" id="kick" >Kick</a> </div>
-			<div class="punch"><a onclick="punch('. $people->id . ')" id="punch">Punch</a> </div>
-			<div class="talk"><a onclick="talk_person('. $id . ')" id="talk">Talk</a> </div>
-			<!--   <div class="bribe"><a class="bribe" href="#">Bribe</a></div>
-			<div class="rob"><a class="rob" href="#">Rob</a></div>
-			<div class="talk"><a class="talk" href="#">Talk</a></div>--> 
-			</div>
-
-			</div>
-			';
-
-		return $text;
-	}
 
 	function buy_weapon()
 	{
@@ -1388,78 +1228,6 @@ $text .= "<br>" . $inv_object["name"] ;
 		$result		= $db->loadAssocList();
 		return $result;
 	}
-
-
-
-/*
-	function get_battery_slots()
-		{
-			$db     	= JFactory::getDBO();
-			$building	= JRequest::getvar('building_id');
-			$now    	= time();
-			$factor		= 10;
-
-			$query		= "
-			SELECT * 
-			FROM #__jigs_batteries
-			WHERE iduser = $building
-			";
-
-			$db->setQuery($query);
-			$batteries = $db->loadAssocList();
-
-		/*	foreach($batteries as $battery)
-		{
-			$id        = $battery['id'];
-			$timestamp = $battery['timestamp'];
-			$elapsed   = $now - $timestamp;
-			$units     = $battery['units'];
-			$max_units = $battery['max_units'];
-			$new_units = intVal($elapsed/$factor);
-
-			if($units + $new_units < $max_units)
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = units + $new_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-			else
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = max_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-
-
-			$db->setQuery($query);
-			$db->query();
-		
-		
-		}
-		return $batteries;
-	}
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
 
 	function get_shop_metals()
 	{
