@@ -1,8 +1,14 @@
- <<!--script type="text/javascript" src="/JIGS/plugins/system/mtupgrade/mootools.js"></script>
- <SCRIPT type="text/javascript" src="clientcide.2.2.0.js"></script>-->
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' ); 
-	?>
+
+ print_r($this->inv);
+// exit();
+
+
+?>
+	
+	
+	
 <div style= "width:250px ; float:left;" >
     <table>
     <?php

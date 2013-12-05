@@ -364,8 +364,8 @@ class BattleModelJigs extends JModellist{
 
 	function get_inventory2() {
 
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
 
 		$db->setQuery("SELECT DISTINCT 
@@ -389,7 +389,7 @@ class BattleModelJigs extends JModellist{
 	function get_metals2() {
 
 		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$user	= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_metals.item_id, " .
 			"#__jigs_metals.quantity, " .
@@ -407,7 +407,7 @@ class BattleModelJigs extends JModellist{
 	function get_crystals2() {
 
 		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$user	= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_crystals.item_id, " .
 			"#__jigs_crystal_names.name, #__jigs_crystals.quantity " .
@@ -484,8 +484,8 @@ class BattleModelJigs extends JModellist{
 		    $db->setQuery($query); 
 		    $_result		    = $db->loadAssoc(); //load assoc is a joomla method that loads an associated array
 	        $current_magazine   = $_result['magazine']; //current ammunition
-	        $id                 = $_result['item_id']; //current weapon_type
-		    $query              = "Select ammunition from #__jigs_weapon_names WHERE id = $id";
+	        $weapon_type        = $_result['item_id']; //current weapon_type
+		    $query              = "Select ammunition from #__jigs_weapon_names WHERE id = $weapon_type";
 		    $db->setQuery($query);
 		    $max_ammunition     = $db->loadResult();// loadresult is a joomla method that loads a single value
 	        $empty_slots        = $max_ammunition - $current_magazine ;
@@ -513,18 +513,20 @@ class BattleModelJigs extends JModellist{
 	        // 1) the players table with number of bullets remaining in backpack
 	        // 2) number of bullets in this instance of weapon
 	        // The third table with weapon_type stats does not get updated with anything
-	        $query              = "UPDATE #__jigs_players (ammunition) values ($ammunition)  WHERE iduser = $user->id";
+    
+	        
+	        $query              = "UPDATE #__jigs_players SET ammunition= $ammunition  
+	                                WHERE iduser = $user->id";
 	        $db->setQuery($query);
 	        $db->query();
-            $query              = "UPDATE #__jigs_weapons (magazine) values ($current_magazine)  WHERE id = $id_weapon AND player_id = $user->id";
+            $query              = "UPDATE #__jigs_weapons SET magazine = $current_magazine  
+                                    WHERE id = $id_weapon AND player_id = $user->id";
 	        $db->setQuery($query);
 	        $db->query();
 	     }
 	$this->sendFeedback($user->id,$message);
 	return $current_magazine;
-	//return $ammunition;
-	
-	
+
     }
 
 	function get_weapon() {
@@ -540,11 +542,11 @@ class BattleModelJigs extends JModellist{
 			
 			FROM #__jigs_players
 			
-			LEFT JOIN #__jigs_weapon_names 
-			ON #__jigs_players.id_weapon = #__jigs_weapon_names.id 
-			
 			LEFT JOIN #__jigs_weapons 
-			ON #__jigs_players.id_weapon = #__jigs_weapons.item_id
+			ON #__jigs_players.id_weapon = #__jigs_weapons.id
+			
+			LEFT JOIN #__jigs_weapon_names 
+			ON #__jigs_weapons.item_id = #__jigs_weapon_names.id 
 			
 			
 			WHERE #__jigs_players.iduser = " . $user->id);
@@ -1414,21 +1416,60 @@ class BattleModelJigs extends JModellist{
 
 		switch ($attack_type)
 		{
-			///// If Player shoots test shooting skills + speed + dexterity against NPCs speed //////////////
+			///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
 		case 'shoot':
+			
+			
+			
+			
+			
+			
+			
 			if ($player->dice > $npc->dice)
 			{
 				$npc->health	= intval($npc->health - 30);
-				$attack_message	= "You shoot " . $npc->name . " and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
+				$attack_message	= "You shoot $npc->name and inflict 30 damage points to his health.You: 
+				$player->health ,Opponent: $npc->health ";
 			}
 			else
 			{
-				$attack_message	= "You shoot " . $npc->name . " and miss.You: $player->health ,Opponent: $npc->health";
+				$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
 			}
+			
+			
 			$player->ammunition--;
+			
+			
+			
+			
+			
+			
 			break;
 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			//====== If Player kicks, test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
+		
 		case 'kick':
 			if ($player->dice > $npc->dice)
 			{
@@ -1544,7 +1585,7 @@ class BattleModelJigs extends JModellist{
 	function test_level($user_id)
 	{
 		$user		= JFactory::getUser();
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$now		= time();
 		$query		= "SELECT xp FROM #__jigs_players where iduser = $user_id";
 		$db->setQuery($query);
@@ -1570,6 +1611,7 @@ class BattleModelJigs extends JModellist{
 		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$weapon_id	= JRequest::getvar('weapon_id');
+		
 		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE iduser =".$user->id);
 		$db->query();
 		$result		= $weapon_id ;
