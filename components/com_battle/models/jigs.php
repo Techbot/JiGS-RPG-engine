@@ -1402,13 +1402,13 @@ class BattleModelJigs extends JModellist{
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$character_id	= JRequest::getInt('character');
-		$sql			= "SELECT iduser, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
+		$sql			= "SELECT iduser, health, money, final_attack, final_defence, id_weapon FROM #__jigs_players WHERE iduser = " . $user->id;
 		$db->setQuery($sql);
 		$player			= $db->loadObject();
 
 		$player->dice	= rand(0, 15);
-
-		$db->setQuery("SELECT id, name, health, money FROM #__jigs_characters WHERE id =" . $character_id);
+		$query			= "SELECT id, name, health, money FROM #__jigs_characters WHERE id =" . $character_id;
+		$db->setQuery($query);
 		$npc			= $db->loadObject();
 
 		$npc->dice		= rand(0, 5);
@@ -1418,56 +1418,33 @@ class BattleModelJigs extends JModellist{
 		{
 			///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
 		case 'shoot':
-			
-			
-			
-			
-			
-			
-			
-			if ($player->dice > $npc->dice)
+			$query			= "SELECT magazine FROM #__jigs_weapons WHERE id =" . $player->id_weapon;
+			$db->setQuery($query);
+			$player->magazine			= $db->loadResult();
+			if ($player->magazine > 0)
 			{
-				$npc->health	= intval($npc->health - 30);
-				$attack_message	= "You shoot $npc->name and inflict 30 damage points to his health.You: 
-				$player->health ,Opponent: $npc->health ";
+				if ($player->dice > $npc->dice)
+				{
+					$npc->health	= intval($npc->health - 30);
+					$attack_message	= "You shoot $npc->name and inflict 30 damage points to his health.You: 
+					$player->health ,Opponent: $npc->health ";
+				}
+				else
+				{
+					$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+				}
+			
+			
+				$player->magazine--;
 			}
-			else
-			{
-				$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+			
+			else{
+			
+					$attack_message	= "You have no bullets in your gun clip";
+			
 			}
-			
-			
-			$player->ammunition--;
-			
-			
-			
-			
-			
-			
 			break;
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	
 			//====== If Player kicks, test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
 		
 		case 'kick':
@@ -1512,11 +1489,15 @@ class BattleModelJigs extends JModellist{
 		}
 
 		/////////////////////////////////////// Now update everybodys stats to database //////////////////
-		$sql = "UPDATE #__jigs_players SET health = $player->health, ammunition = $player->ammunition WHERE iduser = $user->id ";
+		$sql = "UPDATE #__jigs_players SET health = $player->health WHERE iduser = $user->id ";
 		$db->setQuery($sql);
 		$db->query();
 
 		$sql = "UPDATE #__jigs_characters SET health = $npc->health WHERE id = $npc->id";
+		$db->setQuery($sql);
+		$db->query();
+
+		$sql = "UPDATE #__jigs_weapons SET magazine = $player->magazine WHERE id = $player->id_weapon";
 		$db->setQuery($sql);
 		$db->query();
 
