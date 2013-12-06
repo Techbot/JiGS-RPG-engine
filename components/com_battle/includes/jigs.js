@@ -441,6 +441,15 @@ function shoot_character(character_id){
 
 			myElement2.set('html', result[1]);	
 			
+			
+			myElement3= $('magazine');
+
+			myElement3.set('html', result[3]);
+			
+			
+			
+			
+			
 			if(result[1]<30){
 
 			}
