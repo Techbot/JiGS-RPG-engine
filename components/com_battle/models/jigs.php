@@ -1433,15 +1433,10 @@ class BattleModelJigs extends JModellist{
 				{
 					$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
 				}
-			
-			
 				$player->magazine--;
 			}
-			
 			else{
-			
 					$attack_message	= "You have no bullets in your gun clip";
-			
 			}
 			break;
 	
@@ -1507,6 +1502,7 @@ class BattleModelJigs extends JModellist{
 		$result[0]	= $player->health;
 		$result[1]	= $npc->health;
 		$result[2]	= $attack_message;
+		$result[3]  = $player->magazine;
 		return $result;
 	}
 
