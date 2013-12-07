@@ -1339,8 +1339,8 @@ class BattleModelJigs extends JModellist{
 		{
 			if ($player->dice > $player2->dice)
 			{
-				$player->health	= $player->health -1;
-				$player2->health= $player2->health-30;
+				$player->health		= $player->health -1;
+				$player2->health	= $player2->health-30;
 				$message	= "You attacked " . $player2->username .
 					" and inflicted 30 points of damage. You: $player->health ,Opponent: $player2->health";
 			}
@@ -1402,12 +1402,14 @@ class BattleModelJigs extends JModellist{
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$character_id	= JRequest::getInt('character');
-		$sql			= "SELECT iduser, health, money, final_attack, final_defence, id_weapon FROM #__jigs_players WHERE iduser = " . $user->id;
+		$sql			= "SELECT iduser, health, money, final_attack, final_defence, dexterity, level, id_weapon 
+		FROM #__jigs_players 
+		WHERE iduser = " . $user->id;
 		$db->setQuery($sql);
 		$player			= $db->loadObject();
 
 		$player->dice	= rand(0, 15);
-		$query			= "SELECT id, name, health, money FROM #__jigs_characters WHERE id =" . $character_id;
+		$query			= "SELECT id, name, level, health, money FROM #__jigs_characters WHERE id =" . $character_id;
 		$db->setQuery($query);
 		$npc			= $db->loadObject();
 
@@ -1418,22 +1420,30 @@ class BattleModelJigs extends JModellist{
 		{
 			///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
 		case 'shoot':
-			$query			= "SELECT magazine FROM #__jigs_weapons WHERE id =" . $player->id_weapon;
+			$query						= "SELECT #__jigs_weapons.magazine,
+												  #__jigs_weapon_names.attack
+											FROM #__jigs_weapons 
+											LEFT JOIN #__jigs_weapon_names
+											ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
+											WHERE #__jigs_weapons.id =" . $player->id_weapon;
 			$db->setQuery($query);
-			$player->magazine			= $db->loadResult();
-			if ($player->magazine > 0)
+			$player->weapon			= $db->loadAssoc();
+			$damage = (int)(($player->weapon['attack'] * $player->dexterity) / $npc->level);
+			if ($player->weapon['magazine'] > 0)
 			{
-				if ($player->dice > $npc->dice)
+				
+				
+				if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
 				{
-					$npc->health	= intval($npc->health - 30);
-					$attack_message	= "You shoot $npc->name and inflict 30 damage points to his health.You: 
+					$npc->health	= intval($npc->health - $player->weapon['attack'] );
+					$attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You: 
 					$player->health ,Opponent: $npc->health ";
 				}
 				else
 				{
 					$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
 				}
-				$player->magazine--;
+				$player->weapon['magazine']--;
 			}
 			else{
 					$attack_message	= "You have no bullets in your gun clip";
@@ -1492,7 +1502,7 @@ class BattleModelJigs extends JModellist{
 		$db->setQuery($sql);
 		$db->query();
 
-		$sql = "UPDATE #__jigs_weapons SET magazine = $player->magazine WHERE id = $player->id_weapon";
+		$sql = "UPDATE #__jigs_weapons SET magazine = $player->weapon['magazine'] WHERE id = $player->id_weapon";
 		$db->setQuery($sql);
 		$db->query();
 
@@ -1502,8 +1512,10 @@ class BattleModelJigs extends JModellist{
 		$result[0]	= $player->health;
 		$result[1]	= $npc->health;
 		$result[2]	= $attack_message;
-		$result[3]  = $player->magazine;
+		$result[3]  = $player->weapon['magazine'];
+		
 		return $result;
+		
 	}
 
 	function dead_npc($npc)
