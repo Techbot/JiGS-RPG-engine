@@ -117,6 +117,15 @@ class BattleViewBuilding extends JView
 		}
 
 
+		if($this->buildings->type=='bullet')
+		{
+			//	echo $this->buildings->id;
+			//$model	= &$this->getModel();
+			//$blueprints	= $model->get_metals($this->buildings->id);
+			//$this->assignRef('metals', $metals);
+		}
+
+
 
 
 		if($this->buildings->type=='generator')
