@@ -1651,24 +1651,48 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
+
+	function buy_bullets()
+	{
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$qty		    = JRequest::getvar(amount);
+		$building_id	= JRequest::getvar(building_id);
+		$now		    = time();
+		$db->setQuery("Select money, ammuntition FROM #__jigs_players WHERE iduser = ".$user->id);
+		$result		    = $db->loadRow();
+		$money		    = $result[0];
+		$ammunition	    = $result[1];
+
+		if ($qty <= $bank){
+			$money	    = $money - $qty;
+			$ammunition	= $ammuniition + $qty;
+			$query	    = "UPDATE #__jigs_players SET money = $money, ammunition = $ammunition  WHERE iduser =" . $user->id;
+			$db->setQuery($query);
+			$db->query();
+		}
+		return $result;
+	}
+
+
 	function sell_crops()
 	{
 		$total_crops	= $this->get_total_crops();
-		$payment	= $total_crops * 1000 ;
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$query_1	= "SELECT money FROM #__jigs_players WHERE iduser = ' . $user->id . '";
+		$payment	    = $total_crops * 1000 ;
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$query_1	    = "SELECT money FROM #__jigs_players WHERE iduser = ' . $user->id . '";
 		$db->setQuery($query_1);
 		$money_saved	= $db->loadResult();
-		$xp_type	= 'nbr_crops';
-		$test		= $this->increment_xp($xp_type ,$payment,$user->id);
-		$text		= $user->username . " has sold " . $total_crops . " crops.";
+		$xp_type	    = 'nbr_crops';
+		$test		    = $this->increment_xp($xp_type ,$payment,$user->id);
+		$text		    = $user->username . " has sold " . $total_crops . " crops.";
 		$this->sendWavyLines($text);
-		$query_2	= "Update #__jigs_farms LEFT JOIN #__jigs_buildings on #__jigs_farms.building = #__jigs_buildings.id SET total = 0 WHERE #__jigs_buildings.owner = $user->id";
+		$query_2	    = "Update #__jigs_farms LEFT JOIN #__jigs_buildings on #__jigs_farms.building = #__jigs_buildings.id SET total = 0 WHERE #__jigs_buildings.owner = $user->id";
 		$db->setQuery($query_2);
 		$db->query();
 
-		$text		= "You sold " . $total_crops . " crops.";
+		$text		    = "You sold " . $total_crops . " crops.";
 		$this->sendFeedback($user->id, $text);
 		return($test);
 	}

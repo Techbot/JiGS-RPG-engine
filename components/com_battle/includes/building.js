@@ -134,6 +134,23 @@ function set_type()
         deposit();
         withdraw();				
     }
+ 
+    if (window.building_type=="bullet")
+    {
+       
+        buy_bullets();				
+    } 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     
     if (window.building_type=="diner")
     {
@@ -622,6 +639,43 @@ function withdraw()
     			    }).get();
       });	
 }	
+
+
+
+
+function buy_bullets()
+{
+
+    $$('#buy_bullets').addEvent('click', function()
+    {
+
+    		var qty_el = document.getElementById('quantity_adjust'); 
+    		var qty = qty_el.value; 
+    		var a = new Request.JSON({
+    			    url: "index.php?option=com_battle&format=raw&task=action&action=buy_bullets&building_id=" 
+    			    + building_id 
+    			    + "&amount=" 
+    			    + qty  ,
+    			    onSuccess: function(result){
+    			      
+    			   // $(result[0]).innerHTML = result[1];	
+    			   // $(result[2]).innerHTML = result[3];	
+    			  //  $(deposit).setStyle('visibility','hidden');
+    		  	    
+    			    	}
+    			    }).get();
+      });	
+}	
+
+
+
+
+
+
+
+
+
+
     
 
 function request_batteries()
