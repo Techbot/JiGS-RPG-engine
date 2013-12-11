@@ -5,6 +5,7 @@
 		<div id="building_inventory_table">
 				<div class="name"> Buy Bullets</div>
 				
+
 				<input type="text" class="inputboxquantity" size="4" id="quantity_adjust" name="quantity_adjust" placeholder="quantity" style="vertical-align: middle;" onchange="alterQuantity(this.form)"/>
 
 
@@ -15,6 +16,7 @@
   <input type="hidden" name="option" value="<?php echo $option;?>" />
   <input type="hidden" name="controller" value="buildings" />
   <input type="hidden" name="task" value="buy_bullets" />
+
 </div>
 				
 				
