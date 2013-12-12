@@ -91,7 +91,7 @@ function set_type()
         prepare2();
         work_conveyer();
         get_blueprints();
-        //check_factory.periodical(5000);
+        check_factory.periodical(5000);
         request_metals();
     }
 

@@ -53,7 +53,10 @@ $app = Jfactory::getApplication();
 		}
 	-->
 </script>
-  <script id="loadarea" type="text/javascript"></script>
+  <script id="loadarea_0" type="text/javascript"></script>
+    <script id="loadarea_1" type="text/javascript"></script>
+  
+  
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />	
 
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/theme.css" rel="stylesheet" type="text/css" media="screen" />	

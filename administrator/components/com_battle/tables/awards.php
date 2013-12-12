@@ -6,7 +6,8 @@ class TableAwards extends JTable
 {
 	var $id        = null;
 	var $name_id   = null;	
-	var $iduser    = null;	
+	var $iduser    = null;
+	var $published = null;		
 
 	function __construct(&$db)
 	{

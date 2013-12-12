@@ -7,12 +7,12 @@ class BattleModelCanvas extends JModel
 {
 	
 	function enter_Canvas(){
-	$db =& JFactory::getDBO();
-	$user =& JFactory::getUser();
-	$query = "Update #__jigs_players SET active=3 WHERE iduser = ". $user->id;
+	$db = JFactory::getDBO();
+	$user = JFactory::getUser();
+	$query = "Update #__jigs_players SET active=4 WHERE iduser = ". $user->id;
 	$db->setQuery($query);
 	$db->query();
-	return ;
+	return (JRequest::getvar('id'));
 	}
 
 

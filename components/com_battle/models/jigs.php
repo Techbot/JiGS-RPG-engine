@@ -538,8 +538,8 @@ class BattleModelJigs extends JModellist{
 		$db->setQuery(
 			"SELECT 
 			#__jigs_weapon_names.* ,
-			#__jigs_weapons.magazine 
-			
+			#__jigs_weapons.magazine, 
+			#__jigs_players.ammunition
 			FROM #__jigs_players
 			
 			LEFT JOIN #__jigs_weapons 
@@ -566,7 +566,11 @@ class BattleModelJigs extends JModellist{
 			
 			if ($user->id>0)
 			{
-			$image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. "</div><input type='button' value='Reload' onclick= 'reload();'></button>";
+			$image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. '</div>';
+			$image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[17]. '</div>
+			
+			
+			<input type="button" value="Reload" onclick= "reload();"></button>';
             }
 		    return $image;
 	}
@@ -1611,8 +1615,8 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$qty		= JRequest::getvar(amount);
-		$building_id	= JRequest::getvar(building_id);
+		$qty		= JRequest::getvar('amount');
+		$building_id	= JRequest::getvar('building_id');
 		$now		= time();
 		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = " . $user->id);
 		$result		= $db->loadRow();
@@ -1633,8 +1637,8 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$qty		= JRequest::getvar(amount);
-		$building_id	= JRequest::getvar(building_id);
+		$qty		= JRequest::getvar('amount');
+		$building_id	= JRequest::getvar('building_id');
 		$now		= time();
 		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = ".$user->id);
 		$result		= $db->loadRow();
@@ -1656,17 +1660,17 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		        = JFactory::getDBO();
 		$user		    = JFactory::getUser();
-		$qty		    = JRequest::getvar(amount);
-		$building_id	= JRequest::getvar(building_id);
+		$qty		    = JRequest::getvar('amount');
+		$building_id	= JRequest::getvar('building_id');
 		$now		    = time();
-		$db->setQuery("Select money, ammuntition FROM #__jigs_players WHERE iduser = ".$user->id);
+		$db->setQuery("Select money, ammunition FROM #__jigs_players WHERE iduser = ".$user->id);
 		$result		    = $db->loadRow();
 		$money		    = $result[0];
 		$ammunition	    = $result[1];
 
-		if ($qty <= $bank){
+		if ($qty <= $money){
 			$money	    = $money - $qty;
-			$ammunition	= $ammuniition + $qty;
+			$ammunition	= $ammunition + $qty;
 			$query	    = "UPDATE #__jigs_players SET money = $money, ammunition = $ammunition  WHERE iduser =" . $user->id;
 			$db->setQuery($query);
 			$db->query();

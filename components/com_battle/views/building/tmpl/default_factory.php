@@ -2,9 +2,9 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
  
 	$blueprints = $this->blueprints;
-	$x=count($this->blueprints);
-	$index= $x+1;
-	$now=time();
+	$x = count($this->blueprints);
+	$index = $x+1;
+	$now = time();
 	
 /*
 	function array_unshift_assoc(&$arr, $key, $val)

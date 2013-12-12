@@ -9,6 +9,7 @@ class BattleModelAwards extends JModel
 		$db	= JFactory::getDBO();
 		$query	= "
 			SELECT   a.id , a.iduser, n.name as award_name,
+			n.published as published,
 			         u.name, u.username
 			FROM     #__jigs_awards a ,
 			         #__jigs_award_names n ,
@@ -105,7 +106,7 @@ class BattleModelAwards extends JModel
 	{
 		$db	= JFactory::getDBO();
 		$query	= "
-			SELECT   id , name
+			SELECT   id , name ,published
 			FROM     #__jigs_award_names
 			ORDER BY id
 			";

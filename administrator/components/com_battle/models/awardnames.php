@@ -8,7 +8,7 @@ class BattleModelAwardNames extends JModel
 	{
 		$db	= JFactory::getDBO();
 		$query	= "
-			SELECT name
+			SELECT name, published
 			FROM   #__jigs_award_names
 			WHERE  id = $id
 			";

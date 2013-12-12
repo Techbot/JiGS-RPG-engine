@@ -22,38 +22,7 @@ grid_index = parseInt(<?php echo $grid_index;?>);
 
 </script>
 <script type="text/javascript" src="<?php echo $this->baseurl; ?>/components/com_battle/includes/jigs.js"></script>
-<script type="text/javascript">
-window.addEvent('domready',function()
-{
 
-	$$('.buildings_class').addEvent('click', function(){
-		var itemID = this.get('id');
-	//	var head = document.getElementsByTagName('head')[0];
-	//	var script = document.createElement('script');
-		var a = new Request.JSON({
-		
-			url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
-			onSuccess: function(result)
-			{
-				
-				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
-		//		script.type = "text/javascript";
-		//		script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/building.js';  
-				//document.body.appendChild(script);
-				mything.replaces($('world'));
-			
-			
-			
-			}
-		}).get();
-	});
-
-	
-
-
-
-}
-</script>
 
 <style type="text/css">
 #demo { 
@@ -147,25 +116,6 @@ a.up:hover{background-image:url(/components/com_battle/views/single/tmpl/up-hove
 a.right:hover{background-image:url(/components/com_battle/views/single/tmpl/right-hover.png);}
 a.down:hover{background-image:url(/components/com_battle/views/single/tmpl/down-hover.png);}
 a.left:hover{background-image:url(/components/com_battle/views/single/tmpl/left-hover.png);}
-
-/*
-
-a.up {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/compass-nav.png) transparent 0 0 no-repeat;text-align:center;}
-a.right {
-display:block;width:18px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/compass-nav.png transparent 0 -18px no-repeat;text-align:right;}
-a.down {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/compass-nav.png) transparent 0 -36px no-repeat;text-align:center;}
-a.left {
-display:block;width:18px;height:18px;clear:both;background: url(/components/com_battle/views/single/tmpl/compass-nav.png) transparent 0 -54px no-repeat;text-align:left;}
-
-
-a.up:hover{background-position:-18px 0;}
-a.right:hover{background-position:-18px -18px;}
-a.down:hover{background-position:-18px -36px;}
-a.left:hover{background-position:-18px -54px;}
-
-*/
 
 
 </style>
@@ -311,6 +261,7 @@ class="buildings_class" style="
 
 ">
 <!--a href="index.php?option=com_battle&view=building&tmpl=component&id=<?php echo $building_id?>" title="<?php echo $buildingOwner ?> owns <?php echo $building_name?>" rel="{handler: 'iframe', size: {x: 640, y: 600}}" class="modal" -->
+
 <img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buildings/miniatures/<?php echo $building_image ?>" title="<?php echo $buildingOwner ?> owns <?php echo $building_name?>" >
 <!--/a-->
 </div>
@@ -348,6 +299,7 @@ class="pages_class" style="
 	$link='http://'.$page->details;
 	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
 	$class='modal';
+	
 }
  if ($page->type=='article'){
 
@@ -357,12 +309,23 @@ class="pages_class" style="
 	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
 	$class='modal';
 }
+
+if ($page->type=='canvas'){
+
+	$canvas_number = $page->details;
+	$link = 'index.php?option=com_battle&view=canvas&id=' . $canvas_number;
+	$class = "page_class";
+  }
+
+
 	?>
 
 
-<a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'>
-<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>" >
-</a>
+<!--a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'-->
+<img src='<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>' id = '<?php echo $canvas_number ?>'class='<?php echo $class; ?>' >
+<!--/a-->
+
+
 </div>
 <?php
 } // end of foreach
@@ -463,41 +426,42 @@ $x= $x+1;
 
 <script type="text/javascript">
 
-	//	var head = document.getElementsByTagName('head')[0];
-	//	var script = document.createElement('script');
-	//	script.type = "text/javascript";
-	///	script.src = '/components/com_battle/includes/building.js';  
-	//	document.body.appendChild(script);
-
 	$$('.buildings_class').addEvent('click', function(){
 		var itemID = this.get('id');
-		
 		var a = new Request.JSON({
-		
 			url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
 			onSuccess: function(result)
 			{
-				
 				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
-				
-				
-				
-				
-				 document.getElementById('loadarea').src= '/components/com_battle/includes/building.js';
+ 			    document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
 				mything.replaces($('world'));
-			
-			
-			
 			}
 		}).get();
 	});
 	
+		
+	$$('.page_class').addEvent('click', function(){
+		var itemID = this.get('id');
+		var a = new Request.JSON({
+			url:"index.php?option=com_battle&format=json&view=canvas&id="+itemID,
+			onSuccess: function(result)
+			{
+				alert(itemID);
+				
+				mything = new Element ('div',{'id':"container",html:result,'style':'border 1px solid #F00; '});	
+		 			 
+				 document.getElementById('loadarea_0').src= '/components/com_battle/includes/raphael-min.js';
+				  document.getElementById('loadarea_1').src= '/components/com_battle/includes/canvas_' + itemID + '.js';
+				
+				mything.replaces($('world'));
+			}
+		}).get();
+	});
+
 	
 	$$('.character').addEvent('click', function(){
 		var itemID = this.get('id');
 		var a = new Request.JSON({
-		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-	
 			url:"index.php?option=com_battle&format=json&view=character&id="+itemID,
 			onSuccess: function(result){
 				mything = new Element ('div',{'id':"NPC",
@@ -531,20 +495,6 @@ $x= $x+1;
 			}
 		}).get();
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </script>	
 	

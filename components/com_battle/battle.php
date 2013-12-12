@@ -40,7 +40,7 @@ class BattleController extends JController
 		$view		= JRequest::getVar('view');
 
 		
-		if ($view=='factions'||$view=='group')
+		if ($view=='factions'||$view=='group'||$view=='canvas')
 		{
 			JRequest::setVar('view', $view);
 			//$view = $this->getView($view, 'html') ;
@@ -80,11 +80,12 @@ class BattleController extends JController
 		    {
 			    JRequest::setVar('view', 'ward');
 		    }
+		    
+		    if ($player_status == 4)
+		    {
+			    JRequest::setVar('view', 'canvas');
+		    }
 		}
-
-
-
-
 		parent::display();
 	}
 }

@@ -1,9 +1,17 @@
-<div id='conveyor_progress' style='visibility: hidden;'>
+	<?php 
+	$now = time();
+	
+	?>
+	
+	
+	
+	
+	<div id='conveyor_progress' style='visibility: hidden;'>
 
     <p>
     <label title="when manufactoring began">Started: </label><span id="since"></span></p>
     <p>
-    <label>Current Time: </label><span id="now"><?php echo date('l jS \of F Y h:i:s A',$now) ; ?></span>
+    <label>Current Time: </label><span id="now"><?php echo date('l jS \of F Y h:i:s A', $now) ; ?></span>
     </p>
 
     <div id="time_elapsed" class='wrapper sec'>
