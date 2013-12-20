@@ -42,6 +42,54 @@ It will also serve to provide code examples for the coderdojo community
  <a href="http://Techbot.github.io" class="btn">My Techbot Git Page</a>
     </div>
 
-    
+             <!--
+        snipte
+
+        To run this snipte you will need to replace the functions in the main wrapper code with this message() function.
+
+
+        . the main wrapper code  can be found at emc23.com
+        
+        . the yourmove() function partner for this message function can be found at jigs.github.io
+
+          
+       function yourMove()
+           {
+           respond = document.getElementById("container");  
+           input = document.getElementById("input_form"); 
+           answer = document.getElementById("answer").value;
+           ///////////////////////////////////////////////
+           if (stage == 1 && answer == "yes")
+           { 
+           number = 2;
+           stage = 2 ;
+           }
+           else if( stage=="no"){
+           number = 3;
+           }
+           ////////////////////////////////////////////////////////////////////
+            if (stage == 2  && answer == "no") 
+           {
+            number = 4;
+           stage  = 4;
+           }
+           if (stage == 4 && answer == "IRC") 
+           {
+           stage   = 5;
+           number  = 5;
+           }
+           if (stage == 4 && answer == "email")
+           {
+           stage  = 5;
+           number = 6;
+           }
+           respond.innerHTML = message[number];
+           input.innerHTML= gameForm;
+
+// I have deliberately not used case/switch statements if/else is good enough. A ninja can pick up case/switch in their own time.
+
+    }
+          
+            -->
   </body>
 </html>
