@@ -263,7 +263,7 @@ function Move_Player()
 		PosX + "&posy=" + PosY + "&grid=" + grid + "&map=" + map,
 		onSuccess : function()
 		{
-			var mover = new Fx.Move($('demo'),
+			var mover = new Fx.Move(document.id('demo'),
 			{
 				relativeTo : document.getElementById('screen_grid'),
 				position : 'upperLeft',
@@ -335,7 +335,7 @@ function kick_player(character_id){
 			
 			text_message = (result[2]);
 
-			myElement = $('health');
+			myElement = document.id('health');
 			
 
 			myElement.set('html', result[1]);	
@@ -345,9 +345,6 @@ function kick_player(character_id){
 			else{
 			myElement.setStyle('width', result[1]);
 			}
-			
-			
-			
 			
 			var new_message = new Element('p',{
 			'display':'table-row',
@@ -363,11 +360,7 @@ function kick_player(character_id){
 					}		
 				}
 			}).get();
-		
 }
-
-
-
 
 function reload(){
 	
@@ -377,21 +370,12 @@ function reload(){
 			onSuccess: function(result)
 			{
 			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
-			
-	
-			myElement= $('magazine');
+			myElement= document.id('magazine');
 
 			myElement.set('html', result);	
-			
-			
 			}
 		}).get();
 	}
-
-
-
-
-
 		function punch_player(character_id){
     
 	        var d = document.getElementById('punch');
@@ -420,12 +404,6 @@ function reload(){
 			}).get();
 }
 
-
-
-
-
-
-
 function shoot_character(character_id){
 	var d = document.getElementById('shoot');
 		var a = new Request.JSON({
@@ -436,33 +414,26 @@ function shoot_character(character_id){
 			alert(result[2] + ' me: ' + result[0] + '   Him: ' + result[1]);
 			text_message = (result[2]);
 						
-			myElement = $('health');
-			myElement2= $('health_value');
+			myElement = document.id('health');
+			myElement2= document.id('health_value');
 
 			myElement2.set('html', result[1]);	
 			
-			
-			myElement3= $('magazine');
+			myElement3= document.id('magazine');
 
 			myElement3.set('html', result[3]);
-			
-			
-			
-			
-			
+		
 			if(result[1]<30){
 
 			}
 			else{
 			myElement.setStyle('width', parseInt(result[1]));
 			}
-			
-			
+		
 			var new_message = new Element('p',{
 			'display':'table-row',
 			'html': text_message });
-			
-			
+		
 			new_message.inject('message_table','top');
 			
 			
@@ -484,8 +455,6 @@ function kick_character(character_id){
 		var a = new Request.JSON({
 			url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=kick&character=" + character_id,
 			onSuccess: function(result){
-			
-			
 			
 //	 alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
 //	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
@@ -551,19 +520,6 @@ function punch_character(character_id){
 			}).get();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
  function do_stuff(){
       //  var paper = Raphael('diagram', 60, 60), rad = 43, defaultText = 'Stats', speed = 250;
       var paper = Raphael('diagram', 60, 60);
@@ -581,16 +537,8 @@ paper.circle(30, 30, npc_health).attr({ stroke: 'none', fill: '#193340' });
 //}
   // do_stuff();
 
-
-
-
-
 function moo(){
-
-
-myElement.setStyle(property, value);
-
-
+	myElement.setStyle(property, value);
 }
 
 

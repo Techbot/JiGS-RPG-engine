@@ -21,6 +21,12 @@ class BattleViewBuilding extends JView
 		$backlink					= JRoute::_('index.php?option=com_battle');
 		$user						= JFactory::getUser();
 		$this->assignRef('user', $user);
+		
+		//$player					= JTable::getInstance('players', 'Table');
+		//$player->load($user->id);			
+		//$this->assignRef('player', $player);
+
+		
 		$cropper					= JTable::getInstance('players', 'Table');
 		$cropper->load($user->id);	
 		$this->assignRef('cropper', $cropper);		

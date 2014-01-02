@@ -42,7 +42,7 @@ function request_messages(){
 		div += messages;
 		div +="</div>";
 		
-		$('messages').innerHTML = div;
+		document.id('messages').innerHTML = div;
     }	
  	
     }).get();		

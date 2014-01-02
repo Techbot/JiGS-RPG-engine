@@ -1,0 +1,34 @@
+off white F3F3F3
+
+lightest grey EBEBEB
+lighter grey E6E6E6
+light grey DFDFDF
+
+mid grey B4B4B
+
+dark grey 313131
+darkest grey 1F1F1F
+
+
+/*******COLOURS*******/
+
+
+#0CC; /*turquoise*/
+#F90; /*orange*/
+#FF0; /*yellow*/
+#00F; /*blue*/
+#0F0; /*green*/
+#F0F; /*pink*/
+#F00; /*red*/
+#90F; /*purple*/
+#99F; /*mauve*/
+#060; /*dark green*/
+
+
+#000; /*black*/
+#666; /*mid grey*/
+#CCC; /*light grey*/
+#FFF; /*white*/
+
+
+#FFC; /* cream */

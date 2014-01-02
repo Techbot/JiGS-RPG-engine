@@ -22,6 +22,13 @@ class BattleViewBuilding extends JView
 		$user						= JFactory::getUser();
 		$this->assignRef('user', $user);
 		$cropper					= JTable::getInstance('players', 'Table');
+		
+		//$player					= JTable::getInstance('players', 'Table');
+		//$player->load($user->id);			
+		//$this->assignRef('player', $player);
+		
+		
+		
 		$cropper->load($user->id);	
 		$this->assignRef('cropper', $cropper);		
 		$this->assignRef('buildings', $buildings);		

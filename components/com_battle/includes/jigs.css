@@ -717,6 +717,8 @@ div#weapon_module a {
 	padding:5px 10px;}
 div#eat_burger {
 	cursor:pointer;
+	width:600px;
+	margin:0 auto;
 }
 .board_buttons #primary {
 	height:40px;
@@ -1001,6 +1003,179 @@ border: 1px solid #333333;
 
 
 
+
+
+
+
+/* Single Map view */
+
+
+#demo { 
+background-color:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:48px;
+height:48px;
+position:absolute;
+z-index:999;
+}
+.character { 
+background:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:48px;
+height:48px;
+position:absolute;
+z-index:111;
+}
+.players { 
+background:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:48px;
+height:48px;
+position:absolute;
+z-index:111;
+}
+
+
+
+
+
+
+
+
+.buildings_class { 
+color:#fff; 
+padding:0px; 
+border:0px solid #000;
+width:37px;
+height:37px;
+position:absolute;
+z-index:999;
+}
+.pages_class { 
+background:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:37px;
+height:37px;
+position:absolute;
+z-index:1;
+}
+#world a { /*right,left,up,down*/
+font-weigth:400;
+color:#fff;
+text-transform: uppercase;
+font-size: 0.85em;
+}
+
+a#move_demo {cursor:pointer;}
+
+a.up {
+display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/up.png) transparent 50% 0 no-repeat;text-align:center;}
+a.right {
+display:block;width:18px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/right.png) transparent 100% 0 no-repeat;text-align:right;}
+a.down {
+display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/down.png) transparent 50% 0 no-repeat;text-align:center;}
+a.left {
+display:block;width:18px;height:18px;clear:both;background: url(/components/com_battle/views/single/tmpl/left.png) transparent 0 0 no-repeat;text-align:left;}
+a.mid {
+background:#009999;
+width:18px;
+height:18px;
+float:left;
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+a.mid:hover {background:#00FFFF;}
+
+a.up:hover{background-image:url(/components/com_battle/views/single/tmpl/up-hover.png);}
+a.right:hover{background-image:url(/components/com_battle/views/single/tmpl/right-hover.png);}
+a.down:hover{background-image:url(/components/com_battle/views/single/tmpl/down-hover.png);}
+a.left:hover{background-image:url(/components/com_battle/views/single/tmpl/left-hover.png);}
+
+
+
+
+
+#world{
+margin: 0 auto; 
+text-align:center;
+position:relative;
+width: 100%;
+}
+
+.compass{width:54px;height:54px;margin:0 15px 0 0;float:left;}
+
+
+@media (max-width: 768px){
+	.compass{
+	float:none;
+	margin:0 auto 1em;
+	}
+}
+
+@media (max-width: 768px){
+	.compass{
+	width:108px;
+	height:108px;
+	}
+	
+	.compass a{
+	background-size:contain;
+	}
+		
+	a.up{width:108px;height:36px;}
+	a.left,
+	a.mid,
+	a.right{width:36px;height:36px;}
+	a.down{width:108px;height:36px;}
+
+}	
+
+#screen_grid{
+width:400px;
+height:400px;
+margin: 0 auto; 
+text-align:center;
+background:#000;
+position:relative;
+}
+
+#demo{
+ background-size:cover;
+ background-position:50% 50%;background-size:cover; 
+}
+
+
+.players{
+ /*width:50px;
+ height:50px;*/
+ min-width:24px;
+ min-height:24px;
+ max-width:50px;
+ max-height:50px;
+ background-size:cover;
+ background-position:50% 50%;
+ }
+ 
+ 
+.squares{
+	display:inline; 
+	position:absolute; 
+	width:40px; 
+	height:40px; 
+	padding:5px;
+	margin:0px;
+	text-align:center;
+}
+ 
 
 
 

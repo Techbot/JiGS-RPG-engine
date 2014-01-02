@@ -85,11 +85,33 @@ $body ='<div id="building" class="clearfix"><!-- This should replace div#contain
       </div>
     </div>
   </div><!--end building_left-->
+  
+  
+  
   <div class="building_right">
     <div id="status">
-      <div class="instructions">
-       ' . $this->loadTemplate ("board_info1") . '
-      </div>
+      <div class="instructions">';
+
+	
+	if ($this->buildings->owner == 0){
+      $body .= $this->loadTemplate ("board_info_poster");
+	   }
+
+	
+	if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){
+       $body .= $this->loadTemplate ("board_info_poster");
+	   }
+
+	   
+	//if player owned
+	
+	if ($this->buildings->owner == $this->user->id){
+       $body .= $this->loadTemplate ("board_info1");
+	   }
+    $body .='  </div>
+	
+	
+	
       <div id="action" class="clearfix">
       ';
 

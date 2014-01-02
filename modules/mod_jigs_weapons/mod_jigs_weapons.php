@@ -29,7 +29,7 @@ function request_weapon(){
 			url: "index.php?option=com_battle&format=raw&task=action&action=get_weapon", 
    			onSuccess: function(result)
 			{
-				$('weapon_module').innerHTML = result;
+				document.id('weapon_module').innerHTML = result;
 			}	
     	}).get();
 }

@@ -19,9 +19,7 @@ $path = JModuleHelper::getLayoutPath('mod_jigs_metals', $layout);
 if (file_exists($path))
 	{
 	require ($path);
-
 	}
-	
 	?>
 <script type='text/javascript'>
 
@@ -35,16 +33,20 @@ function request_metals(){
         {
             for (i = 0; i < result.length; ++ i)
             {
-                var row         = "<span class=\"label\">Metal" + (i+1) + ":</span>" + result[i].name  + " : " + result[i].quantity;
+                var row         = "<span class='label'>Metal" + (i+1) + ":</span>" + result[i].name  + " : " + result[i].quantity;
                 all             = all + row;  
                 total_metals    = parseInt(total_metals) + parseInt(result[i].quantity);
-                all             = all + '<br />';
+                all             = all + '<br/>';
             }
             all = all + '<hr />Total Metals: ' + total_metals;
             all = all + '<br /><input type="button" value="Update" onclick= "request_metals();"></button>'; 
-            $('metal').innerHTML = all;	
-        }).get();
-    }
-    request_metals();
+           
+            document.id('metal').innerHTML = all;	
+        }
+    }).get();
+    
+}    
+
+request_metals();
 	
 </script>	

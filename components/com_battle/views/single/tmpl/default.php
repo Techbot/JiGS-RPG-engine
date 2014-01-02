@@ -23,112 +23,12 @@ grid_index = parseInt(<?php echo $grid_index;?>);
 </script>
 <script type="text/javascript" src="<?php echo $this->baseurl; ?>/components/com_battle/includes/jigs.js"></script>
 
-
-<style type="text/css">
-#demo { 
-background-color:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:48px;
-height:48px;
-position:absolute;
-top:<?php echo $posy *50?>px;
-left:<?php echo $posx *50?>px;
-z-index:999;
-}
-.character { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:48px;
-height:48px;
-position:absolute;
-z-index:111;
-}
-.players { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:48px;
-height:48px;
-position:absolute;
-z-index:111;
-}
+<div id="world">
 
 
 
 
-
-
-
-
-.buildings_class { 
-color:#fff; 
-padding:0px; 
-border:0px solid #000;
-width:37px;
-height:37px;
-position:absolute;
-z-index:999;
-}
-.pages_class { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:37px;
-height:37px;
-position:absolute;
-z-index:1;
-}
-#world a { /*right,left,up,down*/
-font-weigth:400;
-color:#fff;
-text-transform: uppercase;
-font-size: 0.85em;
-}
-
-a#move_demo {cursor:pointer;}
-
-a.up {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/up.png) transparent 50% 0 no-repeat;text-align:center;}
-a.right {
-display:block;width:18px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/right.png) transparent 100% 0 no-repeat;text-align:right;}
-a.down {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/down.png) transparent 50% 0 no-repeat;text-align:center;}
-a.left {
-display:block;width:18px;height:18px;clear:both;background: url(/components/com_battle/views/single/tmpl/left.png) transparent 0 0 no-repeat;text-align:left;}
-a.mid {
-background:#009999;
-width:18px;
-height:18px;
-float:left;
-   -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;
-}
-a.mid:hover {background:#00FFFF;}
-
-a.up:hover{background-image:url(/components/com_battle/views/single/tmpl/up-hover.png);}
-a.right:hover{background-image:url(/components/com_battle/views/single/tmpl/right-hover.png);}
-a.down:hover{background-image:url(/components/com_battle/views/single/tmpl/down-hover.png);}
-a.left:hover{background-image:url(/components/com_battle/views/single/tmpl/left-hover.png);}
-
-
-</style>
-<div id="world" style="
-margin: 0 auto; 
-text-align:center;
-position:relative;
-width: 500px;">
-
-
-
-
-<div class="compass" style="width:54px;height:54px;float:left;margin:0 15px 0 0;">
+<div class="compass">
 <a id="move_demo" class="up" title="Move North" onclick="MoveUp(PosX,PosY)"></a>
 <a id="move_demo" class="left" title="Move West" onclick="MoveLeft(PosX,PosY)"></a>
 <a class="mid" href="index.php?option=com_battle&view=single&Itemid=115"></a>
@@ -142,17 +42,7 @@ width: 500px;">
 
 
 
-<div id="screen_grid" style="
-width:400px; 
-height:400px;
-margin: 0 auto; 
-text-align:center;
-background:#000;
-float:left;
-position:relative;
-left:0px;
-top:0px;" 
->
+<div id="screen_grid">
 
 <?php
 /************************
@@ -169,19 +59,18 @@ top:0px;"
  * 
  *****************************/
  
-// print_r($this->player_pos);
+print_r($this->player_pos);
 
-if ($this->player_pos[5]==1){
+//if ($this->player_pos[5]==1){
 
  ?>
 
  <div id="demo" style="
- background-size:cover;
- background-position:50% 50%;background-size:cover; background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $avatar ?>);"></div> 
+ background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $avatar ?>);"></div> 
 
 <?php
 
-}
+//}
 
 /***********************
  * 
@@ -363,10 +252,6 @@ class= "players"
 style="
  top:<?php echo $charposy *50?>px;
  left:<?php echo $charposx *50?>px;
- width:48px;
- height:48px;
- background-size:cover;
- background-position:50% 50%;
  background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $player->avatar ?>);
  ">
  </div> 
@@ -403,13 +288,6 @@ style="
 			?>
 <div class="squares" style="
 	background:url(<?php echo $this->baseurl; ?>/components/com_battle/images/map/<?php echo $row ?>.jpg);
-	display:inline; 
-	position:absolute; 
-	width:40px; 
-	height:40px; 
-	padding:5px;
-	margin:0px;
-	text-align:center;
 	top:<?php echo ($y*50)+0?>px; 
 	left: <?php echo $x*50?>px;
 	"> 
@@ -434,7 +312,7 @@ $x= $x+1;
 			{
 				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
  			    document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
-				mything.replaces($('world'));
+				mything.replaces(document.id('world'));
 			}
 		}).get();
 	});
@@ -467,7 +345,7 @@ $x= $x+1;
 				mything = new Element ('div',{'id':"NPC",
 				html:result,
 				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
+				mything.replaces(document.id('screen_grid'));
 				var head = document.getElementsByTagName('head')[0] ;
 				var script = document.createElement('script');
 				script.type = "text/javascript";
@@ -486,7 +364,7 @@ $x= $x+1;
 				mything = new Element ('div',{'id':"PLAYERS",
 				html:result,
 				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
+				mything.replaces(document.id('screen_grid'));
 				var head = document.getElementsByTagName('head')[0];
 				script = document.createElement('script');
 				script.type = "text/javascript";

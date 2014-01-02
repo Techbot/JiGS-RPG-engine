@@ -106,7 +106,7 @@ function set_type()
 
     if (window.building_type=="food")
     {
-     	$('sell_crops').addEvent('click', function()
+     	document.id('sell_crops').addEvent('click', function()
      	{
 	     // var itemID = this.get('id');
  		  sell_crops();
@@ -156,7 +156,7 @@ function set_type()
     {
         //SAMPLE 4 (walk to item)
 	    var nS4 = new noobSlide({
-		    box: $('box4'),
+		    box: document.id('box4'),
 		    items: $$('#box4 div'),
 		    size: 640,
 		    handles: $$('#handles4 span'),
@@ -166,7 +166,7 @@ function set_type()
 			    currentHandle.addClass('active');
 		    }
 	    });
-       	$('eat_burger').addEvent('click', function()
+       	document.id('eat_burger').addEvent('click', function()
        	{
 	        var itemID = this.get('id');
 	        eat(itemID);
@@ -194,33 +194,33 @@ function control_panel_system()
  		
          	case 'primary':
          		$$('.panel').set('styles',{visibility:'hidden'});
-         		$('first_panel').set('styles',{visibility:'visible'});
+         		document.id('first_panel').set('styles',{visibility:'visible'});
           		$$('.b_button').set('class','b_button inactive');
-	            $('primary').set('class', 'b_button active');
+	            document.id('primary').set('class', 'b_button active');
          		break;
          	case 'defence':
          		$$('.panel').set('styles',{visibility: 'hidden'});
-         		$('second_panel').set('styles',{visibility: 'visible'});
+         		document.id('second_panel').set('styles',{visibility: 'visible'});
           		$$('.b_button').set('class','b_button inactive');
-	            $('defence').set('class', 'b_button active');
+	            document.id('defence').set('class', 'b_button active');
          		break;	
            	case 'distr':
          		$$('.panel').set('styles',{visibility:'hidden'});
-         		$('third_panel').set('styles',{visibility:'visible'});
+         		document.id('third_panel').set('styles',{visibility:'visible'});
          		$$('.b_button').set('class','b_button inactive');
-	            $('distr').set('class','b_button active');		
+	            document.id('distr').set('class','b_button active');		
          		break;		
             case 'hr':
          		$$('.panel').set('styles',{visibility:'hidden'});
-         		$('fourth_panel').set('styles',{visibility:'visible'});
+         		document.id('fourth_panel').set('styles',{visibility:'visible'});
 	            $$('.b_button').set('class', 'b_button inactive');
-	            $('hr').set('class', 'b_button active');		
+	            document.id('hr').set('class', 'b_button active');		
          		break;			
              case 'energy':
          		$$('.panel').set('styles',{visibility:'hidden'});
-         		$('fifth_panel').set('styles',{visibility:'visible'});
+         		document.id('fifth_panel').set('styles',{visibility:'visible'});
          		$$('.b_button').set('class','b_button inactive');
-	            $('energy').set('class','b_button active');		
+	            document.id('energy').set('class','b_button active');		
           		break;
          	default:
          		$$('panel').set('styles',{visibility:'hidden'});
@@ -286,7 +286,7 @@ function request_shop_weapons()
 
             all= all + '</tbody></table>';
 	
-       	    $('building_inventory_table').innerHTML = all;	
+       	    document.id('building_inventory_table').innerHTML = all;	
        	    $$('.buy').addEvent('click', function()
        	    {
       	
@@ -319,7 +319,7 @@ function request_weapons()
                 all= all + row;
             }
     	    all= all + '</tbody></table>';
-    	    $('my_inventory').innerHTML = all;	
+    	    document.id('my_inventory').innerHTML = all;	
             $$('.sell').addEvent('click', function()
             {
                 var itemID = this.get('id');
@@ -348,7 +348,7 @@ function request_weapons2()
                 all= all + row;
             }
             all= all + '</tbody></table>';
-        	$('my_inventory2').innerHTML = all;	
+        	document.id('my_inventory2').innerHTML = all;	
         }	
     }).get();
 }
@@ -390,7 +390,7 @@ function request_batteries_cp()
                 all= all + row + "<br/>";  
 	        }
 
-	        $('batteries').innerHTML = all;	
+	        document.id('batteries').innerHTML = all;	
         }	
 	
     }).get();
@@ -412,7 +412,7 @@ function prepare()
     // if it returns an Element object, it will be truthy.
     if (foo) {
 
-        $('quantity_box_button_up').addEvent('click', function(){
+        document.id('quantity_box_button_up').addEvent('click', function(){
 	        increment();
 	        });
         }	
@@ -422,7 +422,7 @@ function prepare2()
 {
     var foo = document.id('quantity_box_button_up'); 
 if (foo) {
-    $('quantity_box_button_down').addEvent('click', function(){
+    document.id('quantity_box_button_down').addEvent('click', function(){
 	    decrement();
 	    });
 }
@@ -487,7 +487,7 @@ function request_shop_metals()
   		}
 		id=0;
 		all= all + '</tbody></table>';
-		$('building_inventory_table').innerHTML = all;
+		document.id('building_inventory_table').innerHTML = all;
 		$$('.buy').addEvent('click', function(){
 			var itemID = this.get('id');
 			buy_metal(itemID);
@@ -510,7 +510,7 @@ function request_get_metals_to_sell(){
  				all= all + row;
  				}
 				all= all + '</tbody></table>';
-				$('my_inventory').innerHTML = all;
+				document.id('my_inventory').innerHTML = all;
 				$$('.sell').addEvent('click', function(){
 					var itemID = this.get('id');
 					sell_metal(itemID);
@@ -538,7 +538,7 @@ function request_metals2()
             	 total_metals = parseInt(total_metals) + parseInt(result[i].quantity);
         	 }
         	 all = all + '<br/>Total Metals: ' + total_metals;
-        	 $('my_inventory2').innerHTML = all;
+        	 document.id('my_inventory2').innerHTML = all;
         }
       }).get();
 }
@@ -573,11 +573,11 @@ function eat(itemID)
 		onSuccess: function(result){
 			if (result=="success"){
 					alert("You gained 10 health points which cost you 10 credits");
-					$('eat_burger').setStyle('visibility','hidden');
+					document.id('eat_burger').setStyle('visibility','hidden');
 					}
 			if (result=="broke"){
 					alert("You don't have enough money. Get out of here! Go get a job you waster!");
-					$('eat_burger').setStyle('visibility','hidden');
+					document.id('eat_burger').setStyle('visibility','hidden');
 					}
 		}
 	}).get();
@@ -698,7 +698,7 @@ function request_batteries()
           
                 all= all + row;  
             }
-            $('generator').innerHTML = all;	
+            document.id('generator').innerHTML = all;	
 
 	        $$('.put').addEvent('click', function()
 	        {
@@ -729,7 +729,7 @@ function request_battery_slots()
   	            + result[i]['units'] +"</div>";
   	            all= all + row ;  
     	}
-    	$('batteries_inv').innerHTML = all;
+    	document.id('batteries_inv').innerHTML = all;
 
 	$$('.get').addEvent('click', function(){
 			var itemID = this.get('id');
@@ -787,7 +787,7 @@ function get_shop_papers(){
 
 			all= all + '</tbody></table>';
 	
-		   	$('building_papers_table').innerHTML = all;	
+		   	document.id('building_papers_table').innerHTML = all;	
 		   	$$('.buy').addEvent('click', function()
 		   	{
 		  		var itemID = this.get('id');
@@ -819,7 +819,7 @@ function get_papers(){
 				all= all + row;  
     		}
 			all = all + '</tbody></table>';	
-			$('my_papers').innerHTML = all;	
+			document.id('my_papers').innerHTML = all;	
 			$$('.sell').addEvent('click', function()
 			{
 				var itemID = this.get('id');
@@ -860,7 +860,7 @@ function sell_crops(){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=sell_crops", 
     onSuccess: function(result){
-   	   	$('sell_crops').setStyle('visibility','hidden'); 
+   	   	document.id('sell_crops').setStyle('visibility','hidden'); 
     	}
     }).get();
  
@@ -880,9 +880,9 @@ function work_field(itemID){
     	}
     	);
     	//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
-    	tmpDiv.getFirst().replaces($(itemID));
+    	tmpDiv.getFirst().replaces(document.id(itemID));
    
-		$('farm_progress').setStyle('visibility','visible');
+		document.id('farm_progress').setStyle('visibility','visible');
 		//$('status_message').setStyle('visibility','hidden');
 	    
     	}
@@ -906,14 +906,14 @@ function check_farm(){
 	        if (result['remaining'] <= 0 )
 	        {
 		       // $('adminForm').setStyle('visibility','visible');
-			    $('farm_progress').setStyle('visibility','hidden');
-			    $('status_message').setStyle('visibility','visible');
+			    document.id('farm_progress').setStyle('visibility','hidden');
+			    document.id('status_message').setStyle('visibility','visible');
 			    
 		        var tmpDiv = new Element('div',
 		            {html:'<div id="'+itemID+'" class ="work_field"><img src ="components/com_battle/images/'
 		            +result['status'] +'.gif" /></div>'});
 		            
-		       tmpDiv.getFirst().replaces($(itemID));
+		       tmpDiv.getFirst().replaces(document.id(itemID));
 				
 				$$('.work_field').removeEvent('click', test);
 				
@@ -939,10 +939,10 @@ function work_flat(itemID){
     	}
      	else {
 				 alert(result[3]);
-				$(result[0]).innerHTML = result[1];	
-				$(result[2]).innerHTML = result[3];	
-				$(result[4]).innerHTML = result[5];
-				$(result[6]).innerHTML = result[7];
+				document.id(result[0]).innerHTML = result[1];	
+				document.id(result[2]).innerHTML = result[3];	
+				document.id(result[4]).innerHTML = result[5];
+				document.id(result[6]).innerHTML = result[7];
   	    }
    	}
     }).get();
@@ -974,7 +974,7 @@ function get_shop_blueprints(id)
 				all = all + row;
 			}
 			all = all + '</tbody></table>';
-			$('building_papers_table').innerHTML = all;
+			document.id('building_papers_table').innerHTML = all;
 			$$('.buy').addEvent('click', function()
 			{
 				var itemID = this.get('id');
@@ -1000,7 +1000,7 @@ function get_my_blueprints(){
 			all= all + row;
 		}
 		all                         = all + '</tbody></table>';
-		$('my_papers').innerHTML    = all;
+		document.id('my_papers').innerHTML    = all;
 	}
 	}).get();
 
@@ -1176,7 +1176,7 @@ function buy_building() {
 			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=" 
 			+ building_id , 
 				onSuccess: function(result){
-					$('building_id').setStyle('visibility','hidden');
+					document.id('building_id').setStyle('visibility','hidden');
 				}
 		}).get();
 	});
@@ -1187,7 +1187,7 @@ function work_conveyer()
     var foo = document.id('submit_c'); 
     if (foo) 
     {
-	$('submit_c').addEvent('click', function()
+	document.id('submit_c').addEvent('click', function()
 	{
 		work();
 	});
@@ -1202,8 +1202,8 @@ function work(){
 		+ document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
-			$('adminForm').setStyle('visibility','hidden');
-			$('conveyor_progress').setStyle('visibility','visible');
+			document.id('adminForm').setStyle('visibility','hidden');
+			document.id('conveyor_progress').setStyle('visibility','visible');
 			}
 	}).get();
 }
@@ -1213,7 +1213,7 @@ function work_reprocessor()
     var foo = document.id('submit_c'); 
     if (foo)
     {
-	    $('submit_c').addEvent('click', function()
+	    document.id('submit_c').addEvent('click', function()
 	    {
 		    reprocess();
 	    });
@@ -1227,8 +1227,8 @@ function reprocess(){
 		+ document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
-			$('adminForm').setStyle('visibility','hidden');
-			$('conveyor_progress').setStyle('visibility','visible');
+			document.id('adminForm').setStyle('visibility','hidden');
+			document.id('conveyor_progress').setStyle('visibility','visible');
 			}
 	}).get();
 }
@@ -1252,8 +1252,8 @@ function check_reprocessor()
 	        document.getElementById('remaining').innerHTML  = result['remaining'];        
             if (result['remaining'] <= 0)
             {
-	            $('adminForm').setStyle('visibility','visible');
-		        $('conveyor_progress').setStyle('visibility','hidden');
+	            document.id('adminForm').setStyle('visibility','visible');
+		        document.id('conveyor_progress').setStyle('visibility','hidden');
 		    }
 	     }
 	}).get();
@@ -1271,8 +1271,8 @@ function check_factory()
 		    document.getElementById('elapsed').innerHTML    = result['elapsed'];
 		    document.getElementById('remaining').innerHTML  = result['remaining'];        
 	        if (result['remaining'] <= 0){
-		        $('adminForm').setStyle('visibility','visible');
-			    $('conveyor_progress').setStyle('visibility','hidden');
+		        document.id('adminForm').setStyle('visibility','visible');
+			    document.id('conveyor_progress').setStyle('visibility','hidden');
 			    }
 		    }
 	    }).get();
@@ -1309,15 +1309,15 @@ function check_stock_control(){
 	var q_y2 = parseInt(qy2.value);
  	if ((ct1 < q_y1) || (ct2 < q_y2))
 	{
-		$('q1t').setStyle('background','red');
-		$('q2t').setStyle('background','red');
-		$('submit_c').setStyle('visibility','hidden');
+		document.id('q1t').setStyle('background','red');
+		document.id('q2t').setStyle('background','red');
+		document.id('submit_c').setStyle('visibility','hidden');
 	}
 	if((ct1 > q_y1)  && (ct2 > q_y2))
 	{
-		$('q1t').setStyle('background','black');
-		$('q2t').setStyle('background','black');
-		$('submit_c').setStyle('visibility','visible');
+		document.id('q1t').setStyle('background','black');
+		document.id('q2t').setStyle('background','black');
+		document.id('submit_c').setStyle('visibility','visible');
 	}
 }
 
@@ -1367,7 +1367,7 @@ function mine(type)
 //SAMPLE 4 (walk to item)
 	var nS4 = new noobSlide(
 	{
-			box: $('box4'),
+			box: document.id('box4'),
 			items: $$('#box4 div'),
 			size: 640,
 			handles: $$('#handles4 span'),
@@ -1401,7 +1401,7 @@ function request_shop_inventory()
   		    }
 		    id      = 0;
 		    all     = all + '</div>';
-		    $('building_inventory_table').innerHTML = all;
+		    document.id('building_inventory_table').innerHTML = all;
 		    $$('.buy').addEvent('click', function()
 		    {
 			    var itemID = this.get('id');
@@ -1432,7 +1432,7 @@ function request_inventory()
  				all= all + row;
  			}
 			all= all + '</div>';
-			$('my_inventory').innerHTML = all;
+			document.id('my_inventory').innerHTML = all;
 			$$('.sell').addEvent('click', function()
 			{
 				var itemID = this.get('id');
