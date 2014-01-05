@@ -15,6 +15,8 @@ var from_x = new Array();
 var from_y = new Array();
 var from_map = new Array();
 var from_grid = new Array();
+
+
 document.onkeydown = check;
 mycells = new Array(8);
 cell = new Array(8);
@@ -31,11 +33,17 @@ for ( var i = 0; i < 8; i++)
 // Beginning of initialise process via json calls
 window.addEvent('domready',function()
 {
+
+
+
+
 	var a = new Request.JSON({
 		url : "index.php?option=com_battle&format=raw&task=action&action=get_player",
 		onSuccess : function(result){
 			PosX = result[0]['posx'];
+			console.log(PosX);
 			PosY = result[0]['posy'];
+			console.log(PosY);
 			grid = result[0]['grid'];
 			map = result[0]['map'];
 			pX = PosX * 50;
@@ -92,6 +100,10 @@ window.addEvent('domready',function()
 			}).get();
 		}
 	}).get();
+	
+	
+	
+	
 });
 // End of initialise process
 

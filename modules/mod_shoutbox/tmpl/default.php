@@ -23,7 +23,7 @@
 			<?php if(JPluginHelper::isEnabled('system', 'yvsmiley') && ($params->get('post_guest') || $loggedin != 'guest')) : ?>
 			var mySlide = new Fx.Slide('sbsmile<?php echo $sbid ?>');
 			mySlide.hide();	
-			$('toggle<?php echo $sbid ?>').addEvent('click', function(e){
+			document.id('toggle<?php echo $sbid ?>').addEvent('click', function(e){
 				e = new Event(e);
 				mySlide.toggle();
 				e.stop();

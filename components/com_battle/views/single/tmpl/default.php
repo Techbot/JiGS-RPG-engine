@@ -59,13 +59,18 @@ grid_index = parseInt(<?php echo $grid_index;?>);
  * 
  *****************************/
  
-print_r($this->player_pos);
+//print_r($this->player_pos);
 
 //if ($this->player_pos[5]==1){
 
  ?>
 
  <div id="demo" style="
+ 
+  top:<?php echo $posy * 50 ?>px;
+ left:<?php echo $posx * 50 ?>px;
+
+ 
  background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $avatar ?>);"></div> 
 
 <?php
@@ -87,11 +92,11 @@ print_r($this->player_pos);
  *****************************/
 foreach ($this->characters as $character){ 
 
-$char=$character->id;
-$char_name=$character->name;
-$image=$character->image;
-$charposx=$character->posx;
-$charposy=$character->posy;
+    $char       = $character->id;
+    $char_name  = $character->name;
+    $image      = $character->image;
+    $charposx   = $character->posx;
+    $charposy   = $character->posy;
 ?>
 <div id="<?php echo $char ?>" 
 
@@ -131,12 +136,12 @@ class="character" style="
  *****************************/
  
 foreach ($this->buildings as $building){ 
-$building_id		= $building->id;
-$building_name		= $building->name;
-$building_image		= $building->image;
-$buildingposx		= $building->posx;
-$buildingposy		= $building->posy;
-$buildingOwner		= $building->ownername;
+    $building_id		= $building->id;
+    $building_name		= $building->name;
+    $building_image		= $building->image;
+    $buildingposx		= $building->posx;
+    $buildingposy		= $building->posy;
+    $buildingOwner		= $building->ownername;
 
 if ($building->owner == 0){
  	$buildingOwner = 'Nobody';
@@ -185,9 +190,9 @@ class="pages_class" style="
 
 <?php if ($page->type=='url'){
 
-	$link='http://'.$page->details;
-	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
-	$class='modal';
+	$link   = 'http://'.$page->details;
+	$rel    = '{handler: "iframe", size: {x: 640, y: 600}}';
+	$class  = 'modal';
 	
 }
  if ($page->type=='article'){
@@ -201,20 +206,14 @@ class="pages_class" style="
 
 if ($page->type=='canvas'){
 
-	$canvas_number = $page->details;
-	$link = 'index.php?option=com_battle&view=canvas&id=' . $canvas_number;
-	$class = "page_class";
+	$canvas_number  = $page->details;
+	$link           = 'index.php?option=com_battle&view=canvas&id=' . $canvas_number;
+	$class          = "page_class";
   }
-
-
 	?>
-
-
 <!--a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'-->
 <img src='<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>' id = '<?php echo $canvas_number ?>'class='<?php echo $class; ?>' >
 <!--/a-->
-
-
 </div>
 <?php
 } // end of foreach
@@ -247,12 +246,13 @@ $charposy			= $player->posy;
  <!--
 <a class="modal" href ="index.php?option=com_battle&view=player&tmpl=component&iduser=<?php echo $player_id; ?>" rel='{handler: "iframe", size: {x: 640, y: 600}}' title="<?php echo $player_username ?>"> -->
 
-<div id="char_<?php echo $player_id; ?>" title="<?php echo $player_username ?>"
-class= "players" 
-style="
- top:<?php echo $charposy *50?>px;
- left:<?php echo $charposx *50?>px;
- background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $player->avatar ?>);
+<div id = "char_<?php echo $player_id; ?>" 
+title = "<?php echo $player_username ?>"
+class = "players" 
+style = "
+top:<?php echo $charposy *50?>px;
+left:<?php echo $charposx *50?>px;
+background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $player->avatar ?>);
  ">
  </div> 
 
@@ -281,15 +281,15 @@ style="
 
 
 	for ($y=0;  $y <= 7 ; $y++) {
-		$name='row'.$y;
-		$arr[$y] = explode(",",($this->row->$name));
-		$x = 0;
+		$name       ='row'.$y;
+		$arr[$y]    = explode(",",($this->row->$name));
+		$x          = 0;
 		foreach ($arr[$y] as $row){
 			?>
 <div class="squares" style="
 	background:url(<?php echo $this->baseurl; ?>/components/com_battle/images/map/<?php echo $row ?>.jpg);
-	top:<?php echo ($y*50)+0?>px; 
-	left: <?php echo $x*50?>px;
+	top:<?php echo ($y * 50)+0 ?>px; 
+	left: <?php echo $x * 50 ?>px;
 	"> 
 	<?php // echo $row ?></div>
 	<?php
@@ -303,7 +303,6 @@ $x= $x+1;
 </div><!-- div world -->
 
 <script type="text/javascript">
-
 	$$('.buildings_class').addEvent('click', function(){
 		var itemID = this.get('id');
 		var a = new Request.JSON({
