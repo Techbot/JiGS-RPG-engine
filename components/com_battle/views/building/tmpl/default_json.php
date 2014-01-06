@@ -10,15 +10,12 @@ if ($this->player->iduser == 0){
 
 
 
-$body ='<div id="building" class="clearfix"><!-- This should replace div#container -->
-  <div class="building_left">
+$body ='
+<div class="building_left">
   
-<div  class="compass">
 
 <a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
 
-</div>
-  
   
   
   
@@ -139,7 +136,9 @@ $body .='
       </div><!-- end action -->
     </div><!-- end status. Is this being used? I mean, really?? -->
   </div><!--end building_right-->
-</div><!-- end building -->
+  <div class="clearfix"></div>
+  <div id="building_function" class="clearfix">
+
 ';
 
 
@@ -158,6 +157,8 @@ elseif($this->buildings->owner != $this->user->id )
 	$body .= $this->loadTemplate ($this->buildings->type . "_owned");
 }
 
+
+$body .='</div><!--end building_function-->';
 
 //$body = "hello";
 echo json_encode($body);

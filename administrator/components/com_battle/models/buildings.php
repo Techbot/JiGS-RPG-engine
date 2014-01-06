@@ -110,24 +110,63 @@ class battleModelBuildings extends JModellist
 	
 			$search			= $this->getState('filter.search');
 	    	$grid = JRequest::getVar('filter_grid', 1, '', 'int');			
-	
+	        $type = JRequest::getVar('filter_type',1, '', 'var');
+			
+			
+			
+			
+			
 			if (!empty($search))
 			{
 				$search = $db->Quote('%' . $db->getEscaped($search, true) . '%');
 				$query->where('name LIKE ' . $search );
 			}
+			
+			
 			if (!empty($grid))
 			{
 				$query->where('grid = ' . $grid );
+			}
+			
+			if (!empty($type))
+			{
+				$query->where('type = "' . $type . '"' );
 			}		
+			
+			
+			
+			
+			
+					
 			$db->setQuery($query, $this->getState('limitstart'), $this->getState('limit'));
+			
 			echo $query;
+			
 			$this->_data = $db->loadObjectList();
 		}
 	
 		return $this->_data;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	function get_flats($id)
 	{
