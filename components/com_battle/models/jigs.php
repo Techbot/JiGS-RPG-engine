@@ -287,6 +287,12 @@ class BattleModelJigs extends JModellist{
 		$result = $db->loadAssocList();
 		return $result;
 	}
+	
+	
+	
+	
+	
+	
 	function get_metals_to_sell() {
 
 		$db				= JFactory::getDBO();
@@ -480,12 +486,12 @@ class BattleModelJigs extends JModellist{
 	    }
 	    else
 		{
-		    $query              = "Select magazine,item_id from #__jigs_weapons WHERE id = $id_weapon";
+		    $query              = "Select magazine, item_id from #__jigs_weapons WHERE id = $id_weapon";
 		    $db->setQuery($query); 
 		    $_result		    = $db->loadAssoc(); //load assoc is a joomla method that loads an associated array
 	        $current_magazine   = $_result['magazine']; //current ammunition
 	        $weapon_type        = $_result['item_id']; //current weapon_type
-		    $query              = "Select ammunition from #__jigs_weapon_names WHERE id = $weapon_type";
+		    $query              = "Select max_ammunition from #__jigs_weapon_names WHERE id = $weapon_type";
 		    $db->setQuery($query);
 		    $max_ammunition     = $db->loadResult();// loadresult is a joomla method that loads a single value
 	        $empty_slots        = $max_ammunition - $current_magazine ;
@@ -1234,6 +1240,31 @@ class BattleModelJigs extends JModellist{
 		$result		= $db->loadAssocList();
 		return $result;
 	}
+	
+	function get_flat_inventory()
+	{
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		
+		$query          = "SELECT #__jigs_objects.name FROM #__jigs_objects LEFT JOIN #__jigs_inventory	ON #__jigs_objects.id = #__jigs_inventory.item_id WHERE #__jigs_inventory.player_id =" . $building_id;
+		
+		$db->setQuery($query);
+		$result		= $db->loadAssocList();
+		return $result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	function get_shop_metals()
 	{
@@ -1448,6 +1479,10 @@ class BattleModelJigs extends JModellist{
 					$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
 				}
 				$player->weapon['magazine']--;
+			
+			
+			$attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
+			
 			}
 			else{
 					$attack_message	= "You have no bullets in your gun clip";
@@ -1506,9 +1541,12 @@ class BattleModelJigs extends JModellist{
 		$db->setQuery($sql);
 		$db->query();
 
-		$sql = "UPDATE #__jigs_weapons SET magazine = $player->weapon['magazine'] WHERE id = $player->id_weapon";
+
+		$magazine = $player->weapon['magazine'];
+		$sql = "UPDATE #__jigs_weapons SET magazine = $magazine  WHERE id = $player->id_weapon";
 		$db->setQuery($sql);
 		$db->query();
+		
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		$this->sendFeedback($player->iduser,$attack_message);

@@ -1151,6 +1151,10 @@ width: 100%;
 	a.mid,
 	a.right{width:36px;height:36px;}
 	a.down{width:108px;height:36px;}
+	
+.stand_left,
+.stand_right{float:none;width:100%;}
+
 
 }	
 
@@ -1495,3 +1499,8 @@ position:relative;
 }
 
 
+
+
+
+.stand_left{float:left;width:50%;}
+.stand_righ{float:right;width:50%;}

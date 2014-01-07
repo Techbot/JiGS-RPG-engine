@@ -32,7 +32,7 @@ class plgBattleHeartbeat extends JPlugin
 		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
 		$message		= "Cron activated at " . $time_string;
 		$this->sendMessage($now,$message);
-		$this->heartbeat();
+		//$this->heartbeat();
 		return ;
 		
 	}

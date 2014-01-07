@@ -3,7 +3,65 @@
 
 <div id="leave">Leave Apartment</div>
 
+
+
+
+
+
+<div id="inventory">
+
+	<div class="stand_left">
+
+		<div id="building_inventory_table">
+			
+				<div class="name">In storage</div>
+
+				
+		</div>
+
+	</div>
+<!--	end of left -->
+
+
+
+	<div class="stand_right">
+
+		<div id="my_inventory">
+				<div class="name">BackPack</div>
+		</div>
+
+	</div>
+	<!-- end of middle -->
+
+
+
+	</div>
+		<!-- end of inventory -->
+
+
+
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script type='text/javascript'>
 
@@ -23,5 +81,26 @@ function leave()
 }
 
 leave();
+ 
+ 
+ 
+ 
+ 
+ 				var head = document.getElementsByTagName('head')[0];
+				script = document.createElement('script');
+				script.type = "text/javascript";
+				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/room.js';  
+				head.appendChild(script);
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 </script>

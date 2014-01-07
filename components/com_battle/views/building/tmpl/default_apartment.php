@@ -56,7 +56,7 @@ for ($room = 0 ; $room <= 7 ;$room++){
 	
 	
 	
-	<div id="message_<?php echo $room ?>" ><?php //echo $this->message[$room]; ?>
+	<div id="message_<?php echo $room ?>" ><?php echo $this->message[$room]; ?>
 	</div>
 	
 	<div id="timer_<?php echo $room ?>" > <?php echo $remaining ?> days <?php echo $remaining2 ?> hrs
