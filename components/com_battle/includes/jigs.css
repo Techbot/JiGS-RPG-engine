@@ -485,6 +485,8 @@ div.label {
 	float:left;
 	margin:10px 0 2px;
 }
+
+
 div#xp {
 	background: none repeat scroll 0 0 #00FF00;
 	border-radius: 25px;
@@ -694,6 +696,7 @@ div#weapon_module .label {
 	font-weight: bold;
 	color:#999;
 	margin:0 5px 0 0;
+	background-color:rgba(0,0,0,0.8);
 }
 
 div#weapon_module a {

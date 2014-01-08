@@ -297,7 +297,7 @@ class BattleModelBuilding extends JModel
 		{
 			$pre_result = "<img src='" .  JURI::base()  . "images/comprofiler/" . $avatar . "' height='20px' width='20px' >" ;
 			$result[0]	= 'message_' . $flat;
-			$result[1]	= $this->get_message($resident);
+			$result[1]	= $this->get_message($resident,$flat);
 			$result[2]	= 'avatar_' . $flat;
 			$result[3]	= $pre_result ;
 			$result[4]	= $flat;
@@ -641,15 +641,15 @@ class BattleModelBuilding extends JModel
 
 
 
-	function get_message($resident)
+	function get_message($resident,$flat)
 	{
-		$player =& JFactory::getUser($resident);
-		$flatlink="index.php?option=com_battle&view=room";
-		$message=null;
-		$message_1= "Apartment is vacant Click to Rent";
-		$message_2= "Apartment is Owned by " . $player->username;
-		$message_3= "Apartment is Owned by you. Click to <a href ='". $flatlink ."'>HERE</a> to Enter "; 	
-		$user =& JFactory::getUser();
+		$player         = JFactory::getUser($resident);
+		$flatlink       = "index.php?option=com_battle&view=room&room=$flat";
+		$message        = null;
+		$message_1      = "Apartment is vacant Click to Rent";
+		$message_2      = "Apartment is Owned by " . $player->username;
+		$message_3      = "Apartment is Owned by you. Click to <a href ='". $flatlink ."'>HERE</a> to Enter "; 	
+		$user           = JFactory::getUser();
 		if ($resident== 0)
 		{
 			$message=$message_1;

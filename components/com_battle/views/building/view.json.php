@@ -8,6 +8,7 @@ class BattleViewBuilding extends JView
 	function display($tpl = "json")
 	{
 		$id							= (int) JRequest::getVar('id', 0);
+		$flat						=  JRequest::getVar('room');
 		$model						= $this->getModel();
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
@@ -66,7 +67,7 @@ class BattleViewBuilding extends JView
 			for($i=0;$i<=7;$i++)
 			{
 				$pics[$i]= $model->get_avatar( $flats_array[$i]['resident']);
-				$message[$i]= $model->get_message($flats_array[$i]['resident']);
+				$message[$i]= $model->get_message($flats_array[$i]['resident'],$i+1);
 			}
 
 			$this->assignRef('message', $message);

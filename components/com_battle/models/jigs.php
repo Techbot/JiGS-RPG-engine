@@ -366,7 +366,26 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
+	function get_backpack() {
 
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+
+
+		$db->setQuery("SELECT  
+			#__jigs_inventory.id, " .
+			"#__jigs_inventory.item_id, " .
+			"#__jigs_objects.name " .
+			"FROM #__jigs_inventory " .
+			"LEFT JOIN #__jigs_objects " .
+			"ON #__jigs_inventory.item_id = #__jigs_objects.id " .
+			"WHERE #__jigs_inventory.player_id = ". $user->id  
+		);
+		$result		= $db->loadObjectList();
+		
+		
+		return $result;
+	}
 
 	function get_inventory2() {
 
@@ -693,6 +712,33 @@ class BattleModelJigs extends JModellist{
 			return $player_money;
 		}
 	}
+	
+	function retrieve() {
+		$db             = JFactory::getDBO();
+		$user           = JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		$item		    = JRequest::getvar('item');
+		$sql            = "UPDATE #__jigs_inventory SET player_id = $user->id, location = 1 WHERE id = $item";
+		$db->setQuery($sql);
+		$result2	    = $db->query();
+		$result3	    ='true';
+		return $sql;
+		
+	}
+	
+	function store()
+	{
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		$item		    = JRequest::getvar('item');
+		$room		    = JRequest::getvar('room');
+		$sql            = "UPDATE #__jigs_inventory SET player_id = $building_id, location = $room WHERE id= $item";
+		$db->setQuery($sql);
+		$db->query();
+		return 'true';
+	}
+
 
 	function buy_metal() {
 
@@ -1247,7 +1293,14 @@ class BattleModelJigs extends JModellist{
 		$user		    = JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
 		
-		$query          = "SELECT #__jigs_objects.name FROM #__jigs_objects LEFT JOIN #__jigs_inventory	ON #__jigs_objects.id = #__jigs_inventory.item_id WHERE #__jigs_inventory.player_id =" . $building_id;
+		$query          = "SELECT 
+		
+		#__jigs_objects.name,
+		#__jigs_inventory.item_id  
+		FROM #__jigs_objects 
+		LEFT JOIN #__jigs_inventory	
+		ON #__jigs_objects.id = #__jigs_inventory.item_id 
+		WHERE #__jigs_inventory.player_id =" . $building_id;
 		
 		$db->setQuery($query);
 		$result		= $db->loadAssocList();
