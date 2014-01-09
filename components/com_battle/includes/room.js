@@ -1,5 +1,15 @@
-building_id			= 11093;
-flat=1;
+var refTab			= document.getElementById("room_stats");
+
+var row				= refTab.rows[0];
+var col				= row.cells[1]; 
+
+var building_id		= col.firstChild.nodeValue;
+var row				= refTab.rows[1];
+var col				= row.cells[1]; 
+
+var flat			= col.firstChild.nodeValue;
+
+
 
 
 function request_flat_inventory()

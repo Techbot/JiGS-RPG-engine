@@ -67,7 +67,7 @@ class BattleViewBuilding extends JView
 			for($i=0;$i<=7;$i++)
 			{
 				$pics[$i]= $model->get_avatar( $flats_array[$i]['resident']);
-				$message[$i]= $model->get_message($flats_array[$i]['resident'],$i+1);
+				$message[$i]= $model->get_message($flats_array[$i]['resident'],$i+1,$buildings->id);
 			}
 
 			$this->assignRef('message', $message);

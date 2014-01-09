@@ -66,10 +66,10 @@ if (($left == "0") && ($right == "0")){
 */
 if (($left == "1") && ($right == "1")) {
 										$style = "both";
-										$loadfirst_span		= 10;
+										$loadfirst_span		= 9;
 										$left_span		= 3;
 										$middlecol_span	= 9;
-										$right_span		= 2;
+										$right_span		= 3;
 										}
 
 											

@@ -1,12 +1,14 @@
  <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
 <div id="flats">
-<div class="row">
+
+<div class="row name">Apartments</div>
+<!--div class="row">
+<div class="name">Message:</div>
 <div class="name">Status:</div>
 <div class="name">Id:</div>
-<div class="name">Message:</div>
 <div class="name">Lease Remaining</div>
-</div>
+</div-->
 
  <?php
  //echo '<pre>';
@@ -43,8 +45,13 @@ for ($room = 0 ; $room <= 7 ;$room++){
    }  
    
 ?>
-	<div class="row">
 
+	<div class="flats row">
+
+	
+	<div id="message_<?php echo $room ?>" ><?php echo $this->message[$room]; ?>
+	</div>
+	
 	<div id="<?php echo $room ?>" class="work_flat" >
 	<h4><a href="#" title="Click Here to <?php echo $status_tooltip; ?>"><?php echo $status_word; ?></a></h4>
 	<!--<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buttons/flat<?php echo $status; ?>.jpg">-->
@@ -56,18 +63,15 @@ for ($room = 0 ; $room <= 7 ;$room++){
 	
 	
 	
-	<div id="message_<?php echo $room ?>" ><?php echo $this->message[$room]; ?>
-	</div>
-	
-	<div id="timer_<?php echo $room ?>" > <?php echo $remaining ?> days <?php echo $remaining2 ?> hrs
+	<div id="timer_<?php echo $room ?>" ><span class="label inline">Rent Due:</span><?php echo $remaining ?> days <?php echo $remaining2 ?> hrs
 	</div>
 	
 	
 	
-	</div>
+	</div><!--flats -->	
+	
 <?php
 } // end of 
 ?>
 
-</div><!--flats -->
 

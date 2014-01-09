@@ -284,19 +284,7 @@ div.building_right {
 	float:right;
 }
 
-@media (max-width: 481px){
-	div.building_left {
-		width:100%;
-		min-height: 377px;
-		float:none;
-		
-	}
-	div.building_right {
-		width:100%;
-		min-height: 377px;
-		float:none;
-	}
-}
+
 /* Images, description, stats etc. */
 div#info {
 	/*border:1px solid #252525;*/
@@ -683,6 +671,7 @@ div.work_field {text-align:center;}
 div.work_field  img{float:none !important;}
 
 div#batteries .label,
+div#flats .label,
 div#metal .label,
 div#inventory .label,
 div#stats .label ,
@@ -802,21 +791,29 @@ color:#000;font-weight:bold;text-decoration:none;}
 
 
 
+/* Apartment */
 
-div#flats {overflow:auto;height:210px;}
-div#flats div.name {
-  margin: 0;
-  padding: 0 0 0 5px;
-  text-align: left;
-}
+div#flats {overflow:auto;/*height:210px;*/}
+
 div#flats div {float:left;display:inline-block;}
-div#flats div.row {float:none;display:block;clear:both;  text-align: left;
+div#flats div.row {float:none;display:block;clear:both;margin:0;text-align:left;
+border-bottom:1px solid #222;
 }
 
-div#flats div.row div:first-child {width:100px;}
-div#flats div.row div:nth-child(2) {width:20px; padding: 0 0 0 5px;}
-div#flats div.row div:nth-child(3) {width:320px; padding: 0 0 0 10px;}
-div#flats div.row div:last-child {width:175px; padding: 0 0 0 5px;}
+div.flats.row div:first-child {width:50%;}
+div.flats.row div:nth-child(2) {width:20%;}
+div.flats.row div:nth-child(3) {width:5%;}
+div.flats.row div:last-child {width:25%;}
+
+@media (max-width: 768px){
+
+	div#flats div.row div:first-child {width:100%;padding:0.5em 1em;}
+	div#flats div.row {padding:1em;}
+	div#flats div.row div:nth-child(2) {width:40%;}
+	div#flats div.row div:nth-child(3) {width:20%;}
+	div#flats div.row div:last-child {width:40%;}
+
+}
 
 div#flats h4 {
 margin:0;
@@ -1015,6 +1012,10 @@ color:#000000;
 border: 1px solid #333333;
 }
 
+.moduletable input[type="button"]{
+width:100%
+}
+
 input[type="button"]:hover{
 background: #00FFFF;
 color:#000000;
@@ -1023,6 +1024,10 @@ border: 1px solid #333333;
 
 
 
+/* Stand / Shop */
+
+.stand_left{float:left;width:50%;}
+.stand_righ{float:right;width:50%;}
 
 
 
@@ -1155,11 +1160,8 @@ width: 100%;
 	a.right{width:36px;height:36px;}
 	a.down{width:108px;height:36px;}
 	
-.stand_left,
-.stand_right{float:none;width:100%;}
+}
 
-
-}	
 
 #screen_grid{
 width:400px;
@@ -1505,5 +1507,41 @@ position:relative;
 
 
 
-.stand_left{float:left;width:50%;}
-.stand_righ{float:right;width:50%;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 481px){
+	div.building_left {
+		width:100%;
+		min-height: 377px;
+		float:none;
+		
+	}
+	div.building_right {
+		width:100%;
+		min-height: 377px;
+		float:none;
+	}
+	
+.stand_left,
+.stand_right{float:none;width:100%;clear:both;}
+
+
+}

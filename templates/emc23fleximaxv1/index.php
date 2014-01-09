@@ -374,9 +374,12 @@ else { ?>
 		</div><!-- end MiddleCol -->
 		
 		<!--Left Column-->
-		<?php if ($this->countModules('emc23-left or emc23-syndicate or emc23-rounded')) : ?>
+		<?php if ($this->countModules('emc23-menu or emc23-left or emc23-syndicate or emc23-rounded')) : ?>
 		<div id="sidebar" class="span<?php echo $left_span ;?>">
 			<div class="inside">
+				<?php if ($this->countModules('emc23-menu')) : ?>
+					<jdoc:include type="modules" name="emc23-menu" style="xhtml" />
+				<?php endif; ?>
 				<?php if ($this->countModules('emc23-left')) : ?>
 					<jdoc:include type="modules" name="emc23-left" style="xhtml" />
 				<?php endif; ?>
