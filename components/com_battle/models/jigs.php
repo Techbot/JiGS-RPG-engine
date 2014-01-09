@@ -1390,21 +1390,21 @@ class BattleModelJigs extends JModellist{
 
 	function attack_player()
 	{
-		$db		= JFactory::getDBO();
-		$player		= JFactory::getUser();
-		//$user2	= substr(JRequest::getvar('character'),5);
-		$user2		= JRequest::getvar('character');
-		$player2	= JFactory::getUser($user2);
+		$db		            = JFactory::getDBO();
+		$player		        = JFactory::getUser();
+		//$user2	        = substr(JRequest::getvar('character'),5);
+		$user2		        = JRequest::getvar('character');
+		$player2	        = JFactory::getUser($user2);
 
-		$player->dice	= rand(0, 15);
-		$player2->dice	= rand(0, 5);
+		$player->dice       = rand(0, 15);
+		$player2->dice      = rand(0, 5);
 
-		$query		= "SELECT health,money,active FROM #__jigs_players WHERE iduser = $player->id";
+		$query		         = "SELECT health,money,active FROM #__jigs_players WHERE iduser = $player->id";
 		$db->setQuery($query);
-		$result		= $db->loadRow();
-		$player->health	= $result[0];
-		$player->money	= $result[1];
-		$player->status	= $result[2];		
+		$result		        = $db->loadRow();
+		$player->health     = $result[0];
+		$player->money      = $result[1];
+		$player->status     = $result[2];		
 
 		$query		= "SELECT health,money,active FROM #__jigs_players WHERE iduser = $user2";
 		$db->setQuery($query);
@@ -1434,39 +1434,39 @@ class BattleModelJigs extends JModellist{
 			}
 			else
 			{
-				$player->health	= $player->health - 10;
-				$player2->health= $player2->health + 10;
+				$player->health     = $player->health - 10;
+				$player2->health    = $player2->health + 10;
 
-				$message	= "You attacked " . $player2->username . " and missed. " . $player2->username .
+				$message	        = "You attacked " . $player2->username . " and missed. " . $player2->username .
 					" retaliated and inflicted 10 points of damage. You: $player->health ,Opponent: $player2->health ";
 			}
 
 			if ($player2->health <= 0)
 			{
-				$now			= time();
+				$now			    = time();
 
-				$player->money	=  $player->money + $player2->money;
-				$player2->money	= 0;
-				$query 		= "UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now 
+				$player->money	    =  $player->money + $player2->money;
+				$player2->money	    = 0;
+				$query 		        = "UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now 
 					WHERE iduser = $user2";
 				$db->setQuery($query);
 				$db->query();
 
-				$query 		= "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $player->id 
+				$query 		        = "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $player->id 
 					WHERE #__jigs_inventory.player_id = $player_id ";
 				$db->setQuery($query);
 				$db->query();
 
-				$query 		= "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money 
+				$query 		        = "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money 
 					WHERE #__jigs_players.iduser = $user->id" ;
 				$db->setQuery();
 				$db->query();
-				$query 		= "UPDATE #__jigs_players SET money = $player2->money WHERE #__jigs_players.iduser = $player->id";
+				$query 		        = "UPDATE #__jigs_players SET money = $player2->money WHERE #__jigs_players.iduser = $player->id";
 				$db->setQuery($query);
 				$db->query();
 
-				$text		= 'Citizen ' . $player2->username  . ' was hospitalised by citizen ' . $user->username ;
-				$message	= "You put " . $player2->username . " into hospital.";
+				$text		        = 'Citizen ' . $player2->username  . ' was hospitalised by citizen ' . $user->username ;
+				$message	    = "You put " . $player2->username . " into hospital.";
 				$this->sendWavyLines($text);
 			}
 
@@ -1515,15 +1515,14 @@ class BattleModelJigs extends JModellist{
 											ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
 											WHERE #__jigs_weapons.id =" . $player->id_weapon;
 			$db->setQuery($query);
-			$player->weapon			= $db->loadAssoc();
-			$damage = (int)(($player->weapon['attack'] * $player->dexterity) / $npc->level);
+			$player->weapon			    = $db->loadAssoc();
+			$damage                     = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
+			
 			if ($player->weapon['magazine'] > 0)
 			{
-				
-				
 				if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
 				{
-					$npc->health	= intval($npc->health - $player->weapon['attack'] );
+					$npc->health	= intval($npc->health - $damage );
 					$attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You: 
 					$player->health ,Opponent: $npc->health ";
 				}
@@ -1533,9 +1532,7 @@ class BattleModelJigs extends JModellist{
 				}
 				$player->weapon['magazine']--;
 			
-			
-			$attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
-			
+        		$attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
 			}
 			else{
 					$attack_message	= "You have no bullets in your gun clip";
@@ -1615,7 +1612,7 @@ class BattleModelJigs extends JModellist{
 
 	function dead_npc($npc)
 	{
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();	
 		$now		= time();
 		$sql		= "UPDATE #__jigs_characters SET active = 0, empty = 1 , time_killed = $now WHERE id  = $npc->id";
@@ -1638,7 +1635,7 @@ class BattleModelJigs extends JModellist{
 	function dead_player($winner)
 	{
 		$user		= JFactory::getUser();
-		$db		= JFactory::getDBO();		
+		$db		    = JFactory::getDBO();		
 		$now		= time();
 		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
 			WHERE iduser ='".$user->id."'");
