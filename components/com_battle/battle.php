@@ -76,7 +76,7 @@ class BattleController extends JController
 		elseif ($user->id==0)
 		{
 			//JRequest::setVar('view', 'loggedout');
-			$url ="/index.php?option=com_comprofiler&task=login";
+			$url ="index.php?option=com_comprofiler&task=login";
 			$this->setRedirect( $url );
 		}
 
