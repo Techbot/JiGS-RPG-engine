@@ -1,4 +1,4 @@
-<h2 class="title">C1</h2>
+<h3>Conveyor 1</h3>
                 <?php
                 // print_r ($x);
 
@@ -74,10 +74,28 @@
                 </form>
                 
                 
-        <script>
-			prepare();
-			prepare2();
-			work_conveyer();
-			check_factory.periodical(5000);
-		</script>         
+       <script>
+
+
+	prepare();
+	prepare2();
+	work_conveyer();
+	check_factory.periodical(5000);
+</script>         
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 

@@ -526,7 +526,7 @@ label {
 	font-size:8pt;
 	text-transform:uppercase;
 }
-#box4 div#conveyor_progress {
+div#conveyor_progress {
 	height:60px;
 	position:absolute;
 	z-index:333;
@@ -554,24 +554,26 @@ form.conveyor select#blueprints {
 form.conveyor .object{
 	text-align:left; 
 	display:inline-block;
-	width:220px;
+	width:38%;
 	float:left;
-	margin:0 5px 0 10px;
+	margin:0 1% 0 2%;
 	padding:0 10px 10px;
 	border:1px dotted #F00;
-	height:72px;
+	height:80px;
 }
 form.conveyor .metal {
 	text-align:left; 
 	display:inline-block;
-	width:340px;
+	width:56%;
 	float:right;
-	margin:0 10px 0 5px;
+	margin:0 2% 0 1%;
 	padding:0 10px 10px;
 	border:1px dotted #FF0;
-	height:72px;
+	height:80px;
 }
-
+input#id1{
+display:none;
+}
 
 form.conveyor .object2{
 	text-align:left; 
@@ -628,7 +630,7 @@ float:left;
 
 
 
-#box4 div#time_elapsed{
+div#time_elapsed{
 	text-align:center; 
 	display:inline-block;
 	width:300px;
@@ -638,7 +640,7 @@ float:left;
 	color:#FFF;border:1px solid #333;background:green;
 }
 	
-#box4 div#time_remaining{
+div#time_remaining{
 	text-align:center; 
 	display:inline-block;
 	width:300px;
@@ -726,7 +728,7 @@ div#weapon_module a {
 	padding:5px 10px;}
 div#eat_burger {
 	cursor:pointer;
-	width:600px;
+	/*width:600px;*/
 	margin:0 auto;
 }
 .board_buttons #primary {
@@ -1022,7 +1024,10 @@ color:#000000;
 border: 1px solid #333333;
 }
 
-
+#building_function {
+margin:0.5em 0 0;
+border: 1px solid #333333;
+}
 
 /* Stand / Shop */
 
@@ -1141,11 +1146,6 @@ width: 100%;
 	.compass{
 	float:none;
 	margin:0 auto 1em;
-	}
-}
-
-@media (max-width: 768px){
-	.compass{
 	width:108px;
 	height:108px;
 	}
@@ -1214,7 +1214,16 @@ position:relative;
 }
 
 
+/* Liquid Slider */
 
+img.none {
+width:100%;
+}
+
+
+
+
+/*
 .panel {
 	position: absolute;
 	left: 0px;
@@ -1227,7 +1236,7 @@ position:relative;
 .panel p {
 	margin:0 0 5px;
 }
-
+*/
 
 
 
@@ -1543,5 +1552,13 @@ position:relative;
 .stand_left,
 .stand_right{float:none;width:100%;clear:both;}
 
+
+form.conveyor .object,
+form.conveyor .metal {
+	display:block;
+	width:100%;
+	float:none;
+	margin:1em 0;
+}
 
 }

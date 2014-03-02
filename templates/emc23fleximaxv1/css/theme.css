@@ -180,8 +180,6 @@ hr {
 }
 
 
-legend {color:red;}
-
 label {
 font-size: 85%;
 text-transform: uppercase;
@@ -264,21 +262,20 @@ text-transform: uppercase;
 font-weight:normal;
 }
 
-#sidebar .moduletable,
-#sidebar .moduletable_menu,
-#sidebar .moduletable_text,
-#sidebar-2 .moduletable,
-#sidebar-2 .moduletable_menu,
-#sidebar-2 .moduletable_text {}
+@media (max-width: 768px){
 
-#sidebar .moduletable h3,
-#sidebar .moduletable_menu h3,
-#sidebar .moduletable_text h3,
-#sidebar-2 .moduletable h3,
-#sidebar-2 .moduletable_menu h3,
-#sidebar-2 .moduletable_text h3 {}
+	#sidebar .moduletable h3,
+	#sidebar-2 .moduletable h3 {
+	display:none;
+	}
+	#sidebar .moduletable,
+	#sidebar-2 .moduletable {
+	margin:0;
+	padding:0;
+	border-radius:0;
+	}
 
-
+}
 
 
 

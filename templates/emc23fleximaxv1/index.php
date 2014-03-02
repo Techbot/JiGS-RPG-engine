@@ -112,12 +112,19 @@ else { ?>
 <!--link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/_web.css" type="text/css" media="screen" /-->
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/style.css" type="text/css" media="screen" />
 
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/components/com_battle/includes/_class.noobSlide.packed.js"></script>
 
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/emctempus.js"></script>	
-	
+	 
+<link rel="stylesheet" href="/components/com_battle/includes/animate.css"> <!-- Optional -->
+<link rel="stylesheet" href="/components/com_battle/includes/liquid-slider.css">
 
-	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/components/com_battle/includes/jquery.easing.1.3.js"></script>
+<script src="/components/com_battle/includes/jquery.touchSwipe.min.js"></script>
+<script src="/components/com_battle/includes/jquery.liquid-slider.min.js"></script>
+
+
+
 </head>
 
 <body id="<?php echo $style ;?>">
@@ -144,8 +151,6 @@ else { ?>
 	
 	
 <div id="wrapper" class="container-fluid">
-
-
 
 
 <div id="header" class="row-fluid"><!--header-->
@@ -189,7 +194,6 @@ else { ?>
 	           
  </div><!-- end header -->
           
-
 
             
 <?php if ($this->countModules('emc23-topnav')) : ?><!--horizontal nav-->
@@ -374,9 +378,22 @@ else { ?>
 		</div><!-- end MiddleCol -->
 		
 		<!--Left Column-->
-		<?php if ($this->countModules('emc23-menu or emc23-left or emc23-syndicate or emc23-rounded')) : ?>
+	<?php if($this->countModules('emc23-right') and JRequest::getCmd('layout') != 'form') : ?>
 		<div id="sidebar" class="span<?php echo $left_span ;?>">
 			<div class="inside">
+				<jdoc:include type="modules" name="emc23-right" style="xhtml" />
+			</div><!-- end inside -->	
+		</div><!-- end sidebar-->
+		<?php endif; ?>
+		
+	</div> <!-- end row -->		
+	</div><!-- end LoadFirst -->
+	
+	<!--Right Column-->
+	
+	<?php if ($this->countModules('emc23-menu or emc23-left or emc23-syndicate or emc23-rounded')) : ?>
+	<div id="sidebar-2" class="span<?php echo $right_span ;?>">
+		<div class="inside">
 				<?php if ($this->countModules('emc23-menu')) : ?>
 					<jdoc:include type="modules" name="emc23-menu" style="xhtml" />
 				<?php endif; ?>
@@ -390,18 +407,6 @@ else { ?>
 					<jdoc:include type="modules" name="emc23-rounded" style="rounded" />
 				<?php endif; ?>
 			</div><!-- end inside -->
-		</div><!-- end sidebar-->
-		<?php endif; ?>
-		
-	</div> <!-- end row -->		
-	</div><!-- end LoadFirst -->
-	
-	<!--Right Column-->
-	<?php if($this->countModules('emc23-right') and JRequest::getCmd('layout') != 'form') : ?>
-	<div id="sidebar-2" class="span<?php echo $right_span ;?>">
-		<div class="inside">
-			<jdoc:include type="modules" name="emc23-right" style="xhtml" />
-		</div><!-- end inside -->
 	</div><!-- end sidebar-2-->
 	<?php endif; ?>
 
@@ -489,7 +494,7 @@ else { ?>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/jquery1.8.1.js"></script>
+	<!--script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/jquery1.8.1.js"></script-->
 	<!--script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/bootstrap.js"></script-->
 
 

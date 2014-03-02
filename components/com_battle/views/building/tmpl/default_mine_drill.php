@@ -10,6 +10,7 @@ $now= time();
 
  { ?>
 	<div id="mine_board" style="visibility:hidden;">
+		
 <?php } 
 
 
@@ -22,7 +23,7 @@ else { ?>
 		<?php } ?>	
 	
 		
-		
+		<p style="text-align:center"><strong>Mine for:</strong></p>
 		<a href="#" class="mine" type= "1"><img title="Crystal" width ="100px" src="<?php echo $this->baseurl ?>/components/com_battle/images/crystal.jpg"></a>
 		<a href="#" class="mine" type= "2"><img title="Metal"  width ="100px" src="<?php echo $this->baseurl ?>/components/com_battle/images/metal.jpg"></a>
 		<a href="#" class="mine" type= "3"><img title="Fuel"  width ="100px" src="<?php echo $this->baseurl ?>/components/com_battle/images/fuel.jpg"></a>

@@ -49,11 +49,8 @@ class BattleViewBuilding extends JView
 
 		if($this->buildings->type=='farm')
 		{
-			$fields = $model->get_fields($id);
-			////////////////////////////////////////////////////////////////////////////////////		
-			//print_r($fields);
-			//////////////////////////////////////////////////////////////////////////////
-			$this->assignRef('fields', $fields);	
+			$this->assignRef('crop_types', $model->get_crop_types($id));
+			$this->assignRef('fields', $model->get_fields($id));	
 		}
 
 		if($this->buildings->type=='apartment')

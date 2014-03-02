@@ -911,7 +911,7 @@ fieldset {
   margin: 0;
   border: 0;
 }
-
+/*
 legend {
   display: block;
   width: 100%;
@@ -923,16 +923,16 @@ legend {
   border: 0;
   border-bottom: 1px solid #e5e5e5;
 }
-
+*/
 legend small {
   font-size: 15px;
   color: #999999;
 }
 
 label,
-input,
 button,
-select,
+/*select,
+input,*/
 textarea {
   font-size: 14px;
   font-weight: normal;
@@ -946,12 +946,12 @@ textarea {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-label {
+/*label {
   display: block;
   margin-bottom: 5px;
-}
+}*/
 
-select,
+/*select,
 textarea,
 input[type="text"],
 input[type="password"],
@@ -966,7 +966,7 @@ input[type="email"],
 input[type="url"],
 input[type="search"],
 input[type="tel"],
-input[type="color"],
+input[type="color"],*/
 .uneditable-input {
   display: inline-block;
   height: 20px;
@@ -1062,7 +1062,7 @@ input[type="checkbox"] {
   width: auto;
 }
 
-select,
+/*select,*/
 input[type="file"] {
   height: 30px;
   /* In IE7, the height of the select element cannot be changed by height, only font-size */
@@ -1073,11 +1073,11 @@ input[type="file"] {
   line-height: 30px;
 }
 
-select {
+/*select {
   width: 220px;
   background-color: #ffffff;
   border: 1px solid #cccccc;
-}
+}*/
 
 select[multiple],
 select[size] {

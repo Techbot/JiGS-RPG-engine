@@ -10,7 +10,7 @@ var col				= row.cells[1];
 var flat			= col.firstChild.nodeValue;
 
 
-
+alert('hi');
 
 function request_flat_inventory()
 {
@@ -105,5 +105,5 @@ function store(itemID)
 }
 
 
- request_flat_inventory();
- request_my_inventory();
+request_flat_inventory();
+request_my_inventory();

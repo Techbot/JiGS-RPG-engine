@@ -189,7 +189,7 @@ class BattleModelBuilding extends JModel
 		$finished		= $now + 50;
 
 		//$crop	= JRequest::getvar('crop');
-		$query			= "SELECT status,crop FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
+		$query			= "SELECT status,crop,finished FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
 		$db->setQuery($query);
 		$result			= $db->loadRowList();
 
@@ -211,7 +211,17 @@ class BattleModelBuilding extends JModel
 		    $crop			= 0;
 		} 		    
 	
-		$status++;
+		if ($result[0][2]==0)
+		{
+		    $status++;
+		}
+		
+		
+		
+		if ($status>=6)
+		{
+		    $status=5;
+		}
 
 		$sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) values  ($building_id,$field, $status,$now , $crop, $finished) 
 			ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
@@ -391,7 +401,7 @@ class BattleModelBuilding extends JModel
 		return $result;
 	}
 
-    function get_field_status_text($status)
+    function get_field_status_text($status=0)
     {
     
     
@@ -399,28 +409,33 @@ class BattleModelBuilding extends JModel
 		    {
         	    $status_message = "Status: Field is Barren. Click to begin Tilling.";
 		    }  
-		    if ($status==1) 
+		    elseif ($status==1) 
 		    {
         	    $status_message = "Status: Field is being tilled.";
 		    }		
-		    if ($status==2) 
+		    elseif ($status==2) 
 		    {
         	    $status_message = "Status: Field is tilled. Click to begin sowing.";
 		    }		
 		
-		    if ($status==3) 
+		    elseif ($status==3) 
 		    {
         	    $status_message = "Status: Field is being sowed.";
 		    }		
-		    if ($status==4) 
+		    elseif ($status==4) 
 		    {
         	    $status_message = "Status: Field is sowed. Click to begin harvesting.";
 		    }		
 		
-		    if ($status==5) 
+		    elseif ($status==5) 
 		    {
         	    $status_message = "Status: Field is being harvested.";
 		    }		
+            else
+		    {
+        	    $status_message = "Status: You done fucked up.";
+		    }	
+		    
 		    
 		    return $status_message;
     
@@ -678,6 +693,37 @@ class BattleModelBuilding extends JModel
 		return $result;
 
 	}
+	
+	function get_crop_types() {
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT 
+		#__jigs_crops.id, 
+		#__jigs_crops.name
+		FROM #__jigs_crops
+		WHERE #__jigs_crops.user_id =".$user->id);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
+	
+	function get_crop_index(){
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$id			= JRequest::getvar('crop');
+		$db->setQuery("SELECT 
+		#__jigs_crops.index 
+		FROM #__jigs_crops
+		WHERE #__jigs_crops.id =".$id);
+		$result		= $db->loadResult();
+		return $result;
+
+	}
+	
+	
+	
+	
+	
 
 
 	function get_blueprints()

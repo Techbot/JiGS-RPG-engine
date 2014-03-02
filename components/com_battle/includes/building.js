@@ -31,6 +31,24 @@
 
 })();	
 
+//http://liquidslider.com/documentation/
+$(function(){
+
+	$('#slider-id').liquidSlider({
+	  slideEaseFunction: "easeInOutCubic",
+	  autoHeight: false,
+	  dynamicTabs: true,
+	  dynamicTabsAlign: "center",
+	  includeTitle:false,
+	  slideEaseFunction:'animate.css',
+	  slideEaseDuration:1000,
+	  heightEaseDuration:1000,
+	  animateIn:"bounceInLeft",
+	  animateOut:"bounceOutRight",
+	  dynamicTabsPosition:"bottom"
+	});
+});
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function set_type()
@@ -155,7 +173,7 @@ function set_type()
     if (window.building_type=="diner")
     {
         //SAMPLE 4 (walk to item)
-	    var nS4 = new noobSlide({
+	    /*var nS4 = new noobSlide({
 		    box: document.id('box4'),
 		    items: $$('#box4 div'),
 		    size: 640,
@@ -165,7 +183,8 @@ function set_type()
 			    this.handles.removeClass('active');
 			    currentHandle.addClass('active');
 		    }
-	    });
+	    });*/
+		
        	document.id('eat_burger').addEvent('click', function()
        	{
 	        var itemID = this.get('id');
@@ -866,66 +885,81 @@ function sell_crops(){
  
 }
 
-function work_field(itemID){	 	
+function work_field(itemID)
+{	 	
     var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" 
     + building_id + "&crop=1&field=" + itemID  ,
     onSuccess: function(result){
-   
-    	//new tmp element that contains the new div
+     	//new tmp element that contains the new div
     	var tmpDiv = new Element('div',
     	{
-    		html:'<div id="'+itemID+'"><img src ="components/com_battle/images/5.gif"/></div>'
-    	
+    		html:'<div id="' + itemID + '" class="work_field" style="text-align:center;"> <img src ="components/com_battle/images/5.gif"/></div>'
     	}
     	);
     	//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
     	tmpDiv.getFirst().replaces(document.id(itemID));
-   
-		document.id('farm_progress').setStyle('visibility','visible');
-		//$('status_message').setStyle('visibility','hidden');
-	    
+		document.id('farm_progress_'+itemID).setStyle('visibility','visible');
+		document.id('farm_controls_'+itemID).setStyle('visibility','hidden');
     	}
-    }).get();}
+    }).get();
+    
+}
 
  
 function check_farm(){
-	var a = new Request.JSON({
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building=" 
-		+ building_id , 
-	    onSuccess: function(result){
+    var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building="
+    + building_id ,
+    onSuccess: function(result){
+     
+        itemID = result['field'];
+        status = result['status'];
+        document.getElementById('since').innerHTML = result['since'];
+        document.getElementById('now').innerHTML = result['now'];
+        document.getElementById('elapsed').innerHTML = result['elapsed'];
+        document.getElementById('remaining').innerHTML = result['remaining'];
+        document.getElementById('message_text_'+itemID).innerHTML = result['status_message'];
+       
+        text = '<img src = "components/com_battle/images/' + result["status"] + '.gif">';
+        document.getElementById(itemID).innerHTML = text;
+
+        if (result['remaining'] <= 0 )
+        {
+                    
+                    
+                   // $('adminForm').setStyle('visibility','visible');
  
-		    document.getElementById('since').innerHTML              = result['since'];
-		    document.getElementById('now').innerHTML                = result['now'];
-		    document.getElementById('elapsed').innerHTML            = result['elapsed'];
-		    document.getElementById('remaining').innerHTML          = result['remaining'];
-		    document.getElementById('status_message').innerHTML     = result['status_message'];
-			itemID                                                  = result['field'];
-			status                                                  = result['status'];
-			
-	        if (result['remaining'] <= 0 )
-	        {
-		       // $('adminForm').setStyle('visibility','visible');
-			    document.id('farm_progress').setStyle('visibility','hidden');
-			    document.id('status_message').setStyle('visibility','visible');
-			    
-		        var tmpDiv = new Element('div',
-		            {html:'<div id="'+itemID+'" class ="work_field"><img src ="components/com_battle/images/'
-		            +result['status'] +'.gif" /></div>'});
-		            
-		       tmpDiv.getFirst().replaces(document.id(itemID));
-				
-				$$('.work_field').removeEvent('click', test);
-				
-				$$('.work_field').addEvent('click',function(){
-					var itemID = this.get('id');
-					work_field(itemID);
-				});
-    		}
-		    }
-	    }).get();
-	    }
+                    document.id('farm_progress_'+ itemID).setStyle('visibility','hidden');
+                    document.id('farm_controls_'+ itemID).setStyle('visibility','visible');
+      
+                   // string_text = 'status_message_'+ itemID;
     
+                    //document.id(string_text).setStyle('visibility','visible');
+
+                 /*
+                 
+                    var tmpDiv = new Element('div',
+                    {html:'<div>', '<div ="' + itemID + '" class= ="work_field"><img src ="components/com_battle/images/'
+                    +result['status'] +'.gif" /></div>'});
+                    tmpDiv.getFirst().replaces(document.id(itemID));
+                    */
+
+                    $$('.work_field').removeEvent('click', test);
+
+                    $$('.work_field').addEvent('click',function(){
+                    
+                    work_field(itemID);
+                    });
+             }
+             else{
+            
+                    document.id('farm_progress_'+ itemID).setStyle('visibility','visible');
+                    document.id('farm_controls_'+ itemID).setStyle('visibility','hidden');
+             }
+         }
+    }).get();
+}
 function work_flat(itemID){	 	
     var a = new Request.JSON({
     	url: "index.php?option=com_battle&format=raw&task=building_action&action=work_flat&building_id=" 
@@ -947,7 +981,6 @@ function work_flat(itemID){
    	}
     }).get();
 }
-
 
 function get_shop_blueprints(id)
 {
@@ -1018,8 +1051,6 @@ function buy_blueprint(itemID){
     }).get();
  
 }
-
-
 
 ///////////////////////////////
 function changeDisplayImage()
@@ -1111,6 +1142,55 @@ function get_blueprints()
 		}
 	}).get();
 }
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////
+
+function changeCrops()
+{
+    i=0;
+    index							= document.adminForm.crops.value;
+    
+	
+	
+	
+	    var a = new Request.JSON(
+    {
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=get_crop_index&crop=" 
+		+ index,
+		onSuccess: function(result)
+		{
+
+
+            document.adminForm.Crop_Index.value = result[0];
+            
+            Magic_index						= document.adminForm.Magic_Index.value;
+            Crop_index						= document.adminForm.Crop_Index.value;
+            Skill_index						= document.adminForm.Skill_Index.value; 
+            
+            
+            document.adminForm.ETA.value = Magic_index * Crop_index * Skill_index * 50;
+		
+		}
+	}).get();
+
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 ///////////////////////////////
 
 function change()
@@ -1351,6 +1431,10 @@ function dig() {
 		});
 	}	
 
+
+/*
+
+
 function mine(type)
 {
 	var a = new Request.JSON({
@@ -1363,6 +1447,13 @@ function mine(type)
     	}
     }).get();
 }
+
+*/
+
+
+
+
+/*
 
 //SAMPLE 4 (walk to item)
 	var nS4 = new noobSlide(
@@ -1377,7 +1468,11 @@ function mine(type)
 				currentHandle.addClass('active');
 	}
 			
-});				
+});	
+
+*/
+
+			
 			
 function request_shop_inventory()
 {

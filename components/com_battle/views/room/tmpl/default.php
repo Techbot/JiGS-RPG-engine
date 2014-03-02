@@ -87,7 +87,7 @@
 
 function leave()
 {
-		$('leave').addEvent('click', function()
+		document.id('leave').addEvent('click', function()
 		{
 			var a = new Request.JSON(
 			{
