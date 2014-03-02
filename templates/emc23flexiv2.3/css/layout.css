@@ -161,7 +161,7 @@ We set the width of this container based upon the content layout logic. (see tem
 #right-only #MiddleCol {float:left;}
 #wide #MiddleCol {float:left;}
 
-#MiddleCol div.inside {margin:10px 20px;position:relative;}
+#MiddleCol div.inside {/*margin:10px 20px;*/position:relative;}
 
 #mainbody {overflow: hidden;margin-bottom:95px;}
 

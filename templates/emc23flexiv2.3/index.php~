@@ -53,7 +53,10 @@ $app = Jfactory::getApplication();
 		}
 	-->
 </script>
-
+  <script id="loadarea0" type="text/javascript"></script>
+    <script id="loadarea1" type="text/javascript"></script>
+  
+  
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />	
 
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/theme.css" rel="stylesheet" type="text/css" media="screen" />	
@@ -208,6 +211,16 @@ $app = Jfactory::getApplication();
             		
             			</div><!-- end bottom-user-modules -->
             			<?php endif; ?>
+			
+			
+
+<?php if ($this->countModules('messenger')) : ?>
+<jdoc:include type="modules" name="messenger" style="html" />
+<?php endif; ?>
+
+		
+
+
             		</div><!-- end inside -->
 				</div><!-- end MiddleCol -->
 	
@@ -294,9 +307,6 @@ $app = Jfactory::getApplication();
 </div>
 <?php endif; ?>
 			
-<?php if ($this->countModules('messenger')) : ?>
-<jdoc:include type="modules" name="messenger" style="html" />
-<?php endif; ?>
 					
 <?php if ($this->countModules('footer')) : ?>
 <jdoc:include type="modules" name="footer" style="raw" />

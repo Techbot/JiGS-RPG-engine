@@ -78,6 +78,48 @@ class battleModelMain extends JModellist
 	}
 	return;
 	}
+	
+	
+	
+	
+	function delete_players_orphaned()
+	{	
+		$db				= JFactory::getDBO();
+		$query			= "SELECT iduser FROM #__jigs_players";
+		$db->setQuery($query);
+		$playerlist		= $db->loadObjectList();
+		
+		$query			= "SELECT id FROM #__users";
+		$db->setQuery($query);
+		$users		    = $db->loadResultArray();
+		
+		
+		foreach($playerlist as $player)
+		{
+			
+			if (!in_array($player->iduser,$users))
+			{
+				$db				= JFactory::getDBO();
+		        $query			= "Delete  FROM #__jigs_players WHERE iduser = " . $player->iduser;
+		        $db->setQuery($query);
+		        
+			    echo  $player->iduser . "<br>";
+		    }			
+        }
+	return;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	function sync_players_leases()
 	{	
 		$db			= JFactory::getDBO();

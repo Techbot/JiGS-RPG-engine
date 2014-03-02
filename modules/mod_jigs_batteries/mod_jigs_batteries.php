@@ -38,7 +38,7 @@ function request_batteries(){
   var row = "<span class=\"label\">Battery " + (i+1) + ":</span>" + result[i][1]  + " : " + result[i][2];
   all= all + row + "<br />";  
     	}
-    	$('batteries').innerHTML = all;	
+    	document.id('batteries').innerHTML = all;	
     }	
     	
     }).get();

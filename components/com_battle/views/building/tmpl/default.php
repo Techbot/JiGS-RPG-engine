@@ -9,7 +9,6 @@ if ($this->player->iduser == 0){
 // print_r($this->board_info_1);
 // exit();
 ?>
-<div id="building" class="clearfix"><!-- This should replace div#container -->
   <div class="building_left">
     <div id="info" class=" clearfix">
       <div class="name"><?php echo $this->player->username; ?> owns <?php echo $this->buildings->name; ?> 
@@ -101,7 +100,6 @@ if ($this->buildings->owner == $this->user->id){
       </div><!-- end action -->
     </div><!-- end status. Is this being used? I mean, really?? -->
   </div><!--end building_right-->
-</div><!-- end building -->
 
 <?php
 

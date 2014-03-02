@@ -8,6 +8,7 @@ class BattleViewBuilding extends JView
 	function display($tpl = "json")
 	{
 		$id							= (int) JRequest::getVar('id', 0);
+		$flat						=  JRequest::getVar('room');
 		$model						= $this->getModel();
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
@@ -22,6 +23,13 @@ class BattleViewBuilding extends JView
 		$user						= JFactory::getUser();
 		$this->assignRef('user', $user);
 		$cropper					= JTable::getInstance('players', 'Table');
+		
+		//$player					= JTable::getInstance('players', 'Table');
+		//$player->load($user->id);			
+		//$this->assignRef('player', $player);
+		
+		
+		
 		$cropper->load($user->id);	
 		$this->assignRef('cropper', $cropper);		
 		$this->assignRef('buildings', $buildings);		
@@ -41,11 +49,8 @@ class BattleViewBuilding extends JView
 
 		if($this->buildings->type=='farm')
 		{
-			$fields = $model->get_fields($id);
-			////////////////////////////////////////////////////////////////////////////////////		
-			//print_r($fields);
-			//////////////////////////////////////////////////////////////////////////////
-			$this->assignRef('fields', $fields);	
+			$this->assignRef('crop_types', $model->get_crop_types($id));
+			$this->assignRef('fields', $model->get_fields($id));	
 		}
 
 		if($this->buildings->type=='apartment')
@@ -59,7 +64,7 @@ class BattleViewBuilding extends JView
 			for($i=0;$i<=7;$i++)
 			{
 				$pics[$i]= $model->get_avatar( $flats_array[$i]['resident']);
-				$message[$i]= $model->get_message($flats_array[$i]['resident']);
+				$message[$i]= $model->get_message($flats_array[$i]['resident'],$i+1,$buildings->id);
 			}
 
 			$this->assignRef('message', $message);
@@ -109,6 +114,15 @@ class BattleViewBuilding extends JView
 		}
 
 		if($this->buildings->type=='diner')
+		{
+			//	echo $this->buildings->id;
+			//$model	= &$this->getModel();
+			//$blueprints	= $model->get_metals($this->buildings->id);
+			//$this->assignRef('metals', $metals);
+		}
+
+
+		if($this->buildings->type=='bullet')
 		{
 			//	echo $this->buildings->id;
 			//$model	= &$this->getModel();

@@ -1,6 +1,6 @@
 <?php ?>
 
-<div id="stats_module"></div>
+<div id="stats_module">loading....</div>
 
 <script type='text/javascript'>
 
@@ -16,7 +16,7 @@ function request_stats(){
     	
    // 	alert('health: ' + result[0].health + '   strenght: ' + result[0].strenght + '   Intelligence: ' + result[0].intelligence);
     
-   $('stats_module').innerHTML = 
+   document.id('stats_module').innerHTML = 
     
        "<span class=\"label\">Level:</span>                   " +result[0].level +
        "<br /><span class=\"label\">   Experience:</span>     "    +	result[0].xp + 

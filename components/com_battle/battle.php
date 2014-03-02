@@ -39,30 +39,8 @@ class BattleController extends JController
 		$user		= JFactory::getUser();
 		$view		= JRequest::getVar('view');
 
-<<<<<<< HEAD
-	
-	function check_factory()
-	{
-		$building_id = JRequest::getvar('building_id');
-		$line = JRequest::getvar('line');
-		$model = $this->getModel('jigs');
-		$result = $model->check_factory($building_id,$line);
-		//$result= 'helllo';
-		echo Json_encode($result);
-	}
-	
-	
-	
-	function display()
-	{
-		$db =& JFactory::getDBO();
-		$user =& JFactory::getUser();
-		$view = JRequest::getVar('view');
-		if ($user->id==0)
-=======
 		
-		if ($view=='factions'||$view=='group')
->>>>>>> upstream/master
+		if ($view=='factions'||$view=='group'||$view=='canvas')
 		{
 			JRequest::setVar('view', $view);
 			//$view = $this->getView($view, 'html') ;
@@ -76,7 +54,7 @@ class BattleController extends JController
 		elseif ($user->id==0)
 		{
 			//JRequest::setVar('view', 'loggedout');
-			$url ="index.php?option=com_comprofiler&task=login";
+			$url ="/index.php?option=com_comprofiler&task=login";
 			$this->setRedirect( $url );
 		}
 
@@ -102,11 +80,12 @@ class BattleController extends JController
 		    {
 			    JRequest::setVar('view', 'ward');
 		    }
+		    
+		    if ($player_status == 4)
+		    {
+			    JRequest::setVar('view', 'canvas');
+		    }
 		}
-
-
-
-
 		parent::display();
 	}
 }

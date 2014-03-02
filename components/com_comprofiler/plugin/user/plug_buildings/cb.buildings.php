@@ -27,9 +27,14 @@ class getBlogTab extends cbTabHandler {
 		$query		= "SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.owner = $user->id ORDER BY type;";
 		$db->setQuery($query);
 		$result		= $db->loadObjectList(); 
+		
+		$return = "<table class ='shade-table'>";
+		
+		
 		foreach ($result as $row){
-			$return .=  $row->id . " " . $row->type . "<br>";
+		//	$return .=  "<tr><td>" . $row->id . " " . $row->type . "</td></tr>";
 		}
+		$return .= "</table>";
 		return $return; 
     	} 
 }	// end class getBlogTab

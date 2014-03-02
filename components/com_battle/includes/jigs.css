@@ -1,6 +1,5 @@
 
-/* Introduce this later
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 
 a#withdraw,a#deposit,#submit_c{
@@ -81,17 +80,24 @@ vertical-align:middle;
 }
 
 tr.d0 td,
-table.shade-table tr:nth-child(even) {
+table.shade-table tr:nth-child(even),
+.sectiontableentry1  {
 background-color: #080808;
 color: #ccc;
 border-bottom:1px dotted #333;
 }
 
 tr.d1 td,
-table.shade-table tr:nth-child(odd) {
+table.shade-table tr:nth-child(odd),
+.sectiontableentry2 {
 background-color: #131313;
 color: #ccc;
 border-bottom:1px dotted #333;
+}
+
+.cbft_image {
+background-color: transparent;
+border-bottom:0 dotted #333;
 }
 
 
@@ -217,7 +223,9 @@ a:hover {color:#fff;}
 #building {
 	background:#000;
 	color:#fff;
-	margin-bottom:10px;
+	padding:0.5em;
+	/*margin-bottom:10px;
+	border:1px solid #252525;*/
 }
 #profile {
 	background:#000;
@@ -266,19 +274,22 @@ div#weapons p {
 }
 div.building_left {
 	width:60%;
-	height: 377px;
+	min-height: 377px;
 	float:left;
+	
 }
 div.building_right {
-	width:38%;
-	height: 377px;
+	width:40%;
+	min-height: 377px;
 	float:right;
 }
+
+
 /* Images, description, stats etc. */
 div#info {
-	width:100%;
-	border:1px solid #252525;
-	height:238px;
+	/*border:1px solid #252525;*/
+	padding:0.5em;
+	min-height:238px;
 }
 div.name {
 	background:#333;
@@ -338,17 +349,18 @@ table.stats td{
 	font-size:8pt;
 }
 div#status {
-	float: right;
+	float: left;
 	width: 100%;
 	border:1px solid #252525;
-	margin-left:10px;
-	height:375px;
+	/*padding:10px;*/
+	min-height:375px;
 }
 div.extra {
-	width: 385px;
+	/*width: 385px;
 	height: 125px;
-	border:1px solid #252525;
 	margin:10px 0 0 0;
+	border:1px solid #252525;*/
+	padding:0.5em;
 }
 
 /* Specific management details */
@@ -461,6 +473,8 @@ div.label {
 	float:left;
 	margin:10px 0 2px;
 }
+
+
 div#xp {
 	background: none repeat scroll 0 0 #00FF00;
 	border-radius: 25px;
@@ -512,7 +526,7 @@ label {
 	font-size:8pt;
 	text-transform:uppercase;
 }
-#box4 div#conveyor_progress {
+div#conveyor_progress {
 	height:60px;
 	position:absolute;
 	z-index:333;
@@ -540,24 +554,26 @@ form.conveyor select#blueprints {
 form.conveyor .object{
 	text-align:left; 
 	display:inline-block;
-	width:220px;
+	width:38%;
 	float:left;
-	margin:0 5px 0 10px;
+	margin:0 1% 0 2%;
 	padding:0 10px 10px;
 	border:1px dotted #F00;
-	height:72px;
+	height:80px;
 }
 form.conveyor .metal {
 	text-align:left; 
 	display:inline-block;
-	width:340px;
+	width:56%;
 	float:right;
-	margin:0 10px 0 5px;
+	margin:0 2% 0 1%;
 	padding:0 10px 10px;
 	border:1px dotted #FF0;
-	height:72px;
+	height:80px;
 }
-
+input#id1{
+display:none;
+}
 
 form.conveyor .object2{
 	text-align:left; 
@@ -614,7 +630,7 @@ float:left;
 
 
 
-#box4 div#time_elapsed{
+div#time_elapsed{
 	text-align:center; 
 	display:inline-block;
 	width:300px;
@@ -624,7 +640,7 @@ float:left;
 	color:#FFF;border:1px solid #333;background:green;
 }
 	
-#box4 div#time_remaining{
+div#time_remaining{
 	text-align:center; 
 	display:inline-block;
 	width:300px;
@@ -657,9 +673,13 @@ div.work_field {text-align:center;}
 div.work_field  img{float:none !important;}
 
 div#batteries .label,
+div#flats .label,
 div#metal .label,
 div#inventory .label,
-div#stats .label {
+div#stats .label ,
+div#inventory_module .label,
+div#stats_module .label,
+div#weapon_module .label {
 	text-align:left;
 	display:inline-block;
 	text-transform: uppercase;
@@ -667,6 +687,13 @@ div#stats .label {
 	font-weight: bold;
 	color:#999;
 	margin:0 5px 0 0;
+	background-color:rgba(0,0,0,0.8);
+}
+
+div#weapon_module a {
+	text-align:center;
+	display:block;
+	margin:0 auto;
 }
 
 /* Apartment Layout */
@@ -701,6 +728,8 @@ div#stats .label {
 	padding:5px 10px;}
 div#eat_burger {
 	cursor:pointer;
+	/*width:600px;*/
+	margin:0 auto;
 }
 .board_buttons #primary {
 	height:40px;
@@ -764,21 +793,29 @@ color:#000;font-weight:bold;text-decoration:none;}
 
 
 
+/* Apartment */
 
-div#flats {overflow:auto;height:210px;}
-div#flats div.name {
-  margin: 0;
-  padding: 0 0 0 5px;
-  text-align: left;
-}
+div#flats {overflow:auto;/*height:210px;*/}
+
 div#flats div {float:left;display:inline-block;}
-div#flats div.row {float:none;display:block;clear:both;  text-align: left;
+div#flats div.row {float:none;display:block;clear:both;margin:0;text-align:left;
+border-bottom:1px solid #222;
 }
 
-div#flats div.row div:first-child {width:100px;}
-div#flats div.row div:nth-child(2) {width:20px; padding: 0 0 0 5px;}
-div#flats div.row div:nth-child(3) {width:320px; padding: 0 0 0 10px;}
-div#flats div.row div:last-child {width:175px; padding: 0 0 0 5px;}
+div.flats.row div:first-child {width:50%;}
+div.flats.row div:nth-child(2) {width:20%;}
+div.flats.row div:nth-child(3) {width:5%;}
+div.flats.row div:last-child {width:25%;}
+
+@media (max-width: 768px){
+
+	div#flats div.row div:first-child {width:100%;padding:0.5em 1em;}
+	div#flats div.row {padding:1em;}
+	div#flats div.row div:nth-child(2) {width:40%;}
+	div#flats div.row div:nth-child(3) {width:20%;}
+	div#flats div.row div:last-child {width:40%;}
+
+}
 
 div#flats h4 {
 margin:0;
@@ -971,6 +1008,509 @@ cursor:pointer;
 }
 
 
+input[type="button"]{
+background: #009999;
+color:#000000;
+border: 1px solid #333333;
+}
+
+.moduletable input[type="button"]{
+width:100%
+}
+
+input[type="button"]:hover{
+background: #00FFFF;
+color:#000000;
+border: 1px solid #333333;
+}
+
+#building_function {
+margin:0.5em 0 0;
+border: 1px solid #333333;
+}
+
+/* Stand / Shop */
+
+.stand_left{float:left;width:50%;}
+.stand_righ{float:right;width:50%;}
+
+
+
+
+/* Single Map view */
+
+
+#demo { 
+background-color:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:48px;
+height:48px;
+position:absolute;
+z-index:999;
+}
+.character { 
+background:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:48px;
+height:48px;
+position:absolute;
+z-index:111;
+}
+.players { 
+background:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:48px;
+height:48px;
+position:absolute;
+z-index:111;
+}
+
+
+
+
+
+
+
+
+.buildings_class { 
+color:#fff; 
+padding:0px; 
+border:0px solid #000;
+width:37px;
+height:37px;
+position:absolute;
+z-index:999;
+}
+.pages_class { 
+background:#fa0000; 
+color:#fff; 
+padding:0px; 
+border:1px solid #000;
+width:37px;
+height:37px;
+position:absolute;
+z-index:1;
+}
+#world a { /*right,left,up,down*/
+font-weigth:400;
+color:#fff;
+text-transform: uppercase;
+font-size: 0.85em;
+}
+
+a#move_demo {cursor:pointer;}
+
+a.up {
+display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/up.png) transparent 50% 0 no-repeat;text-align:center;}
+a.right {
+display:block;width:18px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/right.png) transparent 100% 0 no-repeat;text-align:right;}
+a.down {
+display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/down.png) transparent 50% 0 no-repeat;text-align:center;}
+a.left {
+display:block;width:18px;height:18px;clear:both;background: url(/components/com_battle/views/single/tmpl/left.png) transparent 0 0 no-repeat;text-align:left;}
+a.mid {
+background:#009999;
+width:18px;
+height:18px;
+float:left;
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+a.mid:hover {background:#00FFFF;}
+
+a.up:hover{background-image:url(/components/com_battle/views/single/tmpl/up-hover.png);}
+a.right:hover{background-image:url(/components/com_battle/views/single/tmpl/right-hover.png);}
+a.down:hover{background-image:url(/components/com_battle/views/single/tmpl/down-hover.png);}
+a.left:hover{background-image:url(/components/com_battle/views/single/tmpl/left-hover.png);}
+
+
+
+
+#world{
+margin: 0 auto; 
+text-align:center;
+position:relative;
+width: 100%;
+}
+
+.compass{width:54px;height:54px;margin:0 15px 0 0;float:left;}
+
+@media (max-width: 768px){
+	.compass{
+	float:none;
+	margin:0 auto 1em;
+	width:108px;
+	height:108px;
+	}
+	
+	.compass a{
+	background-size:contain;
+	}
+		
+	a.up{width:108px;height:36px;}
+	a.left,
+	a.mid,
+	a.right{width:36px;height:36px;}
+	a.down{width:108px;height:36px;}
+	
+}
+
+
+#screen_grid{
+width:400px;
+height:400px;
+margin: 0 auto; 
+text-align:center;
+background:#000;
+position:relative;
+}
+
+#demo{
+ background-size:cover;
+ background-position:50% 50%;background-size:cover; 
+}
+
+
+.players{
+ /*width:50px;
+ height:50px;*/
+ min-width:24px;
+ min-height:24px;
+ max-width:50px;
+ max-height:50px;
+ background-size:cover;
+ background-position:50% 50%;
+ }
+ 
+ 
+.squares{
+	display:inline; 
+	position:absolute; 
+	width:50px; 
+	height:50px; 
+	padding:5px;
+	margin:0px;
+	text-align:center;
+}
+ 
+
+
+
+
+.board_panel {
+	width: 100%;
+	padding: 1em;
+	height: 310px;
+	background-position:50% 50%;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+
+
+/* Liquid Slider */
+
+img.none {
+width:100%;
+}
+
+
+
+
+/*
+.panel {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	text-align:left;
+	padding:0 5px 5px;
+	width:233px;
+}
+.panel p {
+	margin:0 0 5px;
+}
+*/
+
+
+
+
+/* CONTENT SLIDER */
+#content-slider {
+	width:100%;
+	height:125px;
+	margin:0 auto;
+}
+
+
+/* SLIDER STRUCTURE */
+
+#slider {
+   background: #000;
+   border: 0px solid #eaeaea;
+   box-shadow: 0px 0px 5px rgba(0,0,0,0.7);
+	height:125px;
+	width:100%;
+   margin: 0 auto;
+   overflow: visible;
+   position: relative;
+}
+
+/* HIDE ALL OUTSIDE OF THE SLIDER */
+
+#mask {
+   overflow: hidden;
+   height: 125px;
+}
+
+/* IMAGE LIST */
+
+#slider ul {
+   margin: 0;
+   padding: 0;
+   position: relative;
+}
+
+#slider li {
+   width: 385px;  /* Width Image */
+   height: 125px; /* Height Image */
+   position: absolute;
+   top: -125px;	/* Original Position - Outside of the Slider */
+   list-style: none;
+   margin: 0;
+   padding: 0;}
+
+
+/* For the -moz-animation
+
+1.  Define the total number of images to use in the slider
+    5
+	
+2.  Define the length of -moz-animation for each image
+    5 seconds
+	
+3.  Define the total duration of the -moz-animation
+    Multiply the total number of images by the duration of each image:
+    5 images � 5 seconds = 25 seconds
+	
+4.  Calculate how many keyframes equals one second
+    Divide the total number of keyframes by the total duration of the -moz-animation.
+    100 keyframes / 25 seconds = 4 keyframes
+    4 keyframes = 1 second
+	
+*/
+
+#slider li.firstanimation {
+   -moz-animation: cycle 25s linear infinite;
+   -webkit-animation: cycle 25s linear infinite;
+}
+
+#slider li.secondanimation {
+   -moz-animation: cycletwo 25s linear infinite;
+   -webkit-animation: cycletwo 25s linear infinite;
+}
+
+#slider li.thirdanimation {
+   -moz-animation: cyclethree 25s linear infinite;
+   -webkit-animation: cyclethree 25s linear infinite;
+}
+
+#slider li.fourthanimation {
+   -moz-animation: cyclefour 25s linear infinite;
+   -webkit-animation: cyclefour 25s linear infinite;
+}
+
+#slider li.fifthanimation {
+   -moz-animation: cyclefive 25s linear infinite;
+   -webkit-animation: cyclefive 25s linear infinite;
+}
+
+/* -moz-animation */
+
+@-moz-keyframes cycle {
+   0%  { top: 0px; } /* When you start the slide, the first image is already visible */
+   4%  { top: 0px; } /* Original Position */
+   16% { top: 0px; opacity:1; z-index:0; } /* From 4% to 16 % = for 3 seconds the image is visible */
+   20% { top: 125px; opacity: 0; z-index: 0; } /* From 16% to 20% = for 1 second exit image */
+   21% { top: -125px; opacity: 0; z-index: -1; } /* Return to Original Position */
+   92% { top: -125px; opacity: 0; z-index: 0; }
+   96% { top: -125px; opacity: 0; } /* From 96% to 100% = for 1 second enter image*/
+   100%{ top: 0px; opacity: 1; }
+}
+
+@-moz-keyframes cycletwo {
+   0%  { top: -125px; opacity: 0; } /* Original Position */
+   16% { top: -125px; opacity: 0; }/* Starts moving after 16% to this position */
+   20% { top: 0px; opacity: 1; }
+   24% { top: 0px; opacity: 1; }  /* From 20% to 24% = for 1 second enter image*/
+   36% { top: 0px; opacity: 1; z-index: 0; }   /* From 24% to 36 % = for 3 seconds the image is visible */
+   40% { top: 125px; opacity: 0; z-index: 0; } /* From 36% to 40% = for 1 second exit image */
+   41% { top: -125px; opacity: 0; z-index: -1; }   /* Return to Original Position */
+   100%{ top: -125px; opacity: 0; z-index: -1; }
+}
+
+@-moz-keyframes cyclethree {
+   0%  { top: -125px; opacity: 0; }
+   36% { top: -125px; opacity: 0; }
+   40% { top: 0px; opacity: 1; }
+   44% { top: 0px; opacity: 1; }
+   56% { top: 0px; opacity: 1; }
+   60% { top: 125px; opacity: 0; z-index: 0; }
+   61% { top: -125px; opacity: 0; z-index: -1; }
+   100%{ top: -125px; opacity: 0; z-index: -1; }
+}
+
+@-moz-keyframes cyclefour {
+   0%  { top: -125px; opacity: 0; }
+   56% { top: -125px; opacity: 0; }
+   60% { top: 0px; opacity: 1; }
+   64% { top: 0px; opacity: 1; }
+   76% { top: 0px; opacity: 1; z-index: 0; }
+   80% { top: 125px; opacity: 0; z-index: 0; }
+   81% { top: -125px; opacity: 0; z-index: -1; }
+   100%{ top: -125px; opacity: 0; z-index: -1; }
+}
+@-moz-keyframes cyclefive {
+   0%  { top: -125px; opacity: 0; }
+   76% { top: -125px; opacity: 0; }
+   80% { top: 0px; opacity: 1; }
+   84% { top: 0px; opacity: 1; }
+   96% { top: 0px; opacity: 1; z-index: 0; }
+   100%{ top: 125px; opacity: 0; z-index: 0; }
+}
+
+
+/* -webkit-animation */
+
+@-webkit-keyframes cycle {
+   0%  { top: 0px; } /* When you start the slide, the first image is already visible */
+   4%  { top: 0px; } /* Original Position */
+   16% { top: 0px; opacity:1; z-index:0; } /* From 4% to 16 % = for 3 seconds the image is visible */
+   20% { top: 125px; opacity: 0; z-index: 0; } /* From 16% to 20% = for 1 second exit image */
+   21% { top: -125px; opacity: 0; z-index: -1; } /* Return to Original Position */
+   92% { top: -125px; opacity: 0; z-index: 0; }
+   96% { top: -125px; opacity: 0; } /* From 96% to 100% = for 1 second enter image*/
+   100%{ top: 0px; opacity: 1; }
+}
+
+@-webkit-keyframes cycletwo {
+   0%  { top: -125px; opacity: 0; } /* Original Position */
+   16% { top: -125px; opacity: 0; }/* Starts moving after 16% to this position */
+   20% { top: 0px; opacity: 1; }
+   24% { top: 0px; opacity: 1; }  /* From 20% to 24% = for 1 second enter image*/
+   36% { top: 0px; opacity: 1; z-index: 0; }   /* From 24% to 36 % = for 3 seconds the image is visible */
+   40% { top: 125px; opacity: 0; z-index: 0; } /* From 36% to 40% = for 1 second exit image */
+   41% { top: -125px; opacity: 0; z-index: -1; }   /* Return to Original Position */
+   100%{ top: -125px; opacity: 0; z-index: -1; }
+}
+
+@-webkit-keyframes cyclethree {
+   0%  { top: -125px; opacity: 0; }
+   36% { top: -125px; opacity: 0; }
+   40% { top: 0px; opacity: 1; }
+   44% { top: 0px; opacity: 1; }
+   56% { top: 0px; opacity: 1; }
+   60% { top: 125px; opacity: 0; z-index: 0; }
+   61% { top: -125px; opacity: 0; z-index: -1; }
+   100%{ top: -125px; opacity: 0; z-index: -1; }
+}
+
+@-webkit-keyframes cyclefour {
+   0%  { top: -125px; opacity: 0; }
+   56% { top: -125px; opacity: 0; }
+   60% { top: 0px; opacity: 1; }
+   64% { top: 0px; opacity: 1; }
+   76% { top: 0px; opacity: 1; z-index: 0; }
+   80% { top: 125px; opacity: 0; z-index: 0; }
+   81% { top: -125px; opacity: 0; z-index: -1; }
+   100%{ top: -125px; opacity: 0; z-index: -1; }
+}
+@-webkit-keyframes cyclefive {
+   0%  { top: -125px; opacity: 0; }
+   76% { top: -125px; opacity: 0; }
+   80% { top: 0px; opacity: 1; }
+   84% { top: 0px; opacity: 1; }
+   96% { top: 0px; opacity: 1; z-index: 0; }
+   100%{ top: 125px; opacity: 0; z-index: 0; }
+}
+
+
+
+/* PROGRESS BAR */
+
+.progress-bar {
+   position: relative;
+   top: -5px;
+   width: 385px;
+   height: 5px;
+   background: #000;
+   -moz-animation: fullexpand 25s ease-out infinite;
+   -webkit-animation: fullexpand 25s ease-out infinite;
+}
+
+
+/* -moz-animation BAR */
+
+@-moz-keyframes fullexpand {
+   /* In these keyframes, the progress-bar is stationary */
+   0%, 20%, 40%, 60%, 80%, 100% { width: 0%; opacity: 0; }
+
+   /* In these keyframes, the progress-bar starts to come alive */
+   4%, 24%, 44%, 64%, 84% { width: 0%; opacity: 0.3; }
+
+   /* In these keyframes, the progress-bar moves forward for 3 seconds */
+   16%, 36%, 56%, 76%, 96% { width: 100%; opacity: 0.7; }
+
+   /* In these keyframes, the progress-bar has finished his path */
+   17%, 37%, 57%, 77%, 97% { width: 100%; opacity: 0.3; }
+
+   /* In these keyframes, the progress-bar will disappear and then resume the cycle */
+   18%, 38%, 58%, 78%, 98% { width: 100%; opacity: 0; }
+}   
+
+
+#slider .tooltip {
+   background: rgba(0,0,0,0.7);
+   width: 385px;
+   max-width:385px;
+   position: relative;
+   bottom: 100px;
+   left: -320px;
+   border:0px solid #000;
+   left: 0px;}
+
+#slider .tooltip h3 {
+   color: #fff;
+   font-weight: 300;
+   padding: 0 10px;
+   margin:0;
+   text-align:left;
+}
+
+#slider .tooltip {
+   -moz-transition: all 0.3s ease-in-out;
+   -webkit-transition: all 0.3s ease-in-out;
+}
+
+#slider li#first:hover .tooltip,
+#slider li#second:hover .tooltip,
+#slider li#third:hover .tooltip,
+#slider li#fourth:hover .tooltip,
+#slider li#fifth:hover .tooltip {
+   left: 0px;
+}
+
+#slider:hover li,
+#slider:hover .progress-bar {
+   -moz-animation-play-state: paused;
+   -webkit-animation-play-state: paused;
+}
 
 
 
@@ -981,3 +1521,44 @@ cursor:pointer;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 481px){
+	div.building_left {
+		width:100%;
+		min-height: 377px;
+		float:none;
+		
+	}
+	div.building_right {
+		width:100%;
+		min-height: 377px;
+		float:none;
+	}
+	
+.stand_left,
+.stand_right{float:none;width:100%;clear:both;}
+
+
+form.conveyor .object,
+form.conveyor .metal {
+	display:block;
+	width:100%;
+	float:none;
+	margin:1em 0;
+}
+
+}

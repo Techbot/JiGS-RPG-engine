@@ -17,6 +17,15 @@ class BattleControllerMain extends JController
 	
 	}
 	
+	function delete_players_orphaned()
+	{
+		$model		=	$this->getModel('main');
+		$this->del	=	$model->delete_players_orphaned();
+		JRequest::setVar('view', 'main');
+    	$this->display();
+	}
+
+
 	function sync_players()
 	{
 		$model		=	$this->getModel('main');

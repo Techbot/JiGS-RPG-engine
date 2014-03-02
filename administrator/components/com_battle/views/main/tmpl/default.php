@@ -62,6 +62,22 @@ $params = $this->form->params;
 		<input type="submit" name="submit"/>
 	</form>
 
+
+		<form action="index.php" method="get" name="adminForm9" id="adminForm9">Delete Players 
+		<input type="hidden" name="task" value="delete_players_orphaned"></input>
+		<input type="hidden" name="option" value="com_battle" />
+		<input type="hidden" name="controller" value="main" />
+		<input type="submit" name="submit"/>
+	</form>
+
+
+
+
+
+
+
+
+
 <?php
 /*if (!$this->row->id) { echo "can add specifics after save"; }
 else

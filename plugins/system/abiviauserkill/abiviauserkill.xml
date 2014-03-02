@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="system" client="site">
+	<name>System - Abivia Non-Activated User Killer</name>
+	<author>Abivia Inc.</author>
+	<creationDate>2011 08 10</creationDate>
+	<copyright>(C) 2010 Abivia Inc. - J!1.7 update by Bean Lucas bean@lucas.net</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>www.abivia.net</authorEmail>
+	<authorUrl>www.abivia.net</authorUrl>
+	<version>1.1.0</version>
+	<description>Removes users who have registered but not activated, or who have activated but never logged in, after a certain period of time has passed.</description>
+	<files>
+		<filename plugin="abiviauserkill">abiviauserkill.php</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="runHours" type="text" default="24"
+					label="Run Interval (hours)"
+					description="The plugin will wait this long between runs, in hours (default 24)."
+				/>
+				<field name="activeDays" type="text" default="7"
+					label="Activation Period (days)"
+					description="Users have this number of days to complete activation (default 7.0)."
+				/>
+				<field name="loginDays" type="text" default="60"
+					label="Login Period (days)"
+					description="Users have this number of days to first log in after activation (default 60.0, zero to disable)."
+				/>
+				<field name="excludes" type="textarea" rows="8" cols="30" default=""
+					label="Exclude User Names"
+					description="Comma separated list of user names that will not be killed."
+				/>
+				<field name="killMax" type="text" default="100"
+					label="Max. Kills per Request"
+					description="Limit the number of users to kill per page request.
+					If your site has a large number of bogus users, this will prevent
+					the first page request from locking up your server. Set to 0 to disable."
+				/>
+				<field name="stepMins" type="text" default="5"
+					label="Multi-kill Delay"
+					description="If the kill limit is hit, the next run will ocurr after this number of minutes."
+				/>
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="debugLevel" type="list" default="0" label="Debug Level" description="If enabled, UserKill will tell you what it's doing.">
+					<option value="0">Off</option>
+					<option value="1">Admin Only</option>
+					<option value="2">Admin and Front end</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

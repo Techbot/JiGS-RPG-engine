@@ -48,7 +48,7 @@ function request_battery_slots(){
 	 var all = '';
 	//	var details = this.details;
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=get_battery_slots&building_id=<?php echo $this->buildings->id;?>", 
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery_slots&building_id=<?php echo $this->buildings->id;?>", 
     onSuccess: function(result){
    for (i = 0; i < result.length; ++ i){
   	var row = "<div class='get' id='" + result[i]['id'] + "'><span class=\"label\">Battery " + (i+1) + ":</span>" + result[i]['id']  + " : " + result[i]['units'] +"</div>";

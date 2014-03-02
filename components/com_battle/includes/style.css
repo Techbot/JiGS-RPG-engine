@@ -29,10 +29,10 @@
 #box4{
 	position:absolute;
 }
-#box4 div{
-	width:638px;
+#box4  > div{
+	width:640px;
 	float:left;
-	background:#000;
+	/*background:#000;*/
 }
 
 #box4 ul{
@@ -61,7 +61,7 @@ margin:0 10px 10px 15px;
 }
 #box4 img.none{
 	float:left;
-	margin:0 10px 10px 0;
+	margin:0 0 10px 0;
 }
 #info4{
 	background:#fff !important;
@@ -260,7 +260,7 @@ margin:0 10px 10px 15px;
 }
 .mask3{
 	position:relative;
-	width:638px;
+	width:640px;
 	height:140px;
 	overflow:hidden;
 }

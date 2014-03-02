@@ -1,0 +1,386 @@
+/* Additional Style sheets */
+@import url('initial.css');
+@import url('basic_typography.css');
+@import url('clearing.css');
+@import url('layout.css');
+@import url('modules.css');
+@import url('horzmenu.css');
+@import url('joomla.css');
+
+
+/* Forms */
+
+form { 
+margin:0; 
+padding:0; 
+}
+
+textarea { 
+font-size:100%; 
+font-family: arial, serif; 
+}
+
+input.button, .button   { 
+padding:3px 5px;
+margin: 2px;
+}
+
+/*input {
+padding:3px 5px;
+}*/
+
+/************Core Joomla Output with Beez Overrides */
+
+		/*---------------------------------------*/
+
+				/*** CONTENT LAYOUTS ***/
+
+		/*---------------------------------------*/
+
+
+		/*** PAGE LAYOUT - Featured, Single Articles, Archived Articles, Catgeory Blog and Category List ***/
+
+/* Page Title */
+div.blog h1,
+div.blog-featured h1,
+div.item-page h1, 
+div.archive h1, 
+div.contact h1, 
+div.contact-category h1, 
+div.weblink-category h1, 
+div.category-list h1, 
+div.categories-list h1 {
+padding: 10px 5px 0; 
+margin-bottom: 0;
+}
+
+/* Article Title */
+div.blog h2, 
+div.blog-featured h2, 
+div.item-page h2, 
+div.archive h2, 
+div.contact h2 , 
+div.contact-category h2 , 
+div.weblink-category h2, 
+div.category-list h2, 
+div.categories-list h2 {
+padding:5px;
+margin:0;
+}
+
+/* Article Title Linkable*/
+div.blog h2 a, 
+div.blog-featured h2 a, 
+div.item-page h2 a, 
+div.archive h2 {
+padding:5px;
+margin:0;
+}
+
+/* Category Blog Layout*/
+div.blog {}
+
+/* Featured Articles Blog Layout */
+div.blog-featured {}
+
+/* Leading Article */
+div.items-leading {}
+
+/* Article Layout */
+div.item-page {}
+
+/* Print & Email links & icons */
+ul.actions {list-style-type:none;margin:0px !important;}
+ul.actions li.print-icon,
+ul.actions li.email-icon{display:inline;background:none;padding:0;} /*removes main content's list styles*/
+ul.actions li.print-icon a,
+ul.actions li.email-icon a{}
+
+/* User Rating */
+span.content_rating {}
+/* User Vote */
+div.content_vote {}
+
+/** Article Info **/
+dl.article-info {padding:5px 10px;}
+
+/* Details */
+dt.article-info-term {}
+/* Category: */
+dd.category-name {}
+/* Category link */
+dd.category-name a {}
+
+/* Create Date & Time */
+dd.create {}
+/* Modified Date & Time */
+dd.modified {}
+/* Published Date & Time */
+dd.published {}
+/* Author Name */
+dd.createdby {}
+/* Hits */
+dd.hits {}
+
+
+/* Columns - may need to be adjusted to suit multiple column layout */
+.item {
+  display: block;
+  padding: 0 5px 10px;
+}
+
+.items-row {
+  margin-bottom: 10px !important;
+  overflow: hidden;
+}
+
+/* turned off and replaced with bootstrap *//*
+.cols-1{
+display: block;
+float: none !important;
+margin: 0 !important;
+}
+
+.cols-2 .column-1 {
+width:48%;
+float:left;
+padding:0 10px 0 0;
+}
+
+.cols-2 .column-2 {
+width:48%;
+float:right;
+padding:0 0 0 10px;
+}
+
+.cols-3 .column-1 {
+float:left;
+width:31%;
+padding:0 10px 0 0;
+}
+
+.cols-3 .column-2 {
+float:left;
+width:31%;
+padding:0 5px 0;
+}
+
+.cols-3 .column-3 {
+float:right;
+width:31%;
+padding:0px 0 0 10px;
+}
+
+*/
+
+/* Row Separator */
+span.row_separator, 
+div.item-separator {
+display: block;
+clear: both;
+height: 10px;
+margin: 0;
+}
+
+/* Read More */
+p.readmore a  {
+display:block;
+margin:0;
+padding:0 5px;
+}
+p.readmore a :hover {}
+
+/* More Articles (Links) */
+div.items-more  {
+margin-top:10px;
+clear:both;
+}
+
+/* More Articles Header */
+.items-more h3 {margin:0;}
+/* More Articles List (Links) */
+div.items-more ol  {margin:0 !important;}
+div.items-more ol li {}
+div.items-more ol li a{padding: 0 0 0 40px}
+div.items-more ul li a:hover {}
+iv.items-more ul li a:active, 
+div.items-more ul li a:focus {}
+
+/* Lists in Content */
+div.item-page ol,
+div.item-page ul,
+div.blog-featured ol,
+div.blog-featured ul,
+div.blog ol,
+div.blog ul {margin-left:10px;}
+
+div.item-page ul li,
+div.item-page ol li,
+div.blog-featured ul li,
+div.blog-featured ol li,
+div.blog ul li,
+div.blog ol li {padding: 0 0 0 40px;}
+
+/* Pagination */
+
+/* Page 1 of _ */
+p.counter {margin: 15px 0 0;}
+
+/** Pagination Start Prev 1 2 3 Next End  **/
+div.pagination {display:block;}
+/* centered list */
+div.pagination ul {
+display:block;
+clear: left;
+float: left;
+list-style-type: none;
+margin: 0;
+padding: 0;
+position: relative;
+left: 50%;
+text-align: center;
+}
+
+div.pagination ul li {
+background-image: none !important;
+display: block;
+position: relative;
+right: 50%;
+list-style-type: none;
+float: left;
+padding: 2px 5px;
+margin: 0 2px;
+}
+
+div.pagination ul li a {}
+div.pagination ul li a:hover{}
+
+li.pagination-start {}
+li.pagination-prev {}
+li.pagination-next {}
+li.pagination-end {}
+/* current page */
+span.pagenav {}
+/* linked pages */
+a.pagenav {}
+a.pagenav:hover, 
+a.pagenav:active, 
+a.pagenav:focus {}
+
+		/*** TOC ***/
+		
+/* Article Index Container*/
+#article-index{
+width:25%;
+float:right;
+padding:10px 10px 10px 20px;
+margin: 10px 0px 20px 30px;
+}
+/* Article Index Header*/
+#article-index ul{list-style-type:disc;}
+#article-index ul li{background:none;padding:0;} /*removes main content's list styles*/
+/* Article Index Linked Items*/
+div#article-index ul li a.toclink {}
+div#article-index ul li a.toclink.active {}/* Page Nav Counter */
+div.pagenavcounter {}
+
+		/*** PAGE NAVIGATION ***/
+	
+	/** TOC Nav  <<Prev - Next>>  **/
+div.pagenavbar {margin: 0; padding: 5px 0 0;}
+div.pagenavbar a {}
+div.pagenavbar a:hover {}
+
+	/** Article Page Nav  <Prev  Next>  **/
+ul.pagenav {text-align:center; clear:both;}
+ul.pagenav li {display:inline; margin:0 20px}
+/* Prev */
+ul.pagenav li.pagenav-prev,
+ul.pagenav li.pagenav-next{display:inline;background:none;padding:0;} /*removes main content's list styles*/
+ul.pagenav li.pagenav-prev a {}
+ul.pagenav li.pagenav-prev a:hover {}
+/* Next */
+ul.pagenav li.pagenav-next a {}
+ul.pagenav li.pagenav-next a:hover {}
+
+
+		/*** Category List Layout ***/
+
+/* Category List (includes Articles & Contacts) */
+div.category-list {}
+
+/* Category Description */
+div.category-desc,
+div.contentdescription  {
+margin:10px 0;
+padding:10px;
+}
+
+div.category-desc img {
+float:left;
+margin:0 10px 10px 0;
+}
+
+div.cat-items {}
+
+.cat-children {
+clear:both;
+display:block;
+}
+.cat-children p {}
+.cat-children h3 {margin:0;}
+.cat-children ul {margin: 0 20px;}
+.cat-children ul li {}
+div.cat-items form#adminForm {}
+div.cat-items form#adminForm fieldset.filters {padding:10px;}
+div.cat-items form#adminForm fieldset.filters div.display-limit {}
+table.category {width:100%;}
+table.category  p {margin:0;}
+table.category th {padding: 5px;}
+table.category th#tableOrdering {}
+table.category th.list-title {}
+table.category th.list-author {}
+table.category th.list-hits {}
+table.category tr td {padding: 5px;}
+table.category tr.cat-list-row0 {}
+table.category td.list-title {}
+table.category td.list-title a {}
+table.category td.list-author {}
+table.category td.list-hits {}
+table.category td.title {}
+table.category td.hits {}
+
+/* List All Categories (these can have multiple embedded lists as there can be multiple categories and sub categories) */
+
+div.categories-list {}
+div.categories-list div.category-desc {}
+div.categories-list div.category-desc p {}
+span.item-title {}
+span.item-title a {text-decoration:none;}
+span.item-title a:hover {text-decoration:underline;}
+
+div.categories-list ul {} /* All */
+div.categories-list ul ul {margin: 0 20px 20px;} /* Sub */
+div.categories-list ul ul ul {} /* Sub Sub */
+
+div.categories-list ul li {}
+div.categories-list ul li.first {}
+div.categories-list ul li.last {}
+div.categories-list ul li li {}
+
+div.categories-list dl {}
+div.categories-list dl dt{display:inline;} /* Article Count Label */
+div.categories-list dl dd{display:inline;} /* Article Count Number */
+
+div.archive {}
+div.archive form#adminForm {}
+fieldset.filters{}
+fieldset.filters div.filter-search{}
+ul#archive-items {margin: 0;padding: 0;}
+ul#archive-items li {margin: 0;padding: 0;}
+ul#archive-items div.intro {}
+
+
+/* WYSIWYG Editor styles for image margins */
+img.right {margin: 0 0 10px 10px;}
+img.left {margin: 0 10px 10px 0;}

@@ -1,0 +1,281 @@
+		/*---------------------------------------*/
+
+				/*** Joomla Core COMPONENTS ***/
+
+		/*---------------------------------------*/
+		
+		/* Error Messages */
+		
+div.error  {margin:0 0 10px;}
+div.error h2 {margin:0;}
+dl#system-message {
+clear:both;
+text-align: left;
+padding: 5px 20px;
+border-top: 2px solid #FEABB9;
+border-bottom: 2px solid #FEABB9;
+}
+	dt.error {font-weight:bold;}
+		dd.error {}
+		dd.error ul{margin:0;}	
+
+		
+		/* Login Form */
+		
+div.login {}
+div.login form {}
+div.login fieldset {}
+div.login-fields {margin:0 0 5px;}
+div.login-description {}
+label#username-lbl{}
+input#username{}
+label#password-lbl {}
+input#password {}
+div.login button.button {}
+
+
+		/*--------------------------------------------*/
+			/*Joomla Contact Form with Beez Override*/
+		/*--------------------------------------------*/
+.contact {padding: 0 10px;}
+
+div.contact-image {}
+p.contact-position {}
+div.contact-address {}
+
+span.jicons-icons {margin-right:10px;}
+
+span.jicons-text {
+margin-right:10px;
+font-size: 85%;
+font-weight:bold;
+text-transform: uppercase;
+color: #4B4B4B;
+}
+
+div.contact-address address {
+margin:0 20px;
+padding:10px;
+font-style: normal;
+background:#F3F3F3;
+border: 1px solid #EBEBEB;
+}
+
+address span {display:block;}
+
+div.contact-contactinfo {}
+div.contact-contactinfo p {margin:0.5em 0;}
+
+span.contact-street {}
+span.contact-suburb {}
+span.contact-state {}
+span.contact-postcode {}
+span.contact-country {}
+span.contact-telephone {}
+span.contact-fax {}
+span.contact-mobile {}
+span.contact-webpage {}
+
+div.contact-form {}
+form#contact-form {}
+
+form#contact-form dl {}
+form#contact-form dt {}
+form#contact-form dd {}
+
+label#jform_contact_name-lbl {}
+input#jform_contact_name {}
+label#jform_contact_email-lbl {}
+input#jform_contact_email {}
+label#jform_contact_emailmsg-lbl {}
+input#jform_contact_emailmsg {}
+label#jform_contact_message-lbl {}
+textarea#jform_contact_message {}
+dt label#jform_contact_email_copy-lbl {display:inline;float:left; margin-right:10px;}
+dd input#jform_contact_email_copy-lbl {display:inline;}
+
+div.contact-links {}
+div.contact-links ul {}
+div.contact-links ul li {}
+div.contact-links ul li a {}
+
+div.contact-miscinfo {}
+div.contact-misc {}
+
+span.star {color:red;}
+
+/* Sliders */
+div#contact-slider.pane-sliders{}
+div.pane-slider.content{padding:0 10px;}
+
+h3.pane-toggler {
+border: 1px solid #EBEBEB;
+background:url(../images/arrow_right.png) no-repeat 5px 4px #F3F3F3;
+}
+
+h3.pane-toggler-down {
+border: 1px solid #EBEBEB;
+background:url(../images/arrow_down.png) no-repeat 5px 4px #F3F3F3;
+}
+
+.panel {}
+.panel h3 {margin:0.5em 0; padding:0 35px;}
+.panel h3 a {text-decoration:none;}
+
+/* Tabs */
+dl#contact-slider.tabs{margin:20px 0;}
+dt.tabs.basic-details.open {}
+
+dt.tabs {
+display:inline-block;
+float:left;
+margin-right:10px;
+}
+
+dt.tabs.open{
+padding:0 10px 0 25px;
+border: 1px solid #EBEBEB;
+background:url(../images/arrow_right_sm.png) no-repeat 5px 3px #FFF;
+}
+
+dt.tabs.closed{
+padding:0 10px 0 25px;
+border: 1px solid #EBEBEB;
+background:url(../images/arrow_down_sm.png) no-repeat 5px 3px #EBEBEB;
+}
+
+.tabs h3 {
+margin:0; 
+font-size:100%;
+font-weight:bold;}
+
+.tabs h3 a {text-decoration:none;}
+
+div.current {
+background:#FFF;
+margin: 60px 0 0;
+}
+		
+		/*---------------------------------------*/
+
+				/*** Joomla Core MODULES ***/
+
+		/*---------------------------------------*/
+
+		/* Breadcrumbs */
+div.breadcrumbs span{} /* You are here: */
+a.pathway {}
+a.pathway:hover {}
+div.breadcrumbs img {}
+
+		/* Login */
+form#login-form {padding: 0 5px;}
+fieldset.userdata {}
+p#form-login-username{}
+p#form-login-username label{}
+p#form-login-username input#modlgn-username.inputbox{}
+p#form-login-password{}
+p#form-login-password label{}
+p#form-login-password input#modlgn-password.inputbox{}
+p#form-login-remember{}
+p#form-login-remember label{}
+p#form-login-password input#modlgn-remember.inputbox{}
+fieldset.userdata input.button{}
+form#login-form ul{}
+form#login-form ul li{margin:0;}
+form#login-form ul li a{background-image:none;padding:0 5px;}
+
+		/* Search */
+form.search {margin: 0;}
+div.search {}
+div.search label {}
+input#mod_search_searchword.inputbox {margin: 0;}
+
+		/* Latest News */
+ul.latestnews {}
+ul.latestnews li {}
+ul.latestnews li a {}
+
+		/* Popular */
+ul.mostread {}
+ul.mostread li {}
+ul.mostread li a {}
+
+		/* Weblinks */
+ul.weblinks {}
+ul.weblinks li{}
+ul.weblinks li a {}
+
+		/* Archived Articles */
+ul.archive-module {}
+ul.archive-module li{}
+ul.archive-module li a {}
+
+		/* Related Articles */
+ul.relateditems {}
+ul.relateditems li{}
+ul.relateditems li a {}
+
+		/* Latest Users */
+ul.latestusers {}
+ul.latestusers li{}
+
+		/* Categories */
+ul.categories-module {}
+ul.categories-module li{}
+ul.categories-module li h4 {}
+ul.categories-module li h4 a {}
+
+		/* Stats Module */
+dl.stats-module {}
+dl.stats-module dt {}
+dl.stats-module dd {}
+
+		/* Syndication */
+a.syndicate-module {}
+
+		/* Feed Display */
+div.feed {}
+div.feed h4 {}
+ul.newsfeed {}
+li.newsfeed-item {}
+h5.feed-link {}
+h5.feed-link p {}
+
+		/* Custom */
+div.custom {}
+
+		/* Newsflash */
+div.newsflash {}
+div.newsflash p {}
+div.newsflash .newsflash-title {}
+div.newsflash a.readmore {}
+
+		/* Language Switcher */
+div.mod-languages {}
+div.pretext {}
+div.posttext {}
+ul.lang-inline {}
+
+		/* Random Image */
+div.random-image{}
+div.random-image img{}
+
+		/* Banner */
+div.bannergroup{}
+/* Item Links */
+div.banneritem a {}
+div.banneritem a:hover {}
+
+
+		/* Advertisement Module - has Module Class Suffix _text */
+div.bannergroup_text{}
+/* Featured Links Heading */
+div.bannerheader {}
+/* Item Links */
+div.banneritem_text a {}
+div.banneritem_text a:hover {}
+/* Footer Links */
+div.bannerfooter_text a {}
+div.bannerfooter_text a:hover {}
+		

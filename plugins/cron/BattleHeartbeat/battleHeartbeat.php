@@ -39,11 +39,11 @@ class plgBattleHeartbeat extends JPlugin
 	
 	public function run_daily()
 	{
-		$now			= time();
-		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
-		$message		= "Cron activated at " . $time_string;
-		$this->sendMessage($now,$message);
-		$this->daily();
+		//$now			= time();
+	//	$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
+	//	$message		= "Cron activated at " . $time_string;
+	//	$this->sendMessage($now,$message);
+	//	$this->daily();
 		return ;
 		
 	}
@@ -399,7 +399,7 @@ class plgBattleHeartbeat extends JPlugin
 				$query	= "SELECT #__jigs_metals.quantity FROM #__jigs_metals 
 					WHERE player_id = $row->owner AND item_id = $row->metal1";
 				$db->setQuery($query);
-				$metal1_quantity = $db->loadResult();
+				$metal1_quantity        = $db->loadResult();
 
 				if(!$metal1_quantity)
 				{
@@ -428,11 +428,11 @@ class plgBattleHeartbeat extends JPlugin
 
 				if(!$db->query())
 				{
-					$playa = JFactory::getUser($row->owner);
+					$playa      = JFactory::getUser($row->owner);
 					$this->sendFeedback($playa->id ,$query);
 				}
 
-				$query	= "INSERT INTO #__jigs_metals (player_id , item_id,quantity) 
+				$query	    = "INSERT INTO #__jigs_metals (player_id , item_id,quantity) 
 					VALUES ($row->owner, $row->metal2, $total_metal_2) 
 					ON DUPLICATE KEY UPDATE  quantity= $total_metal_2 ";
 				$db->setQuery($query);
@@ -554,6 +554,7 @@ class plgBattleHeartbeat extends JPlugin
 		// Find all fields where finished(unix time) has passed 
 		$query="SELECT 
 			#__jigs_farms.finished,
+			#__jigs_farms.field,
 			#__jigs_farms.status,
 			#__jigs_farms.total,
 			#__jigs_farms.building,
@@ -603,7 +604,7 @@ class plgBattleHeartbeat extends JPlugin
 					total = $row->total,
 					finished = $row->finished
 					WHERE building	= $row->building
-					AND field = 1";
+					AND field = $row->field";
 
 				$db->setQuery($query);
 				$db->query();
@@ -617,12 +618,12 @@ class plgBattleHeartbeat extends JPlugin
 
 	function check_factories()
 	{
-		$user 		= JFactory::getUser();
-		$now		= time();
+		$user 		    = JFactory::getUser();
+		$now		    = time();
 		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
 		$this->sendMessage($now,'factories check begun at'. $time_string );
 
-		$db 		= JFactory::getDBO();
+		$db 		    = JFactory::getDBO();
 		// Find all factories where finished(unix time) has passed 
 		$query="SELECT 
 			#__jigs_factories.finished,
@@ -639,10 +640,10 @@ class plgBattleHeartbeat extends JPlugin
 
 		$db->setQuery($query);
 
-		$result = $db->loadObjectlist();
+		$result         = $db->loadObjectlist();
 
-		$text = "checking " . count($result) . " factories";
-		$now  = time();
+		$text           = "checking " . count($result) . " factories";
+		$now            = time();
 		$this->sendMessage($now,$text);
 
 
@@ -713,13 +714,6 @@ class plgBattleHeartbeat extends JPlugin
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	function sendWavyLines($text)
 	{
-		//	jimport( 'joomla.application.component.helper' );
-		//	jimport( 'joomla.html.parameter' );
-
-		//	$component		= JComponentHelper::getComponent( 'com_battle' );
-		//	$params			= new JParameter( $component->params );
-		//	$sbid			= $params->get( 'shoutbox_category' );
-
 		$sbid	= 24;
 		$db	= JFactory::getDBO();
 		$now	= time();
@@ -740,9 +734,9 @@ class plgBattleHeartbeat extends JPlugin
 
 	function sendMessage($now,$message)
 	{
-		$sbid	= 23;
-		$db	= JFactory::getDBO();
-		$query	= "INSERT INTO #__shoutbox (sbid, name, time, text) values ( $sbid, 'wavy lines', $now, '$message')";
+		$sbid	    = 23;
+		$db	        = JFactory::getDBO();
+		$query	    = "INSERT INTO #__shoutbox (sbid, name, time, text) values ( $sbid, 'wavy lines', $now, '$message')";
 		$db->setQuery($query);
 		$db->query();
 		return ;

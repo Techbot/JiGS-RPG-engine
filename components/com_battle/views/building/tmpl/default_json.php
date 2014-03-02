@@ -10,15 +10,12 @@ if ($this->player->iduser == 0){
 
 
 
-$body ='<div id="building" class="clearfix"><!-- This should replace div#container -->
-  <div class="building_left">
+$body ='
+<div class="building_left">
   
-<div style="width:54px;height:54px;float:left;margin:0 15px 0 0;" class="compass">
 
 <a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
 
-</div>
-  
   
   
   
@@ -31,12 +28,17 @@ $body ='<div id="building" class="clearfix"><!-- This should replace div#contain
           <span class="red"><a href="#" title="Allocate stats points">-</a></span>
         </span>
       </div>
+      
+      
       <div class="desc">
         <img src="components/com_battle/images/buildings/'.$this->buildings->image  . '"
 		class="thumbnail" alt="' . $this->buildings->name . ' title="' . $this->buildings->name . '"
 		width="100" height="100" id="building_image" />
         <p class="desc">' . $this->buildings->comment  . '</p>
       </div><!-- end desc -->
+
+     
+     
       <div class="stats">
         <table class="stats" id="stats" >
           <tr>
@@ -49,7 +51,7 @@ $body ='<div id="building" class="clearfix"><!-- This should replace div#contain
           </tr>
           <tr>
             <th scope="row">Energy</th>
-            <td>' . $this->buildings->energy  . '></td>
+            <td>' . $this->buildings->energy  . '</td>
           </tr>
           <tr>
             <th scope="row">Type</th>
@@ -80,11 +82,33 @@ $body ='<div id="building" class="clearfix"><!-- This should replace div#contain
       </div>
     </div>
   </div><!--end building_left-->
+  
+  
+  
   <div class="building_right">
     <div id="status">
-      <div class="instructions">
-       ' . $this->loadTemplate ("board_info1") . '
-      </div>
+      <div class="instructions">';
+
+	
+	if ($this->buildings->owner == 0){
+      $body .= $this->loadTemplate ("board_info_poster");
+	   }
+
+	
+	if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){
+       $body .= $this->loadTemplate ("board_info_poster");
+	   }
+
+	   
+	//if player owned
+	
+	if ($this->buildings->owner == $this->user->id){
+       $body .= $this->loadTemplate ("board_info1");
+	   }
+    $body .='  </div>
+	
+	
+	
       <div id="action" class="clearfix">
       ';
 
@@ -112,7 +136,9 @@ $body .='
       </div><!-- end action -->
     </div><!-- end status. Is this being used? I mean, really?? -->
   </div><!--end building_right-->
-</div><!-- end building -->
+  <div class="clearfix"></div>
+  <div id="building_function" class="clearfix">
+
 ';
 
 
@@ -131,6 +157,8 @@ elseif($this->buildings->owner != $this->user->id )
 	$body .= $this->loadTemplate ($this->buildings->type . "_owned");
 }
 
+
+$body .='</div><!--end building_function-->';
 
 //$body = "hello";
 echo json_encode($body);

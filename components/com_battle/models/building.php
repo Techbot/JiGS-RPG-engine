@@ -13,12 +13,12 @@ class BattleModelBuilding extends JModel
 	///// CREATE NEW GENERATOR FROM A BUILDING /////
 	function work_turbine()
 	{
-		$building_id		= JRequest::getvar(building_id);
-		$line				= JRequest::getvar(line);
-		$type				= JRequest::getvar(type);
-		$quantity			= JRequest::getvar(quantity);
+		$building_id		= JRequest::getvar('building_id');
+		$line				= JRequest::getvar('line');
+		$type				= JRequest::getvar('type');
+		$quantity			= JRequest::getvar('quantity');
 		$now				= time();
-		$db					=  JFactory::getDBO();
+		$db					= JFactory::getDBO();
 		$q					= "INSERT INTO #__jigs_generators (building, quantity, timestamp) VALUES ($building_id,$quantity,$now ) ON DUPLICATE KEY UPDATE quantity = $quantity , timestamp= $now";
 		$db->setQuery($q);
 		$result				= $db->query();
@@ -175,8 +175,16 @@ class BattleModelBuilding extends JModel
 	
 /////////////////////////////////////////////////////////////	
 
-	function work_reprocessor($building_id, $quantity, $type, $line)
+	function work_reprocessor()
 	{
+	
+	
+	    $building_id		= JRequest::getVar('building_id'); 
+	    $quantity			= JRequest::getVar('quantity'); 
+	    $type			    = JRequest::getVar('type');
+	    $line			    = JRequest::getVar('line');
+	
+	
 		$now			    = time();
 		$db			        = JFactory::getDBO();
 		$sql			    = "SELECT * FROM #__jigs_objects WHERE id = " . $type;
@@ -192,7 +200,7 @@ class BattleModelBuilding extends JModel
 		$metal_2		    = $product->metal_2;
 		$quantity_2		    = $quantity * $product->quantity_2;
 
-		$query			    = "SELECT id FROM #_jigs_inventory WHERE item_id = $type player_id = " . $user->id ;
+		$query			    = "SELECT id FROM #_jigs_inventory WHERE item_id = $type AND player_id = " . $user->id ;
 		$resource 		    = $db->setQuery($sql);
 		$player_items		= $db->loadAssocList();		
 		$player_items_count = count($player_items);
@@ -254,7 +262,7 @@ class BattleModelBuilding extends JModel
 		$finished		= $now + 50;
 
 		//$crop	= JRequest::getvar('crop');
-		$query			= "SELECT status,crop FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
+		$query			= "SELECT status,crop,finished FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
 		$db->setQuery($query);
 		$result			= $db->loadRowList();
 
@@ -276,7 +284,17 @@ class BattleModelBuilding extends JModel
 		    $crop			= 0;
 		} 		    
 	
-		$status++;
+		if ($result[0][2]==0)
+		{
+		    $status++;
+		}
+		
+		
+		
+		if ($status>=6)
+		{
+		    $status=5;
+		}
 
 		$sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) values  ($building_id,$field, $status,$now , $crop, $finished) 
 			ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
@@ -289,7 +307,7 @@ class BattleModelBuilding extends JModel
 		}
 		else
 		{
-			return true;
+			return $this->get_field_status_text($status);
 		}
 	}
 ///////////////////////////////////////////////////////
@@ -362,7 +380,7 @@ class BattleModelBuilding extends JModel
 		{
 			$pre_result = "<img src='" .  JURI::base()  . "images/comprofiler/" . $avatar . "' height='20px' width='20px' >" ;
 			$result[0]	= 'message_' . $flat;
-			$result[1]	= $this->get_message($resident);
+			$result[1]	= $this->get_message($resident,$flat,$building_id);
 			$result[2]	= 'avatar_' . $flat;
 			$result[3]	= $pre_result ;
 			$result[4]	= $flat;
@@ -435,26 +453,68 @@ class BattleModelBuilding extends JModel
 	{
 		$building_id			= JRequest::getvar('building');
 		$field_id				= JRequest::getvar('field');
-		//$user =& JFactory::getUser();
 		$now					= time();
 		$db						= JFactory::getDBO();
-		$query					= "SELECT status,timestamp,finished 
-			FROM #__jigs_farms 
-			WHERE building = $building_id 
-			AND field = $field_id";
+		$query					= "SELECT status,timestamp,finished
+		                            FROM #__jigs_farms
+		                            WHERE building = $building_id
+		                            AND field = $field_id";
 		$db->setQuery($query);
-		$result					= $db->loadAssoc();
-		$result['now']			= date('l jS \of F Y h:i:s A',$now);
-		$result['since']		= date('l jS \of F Y h:i:s A',$result['timestamp']);
-		$result['elapsed']		= (int)(($now-$result['timestamp']));
-		$result['remaining']	= (int)($result['finished'] - $now );
-		$result['status']		= (int)($result['status']);
+		$result					    = $db->loadAssoc();
+		$result['now']			    = date('l jS \of F Y h:i:s A',$now);
+		$result['since']		    = date('l jS \of F Y h:i:s A',$result['timestamp']);
+		$result['elapsed']		    = (int)(($now-$result['timestamp']));
+		$result['remaining']	    = (int)($result['finished'] - $now );
+		$result['status']		    = (int)($result['status']);
+		$result['status_message']   = $this->get_field_status_text($result['status']);
+		
+		
 		$result['field']		= $field_id;
 
 		return $result;
 	}
 
-	function check_reprocessor($building_id,$line_id)
+    function get_field_status_text($status=0)
+    {
+    
+    
+            if ($status==0) 
+		    {
+        	    $status_message = "Status: Field is Barren. Click to begin Tilling.";
+		    }  
+		    elseif ($status==1) 
+		    {
+        	    $status_message = "Status: Field is being tilled.";
+		    }		
+		    elseif ($status==2) 
+		    {
+        	    $status_message = "Status: Field is tilled. Click to begin sowing.";
+		    }		
+		
+		    elseif ($status==3) 
+		    {
+        	    $status_message = "Status: Field is being sowed.";
+		    }		
+		    elseif ($status==4) 
+		    {
+        	    $status_message = "Status: Field is sowed. Click to begin harvesting.";
+		    }		
+		
+		    elseif ($status==5) 
+		    {
+        	    $status_message = "Status: Field is being harvested.";
+		    }		
+            else
+		    {
+        	    $status_message = "Status: You done fucked up.";
+		    }	
+		    
+		    
+		    return $status_message;
+    
+    }
+
+	function check_reprocessor()
 	{
 		$building_id			= JRequest::getvar('building');
 		$line_id				= JRequest::getvar('line');
@@ -588,8 +648,9 @@ class BattleModelBuilding extends JModel
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		
-		for ($i=0 ;$i<=7;$i++){
-		$fields->status_field[$i] = 0 ;
+		for ($i=0 ;$i<=7;$i++)
+		{
+		    $fields->status_field[$i] = 0 ;
 		}
 		
 		$query		= "SELECT * FROM #__jigs_farms WHERE building = $building_id";
@@ -668,15 +729,15 @@ class BattleModelBuilding extends JModel
 
 
 
-	function get_message($resident)
+	function get_message($resident,$flat,$building_id)
 	{
-		$player =& JFactory::getUser($resident);
-		$flatlink="index.php?option=com_battle&view=room";
-		$message=null;
-		$message_1= "Apartment is vacant Click to Rent";
-		$message_2= "Apartment is Owned by " . $player->username;
-		$message_3= "Apartment is Owned by you. Click to <a href ='". $flatlink ."'>HERE</a> to Enter "; 	
-		$user =& JFactory::getUser();
+		$player         = JFactory::getUser($resident);
+		$flatlink       = "index.php?option=com_battle&view=room&room=$flat&building=$building_id";
+		$message        = null;
+		$message_1      = "Apartment is vacant Click to Rent";
+		$message_2      = "Apartment is Owned by " . $player->username;
+		$message_3      = "Apartment is Owned by you. Click to <a href ='". $flatlink ."'>HERE</a> to Enter "; 	
+		$user           = JFactory::getUser();
 		if ($resident== 0)
 		{
 			$message=$message_1;
@@ -705,6 +766,37 @@ class BattleModelBuilding extends JModel
 		return $result;
 
 	}
+	
+	function get_crop_types() {
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT 
+		#__jigs_crops.id, 
+		#__jigs_crops.name
+		FROM #__jigs_crops
+		WHERE #__jigs_crops.user_id =".$user->id);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
+	
+	function get_crop_index(){
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$id			= JRequest::getvar('crop');
+		$db->setQuery("SELECT 
+		#__jigs_crops.index 
+		FROM #__jigs_crops
+		WHERE #__jigs_crops.id =".$id);
+		$result		= $db->loadResult();
+		return $result;
+
+	}
+	
+	
+	
+	
+	
 
 
 	function get_blueprints()
@@ -826,54 +918,39 @@ class BattleModelBuilding extends JModel
 			$now    	= time();
 			$factor		= 10;
 
-			$query		= "
-			SELECT * 
-			FROM #__jigs_batteries
-			WHERE iduser = $building
-			";
+			$query		= "	SELECT * FROM #__jigs_batteries	WHERE iduser = $building";
 
 			$db->setQuery($query);
 			$batteries = $db->loadAssocList();
 
-		/*	foreach($batteries as $battery)
-		{
-			$id        = $battery['id'];
-			$timestamp = $battery['timestamp'];
-			$elapsed   = $now - $timestamp;
-			$units     = $battery['units'];
-			$max_units = $battery['max_units'];
-			$new_units = intVal($elapsed/$factor);
 
-			if($units + $new_units < $max_units)
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = units + $new_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-			else
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = max_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-
-
-			$db->setQuery($query);
-			$db->query();
-		
-		
-		}*/
 		return $batteries;
 	}
 
 	
-	
+		function get_battery()
+	{
+		$db			= JFactory::getDBO();
+		$building_id		= JRequest::getvar('building_id');
+		$battery_id		= JRequest::getvar('item');
+		$user			= JFactory::getUser();
+		$query			= "Update #__jigs_batteries SET iduser = $user->id  WHERE #__jigs_batteries.id = $battery_id";
+		$db->setQuery($query);
+		$db->query();
+		return $battery_id;
+	}
+
+
+	function put_battery()
+	{
+		$db			= JFactory::getDBO();
+		$building_id		= JRequest::getvar('building_id');
+		$battery_id		= JRequest::getvar('item');
+		$query			= "Update #__jigs_batteries SET iduser = $building_id WHERE #__jigs_batteries.id = $battery_id";
+		$db->setQuery($query);
+		$db->query();
+		return $battery_id;
+	}
 	
 	
 	function get_papers() {
@@ -919,15 +996,6 @@ class BattleModelBuilding extends JModel
 		return $result;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }// end of class

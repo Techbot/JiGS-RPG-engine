@@ -1,5 +1,5 @@
 
 
-<div id="weapon">XXXXXXXXX</div>
+<div id="weapon_module">Loading...</div>
 
 

@@ -1,0 +1,30 @@
+/* clearing */
+/*******************************************************************************
+ * HACKS : Clearfix
+ *
+ * Clearfix provides a means to for an element to contain all its floated 
+ * children even if it's not normally tall enough to do so. 
+ * For more information on clearfix please see:
+ * http://www.positioniseverything.net/easyclearing.html
+ */
+.clearfix:after {
+content: "."; 
+display: block; 
+height: 0; 
+clear: both; 
+visibility: hidden;
+}
+
+.clearfix {
+min-width: 0; 
+display: inline-block; /* \*/	
+display: block;
+}	/* trigger hasLayout for IE7. Hide from IE Mac */
+
+* html .clearfix {
+height: 1%;
+} /* Hide from IE Mac */ 
+
+.clr, .clear {
+clear:both;
+}

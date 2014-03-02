@@ -15,6 +15,8 @@ var from_x = new Array();
 var from_y = new Array();
 var from_map = new Array();
 var from_grid = new Array();
+
+
 document.onkeydown = check;
 mycells = new Array(8);
 cell = new Array(8);
@@ -31,11 +33,17 @@ for ( var i = 0; i < 8; i++)
 // Beginning of initialise process via json calls
 window.addEvent('domready',function()
 {
+
+
+
+
 	var a = new Request.JSON({
 		url : "index.php?option=com_battle&format=raw&task=action&action=get_player",
 		onSuccess : function(result){
 			PosX = result[0]['posx'];
+			console.log(PosX);
 			PosY = result[0]['posy'];
+			console.log(PosY);
 			grid = result[0]['grid'];
 			map = result[0]['map'];
 			pX = PosX * 50;
@@ -92,6 +100,10 @@ window.addEvent('domready',function()
 			}).get();
 		}
 	}).get();
+	
+	
+	
+	
 });
 // End of initialise process
 
@@ -263,7 +275,7 @@ function Move_Player()
 		PosX + "&posy=" + PosY + "&grid=" + grid + "&map=" + map,
 		onSuccess : function()
 		{
-			var mover = new Fx.Move($('demo'),
+			var mover = new Fx.Move(document.id('demo'),
 			{
 				relativeTo : document.getElementById('screen_grid'),
 				position : 'upperLeft',
@@ -295,12 +307,12 @@ function Portal_Check(direction)
 
 
 
-var npc_health = 0;
+//var npc_health = 0;
 
-function shoot(character_id){
+function shoot_player(character_id){
 	var d = document.getElementById('shoot');
 		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=shoot&character=" + character_id,
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=shoot&character=" + character_id,
 			onSuccess: function(result){
 			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
 			
@@ -314,7 +326,7 @@ function shoot(character_id){
 			new_message.inject('message_table','top');
 			
 			
-				if (result[0].health <= 0 )  {
+			if (result[0].health <= 0 )  {
 					close();
 					jump();			
 					}
@@ -326,44 +338,30 @@ function shoot(character_id){
 			}).get();
 	}
 
-function kick(character_id){
+function kick_player(character_id){
 	var d = document.getElementById('kick');
 	
 		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=kick&character=" + character_id,
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=kick&character=" + character_id,
 			onSuccess: function(result){
 			
-//	 alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
-//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
 			text_message = (result[2]);
 
-myElement = $('health');
-	
-//	alert (text_message);
-myElement.set('html', result[1]['health']);	
-if(result[1]['health']<30){
+			myElement = document.id('health');
+			
 
+			myElement.set('html', result[1]);	
+			if(result[1]['health']<30){
 
-
-
-}
-else{
-	
-	
-myElement.setStyle('width', result[1]['health']);
-
-
-}
-
+			}
+			else{
+			myElement.setStyle('width', result[1]);
+			}
+			
 			var new_message = new Element('p',{
 			'display':'table-row',
 			'html': text_message});
-			
-			
 			new_message.inject('message_table','top');
-				 
-
-
 				if (result[0].health <= 0 )  {
 					close();
 					jump();			
@@ -374,14 +372,27 @@ myElement.setStyle('width', result[1]['health']);
 					}		
 				}
 			}).get();
-		
 }
 
-function punch(character_id){
+function reload(){
+	
+		var a = new Request.JSON(
+		{
+			url: "index.php?option=com_battle&format=raw&task=action&action=reload",
+			onSuccess: function(result)
+			{
+			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			myElement= document.id('magazine');
+
+			myElement.set('html', result);	
+			}
+		}).get();
+	}
+		function punch_player(character_id){
     
-	var d = document.getElementById('punch');
-	var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack&type=punch&character=" + character_id,
+	        var d = document.getElementById('punch');
+	        var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=punch&character=" + character_id,
 			onSuccess: function(result){
 
 			text_message = (result[2]);
@@ -405,26 +416,36 @@ function punch(character_id){
 			}).get();
 }
 
-
-
-
-
-
-
-function shoot_person(character_id){
+function shoot_character(character_id){
 	var d = document.getElementById('shoot');
 		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack_playa&type=shoot&character=" + character_id,
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=shoot&character=" + character_id,
 			onSuccess: function(result){
-			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
-			
+				
+			//alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+			alert(result[2] + ' me: ' + result[0] + '   Him: ' + result[1]);
 			text_message = (result[2]);
+						
+			myElement = document.id('health');
+			myElement2= document.id('health_value');
+
+			myElement2.set('html', result[1]);	
 			
+			myElement3= document.id('magazine');
+
+			myElement3.set('html', result[3]);
+		
+			if(result[1]<30){
+
+			}
+			else{
+			myElement.setStyle('width', parseInt(result[1]));
+			}
+		
 			var new_message = new Element('p',{
 			'display':'table-row',
 			'html': text_message });
-			
-			
+		
 			new_message.inject('message_table','top');
 			
 			
@@ -440,14 +461,12 @@ function shoot_person(character_id){
 			}).get();
 	}
 
-function kick_person(character_id){
+function kick_character(character_id){
 	var d = document.getElementById('kick');
 	
 		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack_playa&type=kick&character=" + character_id,
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=kick&character=" + character_id,
 			onSuccess: function(result){
-			
-			
 			
 //	 alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
 //	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
@@ -485,11 +504,11 @@ function kick_person(character_id){
 		
 }
 
-function punch_person(character_id){
+function punch_character(character_id){
     
 	var d = document.getElementById('punch');
 	var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack_playa&type=punch&character=" + character_id,
+			url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=punch&character=" + character_id,
 			onSuccess: function(result){
 
 			text_message = (result[2]);
@@ -513,19 +532,6 @@ function punch_person(character_id){
 			}).get();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
  function do_stuff(){
       //  var paper = Raphael('diagram', 60, 60), rad = 43, defaultText = 'Stats', speed = 250;
       var paper = Raphael('diagram', 60, 60);
@@ -543,16 +549,8 @@ paper.circle(30, 30, npc_health).attr({ stroke: 'none', fill: '#193340' });
 //}
   // do_stuff();
 
-
-
-
-
 function moo(){
-
-
-myElement.setStyle(property, value);
-
-
+	myElement.setStyle(property, value);
 }
 
 

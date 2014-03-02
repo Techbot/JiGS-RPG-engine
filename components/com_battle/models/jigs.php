@@ -287,6 +287,12 @@ class BattleModelJigs extends JModellist{
 		$result = $db->loadAssocList();
 		return $result;
 	}
+	
+	
+	
+	
+	
+	
 	function get_metals_to_sell() {
 
 		$db				= JFactory::getDBO();
@@ -360,12 +366,31 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
+	function get_backpack() {
 
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+
+
+		$db->setQuery("SELECT  
+			#__jigs_inventory.id, " .
+			"#__jigs_inventory.item_id, " .
+			"#__jigs_objects.name " .
+			"FROM #__jigs_inventory " .
+			"LEFT JOIN #__jigs_objects " .
+			"ON #__jigs_inventory.item_id = #__jigs_objects.id " .
+			"WHERE #__jigs_inventory.player_id = ". $user->id  
+		);
+		$result		= $db->loadObjectList();
+		
+		
+		return $result;
+	}
 
 	function get_inventory2() {
 
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
 
 		$db->setQuery("SELECT DISTINCT 
@@ -389,7 +414,7 @@ class BattleModelJigs extends JModellist{
 	function get_metals2() {
 
 		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$user	= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_metals.item_id, " .
 			"#__jigs_metals.quantity, " .
@@ -407,7 +432,7 @@ class BattleModelJigs extends JModellist{
 	function get_crystals2() {
 
 		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$user	= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_crystals.item_id, " .
 			"#__jigs_crystal_names.name, #__jigs_crystals.quantity " .
@@ -441,8 +466,8 @@ class BattleModelJigs extends JModellist{
 
 	function get_clothing() {
 
-		$db		=& JFactory::getDBO();
-		$user		=& JFactory::getUser();
+		$db		= JFactory::getDBO();
+		$user	= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_clothing.item_id, #__jigs_clothing_names.name " .
 			"FROM #__jigs_clothing " .
@@ -452,44 +477,140 @@ class BattleModelJigs extends JModellist{
 		$result		= $db->loadAssocList();
 		return $result;
 	}
+	
+	
+	function reload()
+	{
+		$db		            = JFactory::getDBO();
+		$user	            = JFactory::getUser();
+		// Get all the info from the database
+		// There are three tables. 
+		// 1) The player table which includes the player stats ,what actual gun and how many spare bullets
+		// 2) The weapons table which is a list of every instance of weapon in the game 
+		//    and how many bullets are in that particular gun
+		// 3) The weapon_name  table which lists various stats for a gun type including the max number of bullets in a clip
+		//
+		$query              = "SELECT id_weapon,ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
+	    $db->setQuery($query);
+	    $_result		    = $db->loadAssoc();
+	    $id_weapon          = $_result['id_weapon'];// current weapon
+		$ammunition         = $_result['ammunition'];// total ammunition
+		 /* 
+        If ammuntion is empty let player know and exit ,else continue
+        */
+	    if ($ammunition ==0)
+	    {
+	        $message = "You have no ammunition";
+	        $current_magazine = 0; // current magazine = no change
+	    }
+	    else
+		{
+		    $query              = "Select magazine, item_id from #__jigs_weapons WHERE id = $id_weapon";
+		    $db->setQuery($query); 
+		    $_result		    = $db->loadAssoc(); //load assoc is a joomla method that loads an associated array
+	        $current_magazine   = $_result['magazine']; //current ammunition
+	        $weapon_type        = $_result['item_id']; //current weapon_type
+		    $query              = "Select max_ammunition from #__jigs_weapon_names WHERE id = $weapon_type";
+		    $db->setQuery($query);
+		    $max_ammunition     = $db->loadResult();// loadresult is a joomla method that loads a single value
+	        $empty_slots        = $max_ammunition - $current_magazine ;
+            /* 
+            If current magazine is less than maximun that can be held in clip and the amount of ammunition the player has 
+            is greater than the amount of empty slots in the clip then the clip is filled and the amount of ammunition 
+            is reduced by the number of empty slots.
+            */
+	        if ($current_magazine < $max_ammunition && $ammunition > $empty_slots )
+	        {
+	            $current_magazine   = $max_ammunition;
+	            $ammunition         = $ammunition - $empty_slots; //$empty_slots equals number of bullets added to clip
+                $message= "Your clip is now full ";
+	        }   
+	        // the current magazine has more empty slots than player has bullets, 
+	        // so whatever bullets player has is added to the clip 
+	        // and the player now has no remaining bullets            
+		    else 
+	        {
+	            $current_magazine = $current_magazine + $ammunition;
+	            $ammunition        = 0;
+	            $message= "You reload your weapon to $current_magazine bullets ";
+	        }   
+	        // now we need to save the info back to two tables
+	        // 1) the players table with number of bullets remaining in backpack
+	        // 2) number of bullets in this instance of weapon
+	        // The third table with weapon_type stats does not get updated with anything
+    
+	        
+	        $query              = "UPDATE #__jigs_players SET ammunition= $ammunition  
+	                                WHERE iduser = $user->id";
+	        $db->setQuery($query);
+	        $db->query();
+            $query              = "UPDATE #__jigs_weapons SET magazine = $current_magazine  
+                                    WHERE id = $id_weapon AND player_id = $user->id";
+	        $db->setQuery($query);
+	        $db->query();
+	     }
+	$this->sendFeedback($user->id,$message);
+	return $current_magazine;
+
+    }
 
 	function get_weapon() {
 
-		$db		=& JFactory::getDBO();
+		$db		    =& JFactory::getDBO();
 		$user		=& JFactory::getUser();
-		$char		= 62;
+		//$char		= 62;
 
 		$db->setQuery(
-			"SELECT #__jigs_weapon_names.* " .
-			"FROM #__jigs_players " .
-			"LEFT JOIN #__jigs_weapon_names ON #__jigs_players.id_weapon = #__jigs_weapon_names.id " .
-			"WHERE #__jigs_players.iduser = " . $user->id);
+			"SELECT 
+			#__jigs_weapon_names.* ,
+			#__jigs_weapons.magazine, 
+			#__jigs_players.ammunition
+			FROM #__jigs_players
+			
+			LEFT JOIN #__jigs_weapons 
+			ON #__jigs_players.id_weapon = #__jigs_weapons.id
+			
+			LEFT JOIN #__jigs_weapon_names 
+			ON #__jigs_weapons.item_id = #__jigs_weapon_names.id 
+			
+			
+			WHERE #__jigs_players.iduser = " . $user->id);
+
+
+
 
 		$result = $db->loadRow();
 
 		$image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
-			'<img src="components/com_battle/images/weapons/' . $result[1] . '"></a><br>' .
-			'Id: ' . $result[0] .'| Bullets per clip: ' . $result[2] .
-			'<br>Attack: ' . $result[3] .'| Defence: ' . $result[4] .
-			'<br>Precision: ' . $result[5] .'| Detente: ' . $result[6] .
-			'<br>Price: ' . $result[7] .'| Ammunition Price: ' . $result[8] 
-			;
-
-		return $image;
+			'<img src="components/com_battle/images/weapons/' . $result[1] . '"></a>' .
+			'<span class="label">Id: </span>' . $result[0] .'<br><span class="label">Bullets per clip:</span> ' . $result[2] .
+			'<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
+			'<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
+			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8];
+			
+			
+			if ($user->id>0)
+			{
+			$image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. '</div>';
+			$image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[17]. '</div>
+			
+			
+			<input type="button" value="Reload" onclick= "reload();"></button>';
+            }
+		    return $image;
 	}
-
 
 	function get_weapons() {
 
-		$db		=& JFactory::getDBO();
-		$user		=& JFactory::getUser();
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.name, #__jigs_weapon_names.sell_price " .
 			" FROM #__jigs_weapons " .
 			" LEFT JOIN #__jigs_weapon_names ON #__jigs_weapons.item_id =  #__jigs_weapon_names.id " .
 			"WHERE #__jigs_weapons.player_id =".$user->id);
 
-		$result = $db->loadAssocList();
+		$result     = $db->loadAssocList();
 		return $result;
 	}
 
@@ -591,6 +712,33 @@ class BattleModelJigs extends JModellist{
 			return $player_money;
 		}
 	}
+	
+	function retrieve() {
+		$db             = JFactory::getDBO();
+		$user           = JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		$item		    = JRequest::getvar('item');
+		$sql            = "UPDATE #__jigs_inventory SET player_id = $user->id, location = 1 WHERE id = $item";
+		$db->setQuery($sql);
+		$result2	    = $db->query();
+		$result3	    ='true';
+		return $sql;
+		
+	}
+	
+	function store()
+	{
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		$item		    = JRequest::getvar('item');
+		$room		    = JRequest::getvar('room');
+		$sql            = "UPDATE #__jigs_inventory SET player_id = $building_id, location = $room WHERE id= $item";
+		$db->setQuery($sql);
+		$db->query();
+		return 'true';
+	}
+
 
 	function buy_metal() {
 
@@ -795,7 +943,7 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_character_inventory($id)
+	function moved_get_character_inventory($id)
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -810,171 +958,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function old_get_players_view()
-	{
-		$id		= substr(JRequest::getvar('id'), 5);
-		$people		= JTable::getInstance('players', 'Table');
-		$people->load($id);
-		$inv		= $this->get_character_inventory($id);
-		$db		= JFactory::getDBO();
-		$query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
-		$db->setQuery($query);
-		$people->avatar	= $db->loadresult();
 
-		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center;
-		background:#000; float:left; position:relative; left:0px; top:0px;">
-			<div id="profile_" class="clearfix">
-			<div class="name">' . $people->username . '</div>
-			<div class="desc">
-			<img src="/images/comprofiler/' . $people->avatar .'" class="thumbnail" alt="' . $people->username .
-			'" title="<' .  $people->username .'" width="100" height="100" id="character_image" />
-			<div class="stats">
-			<table class="stats" >
-			<tr>
-			<th scope="row">ID</th>
-			<td>'.$id .'</td>
-			</tr>
-			<tr>
-			<th scope="row">Name</th>
-			<td>'. $people->username .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Money</th>
-			<td>'. $people->money .'</td>
-			</tr>
-			</table>
-			</div><!-- end stats -->
-
-
-			<p class="desc">'. $people->comment .'</p>
-			</div><!-- end desc -->
-			<div class="vitals">
-			<div class="label">Experience:</div>
-			<div class="gauge"><div id="xp"><span>'. $people->xp .'</span></div></div>
-			<div class="label">Intelligence:</div>
-			<div class="gauge"><div id="intel"><span>'. $people->intelligence .'</span></div></div>
-			<div class="label">Strength:</div>
-			<div class="gauge"><div id="strength"><span>'. $people->strength  .'</span></div></div>
-			<div class="label">Health:</div>
-			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .
-			'</span></div></div>
-			</div><!-- end vitals -->
-			</div><!-- end profile -->
-
-			<div id="_inventory" class="clearfix">
-			<div class="name">Inventory</div>
-			';
-
-/*
-foreach ($inv as $inv_object)
-{
-$text .= "<br>" . $inv_object["name"] ;
-}
-
- */
-		$text .='</div><!-- end inventory -->
-
-			<div id="action" class="clearfix">
-			<!-- <div class="recruit"><a class="recruit" href="#">Recruit</a></div> --> 
-			<div class="shoot"><a onclick="shoot_person(' . $id . ')" id="shoot" >Shoot</a></div>
-			<div class="kick"><a onclick="kick_person('. $id . ')" id="kick" >Kick</a> </div>
-			<div class="punch"><a onclick="punch_person('. $id . ')" id="punch">Punch</a> </div>
-			<div class="talk"><a onclick="talk_person('. $id . ')" id="talk">Talk</a> </div>
-			<!--   <div class="bribe"><a class="bribe" href="#">Bribe</a></div>
-			<div class="rob"><a class="rob" href="#">Rob</a></div>
-			<div class="talk"><a class="talk" href="#">Talk</a></div>--> 
-			</div>
-
-			</div>
-			';
-		return $text;
-	}	
-
-	function old_get_character_view()
-	{
-		$id= JRequest::getvar('id');
-		$people = JTable::getInstance('people', 'Table');
-		$people->load($id);
-		$inv = $this->get_character_inventory($id);
-		$text ='<div id="screen_grid" style=" width: 400px; height:400px; margin: 0 auto; text-align:center; background:#000; float:left; position:relative; left:0px; top:0px;">
-
-			<div id="profile_" class="clearfix">
-			<div class="name">' . $people->name . '</div>
-			<div class="desc">
-			<img src="/components/com_battle/images/ennemis/' . $people->image . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" />
-			<div class="stats">
-			<table class="stats" >
-			<tr>
-			<th scope="row">ID</th>
-			<td>'.$people->id .'</td>
-			</tr>
-			<tr>
-			<th scope="row">Name</th>
-			<td>'. $people->name .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Money</th>
-			<td>'. $people->money .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">XP</th>
-			<td>'. $people->xp .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Intelligence</th>
-			<td>'. $people->intelligence .'</td>
-			</tr>
-			<tr>		
-			<th scope="row">Strength</th>
-			<td>'. $people->strength .'</td>
-			</tr>
-
-			</table>
-			</div><!-- end stats -->
-
-			<p class="desc">'. $people->comment .'</p>
-			</div><!-- end desc -->
-			<div class="vitals">
-			<!--<div class="label">Experience:</div>
-			<div class="gauge"><div id="xp"><span>'. $people->xp .'</span></div></div>
-			<div class="label">Intelligence:</div>
-			<div class="gauge"><div id="intel"><span>'. $people->intelligence .'</span></div></div>
-			<div class="label">Strength:</div>
-			<div class="gauge"><div id="strength"><span>'. $people->strength  .'</span></div></div>-->
-			<div class="label">Health:</div>
-			<div class="gauge"><div id="health" style="width:'. $people->health .'%"><span id="health">'. $people->health .'</span></div></div>
-			</div><!-- end vitals -->
-			</div><!-- end profile -->
-
-			<!--<div id="_inventory" class="clearfix">
-			<div class="name">Inventory</div>
-			';
-
-/*
-foreach ($inv as $inv_object)
-{
-$text .= "<br>" . $inv_object["name"] ;
-}
-
- */
-		$text .='</div> --><!-- end inventory -->
-
-			<div id="action" class="clearfix">
-			<!-- <div class="recruit"><a class="recruit" href="#">Recruit</a></div> --> 
-			<div class="shoot"><a onclick="shoot(' . $people->id . ')" id="shoot" >Shoot</a></div>
-			<div class="kick"><a onclick="kick('. $people->id . ')" id="kick" >Kick</a> </div>
-			<div class="punch"><a onclick="punch('. $people->id . ')" id="punch">Punch</a> </div>
-			<div class="talk"><a onclick="talk_person('. $id . ')" id="talk">Talk</a> </div>
-			<!--   <div class="bribe"><a class="bribe" href="#">Bribe</a></div>
-			<div class="rob"><a class="rob" href="#">Rob</a></div>
-			<div class="talk"><a class="talk" href="#">Talk</a></div>--> 
-			</div>
-
-			</div>
-			';
-
-		return $text;
-	}
 
 	function buy_weapon()
 	{
@@ -1027,8 +1011,8 @@ $text .= "<br>" . $inv_object["name"] ;
 	{
 		$db			= JFactory::getDBO();
 		$user			= JFactory::getUser();
-		$building_id		= JRequest::getvar(building_id);
-		$item			= JRequest::getvar(item);
+		$building_id		= JRequest::getvar('building_id');
+		$item			= JRequest::getvar('item');
 
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
 		$player_money		= $db->loadResult();
@@ -1302,78 +1286,38 @@ $text .= "<br>" . $inv_object["name"] ;
 		$result		= $db->loadAssocList();
 		return $result;
 	}
-
-
-
-/*
-	function get_battery_slots()
-		{
-			$db     	= JFactory::getDBO();
-			$building	= JRequest::getvar('building_id');
-			$now    	= time();
-			$factor		= 10;
-
-			$query		= "
-			SELECT * 
-			FROM #__jigs_batteries
-			WHERE iduser = $building
-			";
-
-			$db->setQuery($query);
-			$batteries = $db->loadAssocList();
-
-		/*	foreach($batteries as $battery)
-		{
-			$id        = $battery['id'];
-			$timestamp = $battery['timestamp'];
-			$elapsed   = $now - $timestamp;
-			$units     = $battery['units'];
-			$max_units = $battery['max_units'];
-			$new_units = intVal($elapsed/$factor);
-
-			if($units + $new_units < $max_units)
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = units + $new_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-			else
-			{
-				$query	= "
-					UPDATE #__jigs_batteries SET
-					units      = max_units,
-					timestamp  = $now
-					WHERE id   = $id
-					";
-			}
-
-
-			$db->setQuery($query);
-			$db->query();
+	
+	function get_flat_inventory()
+	{
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
 		
+		$query          = "SELECT 
 		
-		}
-		return $batteries;
+		#__jigs_objects.name,
+		#__jigs_inventory.item_id  
+		FROM #__jigs_objects 
+		LEFT JOIN #__jigs_inventory	
+		ON #__jigs_objects.id = #__jigs_inventory.item_id 
+		WHERE #__jigs_inventory.player_id =" . $building_id;
+		
+		$db->setQuery($query);
+		$result		= $db->loadAssocList();
+		return $result;
 	}
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	function get_shop_metals()
 	{
@@ -1444,23 +1388,23 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $result;
 	}
 
-	function attack_playa()
+	function attack_player()
 	{
-		$db		= JFactory::getDBO();
-		$player		= JFactory::getUser();
-		//$user2	= substr(JRequest::getvar('character'),5);
-		$user2		= JRequest::getvar('character');
-		$player2	= JFactory::getUser($user2);
+		$db		            = JFactory::getDBO();
+		$player		        = JFactory::getUser();
+		//$user2	        = substr(JRequest::getvar('character'),5);
+		$user2		        = JRequest::getvar('character');
+		$player2	        = JFactory::getUser($user2);
 
-		$player->dice	= rand(0, 15);
-		$player2->dice	= rand(0, 5);
+		$player->dice       = rand(0, 15);
+		$player2->dice      = rand(0, 5);
 
-		$query		= "SELECT health,money,active FROM #__jigs_players WHERE iduser = $player->id";
+		$query		         = "SELECT health,money,active FROM #__jigs_players WHERE iduser = $player->id";
 		$db->setQuery($query);
-		$result		= $db->loadRow();
-		$player->health	= $result[0];
-		$player->money	= $result[1];
-		$player->status	= $result[2];		
+		$result		        = $db->loadRow();
+		$player->health     = $result[0];
+		$player->money      = $result[1];
+		$player->status     = $result[2];		
 
 		$query		= "SELECT health,money,active FROM #__jigs_players WHERE iduser = $user2";
 		$db->setQuery($query);
@@ -1483,46 +1427,46 @@ $text .= "<br>" . $inv_object["name"] ;
 		{
 			if ($player->dice > $player2->dice)
 			{
-				$player->health	= $player->health -1;
-				$player2->health= $player2->health-30;
+				$player->health		= $player->health -1;
+				$player2->health	= $player2->health-30;
 				$message	= "You attacked " . $player2->username .
 					" and inflicted 30 points of damage. You: $player->health ,Opponent: $player2->health";
 			}
 			else
 			{
-				$player->health	= $player->health - 10;
-				$player2->health= $player2->health + 10;
+				$player->health     = $player->health - 10;
+				$player2->health    = $player2->health + 10;
 
-				$message	= "You attacked " . $player2->username . " and missed. " . $player2->username .
+				$message	        = "You attacked " . $player2->username . " and missed. " . $player2->username .
 					" retaliated and inflicted 10 points of damage. You: $player->health ,Opponent: $player2->health ";
 			}
 
 			if ($player2->health <= 0)
 			{
-				$now			= time();
+				$now			    = time();
 
-				$player->money	=  $player->money + $player2->money;
-				$player2->money	= 0;
-				$query 		= "UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now 
+				$player->money	    =  $player->money + $player2->money;
+				$player2->money	    = 0;
+				$query 		        = "UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now 
 					WHERE iduser = $user2";
 				$db->setQuery($query);
 				$db->query();
 
-				$query 		= "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $player->id 
+				$query 		        = "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $player->id 
 					WHERE #__jigs_inventory.player_id = $player_id ";
 				$db->setQuery($query);
 				$db->query();
 
-				$query 		= "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money 
+				$query 		        = "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money 
 					WHERE #__jigs_players.iduser = $user->id" ;
 				$db->setQuery();
 				$db->query();
-				$query 		= "UPDATE #__jigs_players SET money = $player2->money WHERE #__jigs_players.iduser = $player->id";
+				$query 		        = "UPDATE #__jigs_players SET money = $player2->money WHERE #__jigs_players.iduser = $player->id";
 				$db->setQuery($query);
 				$db->query();
 
-				$text		= 'Citizen ' . $player2->username  . ' was hospitalised by citizen ' . $user->username ;
-				$message	= "You put " . $player2->username . " into hospital.";
+				$text		        = 'Citizen ' . $player2->username  . ' was hospitalised by citizen ' . $user->username ;
+				$message	    = "You put " . $player2->username . " into hospital.";
 				$this->sendWavyLines($text);
 			}
 
@@ -1541,50 +1485,72 @@ $text .= "<br>" . $inv_object["name"] ;
 	}
 
 
-	function attack()
+	function attack_character()
 	{
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$db				= JFactory::getDBO();
+		$user			= JFactory::getUser();
 		$character_id	= JRequest::getInt('character');
-		$sql= "SELECT iduser, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
+		$sql			= "SELECT iduser, health, money, final_attack, final_defence, dexterity, level, id_weapon 
+		FROM #__jigs_players 
+		WHERE iduser = " . $user->id;
 		$db->setQuery($sql);
-		$player		= $db->loadObject();
+		$player			= $db->loadObject();
 
 		$player->dice	= rand(0, 15);
+		$query			= "SELECT id, name, level, health, money FROM #__jigs_characters WHERE id =" . $character_id;
+		$db->setQuery($query);
+		$npc			= $db->loadObject();
 
-		$db->setQuery("SELECT id, name, health, money FROM #__jigs_characters WHERE id =" . $character_id);
-		$npc		= $db->loadObject();
-
-		$npc->dice=rand(0, 5);
-		$attack_type = JRequest::getCmd('type');
+		$npc->dice		= rand(0, 5);
+		$attack_type	= JRequest::getCmd('type');
 
 		switch ($attack_type)
 		{
-			///// If Player shoots test shooting skills + speed + dexterity against NPCs speed //////////////
+			///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
 		case 'shoot':
-			if ($player->dice > $npc->dice)
+			$query						= "SELECT #__jigs_weapons.magazine,
+												  #__jigs_weapon_names.attack
+											FROM #__jigs_weapons 
+											LEFT JOIN #__jigs_weapon_names
+											ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
+											WHERE #__jigs_weapons.id =" . $player->id_weapon;
+			$db->setQuery($query);
+			$player->weapon			    = $db->loadAssoc();
+			$damage                     = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
+			
+			if ($player->weapon['magazine'] > 0)
 			{
-				$npc->health	= intval($npc->health - 10);
-				$attack_message	= "You shoot " . $npc->name . " and inflict 30 damage points to his health.";
+				if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+				{
+					$npc->health	= intval($npc->health - $damage );
+					$attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You: 
+					$player->health ,Opponent: $npc->health ";
+				}
+				else
+				{
+					$attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+				}
+				$player->weapon['magazine']--;
+			
+        		$attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
 			}
-			else
-			{
-				$attack_message	= "You shoot " . $npc->name . " and miss.";
+			else{
+					$attack_message	= "You have no bullets in your gun clip";
 			}
-			$player->ammunition--;
 			break;
-
+	
 			//====== If Player kicks, test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
+		
 		case 'kick':
 			if ($player->dice > $npc->dice)
 			{
-				$npc->health	= intval($npc->health - 10);
-				$attack_message	= "You kick " . $npc->name . "and inflict 30 damage points to his health.";
+				$npc->health		= intval($npc->health - 30);
+				$attack_message		= "You kick " . $npc->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
 			}
 			else
 			{
 				$player->health		=	intval($player->health - 10);
-				$attack_message	=	"You kick " . $npc->name . "and miss and incur 10 damage points to your health.";
+				$attack_message		=	"You kick " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
 			}
 			break;
 
@@ -1593,12 +1559,12 @@ $text .= "<br>" . $inv_object["name"] ;
 			if ($player->dice >= $npc->dice)
 			{
 				$npc->health	=	intval($npc->health - 20);
-				$attack_message	= "You punch " . $npc->name . "and inflict 30 damage points to his health.";
+				$attack_message	= "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
 			}
 			else
 			{
 				$player->health	= intval($player->health - 10);
-				$attack_message	= "You punch " . $npc->name . "and miss and incur 10 damage points to your health.";
+				$attack_message	= "You punch " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health";
 			}
 			break;
 		}
@@ -1622,7 +1588,7 @@ $text .= "<br>" . $inv_object["name"] ;
 		}
 
 		/////////////////////////////////////// Now update everybodys stats to database //////////////////
-		$sql = "UPDATE #__jigs_players SET health = $player->health, ammunition = $player->ammunition WHERE iduser = $user->id ";
+		$sql = "UPDATE #__jigs_players SET health = $player->health WHERE iduser = $user->id ";
 		$db->setQuery($sql);
 		$db->query();
 
@@ -1630,18 +1596,28 @@ $text .= "<br>" . $inv_object["name"] ;
 		$db->setQuery($sql);
 		$db->query();
 
+
+		$magazine = $player->weapon['magazine'];
+		$sql = "UPDATE #__jigs_weapons SET magazine = $magazine  WHERE id = $player->id_weapon";
+		$db->setQuery($sql);
+		$db->query();
+		
+
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		$this->sendFeedback($player->iduser,$attack_message);
 
-		$result[0]	= $player;
-		$result[1]	= $npc;
+		$result[0]	= $player->health;
+		$result[1]	= $npc->health;
 		$result[2]	= $attack_message;
+		$result[3]  = $player->weapon['magazine'];
+		
 		return $result;
+		
 	}
 
 	function dead_npc($npc)
 	{
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();	
 		$now		= time();
 		$sql		= "UPDATE #__jigs_characters SET active = 0, empty = 1 , time_killed = $now WHERE id  = $npc->id";
@@ -1698,7 +1674,7 @@ $text .= "<br>" . $inv_object["name"] ;
 	function dead_player($winner)
 	{
 		$user		= JFactory::getUser();
-		$db		= JFactory::getDBO();		
+		$db		    = JFactory::getDBO();		
 		$now		= time();
 		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
 			WHERE iduser ='".$user->id."'");
@@ -1730,7 +1706,7 @@ $text .= "<br>" . $inv_object["name"] ;
 	function test_level($user_id)
 	{
 		$user		= JFactory::getUser();
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$now		= time();
 		$query		= "SELECT xp FROM #__jigs_players where iduser = $user_id";
 		$db->setQuery($query);
@@ -1753,27 +1729,22 @@ $text .= "<br>" . $inv_object["name"] ;
 
 	function swap()
 	{
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$weapon_id	= JRequest::getvar(weapon_id);
+		$weapon_id	= JRequest::getvar('weapon_id');
+		
 		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE iduser =".$user->id);
 		$db->query();
 		$result		= $weapon_id ;
 		return $result;
 	}
 
-	
-
-
-
-
-
 	function deposit()
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$qty		= JRequest::getvar(amount);
-		$building_id	= JRequest::getvar(building_id);
+		$qty		= JRequest::getvar('amount');
+		$building_id	= JRequest::getvar('building_id');
 		$now		= time();
 		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = " . $user->id);
 		$result		= $db->loadRow();
@@ -1794,8 +1765,8 @@ $text .= "<br>" . $inv_object["name"] ;
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$qty		= JRequest::getvar(amount);
-		$building_id	= JRequest::getvar(building_id);
+		$qty		= JRequest::getvar('amount');
+		$building_id	= JRequest::getvar('building_id');
 		$now		= time();
 		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = ".$user->id);
 		$result		= $db->loadRow();
@@ -1812,24 +1783,48 @@ $text .= "<br>" . $inv_object["name"] ;
 		return $result;
 	}
 
+
+	function buy_bullets()
+	{
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$qty		    = JRequest::getvar('amount');
+		$building_id	= JRequest::getvar('building_id');
+		$now		    = time();
+		$db->setQuery("Select money, ammunition FROM #__jigs_players WHERE iduser = ".$user->id);
+		$result		    = $db->loadRow();
+		$money		    = $result[0];
+		$ammunition	    = $result[1];
+
+		if ($qty <= $money){
+			$money	    = $money - $qty;
+			$ammunition	= $ammunition + $qty;
+			$query	    = "UPDATE #__jigs_players SET money = $money, ammunition = $ammunition  WHERE iduser =" . $user->id;
+			$db->setQuery($query);
+			$db->query();
+		}
+		return $result;
+	}
+
+
 	function sell_crops()
 	{
 		$total_crops	= $this->get_total_crops();
-		$payment	= $total_crops * 1000 ;
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$query_1	= "SELECT money FROM #__jigs_players WHERE iduser = ' . $user->id . '";
+		$payment	    = $total_crops * 1000 ;
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$query_1	    = "SELECT money FROM #__jigs_players WHERE iduser = ' . $user->id . '";
 		$db->setQuery($query_1);
 		$money_saved	= $db->loadResult();
-		$xp_type	= 'nbr_crops';
-		$test		= $this->increment_xp($xp_type ,$payment,$user->id);
-		$text		= $user->username . " has sold " . $total_crops . " crops.";
+		$xp_type	    = 'nbr_crops';
+		$test		    = $this->increment_xp($xp_type ,$payment,$user->id);
+		$text		    = $user->username . " has sold " . $total_crops . " crops.";
 		$this->sendWavyLines($text);
-		$query_2	= "Update #__jigs_farms LEFT JOIN #__jigs_buildings on #__jigs_farms.building = #__jigs_buildings.id SET total = 0 WHERE #__jigs_buildings.owner = $user->id";
+		$query_2	    = "Update #__jigs_farms LEFT JOIN #__jigs_buildings on #__jigs_farms.building = #__jigs_buildings.id SET total = 0 WHERE #__jigs_buildings.owner = $user->id";
 		$db->setQuery($query_2);
 		$db->query();
 
-		$text		= "You sold " . $total_crops . " crops.";
+		$text		    = "You sold " . $total_crops . " crops.";
 		$this->sendFeedback($user->id, $text);
 		return($test);
 	}
@@ -1879,27 +1874,5 @@ $text .= "<br>" . $inv_object["name"] ;
 		return ;
 	}
 
-	function get_battery()
-	{
-		$db			= JFactory::getDBO();
-		$building_id		= JRequest::getvar('building_id');
-		$battery_id		= JRequest::getvar('item');
-		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_batteries SET iduser = $user->id  WHERE #__jigs_batteries.id = $battery_id";
-		$db->setQuery($query);
-		$db->query();
-		return $battery_id;
-	}
 
-
-	function put_battery()
-	{
-		$db			= JFactory::getDBO();
-		$building_id		= JRequest::getvar('building_id');
-		$battery_id		= JRequest::getvar('item');
-		$query			= "Update #__jigs_batteries SET iduser = $building_id WHERE #__jigs_batteries.id = $battery_id";
-		$db->setQuery($query);
-		$db->query();
-		return $battery_id;
-	}
 }

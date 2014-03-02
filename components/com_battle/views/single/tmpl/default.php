@@ -22,163 +22,13 @@ grid_index = parseInt(<?php echo $grid_index;?>);
 
 </script>
 <script type="text/javascript" src="<?php echo $this->baseurl; ?>/components/com_battle/includes/jigs.js"></script>
-<script type="text/javascript">
-window.addEvent('domready',function()
-{
 
-	$$('.buildings_class').addEvent('click', function(){
-		var itemID = this.get('id');
-	//	var head = document.getElementsByTagName('head')[0];
-	//	var script = document.createElement('script');
-		var a = new Request.JSON({
-		
-			url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
-			onSuccess: function(result)
-			{
-				
-				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
-		//		script.type = "text/javascript";
-		//		script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/building.js';  
-				//document.body.appendChild(script);
-				mything.replaces($('world'));
-			
-			
-			
-			}
-		}).get();
-	});
-
-	
-
-
-
-}
-</script>
-
-<style type="text/css">
-#demo { 
-background-color:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:48px;
-height:48px;
-position:absolute;
-top:<?php echo $posy *50?>px;
-left:<?php echo $posx *50?>px;
-z-index:999;
-}
-.character { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:48px;
-height:48px;
-position:absolute;
-z-index:111;
-}
-.players { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:48px;
-height:48px;
-position:absolute;
-z-index:111;
-}
+<div id="world">
 
 
 
 
-
-
-
-
-.buildings_class { 
-color:#fff; 
-padding:0px; 
-border:0px solid #000;
-width:37px;
-height:37px;
-position:absolute;
-z-index:999;
-}
-.pages_class { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
-border:1px solid #000;
-width:37px;
-height:37px;
-position:absolute;
-z-index:1;
-}
-#world a { /*right,left,up,down*/
-font-weigth:400;
-color:#fff;
-text-transform: uppercase;
-font-size: 0.85em;
-}
-
-a#move_demo {cursor:pointer;}
-
-a.up {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/up.png) transparent 50% 0 no-repeat;text-align:center;}
-a.right {
-display:block;width:18px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/right.png) transparent 100% 0 no-repeat;text-align:right;}
-a.down {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/down.png) transparent 50% 0 no-repeat;text-align:center;}
-a.left {
-display:block;width:18px;height:18px;clear:both;background: url(/components/com_battle/views/single/tmpl/left.png) transparent 0 0 no-repeat;text-align:left;}
-a.mid {
-background:#009999;
-width:18px;
-height:18px;
-float:left;
-   -moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;
-}
-a.mid:hover {background:#00FFFF;}
-
-a.up:hover{background-image:url(/components/com_battle/views/single/tmpl/up-hover.png);}
-a.right:hover{background-image:url(/components/com_battle/views/single/tmpl/right-hover.png);}
-a.down:hover{background-image:url(/components/com_battle/views/single/tmpl/down-hover.png);}
-a.left:hover{background-image:url(/components/com_battle/views/single/tmpl/left-hover.png);}
-
-/*
-
-a.up {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/compass-nav.png) transparent 0 0 no-repeat;text-align:center;}
-a.right {
-display:block;width:18px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/compass-nav.png transparent 0 -18px no-repeat;text-align:right;}
-a.down {
-display:block;width:54px;height:18px;float:left;background:url(/components/com_battle/views/single/tmpl/compass-nav.png) transparent 0 -36px no-repeat;text-align:center;}
-a.left {
-display:block;width:18px;height:18px;clear:both;background: url(/components/com_battle/views/single/tmpl/compass-nav.png) transparent 0 -54px no-repeat;text-align:left;}
-
-
-a.up:hover{background-position:-18px 0;}
-a.right:hover{background-position:-18px -18px;}
-a.down:hover{background-position:-18px -36px;}
-a.left:hover{background-position:-18px -54px;}
-
-*/
-
-
-</style>
-<div id="world" style="
-margin: 0 auto; 
-text-align:center;
-position:relative;
-width: 500px;">
-
-
-
-
-<div class="compass" style="width:54px;height:54px;float:left;margin:0 15px 0 0;">
+<div class="compass">
 <a id="move_demo" class="up" title="Move North" onclick="MoveUp(PosX,PosY)"></a>
 <a id="move_demo" class="left" title="Move West" onclick="MoveLeft(PosX,PosY)"></a>
 <a class="mid" href="index.php?option=com_battle&view=single&Itemid=115"></a>
@@ -192,17 +42,7 @@ width: 500px;">
 
 
 
-<div id="screen_grid" style="
-width:400px; 
-height:400px;
-margin: 0 auto; 
-text-align:center;
-background:#000;
-float:left;
-position:relative;
-left:0px;
-top:0px;" 
->
+<div id="screen_grid">
 
 <?php
 /************************
@@ -219,19 +59,23 @@ top:0px;"
  * 
  *****************************/
  
-// print_r($this->player_pos);
+//print_r($this->player_pos);
 
-if ($this->player_pos[5]==1){
+//if ($this->player_pos[5]==1){
 
  ?>
 
  <div id="demo" style="
- background-size:cover;
- background-position:50% 50%;background-size:cover; background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $avatar ?>);"></div> 
+ 
+  top:<?php echo $posy * 50 ?>px;
+ left:<?php echo $posx * 50 ?>px;
+
+ 
+ background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $avatar ?>);"></div> 
 
 <?php
 
-}
+//}
 
 /***********************
  * 
@@ -248,11 +92,11 @@ if ($this->player_pos[5]==1){
  *****************************/
 foreach ($this->characters as $character){ 
 
-$char=$character->id;
-$char_name=$character->name;
-$image=$character->image;
-$charposx=$character->posx;
-$charposy=$character->posy;
+    $char       = $character->id;
+    $char_name  = $character->name;
+    $image      = $character->image;
+    $charposx   = $character->posx;
+    $charposy   = $character->posy;
 ?>
 <div id="<?php echo $char ?>" 
 
@@ -292,12 +136,12 @@ class="character" style="
  *****************************/
  
 foreach ($this->buildings as $building){ 
-$building_id		= $building->id;
-$building_name		= $building->name;
-$building_image		= $building->image;
-$buildingposx		= $building->posx;
-$buildingposy		= $building->posy;
-$buildingOwner		= $building->ownername;
+    $building_id		= $building->id;
+    $building_name		= $building->name;
+    $building_image		= $building->image;
+    $buildingposx		= $building->posx;
+    $buildingposy		= $building->posy;
+    $buildingOwner		= $building->ownername;
 
 if ($building->owner == 0){
  	$buildingOwner = 'Nobody';
@@ -311,7 +155,8 @@ class="buildings_class" style="
 
 ">
 <!--a href="index.php?option=com_battle&view=building&tmpl=component&id=<?php echo $building_id?>" title="<?php echo $buildingOwner ?> owns <?php echo $building_name?>" rel="{handler: 'iframe', size: {x: 640, y: 600}}" class="modal" -->
-<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buildings/miniatures/<?php echo $building_image ?>" >
+
+<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/buildings/miniatures/<?php echo $building_image ?>" title="<?php echo $buildingOwner ?> owns <?php echo $building_name?>" >
 <!--/a-->
 </div>
 <?php
@@ -345,9 +190,10 @@ class="pages_class" style="
 
 <?php if ($page->type=='url'){
 
-	$link='http://'.$page->details;
-	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
-	$class='modal';
+	$link   = 'http://'.$page->details;
+	$rel    = '{handler: "iframe", size: {x: 640, y: 600}}';
+	$class  = 'modal';
+	
 }
  if ($page->type=='article'){
 
@@ -357,12 +203,17 @@ class="pages_class" style="
 	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
 	$class='modal';
 }
+
+if ($page->type=='canvas'){
+
+	$canvas_number  = $page->details;
+	$link           = 'index.php?option=com_battle&view=canvas&id=' . $canvas_number;
+	$class          = "page_class";
+  }
 	?>
-
-
-<a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'>
-<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>" >
-</a>
+<!--a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'-->
+<img src='<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>' id = '<?php echo $canvas_number ?>'class='<?php echo $class; ?>' >
+<!--/a-->
 </div>
 <?php
 } // end of foreach
@@ -395,16 +246,13 @@ $charposy			= $player->posy;
  <!--
 <a class="modal" href ="index.php?option=com_battle&view=player&tmpl=component&iduser=<?php echo $player_id; ?>" rel='{handler: "iframe", size: {x: 640, y: 600}}' title="<?php echo $player_username ?>"> -->
 
-<div id="char_<?php echo $player_id; ?>" title="<?php echo $player_username ?>"
-class= "players" 
-style="
- top:<?php echo $charposy *50?>px;
- left:<?php echo $charposx *50?>px;
- width:48px;
- height:48px;
- background-size:cover;
- background-position:50% 50%;
- background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $player->avatar ?>);
+<div id = "char_<?php echo $player_id; ?>" 
+title = "<?php echo $player_username ?>"
+class = "players" 
+style = "
+top:<?php echo $charposy *50?>px;
+left:<?php echo $charposx *50?>px;
+background-image:url(<?php echo $this->baseurl; ?>/images/comprofiler/<?php echo $player->avatar ?>);
  ">
  </div> 
 
@@ -433,22 +281,15 @@ style="
 
 
 	for ($y=0;  $y <= 7 ; $y++) {
-		$name='row'.$y;
-		$arr[$y] = explode(",",($this->row->$name));
-		$x = 0;
+		$name       ='row'.$y;
+		$arr[$y]    = explode(",",($this->row->$name));
+		$x          = 0;
 		foreach ($arr[$y] as $row){
 			?>
 <div class="squares" style="
 	background:url(<?php echo $this->baseurl; ?>/components/com_battle/images/map/<?php echo $row ?>.jpg);
-	display:inline; 
-	position:absolute; 
-	width:40px; 
-	height:40px; 
-	padding:5px;
-	margin:0px;
-	text-align:center;
-	top:<?php echo ($y*50)+0?>px; 
-	left: <?php echo $x*50?>px;
+	top:<?php echo ($y * 50)+0 ?>px; 
+	left: <?php echo $x * 50 ?>px;
 	"> 
 	<?php // echo $row ?></div>
 	<?php
@@ -462,48 +303,48 @@ $x= $x+1;
 </div><!-- div world -->
 
 <script type="text/javascript">
-
-	//	var head = document.getElementsByTagName('head')[0];
-	//	var script = document.createElement('script');
-	//	script.type = "text/javascript";
-	///	script.src = '/components/com_battle/includes/building.js';  
-	//	document.body.appendChild(script);
-
 	$$('.buildings_class').addEvent('click', function(){
 		var itemID = this.get('id');
-		
 		var a = new Request.JSON({
-		
 			url:"index.php?option=com_battle&format=json&view=building&id="+itemID,
 			onSuccess: function(result)
 			{
-				
 				mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
-				
-				
-				
-				
-				 document.getElementById('loadarea').src= '/components/com_battle/includes/building.js';
-				mything.replaces($('world'));
-			
-			
-			
+ 			    document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+				mything.replaces(document.id('world'));
 			}
 		}).get();
 	});
 	
+		
+	$$('.page_class').addEvent('click', function(){
+		var itemID = this.get('id');
+		var a = new Request.JSON({
+			url:"index.php?option=com_battle&format=json&view=canvas&id="+itemID,
+			onSuccess: function(result)
+			{
+				alert(itemID);
+				
+				mything = new Element ('div',{'id':"container",html:result,'style':'border 1px solid #F00; '});	
+		 			 
+				 document.getElementById('loadarea_0').src= '/components/com_battle/includes/raphael-min.js';
+				  document.getElementById('loadarea_1').src= '/components/com_battle/includes/canvas_' + itemID + '.js';
+				
+				mything.replaces($('world'));
+			}
+		}).get();
+	});
+
 	
 	$$('.character').addEvent('click', function(){
 		var itemID = this.get('id');
 		var a = new Request.JSON({
-		//url: "index.php?option=com_battle&format=raw&tmpl=component&view=person", 
-	
 			url:"index.php?option=com_battle&format=json&view=character&id="+itemID,
 			onSuccess: function(result){
 				mything = new Element ('div',{'id':"NPC",
 				html:result,
 				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
+				mything.replaces(document.id('screen_grid'));
 				var head = document.getElementsByTagName('head')[0] ;
 				var script = document.createElement('script');
 				script.type = "text/javascript";
@@ -522,7 +363,7 @@ $x= $x+1;
 				mything = new Element ('div',{'id':"PLAYERS",
 				html:result,
 				'style':'border 1px solid #F00; '});
-				mything.replaces($('screen_grid'));
+				mything.replaces(document.id('screen_grid'));
 				var head = document.getElementsByTagName('head')[0];
 				script = document.createElement('script');
 				script.type = "text/javascript";
@@ -531,20 +372,6 @@ $x= $x+1;
 			}
 		}).get();
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </script>	
 	

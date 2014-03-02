@@ -803,67 +803,66 @@ ul.cbMenuULlist li.cbMenu_UE_STATISTICS a:hover {background:#dee1e3 url(images/m
 /* Lisa's */
 
 div#cb_cb_comp_login {
-margin:10px;
-width:600px;
-height:375px;
+margin:1em;
+min-height:320px;
 position:relative;
 z-index:1;
-background:url(/components/com_battle/images/LesMaitres.gif);
+background:url(/components/com_battle/images/LesMaitres.gif) no-repeat 50% 50%;
 background-size:cover;
 text-align:center;
 }
 div#cb_cb_comp_login .componentheading {display:none;}
 
 div#cb_cb_comp_login div.cb_comp_inner {
-margin: 160px 0 0 260px;
+margin: 1em auto;
 position: relative;
-text-align:left;
-width:150px;
+text-align:center;
+width:90%;
 }
 div#cb_cb_comp_login p, ul.cbLoginLinksList, li.cbLostLoginLi{margin:0}
 li.cbLostLoginLi{display:inline;}
 li.cbLostLoginLi,
-form.cbLoginForm label {
-background-color:rgba(0,0,0,0.9);
-padding:2px 3px;
+form.cbLoginForm label ,
+input#mod_login_remember{
+background-color:rgba(0,0,0,0.8);
+padding:0.5em 1em;
 }
 
 div#mainbody form.cbLoginForm a:link, 
 div#mainbody form.cbLoginForm a:visited,
 div#mainbody form.cbLoginForm a:hover
  {
-  color: rgb(0, 255, 0);
+  color:#00FFFF;
 }
 
 form.cbLoginForm .inputbox {
   background-image:none;
-  border: 1px solid rgb(0, 255, 0);
+background-color:rgba(0,0,0,0.8);
   color: #fff;
-background-color:rgba(0,0,0,0.9);
-padding:0 5px;
+padding:0.5em 1em;
+margin:0 0 0.5em;
 }
 
 form.cbLoginForm .inputbox:hover,
 form.cbLoginForm .inputbox:focus {
   background-image:none;
-  border: 1px solid rgb(0, 255, 0);
-  color: #000;
-background-color:rgba(255,255,255,0.9);
-padding:0 5px;
+background-color:rgba(0,0,0,0.8);
 }
 
 span.cbLoginButtonSpan .button {
-  background: none repeat scroll 0 0 rgba(0, 255, 0, 0.9);
+background-color:rgba(0,255,255,0.8);
   box-shadow: 0 0 2px #FFFFFF;
   color: #000000;
   border:1px solid #000;
   font-size: 100%;
   font-weight: bold;
-  padding: 2px 3px;
+padding:0.5em 1em;
+margin:0.5em 0;
   text-transform: uppercase;
 }
 
 span.cbLoginButtonSpan .button:hover {
+background-color:rgba(0,153,153,0.8);
     box-shadow: 0 0 5px #FFFFFF;
     color: #333333;
     text-shadow: 0 0 2px #FFFFFF;

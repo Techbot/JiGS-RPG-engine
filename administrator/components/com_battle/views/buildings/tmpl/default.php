@@ -77,6 +77,7 @@ $this->type = JRequest::getVar('filter_type');
 	    <select name="filter_type" class="inputbox" onchange="this.form.submit()">
 
 				<option value=""  <?php if($this->type ==""){echo "selected ='TRUE'";}?>>SELECT Type</option>
+				<option value="apartment" <?php if($this->type =="apartment"){echo "selected ='TRUE'";}?>>Apartment</option>
 				<option value="stand" <?php if($this->type =="stand"){echo "selected ='TRUE'";}?>>Stand</option>
 				<option value="mine" <?php if($this->type =="mine"){echo "selected ='TRUE'";}?>>Mine</option>
 				<option value="factory" <?php if($this->type =="factory"){echo "selected ='TRUE'";}?>>Factory</option>

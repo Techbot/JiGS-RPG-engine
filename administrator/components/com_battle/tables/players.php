@@ -14,9 +14,11 @@ class TablePlayers extends JTable
 	var $nbrkills = null;
 
 	var $health = null;	  
+	var $level = null;     
 	var $xp = null;   
 	var $intelligence = null;    
-	var $strength = null;    
+	var $strength = null;      
+	var $dexterity = null;    
 
 	var $grid = null;	
 	var $posx = null;	

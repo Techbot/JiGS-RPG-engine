@@ -1,0 +1,147 @@
+/*---------------------------------------*/
+/*** This CSS is for custom style ***/
+/*---------------------------------------*/
+
+/* Specific override for emc23flexi source-ordered content layout */
+
+body#both #LoadFirst .row-fluid #sidebar[class*="span"],
+body#left-only #LoadFirst .row-fluid #sidebar[class*="span"] {
+  margin-left: 0 !important;
+}
+body#both #LoadFirst .row-fluid  #MiddleCol[class*="span"], 
+body#left-only #LoadFirst .row-fluid  #MiddleCol[class*="span"] {
+  margin-left: 2.127659574468085%;
+  *margin-left: 2.074468085106383%;
+}
+
+
+@font-face {
+	font-family: Neutron Demo;
+	src: local(" Neutron Demo"), url("../fonts/neutrond.ttf") format("truetype"), url("../fonts/neutrond.ttf") format("opentype");
+	src: src: url("../fonts/NEUTRON187787.eot");
+	font-weight: bold;
+	font-style: normal;
+/*
+	src: url(../fonts/neutrond.ttf) format("truetype-aat"), url(../fonts/neutrond.ttf) format("opentype"), src: url('NEUTRON187787.eot');*/
+
+}
+
+/*
+div#sitename {
+font-size: 2.0em;
+font-weight: normal;
+font-family: Neutron Demo;
+text-shadow: 1px 1px 1px #333;
+}
+div#sitename a:link,
+div#sitename a:visited,
+div#sitename a:hover {
+color:#333;
+text-decoration:none;
+}
+div#sitename span.sup {
+font-size: 0.5em;
+vertical-align: top;
+}
+
+div.logo  {
+display:inline-block;
+float:left;
+}
+span.sitetitle {
+display:inline-block;
+float:left;
+}
+span.sitetitle a.brand {
+padding-bottom:0;
+}
+
+span.sitedesc {
+display:inline-block;
+float:left;
+}*/
+
+h3.nav-header {margin:0;}
+
+.navbar .brand {
+  display: block;
+  float: left;
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: 200;
+  margin-left: -20px;
+  padding: 10px 20px 0;
+}
+
+
+
+.container-fluid, .navbar-static-top .container-fluid, .navbar-fixed-top .container-fluid, .navbar-fixed-bottom .container-fluid {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
+
+@media (max-width: 767px) {
+.navbar {
+  left: 0;
+  right: 0;
+  z-index: 1030;
+position: static;
+margin-left: -20px;
+margin-right: -20px;
+margin-bottom: 20px;
+  top: 0;
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Lisa's Additions */
+
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width:721px) {
+
+
+.compass {
+	float:none;
+	}
+	
+#mainbody {
+	margin-bottom:1em;
+	}
+
+
+
+}
+
+
+
