@@ -879,7 +879,7 @@ function sell_crops(){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=sell_crops", 
     onSuccess: function(result){
-   	   	document.id('sell_crops').setStyle('visibility','hidden'); 
+   	   	document.id('sell_crops').setStyle('display','none'); 
     	}
     }).get();
  
@@ -899,8 +899,8 @@ function work_field(itemID)
     	);
     	//new div (first child of my tmp div) replaces the old 'myDiv' (that can be grabbed from the DOM by $)
     	tmpDiv.getFirst().replaces(document.id(itemID));
-		document.id('farm_progress_'+itemID).setStyle('visibility','visible');
-		document.id('farm_controls_'+itemID).setStyle('visibility','hidden');
+		document.id('farm_progress_'+itemID).setStyle('display','block');
+		document.id('farm_controls_'+itemID).setStyle('display','none');
     	}
     }).get();
     
@@ -930,8 +930,8 @@ function check_farm(){
                     
                    // $('adminForm').setStyle('visibility','visible');
  
-                    document.id('farm_progress_'+ itemID).setStyle('visibility','hidden');
-                    document.id('farm_controls_'+ itemID).setStyle('visibility','visible');
+                    document.id('farm_progress_'+ itemID).setStyle('display','none');
+                    document.id('farm_controls_'+ itemID).setStyle('display','block');
       
                    // string_text = 'status_message_'+ itemID;
     
@@ -954,8 +954,8 @@ function check_farm(){
              }
              else{
             
-                    document.id('farm_progress_'+ itemID).setStyle('visibility','visible');
-                    document.id('farm_controls_'+ itemID).setStyle('visibility','hidden');
+                    document.id('farm_progress_'+ itemID).setStyle('display','block');
+                    document.id('farm_controls_'+ itemID).setStyle('display','none');
              }
          }
     }).get();

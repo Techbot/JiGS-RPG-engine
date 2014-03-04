@@ -1576,8 +1576,13 @@ class BattleModelJigs extends JModellist{
 		}
 
 		////////////////////////////////////////// If Player is dead ////////////////////////////////////
+<<<<<<< HEAD
+				
+		if ($player->health <= 0) {
+=======
 		if ($player->health <= 0)
 		{
+>>>>>>> upstream/master
 			$player->health = 0;
 			$this->dead_player($npc->name);		
 		}
@@ -1631,6 +1636,40 @@ class BattleModelJigs extends JModellist{
 		$this->sendFeedback($user->id, $text);	
 		return $text;
 	}
+<<<<<<< HEAD
+	
+	
+	function dead_player($winner){
+		$user			=& JFactory::getUser();
+		$db				=& JFactory::getDBO();		
+		$now=time();
+		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
+				WHERE iduser ='".$user->id."'");
+		$db->query();
+		
+		$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $winner WHERE #__jigs_inventory.player_id = " . $user->id );
+		$result = $db->query();
+		
+		
+		$db->setQuery("UPDATE #__jigs_players SET money = 0 WHERE #__jigs_players.iduser = " .   $user->id ) ;
+		$result = $db->query();
+		
+		//	$text= 'Citizen ' . $character_id  . ' was killed by citizen ' . $user->username ;
+		//	$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
+		//	$db->query() ;
+		
+		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
+		$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
+		$db->query() ;
+		}
+
+	function increment_xp($xp_type ,$payment,$user_id){
+
+		$db =& JFactory::getDBO();
+		$query="UPDATE #__jigs_players SET $xp_type  = $xp_type  +1, xp = xp+1, money = money + " . $payment ." WHERE #__jigs_players.iduser = " .  $user_id;
+		$db->setQuery($query);
+		$db->query();
+=======
 
 	function dead_player($winner)
 	{
@@ -1640,6 +1679,7 @@ class BattleModelJigs extends JModellist{
 		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
 			WHERE iduser ='".$user->id."'");
 		$result		= $db->query();
+>>>>>>> upstream/master
 
 		$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $winner WHERE #__jigs_inventory.player_id = " . $user->id );
 		$result		= $db->query();
