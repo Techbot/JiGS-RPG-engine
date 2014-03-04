@@ -13,7 +13,7 @@ $land=1;
     
     
 	<div>
-	    <h2 class="title">Field <?php echo $land ?>(@ 0)</h2>
+	    <h2 style="display:none"<!--remove this to enable slider--> class="title">Field <?php echo $land ?>(@ 0)</h2>
 	    
 	    <!-- gets injected not turned on or off -->
 	    
@@ -25,7 +25,7 @@ $land=1;
 	    
 	        <div id = "<?php echo $land ?>" class="work_field" style="text-align:center;">
 	        
-	            <a href="#" class = "field" ><img src="/components/com_battle/images/<?php echo $status; ?>.gif"></a>
+	            <a href="#" class = "field" ><img src="/_jigs/components/com_battle/images/<?php echo $status; ?>.gif"></a>
 	              </div>
 	          
 
@@ -35,7 +35,7 @@ $land=1;
 
 <?php //////////////////////////////////////////////////////////////////////////// ?>
 
-	   <div id="farm_progress_<?php echo $land ?>" style='visibility: hidden;'>
+	   <div id="farm_progress_<?php echo $land ?>" style='display: none;'>
 	        <!--img src ="components/com_battle/images/5.gif"/-->
             <label title="when manufactoring began">Started: </label>
             <span id="since"></span>
@@ -57,7 +57,7 @@ $land=1;
 <?php //////////////////////////////////////////////////////////////////////////// ?>
  
 
-<div id = "farm_controls_<?php echo $land ?>" style='visibility: visible;'>
+<div id = "farm_controls_<?php echo $land ?>" style='display: block;'>
 
 <?php
 
@@ -87,46 +87,41 @@ if (isset ($this->crop_types))
 
 ?>
 
-
-    <form class="conveyor" action="index.php" method="get" name="adminForm" id="adminForm">
-
+<form class="conveyor" action="index.php" method="get" name="adminForm" id="adminForm">
 
 
-
-
-
-
-
-
-Crop Type: 
+<div class="field-group">
+<label>Crop Type</label>
 <?php echo '' .  $this->lists['crops'] . '';?>
 
-Hobbit Workforce
+<label>Hobbit Workforce</label>
 
 <input type="text" class="inputboxquantity" size="4" id="quantity_adjust2" name="quantity_adjust2" placeholder="1" style="vertical-align: middle;"/>
 <input type="button" class="quantity_box_button quantity_box_button_up" onclick="var qty_el = document.getElementById('quantity_adjust2'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;return false;" value="+" />
 <input type="button" class="quantity_box_button quantity_box_button_down" onclick="var qty_el = document.getElementById('quantity_adjust2'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty > 0 ) qty_el.value--;return false;" value="-" />
+</div>
+
+<div class="field-group">
+
+ <label>* Crop Index</label>
  
-<br />  
- * Crop Index
- 
- <input type="text" class="inputboxquantity" size="2" id="Crop_Index" name="Crop_Index" value="1" style="vertical-align: middle;"/>
- 
- 
- * Magic Index
- 
- <input type="text" class="inputboxquantity" size="2" id="Magic_Index" name="Magic_Index" value="1" style="vertical-align: middle;"/>
+ <input type="text" class="inputboxquantity" size="2" id="Crop_Index" name="Crop_Index" value="1" style="vertical-align: middle;" readonly />
  
  
- * Skill Index
+ <label>* Magic Index</label>
  
- <input type="text" class="inputboxquantity" size="2" id="Skill_Index" name="Skill_Index" value="1" style="vertical-align: middle;"/>
+ <input type="text" class="inputboxquantity" size="2" id="Magic_Index" name="Magic_Index" value="1" style="vertical-align: middle;"readonly />
  
  
-  * ETA
+ <label>* Skill Index</label>
  
- <input type="text" class="inputboxquantity" size="2" id="ETA" name="ETA" placeholder="1.0" style="vertical-align: middle;"/>
+ <input type="text" class="inputboxquantity" size="2" id="Skill_Index" name="Skill_Index" value="1" style="vertical-align: middle;"readonly />
  
+ 
+  <label>* ETA</label>
+ 
+ <input type="text" class="inputboxquantity" size="2" id="ETA" name="ETA" placeholder="1.0" style="vertical-align: middle;" readonly />
+ </div>
  
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
   <input type="hidden" name="option" value="<?php echo $option;?>" />
