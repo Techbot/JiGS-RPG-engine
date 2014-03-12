@@ -7,8 +7,8 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_messages()
-	{
+	function get_messages(){
+
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$db->setQuery("SELECT message FROM #__jigs_logs WHERE user_id =".$user->id ." ORDER BY timestamp DESC LIMIT 6");
@@ -24,7 +24,7 @@ class BattleModelJigs extends JModellist{
 		$user		= JFactory::getUser();
 		//	$test = self::set_final_stats();
 		$sql		= "SELECT level, health, strength, intelligence,speed, posx, posy, xp,energy, money, bank, defence, final_defence,
-			attack, final_attack, nbr_attacks, nbr_kills, flags FROM #__jigs_players WHERE iduser = " . $user->id;
+			attack, final_attack, nbr_attacks, nbr_kills, flags FROM #__jigs_players WHERE id = " . $user->id;
 		$db->setQuery($sql);
 		$result		= $db->loadAssocList();
 
@@ -49,7 +49,7 @@ class BattleModelJigs extends JModellist{
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("Select attack, defence FROM  #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("Select attack, defence FROM  #__jigs_players WHERE id =".$user->id);
 		$db->query();
 		$result		= $db->loadRow();
 		$attack		= $result[0];
@@ -58,7 +58,7 @@ class BattleModelJigs extends JModellist{
 			Select #__jigs_weapon_names.attack, #__jigs_weapon_names.defence FROM #__jigs_players
 			LEFT JOIN #__jigs_weapon_names
 			ON #__jigs_players.id_weapon = #__jigs_weapon_names.id
-			WHERE iduser =".$user->id);
+			WHERE id =".$user->id);
 		$db->query();
 		$result			= $db->loadRow();
 		$weapon_attack	= $result[0];
@@ -1518,6 +1518,7 @@ class BattleModelJigs extends JModellist{
 
 	
 	
+
 	function dead_player($winner)
 	{
 		$user			=& JFactory::getUser();
@@ -1541,7 +1542,11 @@ class BattleModelJigs extends JModellist{
 		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
 		$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
 		$db->query() ;
+
 	}
+
+		
+
 
 /*	function increment_xp($xp_type ,$payment,$user_id)
 	{
@@ -1557,7 +1562,7 @@ class BattleModelJigs extends JModellist{
 	{
 		$db 	= JFactory::getDBO();
 		$query	="UPDATE #__jigs_players SET $xp_type  = $xp_type  +1, xp = xp+1, money = money + " . $payment .
-			" WHERE #__jigs_players.iduser = " .  $user_id;
+			" WHERE #__jigs_players.id = " .  $user_id;
 		$db->setQuery($query);
 		$db->query();
 		$this->test_level($user_id);
@@ -1569,7 +1574,7 @@ class BattleModelJigs extends JModellist{
 		$user		= JFactory::getUser();
 		$db		    = JFactory::getDBO();
 		$now		= time();
-		$query		= "SELECT xp FROM #__jigs_players where iduser = $user_id";
+		$query		= "SELECT xp FROM #__jigs_players where id = $user_id";
 		$db->setQuery($query);
 		$xp		= $db->loadResult();
 		$milestones	= array(100,200,400,800,1600,2000,4000,8000);
@@ -1578,7 +1583,7 @@ class BattleModelJigs extends JModellist{
 		{
 			if ($xp == $check)
 			{
-				$query	= "UPDATE #__jigs_players SET level=level+1, statpoints = statpoints + 5 WHERE iduser = $user_id";
+				$query	= "UPDATE #__jigs_players SET level=level+1, statpoints = statpoints + 5 WHERE id = $user_id";
 				$db->setQuery($query);
 				$db->query();
 				$text	= 'Citizen ' . $user->username . ' leveled up';
@@ -1594,7 +1599,7 @@ class BattleModelJigs extends JModellist{
 		$user		= JFactory::getUser();
 		$weapon_id	= JRequest::getvar('weapon_id');
 		
-		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE iduser =".$user->id);
+		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE id =".$user->id);
 		$db->query();
 		$result		= $weapon_id ;
 		return $result;
@@ -1615,7 +1620,7 @@ class BattleModelJigs extends JModellist{
 		{
 			$money = $money - $qty;
 			$bank = $bank + $qty;
-			$query = "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE iduser = " . $user->id;
+			$query = "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE id = " . $user->id;
 			$db->setQuery($query);
 			$db->query();
 		}
@@ -1629,7 +1634,7 @@ class BattleModelJigs extends JModellist{
 		$qty		= JRequest::getvar('amount');
 		$building_id	= JRequest::getvar('building_id');
 		$now		= time();
-		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = ".$user->id);
+		$db->setQuery("Select money, bank FROM #__jigs_players WHERE id = ".$user->id);
 		$result		= $db->loadRow();
 		$money		= $result[0];
 		$bank		= $result[1];
@@ -1652,7 +1657,7 @@ class BattleModelJigs extends JModellist{
 		$qty		    = JRequest::getvar('amount');
 		$building_id	= JRequest::getvar('building_id');
 		$now		    = time();
-		$db->setQuery("Select money, ammunition FROM #__jigs_players WHERE iduser = ".$user->id);
+		$db->setQuery("Select money, ammunition FROM #__jigs_players WHERE id = ".$user->id);
 		$result		    = $db->loadRow();
 		$money		    = $result[0];
 		$ammunition	    = $result[1];
@@ -1660,7 +1665,7 @@ class BattleModelJigs extends JModellist{
 		if ($qty <= $money){
 			$money	    = $money - $qty;
 			$ammunition	= $ammunition + $qty;
-			$query	    = "UPDATE #__jigs_players SET money = $money, ammunition = $ammunition  WHERE iduser =" . $user->id;
+			$query	    = "UPDATE #__jigs_players SET money = $money, ammunition = $ammunition  WHERE id =" . $user->id;
 			$db->setQuery($query);
 			$db->query();
 		}
@@ -1674,7 +1679,7 @@ class BattleModelJigs extends JModellist{
 		$payment	    = $total_crops * 1000 ;
 		$db		        = JFactory::getDBO();
 		$user		    = JFactory::getUser();
-		$query_1	    = "SELECT money FROM #__jigs_players WHERE iduser = ' . $user->id . '";
+		$query_1	    = "SELECT money FROM #__jigs_players WHERE id = ' . $user->id . '";
 		$db->setQuery($query_1);
 		$money_saved	= $db->loadResult();
 		$xp_type	    = 'nbr_crops';

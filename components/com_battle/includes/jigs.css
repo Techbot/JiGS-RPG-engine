@@ -1214,6 +1214,75 @@ position:relative;
 }
 
 
+
+
+
+label {
+font-size: 85%;
+text-transform: uppercase;
+color: #4B4B4B;
+}
+
+	/* Form */
+
+	
+	
+	
+button {
+text-align: center;
+font-size: 85%;
+font-weight: bold;
+line-height: 20px;
+background: url(../images/button_bg.png) repeat-x #003535;
+color: #009999;
+border: 1px #009999 solid;
+}
+
+button:hover, 
+button:focus {
+border: 1px solid #999999;
+background: #333333;
+color: #FFFFFF;
+}
+select,
+input{
+border:1px solid #009999;
+background:#101010;
+color: #999999;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{
+border:1px solid #222222;
+background:#101010;
+color: #999999;
+}
+
+input:hover, 
+input:focus {
+border:1px solid #666;
+}
+
+
+
+#farm_controls_1 input[readonly]{
+width:25px;
+}
+
+#farm_controls_1 .field-group {
+width:100%;
+clear:both;
+padding:5px;
+}
+
+#farm_controls_1 label {
+margin:0 8px;
+}
+
+
+
+
+
+
 /* Liquid Slider */
 
 img.none {
