@@ -27,78 +27,23 @@ class BattleModelBuilding extends JModel
 
 	function work_conveyer()
 	{
-<<<<<<< HEAD
-		$now			= time();
-		$db				= & JFactory::getDBO();
-		$sql			= "SELECT * FROM #__jigs_objects WHERE id = " . $type;
-		$db->setQuery($sql);
-		$product		= $db->loadObject();
-		$user			=& JFactory::getUser();
-		$name			= $product->name;
-		$description	= $product->description;
-		$level			= $product->level;
-		$man_time		= $product->man_time;
-		$metal_1		= $product->metal_1;
-		$quantity_1		= $product->quantity_1;
-		$metal_2		= $product->metal_2;
-		$quantity_2		= $product->quantity_2;
 
-		
-		
-		$sql= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_1 . " AND player_id = " . $user->id ;
-		$db->setQuery($sql);
-		$player_qty_1			= $db->loadResult();
-		
-		$sql= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_2 . " AND player_id = " . $user->id ;
-		$db->setQuery($sql);
-		$player_qty_2			= $db->loadResult();		
-		
-		
-	 	If ($player_qty_1 >= $quantity_1 && $player_qty_2 >= $quantity_2)
-	 	{
-	 	$player_qty_1	= $player_qty_1 - $quantity_1;
-	 	$player_qty_2	= $player_qty_2 - $quantity_2;
-	 	
-	 	$finished		= $now + ($quantity * $man_time * 60 );
-	 	$finished		= $now + (1 * 1 * 60);
-	 	$sql			= "INSERT INTO `#__jigs_factories` (`building`,`line`,`type`, `quantity`,`timestamp`,`finished`) VALUES ($building_id, $line, $type, $quantity, $now, $finished ) ON DUPLICATE KEY UPDATE `type` =  $type , `quantity` = $quantity , `timestamp`= $now ,`finished` = $finished";
-	 	$db->setQuery($sql);
-	 	
-	 	If (!$db->query()){
 
-	 		echo Json_encode($sql);
-	 		return;
-	 	};
-	 	
-	 	$sql			= "UPDATE `#__jigs_metals` SET quantity = $player_qty_1 WHERE `item_id` = " . $metal_1 . " AND player_id =". $user->id;
-	 	$db->setQuery($sql);
-	 	If (!$db->query()){
 
-	 		echo Json_encode($sql);
-	 		return;
-	 	};
-	 	
-	 	
-	 	
-	 	
-	 	$sql			= "UPDATE `#__jigs_metals` SET quantity = $player_qty_2 WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
-	 	$db->setQuery($sql);
-	 	If (!$db->query()){
 
-	 		echo Json_encode($sql);
-	 		return;
-	 	}; 	
-	 }
-	 
-	 else{
-	 	
-	 	$message="not enough metals";
-	 	echo Json_encode($message);
-	 	
-	 }
-	 
-	return true;
-=======
+
+
+
+
+
+
+
+
+
+
+
+
+
 		$energy_unit		= 1;
 		$building_id		= JRequest::getvar('building_id');
 		$line				= JRequest::getvar('line');
@@ -170,7 +115,6 @@ class BattleModelBuilding extends JModel
 		}
 
 		return true;
->>>>>>> upstream/master
 	}
 	
 /////////////////////////////////////////////////////////////	
