@@ -197,30 +197,32 @@ class battleModelBuildings extends JModellist
 	
 	function save_fields($array)
 	{
-	   $db =& JFactory::getDBO();
+	  $db = JFactory::getDBO();
       $building  = $array['building'];
 
-   	  $status_array[1]     = $array['status_field_1'];
-   	  $status_array[2]     = $array['status_field_2'];
-   	  $status_array[3]     = $array['status_field_3'];
-   	  $status_array[4]     = $array['status_field_4'];
-   	  $status_array[5]     = $array['status_field_5'];
-   	  $status_array[6]     = $array['status_field_6'];
-   	  $status_array[7]     = $array['status_field_7'];
-   	  $status_array[8]     = $array['status_field_8'];
+   	  $status_array[1]     = $array['status_field_0'];
+   	  $status_array[2]     = $array['status_field_1'];
+   	  $status_array[3]     = $array['status_field_2'];
+   	  $status_array[4]     = $array['status_field_3'];
+   	  $status_array[5]     = $array['status_field_4'];
+   	  $status_array[6]     = $array['status_field_5'];
+   	  $status_array[7]     = $array['status_field_6'];
+   	  $status_array[8]     = $array['status_field_7'];
 	
-
+	$i=1;
 	foreach ($status_array as $status)
 	{
 			
-		$query = "INSERT INTO #__jigs_farms (building,field,status)
+		$query = "INSERT INTO j17_jigs_farms (building,field,status)
 			VALUES ($building, $i,$status)
 			ON DUPLICATE KEY UPDATE status = $status ";
-       	$db->setQuery($sql);
+       	$db->setQuery($query);
 	    $db->query();
+	    $i++;
     }
    
-	return " Fields saved Successfully";
+  //return $query ;
+   	return " Fields saved Successfully";
 	}	
 	
 	function get_fields($id)

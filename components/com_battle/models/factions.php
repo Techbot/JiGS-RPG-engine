@@ -3,6 +3,30 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	function compare_weights($a, $b) { 
+    if($a->xp == $b->xp) {
+        return 0 ;
+    } 
+  return ($a->xp < $b->xp) ? -1 : 1;
+} 
+
+
+
+
 class BattleModelfactions extends JModel
 {
 	function get_groups()
@@ -18,6 +42,9 @@ class BattleModelfactions extends JModel
 		    $faction_list->$faction_name->groupstats= $this->get_group_stats($faction_list->$faction_name->groups);		
 		}
 		
+		
+		
+		
 		//$faction_list	= $this->get_group_members($faction_list);
 		return $faction_list;
 	}
@@ -32,29 +59,38 @@ class BattleModelfactions extends JModel
 	
 	
 	
-	function get_group_names($groups)
+	function get_group_name($group)
 	{
 	    $db         = JFactory::getDBO();
-		$groupnames = array();
-	    foreach ($groups as $group_id) 
-	    {
-            $query				        = "SELECT title FROM #__usergroups WHERE id = " . $group_id;
+		
+
+            $query				        = "SELECT title FROM #__usergroups WHERE id = " . $group;
 	        $db->setQuery($query);
-		    $groupnames[]		        =  $db->loadResult(); 
-		}
+		    $groupname		        =  $db->loadResult(); 
+		
 	
-	return $groupnames;
+	return $groupname;
 	}
 	
-	function get_group_stats($groups)
+	function get_group_stats()
 	{
 	    $db         = JFactory::getDBO();
-		$groupstats = array();
-	    foreach ($groups as $group_id) 
-	    {
-            $query				        = "SELECT * FROM #__jigs_groups WHERE id = " . $group_id;
+	            $query				        = "SELECT * FROM #__jigs_groups Order by total_xp DESC";
 	        $db->setQuery($query);
-		    $groupstats[]		        =  $db->loadObject(); 
+		    $groupstats		        =  $db->loadObjectList(); 
+		
+		foreach ($groupstats as $group)
+		{
+		
+		$group->name = $this->get_group_name($group->id);
+		
+		
+		
+		
+		$query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $group->captain;
+		        $db->setQuery($query);
+		        $group->avatar	= $db->loadResult();
+		
 		}
 	
 	return $groupstats;
@@ -65,13 +101,140 @@ class BattleModelfactions extends JModel
 	
 	function get_group_members()
 	{
+	
+	
+	
+	
+	
+	
 	            $db                         = JFactory::getDBO();
 	            $gid                        = JRequest::getVar('gid');
                 $query				        = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = $gid" ;
 		        $db->setQuery($query);
-                $ids = $db->loadcolumn();
-                return $this->get_player_names($ids);
+               $ids = $db->loadcolumn();
+              
+               $this->total['faction_members'] = $this->get_character_names($gid);
+               $this->get_player_names($ids);
+               
+          //     echo'<pre>';
+         //      print_r( c);
+         //     echo'</pre>'; 
+               
+               
+            //   $sorted = usort($this->total['faction_members'],array($this, 'compare_weights'));
+               
+        $sorted = $this->sortArrayofObjectByProperty($this->total['faction_members'] ,'xp',$order="DESC")   ;   
+          //   $sorted =  usort($this->total['faction_members'], function($a, $b)
+            //    {
+ 
+               //     return $a;
+ 
+                    //   return strcmp($a->xp, $b->xp);
+ 
+               //     });
+
+               
+           //    return  $this->total;
+               
+          return  $sorted ;
+
 	}
+	
+	
+	
+	
+	
+	
+	function sortArrayofObjectByProperty($array,$property,$order="ASC")
+    {
+        $cur = 1;
+        $stack[1]['l'] = 0;
+        $stack[1]['r'] = count($array)-1;
+         
+        do
+        {
+            $l = $stack[$cur]['l'];
+            $r = $stack[$cur]['r'];
+            $cur--;
+             
+            do
+            {
+                $i = $l;
+                $j = $r;
+                $tmp = $array[(int)( ($l+$r)/2 )];
+                 
+                // split the array in to parts
+                // first: objects with "smaller" property $property
+                // second: objects with "bigger" property $property
+                do
+                {
+                    while( $array[$i]->{$property} < $tmp->{$property} ) $i++;
+                    while( $tmp->{$property} < $array[$j]->{$property} ) $j--;
+                     
+                    // Swap elements of two parts if necesary
+                    if( $i <= $j)
+                    {
+                        $w = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $w;
+                         
+                        $i++;
+                        $j--;
+                    }
+                 
+                } while ( $i <= $j );
+                 
+                if( $i < $r ) {
+                $cur++;
+                $stack[$cur]['l'] = $i;
+                $stack[$cur]['r'] = $r;
+                }
+                $r = $j;
+             
+            } while ( $l < $r );
+         
+        } while ( $cur != 0 );
+        // Added ordering.
+        if($order == "DESC"){ $array = array_reverse($array); }
+        return $array;
+    }
+	
+
+	
+
+
+	function compare_weights($a, $b) { 
+    
+    
+               echo'<pre>';
+               print_r( $a);
+              echo'</pre>'; 
+    
+   ;
+    
+    
+    if($a->money == $b->money) {
+        return 0 ;
+    } 
+  return ($a->money < $b->money) ? -1 : 1;
+} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	function get_player_names($group_ids)
 	{
@@ -80,14 +243,59 @@ class BattleModelfactions extends JModel
 	   
 	    foreach ($group_ids as $id)
             {
-                $query = "SELECT iduser,username,xp,health,bank,money,level FROM #__jigs_players WHERE iduser = " . $id . " ORDER BY xp DESC";
+                $query = "SELECT id,
+                name,
+                xp,
+                health,
+                bank,
+                type,
+                money,
+                level 
+                FROM #__jigs_players WHERE id = $id ORDER BY xp DESC";
                 $db->setQuery($query);
-                $x = $db->loadAssoc();
+                $x = $db->loadObject();
+                $x->id2=$id;
                 $query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
 		        $db->setQuery($query);
-		        $x['avatar']	= $db->loadresult();
-                $players[] =  $x;
+		        $x->avatar	= $db->loadResult();
+                $this->total['faction_members'][] =  $x;
             }
-	    return $players;
+	    return;
 	}
+	
+	
+	
+	
+	function get_character_names($gid)
+	{
+        $db = JFactory::getDBO();
+	 //  $names = array();
+	   
+	   
+               $query = "SELECT id,
+                name,
+                xp,
+                type,
+                health,
+                bank,
+                money,
+                gid,
+                avatar,
+                level 
+                FROM #__jigs_characters WHERE gid = " . $gid . " ORDER BY xp DESC";
+                $db->setQuery($query);
+                $characters = $db->loadObjectList();
+                 
+             //   $query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
+		     //   $db->setQuery($query);
+		    //   $x['avatar']	= $db->loadresult();
+             
+            
+           
+	    return $characters;
+	}
+	
+	
+	
+	
 }

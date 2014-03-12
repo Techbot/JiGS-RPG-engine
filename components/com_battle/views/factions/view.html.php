@@ -15,7 +15,36 @@ class BattleViewfactions extends JView
 		//$players =& JTable::getInstance('metals', 'Table');
 		//$players->load($id);
 		$model = &$this->getModel();
-		$this->assignRef('factions',$model->get_groups());
+		
+		
+		$groups=$model->get_group_stats();
+		
+		foreach ($groups as $group){
+		
+		$captain_object =  JFactory::getUser($group->captain);
+		
+		$group->captain_name = $captain_object->username;
+		
+		}
+		
+		
+		$this->assignRef('factions',$groups);
+		
+		
+		
+		
+		
+		
+		
+		
+		//print_r ($model->get_group_stats());
+		
+		
+		//exit();
+		
+		
+		
+		
 	//	$backlink = JRoute::_('index.php?option=com_battle');
 	//	$this->assignRef('players', $players);		
 	//	$this->assignRef('backlink', $backlink);

@@ -84,6 +84,7 @@ $this->grid = JRequest::getVar('filter_grid', 1, '', 'int');
 	<th class="title">Id</th>
 	<th class="title">Image</th>
       <th class="title">Name</th>
+         <th class="title">Gid</th>
       <th width="15%">Health</th>
       <th width="10%">Money</th>
       <th width="10%">Humour</th>
@@ -111,11 +112,20 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 	<?php echo $row->id; ?>
       </td>
 	     <td>
-       <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/ennemis/<?php echo $row->image ?>" height = '50px' width='50px' ></a> 
+       <a href="<?php echo $link; ?>"> <img src="<?php echo JURI::root(); ?>/components/com_battle/images/ennemis/<?php echo $row->avatar ?>" height = '50px' width='50px' ></a> 
 	</td>
       <td>
 	<a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>
       </td>
+     
+      <td>
+	<?php echo $row->gid; ?>
+      </td>
+     
+     
+     
+     
+     
       <td>
 	<?php echo $row->health; ?>
       </td>

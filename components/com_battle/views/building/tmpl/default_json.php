@@ -1,8 +1,8 @@
 <?php
 
 jimport( 'joomla.methods' ); 
-if ($this->player->iduser == 0){
-	$this->player->username = 'Nobody';
+if ($this->player->id == 0){
+	$this->player->name = 'Nobody';
 } 
 //echo 'test:';
 // print_r($this->board_info_1);
@@ -20,7 +20,7 @@ $body ='
   
   
     <div id="info" class=" clearfix">
-      <div class="name">'. $this->player->username  . ' owns ' . $this->buildings->name . '
+      <div class="name">'. $this->player->name  . ' owns ' . $this->buildings->name . '
         <span class="small">[Level 1]</span>
         <span class="red"><a href="#" title="Allocate stats points">-</a></span>
         <span class="small">

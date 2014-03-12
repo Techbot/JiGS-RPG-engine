@@ -5,10 +5,135 @@ jimport('joomla.application.component.modellist');
 
 class BattleModelJigs extends JModellist{
 
+	function heartbeat(){
+		//	$result_1		= $this->check_factories();
+		//	$result_2		= $this->check_reprocessors();
+		//	$result_3		= $this->check_mines();
+		//	$result_4		= $this->check_farms();
+		//	$result_5		= $this->respawn();
+
+		$result			= $this->get_players();
+		return $result;
+	}
 
 
-	function get_messages()
+	// This is a test method to be called by a chrontab via the kodaly app
+
+	function populate_players2(){
+		//		$user_id= $user['id'];
+		//		$user_username= $user['username'];
+
+		$db		= JFactory::getDBO();
+		$query		= "INSERT INTO jos_jigs_players2 ( iduser) VALUES (1)";
+		$db->setQuery($query);
+		$result		= $db->query();
+		return;
+	}
+
+
+	function eat()
 	{
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$query		= $db->getQuery(true);
+
+		$query->select('health, money');
+		$query->from('#__jigs_players');
+		$query->where('iduser = ' . $user->id);
+		$db->setQuery($query);
+
+		$result		= $db->loadAssoc();
+		$health		= $result['health'];
+		$money		= $result['money'];
+
+		//	return json_encode($query);
+
+		if ($money > 10)
+		{
+			$money	= $money - 10;
+			$health	= $health + 10;
+			$sql	= "Update #__jigs_players SET money = $money, health = $health WHERE iduser= " . $user->id;
+			$db->setQuery($sql);
+			$db->query();
+			$return	= "success";
+		}
+		else
+		{
+			$return	= "broke";
+		}
+
+		return $return;
+	}
+
+
+
+	function update_flags($flags){
+
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$flags		= implode( ',', $flags);
+		$sql		="UPDATE #__jigs_players SET flags =('$flags') WHERE iduser =". $user->id;
+		$db->setQuery($sql);
+		$db->query();
+		return $result;
+
+	}
+	
+	function get_cells(){
+
+		$map		= JRequest::getvar('map');
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT row0,row1,row2,row3,row4,row5,row6,row7 FROM #__jigs_maps WHERE id = ".$map);
+		$result		= $db->loadAssocList();
+		return $result;
+
+	}
+
+	function get_portals(){
+
+		$map		= JRequest::getvar('map');
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT * FROM #__jigs_portals WHERE from_map =" . $map);
+		$result		= $db->loadAssocList();
+		return $result;
+	}
+
+	function add_message($message_id){
+
+		$db		= JFactory::getDBO();
+		$message_id	= int($message_id);
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT  messages FROM #__jigs_players WHERE iduser =".$user->id);
+		$result		= $db->loadAssocList();
+
+		array_unshift ( $result , $message_id);
+		$db->setQuery( "UPDATE  #__jigs_players SET messages = $message WHERE iduser =".$user->id);
+		$result		= $db->query();
+		return $result;
+
+	}
+
+	function get_messages_old(){
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("SELECT messages FROM #__jigs_players WHERE iduser =".$user->id);
+		$result		= $db->loadResult();
+		$result		= explode(',',$result);
+
+		foreach ($result as $message_id){
+			$db->setQuery("SELECT string FROM #__jigs_messages WHERE id =" . $message_id);
+			$message_list[]	= $db->loadResult();
+		}
+
+		return $message_list;
+	}
+
+
+
+
+	function get_messages(){
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$db->setQuery("SELECT message FROM #__jigs_logs WHERE user_id =".$user->id ." ORDER BY timestamp DESC LIMIT 6");
@@ -18,8 +143,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_stats() 
-	{
+	function get_stats() {
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		//	$test = self::set_final_stats();
@@ -32,20 +156,18 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_player()
-	 {
+	function get_player() {
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$test		= self::set_final_stats();
 		$db->setQuery("
 			SELECT posx, posy, xp, grid, map
-			FROM #__jigs_players WHERE id =".$user->id);
+			FROM #__jigs_players WHERE iduser =".$user->id);
 		$result		= $db->loadAssocList();
 		return $result;
 	}
 
-	function set_final_stats() 
-	{
+	function set_final_stats() {
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -65,16 +187,15 @@ class BattleModelJigs extends JModellist{
 		$weapon_defence	= $result[1];
 		$final_attack	= $attack + $weapon_attack;
 		$final_defence	= $defence + $weapon_defence;
-		$db->setQuery("UPDATE #__jigs_players SET final_attack = '" . $final_attack. "', final_defence = '" . $final_defence . "'WHERE id =".$user->id);
+		$db->setQuery("UPDATE #__jigs_players SET final_attack = '" . $final_attack. "', final_defence = '" . $final_defence . "'WHERE iduser =".$user->id);
 		$db->query();
 		return ($result);
 	}
 
-	function leave_room()
-	{
+	function leave_room(){
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$query		= "Update #__jigs_players SET active=1 WHERE id = $user->id";
+		$query		= "Update #__jigs_players SET active=1 WHERE iduser = $user->id";
 		$db->setQuery($query);
 		$db->query();
 		return true;
@@ -84,8 +205,7 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_shop_blueprints()
-	{
+	function get_shop_blueprints() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -101,8 +221,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_shop_clothing()
-	{
+	function get_shop_clothing() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -117,8 +236,7 @@ class BattleModelJigs extends JModellist{
 
 	}
 
-	function get_shop_spells()
-	{
+	function get_shop_spells() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -132,8 +250,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_shop_weapons()
-	{
+	function get_shop_weapons() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -148,8 +265,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_inventory_to_sell()
-	{
+	function get_inventory_to_sell() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -177,8 +293,7 @@ class BattleModelJigs extends JModellist{
 	
 	
 	
-	function get_metals_to_sell()
-	{
+	function get_metals_to_sell() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -200,8 +315,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_metals_for_sale()
-	{
+	function get_metals_for_sale() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -227,8 +341,7 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_crystals()
-	{
+	function get_crystals() {
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
@@ -253,8 +366,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_backpack()
-	{
+	function get_backpack() {
 
 		$db		        = JFactory::getDBO();
 		$user		    = JFactory::getUser();
@@ -275,8 +387,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_inventory2()
-	{
+	function get_inventory2() {
 
 		$db		        = JFactory::getDBO();
 		$user		    = JFactory::getUser();
@@ -300,8 +411,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_metals2()
-	{
+	function get_metals2() {
 
 		$db		= JFactory::getDBO();
 		$user	= JFactory::getUser();
@@ -319,8 +429,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_crystals2()
-	{
+	function get_crystals2() {
 
 		$db		= JFactory::getDBO();
 		$user	= JFactory::getUser();
@@ -338,8 +447,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_skills()
-	{
+	function get_skills() {
 
 		$db		= JFactory::getDBO();
 		$user	= JFactory::getUser();
@@ -356,8 +464,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function get_clothing()
-	{
+	function get_clothing() {
 
 		$db		= JFactory::getDBO();
 		$user	= JFactory::getUser();
@@ -447,8 +554,7 @@ class BattleModelJigs extends JModellist{
 
     }
 
-	function get_weapon()
-	{
+	function get_weapon() {
 
 		$db		    =& JFactory::getDBO();
 		$user		=& JFactory::getUser();
@@ -469,6 +575,10 @@ class BattleModelJigs extends JModellist{
 			
 			
 			WHERE #__jigs_players.iduser = " . $user->id);
+
+
+
+
 		$result = $db->loadRow();
 
 		$image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
@@ -477,16 +587,20 @@ class BattleModelJigs extends JModellist{
 			'<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
 			'<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
 			'<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8];
+			
+			
 			if ($user->id>0)
 			{
 			$image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. '</div>';
-			$image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[17]. '</div><input type="button" value="Reload" onclick= "reload();"></button>';
+			$image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[17]. '</div>
+			
+			
+			<input type="button" value="Reload" onclick= "reload();"></button>';
             }
 		    return $image;
 	}
 
-	function get_weapons()
-	{
+	function get_weapons() {
 
 		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -500,8 +614,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_weapons2()
-	{
+	function get_weapons2() {
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -516,8 +629,7 @@ class BattleModelJigs extends JModellist{
 
 
 
-	function get_spells()
-	{
+	function get_spells() {
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -530,8 +642,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_software()
-	{
+	function get_software() {
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -544,8 +655,7 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
-	function get_shop_software()
-	{
+	function get_shop_software() {
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -561,8 +671,7 @@ class BattleModelJigs extends JModellist{
 		$result		= $db->loadRow();
 		return $result;
 	}
-	function get_property()
-	{
+	function get_property() {
 
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -576,8 +685,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function buy()
-	{
+	function buy() {
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
@@ -605,8 +713,7 @@ class BattleModelJigs extends JModellist{
 		}
 	}
 	
-	function retrieve()
-	{
+	function retrieve() {
 		$db             = JFactory::getDBO();
 		$user           = JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
@@ -633,8 +740,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function buy_metal()
-	{
+	function buy_metal() {
 
 		$db			        = JFactory::getDBO();
 		$user			    = JFactory::getUser();
@@ -1201,6 +1307,18 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	function get_shop_metals()
 	{
 		$db		= JFactory::getDBO();
@@ -1458,10 +1576,8 @@ class BattleModelJigs extends JModellist{
 		}
 
 		////////////////////////////////////////// If Player is dead ////////////////////////////////////
-
 		if ($player->health <= 0)
 		{
-
 			$player->health = 0;
 			$this->dead_player($npc->name);		
 		}
@@ -1516,43 +1632,26 @@ class BattleModelJigs extends JModellist{
 		return $text;
 	}
 
-	
-	
 	function dead_player($winner)
 	{
-		$user			=& JFactory::getUser();
-		$db				=& JFactory::getDBO();		
-		$now=time();
+		$user		= JFactory::getUser();
+		$db		    = JFactory::getDBO();		
+		$now		= time();
 		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
-				WHERE iduser ='".$user->id."'");
-		$db->query();
-		
+			WHERE iduser ='".$user->id."'");
+		$result		= $db->query();
+
 		$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $winner WHERE #__jigs_inventory.player_id = " . $user->id );
-		$result = $db->query();
-		
-		
+		$result		= $db->query();
+
 		$db->setQuery("UPDATE #__jigs_players SET money = 0 WHERE #__jigs_players.iduser = " .   $user->id ) ;
-		$result = $db->query();
-		
-		//	$text= 'Citizen ' . $character_id  . ' was killed by citizen ' . $user->username ;
-		//	$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
-		//	$db->query() ;
-		
+		$result		= $db->query();
+
 		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
-		$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
-		$db->query() ;
+		$this->sendWavyLines($text);
+		return;
 	}
 
-/*	function increment_xp($xp_type ,$payment,$user_id)
-	{
-
-		$db     = JFactory::getDBO();
-		$query  = "UPDATE #__jigs_players SET $xp_type  = $xp_type  +1, xp = xp+1, money = money + " . $payment ." WHERE #__jigs_players.iduser = " .  $user_id;
-		$db->setQuery($query);
-		$db->query();
-		return $query;
-    }
- */   
 	function increment_xp($xp_type ,$payment,$user_id)
 	{
 		$db 	= JFactory::getDBO();
@@ -1735,5 +1834,5 @@ class BattleModelJigs extends JModellist{
 		return ;
 	}
 
-}
 
+}

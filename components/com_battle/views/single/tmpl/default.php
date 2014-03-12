@@ -94,7 +94,7 @@ foreach ($this->characters as $character){
 
     $char       = $character->id;
     $char_name  = $character->name;
-    $image      = $character->image;
+    $image      = $character->avatar;
     $charposx   = $character->posx;
     $charposy   = $character->posy;
 ?>
@@ -232,13 +232,14 @@ if ($page->type=='canvas'){
  * 
  *****************************/
 foreach ($this->players as $player){ 
-$player_username	= $player->username;
-$player_id			= $player->iduser;
-$p_image			= $player->avatar;
-$charposx			= $player->posx;
-$charposy			= $player->posy;
 
- 
+    $player_username	= $player->name;
+    $player_id			= $player->id;
+    $p_image			= $player->avatar;
+    $charposx			= $player->posx;
+    $charposy			= $player->posy;
+
+     
 //$player_username=$player->username;
 
 ?>

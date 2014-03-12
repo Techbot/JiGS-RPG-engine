@@ -8,7 +8,7 @@ class BattleController extends JController
 		$model			= $this->getModel('jigs');
 		$action			= JRequest::getVar('action');
 		$result			= $model->$action();
-		$heartbeat		= $model->heartbeat();
+		//$heartbeat		= $model->heartbeat();
 		echo Json_encode($result);
 	}
 
@@ -54,7 +54,7 @@ class BattleController extends JController
 		elseif ($user->id==0)
 		{
 			//JRequest::setVar('view', 'loggedout');
-			$url ="/index.php?option=com_comprofiler&task=login";
+			$url ="index.php?option=com_comprofiler&task=login";
 			$this->setRedirect( $url );
 		}
 

@@ -4,6 +4,7 @@ class Tablepeople extends JTable
 {
 	var $id				= null;
 	var $name			= null;
+	var $gid			= null;
 	var $image			= null;
 	var $money			= null;
 	var $comment		= null;

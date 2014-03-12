@@ -4,8 +4,8 @@ defined('_JEXEC') or die('Restricted access');
 
 class TablePlayers extends JTable
 {
-	var $iduser = null;
-	var $username = null;
+	var $id = null;
+	var $name = null;
 	var $id_weapon = null;
 	var $money = null;	
 	var $attack= null;	
@@ -56,6 +56,6 @@ class TablePlayers extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( '#__jigs_players', 'iduser', $db );
+		parent::__construct( '#__jigs_players', 'id', $db );
 	}
 }

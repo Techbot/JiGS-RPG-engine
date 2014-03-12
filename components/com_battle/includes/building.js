@@ -1416,8 +1416,8 @@ function check_mine(){
 
 			if(result['remaining']<=0)
 			{
-		 		$$('#mine_board').setStyle('visibility','visible');
-		   		$$('#mine_progress').setStyle('visibility','hidden');
+		 		$$('#mine_board1').setStyle('visibility','visible');
+		   		$$('#mine_progress1').setStyle('visibility','hidden');
 			}
           
     	}
@@ -1432,7 +1432,7 @@ function dig() {
 	}	
 
 
-/*
+
 
 
 function mine(type)
@@ -1442,13 +1442,13 @@ function mine(type)
 		+ building_id + "&type=" + type, 
     onSuccess: function(result){
                	
-    	$$('#mine_board').setStyle('visibility','hidden');
-        $$('#mine_progress').setStyle('visibility','visible');  	    
+    	$$('#mine_board1').setStyle('visibility','hidden');
+        $$('#mine_progress1').setStyle('visibility','visible');  	    
     	}
     }).get();
 }
 
-*/
+
 
 
 

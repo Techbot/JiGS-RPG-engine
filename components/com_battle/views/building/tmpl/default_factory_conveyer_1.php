@@ -1,4 +1,3 @@
-<h2 class="title">C1</h2>
                 <?php
                 // print_r ($x);
 
