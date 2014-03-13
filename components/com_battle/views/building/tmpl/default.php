@@ -2,7 +2,7 @@
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' ); 
-if ($this->player->iduser == 0){
+if ($this->player->id == 0){
 	$this->player->username = 'Nobody';
 } 
 //echo 'test:';

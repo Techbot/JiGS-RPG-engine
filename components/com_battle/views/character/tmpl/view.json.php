@@ -5,18 +5,33 @@ jimport( 'joomla.application.component.view');
 
 JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'tables');
 
-class BattleViewPerson extends JView
+class BattleViewcharacter extends JView
 {	
-	function display($tpl = null)
+	function display($tpl = 'json')
 	{
 		$id = (int) JRequest::getVar('id', 0);
-		
-		$people =& JTable::getInstance('people', 'Table');
-		$people->load($id);
-		
+		//$people = JTable::getTable('people');
+		$people = JTable::getInstance('people', 'Table');
+                $people->load($id);      
+               // print_r($people);
+
 		
 		$model = &$this->getModel();
 		$this->assignRef('inv',$model->get_character_inventory($id));
+		
+		
+		
+		//$id= JRequest::getvar('id');
+		//$people = JTable::getInstance('people', 'Table');
+		//$people->load($id);
+		//$inv = $this->get_character_inventory($id);
+		
+		
+		
+		
+		
+		
+		
 		
 	//	echo '<pre>';
 	//	print_r($model);

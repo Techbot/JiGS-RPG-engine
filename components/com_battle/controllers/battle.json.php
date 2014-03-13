@@ -86,7 +86,7 @@ class BattleController extends JController
 		{
 			JRequest::setVar('view', 'single');
 		}
-		$db->setQuery("Select active FROM jos_jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("Select active FROM jos_jigs_players WHERE id =".$user->id);
 		$db->query();
 		$player_status = $db->loadResult();
 		if ($player_status == 2)

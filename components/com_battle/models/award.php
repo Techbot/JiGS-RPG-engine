@@ -8,14 +8,14 @@ class BattleModelAward extends JModel
 	{
 		$db	= JFactory::getDBO();
 		$query	= "
-			SELECT a.id , a.iduser,
+			SELECT a.id , a.id,
 			       n.name as award_name,
 			       u.name, u.username
 			FROM   #__jigs_awards a,
 			       #__jigs_award_names n
 			       #__users u
 			WHERE  a.name_id = n.id
-			AND    a.iduser  = u.id
+			AND    a.id  = u.id
 			AND    a.id      = $id
 			";
 
@@ -31,7 +31,7 @@ class BattleModelAward extends JModel
 		$user	= JFactory::getUser();
 
 		$query	= "
-			INSERT INTO #__jigs_awards (iduser, name_id)
+			INSERT INTO #__jigs_awards (id, name_id)
 			VALUES($user->id, $name_id)
 			";
 

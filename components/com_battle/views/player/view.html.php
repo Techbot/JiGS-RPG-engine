@@ -9,7 +9,7 @@ class BattleViewPlayer extends JView
 {	
 	function display($tpl = null)
 	{
-		$id = (int) JRequest::getVar('iduser', 0);
+		$id = (int) JRequest::getVar('id', 0);
 		
 		$player =& JTable::getInstance('players', 'Table');
 		$player->load($id);

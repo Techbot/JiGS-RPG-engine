@@ -29,7 +29,7 @@ jimport( 'joomla.methods' );
                    
                    
                    
-                    <td> <a href= "http://eclecticmeme.com/index.php?option=com_comprofiler&task=userprofile&user=' .$player["iduser"] .'">'.$player["username"].'</a></td>    
+                    <td> <a href= "http://eclecticmeme.com/index.php?option=com_comprofiler&task=userprofile&user=' .$player["id"] .'">'.$player["username"].'</a></td>    
             <td> ' .$player["xp"].'</td>
            <td> ' .$player["health"].'</td>
            <td> ' .$player["bank"].'</td>

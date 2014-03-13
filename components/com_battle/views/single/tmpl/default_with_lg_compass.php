@@ -307,7 +307,7 @@ class="pages_class" style="
  * 
  *****************************/
 foreach ($this->players as $player){ 
-$player_id=$player->iduser;
+$player_id=$player->id;
 $p_image=$player->avatar;
 $charposx=$player->posx;
 $charposy=$player->posy;
@@ -318,7 +318,7 @@ $charposy=$player->posy;
 ?>
 
  
-<a class="modal" href ="index.php?option=com_battle&view=player&tmpl=component&iduser=<?php echo $player_id; ?>" rel='{handler: "iframe", size: {x: 640, y: 600}}' title="<?php echo $player_username ?>">
+<a class="modal" href ="index.php?option=com_battle&view=player&tmpl=component&id=<?php echo $player_id; ?>" rel='{handler: "iframe", size: {x: 640, y: 600}}' title="<?php echo $player_username ?>">
 
 <div id="char_<?php echo $player_id; ?>" 
 class= "character"

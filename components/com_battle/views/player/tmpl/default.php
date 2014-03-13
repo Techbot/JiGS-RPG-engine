@@ -34,7 +34,7 @@ echo '</pre>';
 <table class="stats" cellspacing="0" cellpadding="0">
   <tr>
     <th scope="row">ID</th>
-    <td><?php echo $this->player->iduser ; ?></td>
+    <td><?php echo $this->player->id ; ?></td>
   </tr>
   <tr>
     <th scope="row">Name</th>
@@ -89,7 +89,7 @@ echo '</pre>';
 <!--   <div class="recruit"><a class="recruit" href="#">Recruit</a></div>  -->
 
 
-<div class="attack"><a onclick="attack_playa(<?php echo $this->player->iduser ; ?>)" id="attack">Attack</a></div>
+<div class="attack"><a onclick="attack_playa(<?php echo $this->player->id ; ?>)" id="attack">Attack</a></div>
  <!--  <div class="kick"><a class="kick" href="#">Kick</a></div>
   <div class="punch"><a class="punch" href="#">Punch</a></div>
   <div class="shoot"><a class="shoot" href="#">Shoot</a></div>
