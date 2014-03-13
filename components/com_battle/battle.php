@@ -69,7 +69,7 @@ class BattleController extends JController
 
 		if ($user->id!=0)
 		{
-		    $db->setQuery("Select active FROM #__jigs_players WHERE iduser =".$user->id);
+		    $db->setQuery("Select active FROM #__jigs_players WHERE id =".$user->id);
 		    $db->query();
 		    $player_status = $db->loadResult();
 		    if ($player_status == 2)

@@ -39,23 +39,23 @@ class plgBattleHeartbeat extends JPlugin
 	
 	public function run_daily()
 	{
-		$now			= time();
-		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
-		$message		= "Cron activated at " . $time_string;
-		$this->sendMessage($now,$message);
-		$this->daily();
+		//$now			= time();
+	//	$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
+	//	$message		= "Cron activated at " . $time_string;
+	//	$this->sendMessage($now,$message);
+	//	$this->daily();
 		return ;
 		
 	}
 
-
-
-
-    public function set_factions($factions)
-    {
-        $db 	    = JFactory::getDBO();
-
-	foreach ($factions as $faction)
+	
+	public function daily()
+	{
+	    $db 	    = JFactory::getDBO();
+		$now		= time();
+		$this->sendMessage($now,'Daily begun');
+		$factions    = array(35,36,42);
+		foreach ($factions as $faction)
 		{		
 		    
 		   $groups = $this->get_faction_groups($faction);
@@ -67,7 +67,6 @@ class plgBattleHeartbeat extends JPlugin
 	                $total->$group->members = 0;
 	            
 		            $userlist = $this->get_userlist($group);
-		            $charlist = $this->get_charlist($group);
 		            
 		            foreach ($userlist as $user)
 	                {
@@ -79,17 +78,6 @@ class plgBattleHeartbeat extends JPlugin
       	       
 		            }
 		            
-		            foreach ($charlist as $char)
-	                {
-		                $result	= $this->get_char($char);
-		                $total->$group->members = $total->$group->members + 1; 
-		                $total->$group->xp += $result->xp;
-	                    $total->$group->money += $result->money;
-		                $total->$group->bank += $result->bank;  
-      	       
-		            }
-		            
-	            
 		                $one        = $total->$group->members; 
 		                $two        = $total->$group->xp ;
 	                    $three      = $total->$group->money;
@@ -111,63 +99,9 @@ class plgBattleHeartbeat extends JPlugin
      		    }
 		    }
 		}
-
-}
-
-
-	public function daily()
-	{
-	   
-		$now		= time();
-		$this->sendMessage($now,'Daily begun');
-		$factions    = array(35,36,42);
-		$this->set_factions($factions);
-		$this->find_captains();
 		return ;
 	}	
 	
-	public function get_list_of_char_groups(){
-	
-	$db 	    = JFactory::getDBO();
-		
-	$query      = "SELECT DISTINCT gid FROM #__jigs_characters";
-	
-	$db->setQuery($query);
-		              
-	$result = $db->loadColumn();
-	
-	return $result;	
-	
-	}
-	public find_captains()
-	{
-        
-        $db 	   = JFactory::getDBO();
-	    $grouplist = $this->get_list_of_char_groups();
-	
-	    foreach ($grouplist as $group)
-	    {
-	        $query      = "SELECT id,xp FROM #__jigs_players WHERE gid = $group ORDER BY xp";
-	        
-	        $db->setQuery($query);
-		                      
-	        $group->result = $db->loadAssocList();
-	        $captain    = $group->result[0]['id'];
-            $query      = "UPDATE #__jigs_groups SET captain= $captain WHERE id = $group ";
-		    $db->setQuery($query);
-		    $db->query();
-	 
-	 
-	 
-	 
-	    }
-       
-       
-       
-        
-	
-	
-	}
 	public function get_faction_groups($faction)
 	{
 		$db         = JFactory::getDBO();
@@ -184,39 +118,14 @@ class plgBattleHeartbeat extends JPlugin
 		return $db->loadColumn();
 	}
 	
-		public function get_charlist($group)
-	{
-        $db         = JFactory::getDBO();
-        $query      = "SELECT id FROM #__jigs_characters WHERE gid = $group";
-		$db->setQuery($query);
-		return $db->loadColumn();
-	}
-	
-	
-	
-	
-	
-
 	
 	public function get_user($user)
 	{
         	    $db             = JFactory::getDBO();
-		        $query          = "SELECT * FROM #__jigs_players WHERE id = $user";
+		        $query          = "SELECT * FROM #__jigs_players WHERE iduser = $user";
 		        $db->setQuery($query);
 		        return $db->loadObject();
-	}  
-	
-	
-	
-		public function get_char($char)
-	{
-        	    $db             = JFactory::getDBO();
-		        $query          = "SELECT * FROM #__jigs_characters WHERE id = $char";
-		        $db->setQuery($query);
-		        return $db->loadObject();
-	} 
-
-	  
+	}    
 	
 	function heartbeat()
 	{

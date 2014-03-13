@@ -70,7 +70,7 @@ class BattleModelComputer extends JModel
 
 		
 		$flags = implode( ',', $flags_array);
-		$sql="UPDATE #__jigs_players SET flags =('$flags') WHERE iduser =". $user->id;
+		$sql="UPDATE #__jigs_players SET flags =('$flags') WHERE id =". $user->id;
 		$db->setQuery($sql);
 		$db->query();
 		

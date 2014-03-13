@@ -34,9 +34,9 @@ class BattleModelPlayer extends JModel
 
 
 
-	function get_avatar($iduser){
+	function get_avatar($id){
 		$db =& JFactory::getDBO();
-		$db->setQuery("SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =".$iduser);
+		$db->setQuery("SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =".$id);
     	$result = $db->loadresult();
 	
 	return $result;

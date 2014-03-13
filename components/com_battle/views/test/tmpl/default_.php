@@ -155,7 +155,7 @@ style="
 
 
 foreach ($this->players as $player){ 
-$player_id=$player->iduser;
+$player_id=$player->id;
 $p_image=$player->avatar;
 $charposx=$player->posx;
 $charposy=$player->posy;

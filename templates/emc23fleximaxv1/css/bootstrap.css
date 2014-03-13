@@ -4991,7 +4991,7 @@ input[type="submit"].btn.btn-mini {
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
 }
-*/
+
 .tooltip {
   position: absolute;
   z-index: 1030;
@@ -5075,7 +5075,7 @@ input[type="submit"].btn.btn-mini {
   border-bottom-color: #000000;
   border-width: 0 5px 5px;
 }
-
+*/
 .popover {
   position: absolute;
   top: 0;

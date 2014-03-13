@@ -283,7 +283,7 @@ class BattleModelBuilding extends JModel
 		//////////// if place is currently occupied
 		if ($resident == 0)
 		{
-			$query		= "SELECT bank FROM #__jigs_players WHERE iduser = ". $user->id;
+			$query		= "SELECT bank FROM #__jigs_players WHERE id = ". $user->id;
 			$db->setQuery($query);
 			$bank       = $db->loadResult();
 			if ($bank >= 1000)
@@ -293,7 +293,7 @@ class BattleModelBuilding extends JModel
 				$status			= 1; // occupied
 
 				$avatar			= $this->get_avatar($user->id);
-				$query			= "UPDATE #__jigs_players set bank = $bank WHERE iduser = " . $user->id;
+				$query			= "UPDATE #__jigs_players set bank = $bank WHERE id = " . $user->id;
 				$db->setQuery($query);
 				$db->query();
 			}
@@ -548,11 +548,11 @@ class BattleModelBuilding extends JModel
 			}
 			else
 			{
-				$query_1		= "SELECT money FROM #__jigs_players WHERE iduser = '$user->id'";
+				$query_1		= "SELECT money FROM #__jigs_players WHERE id = '$user->id'";
 				$db->setQuery($query_1);
 				$money_saved	= $db->loadResult();
 				$money			= $money_saved + $payment;
-				$x				=	"Update #__jigs_players SET money = $money WHERE iduser= " . $user->id;
+				$x				=	"Update #__jigs_players SET money = $money WHERE id= " . $user->id;
 				$db->setQuery($x);
 				$db->query();
 			}
@@ -624,11 +624,11 @@ class BattleModelBuilding extends JModel
 		$payment	= $crops * 1000 ;
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$query_1	="SELECT money FROM #__jigs_players WHERE iduser = '$user->id'";
+		$query_1	="SELECT money FROM #__jigs_players WHERE id = '$user->id'";
 		$db->setQuery($query_1);
 		$money_saved	= $db->loadResult();
 		$money		= $money_saved + $payment;
-		$x		= "UPDATE #__jigs_players SET money = $money WHERE iduser= " . $user->id;
+		$x		= "UPDATE #__jigs_players SET money = $money WHERE id= " . $user->id;
 		$db->setQuery($x);
 		$db->query();
 		$x		= "UPDATE #__jigs_farms
@@ -862,7 +862,7 @@ class BattleModelBuilding extends JModel
 			$now    	= time();
 			$factor		= 10;
 
-			$query		= "	SELECT * FROM #__jigs_batteries	WHERE iduser = $building";
+			$query		= "	SELECT * FROM #__jigs_batteries	WHERE id = $building";
 
 			$db->setQuery($query);
 			$batteries = $db->loadAssocList();
@@ -878,7 +878,7 @@ class BattleModelBuilding extends JModel
 		$building_id		= JRequest::getvar('building_id');
 		$battery_id		= JRequest::getvar('item');
 		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_batteries SET iduser = $user->id  WHERE #__jigs_batteries.id = $battery_id";
+		$query			= "Update #__jigs_batteries SET id = $user->id  WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
 		$db->query();
 		return $battery_id;
@@ -890,7 +890,7 @@ class BattleModelBuilding extends JModel
 		$db			= JFactory::getDBO();
 		$building_id		= JRequest::getvar('building_id');
 		$battery_id		= JRequest::getvar('item');
-		$query			= "Update #__jigs_batteries SET iduser = $building_id WHERE #__jigs_batteries.id = $battery_id";
+		$query			= "Update #__jigs_batteries SET id = $building_id WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
 		$db->query();
 		return $battery_id;

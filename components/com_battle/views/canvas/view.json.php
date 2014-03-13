@@ -9,7 +9,7 @@ class BattleViewCanvas extends JView
 {	
 	function display()
 	{
-	//	$id = (int) JRequest::getVar('iduser', 0);
+	//	$id = (int) JRequest::getVar('id', 0);
 	
 		$model = $this->getModel();
 		$tpl = $model->enter_Canvas();

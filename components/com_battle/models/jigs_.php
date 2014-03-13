@@ -14,7 +14,7 @@ class BattleModeljigs extends JModellist{
 		//		$user_username= $user['username'];
 		
 		$db				= JFactory::getDBO();
-		$query			= "INSERT INTO `jos_jigs_players2` ( `iduser`) VALUES (1)";
+		$query			= "INSERT INTO `jos_jigs_players2` ( `id`) VALUES (1)";
 		$db->setQuery($query);
 		$result			= $db->query();
 		return;
@@ -28,7 +28,7 @@ class BattleModeljigs extends JModellist{
 		$query			= $db->getQuery(true);
 		$query->select('health, money');
 		$query->from('#__jigs_players');
-		$query->where('iduser = ' . $user->id);
+		$query->where('id = ' . $user->id);
 		$db->setQuery($query);
 		$result			= $db->loadAssoc();
 		$health			= $result['health'];
@@ -42,7 +42,7 @@ class BattleModeljigs extends JModellist{
 		{
 			$money		= $money - 10;
 			$health		= $health + 10;
-			$sql		= "Update #__jigs_players SET money = $money, health = $health WHERE iduser= " . $user->id;
+			$sql		= "Update #__jigs_players SET money = $money, health = $health WHERE id= " . $user->id;
 			$db->setQuery($sql);
 			$db->query();
 			$return		= "success";
@@ -61,7 +61,7 @@ class BattleModeljigs extends JModellist{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
     		$flags		= implode( ',', $flags);
-		$sql		="UPDATE #__jigs_players SET flags =('$flags') WHERE iduser =". $user->id;
+		$sql		="UPDATE #__jigs_players SET flags =('$flags') WHERE id =". $user->id;
 		$db->setQuery($sql);
 		$db->query();
 		return $result;
@@ -96,11 +96,11 @@ class BattleModeljigs extends JModellist{
 		$db		= JFactory::getDBO();
 		$message_id	=int($message_id);
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT  messages FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT  messages FROM #__jigs_players WHERE id =".$user->id);
 		$result		= $db->loadAssocList();
 
 		array_unshift ( $result , $message_id);
-		$db->setQuery( "UPDATE  #__jigs_players SET messages = $message WHERE iduser =".$user->id);
+		$db->setQuery( "UPDATE  #__jigs_players SET messages = $message WHERE id =".$user->id);
 		$result		= $db->query();
 		return $result;
 
@@ -110,7 +110,7 @@ class BattleModeljigs extends JModellist{
 	{
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT messages FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT messages FROM #__jigs_players WHERE id =".$user->id);
 		$result		= $db->loadResult();
 		$result		= explode(',',$result);
 
@@ -155,7 +155,7 @@ class BattleModeljigs extends JModellist{
 		$user		= JFactory::getUser();
 	//	$test		= self::set_final_stats();
 		$sql		= "SELECT level, health, strength, intelligence,speed, posx, posy, xp,energy, money, bank, defence, final_defence,
-		 attack, final_attack, nbr_attacks, nbr_kills, flags FROM #__jigs_players WHERE iduser = " . $user->id;
+		 attack, final_attack, nbr_attacks, nbr_kills, flags FROM #__jigs_players WHERE id = " . $user->id;
 		$db->setQuery($sql);
 		$result		= $db->loadAssocList();
 		
@@ -170,7 +170,7 @@ class BattleModeljigs extends JModellist{
 		$test		= self::set_final_stats();
 		$db->setQuery("
 		SELECT posx, posy, xp, grid, map
-		FROM #__jigs_players WHERE iduser =".$user->id);
+		FROM #__jigs_players WHERE id =".$user->id);
 		$result		= $db->loadAssocList();
 		return $result;
 	}
@@ -180,7 +180,7 @@ class BattleModeljigs extends JModellist{
 
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
-		$db->setQuery("Select attack, defence FROM  #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("Select attack, defence FROM  #__jigs_players WHERE id =".$user->id);
 		$db->query();
 		$result			= $db->loadRow();
 		$attack			= $result[0];
@@ -189,14 +189,14 @@ class BattleModeljigs extends JModellist{
 		Select #__jigs_weapon_names.attack, #__jigs_weapon_names.defence FROM #__jigs_players
 		LEFT JOIN #__jigs_weapon_names
 		ON #__jigs_players.id_weapon = #__jigs_weapon_names.id
-		WHERE iduser =".$user->id);
+		WHERE id =".$user->id);
 		$db->query();
 		$result				= $db->loadRow();
 		$weapon_attack		= $result[0];
 		$weapon_defence		= $result[1];
 		$final_attack		= $attack + $weapon_attack;
 		$final_defence		= $defence + $weapon_defence;
-		$db->setQuery("UPDATE #__jigs_players SET final_attack = '" . $final_attack. "', final_defence = '" . $final_defence . "'WHERE iduser =".$user->id);
+		$db->setQuery("UPDATE #__jigs_players SET final_attack = '" . $final_attack. "', final_defence = '" . $final_defence . "'WHERE id =".$user->id);
 		$db->query();
 		return ($result);
 	}
@@ -205,7 +205,7 @@ class BattleModeljigs extends JModellist{
 	{
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$query		= "Update #__jigs_players SET active=1 WHERE iduser = $user->id";
+		$query		= "Update #__jigs_players SET active=1 WHERE id = $user->id";
 		$db->setQuery($query);
 		$db->query();
 		return true;
@@ -488,7 +488,7 @@ class BattleModeljigs extends JModellist{
 
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT * FROM #__jigs_skills WHERE #__jigs_skills.iduser =".$user->id);
+		$db->setQuery("SELECT * FROM #__jigs_skills WHERE #__jigs_skills.id =".$user->id);
 		$result1 	= $db->loadObject();
 		for ($i= 1;$i< 9;$i++){
 			$db->setQuery("SELECT name FROM #__jigs_skill_names WHERE #__jigs_skill_names.id = '". $result1->skill_ . $i ."'" );
@@ -522,7 +522,7 @@ class BattleModeljigs extends JModellist{
 
 				" FROM #__jigs_players " .
 						"LEFT JOIN #__jigs_weapon_names ON #__jigs_players.id_weapon = #__jigs_weapon_names.id " .
-						"WHERE #__jigs_players.iduser = " . $user->id);
+						"WHERE #__jigs_players.id = " . $user->id);
 		$result = $db->loadRow();
 		$image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
 				'<img src="components/com_battle/images/weapons/' . $result[1] . '"></a><br>' .
@@ -583,7 +583,7 @@ class BattleModeljigs extends JModellist{
 		$user		= JFactory::getUser();
 		$db->setQuery("SELECT * " .
 				"FROM #__jigs_software " .
-				"WHERE #__jigs_software.iduser =".$user->id);
+				"WHERE #__jigs_software.id =".$user->id);
 		$result		= $db->loadRow();
 		return $result;
 	}
@@ -600,7 +600,7 @@ class BattleModeljigs extends JModellist{
 	"quantity_7 ,	price_7 ,	quantity_8 ,	price_8		".	
 				"FROM #__jigs_software " .
 
-				"WHERE #__jigs_software.iduser =".$building_id);
+				"WHERE #__jigs_software.id =".$building_id);
 		$result		= $db->loadRow();
 		return $result;
 	}
@@ -623,7 +623,7 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_shop_prices WHERE #__jigs_shop_prices.item_id = " . $item . " AND #__jigs_shop_prices.shop_id = " . $building_id);
 		$sell_price		= $db->loadResult();
@@ -633,7 +633,7 @@ class BattleModeljigs extends JModellist{
 			);
 
 			$result		= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2	= $db->query();
 			$result3	='true';
 
@@ -648,7 +648,7 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
 		$item			= JRequest::getvar(metal);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_shop_metal_prices 
 		WHERE #__jigs_shop_metal_prices.item_id = " . $item . " 
@@ -662,7 +662,7 @@ class BattleModeljigs extends JModellist{
 			ON DUPLICATE KEY UPDATE quantity = quantity + 1";
 			$db->setQuery($sql);
 			$result			= $db->query();
-			$sql			= "UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id;
+			$sql			= "UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id;
 			$db->setQuery($sql);
 			$result2		= $db->query();
 			$result3		= 'true';
@@ -677,15 +677,15 @@ class BattleModeljigs extends JModellist{
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 		$player_money	= $db->loadResult();
 		$sell_price		= 100;
 		if ($player_money > $sell_price) {
 			$player_money	= $player_money - $sell_price;
-			$sql			= "INSERT INTO #__jigs_batteries (charge_percentage,capacity,iduser) VALUES (100,10,$user->id)";
+			$sql			= "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
 			$db->setQuery($sql);
 			$result			= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2		= $db->query();
 			$result3		= 'true';
 			return $player_money;
@@ -699,15 +699,15 @@ class BattleModeljigs extends JModellist{
 			$db					= JFactory::getDBO();
 			$user				= JFactory::getUser();
 			$building_id		= JRequest::getvar('building_id');
-			$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 			$player_money		= $db->loadResult();
 			$sell_price			= 90;
 		
 			$player_money	= $player_money + $sell_price;
-			$sql2			= "Update #__jigs_batteries SET iduser = $building_id WHERE iduser = " . $user->id . " LIMIT 1";
+			$sql2			= "Update #__jigs_batteries SET id = $building_id WHERE id = " . $user->id . " LIMIT 1";
 			$db->setQuery($sql2);
 			$result			= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2		= $db->query();
 			$result3		= 'true';
 	
@@ -718,7 +718,7 @@ class BattleModeljigs extends JModellist{
 		function get_batteries() {
 			$db					= JFactory::getDBO();
 			$user				= JFactory::getUser();
-			$sql				= "SELECT * FROM #__jigs_batteries WHERE iduser =" . $user->id;
+			$sql				= "SELECT * FROM #__jigs_batteries WHERE id =" . $user->id;
 			$db->setQuery($sql);
 			$result				= $db->loadRowlist();
 			//return $sql;
@@ -752,7 +752,7 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =" . $user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_weapon_names WHERE #__jigs_weapon_names.id = " . $item );
 		$sell_price		= $db->loadResult();
@@ -762,7 +762,7 @@ class BattleModeljigs extends JModellist{
 			);
 
 			$result		= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2	= $db->query();
 			$result3	='true';
 			return $player_money;
@@ -774,7 +774,7 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_crystals WHERE #__jigs_crystals.id =".$item);
 		$sell_price		= $db->loadResult();
@@ -784,7 +784,7 @@ class BattleModeljigs extends JModellist{
 			$player_money		= $player_money - $sell_price;
 			$db->setQuery( "INSERT INTO #__jigs_crystals (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
 			$result			= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2		= $db->query();
 			$result3		= 'true';	
 			$result			= $db->loadRow();
@@ -797,7 +797,7 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item);
 		$sell_price		= $db->loadResult();
@@ -808,7 +808,7 @@ class BattleModeljigs extends JModellist{
 			$db->setQuery( "INSERT INTO #__jigs_papers (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")"
 			);
 			$result			= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2		= $db->query();
 			$result3		='true';	$result = $db->loadRow();
 
@@ -821,7 +821,7 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_blueprints WHERE #__jigs_blueprints.id =".$item);
 		$sell_price		= $db->loadResult();
@@ -830,7 +830,7 @@ class BattleModeljigs extends JModellist{
 			$player_money = $player_money - $sell_price;
 			$db->setQuery( "INSERT INTO #__jigs_blueprints (user_id, object) VALUES ( $user->id  ,  $item )" );
 			$result		= $db->query();
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 			$result2	= $db->query();
 			return $player_money;
 		}
@@ -842,7 +842,7 @@ class BattleModeljigs extends JModellist{
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar(building_id);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT price FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
 		$sell_price		= $db->loadResult();
@@ -855,7 +855,7 @@ class BattleModeljigs extends JModellist{
 			$db->setQuery("UPDATE #__jigs_buildings SET owner = $user->id WHERE #__jigs_buildings.id = " . $building_id);
 			$result = $db->query();
 			// update new players cash in hand to database
-			$db->setQuery("UPDATE #__jigs_players SET money = " . $player_money . " WHERE iduser = " . $user->id );
+			$db->setQuery("UPDATE #__jigs_players SET money = " . $player_money . " WHERE id = " . $user->id );
 			$result2 = $db->query();
 			$result3='true';
 
@@ -880,12 +880,12 @@ class BattleModeljigs extends JModellist{
 		$user					= JFactory::getUser();
 		$building_id			= JRequest::getvar('building_id');
 		$item					= JRequest::getvar('item');
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money			= $db->loadResult();
 		$db->setQuery("SELECT buy_price FROM #__jigs_shop_prices WHERE item_id = ". $item . " AND shop_id = " . $building_id );
 		$buy_price				= $db->loadResult();
 		$player_money			= $player_money + $buy_price;
-		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 		$result2				= $db->query();
 		$db->setQuery("DELETE FROM #__jigs_inventory WHERE #__jigs_inventory.player_id = ".$user->id ." AND item_id=" . $item . " LIMIT 1");
 		$result					= $db->query();
@@ -898,12 +898,12 @@ class BattleModeljigs extends JModellist{
 		$user				= JFactory::getUser();
 		$building_id		= JRequest::getvar('building_id');
 		$item				= JRequest::getvar('metal');
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser = ".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id = ".$user->id);
 		$player_money		= $db->loadResult();
 		$db->setQuery("SELECT buy_price FROM #__jigs_shop_metal_prices WHERE item_id = ". $item . " AND shop_id = " . $building_id );
 		$buy_price			= $db->loadResult();
 		$player_money		= $player_money + $buy_price;
-		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 		$result2			= $db->query();
 		$sql				= "UPDATE #__jigs_metals SET quantity = quantity - 1 WHERE #__jigs_metals.player_id = " . $user->id . " AND item_id= $item ";
 		$db->setQuery($sql);
@@ -918,12 +918,12 @@ class BattleModeljigs extends JModellist{
 		$user				= JFactory::getUser();
 		$building_id		= JRequest::getvar('building_id');
 		$item				= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money		= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_weapon_names WHERE id = ". $item );
 		$buy_price			= $db->loadResult();
 		$player_money		= $player_money + ($buy_price/2);
-		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 		$result2			= $db->query();
 		$db->setQuery("DELETE FROM  #__jigs_weapons WHERE #__jigs_weapons.player_id = ".$user->id ." AND item_id=" . $item . " LIMIT 1");
 		$result				= $db->query();
@@ -937,12 +937,12 @@ class BattleModeljigs extends JModellist{
 		$user 			= JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT buy_price FROM #__jigs_crystal_prices WHERE #__jigs_crystal_prices.item_id =".$item);
 		$buy_price		= $db->loadResult();
 		$player_money 	= $player_money + $buy_price;
-		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 		$result2		= $db->query();
 		$db->setQuery("DELETE FROM  #__jigs_crystals WHERE #__jigs_crystals.player_id = ".$user->id ." AND item_id=" . $item . " LIMIT 1");
 		$result			= $db->query();
@@ -955,12 +955,12 @@ class BattleModeljigs extends JModellist{
 		$user			= JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
 		$item			= JRequest::getvar(item);
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT buy_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item);
 		$buy_price		= $db->loadResult();
 		$player_money	= $player_money + $buy_price;
-		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE iduser = " . $user->id );
+		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
 		$result2		= $db->query();
 		$db->setQuery("DELETE FROM #__jigs_papers WHERE #__jigs_papers.player_id = ".$user->id ." AND item_id=" . $item . " LIMIT 1");
 		$result			= $db->query();
@@ -1074,18 +1074,18 @@ class BattleModeljigs extends JModellist{
 	function get_players(){
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT map,grid FROM #__jigs_players WHERE iduser =".$user->id);
+		$db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
 		$result		= $db->loadRow();
 		$map		= $result[0];
 		$grid		= $result[1];
 		$db->setQuery("SELECT
-				#__jigs_players.iduser, 
+				#__jigs_players.id, 
 				#__jigs_players.posx, 
 				#__jigs_players.posy, 
 				#__comprofiler.avatar
 				FROM #__jigs_players 
-				LEFT JOIN #__comprofiler ON #__jigs_players.iduser = #__comprofiler.user_id
-				WHERE grid ='".$grid."' AND map='".$map."' AND #__jigs_players.iduser !='".$user->id."'
+				LEFT JOIN #__comprofiler ON #__jigs_players.id = #__comprofiler.user_id
+				WHERE grid ='".$grid."' AND map='".$map."' AND #__jigs_players.id !='".$user->id."'
 							");
 
 		$result		= $db->loadAssocList();
@@ -1102,7 +1102,7 @@ class BattleModeljigs extends JModellist{
 		$posy		= JRequest::getvar('posy');
 		$map		= JRequest::getvar('map');
 		$grid		= JRequest::getvar('grid');
-		$db->setQuery("UPDATE #__jigs_players SET posx='".$posx."',posy='".$posy."',map='".$map."',grid='".$grid."'  WHERE iduser ='".$user->id."'");
+		$db->setQuery("UPDATE #__jigs_players SET posx='".$posx."',posy='".$posy."',map='".$map."',grid='".$grid."'  WHERE id ='".$user->id."'");
 		$db->query();
 		$result		='success';
 		return $result;
@@ -1140,12 +1140,12 @@ class BattleModeljigs extends JModellist{
 		$user2			= JFactory::getUser($player_id);
 		$player_dice	= rand(0, 15);
 		$player2_dice	=rand(0, 5);
-		$db->setQuery("SELECT health,money,active FROM #__jigs_players WHERE iduser = ".$user->id);
+		$db->setQuery("SELECT health,money,active FROM #__jigs_players WHERE id = ".$user->id);
 		$result			= $db->loadRow();
 		$player_health	= $result[0];
 		$player_money	= $result[1];
 		$player_status	= $result[2];		
-		$db->setQuery("SELECT health,money,active FROM #__jigs_players WHERE iduser = ".$player_id);
+		$db->setQuery("SELECT health,money,active FROM #__jigs_players WHERE id = ".$player_id);
 		$result			= $db->loadRow();
 		$char_health	= $result[0];
 		$char_money		= $result[1];
@@ -1186,13 +1186,13 @@ class BattleModeljigs extends JModellist{
 				$message	= "You put " . $user2->username . " into hospital<br/>";
 				$player_m	= $player_m + $char_m ;
 				$char_m		= 0;
-				$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " WHERE iduser ='".$player_id."'");
+				$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " WHERE id ='".$player_id."'");
 				$db->query();
 				$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = " . $user->id . " WHERE #__jigs_inventory.player_id = " . $player_id );
 				$result = $db->query();
-				$db->setQuery("UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player_m WHERE #__jigs_players.iduser = " .  $user->id ) ;
+				$db->setQuery("UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player_m WHERE #__jigs_players.id = " .  $user->id ) ;
 				$result = $db->query();
-				$db->setQuery("UPDATE #__jigs_players SET money = $char_m WHERE #__jigs_players.iduser = " .  $player_id ) ;
+				$db->setQuery("UPDATE #__jigs_players SET money = $char_m WHERE #__jigs_players.id = " .  $player_id ) ;
 				$result = $db->query();
 ///////////////////////
 				$text= 'Citizen ' .  $user2->username  . ' was hospitalised by citizen ' . $user->username ;
@@ -1200,9 +1200,9 @@ class BattleModeljigs extends JModellist{
 
 /////////////////////////////////
 			}
-			$db->setQuery("UPDATE #__jigs_players SET health='".$player_v."'  WHERE iduser ='".$user->id."'");
+			$db->setQuery("UPDATE #__jigs_players SET health='".$player_v."'  WHERE id ='".$user->id."'");
 			$db->query();
-			$db->setQuery("UPDATE #__jigs_players SET health='".$char_v."'  WHERE iduser ='".$player_id."'");
+			$db->setQuery("UPDATE #__jigs_players SET health='".$char_v."'  WHERE id ='".$player_id."'");
 			$db->query();
 		}
 		$results[0]	= $player_health;
@@ -1221,7 +1221,7 @@ class BattleModeljigs extends JModellist{
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$character_id	= JRequest::getInt('character');
-		$sql= "SELECT iduser, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE iduser = " . $user->id;
+		$sql= "SELECT id, health, money, final_attack, final_defence, ammunition FROM #__jigs_players WHERE id = " . $user->id;
 		$db->setQuery($sql);
 		$player			= $db->loadObject();
 		$player->dice = rand(0, 15);
@@ -1290,7 +1290,7 @@ class BattleModeljigs extends JModellist{
 		
 		/////////////////////////////////////// Now update everybodys stats to database //////////////////
 
-		$sql = "UPDATE #__jigs_players SET health = $player->health, ammunition = $player->ammunition WHERE iduser = $user->id ";
+		$sql = "UPDATE #__jigs_players SET health = $player->health, ammunition = $player->ammunition WHERE id = $user->id ";
 		$db->setQuery($sql);
 		$db->query();
 	
@@ -1300,7 +1300,7 @@ class BattleModeljigs extends JModellist{
 	
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 
-		$this->sendFeedback($player->iduser,$attack_message);
+		$this->sendFeedback($player->id,$attack_message);
 		
 		$result[0]	= $player;
 		$result[1]	= $npc;
@@ -1342,13 +1342,13 @@ class BattleModeljigs extends JModellist{
 		$db				= JFactory::getDBO();		
 		$now			= time();
 		$db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . " 
-				WHERE iduser ='".$user->id."'");
+				WHERE id ='".$user->id."'");
 		$result			= $db->query();
 		
 		$db->setQuery("UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $winner WHERE #__jigs_inventory.player_id = " . $user->id );
 		$result			= $db->query();
 		
-		$db->setQuery("UPDATE #__jigs_players SET money = 0 WHERE #__jigs_players.iduser = " .   $user->id ) ;
+		$db->setQuery("UPDATE #__jigs_players SET money = 0 WHERE #__jigs_players.id = " .   $user->id ) ;
 		$result			= $db->query();
 		
 		$text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
@@ -1360,7 +1360,7 @@ class BattleModeljigs extends JModellist{
 	{
 
 		$db =& JFactory::getDBO();
-		$query="UPDATE #__jigs_players SET $xp_type  = $xp_type  +1, xp = xp+1, money = money + " . $payment ." WHERE #__jigs_players.iduser = " .  $user_id;
+		$query="UPDATE #__jigs_players SET $xp_type  = $xp_type  +1, xp = xp+1, money = money + " . $payment ." WHERE #__jigs_players.id = " .  $user_id;
 		$db->setQuery($query);
 		$db->query();
 
@@ -1375,7 +1375,7 @@ class BattleModeljigs extends JModellist{
 		$user		= JFactory::getUser();
 		$db			= JFactory::getDBO();
 		$now		= time();
-		$query		= "SELECT xp FROM #__jigs_players where iduser = $user_id";
+		$query		= "SELECT xp FROM #__jigs_players where id = $user_id";
 		$db->setQuery($query);
 		$xp			= $db->loadResult();
 		$milestones = array(100,200,400,800,1600,2000,4000,8000);
@@ -1385,7 +1385,7 @@ class BattleModeljigs extends JModellist{
 
 			if ($xp == $check)
 			{
-				$query		= "UPDATE #__jigs_players SET level=level+1, statpoints = statpoints + 5 WHERE iduser = $user_id";
+				$query		= "UPDATE #__jigs_players SET level=level+1, statpoints = statpoints + 5 WHERE id = $user_id";
 				$db->setQuery($query);
 				$db->query();
 				$text		= 'Citizen ' . $user->username . ' leveled up';
@@ -1403,7 +1403,7 @@ class BattleModeljigs extends JModellist{
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$weapon_id		= JRequest::getvar(weapon_id);
-		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE iduser =".$user->id);
+		$db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE id =".$user->id);
 		$db->query();
 		$result			= $weapon_id ;
 		return $result;
@@ -1454,11 +1454,11 @@ class BattleModeljigs extends JModellist{
 			}
 			else
 			{
-				$query_1		= "SELECT money` FROM #__jigs_players WHERE iduser = '$user->id'";
+				$query_1		= "SELECT money` FROM #__jigs_players WHERE id = '$user->id'";
 				$db->setQuery($query_1);
 				$money_saved	= $db->loadResult();
 				$money	= $money_saved + $payment;
-				$x				=	"Update #__jigs_players SET `money` = $money WHERE iduser= " . $user->id;
+				$x				=	"Update #__jigs_players SET `money` = $money WHERE id= " . $user->id;
 				$db->setQuery($x);
 				$db->query();
 			}
@@ -1511,14 +1511,14 @@ class BattleModeljigs extends JModellist{
 		$qty			= JRequest::getvar(amount);
 		$building_id	= JRequest::getvar(building_id);
 		$now			= time();
-		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = " . $user->id);
+		$db->setQuery("Select money, bank FROM #__jigs_players WHERE id = " . $user->id);
 		$result			= $db->loadRow();
 		$money			= $result[0];
 		$bank			= $result[1];
 		if ($qty <= $money){
 			$money = $money - $qty;
 			$bank = $bank + $qty;
-			$query = "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE iduser = " . $user->id;
+			$query = "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE id = " . $user->id;
 			$db->setQuery($query);
 			$db->query();
 		}
@@ -1534,7 +1534,7 @@ class BattleModeljigs extends JModellist{
 		$qty			= JRequest::getvar(amount);
 		$building_id	= JRequest::getvar(building_id);
 		$now			= time();
-		$db->setQuery("Select money, bank FROM #__jigs_players WHERE iduser = ".$user->id);
+		$db->setQuery("Select money, bank FROM #__jigs_players WHERE id = ".$user->id);
 		$result			= $db->loadRow();
 		$money			= $result[0];
 		$bank			= $result[1];
@@ -1542,7 +1542,7 @@ class BattleModeljigs extends JModellist{
 		if ($qty <= $bank){
 			$money		= $money + $qty;
 			$bank		= $bank - $qty;
-			$query		= "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE iduser =" . $user->id;
+			$query		= "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE id =" . $user->id;
 			$db->setQuery($query);
 			$db->query();
 		}
@@ -1556,7 +1556,7 @@ class BattleModeljigs extends JModellist{
 		$payment		= $total_crops * 1000 ;
 		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
-		$query_1		= "SELECT money FROM #__jigs_players WHERE iduser = ' . $user->id . '";
+		$query_1		= "SELECT money FROM #__jigs_players WHERE id = ' . $user->id . '";
 		$db->setQuery($query_1);
 		$money_saved	= $db->loadResult();
 		$xp_type		= 'nbr_crops';
@@ -1646,11 +1646,11 @@ class BattleModeljigs extends JModellist{
 			else
 			{
 					
-				$query_1 ="SELECT money FROM #__jigs_players WHERE iduser = '$row->owner'";
+				$query_1 ="SELECT money FROM #__jigs_players WHERE id = '$row->owner'";
 				$db->setQuery($query_1);
 				$money_saved = $db->loadResult();
 				$money= $money_saved + $payment;
-				$x=	"Update #__jigs_players SET money = $money WHERE iduser = " . $row->owner;
+				$x=	"Update #__jigs_players SET money = $money WHERE id = " . $row->owner;
 				$db->setQuery($x);
 				$db->query();
 				$text	= 'Citizen ' . $playa_name  . ' has mined 1 unit of oil:' ;

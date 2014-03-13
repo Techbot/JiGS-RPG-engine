@@ -22,7 +22,7 @@ class BattleModelskills extends JModel
 		$user =& JFactory::getUser();
 
 		if (empty($this->_data)) {
-			$query = "SELECT * FROM #__jigs_skills WHERE iduser = ". $user->id;
+			$query = "SELECT * FROM #__jigs_skills WHERE id = ". $user->id;
 			$db->setQuery($query);
 			$this->_data =  $db->loadObject();
 		}

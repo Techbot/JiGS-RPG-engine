@@ -9,7 +9,7 @@ class BattleViewWard extends JView
 {	
 	function display($tpl = null)
 	{
-	//	$id = (int) JRequest::getVar('iduser', 0);
+	//	$id = (int) JRequest::getVar('id', 0);
 	
 		
 		$model = &$this->getModel();
