@@ -1,6 +1,9 @@
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+.fluid {
+width:100%;
+}
 
 a#withdraw,a#deposit,#submit_c{
 	background:#333;
@@ -1347,7 +1350,7 @@ width:100%;
 }
 
 #slider li {
-   width: 385px;  /* Width Image */
+   /*width: 385px;   Width Image */
    height: 125px; /* Height Image */
    position: absolute;
    top: -125px;	/* Original Position - Outside of the Slider */
@@ -1546,8 +1549,8 @@ width:100%;
 
 #slider .tooltip {
    background: rgba(0,0,0,0.7);
-   width: 385px;
-   max-width:385px;
+   /*width: 385px;
+   max-width:385px;*/
    position: relative;
    bottom: 100px;
    left: -320px;
@@ -1557,7 +1560,9 @@ width:100%;
 #slider .tooltip h3 {
    color: #fff;
    font-weight: 300;
-   padding: 0 10px;
+   line-height:1em;
+   font-size:1.5em;
+   /*padding: 0 10px;*/
    margin:0;
    text-align:left;
 }

@@ -15,7 +15,7 @@
             <ul>
            	<li id="first" class="firstanimation">
             <a href="#">
-            <img src="components/com_battle/images/slide01.jpg" alt="Slide1"/>
+            <img src="components/com_battle/images/slide01.jpg" alt="Slide1" class="fluid"/>
             </a>
             <div class="tooltip">
             <h3><?php echo $this->board_info_1[0]; ?></h3>
@@ -24,7 +24,7 @@
 
             <li id="second" class="secondanimation">
             <a href="#">
-            <img src="components/com_battle/images/slide02.jpg" alt="Slide2"/>
+            <img src="components/com_battle/images/slide02.jpg" alt="Slide2" class="fluid"/>
             </a>
             <div class="tooltip">
 			<h3><?php echo $this->board_info_1[1]; ?></h3>
@@ -33,7 +33,7 @@
             
             <li id="third" class="thirdanimation">
             <a href="#">
-            <img src="components/com_battle/images/slide03.jpg" alt="Slide3"/>
+            <img src="components/com_battle/images/slide03.jpg" alt="Slide3" class="fluid"/>
             </a>
             <div class="tooltip">
 			<h3><?php echo $this->board_info_1[2]; ?></h3>
@@ -42,7 +42,7 @@
                         
             <li id="fourth" class="fourthanimation">
             <a href="#">
-            <img src="components/com_battle/images/slide04.jpg" alt="Slide4"/>
+            <img src="components/com_battle/images/slide04.jpg" alt="Slide4" class="fluid"/>
             </a>
             <div class="tooltip">
 			<h3><?php echo $this->board_info_1[3]; ?></h3>
@@ -51,7 +51,7 @@
                         
             <li id="fifth" class="fifthanimation">
             <a href="#">
-            <img src="components/com_battle/images/slide05.jpg" alt="Slide5"/>
+            <img src="components/com_battle/images/slide05.jpg" alt="Slide5" class="fluid"/>
             </a>
             <div class="tooltip">
 			<h3><?php echo $this->board_info_1[4]; ?></h3>
