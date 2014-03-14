@@ -1,10 +1,17 @@
 <!--<link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" />-->
 
 
+
+
+
+<div class="apt">
+
+
+
 <table id="room_stats">
 	<tr>
 		<td>
-			room	
+<span class="label">room</span>
 		</td>
 		<td>
 	<?php echo $this->room; ?>
@@ -13,7 +20,7 @@
 	
 	<tr>
 		<td>
-			building
+<span class="label">room</span>
 		</td>
 		<td>
 	<?php echo $this->building; ?>
@@ -24,11 +31,6 @@
 	
 </table>
 
-
-
-
-<div class="apt_bg">
-
 <div id="leave">Leave Apartment</div>
 
 <div id="inventory">
@@ -37,7 +39,6 @@
 
 		<div id="building_inventory_table">
 			
-				<div class="name">In storage</div>
 				
 		</div>
 
@@ -47,7 +48,6 @@
 	<div class="stand_right">
 
 		<div id="my_inventory">
-				<div class="name">BackPack</div>
 		</div>
 
 	</div>
