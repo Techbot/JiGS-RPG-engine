@@ -10,11 +10,11 @@ var col				= row.cells[1];
 var flat			= col.firstChild.nodeValue;
 
 
-alert('hi');
+//alert('hi');
 
 function request_flat_inventory()
 {
-	var all = '<div id="building_inventory_table"><div class="name">In Storage</div>';
+	var all = '<div class="name">In Storage</div>';
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON(
@@ -33,7 +33,6 @@ function request_flat_inventory()
   		        all= all + row;
   		    }
 		    id      = 0;
-		    all     = all + '</div>';
 		    document.id('building_inventory_table').innerHTML = all;
 		    $$('.buy').addEvent('click', function()
 		    {
@@ -46,7 +45,7 @@ function request_flat_inventory()
 
 function request_my_inventory()
 {
-	var all = '<div id="my_inventory"><div class="name">Backpack</div>';
+	var all = '<div class="name">Backpack</div>';
 	var details = this.details;
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_backpack&building_id=" 
@@ -64,7 +63,6 @@ function request_my_inventory()
                 + "</span></div>"; 
  				all= all + row;
  			}
-			all= all + '</div>';
 			document.id('my_inventory').innerHTML = all;
 			$$('.sell').addEvent('click', function()
 			{

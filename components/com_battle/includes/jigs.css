@@ -426,6 +426,14 @@ font-size:85%;
 }
 
 
+.apt #inventory .stand_left .name{
+background:#009999;
+}
+.apt #inventory  {
+height:100%;
+}
+
+
 /* Player Actions */
 div#action {
 	margin:0 10px 10px;
@@ -682,7 +690,8 @@ div#inventory .label,
 div#stats .label ,
 div#inventory_module .label,
 div#stats_module .label,
-div#weapon_module .label {
+div#weapon_module .label,
+.apt .label {
 	text-align:left;
 	display:inline-block;
 	text-transform: uppercase;
@@ -703,7 +712,7 @@ div#weapon_module a {
 #leave {
 	background:#FF0000;
 	cursor:pointer;
-	position:relative;
+	position:absolute;
 	top:30%;
 	left:0;
 	width:150px;
@@ -720,9 +729,12 @@ div#weapon_module a {
 #leave:hover {
 	background:green;
 }
-.apt_bg {
+.apt {
 	background:url(http://www.eclecticmeme.com/components/com_battle/images/interior.jpg) 50% 0 no-repeat #000;
-	height:600px;}
+	height:600px;
+	background-size:cover;
+	position:relative;
+	}
 .ward_bg {
 	background:url(http://www.eclecticmeme.com/components/com_battle/images/ward.jpg) 50% 0 no-repeat #000;
 	height:600px;}
@@ -1035,7 +1047,7 @@ border: 1px solid #333333;
 /* Stand / Shop */
 
 .stand_left{float:left;width:50%;}
-.stand_righ{float:right;width:50%;}
+.stand_right{float:right;width:50%;}
 
 
 
