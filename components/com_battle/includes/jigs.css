@@ -147,11 +147,24 @@ div#mine_progress {
 	top:44;/*height of h3 name */
 	left:0;
 	z-index:222;
-	width:636px;}
+	width:636px;
+}
+	
+	
 div#mine_board p,
 div#mine_progress p {
 	margin:0;
 }
+#mine_board1,
+#meter {
+text-align:center;
+}
+
+.mine ul li {
+display:inline;
+}
+
+
 .upgrade{
 	width:28%;
 	float:left;
@@ -1653,6 +1666,11 @@ width:100%;
 .stand_left,
 .stand_right{float:none;width:100%;clear:both;}
 
+#leave {
+position:relative;
+top:0;
+width:90%;
+}
 
 form.conveyor .object,
 form.conveyor .metal {
