@@ -12,7 +12,7 @@ a#withdraw,a#deposit,#submit_c{
 	text-decoration:none;
 }
 a#withdraw:hover,a#deposit:hover,#submit_c:hover{
-	background:red;
+	background:rgba(160,8,8,1);
 }
 #quantity_box_button_up {
 	background: #333;
@@ -182,7 +182,7 @@ div#crystals_board div.insert a:visited {
 	margin: 0px 5px 10px 10px;
 }
 div#crystals_board div.insert a:hover {
-	background:red;
+	background:rgba(160,8,8,1);
 	border:1px solid #fff;
 }
 div#crystals_board div.remove a:link,
@@ -196,7 +196,7 @@ div#crystals_board div.remove a:visited {
 	margin: 0px 10px 10px 5px;
 }
 div#crystals_board div.remove a:hover {
-	background:red;
+	background:rgba(160,8,8,1);
 	border:1px solid #fff;
 }
 /* end JIGS.CSS early version - delete eventually */
@@ -391,28 +391,41 @@ div#profile+div#inventory {
 	margin:0 10px 10px 0;
 }
 div#inventory div.object {
-display:block;float:left;
-padding:2px; 
-background:#000;
+display:block;
+float:left; 
+background:rgba(0,0,0,0.7);
 border:#222 dotted 1px;
 margin:2px 2px 0 0;
+text-align:center;
 }
+
+#inventory .stand_left .object{
+background:rgba(0,153,153,0.5);
+border:#009999 dotted 1px;
+}
+
+#inventory .stand_left .name {
+background:rgba(0,153,153,1);
+}
+
 div#inventory div.object a {
-background:#000;
+padding:2px;
+display:block;
+background:rgba(0,0,0,0);
 }
-div#inventory div.object a:hover {
-background:#111;
+div#inventory div.object a:hover{
+background:rgba(255,255,255,0.2);
 }
 div#inventory a.buy,
 div#inventory a.sell {
 cursor:pointer;
-background:green;
+background:rgba(26,130,26,1);
 padding:0 5px;
 display:inline-block;
 }
 div#inventory a.buy:hover,
 div#inventory a.sell:hover {
-background:red;
+background:rgba(160,8,8,1);
 }
 div#inventory a.buy:focus,
 div#inventory a.sell:focus {
@@ -425,12 +438,14 @@ color:#ccc;
 font-size:85%;
 }
 
-
-.apt #inventory .stand_left .name{
-background:#009999;
-}
 .apt #inventory  {
-height:100%;
+  height:100%;
+  overflow: hidden;
+}
+.apt #inventory #building_inventory_table,
+.apt #inventory #my_inventory {
+  max-height: 300px;
+  overflow: auto;
 }
 
 
@@ -446,7 +461,7 @@ div.buy, div.attack, div.recruit, div.kick, div.punch, div.shoot, div.bribe, div
 	margin: 10px 3px 0 0;
 }
 div.buy:hover, div.attack:hover, div.recruit:hover, div.kick:hover, div.punch:hover, div.shoot:hover, div.bribe:hover, div.rob:hover, div.talk:hover, div.buy_battery:hover, div.sell_battery:hover {
-	background:red;
+	background:rgba(160,8,8,1);
 	border:1px solid #fff;
 	cursor:pointer;
 }
@@ -502,7 +517,7 @@ div#strength {
 	padding: 0 0 0 15px;
 }
 div#health {
-	background: none repeat scroll 0 0 #FF0000;
+	background: none repeat scroll 0 0 rgba(160,8,8,1);
 	border-radius: 25px;
 	padding: 0 0 0 15px;
 }
@@ -648,7 +663,7 @@ div#time_elapsed{
 	float:left;
 	margin:0 5px 0 10px;
 	padding:0;
-	color:#FFF;border:1px solid #333;background:green;
+	color:#FFF;border:1px solid #333;background:rgba(26,130,26,1);
 }
 	
 div#time_remaining{
@@ -658,7 +673,7 @@ div#time_remaining{
 	float:right;
 	margin:0 10px 0 5px;
 	padding:0;
-	color:#FFF;border:1px solid #333;background:red;
+	color:#FFF;border:1px solid #333;background:rgba(160,8,8,1);
 }
 
 #box4 ul {
@@ -666,7 +681,7 @@ div#time_remaining{
 }
 div#sell_crops  {	
 	width:200px;
-	background:red;
+	background:rgba(160,8,8,1);
 	padding:3px 10px;
 	border:1px solid #fff;
 	margin: 10px 3px 0 0;
@@ -674,7 +689,7 @@ div#sell_crops  {
 }
 
 div#sell_crops:hover {
-	background:red;
+	background:rgba(160,8,8,1);
 	border:1px solid #fff;
 	color:#CCC;
 	text-decoration:none;
@@ -710,7 +725,7 @@ div#weapon_module a {
 
 /* Apartment Layout */
 #leave {
-	background:#FF0000;
+	background:rgba(160,8,8,0.85);
 	cursor:pointer;
 	position:absolute;
 	top:30%;
@@ -727,10 +742,10 @@ div#weapon_module a {
 	font-weight:bold;
 }
 #leave:hover {
-	background:green;
+	background:rgba(26,130,26,0.85);
 }
 .apt {
-	background:url(http://www.eclecticmeme.com/components/com_battle/images/interior.jpg) 50% 0 no-repeat #000;
+	background:url(../images/interior.jpg) 50% 0 no-repeat #000;
 	height:600px;
 	background-size:cover;
 	position:relative;
@@ -800,7 +815,7 @@ color:#000;}
 color:#000;background:#666;
 padding:0 2px; margin:0 2px;}
 .red{
-color:#000;background:red;
+color:#000;background:rgba(160,8,8,1);
 padding:0 2px; margin:0 2px;}
 .red a{
 color:#000;font-weight:bold;text-decoration:none;}
@@ -837,7 +852,7 @@ margin:0;
 text-align:center;
 }
 div#flats h4 a {
-background:red;
+background:rgba(160,8,8,1);
 color:white;
 display:block;
 border-bottom:1px solid #333;
@@ -849,7 +864,7 @@ text-decoration:none;
 
 /* ends with" substring matching attribute selector - Click here to rent = Vacant */
 div#flats h4 a[title$="Rent"]{
-background:green;
+background:rgba(26,130,26,1);
 }
 
 /*

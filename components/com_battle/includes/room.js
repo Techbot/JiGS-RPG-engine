@@ -14,7 +14,7 @@ var flat			= col.firstChild.nodeValue;
 
 function request_flat_inventory()
 {
-	var all = '<div class="name">In Storage</div>';
+	var all = '';
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON(
@@ -45,7 +45,7 @@ function request_flat_inventory()
 
 function request_my_inventory()
 {
-	var all = '<div class="name">Backpack</div>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_backpack&building_id=" 
