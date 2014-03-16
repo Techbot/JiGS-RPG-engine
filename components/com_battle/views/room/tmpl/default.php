@@ -1,25 +1,40 @@
 
 <div class="apt">
 
-<table id="room_stats">
-	<tr>
-		<td>
-<span class="label">room</span>
-		</td>
-		<td>
+<ul>
+	<li id="building_id">
+<span class="label">Room id</span>
+
 	<?php echo $this->room; ?>
-		</td>
-	</tr>
+		</li>
+	<li id="flat">
+<span class="label">Building id</span>
 	
-	<tr>
-		<td>
-<span class="label">room</span>
-		</td>
-		<td>
 	<?php echo $this->building; ?>
-		</td>
-	</tr>	
-</table>
+		</li>	
+	
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div id="leave">Leave Apartment</div>
 

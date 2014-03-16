@@ -1,13 +1,20 @@
-var refTab			= document.getElementById("room_stats");
 
-var row				= refTab.rows[0];
+
+/*
+var refList			= document.getElementById("room_stats");
+//var row				= refList.rows[0];
 var col				= row.cells[1]; 
-
 var building_id		= col.firstChild.nodeValue;
-var row				= refTab.rows[1];
+var row				= refList.rows[1];
 var col				= row.cells[1]; 
-
 var flat			= col.firstChild.nodeValue;
+*/
+
+
+
+var building_id = document.getElementById("building_id").value;
+var flat = document.getElementById("flat").value;
+
 
 
 //alert('hi');

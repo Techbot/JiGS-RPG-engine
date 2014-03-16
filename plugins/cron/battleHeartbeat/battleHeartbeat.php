@@ -39,11 +39,11 @@ class plgBattleHeartbeat extends JPlugin
 	
 	public function run_daily()
 	{
-		//$now			= time();
-	//	$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
-	//	$message		= "Cron activated at " . $time_string;
-	//	$this->sendMessage($now,$message);
-	//	$this->daily();
+		$now			= time();
+		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
+		$message		= "Less Regular Cron activated at " . $time_string;
+		$this->sendMessage($now,$message);
+		$this->daily();
 		return ;
 		
 	}
@@ -122,7 +122,7 @@ class plgBattleHeartbeat extends JPlugin
 	public function get_user($user)
 	{
         	    $db             = JFactory::getDBO();
-		        $query          = "SELECT * FROM #__jigs_players WHERE iduser = $user";
+		        $query          = "SELECT * FROM #__jigs_players WHERE id = $user";
 		        $db->setQuery($query);
 		        return $db->loadObject();
 	}    
@@ -231,7 +231,7 @@ class plgBattleHeartbeat extends JPlugin
 	{
 		$db 	= JFactory::getDBO();
 		$query	="UPDATE #__jigs_players SET $xp_type  = $xp_type  +1, xp = xp+1, money = money + " . $payment .
-			" WHERE #__jigs_players.iduser = " .  $user_id;
+			" WHERE #__jigs_players.id = " .  $user_id;
 		$db->setQuery($query);
 		$db->query();
 		$this->test_level($user_id);
@@ -243,7 +243,7 @@ class plgBattleHeartbeat extends JPlugin
 		$user	= JFactory::getUser();
 		$db	= JFactory::getDBO();
 		$now	= time();
-		$query	= "SELECT xp FROM #__jigs_players where iduser = $user_id";
+		$query	= "SELECT xp FROM #__jigs_players where id = $user_id";
 		$db->setQuery($query);
 		$xp		= $db->loadResult();
 		$milestones = array(100,200,400,800,1600,2000,4000,8000);
@@ -252,7 +252,7 @@ class plgBattleHeartbeat extends JPlugin
 		{
 			if ($xp == $check)
 			{
-				$query	= "UPDATE #__jigs_players SET level=level+1, statpoints = statpoints + 5 WHERE iduser = $user_id";
+				$query	= "UPDATE #__jigs_players SET level=level+1, statpoints = statpoints + 5 WHERE id = $user_id";
 				$db->setQuery($query);
 				$db->query();
 				$text	= 'Citizen ' . $user->username . ' leveled up';
@@ -321,7 +321,7 @@ class plgBattleHeartbeat extends JPlugin
 		{
 			foreach ($result as $row)
 			{
-				$query = "Select bank FROM #__jigs_players WHERE iduser = $row->resident";
+				$query = "Select bank FROM #__jigs_players WHERE id = $row->resident";
 				$db->setQuery($query);
 				$bank = $db->loadResult();
 				$user				= JFactory::getUser($row->resident);
@@ -345,7 +345,7 @@ class plgBattleHeartbeat extends JPlugin
 				}
 				else
 				{
-					$query	= "UPDATE #__jigs_players SET bank = bank - $rent WHERE iduser = $row->resident";
+					$query	= "UPDATE #__jigs_players SET bank = bank - $rent WHERE id = $row->resident";
 					$db->setQuery($query);
 					$db->query();
 					$query	= "UPDATE #__jigs_flats SET timestamp = $now WHERE building = $row->building AND flat = $row->flat";
@@ -523,11 +523,11 @@ class plgBattleHeartbeat extends JPlugin
 			}
 			else
 			{
-				$query_1	="SELECT money FROM #__jigs_players WHERE iduser = '$row->owner'";
+				$query_1	="SELECT money FROM #__jigs_players WHERE id = '$row->owner'";
 				$db->setQuery($query_1);
 				$money_saved	= $db->loadResult();
 				$money		= $money_saved + $payment;
-				$x		= "UPDATE #__jigs_players SET money = $money WHERE iduser = " . $row->owner;
+				$x		= "UPDATE #__jigs_players SET money = $money WHERE id = " . $row->owner;
 				$db->setQuery($x);
 				$db->query();
 				$text		= 'Citizen ' . $playa_name  . ' has mined 1 unit of oil:' ;
