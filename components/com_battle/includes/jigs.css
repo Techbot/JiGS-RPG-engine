@@ -672,9 +672,8 @@ float:left;
 div#time_elapsed{
 	text-align:center; 
 	display:inline-block;
-	width:300px;
+	width:50%;
 	float:left;
-	margin:0 5px 0 10px;
 	padding:0;
 	color:#FFF;border:1px solid #333;background:rgba(26,130,26,1);
 }
@@ -682,11 +681,15 @@ div#time_elapsed{
 div#time_remaining{
 	text-align:center; 
 	display:inline-block;
-	width:300px;
+	width:50%;
 	float:right;
-	margin:0 10px 0 5px;
 	padding:0;
 	color:#FFF;border:1px solid #333;background:rgba(160,8,8,1);
+}
+
+div#time_elapsed label,
+div#time_remaining label{
+color:#fff;
 }
 
 #box4 ul {
@@ -1650,6 +1653,23 @@ width:100%;
 
 
 
+@media (max-width: 576px){
+
+
+	#slider .tooltip {
+	  bottom: 60px;
+	}
+
+	#slider .tooltip h3 {
+	  font-size: 1.3em;
+	  
+	}
+
+
+
+}
+
+
 @media (max-width: 481px){
 	div.building_left {
 		width:100%;
@@ -1662,22 +1682,42 @@ width:100%;
 		min-height: 377px;
 		float:none;
 	}
-	
-.stand_left,
-.stand_right{float:none;width:100%;clear:both;}
+		
+	.stand_left,
+	.stand_right{float:none;width:100%;clear:both;}
 
-#leave {
-position:relative;
-top:0;
-width:90%;
-}
+	#leave {
+	position:relative;
+	top:0;
+	width:90%;
+	}
 
-form.conveyor .object,
-form.conveyor .metal {
-	display:block;
-	width:100%;
-	float:none;
-	margin:1em 0;
-}
+
+
+	div#time_elapsed,
+	div#time_remaining{
+		display:block;
+		width:100%;
+		float:none;
+	}
+
+	form.conveyor .object,
+	form.conveyor .metal {
+		display:block;
+		width:100%;
+		float:none;
+		margin:1em 0;
+	}
+
+	#slider .tooltip {
+	  bottom: 0;
+	}
+
+	#slider .tooltip h3 {
+	  font-size: 1em;
+	  
+	}
+
+
 
 }
