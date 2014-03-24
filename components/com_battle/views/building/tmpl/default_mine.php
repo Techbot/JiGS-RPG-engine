@@ -8,10 +8,8 @@
 
 
 <?php //<div id="slider-id" class="liquid-slider"--> ?>
-	<div><!--instead of above div with id -->		
-			    <h2 class="title">Mine(@ 0)</h2>	
-			  		
-				
+	<div class="mine"><!--instead of above div with id -->		
+			    <!--h2 class="title">Mine(@ 0)</h2-- need this for liquid slider-->					
 				
 				 <?php
 				// print_r ($x);
@@ -19,29 +17,11 @@
 				?> 	
 			
 
-           
-            
-            
-            
-            				<div id="meter">
-					<img src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg">
-				</div>
-				<!--end of meter-->
-						<ul>
-					<li>Number of Employees: 7</li>
-					<li>Employees Morale: 70%</li>
-					<li>Employee Efficiency: 95%</li>
+				<ul>
+					<li><span class="label">Number of Employees:</span> 7</li>
+					<li><span class="label">Employees Morale:</span> 70%</li>
+					<li><span class="label">Employee Efficiency:</span> 95%</li>
 				</ul>
 				
-            
-            
-            
-            
-            
-            
     </div>
   

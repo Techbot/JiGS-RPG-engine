@@ -280,7 +280,7 @@ function sell_weapon(itemID)
   
 function request_shop_weapons()
 {
-    var all = '<table class="shade-table"><tbody>';
+    var all = '';
 	var details = this.details;
     //	var id = $('image').get('number'); 
     var a = new Request.JSON(
@@ -291,19 +291,18 @@ function request_shop_weapons()
         {
        	    for (i = 0; i < result.length; ++ i)
        	    {
-                var row = "<tr class=\"d" 
-                + (i & 1) + "\"><td>" 
+                var row = "<div class='row'><span>" 
                 + (i+1) + ": " 
                 + result[i].name 
-                + ":</td><td>$" 
+                + ":</span><span class='price'>$" 
                 + result[i].sell_price 
-                + "<a href='#' class='buy' id='" 
-                + result[i].item_id + "'>[BUY]</a></td></tr>"; 
+                + "</span><a href='#' class='buy' id='" 
+                + result[i].item_id + "'>BUY</a></div>"; 
                 all= all + row;  
         	}
         	id=0;
 
-            all= all + '</tbody></table>';
+            all= all + '';
 	
        	    document.id('building_inventory_table').innerHTML = all;	
        	    $$('.buy').addEvent('click', function()
@@ -1476,7 +1475,7 @@ function mine(type)
 			
 function request_shop_inventory()
 {
-	var all = '<div id="building_inventory_table"><div class="name">Available to Buy</div>';
+	var all = '';
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON(
@@ -1495,7 +1494,7 @@ function request_shop_inventory()
   		        all= all + row;
   		    }
 		    id      = 0;
-		    all     = all + '</div>';
+		    all     = all + '';
 		    document.id('building_inventory_table').innerHTML = all;
 		    $$('.buy').addEvent('click', function()
 		    {
@@ -1508,7 +1507,7 @@ function request_shop_inventory()
 
 function request_inventory()
 {
-	var all = '<div id="my_inventory"><div class="name">Available to Sell</div>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory_to_sell&building_id=" 
@@ -1526,7 +1525,7 @@ function request_inventory()
                 + "</span></div>"; 
  				all= all + row;
  			}
-			all= all + '</div>';
+			all= all + '';
 			document.id('my_inventory').innerHTML = all;
 			$$('.sell').addEvent('click', function()
 			{

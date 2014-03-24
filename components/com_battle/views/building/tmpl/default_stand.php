@@ -5,11 +5,8 @@
 
 	<div class="stand_left">
 
+		<div class="name">Available to Buy</div>
 		<div id="building_inventory_table">
-			
-				<div class="name">Available to Buy</div>
-
-				
 		</div>
 
 	</div>
@@ -18,9 +15,9 @@
 
 
 	<div class="stand_right">
-
+	
+		<div class="name">Available to Sell</div>
 		<div id="my_inventory">
-				<div class="name">Available to Sell</div>
 		</div>
 
 	</div>

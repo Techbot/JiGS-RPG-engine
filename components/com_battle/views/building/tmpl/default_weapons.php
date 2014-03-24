@@ -1,34 +1,34 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 
 
-<div id="inventory" style="width:49%;float:left;">
+<div id="inventory" class="weapons">
 
-<div class="name">Building Weapons Inventory</div>
+	<div class="stand_left">
 
-<table id="building_inventory_table" class="shade-table">
-<tbody>
-<tr></tr>
-</tbody>
-</table>
+	<div class="name">Building Weapons Inventory</div>
 
-</div>
+		<div id="building_inventory_table">
+		
+		
+		</div>
 
-<div id="inventory" style="width:49%;float:right;">
+	</div>
+	<!--end of left -->
 
-<div class="name">My Inventory</div>
 
-<table id="my_inventory" class="shade-table">
-<tbody>
-<tr></tr>
-</tbody>
-</table>
+	<div class="stand_right">
+	
+	<div class="name">My Inventory</div>
+	
+		<div id="building_inventory_table">
+		
+		
+		</div>
 
-<table id="my_inventory2" class="shade-table">
-<tbody>
-<tr></tr>
-</tbody>
-</table>
-
+	</div>
+	<!-- end of right -->
+	
+	
 </div><!--end inventory-->
 
 

@@ -288,6 +288,28 @@ div.weapon_swap h4 {
 div#weapons p {
 	margin:0 0 10px;
 }
+
+.weapons div.row {
+  border-bottom: 1px solid #222222;
+  clear: both;
+  display: block;
+  float: none;
+  margin: 0;
+  text-align: left;
+}
+
+#inventory.weapons span.price {
+background:#222;
+display:inline-block;
+color:#ccc;
+font-size:85%;
+margin-left:10px;
+padding:0 5px;
+}
+
+
+
+
 div.building_left {
 	width:60%;
 	min-height: 377px;
@@ -395,7 +417,7 @@ p.instructions {
 	font-size:8pt;
 }
 /* Inventory */
-div#inventory {overflow:auto;height:210px;}
+div#inventory {height:210px;}
 div#inventory div.name {margin:0;padding:0 0 0 5px;text-align:left;}
 div#profile+div#inventory {
 	width:32%;
@@ -435,6 +457,7 @@ cursor:pointer;
 background:rgba(26,130,26,1);
 padding:0 5px;
 display:inline-block;
+float:right;
 }
 div#inventory a.buy:hover,
 div#inventory a.sell:hover {
@@ -455,6 +478,8 @@ font-size:85%;
   height:100%;
   overflow: hidden;
 }
+#building_inventory_table,
+#my_inventory,
 .apt #inventory #building_inventory_table,
 .apt #inventory #my_inventory {
   max-height: 300px;
@@ -848,10 +873,10 @@ div#flats div.row {float:none;display:block;clear:both;margin:0;text-align:left;
 border-bottom:1px solid #222;
 }
 
-div.flats.row div:first-child {width:50%;}
-div.flats.row div:nth-child(2) {width:20%;}
+div.flats.row div:first-child {width:48%;}
+div.flats.row div:nth-child(2) {width:18%;}
 div.flats.row div:nth-child(3) {width:5%;}
-div.flats.row div:last-child {width:25%;}
+div.flats.row div:last-child {width:28%;}
 
 @media (max-width: 768px){
 
@@ -866,6 +891,7 @@ div.flats.row div:last-child {width:25%;}
 div#flats h4 {
 margin:0;
 text-align:center;
+font-size:14px;
 }
 div#flats h4 a {
 background:rgba(160,8,8,1);
