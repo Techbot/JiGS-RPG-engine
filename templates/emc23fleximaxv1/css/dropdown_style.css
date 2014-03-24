@@ -10,44 +10,44 @@ Output code is ul.menu etc.
 
 /* 1st Level */
 
-#sidebar ul.nav {
+#sidebar-2 ul.nav {
 border:0;
 border-bottom:solid 0px #F3F3F3;
 list-style-type:none !important;
 }
 
-#sidebar ul.nav li {
+#sidebar-2 ul.nav li {
 border-bottom: 1px solid #666;
 }
 
-#sidebar ul.nav li a:link,
-#sidebar ul.nav li a:visited {
+#sidebar-2 ul.nav li a:link,
+#sidebar-2 ul.nav li a:visited {
 border-left: 10px solid #333;
 border-right: 10px solid #000;
 color: #ccc;
 background: url(../images/trans.png) transparent center top repeat;
 }
 
-#sidebar ul.nav li.active a:link,
-#sidebar ul.nav li.active a:visited {
+#sidebar-2 ul.nav li.active a:link,
+#sidebar-2 ul.nav li.active a:visited {
 border-left: 10px solid #009999;
 border-right: 10px solid #00ffff;
 color: #00ffff;
 }
 
-#sidebar ul.nav li a:hover,
-#sidebar ul.nav li a:active,
-#sidebar ul.nav li a:focus,
-#sidebar ul.nav li.active a:hover,
-#sidebar ul.nav li.active a:active,
-#sidebar ul.nav li.active a:focus {
+#sidebar-2 ul.nav li a:hover,
+#sidebar-2 ul.nav li a:active,
+#sidebar-2 ul.nav li a:focus,
+#sidebar-2 ul.nav li.active a:hover,
+#sidebar-2 ul.nav li.active a:active,
+#sidebar-2 ul.nav li.active a:focus {
 border-left: 10px solid #666;
 border-right: 10px solid #333;
 color: #00ffff;
 }
 
-#sidebar ul.menu li.parent a:after {content: " +";}
-#sidebar ul.menu li.parent li a:after {content: none;}
+#sidebar-2 ul.menu li.parent a:after {content: " +";}
+#sidebar-2 ul.menu li.parent li a:after {content: none;}
 
 /* 2nd Level */
 

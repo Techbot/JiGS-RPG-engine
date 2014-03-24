@@ -87,7 +87,9 @@ div.blog-featured {}
 div.items-leading {}
 
 /* Article Layout */
-div.item-page {}
+div.item-page {
+padding: 0 2em 2em;
+}
 
 /* Print & Email links & icons */
 ul.actions {list-style-type:none;margin:0px !important;}
@@ -384,3 +386,9 @@ ul#archive-items div.intro {}
 /* WYSIWYG Editor styles for image margins */
 img.right {margin: 0 0 10px 10px;}
 img.left {margin: 0 10px 10px 0;}
+
+
+div#slimbox1, div#slimbox2, div#slimbox3, div#slimbox4, div#slimbox5, div#slimbox6, div#slimbox7, div#slimbox8, div#slimbox9, div#slimbox10 {
+  margin: 0;
+  text-align: center;
+}

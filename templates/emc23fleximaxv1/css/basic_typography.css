@@ -70,14 +70,15 @@ font-style:italic;
 
 .blockquote, blockquote {
 margin:10px;
-padding: 0 5px;
+padding: 1em 2em;
+font-family: "Courier New", Courier, monospace;
 }
 
 .pre, pre {
 font-family: monospace;
-font-size: 1.0em;
+font-size: 1.2em;
 margin: 10px;
-padding: 0 5px;
+padding: 1em 2em;
 display: block;
 }
 
