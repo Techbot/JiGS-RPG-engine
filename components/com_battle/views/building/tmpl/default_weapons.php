@@ -20,7 +20,7 @@
 	
 	<div class="name">My Inventory</div>
 	
-		<div id="building_inventory_table">
+		<div id="my_inventory">
 		
 		
 		</div>

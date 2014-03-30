@@ -289,16 +289,19 @@ div#weapons p {
 	margin:0 0 10px;
 }
 
-.weapons div.row {
+.weapons div.row,
+.scrapyard div.row {
   border-bottom: 1px solid #222222;
   clear: both;
   display: block;
   float: none;
   margin: 0;
   text-align: left;
+  padding:0 0 0 5px;
 }
 
-#inventory.weapons span.price {
+#inventory.weapons span.price,
+#inventory.scrapyard span.price {
 background:#222;
 display:inline-block;
 color:#ccc;
@@ -747,7 +750,8 @@ div#stats .label ,
 div#inventory_module .label,
 div#stats_module .label,
 div#weapon_module .label,
-.apt .label {
+.apt .label,
+.mine .label {
 	text-align:left;
 	display:inline-block;
 	text-transform: uppercase;
