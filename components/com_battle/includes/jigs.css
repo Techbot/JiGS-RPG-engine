@@ -290,7 +290,9 @@ div#weapons p {
 }
 
 .weapons div.row,
-.scrapyard div.row {
+.scrapyard div.row,
+.missions div.row,
+.papers div.row {
   border-bottom: 1px solid #222222;
   clear: both;
   display: block;
@@ -301,7 +303,9 @@ div#weapons p {
 }
 
 #inventory.weapons span.price,
-#inventory.scrapyard span.price {
+#inventory.scrapyard span.price,
+#inventory.missions span.price,
+#inventory.papers span.price {
 background:#222;
 display:inline-block;
 color:#ccc;

@@ -794,7 +794,7 @@ function put_battery(itemID){
 
 function get_shop_papers(){
 	
-	var all = '<table class="shade-table"><tbody>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON(
 	{
@@ -805,18 +805,19 @@ function get_shop_papers(){
 			for (i = 0; i < result.length; ++ i)
 			{
    	
-   				var row = "<tr class=\"d" 
-   				+ (i & 1) + "\"><td>" 
+   				var row = "<div class='row'><span>"
    				+ (i+1) 
    				+ ": " 
    				+ result[i].name 
-   				+ ":</td><td>$" + result[i].sell_price + "<a href='#' class='buy' id='" 
+   				+ ":</span><span class='price'>$" 
+				+ result[i].sell_price 
+				+ "</span><a href='#' class='buy' id='" 
    				+ result[i].item_id 
-   				+ "'>[BUY]</a></td></tr>"; 
+   				+ "'>BUY</a></div>"; 
   				all= all + row;  
    			}
 
-			all= all + '</tbody></table>';
+			all= all + '';
 	
 		   	document.id('building_papers_table').innerHTML = all;	
 		   	$$('.buy').addEvent('click', function()
@@ -830,7 +831,7 @@ function get_shop_papers(){
 }
 
 function get_papers(){
-	var all		= '<table class="shade-table"><tbody>';
+	var all		= '';
 	var details = this.details;
 	var a		= new Request.JSON(
 	{
@@ -839,17 +840,17 @@ function get_papers(){
     	{
        		for (i = 0; i < result.length; ++ i)
        		{
-				var row = "<tr class=\"d" 
-				+ (i & 1) 
-				+ "\"><td>" + (i+1) + ":" 
-				+ result[i].name + " COST:" 
+				var row = "<div class='row'><span>" 
+				+ (i+1) + ":" 
+				+ result[i].name 
+				+ "</span><span class='price'>COST:" 
 				+ result[i].buy_price 
-				+ "<a href='#' class= 'sell' id='" 
+				+ "</span><a href='#' class= 'sell' id='" 
 				+ result[i].item_id 
-				+ "' > [SELL] </a></td></tr>";
+				+ "' >SELL</a></div>";
 				all= all + row;  
     		}
-			all = all + '</tbody></table>';	
+			all = all + '';	
 			document.id('my_papers').innerHTML = all;	
 			$$('.sell').addEvent('click', function()
 			{
