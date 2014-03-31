@@ -280,7 +280,7 @@ function sell_weapon(itemID)
   
 function request_shop_weapons()
 {
-    var all = '<table class="shade-table"><tbody>';
+    var all = '';
 	var details = this.details;
     //	var id = $('image').get('number'); 
     var a = new Request.JSON(
@@ -291,19 +291,19 @@ function request_shop_weapons()
         {
        	    for (i = 0; i < result.length; ++ i)
        	    {
-                var row = "<tr class=\"d" 
-                + (i & 1) + "\"><td>" 
+                var row = "<div class='row'><span>" 
                 + (i+1) + ": " 
                 + result[i].name 
-                + ":</td><td>$" 
+                + ":</span><span class='price'>$" 
                 + result[i].sell_price 
-                + "<a href='#' class='buy' id='" 
-                + result[i].item_id + "'>[BUY]</a></td></tr>"; 
+                + "</span><a href='#' class='buy' id='" 
+                + result[i].item_id 
+				+ "'>BUY</a></div>"; 
                 all= all + row;  
         	}
         	id=0;
 
-            all= all + '</tbody></table>';
+            all= all + '';
 	
        	    document.id('building_inventory_table').innerHTML = all;	
        	    $$('.buy').addEvent('click', function()
@@ -319,7 +319,7 @@ function request_shop_weapons()
 function request_weapons()
 {
 	var price = 0 ;
-	var all = '<table class="shade-table"><tbody>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON(
 	{
@@ -330,14 +330,16 @@ function request_weapons()
             for (i = 0; i < result.length; ++ i)
             {
                 price = result[i].sell_price / 2 ;
-                var row = "<tr class=\"d" 
-                + (i & 1) + "\"><td>" +result[i].name 
-                + "<td>"  + " COST:" 
-                +  price + "<a href='#' class= 'sell' id='" + result[i].item_id 
-                + "' > [SELL] </a></td></tr>";
+                var row = "<div class='row'><span>" 
+				+result[i].name 
+                + "</span><span class='price'>COST:" 
+                +  price 
+				+ "</span><a href='#' class= 'sell' id='" 
+				+ result[i].item_id 
+                + "'>SELL</a></div>";
                 all= all + row;
             }
-    	    all= all + '</tbody></table>';
+    	    all= all + '';
     	    document.id('my_inventory').innerHTML = all;	
             $$('.sell').addEvent('click', function()
             {
@@ -489,7 +491,7 @@ function decrement()
 
 function request_shop_metals()
 {
-	var all = '<table class="shade-table"><tbody>';
+	var all = '';
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON({
@@ -497,15 +499,21 @@ function request_shop_metals()
 		+ building_id , 
     onSuccess: function(result){
        	    	
-    for (i = 0; i < result.length; ++ i){
-        var row = "<tr class=\"d" + (i & 1) + "\"><td>" 
-        + (i+1) + ": " + result[i].name + ":</td><td>$" 
-        + result[i].sell_price + "</td><td><a href='#' class='buy' id='" 
-        + result[i].item_id + "'>BUY</a></td></tr>"; 
+    for (i = 0; i < result.length; ++ i)
+	{
+	
+        var row = "<div class='row'><span>" 
+        + (i+1) + ": " 
+		+ result[i].name 
+		+ ":</span><span class='price'>$" 
+        + result[i].sell_price 
+		+ "</span><a href='#' class='buy' id='" 
+        + result[i].item_id 
+		+ "'>BUY</a></div>"; 
   		all= all + row;
   		}
 		id=0;
-		all= all + '</tbody></table>';
+		all= all + '';
 		document.id('building_inventory_table').innerHTML = all;
 		$$('.buy').addEvent('click', function(){
 			var itemID = this.get('id');
@@ -516,19 +524,23 @@ function request_shop_metals()
 }
 
 function request_get_metals_to_sell(){
-	var all = '<table class="shade-table"><tbody>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_metals_to_sell&building_id=" 
 		+ building_id , 
         onSuccess: function(result){
-            for (i = 0; i < result.length; ++ i){
-                var row = "<tr class=\"d" + (i & 1) + "\"><td>" +result[i].name + "<td>"  + " COST:" 
-                + result[i].buy_price + "</td><td><a href='#' class= 'sell' id='" + result[i].item_id 
-                + "' >SELL</a></td></tr>"; 
+            for (i = 0; i < result.length; ++ i)
+			{
+                var row = "<div class='row'><span>"
+				+result[i].name 
+				+ "</span><span class='price'>COST:" 
+                + result[i].buy_price 
+				+ "</span><a href='#' class= 'sell' id='" + result[i].item_id 
+                + "' >SELL</a></div>"; 
  				all= all + row;
  				}
-				all= all + '</tbody></table>';
+				all= all + '';
 				document.id('my_inventory').innerHTML = all;
 				$$('.sell').addEvent('click', function(){
 					var itemID = this.get('id');
@@ -782,7 +794,7 @@ function put_battery(itemID){
 
 function get_shop_papers(){
 	
-	var all = '<table class="shade-table"><tbody>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON(
 	{
@@ -793,18 +805,19 @@ function get_shop_papers(){
 			for (i = 0; i < result.length; ++ i)
 			{
    	
-   				var row = "<tr class=\"d" 
-   				+ (i & 1) + "\"><td>" 
+   				var row = "<div class='row'><span>"
    				+ (i+1) 
    				+ ": " 
    				+ result[i].name 
-   				+ ":</td><td>$" + result[i].sell_price + "<a href='#' class='buy' id='" 
+   				+ ":</span><span class='price'>$" 
+				+ result[i].sell_price 
+				+ "</span><a href='#' class='buy' id='" 
    				+ result[i].item_id 
-   				+ "'>[BUY]</a></td></tr>"; 
+   				+ "'>BUY</a></div>"; 
   				all= all + row;  
    			}
 
-			all= all + '</tbody></table>';
+			all= all + '';
 	
 		   	document.id('building_papers_table').innerHTML = all;	
 		   	$$('.buy').addEvent('click', function()
@@ -818,7 +831,7 @@ function get_shop_papers(){
 }
 
 function get_papers(){
-	var all		= '<table class="shade-table"><tbody>';
+	var all		= '';
 	var details = this.details;
 	var a		= new Request.JSON(
 	{
@@ -827,17 +840,17 @@ function get_papers(){
     	{
        		for (i = 0; i < result.length; ++ i)
        		{
-				var row = "<tr class=\"d" 
-				+ (i & 1) 
-				+ "\"><td>" + (i+1) + ":" 
-				+ result[i].name + " COST:" 
+				var row = "<div class='row'><span>" 
+				+ (i+1) + ":" 
+				+ result[i].name 
+				+ "</span><span class='price'>COST:" 
 				+ result[i].buy_price 
-				+ "<a href='#' class= 'sell' id='" 
+				+ "</span><a href='#' class= 'sell' id='" 
 				+ result[i].item_id 
-				+ "' > [SELL] </a></td></tr>";
+				+ "' >SELL</a></div>";
 				all= all + row;  
     		}
-			all = all + '</tbody></table>';	
+			all = all + '';	
 			document.id('my_papers').innerHTML = all;	
 			$$('.sell').addEvent('click', function()
 			{
@@ -1476,7 +1489,7 @@ function mine(type)
 			
 function request_shop_inventory()
 {
-	var all = '<div id="building_inventory_table"><div class="name">Available to Buy</div>';
+	var all = '';
 	var details = this.details;
 	//	var id = $('image').get('number');
 	var a = new Request.JSON(
@@ -1495,7 +1508,7 @@ function request_shop_inventory()
   		        all= all + row;
   		    }
 		    id      = 0;
-		    all     = all + '</div>';
+		    all     = all + '';
 		    document.id('building_inventory_table').innerHTML = all;
 		    $$('.buy').addEvent('click', function()
 		    {
@@ -1508,7 +1521,7 @@ function request_shop_inventory()
 
 function request_inventory()
 {
-	var all = '<div id="my_inventory"><div class="name">Available to Sell</div>';
+	var all = '';
 	var details = this.details;
 	var a = new Request.JSON({
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_inventory_to_sell&building_id=" 
@@ -1526,7 +1539,7 @@ function request_inventory()
                 + "</span></div>"; 
  				all= all + row;
  			}
-			all= all + '</div>';
+			all= all + '';
 			document.id('my_inventory').innerHTML = all;
 			$$('.sell').addEvent('click', function()
 			{
