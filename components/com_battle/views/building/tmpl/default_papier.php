@@ -2,50 +2,30 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 ?>
 
-<div id="papers" style="
-width:49%;
-float:left;
-">
 
-<div id="b_i_t_title" style="
-text-transform:uppercase;
-font-weight:bold;
-background:#333;
-color:#000;
-text-align:center;
-margin:0 0 10px 0;
-">
-* * * * For Sale * * * *</div>
 
-<table id="building_papers_table" class="shade-table">
-<tbody>
-<tr>
+<div id="inventory" class="papers">
 
-</tr>
-</tbody>
-</table>
+
+<div class="stand_left">
+
+	<div class="name">* * * * For Sale * * * *</div>
+
+	<div id="building_papers_table">
+	</div>
+
+
 </div>
+<!--end of left -->
 
-<div style="
-width:49%;
-float:right;"
->
-<div id="m_i_t_title" style="
-text-transform:uppercase;
-font-weight:bold;
-background:#333;
-color:#000;
-text-align:center;
-margin:0 0 10px 0;
-">
-* * * * My papers * * * *</div>
 
-<table id="my_papers"class="shade-table">
-<tbody>
-<tr>
+<div class="stand_right">	
+	<div class="name">* * * * My papers * * * *</div>
 
-</tr>
-</tbody>
-</table>
+	<div id="my_papers"></div>
+		
+</div><!--end of right -->
+
+
 </div><!--end inventory-->
 

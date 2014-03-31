@@ -288,6 +288,35 @@ div.weapon_swap h4 {
 div#weapons p {
 	margin:0 0 10px;
 }
+
+.weapons div.row,
+.scrapyard div.row,
+.missions div.row,
+.papers div.row {
+  border-bottom: 1px solid #222222;
+  clear: both;
+  display: block;
+  float: none;
+  margin: 0;
+  text-align: left;
+  padding:0 0 0 5px;
+}
+
+#inventory.weapons span.price,
+#inventory.scrapyard span.price,
+#inventory.missions span.price,
+#inventory.papers span.price {
+background:#222;
+display:inline-block;
+color:#ccc;
+font-size:85%;
+margin-left:10px;
+padding:0 5px;
+}
+
+
+
+
 div.building_left {
 	width:60%;
 	min-height: 377px;
@@ -395,7 +424,7 @@ p.instructions {
 	font-size:8pt;
 }
 /* Inventory */
-div#inventory {overflow:auto;height:210px;}
+div#inventory {height:210px;}
 div#inventory div.name {margin:0;padding:0 0 0 5px;text-align:left;}
 div#profile+div#inventory {
 	width:32%;
@@ -435,6 +464,7 @@ cursor:pointer;
 background:rgba(26,130,26,1);
 padding:0 5px;
 display:inline-block;
+float:right;
 }
 div#inventory a.buy:hover,
 div#inventory a.sell:hover {
@@ -455,6 +485,8 @@ font-size:85%;
   height:100%;
   overflow: hidden;
 }
+#building_inventory_table,
+#my_inventory,
 .apt #inventory #building_inventory_table,
 .apt #inventory #my_inventory {
   max-height: 300px;
@@ -672,9 +704,8 @@ float:left;
 div#time_elapsed{
 	text-align:center; 
 	display:inline-block;
-	width:300px;
+	width:50%;
 	float:left;
-	margin:0 5px 0 10px;
 	padding:0;
 	color:#FFF;border:1px solid #333;background:rgba(26,130,26,1);
 }
@@ -682,11 +713,15 @@ div#time_elapsed{
 div#time_remaining{
 	text-align:center; 
 	display:inline-block;
-	width:300px;
+	width:50%;
 	float:right;
-	margin:0 10px 0 5px;
 	padding:0;
 	color:#FFF;border:1px solid #333;background:rgba(160,8,8,1);
+}
+
+div#time_elapsed label,
+div#time_remaining label{
+color:#fff;
 }
 
 #box4 ul {
@@ -719,7 +754,8 @@ div#stats .label ,
 div#inventory_module .label,
 div#stats_module .label,
 div#weapon_module .label,
-.apt .label {
+.apt .label,
+.mine .label {
 	text-align:left;
 	display:inline-block;
 	text-transform: uppercase;
@@ -845,10 +881,10 @@ div#flats div.row {float:none;display:block;clear:both;margin:0;text-align:left;
 border-bottom:1px solid #222;
 }
 
-div.flats.row div:first-child {width:50%;}
-div.flats.row div:nth-child(2) {width:20%;}
+div.flats.row div:first-child {width:48%;}
+div.flats.row div:nth-child(2) {width:18%;}
 div.flats.row div:nth-child(3) {width:5%;}
-div.flats.row div:last-child {width:25%;}
+div.flats.row div:last-child {width:28%;}
 
 @media (max-width: 768px){
 
@@ -863,6 +899,7 @@ div.flats.row div:last-child {width:25%;}
 div#flats h4 {
 margin:0;
 text-align:center;
+font-size:14px;
 }
 div#flats h4 a {
 background:rgba(160,8,8,1);
@@ -1650,6 +1687,23 @@ width:100%;
 
 
 
+@media (max-width: 576px){
+
+
+	#slider .tooltip {
+	  bottom: 60px;
+	}
+
+	#slider .tooltip h3 {
+	  font-size: 1.3em;
+	  
+	}
+
+
+
+}
+
+
 @media (max-width: 481px){
 	div.building_left {
 		width:100%;
@@ -1662,22 +1716,42 @@ width:100%;
 		min-height: 377px;
 		float:none;
 	}
-	
-.stand_left,
-.stand_right{float:none;width:100%;clear:both;}
+		
+	.stand_left,
+	.stand_right{float:none;width:100%;clear:both;}
 
-#leave {
-position:relative;
-top:0;
-width:90%;
-}
+	#leave {
+	position:relative;
+	top:0;
+	width:90%;
+	}
 
-form.conveyor .object,
-form.conveyor .metal {
-	display:block;
-	width:100%;
-	float:none;
-	margin:1em 0;
-}
+
+
+	div#time_elapsed,
+	div#time_remaining{
+		display:block;
+		width:100%;
+		float:none;
+	}
+
+	form.conveyor .object,
+	form.conveyor .metal {
+		display:block;
+		width:100%;
+		float:none;
+		margin:1em 0;
+	}
+
+	#slider .tooltip {
+	  bottom: 0;
+	}
+
+	#slider .tooltip h3 {
+	  font-size: 1em;
+	  
+	}
+
+
 
 }

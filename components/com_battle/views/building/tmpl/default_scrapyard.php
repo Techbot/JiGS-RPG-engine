@@ -2,58 +2,31 @@
 ?>
 
 
-<div id="inventory">
+<div id="inventory" class="scrapyard">
 
-	<div style="float:left;width:49.5%">
 
-		<div class="name">Available to Buy</div>
-		<table id="building_inventory_table" class="shade-table">
-			<tbody>
-				<tr>
+	<div class="stand_left">
 
-				</tr>
-			</tbody>
-		</table>
+	<div class="name">Available to Buy</div>
+
+		<div id="building_inventory_table">
+		
+		</div>
 
 	</div>
 	<!--end of left -->
 
 
+	
+	<div class="stand_right">	
+	<div class="name">Available to Sell</div>
 
-	<div style="float:right;width:49.5%">
-		<div class="name">Available to Sell</div>
-
-		<table id="my_inventory" class="shade-table">
-			<tbody>
-				<tr>
-
-				</tr>
-			</tbody>
-		</table>
+		<div id="my_inventory">
+		</div>
 
 	</div>
-	<!-- end of middle 
-
-	<div id="right" style="width: 30%; float: left;">
-
-		<div class="name">My Inventory</div>
-
-		<table id="my_inventory2" class="shade-table">
-			<tbody>
-				<tr>
-
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<!-- end of right -->
-
-	<div>
-		<!-- end of inventory -->
+	<!--end of right -->
 
 
-
-
-
-		<!--end inventory-->
-
+<div>
+<!-- end of inventory -->

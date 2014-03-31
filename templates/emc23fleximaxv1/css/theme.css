@@ -180,6 +180,7 @@ hr {
 }
 
 
+
 label {
 font-size: 85%;
 text-transform: uppercase;
@@ -414,9 +415,7 @@ div.archive h2,
 div.contact h2,
 div.contact-category h2 ,
 div.weblink-category h2 {
-border-top: 1px solid #DFDFDF;
-border-bottom: 3px solid #DFDFDF;
-background: #FFF;
+border-bottom: 3px solid #009999;
 }
 
 /* Article Title Linkable*/
@@ -433,6 +432,45 @@ div.item-page h2 a:hover,
 div.archive h2 a:hover {
 text-decoration: underline;
 }
+
+
+/* Page Title */
+.blog h1, 
+.item-page h1, 
+h1.componentheading,
+.categories-list h1 {
+color: #009999;
+text-align:right;
+text-transform: uppercase;
+font-size:85%;
+line-height:1em;
+border-bottom:1px #009999 dotted;
+}
+
+
+
+/* Blog Layout*/
+div.blog,
+div#page,
+div.cbProfile,
+div.cbUsersList,
+form#login ,
+table.blog,
+.item-page,
+div.categories-list{
+background:rgba(0,0,0,0.8);
+}
+
+
+/* Article */
+div#page p,
+.blog p, 
+.item-page p {
+margin: 3em 0;
+text-align: justify;
+line-height: 1.4em;
+}
+
 
 /* Category Blog Layout*/
 div.blog {}
@@ -651,11 +689,13 @@ div.category-list {}
 div.category-desc {}
 div.category-desc img {}
 
+div.contentheading,
 div.category-desc,
 div.contentdescription {
 font-style: normal;
-background:#F3F3F3;
-border: 1px solid #EBEBEB;
+background:#003535;
+border: 1px solid #009999;
+color:white;
 }
 
 div.cat-items {}
