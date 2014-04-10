@@ -5,6 +5,31 @@
 width:100%;
 }
 
+
+ul.inline {
+margin:0;
+
+}
+ul.inline li{
+display:inline-block;
+margin-right:1em;
+}
+
+
+
+
+.label,
+.badge {
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #000000;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: rgba(0,153,153,0.8);
+}
+
 a#withdraw,a#deposit,#submit_c{
 	background:#333;
 	padding:3px 10px;
@@ -256,12 +281,18 @@ a:hover {color:#fff;}
 	border:1px solid #252525;
 	padding:20px;
 }
-.weapon_swap{
-	padding:5px;
-	margin:0 0 10px;
+.weapons .swap{
+	padding:1em;
+	margin:0 0 1em;
 	color:#fff;
 	border:1px solid #252525;
 	text-align:center;
+	background:rgba(0,0,0,0.8);
+}
+.weapons img{
+display:block;
+margin:0.5em auto 0;
+text-align:center;
 }
 #weapon {
 	padding:5px;
@@ -278,7 +309,7 @@ div.weapons_right {
 	width:58%;
 	float:right;
 }
-div.weapon_swap h4 {
+div.weapon .swap h4 {
 	color:#fff;
 	background:#003535;
 	text-align:center;
@@ -493,6 +524,15 @@ font-size:85%;
   overflow: auto;
 }
 
+
+.apt ul {
+margin:0;
+
+}
+.apt ul li {
+display:inline-block;
+margin-right:1em;
+}
 
 /* Player Actions */
 div#action {
