@@ -16,11 +16,9 @@
 
 ?>
 
-<div id="factory_noob" class="sample">
-<div class="mask3">
-<div id="box4">
-<div>
-<div id='conveyor_progress' style='visibility: hidden;'>
+<div class="factory">
+
+<div id='conveyor_progress' style='display: none;'>
 <p>
 <label title="when manufactoring began">Started: </label><span id="since"></span></p>
 <p>
@@ -37,7 +35,6 @@
 
 </div>
 <!-- end of conveyor_progress -->
-<h3>Conveyor 1</h3>
 <?php
 // print_r ($x);
 
@@ -57,7 +54,6 @@ if (isset ($this->blueprints)){
 
 ?>
 
-<!--div id="slider-id" class="liquid-slider"-->
 
 			<div>
 				<?php 
@@ -74,15 +70,8 @@ if (isset ($this->blueprints)){
 				?>
 		<?php echo $this->loadTemplate ("hobbit_workforce"); ?>
 		<?php echo $this->loadTemplate ("timebar"); ?>
-				<div id="meter">
-					<img src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg"><img
-						src="/components/com_battle/images/meter01.jpg">
-				</div>
-				<!--end of meter-->
-						<ul>
+
+				<ul class="inline">
 					<li>Number of Employees: 7</li>
 					<li>Employees Morale: 70%</li>
 					<li>Employee Efficiency: 95%</li>
@@ -90,8 +79,5 @@ if (isset ($this->blueprints)){
 				
 			</div>
 
-		
-
-<!--/div-->
 
 		

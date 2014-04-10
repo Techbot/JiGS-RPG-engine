@@ -9,7 +9,7 @@ $now= time();
  if ($this->mines['timestamp'] !=0 )
 
  { ?>
-	<div id="mine_board1" style="visibility:hidden;">
+	<div id="mine_board1" style="display:none;">
 		
 <?php } 
 
@@ -18,7 +18,7 @@ $now= time();
 
 
 else { ?>
-	<div id="mine_board1" style="visibility:visible;">
+	<div id="mine_board1" style="display:block;">
 	
 		<?php } ?>	
 	
@@ -36,10 +36,10 @@ else { ?>
 
 <?php if ($this->mines['timestamp'] != 0 )
  { ?> 
-<div id ="mine_progress1" style="visibility:visible;">
+<div id ="mine_progress1" style="display:block;">
 <?php }
  else{ ?>
-<div id ="mine_progress1" style="visibility:hidden;">
+<div id ="mine_progress1" style="display:none;">
 <?php  } ?>
 
 

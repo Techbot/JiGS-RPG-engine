@@ -9,25 +9,25 @@ jimport( 'joomla.methods' );
 	
 	
 	
-<div style= "width:250px ; float:left;" >
+<div class="weapons" style= "width:50%; float:left;padding:0 1em;" >
     <table>
     <?php
     foreach ($this->inv as $row)
     {
-        echo '<div class= "swap" id= "' . $row->id . '"' ;
-        echo '<br />Name : ' . $row->name;
+        echo '<div class= "swap" id= "' . $row->id . '">';
+        echo '<span class="label">' . $row->name;
         //echo '<br />Position : ' . $row->position;
-        echo '<img src="components/com_battle/images/weapons/' . $row->image . '">';
-        echo '	</div>';
+        echo '</span><img src="components/com_battle/images/weapons/' . $row->image . '">';
+        echo '</div>';
     }  
      
     ?>
     </table>
 </div>
 
-<div style=" width:200px;float:left;">
+<div style=" width:50%;float:left;padding:0 1em;">
     <div id="weapon"><?php ?></div>
-</div>;
+</div>
 
 <script type='text/javascript'>
 

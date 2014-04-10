@@ -1406,8 +1406,8 @@ function work(){
 		+ document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
-			document.id('adminForm').setStyle('visibility','hidden');
-			document.id('conveyor_progress').setStyle('visibility','visible');
+			document.id('adminForm').setStyle('display','none');
+			document.id('conveyor_progress').setStyle('display','block');
 			}
 	}).get();
 }
@@ -1431,8 +1431,8 @@ function reprocess(){
 		+ document.adminForm.time.value 
 		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
 		onSuccess: function(result){
-			document.id('adminForm').setStyle('visibility','hidden');
-			document.id('conveyor_progress').setStyle('visibility','visible');
+			document.id('adminForm').setStyle('display','none');
+			document.id('conveyor_progress').setStyle('display','block');
 			}
 	}).get();
 }
@@ -1456,8 +1456,8 @@ function check_reprocessor()
 	        document.getElementById('remaining').innerHTML  = result['remaining'];        
             if (result['remaining'] <= 0)
             {
-	            document.id('adminForm').setStyle('visibility','visible');
-		        document.id('conveyor_progress').setStyle('visibility','hidden');
+	            document.id('adminForm').setStyle('display','block');
+		        document.id('conveyor_progress').setStyle('display','none');
 		    }
 	     }
 	}).get();
@@ -1475,8 +1475,8 @@ function check_factory()
 		    document.getElementById('elapsed').innerHTML    = result['elapsed'];
 		    document.getElementById('remaining').innerHTML  = result['remaining'];        
 	        if (result['remaining'] <= 0){
-		        document.id('adminForm').setStyle('visibility','visible');
-			    document.id('conveyor_progress').setStyle('visibility','hidden');
+		        document.id('adminForm').setStyle('display','block');
+			    document.id('conveyor_progress').setStyle('display','none');
 			    }
 		    }
 	    }).get();
@@ -1540,8 +1540,8 @@ function check_mine(){
 
 			if(result['remaining']<=0)
 			{
-		 		$$('#mine_board1').setStyle('visibility','visible');
-		   		$$('#mine_progress1').setStyle('visibility','hidden');
+		 		$$('#mine_board1').setStyle('display','block');
+		   		$$('#mine_progress1').setStyle('display','none');
 			}
           
     	}
@@ -1566,8 +1566,8 @@ function mine(type)
 		+ building_id + "&type=" + type, 
     onSuccess: function(result){
                	
-    	$$('#mine_board1').setStyle('visibility','hidden');
-        $$('#mine_progress1').setStyle('visibility','visible');  	    
+    	$$('#mine_board1').setStyle('display','none');
+        $$('#mine_progress1').setStyle('display','block');  	    
     	}
     }).get();
 }
