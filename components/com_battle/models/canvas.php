@@ -3,6 +3,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
+require_once('/components/com_battle/includes/ascii_art.php');
+
+
 class BattleModelCanvas extends JModel
 {
 	
@@ -13,6 +16,7 @@ class BattleModelCanvas extends JModel
 	$db->setQuery($query);
 	$db->query();
 	return (JRequest::getvar('id'));
+	//return;
 	}
 
 

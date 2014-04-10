@@ -28,6 +28,7 @@
 	//request_batteries.periodical(50085);	 
 	control_panel_system();
 	set_type();
+	setup_hobbits();
 
 })();	
 
@@ -146,6 +147,31 @@ function set_type()
         request_battery_slots();
         request_battery_slots.periodical(5000);				
     }	
+    
+    if (window.building_type=="batteryshop")
+    {
+        request_batteries();
+        request_batteries.periodical(5085);
+        request_battery_slots();
+        request_battery_slots.periodical(5000);				
+    }	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     if (window.building_type=="bank")
     {
@@ -248,6 +274,13 @@ function control_panel_system()
 	});
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////	 
+
+
+
+
+
+
+
 
 function buy_weapon(itemID)
 {
@@ -783,7 +816,7 @@ function get_battery(itemID){
 function put_battery(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=put_battery&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=put_battery&building_id=" 
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
@@ -791,6 +824,47 @@ function put_battery(itemID){
     }).get();
  
 }
+
+function setup_hobbits(){
+
+
+
+alert('hobbits');
+
+    $$('#assign').addEvent('click', function(){
+	
+		put_hobbit();
+	});
+
+	$$('#remove').addEvent('click', function(){
+	
+		get_hobbit();
+	});
+};
+
+
+function get_hobbit(){
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_hobbit&building_id=" 
+    + building_id , 
+    onSuccess: function(result){
+     	}
+    }).get();
+ 
+}
+
+function put_hobbit(itemID){
+ 
+	var a = new Request.JSON({
+    url: "index.php?option=com_battle&format=raw&task=building_action&action=put_hobbit&building_id=" 
+    + building_id , 
+    onSuccess: function(result){
+   	   
+    	}
+    }).get();
+ 
+}
+
 
 function get_shop_papers(){
 	
@@ -900,9 +974,19 @@ function sell_crops(){
 
 function work_field(itemID)
 {	 	
+    
+      //Magic_index						= document.adminForm.Magic_Index.value;
+      Crop_index						= document.adminForm.Crop_Index.value;
+      //Skill_index						= document.adminForm.Skill_Index.value; 
+      hobbits_index                   = document.adminForm.hobbits_total.value ; 
+    
+    //alert (hobbits_index);
+    
+    
+    
     var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" 
-    + building_id + "&crop=1&field=" + itemID  ,
+    + building_id + "&crop=" + Crop_index + "&field=" + itemID +"&wf=" + hobbits_index ,
     onSuccess: function(result){
      	//new tmp element that contains the new div
     	var tmpDiv = new Element('div',
@@ -1169,9 +1253,16 @@ function get_blueprints()
 
 function changeCrops()
 {
-    i=0;
+    i = 0;
     index							= document.adminForm.crops.value;
     
+	
+	var h_total_ = parseInt(document.getElementById('wfTotal').innerHTML);
+    console.log(h_total_ == ''); // true
+    console.log(h_total_ == null); // false
+
+//	var building_id = document.getElementById("building_id").value;
+	
 	
 	
 	
@@ -1189,8 +1280,28 @@ function changeCrops()
             Crop_index						= document.adminForm.Crop_Index.value;
             Skill_index						= document.adminForm.Skill_Index.value; 
             
+            hobbits                         = document.adminForm.hobbits_total.value; 
+            hobbits_index                   = hobbits * .1;
             
-            document.adminForm.ETA.value = Magic_index * Crop_index * Skill_index * 50;
+            alert(hobbits_index);
+            
+            if (hobbits > h_total_){
+                document.id('hobbits_total').setStyle('background','red');
+            
+            }
+            else{
+            
+             document.id('hobbits_total').setStyle('background','black');
+            
+            
+            }
+            
+            
+            
+            
+            
+            
+            document.adminForm.ETA.value = Magic_index * Crop_index * Skill_index * 50 * (1 - hobbits_index);
 		
 		}
 	}).get();

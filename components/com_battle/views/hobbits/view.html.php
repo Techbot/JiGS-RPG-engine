@@ -7,7 +7,7 @@ class BattleViewHobbits extends JView
 {	
 	function display($tpl = null)
 	{
-		$rows =& $this->get('data');
+		$rows = $this->get('data');
 		
 		$this->assignRef('rows', $rows);
 		

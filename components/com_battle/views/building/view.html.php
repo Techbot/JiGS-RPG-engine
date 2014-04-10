@@ -41,6 +41,14 @@ class BattleViewBuilding extends JView
 
 		$this->assignRef('board_info_1',$board_info_1);
 
+		$model3                     = JModel::getInstance('hobbits','BattleModel');
+
+        $hobbit_stats                = $model->get_hobbit_stats();
+        $this->assignRef('hobbits', $hobbit_stats);
+
+
+
+
 		///////////////////////////////////////////////////////////////////////////////////////////////////	
 		// This is where we make an object specific to each building type 	
 		///////////////////////////////////////////////////////////////////////////////////////////////////	

@@ -15,7 +15,7 @@ class BattleController extends JController
 	function computer_action()
 	{	
 		$model			= $this->getModel('jigs');
-		$heartbeat		= $model->heartbeat();
+		//$heartbeat		= $model->heartbeat();
 		$player			= $model->get_stats();
 		$model			= $this->getModel ('computer');
 		$action			= JRequest::getVar('action');
@@ -40,7 +40,7 @@ class BattleController extends JController
 		$view		= JRequest::getVar('view');
 
 		
-		if ($view=='factions'||$view=='group'||$view=='canvas')
+		if ($view=='factions'||$view=='group'||$view=='canvas'||$view=='hobbits'||$view=='hobbit')
 		{
 			JRequest::setVar('view', $view);
 			//$view = $this->getView($view, 'html') ;
@@ -49,12 +49,10 @@ class BattleController extends JController
 			//parent::display();
 					
 		}
-		
-		
 		elseif ($user->id==0)
 		{
 			//JRequest::setVar('view', 'loggedout');
-			$url ="index.php?option=com_comprofiler&task=login";
+			$url ="index.php?option=com_content";
 			$this->setRedirect( $url );
 		}
 
@@ -83,6 +81,12 @@ class BattleController extends JController
 		    
 		    if ($player_status == 4)
 		    {
+		        $view = $this->getView('canvas', 'html') ;
+		      // $test=  $this->getModel( 'ascii_art',true);
+		        
+		  //      $test=  $this->getModel( 'ascii_art');
+		      //  $view->setModel( $test ) ;
+			    
 			    JRequest::setVar('view', 'canvas');
 		    }
 		}

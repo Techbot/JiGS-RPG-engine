@@ -7,9 +7,9 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'t
 
 class BattleViewCanvas extends JView
 {	
-	function display($tpl = null)
+	function display($tpl="001b")
 	{
-	//	$id = (int) JRequest::getVar('id', 0);
+		//$this->id = (int) JRequest::getVar('id', 0);
 	
 		
 		$model = &$this->getModel();

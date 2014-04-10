@@ -47,61 +47,72 @@ class plgBattleHeartbeat extends JPlugin
 		return ;
 		
 	}
-
 	
 	public function daily()
 	{
 	    $db 	    = JFactory::getDBO();
 		$now		= time();
 		$this->sendMessage($now,'Daily begun');
-		$factions    = array(35,36,42);
+		$this->update_groups();
+		
+	}	
+    public function update_groups()
+	{
+	    $db         = JFactory::getDBO();
+	    $factions    = array(35,36,42);
+
 		foreach ($factions as $faction)
-		{		
-		    
-		   $groups = $this->get_faction_groups($faction);
-		   if ($groups)
-		   {
-		    
-                  foreach ($groups as $group)
+        {		
+            $groups = $this->get_faction_groups($faction);
+            if ($groups)
+            {
+                foreach ($groups as $group)
 	            {
+                    $query          = "SELECT * FROM #__user_usergroup_map 
+                        LEFT JOIN #__jigs_players 
+                        
+                        ON #__user_usergroup_map.user_id = #__jigs_players.id
+                        
+                        WHERE group_id = $group ORDER BY #__jigs_players.xp DESC";
+		                
+                    $db->setQuery($query);
+                    $userlist = $db->loadObjectList();
+                    $captain = $userlist[0]->id;
 	                $total->$group->members = 0;
-	            
-		            $userlist = $this->get_userlist($group);
-		            
 		            foreach ($userlist as $user)
 	                {
-		                $result	= $this->get_user($user);
-		                $total->$group->members = $total->$group->members + 1; 
-		                $total->$group->xp += $result->xp;
-	                    $total->$group->money += $result->money;
-		                $total->$group->bank += $result->bank;  
+		             
+		                $total->$group->members     = $total->$group->members + 1; 
+		                $total->$group->xp          += $user->xp;
+	                    $total->$group->money       += $user->money;
+		                $total->$group->bank        += $user->bank;  
       	       
 		            }
-		            
-		                $one        = $total->$group->members; 
-		                $two        = $total->$group->xp ;
-	                    $three      = $total->$group->money;
-		                $four       = $total->$group->bank ;  
+                    $one        = $total->$group->members; 
+                    $two        = $total->$group->xp ;
+                    $three      = $total->$group->money;
+                    $four       = $total->$group->bank ;  
 	            
-		           $query = " INSERT INTO #__jigs_groups (id,total_members, total_xp , total_money ,total_bank ) VALUES 
-		                (
-		                    $group,$one,$two,$three,$four
-		                )
-		                ON DUPLICATE KEY UPDATE 
+                    $query = "INSERT INTO #__jigs_groups (gid,total_members, total_xp , total_money ,total_bank,captain ) 
+                    VALUES ($group,$one,$two,$three,$four,$captain)
+                    ON DUPLICATE KEY UPDATE 
 		                 
 		                total_members =  $one,
 		                total_xp  =  $two,
 		                total_money = $three,
-		                total_bank = $four
+		                total_bank = $four,
+		                captain = $captain
 		                ";
-		                $db->setQuery($query);
-		                $db->query(); 
+		            $db->setQuery($query);
+		            $db->query(); 
      		    }
 		    }
 		}
 		return ;
-	}	
-	
+   
+        	    
+	} 
+
 	public function get_faction_groups($faction)
 	{
 		$db         = JFactory::getDBO();
@@ -141,10 +152,14 @@ class plgBattleHeartbeat extends JPlugin
 		//$result	= $this->get_players();
 		$result_7	= $this->events();
  		$result_8	= $this->check_generators();
+ 		$result_9   = $this->update_groups();
 		$now		= time();
 		$this->sendMessage($now,'heartbeat complete');
 		return ;
 	}
+	
+	
+	
 	
 	function events(){
 	
@@ -796,6 +811,9 @@ class plgBattleHeartbeat extends JPlugin
 	}
 
 	function get_player(){
+	
+	
+	
 		$db					= JFactory::getDBO();
 		$id					= rand(3000,3100);
 		$player->dice		= rand(0, 5);

@@ -11,12 +11,14 @@ class BattleViewHobbit extends JView
 	{
 		$id = (int) JRequest::getVar('id', 0);
 		//$people = JTable::getTable('people');
-		$people = JTable::getInstance('people', 'Table');
-                $people->load($id);      
-               // print_r($people);
-
 		
+		
+		$people = JTable::getInstance('hobbits', 'Table');
+        $people->load($id);      
+               // print_r($people);
+	
 		$model = &$this->getModel();
+
 	//	$this->assignRef('inv',$model->get_character_inventory($id));
 		
 	//	echo '<pre>';

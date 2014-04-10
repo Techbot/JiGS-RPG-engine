@@ -16,26 +16,6 @@
 </ul>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="leave">Leave Apartment</div>
 
 <div id="inventory">
@@ -64,28 +44,7 @@
 		<!-- end of inventory -->
 
 
-
-
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script type='text/javascript'>
@@ -106,26 +65,12 @@ function leave()
 }
 
 leave();
- 
- 
- 
- 
- 
+
  				var head = document.getElementsByTagName('head')[0];
 				script = document.createElement('script');
 				script.type = "text/javascript";
 				script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/room.js';  
 				head.appendChild(script);
- 
- 
 
- 
- 
- 
- 
- 
- 
- 
- 
  
 </script>

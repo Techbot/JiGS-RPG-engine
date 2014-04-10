@@ -12,7 +12,7 @@ class BattleViewBuilding extends JView
 		$model						= $this->getModel();
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
-		$model2 = JModel::getInstance('jigs','BattleModel');					
+		$model2                     = JModel::getInstance('jigs','BattleModel');					
 
 		$buildings->energy			= $model2->get_total_energy($id);
 		$owner						= $buildings->owner;
@@ -38,10 +38,22 @@ class BattleViewBuilding extends JView
 		$this->buildings->elapsed	= $now - $timestamp;
 		$this->buildings->now		= $now;
 		$this->assignRef('backlink', $backlink);
-		//$model					= $this->getModel();
+		$model					= $this->getModel();
 		$board_info_1				= $model->get_board_messages($id,$this->buildings->type);
 
 		$this->assignRef('board_info_1',$board_info_1);
+
+
+
+
+		$model3                     = JModel::getInstance('hobbits','BattleModel');
+        $player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
+        $this->assignRef('player_hobbit_stats', $player_hobbit_stats);
+
+        $building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id);
+        
+        $this->assignRef('building_hobbit_stats', $building_hobbit_stats);
+
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////	
 		// This is where we make an object specific to each building type 	

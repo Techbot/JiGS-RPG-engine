@@ -1,7 +1,7 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' ); 
 
- print_r($this->inv);
+// print_r($this->inv);
 // exit();
 
 

@@ -6,7 +6,7 @@ $people = $this->people;
 			<div id="profile_" class="clearfix">
 			<div class="name">' . $people->name . '</div>
 			<div class="desc">
-			<img src="/components/com_battle/images/ennemis/' . $people->image . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" />
+			<img src="/components/com_battle/images/ennemis/' . $people->avatar . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" />
 			<div class="stats">
 			<table class="stats" >
 			<tr>

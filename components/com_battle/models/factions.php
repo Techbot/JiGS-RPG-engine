@@ -6,17 +6,6 @@ jimport('joomla.application.component.model');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	function compare_weights($a, $b) { 
     if($a->xp == $b->xp) {
         return 0 ;
@@ -82,14 +71,8 @@ class BattleModelfactions extends JModel
 		foreach ($groupstats as $group)
 		{
 		
-		$group->name = $this->get_group_name($group->id);
-		
-		
-		
-		
-		$query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $group->captain;
-		        $db->setQuery($query);
-		        $group->avatar	= $db->loadResult();
+		$group->name    = $this->get_group_name($group->id);
+        $group->avatar	= $this->get_avatar($group->captain);
 		
 		}
 	
@@ -98,15 +81,25 @@ class BattleModelfactions extends JModel
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	function get_avatar($id)
+	{
+	
+        $db         = JFactory::getDBO();
+        $query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
+        $db->setQuery($query);
+        return $db->loadResult();
+	
+	
+	}
+	
+
+	
 	
 	function get_group_members()
 	{
 	
 	
-	
-	
-	
-	
+
 	            $db                         = JFactory::getDBO();
 	            $gid                        = JRequest::getVar('gid');
                 $query				        = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = $gid" ;
@@ -219,20 +212,7 @@ class BattleModelfactions extends JModel
   return ($a->money < $b->money) ? -1 : 1;
 } 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -243,18 +223,10 @@ class BattleModelfactions extends JModel
 	   
 	    foreach ($group_ids as $id)
             {
-                $query = "SELECT id,
-                name,
-                xp,
-                health,
-                bank,
-                type,
-                money,
-                level 
-                FROM #__jigs_players WHERE id = $id ORDER BY xp DESC";
+                $query = "SELECT id, name,    xp,  health, bank, type, money,level FROM #__jigs_players WHERE id = $id ORDER BY xp DESC";
                 $db->setQuery($query);
                 $x = $db->loadObject();
-                $x->id2=$id;
+                $x->id2 = $id;
                 $query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
 		        $db->setQuery($query);
 		        $x->avatar	= $db->loadResult();

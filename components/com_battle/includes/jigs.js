@@ -1,6 +1,7 @@
 ////////////////////////////////////////
 // Joomla interactive Game System
 ////////////Set up the variables ///////////////////////////////
+var active = 1;
 var PosX = '';
 var PosY = '';
 var grid = '';
@@ -110,30 +111,35 @@ window.addEvent('domready',function()
 // Standard Function to test for keypresses
 function check(e)
 {
-	if (!e)
-		var e = window.event;
-	(e.keyCode) ? key = e.keyCode : key = e.which;
-	try
-	{
-		switch (key)
-		{
-			case 38:
-				MoveUp();
-				break;
-			case 39:
-				MoveRight();
-				break;
-			case 40:
-				MoveDown();
-				break;
-			case 37:
-				MoveLeft();
-				break;
-		}
-	}
-	catch (Exception)
-	{
-	}
+
+    if (active==1)
+    {
+
+	        if (!e)
+		        var e = window.event;
+	        (e.keyCode) ? key = e.keyCode : key = e.which;
+	        try
+	        {
+		        switch (key)
+		        {
+			        case 38:
+				        MoveUp();
+				        break;
+			        case 39:
+				        MoveRight();
+				        break;
+			        case 40:
+				        MoveDown();
+				        break;
+			        case 37:
+				        MoveLeft();
+				        break;
+		        }
+	        }
+	        catch (Exception)
+	        {
+	        }
+    }	
 }
 
 // ////////////////////////////////////////////////////////

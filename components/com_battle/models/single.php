@@ -2,8 +2,11 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
+jimport( 'joomla.filesystem.folder' );
+require_once JPATH_COMPONENT.'/helpers/messages.php';
 
 class BattleModelSingle extends JModel{
+
 	function savecoord() 
 	{
 		$db =& JFactory::getDBO();
@@ -84,7 +87,7 @@ class BattleModelSingle extends JModel{
 		$result = $db->loadObjectlist();
 		
 		foreach ($result as $building){
-		$db->setQuery("SELECT username FROM #__jigs_players WHERE id= $building->owner");
+		$db->setQuery("SELECT name FROM #__jigs_players WHERE id= $building->owner");
 		$building->ownername = $db->loadResult();
 		}
 		return $result;

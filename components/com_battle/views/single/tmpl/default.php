@@ -11,10 +11,10 @@ $avatar = $this->player_pos[4];
 $grid_index = $this->grid;
 
 // echo '<pre>';
-// print_r($this->grid);
+// print_r($this->buildings);
 // echo '</pre>';
 
-//exit();
+// exit();
 
 ?>
 <script type="text/javascript" >
@@ -327,11 +327,13 @@ $x= $x+1;
 				alert(itemID);
 				
 				mything = new Element ('div',{'id':"container",html:result,'style':'border 1px solid #F00; '});	
+		 		mything.replaces(document.id('world'));
 		 			 
-				 document.getElementById('loadarea_0').src= '/components/com_battle/includes/raphael-min.js';
-				  document.getElementById('loadarea_1').src= '/components/com_battle/includes/canvas_' + itemID + '.js';
+                document.getElementById('loadarea_0').src= '/components/com_battle/includes/raphael-min.js';
+                document.getElementById('loadarea_1').src= '/components/com_battle/includes/canvas_' + itemID + '.js';
 				
-				mything.replaces($('world'));
+				;
+				
 			}
 		}).get();
 	});

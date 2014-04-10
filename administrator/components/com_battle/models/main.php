@@ -133,6 +133,7 @@ class battleModelMain extends JModellist
 	    }
 	    return;
 	}
+
 	function sync_players_batteries()
 	{	
 		$db				= JFactory::getDBO();
@@ -152,6 +153,7 @@ class battleModelMain extends JModellist
 	     }
 	return;
 	}
+
 	function sync_players_message()
 	{	
 		$db				= JFactory::getDBO();
@@ -176,6 +178,7 @@ class battleModelMain extends JModellist
 	     }	
 	return;
 	}
+
 	function sync_players_skills()
 	{	
 		$db				= JFactory::getDBO();
@@ -198,6 +201,7 @@ class battleModelMain extends JModellist
 	     }
 	return;
 	}	
+
 	function get_params( ){
 	    $app		= JFactory::getApplication();
 	    //  $componentParams = $app->getParams('com_battle');
@@ -206,6 +210,7 @@ class battleModelMain extends JModellist
 	
 	return  $param;
 	}
+
 	function get_message(){
 		$db				= JFactory::getDBO();
 		$query			= "SELECT time,text FROM #__shoutbox ORDER BY id DESC LIMIT 20";
@@ -214,7 +219,6 @@ class battleModelMain extends JModellist
 		return $result;
 	
 	}
-	
 	
 	function factionalise()
 	{
@@ -242,59 +246,41 @@ class battleModelMain extends JModellist
 					{
 						$group_id= 45;//Fantasia
 					}
-				$query	= "INSERT INTO  #__user_usergroup_map (user_id,group_id )VALUES ($user,$group_id)";				
-				$db->setQuery($query);
-				$db->query();	
+
+				    $query	= "INSERT INTO  #__user_usergroup_map (user_id,group_id )VALUES ($user,$group_id)";				
+				    $db->setQuery($query);
+				    $db->query();	
 				}
 				if (count($groups)==2)
 				{
-				//	print_r($groups);
 					$f_groups=array();
 					if (in_array(35, $groups))// cyberian 
 					{
-				//	echo "cyberian";
 						$f_groups		= $this->select_groups(35);
-					
-				//	print_r($f_groups);
-					
-					
 					
 					}
 					elseif (in_array(36, $groups))// Gaia 
 					{
-					//echo "gaian";
 						$f_groups		= $this->select_groups(36);
-				//	print_r($f_groups);
 					}
 					elseif (in_array(42, $groups))// Fanatasia 
 					{
-				//	echo "fantasian";
 						$f_groups		= $this->select_groups(42);
-				//	print_r($f_groups);
 					}
 					else
 					{
-					//echo "none";
-					continue;
-					
+					    continue;
 					}
 			
-					
-					$count = count($f_groups)-1;
-					
-					
-					$index = rand(0,$count);
+					$count          = count($f_groups)-1;
 
+					$index          = rand(0,$count);
 					
 					echo "rand:" . $index;
 					
-					
 					$group_id		= $f_groups[$index];
-				
-					
-									
-				
-					$query	= "INSERT INTO  #__user_usergroup_map (user_id,group_id )VALUES ($user,$group_id)";				
+
+					$query          = "INSERT INTO  #__user_usergroup_map (user_id,group_id )VALUES ($user,$group_id)";				
 					
 					//echo $query;
 					
@@ -306,6 +292,7 @@ class battleModelMain extends JModellist
 			}
 			return;
 	}
+	
 	function select_groups($faction_id)
 	{
 	

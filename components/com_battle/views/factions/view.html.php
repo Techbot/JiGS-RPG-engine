@@ -25,6 +25,10 @@ class BattleViewfactions extends JView
 		
 		$group->captain_name = $captain_object->username;
 		
+		$group->avatar = $model->get_avatar($group->captain) ;
+		
+		
+		
 		}
 		
 		

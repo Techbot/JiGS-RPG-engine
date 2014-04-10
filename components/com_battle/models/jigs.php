@@ -5,6 +5,26 @@ jimport('joomla.application.component.modellist');
 
 class BattleModelJigs extends JModellist{
 
+	function get_cells(){
+
+        $map	= JRequest::getvar('map');
+        $db	= JFactory::getDBO();
+        $user	= JFactory::getUser();
+        $db->setQuery("SELECT row0,row1,row2,row3,row4,row5,row6,row7 FROM #__jigs_maps WHERE id = ".$map);
+        $result	= $db->loadAssocList();
+        return $result;
+
+}
+
+	function get_portals(){
+
+        $map	= JRequest::getvar('map');
+        $db	= JFactory::getDBO();
+        $user	= JFactory::getUser();
+        $db->setQuery("SELECT * FROM #__jigs_portals WHERE from_map =" . $map);
+        $result	= $db->loadAssocList();
+        return $result;
+}
 
 
 	function get_messages(){
@@ -691,7 +711,7 @@ class BattleModelJigs extends JModellist{
 	function get_all_energy($id)
 	{
 		$db		= JFactory::getDBO();
-		$sql		= "SELECT * FROM #__jigs_batteries WHERE id = " . $id;
+		$sql		= "SELECT * FROM #__jigs_batteries WHERE user = " . $id;
 		$db->setQuery($sql);
 		$_all_energy	= $db->loadObjectList();
 		return $_all_energy;
@@ -712,7 +732,7 @@ class BattleModelJigs extends JModellist{
 
 		if ($total < $energy_units_required)
 		{
-			$message="not enough energy";
+			$message = "not enough energy";
 			$this->sendFeedback($user->id,$message);
 			return false;
 		}
@@ -764,7 +784,7 @@ class BattleModelJigs extends JModellist{
 		$db		= JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
 		$id		= JRequest::getvar('id');
-		$sql		= "UPDATE #__jigs_batteries SET id = $building_id where id = $id";
+		$sql		= "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
 		$db->setQuery($sql);
 		$result		= $db->query();	
 		return $sql;
@@ -828,7 +848,7 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$sql		= "SELECT * FROM #__jigs_batteries WHERE id =" . $user->id;
+		$sql		= "SELECT * FROM #__jigs_batteries WHERE user =" . $user->id;
 		$db->setQuery($sql);
 		$result		= $db->loadRowlist();
 		//return $sql;
@@ -1263,10 +1283,24 @@ class BattleModelJigs extends JModellist{
 		$posy		= JRequest::getvar('posy');
 		$map		= JRequest::getvar('map');
 		$grid		= JRequest::getvar('grid');
-		$db->setQuery("UPDATE #__jigs_players SET posx='".$posx."',posy='".$posy."',map='".$map."',grid='".$grid.
-			"'  WHERE id ='".$user->id."'");
+	
+		$db->setQuery("SELECT active FROM #__jigs_players WHERE id ='$user->id'");
+		$active		= $db->loadResult();
+
+		if (active==1)
+		{
+		    $db->setQuery("UPDATE #__jigs_players 
+		    SET posx = $posx,posy=$posy, map = $map, grid=$grid 
+		    WHERE id = $user->id");
 		$db->query();
 		$result		='success';
+	
+		}
+		else
+		{
+		    $result		='fail';
+		}
+
 		return $result;
 	}
 

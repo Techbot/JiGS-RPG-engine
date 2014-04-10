@@ -5,9 +5,9 @@ jimport( 'joomla.methods' );
 if ($this->player->id == 0){
 	$this->player->username = 'Nobody';
 } 
-//echo 'test:';
-// print_r($this->board_info_1);
-// exit();
+echo 'test:';
+ print_r($this->buildings);
+exit();
 ?>
   <div class="building_left">
     <div id="info" class=" clearfix">
@@ -47,10 +47,24 @@ if ($this->player->id == 0){
             <th scope="row">Owner</th>
             <td><?php echo $this->buildings->owner  ; ?></td>
           </tr>
-          <tr>
+        
+        
+         <tr>
             <th scope="row">XP</th>
             <td><?php echo $this->buildings->xp  ; ?></td>
           </tr>
+          
+        
+     <?php   if ($this->building_hobbit_stats->total){ ?>
+          <tr>
+            <th scope="row">Hobbits</th>
+            <td><?php echo $this->building_hobbit_stats->total  ; ?></td>
+          </tr>
+        
+          <?php } ?>
+          
+          
+          
           <tr>
             <th scope="row">Sale Price</th>
             <td><?php echo $this->buildings->price  ; ?></td>

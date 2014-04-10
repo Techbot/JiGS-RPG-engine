@@ -19,7 +19,10 @@ class BattleModelBuilding extends JModel
 		$quantity			= JRequest::getvar('quantity');
 		$now				= time();
 		$db					= JFactory::getDBO();
-		$q					= "INSERT INTO #__jigs_generators (building, quantity, timestamp) VALUES ($building_id,$quantity,$now ) ON DUPLICATE KEY UPDATE quantity = $quantity , timestamp= $now";
+		$q					= "INSERT INTO #__jigs_generators (building, quantity, timestamp) 
+		VALUES ($building_id,$quantity,$now ) 
+		ON DUPLICATE KEY 
+		UPDATE quantity = $quantity , timestamp= $now";
 		$db->setQuery($q);
 		$result				= $db->query();
 		return $result;
@@ -27,22 +30,6 @@ class BattleModelBuilding extends JModel
 
 	function work_conveyer()
 	{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		$energy_unit		= 1;
 		$building_id		= JRequest::getvar('building_id');
@@ -71,6 +58,11 @@ class BattleModelBuilding extends JModel
 		$resource 			= $db->setQuery($sql);
 		$player_qty_2		= $db->loadResult();		
 		$model				= JModel::getInstance('jigs','BattleModel');
+		
+		
+		
+		
+		
 		$energy_required	= $quantity * 1;	 	
 		if (!$model->use_battery($building_id, $energy_required))
 		{
@@ -83,7 +75,8 @@ class BattleModelBuilding extends JModel
 			$player_qty_2	= $player_qty_2 - $quantity_2;
 			$finished		= $now + ($quantity * $man_time * 60 );
 			$finished		= $now + (1 * 1 * 60);
-			$sql			= "INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp,finished) VALUES ($building_id, $line, $type, $quantity, $now, $finished ) 
+			$sql			= "INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp,finished) 
+			VALUES ($building_id, $line, $type, $quantity, $now, $finished ) 
 				ON DUPLICATE KEY UPDATE type =  $type , quantity = $quantity , timestamp= $now ,finished = $finished";
 			$db->setQuery($sql);
 			if (!$db->query())
@@ -91,15 +84,18 @@ class BattleModelBuilding extends JModel
 				echo Json_encode($sql);
 				return false;
 			};
-			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_1 WHERE item_id = " . $metal_1 . " AND player_id =". $user->id;
+			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_1 
+			WHERE item_id = " . $metal_1 . " AND player_id =". $user->id;
 			$db->setQuery($sql);
 			if (!$db->query())
 			{
 				echo Json_encode($sql);
 				return false;
 			};
-			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_2 WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
+			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_2 
+			WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
 			$db->setQuery($sql);
+			
 			if (!$db->query())
 			{
 				echo Json_encode($sql);
@@ -170,7 +166,9 @@ class BattleModelBuilding extends JModel
 		{
 			$finished	= $now + ($quantity * $man_time * 60 );
 			$finished	= $now + (1 * 1 * 60);
-			$sql		= "INSERT INTO #__jigs_reprocessors (building, type_name, type_quantity, line, metal1, metal2, quantity_1, quantity_2, timestamp, finished) VALUES ($building_id, '$name',$quantity, $line, $metal_1,$metal_2, $quantity_1,$quantity_2, $now, $finished ) ON DUPLICATE KEY UPDATE metal1 = $metal_1, metal2 = $metal_2, quantity_1 =$quantity_1, quantity_2 = $quantity_1 ,timestamp = $now, finished = $finished";
+			$sql		= "INSERT INTO #__jigs_reprocessors (building, type_name, type_quantity, line, metal1, metal2, quantity_1, quantity_2, timestamp, finished) 
+			VALUES ($building_id, '$name',$quantity, $line, $metal_1,$metal_2, $quantity_1,$quantity_2, $now, $finished ) 
+			ON DUPLICATE KEY UPDATE metal1 = $metal_1, metal2 = $metal_2, quantity_1 =$quantity_1, quantity_2 = $quantity_1 ,timestamp = $now, finished = $finished";
 			$db->setQuery($sql);
 
 			if (!$db->query()){
@@ -197,62 +195,103 @@ class BattleModelBuilding extends JModel
 	}
 /////////////////////////////////////////////////////////////////////////
 	function work_field()
-	{
-		$db				= JFactory::getDBO();
-		$user			= JFactory::getUser();
-		$field			= JRequest::getvar('field');
-		$building_id	= JRequest::getvar('building_id');
-		$now			= time();
-		$finished		= $now + 50;
-
-		//$crop	= JRequest::getvar('crop');
-		$query			= "SELECT status,crop,finished FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
-		$db->setQuery($query);
-		$result			= $db->loadRowList();
-
-		if (isset ($result[0][0]))
-		{ 
-		    $status			= $result[0][0];
-		}
-		else
-		{
-		    $status			= 0;
-		}   
-		    
-		if (isset ($result[0][1]))
-		{ 
-		    $crop			= $result[0][1];
-		}
-		else
-		{
-		    $crop			= 0;
-		} 		    
 	
-		if ($result[0][2]==0)
-		{
-		    $status++;
-		}
-		
-		
-		
-		if ($status>=6)
-		{
-		    $status=5;
-		}
+	{
 
-		$sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) values  ($building_id,$field, $status,$now , $crop, $finished) 
-			ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
+		$db				        = JFactory::getDBO();
+		$user			        = JFactory::getUser();
+		$field			        = JRequest::getvar('field');
+		$building_id	        = JRequest::getvar('building_id');
+		$workforce              = JRequest::getvar('wf');
+		$now			        = time();
+        $crop                   = JRequest::getvar('crop');
 
-		$db->setQuery($sql);
-		if(!$db->query())
+        $eta                    = (int) 60 * 1 * (1 - ($workforce * .02));
+
+		$finished		        = $now + $eta;
+
+        $model			        = JModel::getInstance('jigs','BattleModel');
+
+		$model3                 = JModel::getInstance('hobbits','BattleModel');
+        
+        $building_hobbit_stats  = $model3->get_hobbit_stats($building_id);
+        
+        $quantity			    = 1;
+		$energy_required	    = $quantity * 1;
+		
+		
+		
+		
+		if (!$model->use_battery($building_id, $energy_required))
 		{
-			$message	="error";
-			return $query;
+			return "Not Enough Energy";
 		}
-		else
+		
+		
+		if(!$model3->use_hobbits($building_id, $building_hobbit_stats->total,$workforce))
 		{
-			return $this->get_field_status_text($status);
+			return "Not Enough Hobbits";
 		}
+		
+
+		
+		
+		   
+		    $query			        = "SELECT status,crop,finished FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
+		    $db->setQuery($query);
+		    $result			        = $db->loadRowList();
+
+		    if (isset ($result[0][0]))
+		    { 
+		        $status			= $result[0][0];
+		    }
+		    else
+		    {
+		        $status			= 0;
+		    }   
+		        
+		    if (isset ($result[0][1]))
+		    { 
+		        $crop			= $result[0][1];
+		    }
+		    else
+		    {
+		        $crop			= 0;
+		    } 		    
+	
+		    if ($result[0][2]==0)
+		    {
+		        $status++;
+		    }
+		
+		    if ($status>=6)
+		    {
+		        $status=5;
+		    }
+
+
+
+
+
+		    $sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) 
+		    VALUES  ($building_id,$field, $status,$now , $crop, $finished)
+		    ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
+
+		    $db->setQuery($sql);
+		
+		
+		    if(!$db->query())
+		    {
+			    $message	="error";
+			    return $sql;
+		    }
+		    else
+		    {
+			    return $this->get_field_status_text($status);
+		    }
+		
+		
+		
 	}
 ///////////////////////////////////////////////////////
 
@@ -448,6 +487,7 @@ class BattleModelBuilding extends JModel
 		    {
         	    $status_message = "Status: Field is being harvested.";
 		    }		
+            
             else
 		    {
         	    $status_message = "Status: You done fucked up.";
@@ -862,7 +902,7 @@ class BattleModelBuilding extends JModel
 			$now    	= time();
 			$factor		= 10;
 
-			$query		= "	SELECT * FROM #__jigs_batteries	WHERE id = $building";
+			$query		= "	SELECT * FROM #__jigs_batteries	WHERE user = $building";
 
 			$db->setQuery($query);
 			$batteries = $db->loadAssocList();
@@ -878,7 +918,7 @@ class BattleModelBuilding extends JModel
 		$building_id		= JRequest::getvar('building_id');
 		$battery_id		= JRequest::getvar('item');
 		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_batteries SET id = $user->id  WHERE #__jigs_batteries.id = $battery_id";
+		$query			= "Update #__jigs_batteries SET user = $user->id  WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
 		$db->query();
 		return $battery_id;
@@ -890,11 +930,55 @@ class BattleModelBuilding extends JModel
 		$db			= JFactory::getDBO();
 		$building_id		= JRequest::getvar('building_id');
 		$battery_id		= JRequest::getvar('item');
-		$query			= "Update #__jigs_batteries SET id = $building_id WHERE #__jigs_batteries.id = $battery_id";
+		$query			= "Update #__jigs_batteries SET user = $building_id WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
 		$db->query();
 		return $battery_id;
 	}
+	
+	
+	function get_hobbit()
+	{
+		$db			    = JFactory::getDBO();
+		$building_id	= JRequest::getvar('building_id');
+		
+		$user			= JFactory::getUser();
+		$query			= "Update #__jigs_hobbits SET owner = $user->id  WHERE #__jigs_hobbits.owner = $building_id LIMIT 1";
+		$db->setQuery($query);
+		$db->query();
+		return $query;
+	}
+
+
+	function put_hobbit()
+	{
+		$db			    = JFactory::getDBO();
+		$building_id	= JRequest::getvar('building_id');
+		$user			= JFactory::getUser();
+		
+		$query			= "Update #__jigs_hobbits SET owner = $building_id WHERE #__jigs_hobbits.owner = $user->id LIMIT 1";
+		$db->setQuery($query);
+		$db->query();
+		return $query;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	function get_papers() {

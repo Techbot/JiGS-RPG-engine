@@ -1,9 +1,19 @@
+<?php
+
+print_r ($this->people);
+?>
+
+
+
+
+
+
 
 <div id="profile_" class="clearfix">
 	<div class="name"><?php echo $this->people->name ; ?></div>
 	<div class="desc">
 		
-		<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/ennemis/<?php echo $this->people->image;?>" class="thumbnail" alt="<?php $this->people->name ; ?>" title="<?php $this->people->name ; ?>" width="100" height="100" id="character_image" />
+		<img src="<?php echo $this->baseurl; ?>/components/com_battle/images/hobbits/thumbnails/<?php echo $this->people->image;?>" class="thumbnail" alt="<?php $this->people->name ; ?>" title="<?php $this->people->name ; ?>" width="100" height="100" id="character_image" />
 	
 		<div class="stats">
 		<table class="stats" >

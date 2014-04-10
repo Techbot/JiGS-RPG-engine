@@ -32,7 +32,7 @@ class BattleModelweapons extends JModel
 			 	#__jigs_weapons.id,
 			 	#__jigs_weapon_names.image,
 			 	#__jigs_weapon_names.name, 
-			 	#__jigs_weapon_names.ammunition, 
+			 	#__jigs_weapon_names.max_ammunition, 
 		     	#__jigs_weapon_names.attack				
 			    FROM #__jigs_weapons
 			    LEFT JOIN #__jigs_weapon_names
