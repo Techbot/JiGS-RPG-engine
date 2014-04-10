@@ -4,7 +4,7 @@
 
 <div id="batteries">Loading.....</div>
 <br />
-<div id="energy" style ="background-color:black;">
+<div id="distr" style ="background-color:black;">
 </div>
 
 

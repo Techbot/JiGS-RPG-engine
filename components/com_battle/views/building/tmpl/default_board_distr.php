@@ -1,9 +1,9 @@
 <div class="name">Distribution Systems Control</div>
 
 
-<div id="batteries">Loading.....</div>
+<div id="batteries1">Loading.....</div>
 <br />
-<div id="distr" style ="background-color:black;">
+<div id="distr1" style ="background-color:black;">
 </div>
 
 
