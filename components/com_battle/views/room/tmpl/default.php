@@ -1,7 +1,7 @@
 
 <div class="apt">
 
-<ul>
+<ul class="inline">
 	<li id="building_id">
 <span class="label">Room id</span>
 

@@ -5,6 +5,16 @@
 width:100%;
 }
 
+
+ul.inline {
+margin:0;
+
+}
+ul.inline li{
+display:inline-block;
+margin-right:1em;
+}
+
 a#withdraw,a#deposit,#submit_c{
 	background:#333;
 	padding:3px 10px;
@@ -493,6 +503,15 @@ font-size:85%;
   overflow: auto;
 }
 
+
+.apt ul {
+margin:0;
+
+}
+.apt ul li {
+display:inline-block;
+margin-right:1em;
+}
 
 /* Player Actions */
 div#action {
