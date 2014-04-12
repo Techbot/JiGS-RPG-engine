@@ -646,7 +646,7 @@ div.pagenavcounter {font-weight:bold;}
 	/** TOC Nav  <<Prev - Next>>  **/
 div.pagenavbar {
 text-align: center;
-border-top: 1px solid #4B4B4B;
+border-top: 1px solid #222;
 }
 
 div.pagenavbar a {text-decoration: none;}
@@ -658,8 +658,8 @@ text-decoration: underline;
 
 	/** General Page Nav  <Prev  Next>  **/
 ul.pagenav {
-background: #F3F3F3;
-border: 1px solid #EBEBEB;
+background: rgba(0,0,0,1);
+border-top: 1px solid #222;
 color: #4B4B4B;
 font-size: 85%;
 }
@@ -667,17 +667,21 @@ font-size: 85%;
 ul.pagenav li {}
 /* Prev */
 ul.pagenav li.pagenav-prev{}
-ul.pagenav li.pagenav-prev a{text-decoration: none;}
+ul.pagenav li.pagenav-prev a:link,
+ul.pagenav li.pagenav-prev a:visited {
+color: #009999;
+}
 ul.pagenav li.pagenav-prev a:hover {
-color: #4B4B4B;
-text-decoration: underline;
+color: #00FFFF;
 }
 /* Next */
 ul.pagenav li.pagenav-next{}
-ul.pagenav li.pagenav-next a {text-decoration: none;}
+ul.pagenav li.pagenav-next a:link,
+ul.pagenav li.pagenav-next a:visited {
+color: #009999;
+}
 ul.pagenav li.pagenav-next a:hover {
-color: #4B4B4B;
-text-decoration: underline;
+color: #00FFFF;
 }
 
 		/*** Category List Layout ***/
