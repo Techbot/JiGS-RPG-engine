@@ -124,6 +124,27 @@ else { ?>
 <script src="/components/com_battle/includes/jquery.liquid-slider.min.js"></script>
 
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	// if login form is displayed - user not logged in
+	if ( $( '#login-form .userdata' ).length > 0) {
+	
+		$("#jwts_a1").css({
+		"display":"block",
+		"height":"auto",
+		"visibility":"visible"
+		});
+		
+		$("#jwts_ac1").css("top",0);
+
+	}
+
+
+});
+
+</script>	
 
 </head>
 
