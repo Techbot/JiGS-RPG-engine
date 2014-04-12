@@ -1047,7 +1047,8 @@ padding:0 3px;
 font-size:10px;
 }
 
-div#messages p[display=table-row] {
+/*div#messages p[display=table-row]*/
+div#messages p {
 border-bottom:1px dotted #009999;
 animation: fadeout 5s;
 -moz-animation: fadeout 5s; /* Firefox */
