@@ -52,7 +52,7 @@ class BattleController extends JController
 		elseif ($user->id==0)
 		{
 			//JRequest::setVar('view', 'loggedout');
-			$url ="index.php?option=com_content";
+			$url ="index.php?option=com_content&view=article&id=12";
 			$this->setRedirect( $url );
 		}
 

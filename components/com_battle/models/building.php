@@ -912,7 +912,7 @@ class BattleModelBuilding extends JModel
 	}
 
 	
-		function get_battery()
+	function get_battery()
 	{
 		$db			= JFactory::getDBO();
 		$building_id		= JRequest::getvar('building_id');
@@ -923,12 +923,35 @@ class BattleModelBuilding extends JModel
 		$db->query();
 		return $battery_id;
 	}
+	
+	
+	function collect_empties()
+	{
+		$db			    = JFactory::getDBO();
+		$building_id	= JRequest::getvar('building_id');
+		
+		$user			= JFactory::getUser();
+		$query			= "Update #__jigs_batteries SET user = $user->id  WHERE #__jigs_batteries.units = 0 AND user= $building_id";
+		$db->setQuery($query);
+		$db->query();
+		return $query;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	function put_battery()
 	{
-		$db			= JFactory::getDBO();
-		$building_id		= JRequest::getvar('building_id');
+		$db			    = JFactory::getDBO();
+		$building_id	= JRequest::getvar('building_id');
 		$battery_id		= JRequest::getvar('item');
 		$query			= "Update #__jigs_batteries SET user = $building_id WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
@@ -941,44 +964,45 @@ class BattleModelBuilding extends JModel
 	{
 		$db			    = JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
-		
+		$status         = 1;
+		$owner_type     = "P"; 
 		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_hobbits SET owner = $user->id  WHERE #__jigs_hobbits.owner = $building_id LIMIT 1";
+
+		$query			= "Update #__jigs_hobbits SET owner = $user->id, status = $status, owner_type = $owner_type WHERE #__jigs_hobbits.owner = $building_id LIMIT 1";
 		$db->setQuery($query);
 		$db->query();
+
+
 		return $query;
 	}
-
 
 	function put_hobbit()
 	{
 		$db			    = JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
-		$user			= JFactory::getUser();
+		$item_id    	= JRequest::getvar('itemid');
 		
-		$query			= "Update #__jigs_hobbits SET owner = $building_id WHERE #__jigs_hobbits.owner = $user->id LIMIT 1";
+		$user			= JFactory::getUser();
+		$owner_type     = "B";
+		
+		if ($item_id =='assign_primary')
+		{ 
+		    $status         = 1;
+		}
+		if ($item_id =='assign_defense')
+		{ 
+		    $status         = 3;
+		}
+		if ($item_id =='assign_distr')
+		{ 
+		    $status         = 4;
+		}		
+		
+		$query			= "Update #__jigs_hobbits SET owner = $building_id ,status = $status, owner_type = '$owner_type' WHERE #__jigs_hobbits.owner = $user->id LIMIT 1";
 		$db->setQuery($query);
 		$db->query();
 		return $query;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	function get_papers() {

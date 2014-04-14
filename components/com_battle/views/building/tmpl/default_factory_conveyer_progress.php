@@ -5,8 +5,7 @@
 	
 	
 	
-	
-	<div id='conveyor_progress' style='visibility: hidden;'>
+<div id='conveyor_progress' style='display: none;'>
 
     <p>
     <label title="when manufactoring began">Started: </label><span id="since"></span></p>
@@ -23,4 +22,6 @@
     </div>
 
 </div>
+
+
 

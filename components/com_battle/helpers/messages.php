@@ -19,9 +19,7 @@ abstract class MessagesHelper
              
              
      }
-           
-           
-           
+       
            
            
     public function sendFeedback($id,$text)
@@ -33,12 +31,7 @@ abstract class MessagesHelper
 		return ;
 	}       
            
+        
            
            
-           
-           
-           
-           
-           
-           
-    }
+}

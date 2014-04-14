@@ -4,28 +4,13 @@
 
 <div id="batteries">Loading.....</div>
 <br />
-<div id="distr" style ="background-color:black;">
-</div>
 
 
-    <div id="holder">
-    
-    
-    
-    
-    </div>
-
-
-
+<span id= "collect_empties" class="collect label">Collect empty batteries:</span>
 
 
 </form>	
-<br />
-<div id="energy" style ="background-color:black;">
-</div>
 
-
-    <div id="holder"></div>
 
 
 <script type='text/javascript'>

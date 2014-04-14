@@ -1,52 +1,5 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );?>
 
-<style type="text/css">
-
-.board_panel {
-	position: relative;
-	width: 233px;
-	padding: 0 5px;
-	height: 275px;
-}
-
-.board_panel .name {
-	margin: 0 -5px 5px;
-}
-
-.board_buttons {
-	display: block;
-	clear: both;
-	text-align: center;
-	padding: 0 5px;
-	margin-left: 5px;
-}
-
-.panel {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	visibility: hidden;
-	text-align:left;
-	padding:0 5px 5px;
-	width:233px;
-}
-.panel p {
-	margin:0 0 5px;
-}
-
-.b_button {
-	width: 40px;
-	height: 40px;
-	display: inline-block;
-	float: left;
-	padding: 0;
-	margin: 0 5px 5px 0;
-	font-size: 85%;
-}
-</style>
-
-
-
 <div class="board_panel clr">
 	
 <div class='panel' id="open_panel" style="visibility:visible;">

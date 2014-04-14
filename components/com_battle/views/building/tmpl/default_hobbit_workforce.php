@@ -11,4 +11,3 @@
 
 <input type="button" class="quantity_box_button quantity_box_button_down" onclick="var qty_el = document.getElementById('hobbits_total'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty > 0 ) qty_el.value--;changeCrops();return false;" value="-" />
 
-</div>

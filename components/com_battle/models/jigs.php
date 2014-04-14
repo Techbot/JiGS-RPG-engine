@@ -3,6 +3,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.modellist');
 
+jimport( 'joomla.filesystem.folder' );
+require_once JPATH_COMPONENT.'/helpers/messages.php';
+
 class BattleModelJigs extends JModellist{
 
 	function get_cells(){
@@ -462,7 +465,7 @@ class BattleModelJigs extends JModellist{
 	        $db->setQuery($query);
 	        $db->query();
 	     }
-	$this->sendFeedback($user->id,$message);
+	MessagesHelper::sendFeedback($user->id,$message);
 	return $current_magazine;
 
     }
@@ -690,7 +693,7 @@ class BattleModelJigs extends JModellist{
 		
 		
 		}
-		$this->sendFeedback($user->id,$message);
+		MessagesHelper::sendFeedback($user->id,$message);
 
 		return $player_money;
 	}
@@ -723,17 +726,17 @@ class BattleModelJigs extends JModellist{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$message	= "Energy Required : " . $energy_units_required;
-		$this->sendFeedback($user->id,$message);
+		MessagesHelper::sendFeedback($user->id,$message);
 
 		$batteries	= $this->get_all_energy($id);
 		$total		= $this->get_total_energy($id);
 		$message	= "Total Energy available : " . $total;
-		$this->sendFeedback($user->id,$message);
+		MessagesHelper::sendFeedback($user->id,$message);
 
 		if ($total < $energy_units_required)
 		{
 			$message = "not enough energy";
-			$this->sendFeedback($user->id,$message);
+			MessagesHelper::sendFeedback($user->id,$message);
 			return false;
 		}
 
@@ -748,7 +751,7 @@ class BattleModelJigs extends JModellist{
 					$battery->units 	= $battery->units - $energy_units_required;
 					$message		= $energy_units_required . " unit(s) deducted from  battery " . $i ;
 					$energy_units_required	= 0;
-					$this->sendFeedback($user->id,$message);
+					MessagesHelper::sendFeedback($user->id,$message);
 				}
 				else
 				{
@@ -756,7 +759,7 @@ class BattleModelJigs extends JModellist{
 					$message 		.= $battery->units . " unit(s) deducted from  battery " . $i . "<br/>";
 					$battery->units		= 0;
 					$message 		.= "zero units remaining in battery " . $i ."</br>";
-					$this->sendFeedback($user->id,$message);
+					MessagesHelper::sendFeedback($user->id,$message);
 				}
 
 				$sql	= "UPDATE #__jigs_batteries SET units = " . $battery->units . " WHERE id = " . $battery->id;
@@ -766,7 +769,7 @@ class BattleModelJigs extends JModellist{
 			else
 			{
 				$message= "energy transer complete";
-				$this->sendFeedback($user->id,$message);
+				MessagesHelper::sendFeedback($user->id,$message);
 				break;
 			}
 			$i++;
@@ -774,21 +777,29 @@ class BattleModelJigs extends JModellist{
 
 		$total		= $this->get_total_energy($id);
 		$message	= $total . " remaining energy units";
-		$this->sendFeedback($user->id,$message);
+		MessagesHelper::sendFeedback($user->id,$message);
 		return true;
 	}
 
 	/// GIVE BATTERY FROM USER TO BUILDING ///
 	function swap_battery()
 	{
-		$db		= JFactory::getDBO();
+	    $user		    = JFactory::getUser();
+		$db             = JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
-		$id		= JRequest::getvar('id');
-		$sql		= "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
+		$id		        = JRequest::getvar('id');
+		$sql		    = "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
 		$db->setQuery($sql);
-		$result		= $db->query();	
-		return $sql;
+		$result		    = $db->query();	
+        $energy_total   = $this->get_total_energy($building_id);
+
+		MessagesHelper::sendFeedback($user->id, "transferred battery $id to building $building_id. Building now has $energy_total energy units");
+		
+		return $energy_total ;
 	}
+
+
+
 
 	function charge_battery()
 	{
@@ -797,24 +808,24 @@ class BattleModelJigs extends JModellist{
 	///// PLAYER BUYS BATTERY FROM THIN AIR. GETS 100 UNITS MONEY DEDUCTED /////
 	function buy_battery()
 	{
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$building_id	= JRequest::getvar('building_id');
+		$db		            = JFactory::getDBO();
+		$user		        = JFactory::getUser();
+		$building_id	    = JRequest::getvar('building_id');
 
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
-		$player_money	= $db->loadResult();
-		$sell_price	= 100;
+		$player_money	    = $db->loadResult();
+		$sell_price	        = 100;
 
 		if ($player_money > $sell_price)
 		{
 			$player_money	= $player_money - $sell_price;
-			$sql		= "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
+			$sql		    = "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
 			$db->setQuery($sql);
-			$result		= $db->query();
+			$result		    = $db->query();
 
 			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
-			$result2	= $db->query();
-			$result3	= 'true';
+			$result2	    = $db->query();
+			$result3	    = 'true';
 			return $player_money;
 		}
 		return $player_money;
@@ -823,22 +834,22 @@ class BattleModelJigs extends JModellist{
 	///// PLAYER SELLS BATTERY TO BUILDING /////
 	function sell_battery()
 	{
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+		$db		        = JFactory::getDBO();
+		$user		    = JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
 
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 		$player_money	= $db->loadResult();
-		$sell_price	= 90;
+		$sell_price	    = 90;
 		$player_money	= $player_money + $sell_price;
 
-		$sql2		= "UPDATE #__jigs_batteries SET id = $building_id WHERE id = " . $user->id . " LIMIT 1";
+		$sql2		    = "UPDATE #__jigs_batteries SET id = $building_id WHERE id = " . $user->id . " LIMIT 1";
 		$db->setQuery($sql2);
-		$result		= $db->query();
+		$result		    = $db->query();
 
 		$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
-		$result2	= $db->query();
-		$result3	= 'true';
+		$result2	    = $db->query();
+		$result3	    = 'true';
 
 		return $sql2;
 	}
@@ -846,7 +857,7 @@ class BattleModelJigs extends JModellist{
 	///// SELECT ALL BATTERIES FOR A USER /////
 	function get_batteries()
 	{
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$sql		= "SELECT * FROM #__jigs_batteries WHERE user =" . $user->id;
 		$db->setQuery($sql);
@@ -859,7 +870,7 @@ class BattleModelJigs extends JModellist{
 
 	function moved_get_character_inventory($id)
 	{
-		$db		= JFactory::getDBO();
+		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
 
 		$db->setQuery("SELECT #__jigs_inventory.item_id, " .
@@ -1010,7 +1021,7 @@ class BattleModelJigs extends JModellist{
 		{
 			$message ="You do not have enough cash to buy this building";
 		}
-		$this->sendFeedback($user->id,$message);
+		MessagesHelper::sendFeedback($user->id,$message);
 
 		return $result;
 	}
@@ -1395,7 +1406,7 @@ class BattleModelJigs extends JModellist{
 		$results[1]	= $player2->health;
 		$results[2]	= $message;
 
-		$this->sendFeedback($player->id,$message);
+		MessagesHelper::sendFeedback($player->id,$message);
 
 		return $results;
 	}
@@ -1517,7 +1528,7 @@ class BattleModelJigs extends JModellist{
 		
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////
-		$this->sendFeedback($player->id,$attack_message);
+		MessagesHelper::sendFeedback($player->id,$attack_message);
 
 		$result[0]	= $player->health;
 		$result[1]	= $npc->health;
@@ -1546,7 +1557,7 @@ class BattleModelJigs extends JModellist{
 
 		$text		= 'Citizen ' . $npc->name . ' was killed by citizen ' . $user->username . '<br/>' ;
 		$this->sendWavyLines($text);
-		$this->sendFeedback($user->id, $text);	
+		MessagesHelper::sendFeedback($user->id, $text);	
 		return $text;
 	}
 
@@ -1622,7 +1633,7 @@ class BattleModelJigs extends JModellist{
 				$db->query();
 				$text	= 'Citizen ' . $user->username . ' leveled up';
 				$this->sendWavyLines($text);
-				$this->sendFeedback($user->id,$text);
+				MessagesHelper::sendFeedback($user->id,$text);
 			}
 		}
 	}
@@ -1725,7 +1736,7 @@ class BattleModelJigs extends JModellist{
 		$db->query();
 
 		$text		    = "You sold " . $total_crops . " crops.";
-		$this->sendFeedback($user->id, $text);
+		MessagesHelper::sendFeedback($user->id, $text);
 		return($test);
 	}
 

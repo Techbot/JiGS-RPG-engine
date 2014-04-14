@@ -717,7 +717,7 @@ class plgBattleHeartbeat extends JPlugin
 
 		foreach($result as $row) 
 		{    
-			$query ="Update #__jigs_batteries SET  units = units + 1, timestamp =  $now WHERE iduser = $row->building";
+			$query ="Update #__jigs_batteries SET  units = units + 1, timestamp =  $now WHERE user = $row->building AND units < 100";
 			$db->setQuery($query);
 			$db->query();
 		}   

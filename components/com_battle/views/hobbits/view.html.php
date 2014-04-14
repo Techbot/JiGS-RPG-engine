@@ -7,10 +7,25 @@ class BattleViewHobbits extends JView
 {	
 	function display($tpl = null)
 	{
-		$rows = $this->get('data');
+		
+		$model  = $this->getModel();
+		
+		$user   = JFactory::getUser();
+		
+		$rows   = $model->getData($user->id);
 		
 		$this->assignRef('rows', $rows);
 		
 		parent::display($tpl);
 	}
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
