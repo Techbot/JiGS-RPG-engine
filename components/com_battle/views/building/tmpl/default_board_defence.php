@@ -2,17 +2,16 @@
 
 <form class="primary_0" action="index.php" method="get" name="adminForm_0" id= "adminForm_0">	
 
-<span id= "assign" class="label">Assign Hobbit to building defense:</span>
-<span id= "remove" class="label">Remove Hobbit from building defense:</span>
+<h2>: <?php echo $this->building_hobbit_stats->def; ?>:</h2>
+
+<span id= "assign_defense" class="assign label">Assign Hobbit to building defense:</span>
+<span id= "remove_defense" class="remove label">Remove Hobbit from building defense:</span>
 
 
 </form>	
 <br />
-<div id="defence" style ="background-color:black;">
-</div>
 
 
-    <div id="holder"></div>
 
 
 <script type='text/javascript'>

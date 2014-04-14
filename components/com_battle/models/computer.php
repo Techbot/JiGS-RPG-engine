@@ -94,7 +94,48 @@ class BattleModelComputer extends JModel
 	}
 
 
-
+    public function display_terminal()
+	{
+		
+	
+	$cyber			= JRequest::getVar('id');
+		
+		
+		if ($cyber=='cyber1')
+		{
+		
+		    return "<img class = 'fluid' src = 'http://eclecticmeme.com/components/com_battle/images/terminal/002a.png'>";
+	
+	    }
+		if ($cyber=='cyber2')
+		{
+		
+		    return "<img class = 'fluid' src = 'http://eclecticmeme.com/components/com_battle/images/terminal/002b.png'>";
+	
+	    }	
+	
+		if ($cyber=='cyber3')
+		{
+		
+		    return "<img class = 'fluid' src = 'http://eclecticmeme.com/components/com_battle/images/terminal/001a.png'>";
+	
+	    }	
+	
+		if ($cyber=='cyber4')
+		{
+		
+		    return "<img class = 'fluid' src = 'http://eclecticmeme.com/components/com_battle/images/terminal/001b.png'>";
+	
+	    }	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
 
 	/**
 	 * redefine the function an add some properties to make the styling more easy

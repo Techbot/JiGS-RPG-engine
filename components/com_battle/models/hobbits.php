@@ -20,6 +20,17 @@ class BattleModelHobbits extends JModel
 		    $query .= " WHERE owner = $id";
 	
 		    }
+		    
+		    else{
+		    
+		     $query .= " LIMIT 100";
+		    
+		    
+		    }
+		    
+		    
+		    
+		    
 			$_data = $this->_getList($query);
 		
 		return $_data;
@@ -40,6 +51,18 @@ class BattleModelHobbits extends JModel
                 $h_stats->busy++;
             }
             
+            elseif($hobbit->status==3){
+            
+                $h_stats->def++;
+            }
+            
+            elseif($hobbit->status==4){
+            
+                $h_stats->distr++;
+            }           
+            
+            
+            
             $h_stats->total++;
         
         }
@@ -50,33 +73,27 @@ class BattleModelHobbits extends JModel
 
     function use_hobbits($id,$total,$workforce_required)
     {
-    
   
-        $db             = JFactory::getDBO();
-        $user = JFactory::getUser();
-        $id = $user->id;
+        $db         = JFactory::getDBO();
         
         if ($total >= $workforce_required)
 		{
 		    $query                  = "UPDATE #__jigs_hobbits SET status = 2 
 		    WHERE owner = $id 
-		    LIMIT $workforce_required 
-		    ORDER BY xp ASC";
+		    ORDER BY xp ASC
+		    LIMIT $workforce_required";
 		    
 		    $db->setQuery($query);
 		    $db->query;
             // $message_result = Jview::loadHelper('messages'); //got an error without this
-            $message_result         = MessagesHelper::sendFeedback($id, "$workforce_required hobbits have begun work");
+ 
+            MessagesHelper::sendFeedback($id, "$workforce_required hobbits have begun work");
 
 		    return true;
-		}
-        
-       
-       
-       $message_result         = MessagesHelper::sendFeedback($id, "no hobbits");
-       
+        }
+        $message_result         = MessagesHelper::sendFeedback($id, "no hobbits");
+    
         return false;
-
     }
 
 	function get_charactor_inventory() {
@@ -85,14 +102,10 @@ class BattleModelHobbits extends JModel
 		$user           = JFactory::getUser();
 		$character_id   = JRequest::getvar(character_id);
 		
-		
-		
-		$db->setQuery("SELECT #__jigs_inventory.item_id, " .
-				"#__jigs_objects.name " .
-				"FROM #__jigs_inventory " .
-				"LEFT JOIN #__jigs_objects " .
-				"ON #__jigs_inventory.item_id = #__jigs_objects.id " .
-				"WHERE #__jigs_inventory.player_id =".$character_id);
+		$db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name 
+		FROM #__jigs_inventory 
+		LEFT JOIN #__jigs_objects ON #__jigs_inventory.item_id = #__jigs_objects.id 
+		WHERE #__jigs_inventory.player_id =".$character_id);
 		$result = $db->loadAssocList();
 		return $result;
 	}

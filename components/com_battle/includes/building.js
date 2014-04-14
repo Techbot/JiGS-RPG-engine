@@ -25,6 +25,13 @@
 	//change();
 	//noobslide
 	request_batteries_cp();
+	
+	
+	
+	
+	
+	
+	
 	//request_batteries.periodical(50085);	 
 	control_panel_system();
 	set_type();
@@ -84,13 +91,13 @@ function set_type()
 
     if (window.building_type=="farm")
     {
-     	$$('.work_field').addEvent('click',function()
+     	document.id('1').addEvent('click',function()
      	{
 		    var itemID = this.get('id');
 		    work_field(itemID);
 	
 	    });
- 		
+ 		collectEmpties();
  		check_farm.periodical(5000)
 
     }
@@ -417,10 +424,36 @@ function insert(id)
         onSuccess: function(result)
         {
           	request_batteries_cp();
+          	
+          	document.id('t_energy').innerHTML = result;	
+          	
         }	
     	
-    }
-    ).get();
+    }).get();
+
+}
+
+function collectEmpties()
+{
+
+
+
+    document.id('collect_empties').addEvent('click',function()
+    {
+       var itemID = this.get('id');
+       
+       var a = new Request.JSON(
+        {
+            url: "index.php?option=com_battle&format=raw&task=building_action&action=collect_empties&building_id=" 
+            + building_id , 
+            onSuccess: function(result)
+            {
+               request_batteries_cp();
+            }
+        }).get();
+        
+
+    });
 
 }
 
@@ -428,6 +461,9 @@ function request_batteries_cp()
 {
     var all = '';
 //	var details = this.details;
+
+
+
 
     var a = new Request.JSON(
     {
@@ -819,7 +855,8 @@ function put_battery(itemID){
     url: "index.php?option=com_battle&format=raw&task=building_action&action=put_battery&building_id=" 
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
-   	   
+   
+ 
     	}
     }).get();
  
@@ -827,18 +864,14 @@ function put_battery(itemID){
 
 function setup_hobbits(){
 
-
-
-alert('hobbits');
-
-    $$('#assign').addEvent('click', function(){
-	
-		put_hobbit();
+    $$('.assign').addEvent('click', function(){
+	var itemID = this.get('id');
+		put_hobbit(itemID);
 	});
 
-	$$('#remove').addEvent('click', function(){
-	
-		get_hobbit();
+	$$('.remove').addEvent('click', function(){
+	var itemID = this.get('id');
+		get_hobbit(itemID);
 	});
 };
 
@@ -846,8 +879,9 @@ alert('hobbits');
 function get_hobbit(){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=building_action&action=get_hobbit&building_id=" 
-    + building_id , 
+    + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
+    
      	}
     }).get();
  
@@ -857,7 +891,7 @@ function put_hobbit(itemID){
  
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=building_action&action=put_hobbit&building_id=" 
-    + building_id , 
+    + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -1399,18 +1433,7 @@ function work_conveyer()
     }
 }
 
-function work(){
-	var a = new Request.JSON(
-	{
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_conveyer&quantity=" 
-		+ document.adminForm.time.value 
-		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
-		onSuccess: function(result){
-			document.id('adminForm').setStyle('display','none');
-			document.id('conveyor_progress').setStyle('display','block');
-			}
-	}).get();
-}
+
 
 function work_reprocessor()
 {
@@ -1460,6 +1483,20 @@ function check_reprocessor()
 		        document.id('conveyor_progress').setStyle('display','none');
 		    }
 	     }
+	}).get();
+}
+function work(){
+	var a = new Request.JSON(
+	{
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_conveyer&quantity=" 
+		+ document.adminForm.time.value 
+		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
+		onSuccess: function(result){
+			
+			document.id('adminForm').setStyle('display','none');
+			document.id('conveyor_progress').setStyle('display','block');
+			
+			}
 	}).get();
 }
 

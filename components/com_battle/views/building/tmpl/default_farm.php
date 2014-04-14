@@ -25,7 +25,7 @@ $land=1;
 	    
 	        <div id = "<?php echo $land ?>" class="work_field" style="text-align:center;">
 	        
-	            <a href="#" class = "field" ><img src="/_jigs/components/com_battle/images/<?php echo $status; ?>.gif"></a>
+	            <a href="#" class = "field" ><img src="components/com_battle/images/<?php echo $status; ?>.gif"></a>
 	              </div>
 	          
 

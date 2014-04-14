@@ -639,9 +639,9 @@ label {
 }
 div#conveyor_progress {
 	height:60px;
-	position:absolute;
+	/*position:absolute;
 	z-index:333;
-	top:0;left:0;
+	top:0;left:0;*/
 	background:url(../images/jigs_loader.gif) no-repeat 50% 100% #000;
 }
 form.conveyor input .inputbox{
@@ -1710,8 +1710,49 @@ width:100%;
 
 
 
+/* Control Panel */
 
+.board_panel {
+	position: relative;
+	width: 233px;
+	padding: 0 5px;
+	height: 275px;
+}
 
+.board_panel .name {
+	margin: 0 -5px 5px;
+}
+
+.board_buttons {
+	display: block;
+	clear: both;
+	text-align: center;
+	padding: 0 5px;
+	margin-left: 5px;
+}
+
+.panel {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	text-align:left;
+	padding:0 5px 5px;
+	width:233px;
+}
+.panel p {
+	margin:0 0 5px;
+}
+
+.b_button {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	float: left;
+	padding: 0;
+	margin: 0 5px 5px 0;
+	font-size: 85%;
+}
 
 
 

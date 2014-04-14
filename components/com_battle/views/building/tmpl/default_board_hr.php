@@ -1,20 +1,12 @@
 <div class="name">Hobbit Resources Systems Control</div>
 
-<br />
-<div id="defence" style ="background-color:black;">
-</div>
 
-
-    <div id="hr"></div>
 		<ul>
 					<li><span class="label">Total Hobbits:</span> <?php echo $this->player_hobbit_stats->total ?></li>
 					<li><span class="label">Available Hobbits:</span> <?php echo $this->player_hobbit_stats->free ?></li>
 					<li><span class="label">Hobbit Morale:</span> 70%</li>
 					<li><span class="label">Hobbit Efficiency:</span> 95%</li>
 				</ul>
-<span id= "assign" class="btn btn-success">Assign Hobbit to building</span>
-<span id= "remove" class="btn btn-success">Remove Hobbit from building</span>
-
 
 <script type='text/javascript'>
 

@@ -51,7 +51,7 @@ $body ='
           </tr>
           <tr>
             <th scope="row">Energy</th>
-            <td>' . $this->buildings->energy  . '</td>
+            <td id ="t_energy">' . $this->buildings->energy  . '</td>
           </tr>
           <tr>
             <th scope="row">Type</th>
@@ -65,13 +65,13 @@ $body ='
           
           
           
-            if ($this->building_hobbit_stats->total){ 
+          
        $body .='     <tr>
             <th scope="row">Hobbits</th>
-            <td id ="wfTotal">' . $this->building_hobbit_stats->total . '</td>
+            <td id ="wfTotal">' . $this->building_hobbit_stats->free . '</td>
           </tr>';
         
-         }     
+           
           
   $body .='        
           

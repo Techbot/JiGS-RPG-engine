@@ -70,13 +70,29 @@
                 <input type="hidden" name="id" value="" />
                 <input type="hidden" name="name" value="" /> 
                 <input type="hidden" name="task" value="" />
-                </form>
+               
                 
+                
+                
+                				
+				
+		<?php echo $this->loadTemplate ("hobbit_workforce"); ?>
+		<?php echo $this->loadTemplate ("timebar"); ?>
+		
+		        <ul class="inline">
+					<li>Number of Employees: 7</li>
+					<li>Employees Morale: 70%</li>
+					<li>Employee Efficiency: 95%</li>
+				</ul>
+                
+		
+        </form>
+				
                 
         <script>
-			prepare();
-			prepare2();
-			work_conveyer();
-			check_factory.periodical(5000);
+		//	prepare();
+		//	prepare2();
+		//	work_conveyer();
+		//	check_factory.periodical(5000);
 		</script>         
                 
