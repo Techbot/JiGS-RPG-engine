@@ -926,7 +926,7 @@ div.flats.row div:nth-child(2) {width:18%;}
 div.flats.row div:nth-child(3) {width:5%;}
 div.flats.row div:last-child {width:28%;}
 
-@media (max-width: 768px){
+@media (max-width: 801px){
 
 	div#flats div.row div:first-child {width:100%;padding:0.5em 1em;}
 	div#flats div.row {padding:1em;}
@@ -1263,7 +1263,7 @@ width: 100%;
 
 .compass{width:54px;height:54px;margin:0 15px 0 0;float:left;}
 
-@media (max-width: 768px){
+@media (max-width: 801px){
 	.compass{
 	float:none;
 	margin:0 auto 1em;
