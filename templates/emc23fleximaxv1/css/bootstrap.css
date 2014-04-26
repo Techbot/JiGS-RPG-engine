@@ -1138,7 +1138,7 @@ textarea::-webkit-input-placeholder {
 .radio input[type="radio"],
 .checkbox input[type="checkbox"] {
   float: left;
-  margin-left: -18px;
+  /*margin-left: -18px;*/
 }
 
 .controls > .radio:first-child,
@@ -3189,17 +3189,17 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #006dcc;
-  *background-color: #0044cc;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-color:rgba(0,153,153,1);
+  *background-color:rgba(13,122,122,1);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,153,153,1)), to(rgba(13,122,122,1)));
+  background-image: -webkit-linear-gradient(top, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-image: -o-linear-gradient(top, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-image: linear-gradient(to bottom, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-image: -moz-linear-gradient(top, rgba(0,153,153,1), rgba(13,122,122,1));
   background-repeat: repeat-x;
-  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0,153,153,1) rgba(13,122,122,1) rgba(0,153,153,1);
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='rgba(0,153,153,1)', endColorstr='rgba(13,122,122,1)', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
@@ -3209,8 +3209,8 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #0044cc;
-  *background-color: #003bb3;
+  background-color: rgba(0,153,153,1);
+  *background-color: rgba(13,122,122,1);
 }
 
 .btn-primary:active,

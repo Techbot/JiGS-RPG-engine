@@ -137,11 +137,17 @@ text-transform: uppercase;
 /* Text styles */
 strong, b {}
 
-
 .blockquote, blockquote {
 background-color: #1B1B1B;
 color: #00CC00; /*green*/
 border-left: 5px solid #333;}
+
+.blog-featured blockquote {
+background-color: rgba(0,0,0,0.8);
+border-radius:10px;
+color: #fff;
+border-left: 0 solid #333;
+}
 
 .pre, pre {
 color: #fff; 
@@ -185,6 +191,10 @@ label {
 font-size: 85%;
 text-transform: uppercase;
 color: #4B4B4B;
+}
+
+#login-form label {
+color:#ccc;
 }
 
 	/* Form */
