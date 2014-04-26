@@ -1837,3 +1837,12 @@ width:100%;
 
 
 }
+
+
+
+/* Bootstrap adjustments */
+
+#building .btn {
+  font-size: 11px !important;
+  padding: 4px 5px !important;
+}

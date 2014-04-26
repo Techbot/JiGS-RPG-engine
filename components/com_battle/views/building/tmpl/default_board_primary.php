@@ -34,8 +34,8 @@
 
 
 
-<span id= "assign_primary" class="assign label">Assign Hobbit to primary:</span>
-<span id= "remove_primary" class="remove label">Remove Hobbit from primary:</span>
+<span id= "assign_primary" class="assign button btn btn-success">Assign Hobbit</span>
+<span id= "remove_primary" class="remove button btn btn-danger">Remove Hobbit</span>
 
 
 
