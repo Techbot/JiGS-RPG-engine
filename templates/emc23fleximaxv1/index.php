@@ -33,8 +33,7 @@ $templateparams	= $app->getTemplate(true)->params;
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">	
 <jdoc:include type="head" />
 <?php  JHTML::_('behavior.mootools'); ?>
 
@@ -96,11 +95,11 @@ else { ?>
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="/fnord_128x128.png">
+    <link rel="apple-touch-icon-precomposed" sizes="48x48" href="/fnord_48x48.png">
+    <link rel="apple-touch-icon-precomposed" sizes="32x32" href="/fnord_32x32.png">
+    <link rel="apple-touch-icon-precomposed" href="/fnord_128x128.png">
 	
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/modal.js"></script>
 
