@@ -74,6 +74,13 @@ padding: 1em 2em;
 font-family: "Courier New", Courier, monospace;
 }
 
+.blog-featured blockquote {
+margin:0 auto;
+width:70%;
+padding: 1em;
+font-family: Arial, sans-serif;
+}
+
 .pre, pre {
 font-family: monospace;
 font-size: 1.2em;

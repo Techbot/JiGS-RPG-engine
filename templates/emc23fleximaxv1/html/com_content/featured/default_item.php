@@ -171,5 +171,5 @@ $canEdit	= $this->item->params->get('access-edit');
 </div>
 <?php endif; ?>
 
-<div class="item-separator"></div>
+<!--div class="item-separator"></div-->
 <?php echo $this->item->event->afterDisplayContent; ?>
