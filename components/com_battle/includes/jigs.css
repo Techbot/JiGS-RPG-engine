@@ -455,7 +455,6 @@ p.instructions {
 	font-size:8pt;
 }
 /* Inventory */
-div#inventory {height:210px;}
 div#inventory div.name {margin:0;padding:0 0 0 5px;text-align:left;}
 div#profile+div#inventory {
 	width:32%;
@@ -2006,3 +2005,13 @@ width:100%;
 	#PLAYERS .npc_bio ul li {
 		line-height:1.2em;
 	}
+
+
+
+/* Fixed min-height */
+
+div#inventory,
+#building_function {
+min-height:170px;
+}
+

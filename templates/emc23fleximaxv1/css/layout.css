@@ -152,7 +152,8 @@ We set the width of this container based upon the content layout logic. (see tem
 
 #mainbody {
 overflow: hidden;
-margin-bottom: 95px;
+//margin-bottom: 95px;
+margin-bottom: 20px;
 }
 
 
