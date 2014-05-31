@@ -2015,3 +2015,8 @@ div#inventory,
 min-height:170px;
 }
 
+#magazine,
+#ammunition {
+display:inline-block;
+}
+
