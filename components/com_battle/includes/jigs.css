@@ -1716,7 +1716,7 @@ width:100%;
 	position: relative;
 	width: 233px;
 	padding: 0 5px;
-	height: 275px;
+	/*height: 275px;*/
 }
 
 .board_panel .name {
