@@ -17,9 +17,9 @@ $text ='
 					<div class="btn btn-danger shoot"><a onclick="shoot_character(' . $people->id  . ')" id="shoot" >Shoot</a></div>
 					<div class="btn btn-danger kick"><a onclick="kick_character(' . $people->id  . ')" id="kick" >Kick</a></div>
 					<div class="btn btn-danger punch"><a onclick="punch_character(' . $people->id  . ')" id="punch">Punch</a></div>
-					<div class="btn recruit btn-warning"><a class="recruit" href="#">Recruit</a></div>
-					<div class="btn bribe btn-warning"><a class="bribe_character" href="#">Bribe</a></div>
-					<div class="btn rob btn-warning"><a class="rob_character" href="#">Rob</a></div>
+					<div class="inactive btn recruit btn-warning"><a class="recruit" href="#">Recruit</a></div>
+					<div class="inactive btn bribe btn-warning"><a class="bribe_character" href="#">Bribe</a></div>
+					<div class="inactive btn rob btn-warning"><a class="rob_character" href="#">Rob</a></div>
 					<div class="btn talk btn-warning"><a onclick="talk_character(' . $people->id  . ')" id="talk">Talk</a></div>
 				</div>
 				
