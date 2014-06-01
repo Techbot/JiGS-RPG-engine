@@ -52,7 +52,7 @@ echo '</pre>';
 </div><!-- end stats -->
 
 
-<p class="desc"><?php echo $this->player->comment ; ?></p>
+<p class="desc"><?php echo $this->player->commentaire ; ?></p>
         
 </div><!-- end desc -->
 
