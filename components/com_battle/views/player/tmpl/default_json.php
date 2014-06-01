@@ -17,9 +17,9 @@ $text ='
 					<div class="btn btn-danger shoot"><a onclick="shoot_character(' . $people->id  . ')" id="shoot" >Shoot</a></div>
 					<div class="btn btn-danger kick"><a onclick="kick_character(' . $people->id  . ')" id="kick" >Kick</a></div>
 					<div class="btn btn-danger punch"><a onclick="punch_character(' . $people->id  . ')" id="punch">Punch</a></div>
-					<div class="btn recruit btn-warning"><a class="recruit" href="#">Recruit</a></div>
-					<div class="btn bribe btn-warning"><a class="bribe_character" href="#">Bribe</a></div>
-					<div class="btn rob btn-warning"><a class="rob_character" href="#">Rob</a></div>
+					<div class="inactive btn recruit btn-warning"><a class="recruit" href="#">Recruit</a></div>
+					<div class="inactive btn bribe btn-warning"><a class="bribe_character" href="#">Bribe</a></div>
+					<div class="inactive btn rob btn-warning"><a class="rob_character" href="#">Rob</a></div>
 					<div class="btn talk btn-warning"><a onclick="talk_character(' . $people->id  . ')" id="talk">Talk</a></div>
 				</div>
 				
@@ -84,19 +84,19 @@ $text ='
 						<dl class="char stats dl-horizontal">
 											
 							<dt>Name</dt>
-							<dd>Bob</dd>
+							<dd>' . $people->name  . '</dd>
 
 							<dt>Age</dt>
-							<dd>47</dd>
+							<dd>unknown</dd>
 
 							<dt>Gender</dt>
-							<dd>Male</dd>
+							<dd>unknown</dd>
 
 							<dt>Address</dt>
-							<dd>Unit 23, Level 8, BBHC Labs</dd>
+							<dd>unknown</dd>
 
 							<dt>Vocation</dt>
-							<dd>Scientist</dd>
+							<dd>unknown</dd>
 
 						</dl>
 
@@ -112,12 +112,12 @@ $text ='
 
 							<h4>Description</h4>
 
-							<p class="desc">' . $people->comment  . '</p>
+							<p class="desc">' . $people->commentaire  . '</p>
 
 							<ul>
-								<li>creator of the Eclectic Meme Conspiracy - the game</li>
-								<li>nerdy but hip</li>
-								<li>mad professor</li>
+								<li>unknown</li>
+								<li>unknown</li>
+								<li>unknown</li>
 							</ul>
 
 						</div>
@@ -128,10 +128,9 @@ $text ='
 							<h4>Characteristics</h4>
 							
 							<ul>
-								<li>disorganised</li>
-								<li>genius</li>
-								<li>dealistic when young</li>
-								<li>increasingly delusional, egotistical, obsessive</li>
+								<li>unknown</li>
+								<li>unknown</li>
+								<li>unknown</li>
 							</ul>
 							
 						</div>
@@ -140,13 +139,7 @@ $text ='
 							
 							<h4>History</h4>
 								
-							<p>
-								He was born and soon after abandoned in the slums on the outskirts of the city. He was discovered and subsequently sold into adoption by the local slum lord, at 15 days old, procuring a huge resale value due to his intelligence readings being off the charts. According to the local authority, he would be 15% omniscient by the age of 6. He was raised in the city’s level 4, by a prestigious and wealthy couple who quickly entrusted his care to a professional tutor when they realised how fast his mind was developing.
-							</p>
-							
-							<p>
-								He left home at 14 when his tutor was killed under suspecious circumstances. His adopted parent"s distrust of him due to his genius only heightened as he got older and more independent, so he gravitated towards intellectual-based social scenes until being introduced to the underground intelligencia.
-							</p>
+							<p>unknown</p>
 							
 						</div>	
 						

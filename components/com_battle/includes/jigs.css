@@ -1058,10 +1058,10 @@ font-size:10px;
 /*div#messages p[display=table-row]*/
 div#messages p {
 border-bottom:1px dotted #009999;
-animation: fadeout 5s;
--moz-animation: fadeout 5s; /* Firefox */
--webkit-animation: fadeout 5s; /* Safari and Chrome */
--o-animation: fadeout 5s; /* Opera */
+//animation: fadeout 5s;
+//-moz-animation: fadeout 5s; /* Firefox */
+//-webkit-animation: fadeout 5s; /* Safari and Chrome */
+//-o-animation: fadeout 5s; /* Opera */
 }
 
 div#messages p:nth-child(odd) {
@@ -1968,7 +1968,12 @@ width:100%;
 	}
 
 
-	#NPC div.buy, #NPC div.attack, #NPC div.recruit, #NPC div.kick, #NPC div.punch, #NPC div.shoot, #NPC div.bribe, #NPC div.rob, #NPC div.talk, #NPC div.buy_battery, #NPC div.sell_battery,
+	#NPC div.btn a,
+	#PLAYERS div.btn a {
+	 color:#fff;
+	}
+
+	#NPC div.buy a, #NPC div.attack, #NPC div.recruit, #NPC div.kick, #NPC div.punch, #NPC div.shoot, #NPC div.bribe, #NPC div.rob, #NPC div.talk, #NPC div.buy_battery, #NPC div.sell_battery,
 	#PLAYERS div.buy, #PLAYERS div.attack, #PLAYERS div.recruit, #PLAYERS div.kick, #PLAYERS div.punch, #PLAYERS div.shoot, #PLAYERS div.bribe, #PLAYERS div.rob, #PLAYERS div.talk, #PLAYERS div.buy_battery, #PLAYERS div.sell_battery {
 	  margin: 0 3px 10px 0;
 	  padding: 3px 10px;
@@ -2015,3 +2020,27 @@ div#inventory,
 min-height:170px;
 }
 
+#magazine,
+#ammunition {
+display:inline-block;
+}
+
+.btn.inactive,
+.btn.inactive:hover,
+#NPC .btn.inactive,
+#NPC .btn.inactive:hover,
+#PLAYERS .btn.inactive,
+#PLAYERS .btn.inactive:hover  {
+background:#999;
+border:1px solid #7F7F7F;
+}
+
+.btn.inactive a,
+.btn.inactive a:hover,
+#NPC .btn.inactive a,
+#NPC .btn.inactive a:hover,
+#PLAYERS .btn.inactive a,
+#PLAYERS .btn.inactive a:hover {
+color:#7F7F7F;
+text-decoration:none;
+}

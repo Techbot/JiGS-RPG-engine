@@ -347,7 +347,7 @@ $x= $x+1;
 				mything = new Element ('div',{'id':"NPC",
 				html:result,
 				'style':'border 1px solid #F00; '});
-				mything.replaces(document.id('screen_grid'));
+				mything.replaces(document.id('world'));
 				var head = document.getElementsByTagName('head')[0] ;
 				var script = document.createElement('script');
 				script.type = "text/javascript";
@@ -366,7 +366,7 @@ $x= $x+1;
 				mything = new Element ('div',{'id':"PLAYERS",
 				html:result,
 				'style':'border 1px solid #F00; '});
-				mything.replaces(document.id('screen_grid'));
+				mything.replaces(document.id('world'));
 				var head = document.getElementsByTagName('head')[0];
 				script = document.createElement('script');
 				script.type = "text/javascript";
