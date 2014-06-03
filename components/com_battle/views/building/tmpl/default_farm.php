@@ -12,7 +12,7 @@ $land=1;
     ?>
     
     
-	<div>
+	<div class="subsection" style="float:left;width:80%;">
 	    <h2 style="display:none"<!--remove this to enable slider--> class="title">Field <?php echo $land ?>(@ 0)</h2>
 	    
 	    <!-- gets injected not turned on or off -->
@@ -89,30 +89,35 @@ if (isset ($this->crop_types))
 
 ?>
 
-<form class="conveyor" action="index.php" method="get" name="adminForm" id="adminForm">
+	<form class="conveyor" action="index.php" method="get" name="adminForm" id="adminForm">
 
 
-<div class="field-group">
-<label>Crop Type</label>
-<?php echo '' .  $this->lists['crops'] . '';?>
+		<div class="field-group">
+		<label>Crop Type</label>
+		<?php echo '' .  $this->lists['crops'] . '';?>
 
 
 
-<?php echo $this->loadTemplate ("hobbit_workforce"); ?>
+		<?php echo $this->loadTemplate ("hobbit_workforce"); ?>
 
-<?php echo $this->loadTemplate ("timebar"); ?>
+		<?php echo $this->loadTemplate ("timebar"); ?>
 
- 
-  <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-  <input type="hidden" name="option" value="<?php echo $option;?>" />
-  <input type="hidden" name="controller" value="buildings" />
-  <input type="hidden" name="task" value="not_withdraw" />
+		 
+		  <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
+		  <input type="hidden" name="option" value="<?php echo $option;?>" />
+		  <input type="hidden" name="controller" value="buildings" />
+		  <input type="hidden" name="task" value="not_withdraw" />
+		  
+		</div>
 
-</form>
-<div>
+
+	</form>
+
+
 
 <?php //////////////////////////////////////////////////////////////////////////// ?>
 
+<<<<<<< HEAD
 		<div class='clear'></div>
 	</div>
 
@@ -147,11 +152,15 @@ if (isset ($this->crop_types))
 	}?>
 
 
+=======
+<div class='clear'></div>
+>>>>>>> 099d03ed79ce046055ed10e2d79efbc1fdcef55e
 </div>
 
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -163,7 +172,39 @@ if (isset ($this->crop_types))
 
 
 
+=======
+>>>>>>> 099d03ed79ce046055ed10e2d79efbc1fdcef55e
 <?php // } ?>
 
-<!--/div-->
+</div>
 
+
+
+<div id = 'hobbit_names' style="float:right;width:20%;" >
+<?php 
+
+
+
+	$i= 1;
+	foreach ($this->hobbit_names as $hobbit_name)
+	{
+			echo  "xyx<br/>";
+		
+		foreach ($hobbit_name[$i] as $hobbit)
+		
+		{
+			echo $hobbit . "xxx<br/>";
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		//$i++;
+	}?>
+
+
+</div>
