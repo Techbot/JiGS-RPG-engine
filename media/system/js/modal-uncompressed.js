@@ -245,7 +245,11 @@ var SqueezeBox = {
 			width: this.size.x,
 			height: this.size.y,
 			left: (scroll.x + (box.x - this.size.x - this.options.marginInner.x) / 2).toInt(),
-			top: (scroll.y + (box.y - this.size.y - this.options.marginInner.y) / 2).toInt()
+			//top: (scroll.y + (box.y - this.size.y - this.options.marginInner.y) / 2).toInt()
+			top:50
+			
+			
+			
 		};
 		this.hideContent();
 		if (!instantly) {

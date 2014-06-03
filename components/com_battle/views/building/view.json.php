@@ -47,14 +47,14 @@ class BattleViewBuilding extends JView
 
 
 		$model3                     = JModel::getInstance('hobbits','BattleModel');
-        $player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
-        $this->assignRef('player_hobbit_stats', $player_hobbit_stats);
+        	$player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
+        	$this->assignRef('player_hobbit_stats', $player_hobbit_stats);
 
-        $building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id);
+        	$building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id);
         
-        $this->assignRef('building_hobbit_stats', $building_hobbit_stats);
+        	$this->assignRef('building_hobbit_stats', $building_hobbit_stats);
 
-
+		$sections = array('1');
 		///////////////////////////////////////////////////////////////////////////////////////////////////	
 		// This is where we make an object specific to each building type 	
 		///////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -62,7 +62,26 @@ class BattleViewBuilding extends JView
 		if($this->buildings->type=='farm')
 		{
 			$this->assignRef('crop_types', $model->get_crop_types($id));
-			$this->assignRef('fields', $model->get_fields($id));	
+			$this->assignRef('fields', $model->get_fields($id));
+			
+			
+			foreach ($sections as $section_id)
+			{
+			
+			
+				$x = $model3->get_subsection_hobbit_names($this->buildings->id, $section_id);
+			
+				//print_r($x);
+			
+			
+				$this->hobbit_names[$section_id] =  $x;
+			
+			
+			
+			}
+
+
+	
 		}
 
 		if($this->buildings->type=='apartment')

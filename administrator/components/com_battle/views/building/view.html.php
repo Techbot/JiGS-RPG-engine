@@ -22,7 +22,7 @@ class BattleViewBuilding extends JView
 		$default = $row->type;
 	
 		## An array of $key=>$value pairs ##
-		$types = array('apartment' => 'apartment', 'papier' => 'papier', 'mine' => 'mine', 'factory' => 'factory', 'farm' => 'farm','stand'=>'stand');
+		$types = array('apartment' => 'apartment', 'papier' => 'papier', 'mine' => 'mine', 'factory' => 'factory', 'farm' => 'farm','stand'=>'stand','batteryshop'=>'batteryshop','reprocessor' => 'reprocessor','scrapyard' => 'scrapyard','generator' => 'generator','tunnell'=>'tunnell');
 	
 		## Initialize array to store dropdown options ##
 		$options = array();

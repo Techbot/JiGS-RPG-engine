@@ -4,7 +4,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.modellist');
 
 jimport( 'joomla.filesystem.folder' );
+
 require_once JPATH_COMPONENT.'/helpers/messages.php';
+require_once JPATH_COMPONENT.'/helpers/energy.php';
 
 class BattleModelJigs extends JModellist{
 
@@ -95,7 +97,7 @@ class BattleModelJigs extends JModellist{
 
 	function leave_room()
 	{
-		$db			= JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$query		= "Update #__jigs_players SET active=1 WHERE id = $user->id";
 		$db->setQuery($query);
@@ -702,6 +704,9 @@ class BattleModelJigs extends JModellist{
 	function get_total_energy($id)
 	{
 		$batteries	= $this->get_all_energy($id);
+		
+		//$batteries	= $EnergyHelper::get_all_energy_new($id);
+
 		$total		= 0;
 		foreach ($batteries as $battery)
 		{
@@ -791,7 +796,21 @@ class BattleModelJigs extends JModellist{
 		$sql		    = "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
 		$db->setQuery($sql);
 		$result		    = $db->query();	
-        $energy_total   = $this->get_total_energy($building_id);
+       
+
+
+
+
+
+
+
+ $energy_total   = $this->get_total_energy($building_id);
+
+
+
+
+
+
 
 		MessagesHelper::sendFeedback($user->id, "transferred battery $id to building $building_id. Building now has $energy_total energy units");
 		

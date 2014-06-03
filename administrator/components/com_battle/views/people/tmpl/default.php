@@ -102,7 +102,7 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 	$row = &$this->rows[$i];
 	$checked = JHTML::_('grid.id', $i, $row->id );
 	$published = JHTML::_('grid.published', $row, $i );
-	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&cid[]='. $row->id );
+	$link = JFilterOutput::ampReplace( 'index.php?option=com_battle&controller=people&task=edit&cid[]='. $row->id );
 ?>
     <tr class="<?php echo "row$k"; ?>">
       <td>
@@ -147,6 +147,7 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 }
 ?>
 </table>
+<input type="hidden" name="controller" value="people" />
 <input type="hidden" name="option" value="com_battle" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="boxchecked" value="0" />

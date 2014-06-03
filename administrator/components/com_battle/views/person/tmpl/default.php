@@ -4,11 +4,11 @@ JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
 if ($this->row->id)
 {
-	JToolBarHelper::title( JText::_( 'Edit Charactor Profile' ), 'addedit.png' );
+	JToolBarHelper::title( JText::_( 'Edit Character Profile' ), 'addedit.png' );
 }
 else
 {
-	JToolBarHelper::title( JText::_( 'Add Charactor Profile' ), 'addedit.png' );
+	JToolBarHelper::title( JText::_( 'Add Character Profile' ), 'addedit.png' );
 }
 JToolBarHelper::save();
 JToolBarHelper::apply();
@@ -68,7 +68,8 @@ else
     </table>
   </fieldset>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
-  <input type="hidden" name="option" value="<?php echo $option;?>" />
+  <input type="hidden" name="controller" value="people" />
+  <input type="hidden" name="option" value="com_battle" />
   <input type="hidden" name="task" value="" />
   <?php echo JHTML::_( 'form.token' ); ?>
 </form>

@@ -96,11 +96,12 @@ class BattleModelHobbits extends JModel
         return false;
     }
 
-	function get_charactor_inventory() {
+	function get_charactor_inventory()
+	{
 
 		$db             = JFactory::getDBO();
 		$user           = JFactory::getUser();
-		$character_id   = JRequest::getvar(character_id);
+		$character_id   = JRequest::getvar('character_id');
 		
 		$db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name 
 		FROM #__jigs_inventory 
@@ -109,5 +110,56 @@ class BattleModelHobbits extends JModel
 		$result = $db->loadAssocList();
 		return $result;
 	}
+
+
+	function get_subsection_hobbit_names()
+	{
+		$building_id	= JRequest::getvar('building_id');
+		$dir		= JRequest::getvar('dir');
+		$section_id	= JRequest::getvar('section');
+		$db             = JFactory::getDBO();
+		$user           = JFactory::getUser();
+		
+		if ($dir == 'up')
+		{
+			$query1		= "Update #__jigs_hobbits SET status = 1 ,section = $section_id  WHERE owner = $building_id AND status = 1 AND section = 0 LIMIT 1";
+			$db->setQuery($query1);
+			$db->query();
+		}
+		
+		if ($dir == 'down')
+		{
+			$query1		= "Update #__jigs_hobbits SET status = 0 , section = 0  WHERE owner = $building_id AND status = 1 AND section=$section_id LIMIT 1";
+			$db->setQuery($query1);
+			$db->query();
+		}
+		
+		
+		$query		= "SELECT name FROM #__jigs_hobbits WHERE section = $section_id AND owner = $building_id";		
+		$db->setQuery($query);
+				
+		$result = $db->loadAssocList();
+		
+		//return $query1;
+		return $result;
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 }

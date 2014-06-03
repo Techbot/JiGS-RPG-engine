@@ -30,7 +30,26 @@ class BattleController extends JController
 		$result			= $model->$action();
 		echo Json_encode($result);
 	}
-
+	
+	function hobbit_action()
+	{	
+		$model			= $this->getModel('hobbits');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
+		echo Json_encode($result);
+	}
+	
+		function twine_action()
+	{	
+		$model			= $this->getModel('twine');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
+		echo Json_encode($result);
+	}
+	
+	
+	
+	
 
     function display()
 	{

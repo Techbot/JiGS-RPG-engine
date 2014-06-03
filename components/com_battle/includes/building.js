@@ -44,7 +44,8 @@ $(function(){
 
 	$('#slider-id').liquidSlider({
 	  slideEaseFunction: "easeInOutCubic",
-	  autoHeight: false,
+	  autoHeight: true,
+	  minHeight: 170,
 	  dynamicTabs: true,
 	  dynamicTabsAlign: "center",
 	  includeTitle:false,
@@ -673,11 +674,11 @@ function eat(itemID)
 		onSuccess: function(result){
 			if (result=="success"){
 					alert("You gained 10 health points which cost you 10 credits");
-					document.id('eat_burger').setStyle('visibility','hidden');
+					document.id('eat_burger').setStyle('display','none');
 					}
 			if (result=="broke"){
 					alert("You don't have enough money. Get out of here! Go get a job you waster!");
-					document.id('eat_burger').setStyle('visibility','hidden');
+					document.id('eat_burger').setStyle('display','none');
 					}
 		}
 	}).get();

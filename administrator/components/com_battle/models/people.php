@@ -7,17 +7,17 @@ class battleModelPeople extends JModellist
 	var $_data = null;
 	public function __constuct($config = array())
 	{ 
-		$this->db =& JFactory::getDBO();
-		$user = JFactory::getUser();
+		$this->db			= JFactory::getDBO();
+		$user				= JFactory::getUser();
 		$this->idJoomlaUser = $user->id;
-		$app = JFactory::getApplication();
+		$app				= JFactory::getApplication();
 		
 		// Get pagination request variables
-		$limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
-		$limitstart = JRequest::getVar('limitstart', 0, '', 'int');
+		$limit				= $app->getUserStateFromRequest('global.list.limit', 'limit', $app->getCfg('list_limit'), 'int');
+		$limitstart			= JRequest::getVar('limitstart', 0, '', 'int');
 		// In case limit has been changed, adjust it
-		$grid = JRequest::getVar('filter_grid', 1, '', 'int');		
-		$limitstart = ($limit != 0 ? (floor($limitstart / $limit) * $limit) : 0);
+		$grid				= JRequest::getVar('filter_grid', 1, '', 'int');		
+		$limitstart			= ($limit != 0 ? (floor($limitstart / $limit) * $limit) : 0);
 		
 		parent::__constuct($config);
 		
@@ -29,8 +29,8 @@ class battleModelPeople extends JModellist
 	/**
 	 */
 	protected function populateState ($ordering = null, $direction = null){
-		// Initiilise variables
-		$app = Jfactory::getApplication ('administrator');
+		// Initialise variables
+		$app			= Jfactory::getApplication ('administrator');
 		//load the filter state
 		$search			=		$this->getUserStateFromRequest($this->context. '.filter.search','filter_search');
 		$this->setstate('filter.search',$search);
@@ -41,7 +41,7 @@ class battleModelPeople extends JModellist
 		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
-		$params = JComponentHelper::getParams('com_battle');
+		$params			= JComponentHelper::getParams('com_battle');
 		$this->setState('params',$params);
 		//List state information
 		//	parent::populateState ('a.name','asc');
@@ -91,7 +91,7 @@ class battleModelPeople extends JModellist
 			// $query = $this->_buildQuery();
 	
 	
-			$query = "SELECT * FROM #__jigs_people";
+			$query = "SELECT * FROM #__jigs_characters";
 	
 			$this->_total = $this->_getListCount($query);
 		}

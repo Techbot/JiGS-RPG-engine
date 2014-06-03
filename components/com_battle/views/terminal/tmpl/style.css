@@ -1,0 +1,49 @@
+
+	
+	body {font-family:arial;background:#111111;font-size:18px;}
+	p {margin:1em 0;}
+	h1, h2, h3 {font-family: 'Luckiest Guy', cursive;text-shadow:1px 1px 1px white;text-align:center;}
+	code {font-family: monospace;color:green;padding:1em;background:black;display:block;margin:1em 0;text-align:center;}
+	#container,
+	#input_form {width : 598px; margin: 0 auto; background:rgba(255,255,255,0.6);padding:1em;}
+	
+	#http {width : 598px; margin: 0 auto; background:rgba(255,255,255,0.6);padding:1em;}
+	
+	
+	
+	
+	
+	#container {margin-top:2em;}
+	
+	input {
+		background: #ffffff; /* Old browsers */
+		background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* W3C */
+		color:black;
+		border-top:2px solid #333333;
+		border-right:2px solid #333333;
+		border-bottom:2px solid #222222;
+		border-left:2px solid #111111;
+		padding:1em 2em;
+		border-radius:15px;
+		margin:0 0 0 0.5em;
+		text-shadow:1px 1px 1px white;
+	}
+	input[type=button] {
+		background: #d8e0de; /* Old browsers */
+		background: linear-gradient(to bottom,  #d8e0de 0%,#aebfbc 33%,#99afab 66%,#8ea6a2 100%,#829d98); 
+		color:black;
+		font-weight:bold;
+		border-top:2px solid #333333;
+		border-right:2px solid #333333;
+		border-bottom:2px solid #222222;
+		border-left:2px solid #111111;
+		text-transform:uppercase;
+		font-family: 'Luckiest Guy', cursive;
+		font-size:24px;
+		padding:0.5em 1em;
+	}
+	input[type=button]:hover {
+		box-shadow:0 0 3px 3px rgba(0,0,0,0.6);
+	}
+								   
+	

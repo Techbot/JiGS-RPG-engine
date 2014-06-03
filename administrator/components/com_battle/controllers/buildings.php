@@ -34,8 +34,8 @@ $row->id = $cid[0];
 		{
 			JError::raiseError(500, $row->getError() );
 			
-		//	print_r($row->getError());
-		//	exit();
+			print_r($row->getError());
+			exit();
 			
 		}
 		

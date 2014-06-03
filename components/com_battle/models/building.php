@@ -754,32 +754,42 @@ class BattleModelBuilding extends JModel
 	function get_crop_types() {
 		$db		    = JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT 
-		#__jigs_crops.id, 
-		#__jigs_crops.name
-		FROM #__jigs_crops
-		WHERE #__jigs_crops.user_id =".$user->id);
+		$db->setQuery("SELECT #__jigs_crops.id, 
+				#__jigs_crops.name
+				FROM #__jigs_crops
+				WHERE #__jigs_crops.user_id =".$user->id);
 		$result		= $db->loadAssocList();
 		return $result;
 
 	}
 	
 	function get_crop_index(){
-		$db		    = JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$id			= JRequest::getvar('crop');
-		$db->setQuery("SELECT 
-		#__jigs_crops.index 
-		FROM #__jigs_crops
-		WHERE #__jigs_crops.id =".$id);
-		$result		= $db->loadResult();
+		$id		= JRequest::getvar('crop');
+		$building_id	= JRequest::getvar(building_id);
+		$section	= JRequest::getvar(section);
+		$db->setQuery("SELECT #__jigs_crops.index FROM #__jigs_crops WHERE #__jigs_crops.id =".$id);
+		$result[0]	= $db->loadResult();
+		$result[1]	= $this->get_subsection_hobbit_names($building_id, $section);
 		return $result;
 
 	}
 	
 	
 	
-	
+	function get_subsection_hobbit_names($building_id, $section)
+	{
+		$db             = JFactory::getDBO();
+		$user           = JFactory::getUser();
+				
+		$db->setQuery("SELECT #__jigs_hobbits.name
+		FROM #__jigs_hobbits 
+		WHERE #__jigs_hobbits.section = $section AND owner = $building_id ");
+		$result = $db->loadAssocList();
+		return $result;
+
+	}
 	
 
 
@@ -936,16 +946,7 @@ class BattleModelBuilding extends JModel
 		$db->query();
 		return $query;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 
 	function put_battery()
@@ -962,23 +963,23 @@ class BattleModelBuilding extends JModel
 	
 	function get_hobbit()
 	{
-		$db			    = JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
-		$status         = 1;
+		$status         = JRequest::getvar('itemid');
 		$owner_type     = "P"; 
-		$user			= JFactory::getUser();
+		$user		= JFactory::getUser();
 
-		$query			= "Update #__jigs_hobbits SET owner = $user->id, status = $status, owner_type = $owner_type WHERE #__jigs_hobbits.owner = $building_id LIMIT 1";
+		$query		= "Update #__jigs_hobbits SET owner = $user->id, status = 0, owner_type = 'P' WHERE #__jigs_hobbits.owner = $building_id AND status = 1 LIMIT 1";
 		$db->setQuery($query);
 		$db->query();
 
-
-		return $query;
+		$sub_total	= $this->update_building_hobbits($building_id,1,'B' );
+		return $sub_total;
 	}
 
 	function put_hobbit()
 	{
-		$db			    = JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
 		$item_id    	= JRequest::getvar('itemid');
 		
@@ -997,17 +998,33 @@ class BattleModelBuilding extends JModel
 		{ 
 		    $status         = 4;
 		}		
-		
-		$query			= "Update #__jigs_hobbits SET owner = $building_id ,status = $status, owner_type = '$owner_type' WHERE #__jigs_hobbits.owner = $user->id LIMIT 1";
+
+		$query		= "Update #__jigs_hobbits SET owner = $building_id ,status = $status, owner_type = '$owner_type' WHERE #__jigs_hobbits.owner = $user->id LIMIT 1";
 		$db->setQuery($query);
 		$db->query();
-		return $query;
+		
+		$sub_total = $this->update_building_hobbits($building_id,$status,$owner_type );
+		
+		return $sub_total;
 	}
 	
 	
+	function update_building_hobbits($building_id, $status, $owner_type)
+	{
+		$db		= JFactory::getDBO();
+		$query		= "SELECT id FROM #__jigs_hobbits WHERE owner = $building_id AND status = $status AND owner_type = '$owner_type'";
+		$sub_total	= $db->setQuery($query);
+		$db->query();
+		$sub_total = $db->getNumRows();
+
+		return $sub_total;
+	}
+
+
+
 	function get_papers() {
 
-		$db			= JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
 		$db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_paper_names.name, #__jigs_papers.buy_price " .
 			"FROM #__jigs_papers " .
@@ -1022,28 +1039,28 @@ class BattleModelBuilding extends JModel
 
 	function get_shop_papers() {
 
-		$db				= JFactory::getDBO();
-		$user			= JFactory::getUser();
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
 		$building_id	= JRequest::getvar('building_id');
-		$db->setQuery("SELECT #__jigs_papers.item_id, " .
-			"#__jigs_papers.sell_price, " . 
-			"#__jigs_paper_names.name " .
-			"FROM #__jigs_papers LEFT JOIN  #__jigs_paper_names ON #__jigs_papers.item_id = #__jigs_paper_names.id " .
-			"WHERE #__jigs_papers.player_id =" . $building_id);
-		$result			= $db->loadAssocList();
+		$db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_papers.sell_price, #__jigs_paper_names.name 
+				FROM #__jigs_papers 
+				LEFT JOIN  #__jigs_paper_names 
+				ON #__jigs_papers.item_id = #__jigs_paper_names.id 
+				WHERE #__jigs_papers.player_id =" . $building_id);
+		$result		= $db->loadAssocList();
 		return $result;
 
 	}
 	
 	
 		function get_my_blueprints_list() {
-		$db			= JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
-			"FROM #__jigs_blueprints " .
-			"LEFT JOIN #__jigs_objects " .
-			"ON #__jigs_blueprints.object = #__jigs_objects.id " .
-			"WHERE #__jigs_blueprints.user_id =".$user->id);
+		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name 
+				FROM #__jigs_blueprints 
+				LEFT JOIN #__jigs_objects 
+				ON #__jigs_blueprints.object = #__jigs_objects.id 
+				WHERE #__jigs_blueprints.user_id = ".$user->id);
 		$result		= $db->loadAssocList();
 		return $result;
 

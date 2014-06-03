@@ -32,7 +32,17 @@ class BattleControllerPeople extends JController
 		{
 			JError::raiseError(500, $row->getError() );
 		}
-		$this->setRedirect('index.php?option=' . $option, 'Review Saved');
+		
+		if(JRequest::getVar('task')=='apply'){
+
+			$this->setRedirect('index.php?option=com_battle&controller=people&task=edit&cid='.$row->id, 'people Saved');
+		}
+		else{
+		
+		$this->setRedirect('index.php?option=com_battle&view=people', 'people Saved');
+		}
+
+	
 	}
 	function display()
 	{

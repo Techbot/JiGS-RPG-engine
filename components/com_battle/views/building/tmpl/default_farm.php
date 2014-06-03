@@ -17,7 +17,9 @@ $land=1;
 	    
 	    <!-- gets injected not turned on or off -->
 	    
-	    
+	   
+
+ 
 	     <div id = "message_text_<?php echo $land ?>" >Status: </div>
 	    
 	  <!-- end of injection -->  
@@ -113,6 +115,54 @@ if (isset ($this->crop_types))
 
 		<div class='clear'></div>
 	</div>
+
+
+
+
+
+<div id = 'hobbit_names' style="float:right;" >
+<?php 
+
+
+
+	$i= 1;
+	foreach ($this->hobbit_names as $hobbit_name)
+	{
+			echo  "xyx<br/>";
+		
+		foreach ($hobbit_name[$i] as $hobbit)
+		
+		{
+			echo $hobbit . "xxx<br/>";
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		//$i++;
+	}?>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php // } ?>
 
 <!--/div-->

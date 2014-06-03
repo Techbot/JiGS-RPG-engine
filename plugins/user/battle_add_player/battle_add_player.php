@@ -17,14 +17,27 @@ class plgUserBattle_add_player extends JPlugin
 	public function onUserAfterSave($user, $isnew, $success, $msg )
 	{
 		$user_id		= $user['id'];
-		$user_username	= $user['username'];
-		$db				= JFactory::getDBO();
-		$query			= "INSERT INTO #__jigs_players (iduser,username) VALUES ($user_id,$user_username)";
+		$user_username		= $user['username'];
+		$db			= JFactory::getDBO();
+		$query			= "INSERT INTO #__jigs_players (id,name) VALUES ($user_id,'$user_username')";
 		$db->setQuery($query);
 		$result			= $db->query();
 		return true;
 	}
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	function onUserAfterDelete($user, $success, $msg)
@@ -41,7 +54,7 @@ class plgUserBattle_add_player extends JPlugin
                         {
                                 $db = JFactory::getDbo();
                                 $db->setQuery(
-                                        'DELETE FROM #__jigs_players WHERE iduser = '.$userId 
+                                        'DELETE FROM #__jigs_players WHERE id = '.$userId 
                                                                        );
  
                                 if (!$db->query()) {
@@ -57,17 +70,6 @@ class plgUserBattle_add_player extends JPlugin
  
                 return true;
         }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

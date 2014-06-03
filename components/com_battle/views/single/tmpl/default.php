@@ -177,45 +177,61 @@ class="buildings_class" style="
  * 
  *****************************/
   
-foreach ($this->pages as $page){ 
+  
+foreach ($this->pages as $page)
+{ 
 
-?>
-<div id="page_<?php echo $page->id ?>" 
+//echo "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
 
-class="pages_class" style="
- top:<?php echo $page->posy *50?>px;
- left:<?php echo $page->posx *50?>px;
+    $id         = $page->id;
+    $top        = $page->posy * 50;
+    $left       = $page->posx * 50;
+    $details    = $page->details;
+    $name       = $page->name;
+    
+    $text       = "<div id ='$details' class='pages_class' style='top:" . $top . "px; left:" . $left . "px;'>";
 
-">
+    if ($page->type=='url')
+    {
 
-<?php if ($page->type=='url'){
+	    $link   = 'http://'. $details;
+	    $rel    = '{handler: "iframe", size: {x: 640, y: 700}}';
+	    
 
-	$link   = 'http://'.$page->details;
-	$rel    = '{handler: "iframe", size: {x: 640, y: 600}}';
-	$class  = 'modal';
-	
-}
- if ($page->type=='article'){
+    }
+    
+    if ($page->type=='article')
+    {
 
-	$page_article = $page->details;
-	$link= 'index.php?option=com_content&view=article&tmpl=component&id=' . $page_article;
+	    $link           = "index.php?option=com_content&view=article&tmpl=component&id=" . $details;
+	   	   
+    }
 
-	$rel='{handler: "iframe", size: {x: 640, y: 600}}';
-	$class='modal';
-}
+     $open  ="<a href= '$link' title='$details' rel='{handler: \"iframe\", size: {x: 640, y: 600}}' class='modal'>";
+     $close = "</a>";
+     $blank = " ";
 
-if ($page->type=='canvas'){
 
-	$canvas_number  = $page->details;
-	$link           = 'index.php?option=com_battle&view=canvas&id=' . $canvas_number;
-	$class          = "page_class";
-  }
-	?>
-<!--a href= '<?php echo $link?>' title='<?php echo $page->name; ?>' rel='<?php echo $rel; ?>' class='<?php echo $class; ?>'-->
-<img src='<?php echo $this->baseurl; ?>/components/com_battle/images/pages/miniatures/<?php echo $page->image; ?>' id = '<?php echo $canvas_number ?>'class='<?php echo $class; ?>' >
-<!--/a-->
-</div>
-<?php
+    if ($page->type=='canvas')
+    {
+
+	   
+	    $link           = "index.php?option=com_battle&view=canvas&id=" . $id;
+	    $class          = "page_class";
+        $open           = $blank;
+        $close          = $blank;
+     
+    }
+
+
+    $text .= $open;
+    $image_ = $page->image;
+    $text .= "<img src ='components/com_battle/images/pages/miniatures/" . $image_ ."'>";
+    $text .= $close;
+    $text .= "</div>";
+
+    echo $text;
+
 } // end of foreach
 
 /************************
@@ -318,7 +334,7 @@ $x= $x+1;
 	});
 	
 		
-	$$('.page_class').addEvent('click', function(){
+	$$('.pages_class').addEvent('click', function(){
 		var itemID = this.get('id');
 		var a = new Request.JSON({
 			url:"index.php?option=com_battle&format=json&view=canvas&id="+itemID,
@@ -327,7 +343,7 @@ $x= $x+1;
 				alert(itemID);
 				
 				mything = new Element ('div',{'id':"container",html:result,'style':'border 1px solid #F00; '});	
-		 		mything.replaces(document.id('world'));
+		 		mything.replaces(document.id('screen_grid'));
 		 			 
                 document.getElementById('loadarea_0').src= '/components/com_battle/includes/raphael-min.js';
                 document.getElementById('loadarea_1').src= '/components/com_battle/includes/canvas_' + itemID + '.js';
