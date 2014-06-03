@@ -136,7 +136,7 @@ $body .=' <div class="buy" >
 /////////////////////////////////////// Owned but not Player Owned //////////////////////////
 if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){
   $body .='      <div class= "attack" >
-          <a href="#" class= "attack" id = "' . $this->buildings->id . '"> Attack this '. $this->buildings->type .'</a>
+          <!--a href="#" class= "attack" id = "' . $this->buildings->id . '"> Attack this '. $this->buildings->type .'</a-->
         </div><!-- attack-->
         ';
 

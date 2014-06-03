@@ -380,24 +380,32 @@ function kick_player(character_id){
 			}).get();
 }
 
-function reload(){
-	
-		var a = new Request.JSON(
+		function reload()
 		{
-			url: "index.php?option=com_battle&format=raw&task=action&action=reload",
-			onSuccess: function(result)
-			{
-			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
-			myElement= document.id('magazine');
+	
+				var a = new Request.JSON(
+				{
+					url: "index.php?option=com_battle&format=raw&task=action&action=reload",
+					onSuccess: function(result)
+					{
+					//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+					myElement= document.id('magazine');
 
-			myElement.set('html', result);	
+					myElement.set('html', result);	
+					}
+				}).get();
 			}
-		}).get();
-	}
-		function punch_player(character_id){
+		
+		
+		
+		
+		
+		
+		function punch_player(character_id)
+		{
     
-	        var d = document.getElementById('punch');
-	        var a = new Request.JSON({
+	        	var d = document.getElementById('punch');
+	        	var a = new Request.JSON({
 			url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=punch&character=" + character_id,
 			onSuccess: function(result){
 

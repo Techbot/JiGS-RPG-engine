@@ -1737,6 +1737,49 @@ class BattleModelJigs extends JModellist{
 	}
 
 
+	function eat()
+	{
+		$db	= JFactory::getDBO();
+		$user	= JFactory::getUser();
+		$query	= $db->getQuery(true);
+
+		$query->select('health, money');
+		$query->from('#__jigs_players');
+		$query->where('id = ' . $user->id);
+		$db->setQuery($query);
+
+		$result	= $db->loadAssoc();
+		$health	= $result['health'];
+		$money	= $result['money'];
+
+		// return json_encode($query);
+
+		if ($money > 10)
+		{
+			$money	= $money - 10;
+			$health	= $health + 10;
+			$sql	= "Update #__jigs_players SET money = $money, health = $health WHERE iduser= " . $user->id;
+			$db->setQuery($sql);
+			$db->query();
+			$return	= "success";
+		}
+		else
+		{
+			$return	= "broke";
+		}
+
+	return $return;
+	}
+
+
+
+
+
+
+
+
+
+
 	function sell_crops()
 	{
 		$total_crops	= $this->get_total_crops();
