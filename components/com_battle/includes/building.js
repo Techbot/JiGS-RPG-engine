@@ -78,41 +78,25 @@ function buy_building()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function set_type()
 {
 
 	if (window.building_type=="papier")
     {
         get_shop_papers();
-        get_papers.periodical(1000);				
+        get_papers();				
     }
     
     if (window.building_type=="mine")
     {
   		dig();
 	    check_mine();
-	    check_mine.periodical(2000);
+	    
     }
     
     if (window.building_type=="blueprints")
     {
-     	get_my_blueprints.periodical(1000);
+     	get_my_blueprints();
 	    get_shop_blueprints();
     }
   
@@ -133,7 +117,7 @@ function set_type()
 	
 	    });
  		collectEmpties();
- 		check_farm.periodical(5000)
+ 		check_farm.periodical(5000);
 
     }
 
@@ -142,7 +126,7 @@ function set_type()
         prepare();
         prepare2();
         work_reprocessor();
-        check_reprocessor.periodical(5000);
+        check_reprocessor();
         //change();
     }
 
@@ -152,7 +136,7 @@ function set_type()
         prepare2();
         work_conveyer();
         get_blueprints();
-        check_factory.periodical(5000);
+        check_factory();
         request_metals();
     }
 
@@ -162,7 +146,7 @@ function set_type()
         // request_metals2();
         // request_metals2.periodical(10000);
         request_get_metals_to_sell();
-        request_get_metals_to_sell.periodical(10000);
+       // request_get_metals_to_sell();
     }
 
     if (window.building_type=="food")
@@ -172,8 +156,8 @@ function set_type()
 	     // var itemID = this.get('id');
  		  sell_crops();
   		});
-	    get_papers.periodical(1000);
-	    get_shop_papers.periodical(1000);
+	   // get_papers.periodical(1000);
+	   // get_shop_papers.periodical(1000);
     }
 
     if (window.building_type=="stand")
@@ -198,22 +182,7 @@ function set_type()
     //    request_battery_slots.periodical(5000);				
     }	
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
 
     if (window.building_type=="bank")
     {
@@ -227,18 +196,7 @@ function set_type()
         buy_bullets();				
     } 
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-    
-    if (window.building_type=="diner")
+     if (window.building_type=="diner")
     {
         //SAMPLE 4 (walk to item)
 	    /*var nS4 = new noobSlide({
@@ -264,8 +222,9 @@ function set_type()
     if (window.building_type=="weapons")
     {   
             request_shop_weapons();
-            //request_weapons2();
-            request_weapons.periodical(1000);	
+            //request_weapons2()
+            request_weapons();	
+            
     }
 }
 
@@ -332,7 +291,13 @@ function buy_weapon(itemID)
         + building_id + "&item=" + itemID, 
         onSuccess: function(result)
         {
-        	    
+            request_shop_weapons();
+            request_weapons();
+          //  request_weapons.periodical(1000);	
+        	
+        	
+        	
+        	
         }
     }).get();
 }
@@ -347,7 +312,9 @@ function sell_weapon(itemID)
         + itemID, 
         onSuccess: function(result)
         {
-       	   
+            request_shop_weapons();
+            request_weapons();
+          //  request_weapons.periodical(1000);	
         }
     }).get();
 
@@ -634,7 +601,7 @@ function request_get_metals_to_sell(){
 		url: "index.php?option=com_battle&format=raw&task=action&action=get_metals_to_sell&building_id=" 
 		+ building_id , 
         onSuccess: function(result){
-            for (i = 0; i < result.length; ++ i)
+            for (var i = 0; i < result.length; ++ i)
 			{
                 var row = "<div class='row'><span>"
 				+result[i].name 
