@@ -238,21 +238,30 @@ class battleModelBuildings extends JModellist
 	}
 	
 	
-	function get_my_blueprints_list() {
-		$db			= JFactory::getDBO();
+	function get_my_blueprints_list()
+	{
+		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
-			"FROM #__jigs_blueprints " .
-			"LEFT JOIN #__jigs_objects " .
-			"ON #__jigs_blueprints.object = #__jigs_objects.id " .
-			"WHERE #__jigs_blueprints.user_id =".$user->id);
+		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name  
+		FROM #__jigs_blueprints  LEFT JOIN #__jigs_objects  
+		ON #__jigs_blueprints.object = #__jigs_objects.id  
+		WHERE #__jigs_blueprints.user_id =".$user->id);
+		
 		$result		= $db->loadAssocList();
 		return $result;
 
 	}
 	
 	
-	
+	function get_mines($id)
+	{
+		
+		$query = "SELECT * FROM #__jigs_mines WHERE building =" . $id . " ORDER BY mine ASC" ;
+		$this->_data2 = $this->_getList($query);	
+		
+		return $this->_data2;
+		
+	}
 	
 	
 	

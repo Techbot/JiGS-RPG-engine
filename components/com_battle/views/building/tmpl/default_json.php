@@ -104,35 +104,37 @@ $body ='
       <div class="instructions">';
 
 	
-	if ($this->buildings->owner == 0){
-      $body .= $this->loadTemplate ("board_info_poster");
-	   }
+	if ($this->buildings->owner == 0)
+	{
+		$body .= $this->loadTemplate ("board_info_poster");
+	}
 
 	
-	if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){
-       $body .= $this->loadTemplate ("board_info_poster");
-	   }
+	if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
+	{
+		$body .= $this->loadTemplate ("board_info_poster");
+	}
 
 	   
 	//if player owned
 	
-	if ($this->buildings->owner == $this->user->id){
-       $body .= $this->loadTemplate ("board_info1");
-	   }
-    $body .='  </div>
+	if ($this->buildings->owner == $this->user->id)
+	{
+		$body .= $this->loadTemplate ("board_info1");
+	}
+	$body .='  </div>
 	
 	
 	
-      <div id="action" class="clearfix">
-      ';
+	<div id="action" class="clearfix">
+	';
 
 //////////////////////////////   No Owner - Buy Only //////////////////////////////////
-if ($this->buildings->owner == 0){
-$body .=' <div class="buy" >
-          <a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a>
-        </div> <!--buy-->';
+	if ($this->buildings->owner == 0)
+	{
+		$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a></div> <!--buy-->';
  
-}
+	}
 /////////////////////////////////////// Owned but not Player Owned //////////////////////////
 if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){
   $body .='      <div class= "attack" >

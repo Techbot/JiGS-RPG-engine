@@ -7,6 +7,7 @@ jimport( 'joomla.filesystem.folder' );
 
 require_once JPATH_COMPONENT.'/helpers/messages.php';
 require_once JPATH_COMPONENT.'/helpers/energy.php';
+//require_once JPATH_COMPONENT.'/helpers/jigs.php';
 
 class BattleModelJigs extends JModellist{
 
@@ -468,6 +469,7 @@ class BattleModelJigs extends JModellist{
 	        $db->query();
 	     }
 	MessagesHelper::sendFeedback($user->id,$message);
+	
 	return $current_magazine;
 
     }
@@ -601,34 +603,7 @@ class BattleModelJigs extends JModellist{
 	}
 
 
-	function buy()
-	{
-		$db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
-		$building_id	= JRequest::getvar(building_id);
-		$item		= JRequest::getvar(item);
 
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
-
-		$player_money	= $db->loadResult();
-
-		$db->setQuery("SELECT sell_price FROM #__jigs_shop_prices WHERE #__jigs_shop_prices.item_id = " . $item .
-			" AND #__jigs_shop_prices.shop_id = " . $building_id);
-
-		$sell_price	= $db->loadResult();
-		if ($player_money > $sell_price) {
-			$player_money	= $player_money - $sell_price;
-
-			$db->setQuery( "INSERT INTO #__jigs_inventory (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
-			$result		= $db->query();
-
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
-			$result2	= $db->query();
-			$result3	='true';
-
-			return $player_money;
-		}
-	}
 	
 	function retrieve()
 	{
@@ -823,32 +798,8 @@ class BattleModelJigs extends JModellist{
 	function charge_battery()
 	{
 	}
+	
 
-	///// PLAYER BUYS BATTERY FROM THIN AIR. GETS 100 UNITS MONEY DEDUCTED /////
-	function buy_battery()
-	{
-		$db		            = JFactory::getDBO();
-		$user		        = JFactory::getUser();
-		$building_id	    = JRequest::getvar('building_id');
-
-		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
-		$player_money	    = $db->loadResult();
-		$sell_price	        = 100;
-
-		if ($player_money > $sell_price)
-		{
-			$player_money	= $player_money - $sell_price;
-			$sql		    = "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
-			$db->setQuery($sql);
-			$result		    = $db->query();
-
-			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
-			$result2	    = $db->query();
-			$result3	    = 'true';
-			return $player_money;
-		}
-		return $player_money;
-	}
 
 	///// PLAYER SELLS BATTERY TO BUILDING /////
 	function sell_battery()
@@ -902,19 +853,278 @@ class BattleModelJigs extends JModellist{
 		return $result;
 	}
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
+		function buy()
+	{
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$building_id	= JRequest::getvar('building_id');
+		$item		= JRequest::getvar('item');
+		$buy		= JRequest::getvar('buy');
 
+
+		if ($buy=='objects')
+		{
+
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
+			$player_money	= $db->loadResult();
+
+			$db->setQuery("SELECT sell_price FROM #__jigs_shop_prices WHERE #__jigs_shop_prices.item_id = " . $item .
+				" AND #__jigs_shop_prices.shop_id = " . $building_id);
+			$sell_price	= $db->loadResult();
+		
+		
+		
+			if ($player_money >= $sell_price) {
+				$player_money	= $player_money - $sell_price;
+
+				$db->setQuery( "INSERT INTO #__jigs_inventory (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
+				$result		= $db->query();
+
+				$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+				$result2	= $db->query();
+				$result3	='true';
+
+				return $player_money;
+			}
+
+
+		}
+		
+		if ($buy=='battery')
+		{
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
+			$player_money	    = $db->loadResult();
+			$sell_price	        = 100;
+			if ($player_money >= $sell_price)
+			{
+				$player_money	= $player_money - $sell_price;
+				$sql		    = "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
+				$db->setQuery($sql);
+				$result		    = $db->query();
+
+				$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+				$result2	    = $db->query();
+				$result3	    = 'true';
+				return $player_money;
+			}
+			return $player_money;
+		}
+
+
+
+	
+		if ($buy=='weapon')
+		{
+
+
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
+			$player_money		= $db->loadResult();
+			$db->setQuery("SELECT sell_price FROM #__jigs_weapon_names WHERE #__jigs_weapon_names.id = " . $item );
+			$sell_price		= $db->loadResult();
+			if ($player_money >= $sell_price) 
+			{
+				$player_money	= $player_money - $sell_price;
+				$db->setQuery( "INSERT INTO #__jigs_weapons (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
+
+				$result		= $db->query();
+				$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+				$result2	= $db->query();
+				$result3	='true';
+				return $player_money;
+
+
+			}
+	
+	
+			return $player_money;
+		}
+	
+	
+	
+		if ($buy=='crystal')
+		{
+			
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
+			$player_money		= $db->loadResult();
+			
+			
+			
+			$db->setQuery("SELECT sell_price FROM #__jigs_crystals WHERE #__jigs_crystals.id =".$item);
+			$sell_price		= $db->loadResult();
+
+			if ($player_money >= $sell_price)
+			{
+				$player_money	= $player_money - $sell_price;
+				$db->setQuery( "INSERT INTO #__jigs_crystals (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
+				$result		= $db->query();
+				$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+				$result2	= $db->query();
+				$result3	= 'true';	
+				$result		= $db->loadRow();
+				return $player_money;
+			}
+	
+			return $player_money;
+	
+	
+		}
+	
+	
+	
+	
+	
+		if ($buy=='papers')
+		{
+
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
+			$player_money		= $db->loadResult();
+			
+			$db->setQuery("SELECT sell_price FROM #__jigs_crystals WHERE #__jigs_crystals.id =".$item);
+			$sell_price		= $db->loadResult();
+
+			if ($player_money >= $sell_price)
+			{
+				$player_money	= $player_money - $sell_price;
+				$db->setQuery( "INSERT INTO #__jigs_crystals (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
+				$result		= $db->query();
+				$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+				$result2	= $db->query();
+				$result3	= 'true';	
+				$result		= $db->loadRow();
+				return $player_money;
+			}
+	
+			return $player_money;
+	
+	
+		}
+	
+	
+	
+		if($buy=='blueprints')
+		{
+	
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
+			$player_money	= $db->loadResult();
+			$db->setQuery("SELECT sell_price FROM #__jigs_blueprints WHERE #__jigs_blueprints.id =".$item);
+			$sell_price	= $db->loadResult();
+
+			if ($player_money >= $sell_price)
+			{
+				$player_money	= $player_money - $sell_price;
+				$db->setQuery( "INSERT INTO #__jigs_blueprints (user_id, object) VALUES ( $user->id  ,  $item )" );
+				$result		= $db->query();
+				$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+				$result2	= $db->query();
+				return $player_money;
+			}
+	
+		}
+		
+		if($buy="building")
+		{
+			$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
+			$player_money	= $db->loadResult();
+
+			//$db->setQuery("SELECT price FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
+			//$sell_price	= $db->loadResult();
+		
+			$db->setQuery("SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
+			$result 	= $db->loadObject();
+
+			$sell_price	= $result->price;
+			$type		= $result->type;
+
+			// If the Player has enough money
+			if ($player_money >= $sell_price)
+			{
+			//	$this->buy_building_award($type);
+
+				// player loses cost of building
+				$player_money = $player_money - $sell_price;
+
+				// player gets building
+				$db->setQuery("UPDATE #__jigs_buildings SET owner = $user->id WHERE #__jigs_buildings.id = " . $building_id);
+				$result = $db->query();
+
+				// update new players cash in hand to database
+				$db->setQuery("UPDATE #__jigs_players SET money = " . $player_money . " WHERE id = " . $user->id );
+				$result = $db->query();
+				$message ="You have bought this building";
+			}
+
+			// player does not have enough money
+			else
+			{
+				$message ="You do not have enough cash to buy this building";
+			}
+			MessagesHelper::sendFeedback($user->id,$message);
+
+			return $result;
+		}
+	}
+	
+	/*
+
+	///// PLAYER BUYS BATTERY FROM THIN AIR. GETS 100 UNITS MONEY DEDUCTED /////
+	function buy_battery()
+	{
+		$db		    = JFactory::getDBO();
+		$user		    = JFactory::getUser();
+		$building_id	    = JRequest::getvar('building_id');
+
+
+
+
+		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
+		$player_money	    = $db->loadResult();
+		$sell_price	        = 100;
+
+
+
+
+		if ($player_money >= $sell_price)
+		{
+			$player_money	= $player_money - $sell_price;
+			$sql		    = "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
+			$db->setQuery($sql);
+			$result		    = $db->query();
+
+			$db->setQuery("UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id );
+			$result2	    = $db->query();
+			$result3	    = 'true';
+			return $player_money;
+		}
+		return $player_money;
+
+
+
+	}
 
 	function buy_weapon()
 	{
 		$db			= JFactory::getDBO();
 		$user			= JFactory::getUser();
-		$building_id		= JRequest::getvar(building_id);
-		$item			= JRequest::getvar(item);
+		$building_id		= JRequest::getvar('building_id');
+		$item			= JRequest::getvar('item');
+		
+		
+		
+		
+		
+		
+		
+		
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =" . $user->id);
 		$player_money		= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_weapon_names WHERE #__jigs_weapon_names.id = " . $item );
 		$sell_price		= $db->loadResult();
-		if ($player_money > $sell_price) {
+		if ($player_money >= $sell_price) {
 			$player_money	= $player_money - $sell_price;
 			$db->setQuery( "INSERT INTO #__jigs_weapons (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")"
 			);
@@ -925,20 +1135,27 @@ class BattleModelJigs extends JModellist{
 			$result3	='true';
 			return $player_money;
 		}
+	
+	
+	
+	
+	
+	
+	
 	}
 
 	function buy_crystals()
 	{
 		$db			= JFactory::getDBO();
 		$user			= JFactory::getUser();
-		$building_id		= JRequest::getvar(building_id);
-		$item			= JRequest::getvar(item);
+		$building_id		= JRequest::getvar('building_id');
+		$item			= JRequest::getvar('item');
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money		= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_crystals WHERE #__jigs_crystals.id =".$item);
 		$sell_price		= $db->loadResult();
 
-		if ($player_money > $sell_price)
+		if ($player_money >= $sell_price)
 		{
 			$player_money	= $player_money - $sell_price;
 			$db->setQuery( "INSERT INTO #__jigs_crystals (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")");
@@ -964,7 +1181,7 @@ class BattleModelJigs extends JModellist{
 		$db->setQuery("SELECT sell_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item);
 		$sell_price		= $db->loadResult();
 
-		if ($player_money > $sell_price)
+		if ($player_money >= $sell_price)
 		{
 			$player_money = $player_money - $sell_price;
 
@@ -982,14 +1199,14 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$building_id	= JRequest::getvar(building_id);
-		$item		= JRequest::getvar(item);
+		$building_id	= JRequest::getvar('building_id');
+		$item		= JRequest::getvar('item');
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 		$db->setQuery("SELECT sell_price FROM #__jigs_blueprints WHERE #__jigs_blueprints.id =".$item);
 		$sell_price	= $db->loadResult();
 
-		if ($player_money > $sell_price)
+		if ($player_money >= $sell_price)
 		{
 			$player_money	= $player_money - $sell_price;
 			$db->setQuery( "INSERT INTO #__jigs_blueprints (user_id, object) VALUES ( $user->id  ,  $item )" );
@@ -1004,7 +1221,9 @@ class BattleModelJigs extends JModellist{
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$building_id	= JRequest::getvar(building_id);
+		$building_id	= JRequest::getvar('building_id');
+		
+		
 		$db->setQuery("SELECT money FROM #__jigs_players WHERE id =".$user->id);
 		$player_money	= $db->loadResult();
 
@@ -1014,8 +1233,8 @@ class BattleModelJigs extends JModellist{
 		$db->setQuery("SELECT * FROM #__jigs_buildings WHERE #__jigs_buildings.id =".$building_id);
 		$result 	= $db->loadObject();
 
-		$sell_price = $result->price;
-		$type  = $result->type;
+		$sell_price	= $result->price;
+		$type		= $result->type;
 
 		// If the Player has enough money
 		if ($player_money >= $sell_price)
@@ -1044,6 +1263,14 @@ class BattleModelJigs extends JModellist{
 
 		return $result;
 	}
+
+*/
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
 
 	function buy_building_award($type)
 	{

@@ -56,7 +56,7 @@ class BattleViewBuilding extends JView
 		{
 		
 		$model			= JModel::getInstance('buildings','BattleModel');
-		$this->mines	= $model->get_mines($id);
+		$this->mines		= $model->get_mines($id);
 
 		}		
 		
@@ -76,7 +76,13 @@ class BattleViewBuilding extends JView
                   $this->fields[$i]->timestamp = $now;
                 }
 		    }	
-		}    	
+		}   
+		
+		
+		
+		
+		
+		 	
 		parent::display($tpl);
 	}
 }

@@ -11,13 +11,10 @@ abstract class MessagesHelper
     public function saveMessage()
     {
                 
-        $db		= JFactory::getDBO();
-		$user		= JFactory::getUser();
+ 		$user		= JFactory::getUser();
 		$message	= "A little kelp from my friends";
-		
 		$this->sendFeedback($user->id,$message);
-             
-             
+ 
      }
        
            
@@ -30,8 +27,5 @@ abstract class MessagesHelper
 		$db->query();
 		return ;
 	}       
-           
-        
-           
-           
+      
 }

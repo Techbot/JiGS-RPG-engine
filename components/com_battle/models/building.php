@@ -835,7 +835,7 @@ class BattleModelBuilding extends JModel
 	function get_objects_required($blueprints)
 	{
 
-		$db		= JFactory::getDBO();
+		$db	= JFactory::getDBO();
 		$user	= JFactory::getUser();
 		
 		if(isset($blueprints))
@@ -905,18 +905,16 @@ class BattleModelBuilding extends JModel
 	
 	
 	
-		function get_battery_slots()
-		{
-			$db     	= JFactory::getDBO();
-			$building	= JRequest::getvar('building_id');
-			$now    	= time();
-			$factor		= 10;
+	function get_battery_slots()
+	{
+		$db     	= JFactory::getDBO();
+		$building	= JRequest::getvar('building_id');
+		$now    	= time();
+		$factor		= 10;
+		$query		= "	SELECT * FROM #__jigs_batteries	WHERE user = $building";
 
-			$query		= "	SELECT * FROM #__jigs_batteries	WHERE user = $building";
-
-			$db->setQuery($query);
-			$batteries = $db->loadAssocList();
-
+		$db->setQuery($query);
+		$batteries = $db->loadAssocList();
 
 		return $batteries;
 	}
@@ -924,11 +922,11 @@ class BattleModelBuilding extends JModel
 	
 	function get_battery()
 	{
-		$db			= JFactory::getDBO();
-		$building_id		= JRequest::getvar('building_id');
-		$battery_id		= JRequest::getvar('item');
-		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_batteries SET user = $user->id  WHERE #__jigs_batteries.id = $battery_id";
+		$db		= JFactory::getDBO();
+		$building_id	= JRequest::getvar('building_id');
+		$battery_id	= JRequest::getvar('item');
+		$user		= JFactory::getUser();
+		$query		= "Update #__jigs_batteries SET user = $user->id  WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
 		$db->query();
 		return $battery_id;
@@ -937,11 +935,11 @@ class BattleModelBuilding extends JModel
 	
 	function collect_empties()
 	{
-		$db			    = JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
 		
-		$user			= JFactory::getUser();
-		$query			= "Update #__jigs_batteries SET user = $user->id  WHERE #__jigs_batteries.units = 0 AND user= $building_id";
+		$user		= JFactory::getUser();
+		$query		= "Update #__jigs_batteries SET user = $user->id  WHERE #__jigs_batteries.units = 0 AND user= $building_id";
 		$db->setQuery($query);
 		$db->query();
 		return $query;
@@ -951,10 +949,10 @@ class BattleModelBuilding extends JModel
 
 	function put_battery()
 	{
-		$db			    = JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
-		$battery_id		= JRequest::getvar('item');
-		$query			= "Update #__jigs_batteries SET user = $building_id WHERE #__jigs_batteries.id = $battery_id";
+		$battery_id	= JRequest::getvar('item');
+		$query		= "Update #__jigs_batteries SET user = $building_id WHERE #__jigs_batteries.id = $battery_id";
 		$db->setQuery($query);
 		$db->query();
 		return $battery_id;

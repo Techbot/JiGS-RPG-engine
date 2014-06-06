@@ -1,7 +1,7 @@
 
 
 
-<div id="batteries">x</div>
+<div id="batteries">Loading...</div>
 
 
 

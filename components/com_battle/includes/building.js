@@ -60,6 +60,40 @@ $(function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+function buy_building()
+{
+	$$('.buy').addEvent('click', function()
+	{
+		var a = new Request.JSON({
+			url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=building&building_id=" 
+			+ building_id , 
+				onSuccess: function(result)
+				{
+					document.id('building_id').setStyle('visibility','hidden');
+				}
+		}).get();
+	});
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function set_type()
 {
 
@@ -145,23 +179,23 @@ function set_type()
     if (window.building_type=="stand")
     {
         request_shop_inventory();
-        request_inventory.periodical(1000);				
+        request_inventory();				
     }
 
     if (window.building_type=="generator")
     {
         request_batteries();
-        request_batteries.periodical(5085);
+       // request_batteries.periodical(5085);
         request_battery_slots();
-        request_battery_slots.periodical(5000);				
+     //   request_battery_slots.periodical(5000);				
     }	
     
     if (window.building_type=="batteryshop")
     {
         request_batteries();
-        request_batteries.periodical(5085);
+     //   request_batteries.periodical(5085);
         request_battery_slots();
-        request_battery_slots.periodical(5000);				
+    //    request_battery_slots.periodical(5000);				
     }	
     
     
@@ -294,7 +328,7 @@ function buy_weapon(itemID)
 {
  	var a               = new Request.JSON(
  	{
-        url: "index.php?option=com_battle&format=raw&task=action&action=buy_weapon&building_id=" 
+        url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=weapon&building_id=" 
         + building_id + "&item=" + itemID, 
         onSuccess: function(result)
         {
@@ -646,7 +680,7 @@ function request_metals2()
         	 
 function buy_metal(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=buy_metal&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=metal&building_id=" 
     + building_id + "&metal=" + itemID, 
     onSuccess: function(result){
     	    
@@ -753,7 +787,7 @@ function buy_bullets()
     		var qty_el = document.getElementById('quantity_adjust'); 
     		var qty = qty_el.value; 
     		var a = new Request.JSON({
-    			    url: "index.php?option=com_battle&format=raw&task=action&action=buy_bullets&building_id=" 
+    			    url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=bullets&building_id=" 
     			    + building_id 
     			    + "&amount=" 
     			    + qty  ,
@@ -845,7 +879,11 @@ function get_battery(itemID){
     url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery&building_id=" 
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
+    
+    		request_battery_slots();
+    		request_batteries();
      	}
+     	
     }).get();
  
 }
@@ -857,7 +895,8 @@ function put_battery(itemID){
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    
- 
+ 				request_batteries();
+ 				request_battery_slots();
     	}
     }).get();
  
@@ -1174,7 +1213,7 @@ function get_my_blueprints(){
 function buy_blueprint(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=buy_blueprints&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=blueprints&building_id=" 
     + building_id + "&item=" 
     + itemID, 
     onSuccess: function(result){
@@ -1409,17 +1448,7 @@ function change()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function buy_building() {
-	$$('.buy').addEvent('click', function(){
-		var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=buy_building&building_id=" 
-			+ building_id , 
-				onSuccess: function(result){
-					document.id('building_id').setStyle('visibility','hidden');
-				}
-		}).get();
-	});
-} 
+
 
 function work_conveyer()
 {
@@ -1702,12 +1731,12 @@ function request_inventory()
 
 function buy1(itemID){
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=buy&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=objects&building_id=" 
     + building_id 
     +"&item=" 
     + itemID, 
     onSuccess: function(result){
-    	    
+    	    request_inventory();
     	}
     }).get();
  
@@ -1723,7 +1752,7 @@ function sell1(itemID)
         + itemID, 
         onSuccess: function(result)
         {
-       	   
+       	   request_inventory();
         }
     }).get();
 }
