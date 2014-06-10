@@ -91,7 +91,7 @@ function set_type()
     {
   		dig();
 	    check_mine();
-	    
+	    check_mine.periodical(15000);
     }
     
     if (window.building_type=="blueprints")
@@ -117,7 +117,7 @@ function set_type()
 	
 	    });
  		collectEmpties();
- 		check_farm.periodical(5000);
+ 		check_farm.periodical(15000);
 
     }
 
@@ -127,6 +127,7 @@ function set_type()
         prepare2();
         work_reprocessor();
         check_reprocessor();
+        check_reprocessor.periodical(5000);
         //change();
     }
 
@@ -137,6 +138,7 @@ function set_type()
         work_conveyer();
         get_blueprints();
         check_factory();
+        check_factory.periodical(15000);
         request_metals();
     }
 
@@ -181,9 +183,7 @@ function set_type()
         request_battery_slots();
     //    request_battery_slots.periodical(5000);				
     }	
-    
  
-
     if (window.building_type=="bank")
     {
         deposit();
@@ -276,12 +276,163 @@ function control_panel_system()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////	 
 
+function prepare()
+    {
+
+    var foo = document.id('quantity_box_button_up'); 
+
+    // if it returns an Element object, it will be truthy.
+    if (foo) {
+
+        document.id('quantity_box_button_up').addEvent('click', function(){
+	        increment();
+	        });
+        }	
+}
+
+function prepare2()
+{
+    var foo = document.id('quantity_box_button_up'); 
+	if (foo) {
+    document.id('quantity_box_button_down').addEvent('click', function(){
+	    decrement();
+	    });
+}
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+function increment()
+{
+    var qty_el					= document.getElementById('quantity_adjust'); 
+    var qty					= qty_el.value;
+    if( !isNaN( qty )) qty_el.value++;
+    
+    var cost_el					= document.getElementById('q1'); 
+    var cost 					= cost_el.value;
+    var cost_el_2				= document.getElementById('q2'); 
+    var cost_2					= cost_el_2.value;
+    var time					= 1;
+    document.adminForm.q1t.value		= (cost * (parseInt(qty) + 1));
+    document.adminForm.q2t.value		= (cost_2 * (parseInt(qty) + 1));
+    document.adminForm.time.value		= (time * (parseInt(qty) + 1));	
+   
+   
+    if (window.building_type=="factory")
+    {
+   
+    	check_stock_control();
+   }
+   
+   else if(window.building_type=="reprocessor"){
+   
+   	check_inventory();
+
+   }
+   
+
+    return false;
+}
+
+function decrement()
+{
+
+	var qty_el				= document.getElementById('quantity_adjust');
+	var qty					= qty_el.value ;
+
+	if( !isNaN( qty ) && qty > 0 ) qty_el.value--;
+	var cost_el 				= document.getElementById('q1');
+	var cost 				= cost_el.value;
+	var cost_el_2 				= document.getElementById('q2');
+	var cost_2 				= cost_el_2.value;
+	var time				= 1;
+	document.adminForm.q1t.value		= cost * (qty-1);
+	document.adminForm.q2t.value		= cost_2 * (qty-1);
+	document.adminForm.time.value		= (time * (parseInt(qty) - 1));	
+	
+	if (window.building_type=="factory")
+	{
+	   
+	    	check_stock_control();
+	}
+   
+	else if(window.building_type=="reprocessor")
+	{
+   
+   		check_inventory();
+
+	}
+
+	return false;
+}
 
 
 
 
 
 
+
+
+function work_reprocessor()
+{
+    var foo = document.id('submit_c'); 
+    if (foo)
+    {
+	    document.id('submit_c').addEvent('click', function()
+	    {
+		    reprocess();
+	    });
+    }
+}
+
+function reprocess(){
+	var a = new Request.JSON(
+	{
+		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_reprocessor&quantity=" 
+		+ document.adminForm.time.value 
+		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
+		onSuccess: function(result)
+		{
+	
+			if(result['success']==1)
+			{
+				alert (result['message']);
+				document.id('adminForm').setStyle('display','none');
+				document.id('conveyor_progress').setStyle('display','block');
+			}	
+			else
+			{
+				alert (result['message']);
+			}
+		}
+	}).get();
+}
+
+function check_reprocessor()
+{
+	var a = new Request.JSON(
+	{
+	    url: "index.php?option=com_battle&format=raw&task=building_action&action=check_reprocessor&line=1&building=" 
+	    + building_id , 
+        onSuccess: function(result)
+        {
+	        document.getElementById('since').innerHTML      = result['since'];
+	        document.getElementById('now').innerHTML        = result['now'];
+	        document.getElementById('elapsed').innerHTML    = result['elapsed'];
+	        document.getElementById('remaining').innerHTML  = result['remaining'];        
+            if (result['remaining'] <= 0)
+            {
+	            	document.id('adminForm').setStyle('display','block');
+		        document.id('conveyor_progress').setStyle('display','none');
+		    }
+	     }
+	}).get();
+}
 
 function buy_weapon(itemID)
 {
@@ -295,9 +446,7 @@ function buy_weapon(itemID)
             request_weapons();
           //  request_weapons.periodical(1000);	
         	
-        	
-        	
-        	
+       	
         }
     }).get();
 }
@@ -306,7 +455,7 @@ function sell_weapon(itemID)
 {
  	var a = new Request.JSON(
  	{
-        url: "index.php?option=com_battle&format=raw&task=action&action=sell_weapon&building_id=" 
+        url: "index.php?option=com_battle&format=raw&task=action&action=sell&sell=weapon&building_id=" 
         + building_id 
         + "&item=" 
         + itemID, 
@@ -432,14 +581,10 @@ function insert(id)
         }	
     	
     }).get();
-
 }
 
 function collectEmpties()
 {
-
-
-
     document.id('collect_empties').addEvent('click',function()
     {
        var itemID = this.get('id');
@@ -453,20 +598,13 @@ function collectEmpties()
                request_batteries_cp();
             }
         }).get();
-        
-
     });
-
 }
 
 function request_batteries_cp()
 {
     var all = '';
 //	var details = this.details;
-
-
-
-
     var a = new Request.JSON(
     {
         url: "index.php?option=com_battle&format=raw&task=action&action=get_batteries", 
@@ -488,74 +626,7 @@ function request_batteries_cp()
     }).get();
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-function prepare()
-    {
-
-    var foo = document.id('quantity_box_button_up'); 
-
-    // if it returns an Element object, it will be truthy.
-    if (foo) {
-
-        document.id('quantity_box_button_up').addEvent('click', function(){
-	        increment();
-	        });
-        }	
-}
-
-function prepare2()
-{
-    var foo = document.id('quantity_box_button_up'); 
-if (foo) {
-    document.id('quantity_box_button_down').addEvent('click', function(){
-	    decrement();
-	    });
-}
-
-}
-
-function increment()
-{
-    var qty_el							= document.getElementById('quantity_adjust'); 
-    var qty								= qty_el.value;
-    if( !isNaN( qty )) qty_el.value++;
-    var cost_el							= document.getElementById('q1'); 
-    var cost 							= cost_el.value;
-    var cost_el_2						= document.getElementById('q2'); 
-    var cost_2							= cost_el_2.value;
-    var time							= 1;
-    document.adminForm.q1t.value		= (cost * (parseInt(qty) + 1));
-    document.adminForm.q2t.value		= (cost_2 * (parseInt(qty) + 1));
-    document.adminForm.time.value		= (time * (parseInt(qty) + 1));	
-    check_stock_control();
-    return false;
-}
-
-function decrement()
-{
-
-	var qty_el							= document.getElementById('quantity_adjust');
-	var qty								= qty_el.value ;
-
-	if( !isNaN( qty ) && qty > 0 ) qty_el.value--;
-	var cost_el 						= document.getElementById('q1');
-	var cost 							= cost_el.value;
-	var cost_el_2 						= document.getElementById('q2');
-	var cost_2 							= cost_el_2.value;
-	var time							= 1;
-	document.adminForm.q1t.value		= cost * (qty-1);
-	document.adminForm.q2t.value		= cost_2 * (qty-1);
-	document.adminForm.time.value		= (time * (parseInt(qty) - 1));	
-	check_stock_control();
-	 return false;
-}
 
 
 ///////////////////////////////////////////////////////////////
@@ -658,8 +729,8 @@ function buy_metal(itemID){
 function sell_metal(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=sell_metal&building_id=" 
-    + building_id + "&metal=" + itemID, 
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell&sell=metal&building_id=" 
+    + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
     	}
@@ -891,7 +962,6 @@ function get_hobbit(){
     
      	}
     }).get();
- 
 }
 
 function put_hobbit(itemID){
@@ -903,7 +973,6 @@ function put_hobbit(itemID){
    	   
     	}
     }).get();
- 
 }
 
 
@@ -993,7 +1062,7 @@ function buy_papers(itemID)
 function sell_papers(itemID){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action==sell_papers&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell&sell=papers&building_id=" 
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    	   
@@ -1005,7 +1074,7 @@ function sell_papers(itemID){
 function sell_crops(){
  
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=action&action=sell_crops", 
+    url: "index.php?option=com_battle&format=raw&task=action&action=sell&sell=crops", 
     onSuccess: function(result){
    	   	document.id('sell_crops').setStyle('display','none'); 
     	}
@@ -1098,6 +1167,7 @@ function check_farm(){
          }
     }).get();
 }
+
 function work_flat(itemID){	 	
     var a = new Request.JSON({
     	url: "index.php?option=com_battle&format=raw&task=building_action&action=work_flat&building_id=" 
@@ -1245,11 +1315,6 @@ function changeDisplayImage()
     }
 }
 
-
-
-
-
-
 function get_blueprints()
 {
 
@@ -1281,15 +1346,6 @@ function get_blueprints()
 	}).get();
 }
 
-
-
-
-
-
-
-
-
-
 ///////////////////////////////
 
 function changeCrops()
@@ -1313,8 +1369,6 @@ function changeCrops()
 		+ index,
 		onSuccess: function(result)
 		{
-
-
             document.adminForm.Crop_Index.value = result[0];
             
             Magic_index						= document.adminForm.Magic_Index.value;
@@ -1333,31 +1387,13 @@ function changeCrops()
             else{
             
              document.id('hobbits_total').setStyle('background','black');
-            
-            
             }
-            
-            
-            
-            
-            
-            
             document.adminForm.ETA.value = Magic_index * Crop_index * Skill_index * 50 * (1 - hobbits_index);
 		
 		}
 	}).get();
-
 }
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-///////////////////////////////
-
 function change()
 {
     i=0;
@@ -1411,12 +1447,6 @@ function change()
 	}
 }
 
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 function work_conveyer()
 {
     var foo = document.id('submit_c'); 
@@ -1432,56 +1462,25 @@ function work_conveyer()
 
 
 
-function work_reprocessor()
-{
-    var foo = document.id('submit_c'); 
-    if (foo)
-    {
-	    document.id('submit_c').addEvent('click', function()
-	    {
-		    reprocess();
-	    });
-    }
-}
 
-function reprocess(){
-	var a = new Request.JSON(
-	{
-		url: "index.php?option=com_battle&format=raw&task=building_action&action=work_reprocessor&quantity=" 
-		+ document.adminForm.time.value 
-		+ "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
-		onSuccess: function(result){
-			document.id('adminForm').setStyle('display','none');
-			document.id('conveyor_progress').setStyle('display','block');
-			}
-	}).get();
-}
+
+
+
+
+
+
+
+
+
+
 
 function test_rob()
 {
 	alert();
 }
 
-function check_reprocessor()
-{
-	var a = new Request.JSON(
-	{
-	    url: "index.php?option=com_battle&format=raw&task=building_action&action=check_reprocessor&line=1&building=" 
-	    + building_id , 
-        onSuccess: function(result)
-        {
-	        document.getElementById('since').innerHTML      = result['since'];
-	        document.getElementById('now').innerHTML        = result['now'];
-	        document.getElementById('elapsed').innerHTML    = result['elapsed'];
-	        document.getElementById('remaining').innerHTML  = result['remaining'];        
-            if (result['remaining'] <= 0)
-            {
-	            document.id('adminForm').setStyle('display','block');
-		        document.id('conveyor_progress').setStyle('display','none');
-		    }
-	     }
-	}).get();
-}
+
+
 function work(){
 	var a = new Request.JSON(
 	{
@@ -1559,6 +1558,42 @@ function check_stock_control(){
 	}
 }
 
+
+function check_inventory(){
+//	if whats in stock is less than required total hide submit button and change background to red
+//  else change to green and show submit
+    	
+    	
+    	var stck = document.getElementById('stock');
+	var ct1 = parseInt(stck.value);
+	
+	
+	
+	var stck2 = document.getElementById('quantity_adjust');
+	var ct2 = parseInt(stck2.value);
+	
+	
+	//var qy1 = document.getElementById('q1t');
+	//var q_y1 = parseInt(qy1.value);
+	//var qy2 = document.getElementById('q2t');
+	//var q_y2 = parseInt(qy2.value);
+ 	if ((ct1 < ct2 ))
+	{
+		document.id('stock').setStyle('background','red');
+		//document.id('q2t').setStyle('background','red');
+		document.id('submit_c').setStyle('visibility','hidden');
+	}
+	if((ct1  >= ct2 ))
+	{
+		document.id('stock').setStyle('background','black');
+		//document.id('q2t').setStyle('background','black');
+		document.id('submit_c').setStyle('visibility','visible');
+	}
+}
+
+
+
+
 function check_mine(){
 	var a = new Request.JSON(
 	{
@@ -1589,10 +1624,6 @@ function dig() {
 		});
 	}	
 
-
-
-
-
 function mine(type)
 {
 	var a = new Request.JSON({
@@ -1606,32 +1637,6 @@ function mine(type)
     }).get();
 }
 
-
-
-
-
-
-/*
-
-//SAMPLE 4 (walk to item)
-	var nS4 = new noobSlide(
-	{
-			box: document.id('box4'),
-			items: $$('#box4 div'),
-			size: 640,
-			handles: $$('#handles4 span'),
-			onWalk: function(currentItem,currentHandle){
-				// $('info4').set('html',currentItem.getFirst().innerHTML);
-				this.handles.removeClass('active');
-				currentHandle.addClass('active');
-	}
-			
-});	
-
-*/
-
-			
-			
 function request_shop_inventory()
 {
 	var all = '';
@@ -1695,7 +1700,6 @@ function request_inventory()
 	}).get();
 }
 
-
 function buy1(itemID){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=objects&building_id=" 
@@ -1711,10 +1715,9 @@ function buy1(itemID){
 
 function sell1(itemID)
 {
- 
 	var a = new Request.JSON(
 	{
-        url: "index.php?option=com_battle&format=raw&task=action&action=sell&building_id=" 
+        url: "index.php?option=com_battle&format=raw&task=action&action=sell&sell=objects&building_id=" 
         + building_id + "&item=" 
         + itemID, 
         onSuccess: function(result)
