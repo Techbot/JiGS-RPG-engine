@@ -1,44 +1,3 @@
-(function()
-{
-	buy_building();
-	window.id1			= new Array();
-	window.metal_name_1 = new Array();
-	window.metal_name_2 = new Array();
-	window.mystock1		= 0;
-	window.mystock2		= 0; 
-	window.q_1			= new Array();
-	window.q_2			= new Array();	  
-	window.metals		= new Array();
-	var refTab			= document.getElementById("stats");
-	var row				= refTab.rows[0];
-	var col				= row.cells[1]; 
-	// alert(col.firstChild.nodeValue);
-	// var  col =   refTab.rows[1].cells[1]; 
-	// alert(col.firstChild.nodeValue);
-	building_id			= col.firstChild.nodeValue;
-	var row				= refTab.rows[3];
-	var col				= row.cells[1]; 
-	//alert(col.firstChild.nodeValue);
-	//var  col =   refTab.rows[1].cells[1]; 
-	//alert(col.firstChild.nodeValue);
-	window.building_type = col.firstChild.nodeValue;	
-	//change();
-	//noobslide
-	request_batteries_cp();
-	
-	
-	
-	
-	
-	
-	
-	//request_batteries.periodical(50085);	 
-	control_panel_system();
-	set_type();
-	setup_hobbits();
-
-})();	
-
 //http://liquidslider.com/documentation/
 $(function(){
 
@@ -58,7 +17,197 @@ $(function(){
 	});
 });
 
+(function()
+{
+	buy_building();
+	window.id1			= new Array();
+	window.metal_name_1 = new Array();
+	window.metal_name_2 = new Array();
+	window.current_object_quantity = new Array();
+	window.mystock1		= 0;
+	window.mystock2		= 0; 
+	window.q_1			= new Array();
+	window.q_2			= new Array();	  
+	window.metals		= new Array();
+	var refTab			= document.getElementById("stats");
+	var row				= refTab.rows[0];
+	var col				= row.cells[1]; 
+	// alert(col.firstChild.nodeValue);
+	// var  col =   refTab.rows[1].cells[1]; 
+	// alert(col.firstChild.nodeValue);
+	building_id			= col.firstChild.nodeValue;
+	var row				= refTab.rows[3];
+	var col				= row.cells[1]; 
+	//alert(col.firstChild.nodeValue);
+	//var  col =   refTab.rows[1].cells[1]; 
+	//alert(col.firstChild.nodeValue);
+	window.building_type = col.firstChild.nodeValue;	
+	request_batteries_cp();
+	//request_batteries.periodical(50085);	 
+	control_panel_system();
+	set_type();
+	setup_hobbits();
+})();	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////
+function changeDisplayImage()
+{
+	//var id1					= new Array();
+	//var metal_name_1		= new Array();
+	//var metal_name_2		= new Array();
+	var object_quantity		= new Array();
+	//var mystock1 = 0;
+	//var mystock2 = 0; 
+	var q_1 = new Array();
+	var q_2 = new Array();			
+	var i		= 0;
+	
+	
+	index                           = window.id1[document.adminForm.blueprints.value];
+	
+	
+	
+	
+//	console.log(document.adminForm.blueprints.value);
+	
+	
+	
+	
+	Array.each(metals, function( )
+	{
+		if (window.metals[i].name == window.metal_name_1[index])
+		{
+			//window.mystock1 = window.metals[i].quantity;
+		window.mystock = object_quantity[index];
+		
+		
+		
+		
+		}
+		if (window.metals[i].name == window.metal_name_2[index])
+		{
+			window.mystock2 = window.metals[i].quantity;
+		}
+		i++;
+	});
+	if (document.adminForm.blueprints.value !='')
+	{
+		index                           = id1[document.adminForm.blueprints.value];
+		
+		document.adminForm.id1.value    = window.id1[index];
+		document.adminForm.q1.value     = window.q_1[index];
+		document.adminForm.n1.value     = window.metal_name_1[index];
+        document.adminForm.q2.value     = window.q_2[index];
+        document.adminForm.n2.value     = window.window.metal_name_2[index]  ;
+        //document.adminForm.stock.value  = object_quantity[index];
+      //document.adminForm.stock.value  = 7;                  		
+		i                               = 0;
+		Array.each(metals, function( )
+		{
+			if (window.metals[i].name == window.metal_name_1[index])
+			{
+			//	window.mystock = metals[i].quantity;
+			//window.mystock = object_quantity[index];
+			
+			document.adminForm.stock.value = window.current_object_quantity[index];	
+
+
+			console.log (window.current_object_quantity[index]);
+			
+			}
+			if (window.metals[i].name == window.metal_name_2[index])
+			{
+				window.mystock2 = metals[i].quantity;
+			}
+			i++;
+		}); 
+        // document.adminForm.stock2.value = mystock2;
+
+		if (window.building_type=="factory")
+		{
+			check_stock_control();
+		}
+		else if(window.building_type=="reprocessor")
+		{
+			check_inventory();
+		}
+   }
+    else 
+    {
+        document.adminForm.imagelib.src='images/blank.png';
+    }
+}
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+function change()
+{
+    i=0;
+    index							= window.id1[document.adminForm.blueprints.value];
+	Array.each(window.metals, function( )
+	{
+		if (window.metals[i].name == window.metal_name_1[index])
+		{
+			window.mystock1 = window.metals[i].quantity;
+		}
+		if (window.metals[i].name == window.metal_name_2[index])
+		{
+			window.mystock2 = window.metals[i].quantity;
+		}
+		i++;
+	});
+
+	if (document.adminForm.blueprints.value !='')
+	{
+		index							= window.id1[document.adminForm.blueprints.value];
+		
+		//document.adminForm.id1.value	= window.id1[index];
+		
+		
+		document.adminForm.id1.value	= window.id1[index];
+		//document.adminForm.id1.value	= 2;
+		
+		
+    	document.adminForm.q1.value		= window.q_1[index];
+		document.adminForm.n1.value		= window.metal_name_1[index];
+        document.adminForm.q2.value		= window.q_2[index];
+        document.adminForm.n2.value		= window.metal_name_2[index]  ;    		
+		i = 0;
+		Array.each(metals, function( )
+		{
+			if (metals[i].name == metal_name_1[index]) {
+				window.mystock1 = metals[i].quantity;
+				}
+			if (metals[i].name == metal_name_2[index]) {
+				window.mystock2 = metals[i].quantity;
+				}
+			i++;
+		}); 
+        document.adminForm.stock.value = window.mystock1;
+        document.adminForm.stock2.value = window.mystock2;
+        check_stock_control();
+     }
+	else
+	{
+		document.adminForm.imagelib.src='images/blank.png';
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 function buy_building()
@@ -123,11 +272,14 @@ function set_type()
 
     if (window.building_type=="reprocessor")
     {
+		request_metals();
         prepare();
         prepare2();
         work_reprocessor();
+		get_blueprints()
         check_reprocessor();
         check_reprocessor.periodical(5000);
+		request_metals();
         //change();
     }
 
@@ -1260,60 +1412,33 @@ function buy_blueprint(itemID){
  
 }
 
-///////////////////////////////
-function changeDisplayImage()
-{
-	var id1					= new Array();
-	var metal_name_1		= new Array();
-	var metal_name_2		= new Array();
-	var object_quantity		= new Array();
-	//var mystock1 = 0;
-	//var mystock2 = 0; 
-	var q_1 = new Array();
-	var q_2 = new Array();			
-	Array.each(metals, function( )
-	{
-		if (metals[i].name == metal_name_1[index])
-		{
-			window.mystock1 = metals[i].quantity;
-		}
-		if (metals[i].name == metal_name_2[index])
-		{
-			window.mystock2 = metals[i].quantity;
-		}
-		i++;
-	});
-	if (document.adminForm.blueprints.value !='')
-	{
-		index                           = id1[document.adminForm.blueprints.value];
-		document.adminForm.id1.value    = id1[index];
-		document.adminForm.q1.value     = q_1[index];
-		document.adminForm.n1.value     = metal_name_1[index];
-        document.adminForm.q2.value     = q_2[index];
-        document.adminForm.n2.value     = metal_name_2[index]  ;
-        document.adminForm.stock.value  = object_quantity[index];
-      //document.adminForm.stock.value  = 7;                  		
-		i                               = 0;
-		Array.each(metals, function( )
-		{
-			if (metals[i].name == metal_name_1[index])
-			{
-				mystock1 = metals[i].quantity;
-			}
-			if (metals[i].name == metal_name_2[index])
-			{
-				mystock2 = metals[i].quantity;
-			}
-			i++;
-		}); 
-        // document.adminForm.stock2.value = mystock2;
-        check_stock_control();
-    }
-    else 
-    {
-        document.adminForm.imagelib.src='images/blank.png';
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function get_blueprints()
 {
@@ -1330,16 +1455,17 @@ function get_blueprints()
 				console.log(row);
 				for(var key in row)
 				{
-				    var attrName		= key;
-				    var attrValue		= row[key];
-			  		var x				= row.id;
+				    var attrName						= key;
+				    var attrValue						= row[key];
+			  		var x								= row.id;
 			  		//console.log(x);
-			  		//window.id1[x]				= row.id;		  		
-					window.id1[x]				= x ;
-					window.q_1[x]				= row.quantity_1;
-					window.q_2[x]				= row.quantity_2;
-					window.metal_name_1[x]		= row.metal_1_name;
-					window.metal_name_2[x]		= row.metal_2_name;
+			  		//window.id1[x]						= row.id;		  		
+					window.id1[x]						= x ;
+					window.q_1[x]						= row.quantity_1;
+					window.q_2[x]						= row.quantity_2;
+					window.current_object_quantity[x]	= row.current_object_quantity;
+					window.metal_name_1[x]				= row.metal_1_name;
+					window.metal_name_2[x]				= row.metal_2_name;
 				}
 			}	
 		}
@@ -1393,59 +1519,7 @@ function changeCrops()
 		}
 	}).get();
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-function change()
-{
-    i=0;
-    index							= window.id1[document.adminForm.blueprints.value];
-	Array.each(window.metals, function( )
-	{
-		if (window.metals[i].name == window.metal_name_1[index])
-		{
-			window.mystock1 = window.metals[i].quantity;
-		}
-		if (window.metals[i].name == window.metal_name_2[index])
-		{
-			window.mystock2 = window.metals[i].quantity;
-		}
-		i++;
-	});
 
-	if (document.adminForm.blueprints.value !='')
-	{
-		index							= window.id1[document.adminForm.blueprints.value];
-		
-		//document.adminForm.id1.value	= window.id1[index];
-		
-		
-		document.adminForm.id1.value	= window.id1[2];
-		//document.adminForm.id1.value	= 2;
-		
-		
-    	document.adminForm.q1.value		= window.q_1[index];
-		document.adminForm.n1.value		= window.metal_name_1[index];
-        document.adminForm.q2.value		= window.q_2[index];
-        document.adminForm.n2.value		= window.metal_name_2[index]  ;    		
-		i = 0;
-		Array.each(metals, function( )
-		{
-			if (metals[i].name == metal_name_1[index]) {
-				window.mystock1 = metals[i].quantity;
-				}
-			if (metals[i].name == metal_name_2[index]) {
-				window.mystock2 = metals[i].quantity;
-				}
-			i++;
-		}); 
-        document.adminForm.stock.value = window.mystock1;
-        document.adminForm.stock2.value = window.mystock2;
-        check_stock_control();
-     }
-	else
-	{
-		document.adminForm.imagelib.src='images/blank.png';
-	}
-}
 
 function work_conveyer()
 {
@@ -1521,11 +1595,9 @@ function request_metals(){
 
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=get_metals2", 
-    onSuccess: function(result){
-    window.metals= result;
-    
-    
-    
+    onSuccess: function(result)
+	{
+		window.metals = result;
     }
     }).get();
 }

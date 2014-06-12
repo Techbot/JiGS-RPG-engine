@@ -7,24 +7,24 @@ class BattleModelTwine extends JModel
 
 	function get_status()
 	{
-		$db	= JFactory::getDBO();
-		$user	= JFactory::getUser();
-		$query	= "SELECT * FROM #__jigs_players WHERE id = $user->id";
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$query		= "SELECT * FROM #__jigs_players WHERE id = $user->id";
 		$db->setQuery($query);
-		$result	= $db->loadAssoc();
+		$result		= $db->loadAssoc();
 		return $result; 
 	}
 	
 	function add_slack()
 	{
-		$db	= JFactory::getDBO();
-		$user	= JFactory::getUser();
-		$query	= "Update  #__jigs_players SET slack  = slack + 1 WHERE id = $user->id";
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$query		= "Update #__jigs_players SET slack = slack + 1 WHERE id = $user->id";
 		$db->setQuery($query);
 		$db->query();
-		$query	= "SELECT slack FROM #__jigs_players WHERE id = $user->id";
+		$query		= "SELECT slack FROM #__jigs_players WHERE id = $user->id";
 		$db->setQuery($query);
-		$result	= $db->loadAssoc();
+		$result		= $db->loadAssoc();
 		return $result; 
 	}
 	
@@ -32,7 +32,7 @@ class BattleModelTwine extends JModel
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$query		= "Update  #__jigs_players SET slack  = slack + 1 WHERE id = $user->id";
+		$query		= "Update #__jigs_players SET slack  = slack + 1 WHERE id = $user->id";
 		$db->setQuery($query);
 		$db->query();
 		$query		= "SELECT slack FROM #__jigs_players WHERE id = $user->id";
@@ -48,16 +48,34 @@ class BattleModelTwine extends JModel
 		$flag		= JRequest::getvar('flag');
 		$query		= "SELECT flags FROM #__jigs_players WHERE id = $user->id";
 		$db->setQuery($query);
-		$result		= $db->loadAssoc();
-		$pieces		= explode(",", $result[0]);
-	
+		$result		= $db->loadResult();
+		$pieces		= explode(",", $result);
+
 		if (in_array($flag,$pieces))
 		{
-			return true;
+			return 1;
 		}
 		else
 		{
-			return false;
+			return 0;
 		}
 	}
+	
+	function tick_flag()
+	{
+		$db		= JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$flag		= JRequest::getvar('flag');
+		$query		= "SELECT flags FROM #__jigs_players WHERE id = $user->id";
+		$db->setQuery($query);
+		$result		= $db->loadResult();
+		$pieces		= explode(",", $result);
+		$pieces[]	= $flag;
+		$flags		= implode(",", $pieces);
+		$query		= "Update #__jigs_players SET flags = '$flags' WHERE id = $user->id";
+		$db->setQuery($query);
+		$db->query();
+		return $query;
+	}
+
 }

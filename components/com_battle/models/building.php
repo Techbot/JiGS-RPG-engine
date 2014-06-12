@@ -849,8 +849,18 @@ class BattleModelBuilding extends JModel
 				AND #__jigs_metals.item_id = $blueprint->metal_2 ";
 			$db->setQuery($query);
 			$blueprint->metal_2_stock = $db->loadResult();
-			return $blueprints ;
+			
 		}	
+		foreach($blueprints as $blueprint)
+		{
+			$query 	= "SELECT id FROM #__jigs_inventory WHERE player_id = $user->id AND item_id = $blueprint->id ";
+			
+			$db->setQuery($query);
+			$array	= $db->loadAssocList();
+		
+			$blueprint->current_object_quantity = count($array);
+		}	
+		return $blueprints ;
 	}
 
 	function get_objects_required($blueprints)

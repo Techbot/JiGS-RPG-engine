@@ -1,14 +1,10 @@
 
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
 	$blueprints				= $this->blueprints;
-	//print_r($blueprints);
-	//exit();
-
-	//print_r($blueprints);
 	$x						= count($this->blueprints);
-	$index					= $x+1;
+	$index					= $x + 1;
 	$now					= time();
-	$javascript				= 'onchange="changeDisplayImage(blueprints);"';
+	$javascript				= 'onchange="changeDisplayImage();"';
 	$directory				= '/images/banners';
 	$lists['blueprints']	=  JHTML::_('select.genericlist', $this->blueprints , 'blueprints',$javascript, 'id', 'name' );
 
@@ -21,19 +17,19 @@
 			
 			
 	<!-- ///////////////////////////////////////////////////conveyor_progress ////////////////////////////////////////////////-->			
-				<div id='conveyor_progress' style='visibility: hidden;'>
+				<div id = 'conveyor_progress' style='visibility: hidden;'>
 					<p>
-						<label title="when manufactoring began">Started: </label><span id="since"></span>
+						<label title="when manufacturing began">Started: </label><span id="since"></span>
 					</p>
 					<p>
 						<label>Current Time: </label><span id="now"><?php echo date('l jS \of F Y h:i:s A',$now) ; ?></span>
 					</p>
 					<div id="time_elapsed" class='wrapper sec'>
-						<label title="since manufactoring began">Time Elapsed: </label> <span id="elapsed"> </span> secs
+						<label title="since manufacturing began">Time Elapsed: </label> <span id="elapsed"> </span> secs
 					</div>
 
 					<div id="time_remaining" class='wrapper sec'>
-						<label title="until manufactoring is complete">Time Remaining: </label>
+						<label title="until manufacturing is complete">Time Remaining: </label>
 						<span id="remaining"> </span>secs
 					</div>
 
@@ -42,7 +38,6 @@
 					<h3>Conveyor 1</h3>
 					<?php
 					// print_r ($x);
-
 					?>
 					<form class="conveyor" action="index.php" method="get" name="adminForm" id="adminForm">
 
