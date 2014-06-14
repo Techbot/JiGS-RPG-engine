@@ -58,7 +58,7 @@ div#logo {
 }
 
 
-@media (max-width: 768px){
+@media (max-width: 899px){
 	div#logo {
 	  float: left;
 	  margin: 1em 0 0 0;
@@ -68,7 +68,7 @@ div#logo {
 }
 
 
-@media (max-width: 481px){
+@media (max-width: 480px){
 
 	div#logo img {
 	width:100%;
@@ -144,7 +144,7 @@ The #MiddleCol container holds the mainbody content.
 We load this container before we load sidebar for SEO Source Ordering purposes.
 We set the width of this container based upon the content layout logic. (see template_config.php) 
 ---------------------------------------*/
-#MiddleCol {}
+#MiddleCol {position:relative;}
 #both #MiddleCol {float:right;}
 #left-only #MiddleCol {float:right;}
 #right-only #MiddleCol {float:left;}
@@ -152,8 +152,7 @@ We set the width of this container based upon the content layout logic. (see tem
 
 #mainbody {
 overflow: hidden;
-//margin-bottom: 95px;
-margin-bottom: 20px;
+margin-bottom: 85px /*height of messages module*/;
 }
 
 

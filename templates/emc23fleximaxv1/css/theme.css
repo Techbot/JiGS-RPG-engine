@@ -34,7 +34,7 @@ background-size: 100% 335px;
 }
 
 
-
+/*
 @media (max-width: 768px){
 	.dusk,
 	.night,
@@ -43,6 +43,14 @@ background-size: 100% 335px;
 	background-size: contain;
 	}
 }	
+*/
+
+	.dusk,
+	.night,
+	.dawn,
+	.day {
+	background-size: contain;
+	}
 	
 
 div.inside {}
@@ -273,7 +281,7 @@ text-transform: uppercase;
 font-weight:normal;
 }
 
-@media (max-width: 768px){
+@media (max-width: 899px){
 
 	#sidebar .moduletable h3,
 	#sidebar-2 .moduletable h3 {
@@ -921,6 +929,8 @@ div#messages {
   overflow:auto;
   margin:0 auto;
   text-align:center;
+  position:absolute;
+  bottom:0;
 }
 
 
