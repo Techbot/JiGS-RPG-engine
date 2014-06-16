@@ -350,13 +350,16 @@ padding:0 5px;
 
 div.building_left {
 	width:60%;
-	min-height: 377px;
+	min-height: 373px;
 	float:left;
 	
 }
+div.building_left div.name {
+	min-height:49px;	
+}
 div.building_right {
 	width:40%;
-	min-height: 377px;
+	min-height: 373px;
 	float:right;
 }
 
@@ -364,7 +367,7 @@ div.building_right {
 /* Images, description, stats etc. */
 div#info {
 	/*border:1px solid #252525;*/
-	padding:0.5em;
+	padding:0 0.5em 0 0;
 	min-height:238px;
 }
 div.name {
@@ -373,7 +376,7 @@ div.name {
 	text-align:center;
 	font-weight:bold;
 	margin:0 0 10px;
-	padding: 5px;
+	padding: 0 0 5px;
 	text-transform:uppercase;
 }
 div.desc {
@@ -398,7 +401,7 @@ p.desc {
 div.stats {
 	float: right;
 	width: 35%;
-	margin:0 10px 10px 0;
+	margin:0;
 }
 table.stats {
 	width: 100%;
@@ -429,14 +432,13 @@ div#status {
 	width: 100%;
 	border:1px solid #252525;
 	/*padding:10px;*/
-	min-height:375px;
+	min-height:373px;
 }
 div.extra {
 	/*width: 385px;
 	height: 125px;
-	margin:10px 0 0 0;
-	border:1px solid #252525;*/
-	padding:0.5em;
+	margin:10px 0 0 0;*/
+	padding:0.5em 0.5em 0 0;
 }
 
 /* Specific management details */
@@ -1484,6 +1486,10 @@ width:100%;
    margin: 0;
    padding: 0;}
 
+#slider li a {
+display:block;
+}
+
 
 /* For the -moz-animation
 
@@ -1647,7 +1653,7 @@ width:100%;
    top: -5px;
    width: 385px;
    height: 5px;
-   background: #000;
+   background: #A00808;
    -moz-animation: fullexpand 25s ease-out infinite;
    -webkit-animation: fullexpand 25s ease-out infinite;
 }
@@ -1722,7 +1728,7 @@ width:100%;
 
 .board_panel {
 	position: relative;
-	width: 233px;
+	width: 100%;
 	padding: 0 5px;
 	/*height: 275px;*/
 }
@@ -1746,7 +1752,7 @@ width:100%;
 	visibility: hidden;
 	text-align:left;
 	padding:0 5px 5px;
-	width:233px;
+	width:100%;
 }
 .panel p {
 	margin:0 0 5px;
@@ -1797,13 +1803,13 @@ width:100%;
 @media (max-width: 481px){
 	div.building_left {
 		width:100%;
-		min-height: 377px;
+		min-height: 373px;
 		float:none;
 		
 	}
 	div.building_right {
 		width:100%;
-		min-height: 377px;
+		min-height: 373px;
 		float:none;
 	}
 		
@@ -1815,7 +1821,6 @@ width:100%;
 	top:0;
 	width:90%;
 	}
-
 
 
 	div#time_elapsed,
