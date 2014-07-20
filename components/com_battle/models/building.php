@@ -72,7 +72,8 @@ class BattleModelBuilding extends JModel
 			$player_qty_2		= $player_qty_2 - $quantity_2;
 			$finished		= $now + ($quantity * $man_time * 60 );
 			$finished		= $now + (1 * 1 * 60);
-			$sql			= "INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp,finished)
+			$sql			= "INSERT INTO #__jigs_factories (building,line,type, quantity,timestamp,finished) 
+							VALUES ($building_id, $line, $type, $quantity, $now, $finished ) 
 							ON DUPLICATE KEY UPDATE type =  $type , quantity = $quantity , timestamp= $now ,finished = $finished";
 			$db->setQuery($sql);
 			if (!$db->query())
@@ -81,7 +82,7 @@ class BattleModelBuilding extends JModel
 				return false;
 			};
 			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_1 
-			WHERE item_id = " . $metal_1 . " AND player_id =". $user->id;
+							WHERE item_id = " . $metal_1 . " AND player_id =". $user->id;
 			$db->setQuery($sql);
 			if (!$db->query())
 			{
@@ -89,7 +90,7 @@ class BattleModelBuilding extends JModel
 				return false;
 			};
 			$sql			= "UPDATE #__jigs_metals SET quantity = $player_qty_2 
-			WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
+							WHERE item_id = " . $metal_2 . " AND player_id =". $user->id;;
 			$db->setQuery($sql);
 			
 			if (!$db->query())
@@ -428,7 +429,7 @@ class BattleModelBuilding extends JModel
 	
 	function work_mine()
 	{
-		$db				= JFactory::getDBO();
+		$db			= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$type			= JRequest::getvar('type');
 		$building_id	= JRequest::getvar('building_id');
@@ -1045,6 +1046,7 @@ class BattleModelBuilding extends JModel
 		$sub_total	= $db->setQuery($query);
 		$db->query();
 		$sub_total = $db->getNumRows();
+
 
 		return $sub_total;
 	}

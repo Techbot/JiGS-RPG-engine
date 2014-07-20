@@ -50,7 +50,7 @@ class BattleViewBuilding extends JView
         	$player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
         	$this->assignRef('player_hobbit_stats', $player_hobbit_stats);
 
-        	$building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id);
+        	$building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id,'B');
         
         	$this->assignRef('building_hobbit_stats', $building_hobbit_stats);
 

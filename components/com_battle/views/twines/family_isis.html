@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
-<!--[if lte IE 8]> <html class="lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<!--[if lte IE 8]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html><!--<![endif]-->
 <head>
 <meta charset="utf-8">
+<title>family_isis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--
-Made in Twine 1.4.2 (running on Windows XP)
-Built on 10 Jul 2014 at 06:44:16, -0800
+Made in Twine 1.4.2 (running on Windows 8)
+Built on 03 Jul 2014 at 12:27:19, +0000
 
 Sugarcane is based on:
 
@@ -40,7 +42,6 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
 ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 DAMAGE.
 -->
-<title>family_dixie</title>
 <script title="engine">
 (function(){
 
@@ -73,7 +74,7 @@ function clone(a){var constructor,b,proto;if(!a||typeof a!="object"){return a
 }}return false}};Tale.prototype.get=function(a){if(typeof a=="string"){return this.passages[a]||new Passage(a)}else{for(var i in this.passages){if(this.passages[i].id==a){return this.passages[i]}}}};Tale.prototype.lookup=function(h,g,a){var d=[];for(var c in this.passages){var f=this.passages[c];for(var b=0;b<f[h].length;b++){if(f[h][b]==g){d.push(f)}}}if(!a){a="title"
 }d.sort(function(k,j){if(k[a]==j[a]){return(0)}else{return(k[a]<j[a])?-1:+1}});return d};Tale.prototype.canUndo=function(){return this.storysettings.lookup("undo",true)};Tale.prototype.identity=function(){var meta=document.querySelector("meta[name='identity']"),identity=meta?meta.getAttribute("content"):"story";return(Tale.prototype.identity=function(){return identity
 })()};Tale.prototype.forEachStylesheet=function(tags,callback){var passage,i;tags=tags||[];if(typeof callback!="function"){return
-}for(passage in this.passages){passage=tale.passages[passage];if(passage&&~passage.tags.indexOf("stylesheet")){for(i=0;i<tags.length;i++){if(~passage.tags.indexOf(tags[i])){callback(passage);break}}}}};Tale.prototype.setPageElements=function(){var storyTitle,defaultTitle="family_dixie";setPageElement("storyTitle","StoryTitle",defaultTitle);storyTitle=document.getElementById("storyTitle");document.title=this.title=(storyTitle&&(storyTitle.textContent||storyTitle.innerText))||defaultTitle;setPageElement("storySubtitle","StorySubtitle","");if(tale.has("StoryAuthor")){setPageElement("titleSeparator",null,"\n");setPageElement("storyAuthor","StoryAuthor","")}if(tale.has("StoryMenu")){document.getElementById("storyMenu").setAttribute("style","");setPageElement("storyMenu","StoryMenu","")}};function Wikifier(place,source){this.source=source;this.output=place;this.nextMatch=0;this.assembleFormatterMatches(Wikifier.formatters);this.subWikify(this.output)}Wikifier.textPrimitives={upperLetter:"[A-Z\u00c0-\u00de\u0150\u0170]",lowerLetter:"[a-z\u00df-\u00ff_0-9\\-\u0151\u0171]",anyLetter:"[A-Za-z\u00c0-\u00de\u00df-\u00ff_0-9\\-\u0150\u0170\u0151\u0171]"};Wikifier.textPrimitives.variable="\\$((?:"+Wikifier.textPrimitives.anyLetter.replace("\\-","")+"*"+Wikifier.textPrimitives.anyLetter.replace("0-9\\-","")+"+"+Wikifier.textPrimitives.anyLetter.replace("\\-","")+"*)+)";Wikifier.textPrimitives.unquoted="(?=(?:[^\"'\\\\]*(?:\\\\.|'(?:[^'\\\\]*\\\\.)*[^'\\\\]*'|\"(?:[^\"\\\\]*\\\\.)*[^\"\\\\]*\"))*[^'\"]*$)";Wikifier.prototype.assembleFormatterMatches=function(formatters){this.formatters=[];var pattern=[];for(var n=0;n<formatters.length;n++){pattern.push("("+formatters[n].match+")");this.formatters.push(formatters[n])}this.formatterRegExp=new RegExp(pattern.join("|"),"mg")};Wikifier.prototype.subWikify=function(output,terminator){var terminatorMatch,formatterMatch,oldOutput=this.output;this.output=output;var terminatorRegExp=terminator?new RegExp("("+terminator+")","mg"):null;do{this.formatterRegExp.lastIndex=this.nextMatch;if(terminatorRegExp){terminatorRegExp.lastIndex=this.nextMatch}formatterMatch=this.formatterRegExp.exec(this.source);terminatorMatch=terminatorRegExp?terminatorRegExp.exec(this.source):null;if(terminatorMatch&&(!formatterMatch||terminatorMatch.index<=formatterMatch.index)){if(terminatorMatch.index>this.nextMatch){this.outputText(this.output,this.nextMatch,terminatorMatch.index)}this.matchStart=terminatorMatch.index;this.matchLength=terminatorMatch[1].length;this.matchText=terminatorMatch[1];this.nextMatch=terminatorMatch.index+terminatorMatch[1].length;this.output=oldOutput;return}else{if(formatterMatch){if(formatterMatch.index>this.nextMatch){this.outputText(this.output,this.nextMatch,formatterMatch.index)}this.matchStart=formatterMatch.index;this.matchLength=formatterMatch[0].length;this.matchText=formatterMatch[0];this.nextMatch=this.formatterRegExp.lastIndex;var matchingFormatter=-1;for(var t=1;t<formatterMatch.length;t++){if(formatterMatch[t]){matchingFormatter=t-1;break}}if(matchingFormatter!=-1){this.formatters[matchingFormatter].handler(this)}}}}while(terminatorMatch||formatterMatch);if(this.nextMatch<this.source.length){this.outputText(this.output,this.nextMatch,this.source.length);this.nextMatch=this.source.length}this.output=oldOutput};Wikifier.prototype.outputText=function(place,startPos,endPos){if(place){insertText(place,this.source.substring(startPos,endPos))}};Wikifier.prototype.fullMatch=function(){return this.source.slice(this.matchStart,this.source.indexOf(">>",this.matchStart)+2)};Wikifier.prototype.fullArgs=function(includeName){var source=this.source.replace(/\u200c/g," "),endPos=this.nextMatch-2,startPos=source.indexOf(includeName?"<<":" ",this.matchStart);if(!~startPos||!~endPos||endPos<=startPos){return""
+}for(passage in this.passages){passage=tale.passages[passage];if(passage&&~passage.tags.indexOf("stylesheet")){for(i=0;i<tags.length;i++){if(~passage.tags.indexOf(tags[i])){callback(passage);break}}}}};Tale.prototype.setPageElements=function(){var storyTitle,defaultTitle="family_isis";setPageElement("storyTitle","StoryTitle",defaultTitle);storyTitle=document.getElementById("storyTitle");document.title=this.title=(storyTitle&&(storyTitle.textContent||storyTitle.innerText))||defaultTitle;setPageElement("storySubtitle","StorySubtitle","");if(tale.has("StoryAuthor")){setPageElement("titleSeparator",null,"\n");setPageElement("storyAuthor","StoryAuthor","")}if(tale.has("StoryMenu")){document.getElementById("storyMenu").setAttribute("style","");setPageElement("storyMenu","StoryMenu","")}};function Wikifier(place,source){this.source=source;this.output=place;this.nextMatch=0;this.assembleFormatterMatches(Wikifier.formatters);this.subWikify(this.output)}Wikifier.textPrimitives={upperLetter:"[A-Z\u00c0-\u00de\u0150\u0170]",lowerLetter:"[a-z\u00df-\u00ff_0-9\\-\u0151\u0171]",anyLetter:"[A-Za-z\u00c0-\u00de\u00df-\u00ff_0-9\\-\u0150\u0170\u0151\u0171]"};Wikifier.textPrimitives.variable="\\$((?:"+Wikifier.textPrimitives.anyLetter.replace("\\-","")+"*"+Wikifier.textPrimitives.anyLetter.replace("0-9\\-","")+"+"+Wikifier.textPrimitives.anyLetter.replace("\\-","")+"*)+)";Wikifier.textPrimitives.unquoted="(?=(?:[^\"'\\\\]*(?:\\\\.|'(?:[^'\\\\]*\\\\.)*[^'\\\\]*'|\"(?:[^\"\\\\]*\\\\.)*[^\"\\\\]*\"))*[^'\"]*$)";Wikifier.prototype.assembleFormatterMatches=function(formatters){this.formatters=[];var pattern=[];for(var n=0;n<formatters.length;n++){pattern.push("("+formatters[n].match+")");this.formatters.push(formatters[n])}this.formatterRegExp=new RegExp(pattern.join("|"),"mg")};Wikifier.prototype.subWikify=function(output,terminator){var terminatorMatch,formatterMatch,oldOutput=this.output;this.output=output;var terminatorRegExp=terminator?new RegExp("("+terminator+")","mg"):null;do{this.formatterRegExp.lastIndex=this.nextMatch;if(terminatorRegExp){terminatorRegExp.lastIndex=this.nextMatch}formatterMatch=this.formatterRegExp.exec(this.source);terminatorMatch=terminatorRegExp?terminatorRegExp.exec(this.source):null;if(terminatorMatch&&(!formatterMatch||terminatorMatch.index<=formatterMatch.index)){if(terminatorMatch.index>this.nextMatch){this.outputText(this.output,this.nextMatch,terminatorMatch.index)}this.matchStart=terminatorMatch.index;this.matchLength=terminatorMatch[1].length;this.matchText=terminatorMatch[1];this.nextMatch=terminatorMatch.index+terminatorMatch[1].length;this.output=oldOutput;return}else{if(formatterMatch){if(formatterMatch.index>this.nextMatch){this.outputText(this.output,this.nextMatch,formatterMatch.index)}this.matchStart=formatterMatch.index;this.matchLength=formatterMatch[0].length;this.matchText=formatterMatch[0];this.nextMatch=this.formatterRegExp.lastIndex;var matchingFormatter=-1;for(var t=1;t<formatterMatch.length;t++){if(formatterMatch[t]){matchingFormatter=t-1;break}}if(matchingFormatter!=-1){this.formatters[matchingFormatter].handler(this)}}}}while(terminatorMatch||formatterMatch);if(this.nextMatch<this.source.length){this.outputText(this.output,this.nextMatch,this.source.length);this.nextMatch=this.source.length}this.output=oldOutput};Wikifier.prototype.outputText=function(place,startPos,endPos){if(place){insertText(place,this.source.substring(startPos,endPos))}};Wikifier.prototype.fullMatch=function(){return this.source.slice(this.matchStart,this.source.indexOf(">>",this.matchStart)+2)};Wikifier.prototype.fullArgs=function(includeName){var source=this.source.replace(/\u200c/g," "),endPos=this.nextMatch-2,startPos=source.indexOf(includeName?"<<":" ",this.matchStart);if(!~startPos||!~endPos||endPos<=startPos){return""
 }return Wikifier.parse(source.slice(startPos+(includeName?2:1),endPos).trim())};Wikifier.parse=function(input){var m,re,b=input,found=[],g=Wikifier.textPrimitives.unquoted;function alter(from,to){b=b.replace(new RegExp(from+g,"gim"),to);return alter}re=new RegExp(Wikifier.textPrimitives.variable+g,"gi");while(m=re.exec(input)){if(!~found.indexOf(m[0])){b=m[0]+" == null && ("+m[0]+" = 0);"+b;found.push(m[0])}}alter(Wikifier.textPrimitives.variable,"state.history[0].variables.$1")("\\beq\\b"," == ")("\\bneq\\b"," != ")("\\bgt\\b"," > ")("\\bgte\\b"," >= ")("\\blt\\b"," < ")("\\blte\\b"," <= ")("\\band\\b"," && ")("\\bor\\b"," || ")("\\bnot\\b"," ! ")("\\bis\\b"," == ")("\\bto\\b"," = ");return b};Wikifier.formatHelpers={charFormatHelper:function(a){var b=insertElement(a.output,this.element);a.subWikify(b,this.terminator)},inlineCssHelper:function(w){var s,v,lookaheadMatch,gotMatch,styles=[],lookahead=Wikifier.styleByCharFormatter.lookahead,lookaheadRegExp=new RegExp(lookahead,"mg"),hadStyle=false,unDash=function(str){var s=str.split("-");if(s.length>1){for(var t=1;t<s.length;t++){s[t]=s[t].substr(0,1).toUpperCase()+s[t].substr(1)}}return s.join("")};styles.className="";do{lookaheadRegExp.lastIndex=w.nextMatch;lookaheadMatch=lookaheadRegExp.exec(w.source);gotMatch=lookaheadMatch&&lookaheadMatch.index==w.nextMatch;if(gotMatch){hadStyle=true;if(lookaheadMatch[5]){styles.className+=lookaheadMatch[5].replace(/\./g," ")+" "}else{if(lookaheadMatch[1]){s=unDash(lookaheadMatch[1]);v=lookaheadMatch[2]}else{s=unDash(lookaheadMatch[3]);v=lookaheadMatch[4]}}switch(s){case"bgcolor":s="backgroundColor";break;case"float":s="cssFloat";break}styles.push({style:s,value:v});w.nextMatch=lookaheadMatch.index+lookaheadMatch[0].length}}while(gotMatch);return styles},monospacedByLineHelper:function(w){var lookaheadRegExp=new RegExp(this.lookahead,"mg");lookaheadRegExp.lastIndex=w.matchStart;var lookaheadMatch=lookaheadRegExp.exec(w.source);if(lookaheadMatch&&lookaheadMatch.index==w.matchStart){insertElement(w.output,"pre",null,null,lookaheadMatch[1]);w.nextMatch=lookaheadMatch.index+lookaheadMatch[0].length}}};Wikifier.formatters=[{name:"table",match:"^\\|(?:[^\\n]*)\\|(?:[fhc]?)$",lookahead:"^\\|([^\\n]*)\\|([fhc]?)$",rowTerminator:"\\|(?:[fhc]?)$\\n?",cellPattern:"(?:\\|([^\\n\\|]*)\\|)|(\\|[fhc]?$\\n?)",cellTerminator:"(?:\\x20*)\\|",rowTypes:{"c":"caption","h":"thead","":"tbody","f":"tfoot"},handler:function(w){var rowContainer,rowElement,lookaheadMatch,matched,table=insertElement(w.output,"table"),lookaheadRegExp=new RegExp(this.lookahead,"mg"),currRowType=null,nextRowType,prevColumns=[],rowCount=0;w.nextMatch=w.matchStart;do{lookaheadRegExp.lastIndex=w.nextMatch;lookaheadMatch=lookaheadRegExp.exec(w.source),matched=lookaheadMatch&&lookaheadMatch.index==w.nextMatch;if(matched){nextRowType=lookaheadMatch[2];if(nextRowType!=currRowType){rowContainer=insertElement(table,this.rowTypes[nextRowType])}currRowType=nextRowType;if(currRowType=="c"){if(rowCount==0){rowContainer.setAttribute("align","top")}else{rowContainer.setAttribute("align","bottom")}w.nextMatch=w.nextMatch+1;w.subWikify(rowContainer,this.rowTerminator)}else{rowElement=insertElement(rowContainer,"tr");this.rowHandler(w,rowElement,prevColumns)}rowCount++}}while(matched)},rowHandler:function(w,e,prevColumns){var cellMatch,matched,col=0,currColCount=1,cellRegExp=new RegExp(this.cellPattern,"mg");do{cellRegExp.lastIndex=w.nextMatch;cellMatch=cellRegExp.exec(w.source);matched=cellMatch&&cellMatch.index==w.nextMatch;if(matched){if(cellMatch[1]=="~"){var last=prevColumns[col];if(last){last.rowCount++;last.element.setAttribute("rowSpan",last.rowCount);last.element.setAttribute("rowspan",last.rowCount);last.element.valign="center"}w.nextMatch=cellMatch.index+cellMatch[0].length-1}else{if(cellMatch[1]==">"){currColCount++;w.nextMatch=cellMatch.index+cellMatch[0].length-1}else{if(cellMatch[2]){w.nextMatch=cellMatch.index+cellMatch[0].length;break}else{var spaceLeft=false,spaceRight=false,lastColCount,lastColElement,styles,cell,t;w.nextMatch++;styles=Wikifier.formatHelpers.inlineCssHelper(w);while(w.source.substr(w.nextMatch,1)==" "){spaceLeft=true;w.nextMatch++}if(w.source.substr(w.nextMatch,1)=="!"){cell=insertElement(e,"th");w.nextMatch++}else{cell=insertElement(e,"td")}prevColumns[col]={rowCount:1,element:cell};lastColCount=1;lastColElement=cell;if(currColCount>1){cell.setAttribute("colSpan",currColCount);cell.setAttribute("colspan",currColCount);currColCount=1}for(t=0;t<styles.length;t++){cell.style[styles[t].style]=styles[t].value}w.subWikify(cell,this.cellTerminator);if(w.matchText.substr(w.matchText.length-2,1)==" "){spaceRight=true
 }if(spaceLeft&&spaceRight){cell.align="center"}else{if(spaceLeft){cell.align="right"}else{if(spaceRight){cell.align="left"}}}w.nextMatch=w.nextMatch-1}}}col++}}while(matched)}},{name:"rule",match:"^----$\\n?",handler:function(w){insertElement(w.output,"hr")}},{name:"emdash",match:"--",becomes:String.fromCharCode(8212),handler:function(a){insertElement(a.output,"span",null,"char",this.becomes).setAttribute("data-char","emdash")}},{name:"heading",match:"^!{1,5}",terminator:"\\n",handler:function(w){var e=insertElement(w.output,"h"+w.matchLength);w.subWikify(e,this.terminator)}},{name:"monospacedByLine",match:"^\\{\\{\\{\\n",lookahead:"^\\{\\{\\{\\n((?:^[^\\n]*\\n)+?)(^\\}\\}\\}$\\n?)",handler:Wikifier.formatHelpers.monospacedByLineHelper},{name:"quoteByBlock",match:"^<<<\\n",terminator:"^<<<\\n",handler:function(w){var e=insertElement(w.output,"blockquote");w.subWikify(e,this.terminator)}},{name:"list",match:"^(?:(?:\\*+)|(?:#+))",lookahead:"^(?:(\\*+)|(#+))",terminator:"\\n",handler:function(w){var newType,newLevel,t,len,bulletType,lookaheadMatch,matched,lookaheadRegExp=new RegExp(this.lookahead,"mg"),placeStack=[w.output],currType=null,currLevel=0;w.nextMatch=w.matchStart;do{lookaheadRegExp.lastIndex=w.nextMatch;lookaheadMatch=lookaheadRegExp.exec(w.source);matched=lookaheadMatch&&lookaheadMatch.index==w.nextMatch;if(matched){newLevel=lookaheadMatch[0].length;if(lookaheadMatch[1]){bulletType=lookaheadMatch[1].slice(-1);newType="ul"}else{if(lookaheadMatch[2]){newType="ol"
 }}w.nextMatch+=newLevel;if(newLevel>currLevel){for(t=currLevel;t<newLevel;t++){placeStack.push(insertElement(placeStack[placeStack.length-1],newType))}}else{if(newLevel<currLevel){for(t=currLevel;t>newLevel;t--){placeStack.pop()}}else{if(newLevel==currLevel&&newType!=currType){placeStack.pop();placeStack.push(insertElement(placeStack[placeStack.length-1],newType))}}}currLevel=newLevel;currType=newType;t=insertElement(placeStack[placeStack.length-1],"li");if(bulletType&&bulletType!="*"){t.setAttribute("data-bullet",bulletType)}w.subWikify(t,this.terminator)}}while(matched)}},(Wikifier.urlFormatter={name:"urlLink",match:"(?:https?|mailto|javascript|ftp|data):[^\\s'\"]+(?:/|\\b)",handler:function(w){var e=Wikifier.createExternalLink(w.output,w.matchText);w.outputText(e,w.matchStart,w.nextMatch)}}),(Wikifier.linkFormatter={name:"prettyLink",match:"\\[\\[",lookahead:"\\[\\[([^\\|]*?)(?:\\|(.*?))?\\](?:\\[(.*?)])?\\]",makeInternalOrExternal:function(out,title,callback,type){if(title&&!tale.has(title)&&(title.match(Wikifier.urlFormatter.match,"g")||~title.search(/[\.\\\/#]/))){return Wikifier.createExternalLink(out,title,callback,type)
@@ -106,246 +107,268 @@ testplay = "";
 
 </script>
 <style id="baseCSS">
-body {
-background-color: #000;
-color: #fff;
-font-family: Verdana,sans-serif;
-font-size: 62.5%;
-margin: 0 auto;
-}
+/* Sidebar */
 #sidebar {
-position: absolute;
-width: 12em;
-left: 7.5em;
-list-style: none;
-margin: 0;
-padding: 0 1em 0 0;
-font: bold 1.1em Verdana,sans-serif;
+	position: fixed;
+	list-style: none;
+	width: 12em;
 }
-#sidebar li {
-color: #333;
-text-align: right;
-background-repeat: no-repeat;
-margin-bottom: 1em;
-line-height: 1.4em !important;
-list-style: none;
+#sidebar #title, #sidebar #credits  {
+	cursor: auto;
 }
-#sidebar li:hover {
-color: #fff;
-cursor: pointer;
-}
-#sidebar li a {
-color: #333;
-text-decoration: none;
-}
-#sidebar li a:hover, #sidebar #title a:hover {
-color: #fff;
-text-decoration: none;
-}
-#sidebar #title {
-color: #999;
-font-size: 150%;
-cursor: auto;
-}
-#sidebar #title a {
-color: #999;
-}
-#sidebar #storySubtitle {
-font-size: 75%;
-display: block;
-}
-#storyAuthor {
-font-size: 50%;
-}
-#sidebar #storyMenu {
-display: none;
-line-height: 2.5em;
-margin-bottom: .5em;
-color: #999;
-cursor: auto;
-text-align:right !important;
-}
-#sidebar #title:hover {
-color: #999;
-}
-#sidebar #credits {
-padding-top: 2em;
-font-weight: normal;
-font-size: 80%;
-cursor: auto;
-}
-#sidebar #credits:hover {
-color: #333;
-}
-#sidebar #credits a {
-text-decoration: none;
+#sidebar #storySubtitle, #sidebar #storyMenu {
+	display: block;
 }
 .menu {
-position: absolute;
-display: none;
-background-color: #343434;
-color: #fff;
-opacity: .9;
-border: 1px solid #fff;
-text-align: left;
-font: 1.1em Verdana;
-line-height: 2em;
+	position: absolute;
+	display: none;
+	z-index: 5;
 }
-.menu div {
-padding: 0 .4em;
-}
-.menu div:hover {
-cursor: pointer;
-background-color: #fff;
-color: #343434;
-}
+/* Passages container */
 #passages {
-// margin-left: 18.2em;
-// border-left: 1px solid #333;
-// padding-left: 1.5em;
-position:relative;
+	margin-left: 18.2em;
+	position:relative;
 }
-.passage {
-font-size: 1.2em;
-line-height: 175%;
-// margin-bottom: 2em;
-text-align: left;
-padding: 1 em;
-}
-.passage ul {
-padding-top: 1.3em;
-}
-.passage li {
-margin-right: 6em;
-}
-.passage center {
-max-width:50%;
-margin:auto;
-}
+/* Links */
 .passage a {
-color: #4d6ad8;
-font-weight: bold;
-text-decoration: none;
+	color: #4d6ad8;
 }
-a.internalLink, a.externalLink, a.back, a.return {
-cursor: pointer;
-}
-.passage a:hover {
-color: #8ea6ff;
-text-decoration: underline;
+a.internalLink, a.externalLink, a.back, a.return, [data-passage], .menu div {
+	cursor: pointer;
 }
 a.brokenLink {
-background-color: red;
-text-decoration: none;
-color: #000;
-}
-.disabled {
-font-weight: bold;
-color: #333;
+	background-color: red;
+	color: #000;
 }
 .marked {
-background-color: red;
-color: #000;
-margin-right: 12px;
-padding: 3px;
+	background-color: #f66;
+	color: #000;
 }
 .marked[title] {
-cursor: help;
+	cursor: help;
 }
-.passage ul {
-margin-left: .5em;
-padding-left: 1.5em;
+.passage li[data-bullet] {
+	list-style-type: none;
 }
-.passage ol {
-margin-left: .5em;
-padding-left: 1.5em;
-}
-.passage table {
-border-collapse: collapse;
-font-size: 100%;
-margin: .8em 1.0em;
-}
-.passage th,.passage td,.passage tr,.passage caption {
-padding: 3px;
-}
-.passage hr {
-height: 1px;
-}
-input, button {
-background-color: #000;
-color:#fff;
-font-size: 1.2em;
-}
-button {
-border: 2px outset #333;
-border-radius:0.5em;
-padding: 0.2em 0.8em;
-}
-button:active {
-border-style:solid;
-}
-input[type=text] {
-border: 2px solid #333;
-width: 20%;
-}
-input[type=text]:hover {
-border-color: #fff;
+.passage li[data-bullet]:before {
+	content: attr(data-bullet);
+	position: relative;
+	left: -1em;
 }
 #storeArea {
-display: none;
+	display: none;
 }
 #noscript {
-margin-left: 18.2em;
-font-size: 1.2em;
-font-weight: bold;
+	margin-left: 18.2em;
+	font-size: 1.2em;
+	font-weight: bold;
 }
+/* HTML4 compatibility */
 img {
-vertical-align:bottom;
+	vertical-align:bottom;
 }
-
-/* EMC
-#passages .body.content {
-width:600px;
-margin:0 auto;
+@media screen and (max-width: 640px) {
+	#sidebar {
+		position: static;
+		margin: 0 auto;
+		padding: 0;
+	}
+	body #sidebar li  {
+		text-align: center;
+	}
+	#passages {
+		min-height: 100vh;
+		margin-left: 0em;
+	}
 }
-*/
+#loadingbar {
+	position:fixed;
+	top:0;
+	left:0;
+	border-top: solid #4d6ad8 6px;
+	transition: width 0.5s;
+}
+</style>
+<style id="defaultCSS">
+body {
+	background-color: #000;
+	color: #fff;
+	font-family: Verdana,sans-serif;
+	font-size: 62.5%;
+	margin: 4em 15% 5% 5em;
+}
+#sidebar {
+	left: 7.5em;
+	margin: 0;
+	padding: 0 1em 0 0;
+	font: bold 1.1em Verdana,sans-serif;
+}
+#sidebar ul {
+	padding: 0;
+}
+#sidebar li {
+	color: #333;
+	text-align: right;
+	background-repeat: no-repeat;
+	margin-bottom: 1em;
+	line-height: 1.4em;
+	list-style: none;
+}
+#sidebar li a {
+	color: #333;
+	text-decoration: none;
+}
+#sidebar li a:hover, #sidebar #title a:hover, #snapback:hover, #restart:hover {
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+#sidebar #title {
+	font-size: 150%;
+}
+#sidebar #title, #sidebar #title:hover, #sidebar #title a {
+	color: #999;
+}
+#sidebar #storySubtitle {
+	font-size: 75%;
+}
+#storyAuthor {
+	font-size: 50%;
+}
+#sidebar #storyMenu {
+	line-height: 2.5em;
+	margin-bottom: .5em;
+	color: #999;
+	cursor: auto;
+}
+#sidebar #credits {
+	padding-top: 2em;
+	font-weight: normal;
+	font-size: 80%;
+}
+#sidebar #credits:hover {
+	color: #333;
+}
+#sidebar #credits a {
+	text-decoration: none;
+}
+#passages {
+	border-left: 1px solid #333;
+	padding-left: 1.5em;
+}
+.menu {
+	background-color: #343434;
+	color: #fff;
+	opacity: .9;
+	border: 1px solid #fff;
+	text-align: left;
+	font: 1.1em Verdana;
+	line-height: 2em;
+}
+.menu div {
+	padding: 0 .4em;
+}
+.menu div:hover {
+	cursor: pointer;
+	background-color: #fff;
+	color: #343434;
+}
+.passage {
+	font-size: 1.2em;
+	line-height: 175%;
+	margin-bottom: 2em;
+	text-align: left;
+}
+.passage a {
+	font-weight: bold;
+	text-decoration: none;
+}
+.passage a:hover {
+	color: #8ea6ff;
+	text-decoration: underline;
+}
+.content > ul {
+	padding-top: 1.3em;
+}
+.passage ul, .passage ol {
+	margin-left: .5em;
+	padding-left: 1.5em;
+}
+.passage li {
+	margin-right: 6em;
+}
+.passage table {
+	border-collapse: collapse;
+	font-size: 100%;
+	margin: .8em 1.0em;
+}
+.passage th,.passage td,.passage tr,.passage caption {
+	padding: 3px;
+}
+.passage hr {
+	height: 1px;
+}
+.passage center {
+	max-width:50%;
+	margin:auto;
+}
+.marked {
+	margin-right: 12px;
+	padding: 3px;
+}
+.disabled {
+	font-weight: bold;
+	color: #333;
+}
+@media screen and (max-width: 640px) {
+	body {
+		margin: 5%;
+	}
+	#sidebar {
+		width:100%;
+		margin: 0;
+		border-bottom: 1px solid #333;
+	}
+	#passages {
+		padding-top: 2em;
+		border-left: 0;
+	}
+}
 </style>
 <style id="transitionCSS">
 .transition-in {
-opacity:0;
-position:absolute;
+	opacity:0;
+	position:absolute;
 }
 .passage:not(.transition-out) {
-transition: 1s;
--webkit-transition: 1s;
+	transition: 1s;
+	-webkit-transition: 1s;
 }
 .transition-out {
-opacity:0 !important;
-position:absolute;
+	opacity:0 !important;
+	position:absolute;
 }
 </style>
 <style id="storyCSS"></style>
 <style id="tagCSS"></style>
 </head>
 <body>
-
-
-<!--ul id="sidebar">
+<div id="loadingbar"></div>
+<ul id="sidebar">
 <li id="title" class="storyElement"><span id="storyTitle" class="storyElement"></span><span id="storySubtitle" class="storyElement"></span><span id="titleSeparator"></span><span id="storyAuthor" class="storyElement"></span></li>
-<li id="storyMenu" class="storyElement"></li>
-<li id="snapback">Rewind</li>
-<li id="restart">Restart</li>
+<li id="storyMenu" class="storyElement" style="display:none"></li>
+<li><a href="javascript:;" id="snapback">Rewind</a></li>
+<li><a href="javascript:;" id="restart">Restart</a></li>
 <li><a id="bookmark" title="Permanent link to this passage">Bookmark</a></li>
 <li id="credits">
 This story was created with <a href="http://twinery.org/">Twine</a> and is powered by <a href="http://tiddlywiki.com/">TiddlyWiki</a>
 </li>
-</ul-->
-
-
-
-<!--div id="snapbackMenu" class="menu"></div-->
+</ul>
+<div id="snapbackMenu" class="menu"></div>
 <div id="passages">
 <noscript><div id="noscript">Please enable Javascript to play this story!</div></noscript>
-<style>#sidebar{display:none;}</style>
+<style>
+#sidebar{display:none;}
+</style>
 </div>
-<div id="storeArea"><div tiddler="south2" tags="" created="201405282128" modifier="twee" twine-position="990,150">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_mafia.jpg&gt;\n&lt;center&gt;[[north|south]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="south_swamp4" tags="" created="201405291319" modifier="twee" twine-position="430,1270">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_brown_swamp_witch.jpg&gt;\n&lt;center&gt;[[north|south_swamp3]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="south_swamp2" tags="" created="201405291214" modifier="twee" twine-position="430,990">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp9.jpg&gt;\n&lt;center&gt;[[north|south_swamp]] [[south|south_swamp3]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="south_swamp3" tags="" created="201405291255" modifier="twee" twine-position="430,1130">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp_thing__span.jpg&gt;\n&lt;center&gt;[[north|south_swamp2]][[south|south_swamp4]][[east|south_swamp3_east]] [[Attack Swampy]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;&lt;&lt;check_flag 6&gt;&gt;</div><div tiddler="Start" tags="" created="201405251923" modifier="twee" twine-position="10,10">&lt;&lt;display &quot;RealStart&quot;&gt;&gt;</div><div tiddler="north_swamp2" tags="" created="201405291216" modifier="twee" twine-position="430,430">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp1.jpg&gt;\n&lt;center&gt;[[south|north_swamp]] [[Main]]&lt;/center&gt;\nYou are on the edge of the swamp. To the north you see the Dixie Mafia Household.You the south you see a clearing leading into the swamp.\n&lt;&lt;status&gt;&gt;\nflies buzz.</div><div tiddler="ring" tags="" created="201405260013" modifier="twee" twine-position="290,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src =the-remnants-of-the-iconic-shark-2604-20070704-30.jpg&gt;\n&lt;center&gt;[[Bridge]]&lt;/center&gt;\n&lt;&lt;set $ring to either(2, 4, 6)&gt;&gt;\n&lt;&lt;if $ring ==2&gt;&gt;You ring twice &lt;&lt;endif&gt;&gt;\n&lt;&lt;if $ring ==4&gt;&gt;You ring four times &lt;&lt;endif&gt;&gt;\n&lt;&lt;if $ring ==6&gt;&gt;You ring six times &lt;&lt;endif&gt;&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="Main" tags="" created="201405282110" modifier="twee" twine-position="710,290">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_factory1.jpg&gt;\n&lt;center&gt;[[Bridge]] [[north]] [[south]] [[east]] [[west]] [[Edge of Swamp|north_swamp2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="Pick up chalice" tags="" created="201406151557" modifier="twee" twine-position="10,1130">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp9.jpg&gt;\n&lt;center&gt;[[back|south_swamp3_east]]&lt;/center&gt;\nIf you ever get a chance to return this  to  the Vatican you shall recieve much slack.\n&lt;&lt;status&gt;&gt;&lt;&lt;tick_flag 4&gt;&gt;&lt;&lt;check_flag 4&gt;&gt;\n</div><div tiddler="search swamp" tags="" created="201406151554" modifier="twee" twine-position="150,1130">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp9.jpg&gt;\n&lt;center&gt;[[back|south_swamp3_east]]&lt;&lt;if $flag4 is 0&gt;&gt;[[Pick up chalice]]&lt;&lt;endif&gt;&gt;&lt;/center&gt;\n&lt;&lt;if $flag4 is 0&gt;&gt;\nYou find a chalice. It is obviously Roman Catholic. It needs to be returned to the Vatican where it can be kept in storage away from prying eyes. How did it get here? For that you need to ask the Seer BritneySpears.\n&lt;&lt;else&gt;&gt;You find nothing but flies&lt;&lt;endif&gt;&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="west_swamp" tags="" created="201405291147" modifier="twee" twine-position="290,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp3.jpg&gt;\n&lt;center&gt;[[west|west_swamp2]][[east|Swamp]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="east_swamp" tags="" created="201405291147" modifier="twee" twine-position="570,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp6.jpg&gt;\n&lt;center&gt;[[west|Swamp]] - [[east|east_swamp2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="west" tags="" created="201405282111" modifier="twee" twine-position="850,430">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_factory5.jpg&gt;\n&lt;center&gt;[[east|Main]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="image" tags="stylesheet" created="201405301433" modifier="twee" twine-position="10,710">img{\nmargin:0 auto;\nheight:300px;\nwidth:500px;\ndisplay:block;\n}\n\nimg[align=right]{\nheight:auto;\nwidth:auto;\nmargin:0 0 0 10px\n}\n\n\n.passage .internalLink:link{\n\ncolor:white;\nborder:1px solid white;\npadding:2px 3px;\ntext-align:center;\nmargin:0 2px;\n}\n\n.passage .internalLink:visited{\n\ncolor:red;\nborder:1px solid red;\n\n}\n.passage .internalLink:hover{\n\ncolor:Chartreuse;\nborder:1px solid Chartreuse;\n\n}\n.passage .internalLink:focus{\n\ncolor:DodgerBlue ;\nborder:1px solid DodgerBlue ;\n\n}\n.blurb{\nmargin:0 0 10px 0\n}\n\n.passage center{\nmax-width:90%;\n\n}</div><div tiddler="north_swamp" tags="" created="201405291146" modifier="twee" twine-position="430,570">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp4.jpg&gt;\n&lt;center&gt;[[south|Swamp]] - [[north|north_swamp2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="north2" tags="" created="201405282126" modifier="twee" twine-position="990,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_large.jpg&gt;\n&lt;center&gt;[[south|north]] &lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="StoryTitle" tags="" created="201405251923" modifier="twee" twine-position="10,150">Untitled Story</div><div tiddler="east" tags="" created="201405282111" modifier="twee" twine-position="850,290">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_factory4.jpg&gt;\n&lt;center&gt;[[west|Main]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="west_swamp2" tags="" created="201405291217" modifier="twee" twine-position="150,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp8.jpg&gt;\n &lt;center&gt;[[east|west_swamp]] &lt;/center&gt;\nWhat a stinky place. You can see your car up the muddy hill, just beyond the rusty barb wired fence.\n\nThe water seeps into your shoes.\n&lt;&lt;status&gt;&gt;\n</div><div tiddler="north" tags="" created="201405282111" modifier="twee" twine-position="850,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_factory2.jpg&gt;\n&lt;center&gt;[[south|Main]] - [[Follow Voices|north2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="StorySettings" tags="" created="201405261509" modifier="twee" twine-position="10,430">jquery:off\nmodernizr:off\nbookmark:on\nobfuscatekey:ydobsxirjvlenfkgcqaptwmzhu\nundo:on\nobfuscate:off\n</div><div tiddler="Swamp" tags="" created="201405291144" modifier="twee" twine-position="430,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp_climb.jpg&gt;\n&lt;center&gt;[[north|north_swamp]] [[south|south_swamp]] [[east|east_swamp]] [[west|west_swamp]]&lt;/center&gt;\nIs that a fucking crematorium. They burn their own dead? These guys are fucking hard as nails.\n&lt;&lt;status&gt;&gt;</div><div tiddler="PassageIDHack" tags="script" created="201407100644" modifier="twee" twine-position="0,0">//requires jquery\ntry {\n\t  version.extensions['exampleMacro'] = \n\t{ \n\t\tmajor:1, minor:0, revision:0 \n\t  };\n\t  macros['status'] =\n\t  {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\t$.ajax({\n\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=get_status&quot;,\n\t\t\tdatatype : 'application/json',\n\t\t\tsuccess:function(result)\n\t\t\t{\n\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t$(&quot;#div1&quot;).html(newObject['name']);\n\t\t\t\t$(&quot;.health&quot;).html(newObject['health']);\n\t\t\t\t$(&quot;.slack&quot;).html(newObject['slack']);\t\t\n\t\t\t\t$(&quot;.money&quot;).html(newObject['money']);\n\t\t\t}});\n\t\t},\n\t\tinit: function() { },\n\t  };\n\t  \n\t   macros['remove_slack'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=remove_slack&quot;,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\t$(&quot;.slack&quot;).html(newObject['slack']);\t\t\n\t\t\t\t}});\n\t\t\tnew Wikifier(place, &quot;Life Goes On&quot;);\n\t\t\tconsole.log ('hello');\n\t\t},\n\t\tinit: function() { },\n\t  };\n\t  \n\t   macros['add_slack'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=add_slack&quot;,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\t$(&quot;.slack&quot;).html(newObject['slack']);\t\t\n\t\t\t}});\n\t\t},\n\t\tinit: function() { },\n\t  };\n\t  \n\t  macros['check_flag'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\tthis.m = params[0];\n\t\t\tvar stuff= this.m;\n\t\t//this.flag   = this.m;\n\t\t\t  \t$.ajax({\n\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=check_flag&amp;flag=&quot; + this.m,\n\t\t\tdatatype : 'application/json',\n\t\t\tsuccess:function(result)\n\t\t\t{\n\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\tstate.history[0].variables[&quot;flag&quot; + stuff] = newObject;\n\t\t\t\tnew Wikifier(place, &quot;Something Happens :&quot; + stuff + &quot;:  &quot;  + state.history[0].variables[&quot;flag&quot;+stuff]);\n\t\t\t}});\n \t\t},\n\t\tinit: function() { },\n\t  }; \n\t  \n\t   macros['tick_flag'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\tthis.m = params[0];\n\t\t\tthis.flag   = this.m;\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=tick_flag&amp;flag=&quot; + this.m,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\tflag = result[0];\n\t\t\t\t}});\n\t\t\tnew Wikifier(place, &quot;Something Happens :&quot; + this.m);\n\t\t},\n\t\tinit: function() { },\n\t  }; \n\n\n\n\n\t   macros['attack'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\tthis.m = params[0];\n\t\t\tthis.flag   = this.m;\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=action&amp;action=attack_character&amp;type=shoot&amp;character=&quot; + this.m,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\ttext_message = result[2];\n\t\t\t\t}});\n\t\t\tnew Wikifier(place, text_message);\n\t\t},\n\t\tinit: function() { },\n\t  }; \n\n\n\n\n\n\n\n\t  \n\t} catch(e) {\n\t\t\n\t\tthrowError(place,&quot;macrodemo Setup Error: &quot;+e.message); \n}</div><div tiddler="east_swamp5" tags="" created="201405291320" modifier="twee" twine-position="850,850">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_fish-counter1.jpg&gt;\n&lt;center&gt;[[north|east_swamp3]] &lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n\n</div><div tiddler="east_swamp4" tags="" created="201405291253" modifier="twee" twine-position="990,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_train.jpg&gt;\n&lt;center&gt;[[west|east_swamp3]] &lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n\n</div><div tiddler="east_swamp3" tags="" created="201405291252" modifier="twee" twine-position="850,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp7.jpg&gt;\n&lt;center&gt;[[west|east_swamp2]] - [[east|east_swamp4]] - [[south|east_swamp5]] &lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n\n</div><div tiddler="east_swamp2" tags="" created="201405291217" modifier="twee" twine-position="710,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_aligator.jpg&gt;\n&lt;center&gt;[[west|east_swamp]] - [[east|east_swamp3]] &lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="Bridge" tags="" created="201405291150" modifier="twee" twine-position="430,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_bridge.jpg&gt;\n&lt;center&gt;[[Exit|RealStart]] - [[Main]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="StatusBar" tags="" created="201407100644" modifier="twee" twine-position="0,0">&lt;html&gt; \n&lt;center&gt;&lt;div id=&quot;div1&quot; &gt;&lt;/div&gt;\nSlack:&lt;span class = 'slack'&gt;0&lt;/span&gt;\nHealth:&lt;span class = 'health'&gt;0&lt;/span&gt;\nMoney: &lt;span class = 'money'&gt;0&lt;/span&gt; \n&lt;center&gt;\n&lt;/html&gt;</div><div tiddler="RealStart" tags="" created="201405251931" modifier="twee" twine-position="150,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src=flag.jpg&gt;\nDo you [[ring]] the doorbell or [[climb|Edge of Swamp]] the fence?\n[[Return to Map|http://eclecticmeme.com/index.php?option=com_battle&amp;view=single&amp;Itemid=115]]\n&lt;&lt;status&gt;&gt;</div><div tiddler="south_swamp" tags="" created="201405291146" modifier="twee" twine-position="430,850">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp5.jpg&gt;\n&lt;center&gt;[[north|Swamp]] [[south|south_swamp2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="StoryAuthor" tags="" created="201405251923" modifier="twee" twine-position="10,290">Anonymous</div><div tiddler="south_swamp3_east" tags="" created="201406151553" modifier="twee" twine-position="290,1130">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_swamp9.jpg&gt;\n&lt;center&gt;[[west|south_swamp3]][[search swamp]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;&lt;&lt;check_flag 4&gt;&gt;</div><div tiddler="Attack Swampy" tags="" created="201407100607" modifier="twee" twine-position="990,1130">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n\n&lt;&lt;if $flag6 is 1&gt;&gt;\n\nYou attack the 6 foot Algae with the Weed Killer Spray.  You brush past the rotting corpse to his nest [[nest|south_swamp4]]&lt;&lt;else&gt;&gt;\n\nReally? You attack the swamp thinkg with fists feet and bullets. He absorbs it all.\nYou are gently knocked unconscious. [[continue|RealStart]]\n&lt;&lt;endif&gt;&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="south" tags="" created="201405282111" modifier="twee" twine-position="850,150">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src = dixie_factory3.jpg&gt;\n&lt;center&gt;[[north|Main]] - [[Follow Voices|south2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;</div><div tiddler="Edge of Swamp" tags="" created="201405260014" modifier="twee" twine-position="150,290">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n&lt;img src=dixie_swamp10.jpg&gt;\n&lt;center&gt;[[turn back|RealStart]] - [[Slide down hill|west_swamp2]]&lt;/center&gt;\n A head of you, at the bottom of a muddy hill, lies an awful smelly swamp. \n&lt;&lt;status&gt;&gt;</div></div></body></html>
+<div id="storeArea" data-size="29" hidden><div tiddler="Neon Van House" tags="" created="201405272310" modifier="twee" twine-position="850,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;&lt;&lt;add_slack&gt;&gt;\n[img[cave_neon_bus2.jpg]]\n&lt;center&gt;[[Back|Cave Tunnel 1]] [[Onwards|Cave Tunnel 3]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Work Area" tags="" created="201405301717" modifier="twee" twine-position="279,558">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_entrance.jpg]]\n&lt;center&gt;[[Village Center]][[Woodland]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div><div tiddler="Field2" tags="" created="201405301959" modifier="twee" twine-position="422,853">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_Man in Marijuana Field.jpg]]\n&lt;center&gt;[[Field]][[Field2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Field3" tags="" created="201405301959" modifier="twee" twine-position="272,1004">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_Marijuana-field4+man.jpg]]\n&lt;center&gt;[[Field]][[Field2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="image" tags="stylesheet" created="201405301502" modifier="twee" twine-position="14,562">img{\nmargin:0 auto;\nheight:300px;\nwidth:500px;\ndisplay:block;\n}\n\nimg[align=right]{\nheight:auto;\nwidth:auto;\nmargin:0 0 0 10px\n}\n\n\n.passage .internalLink:link{\n\ncolor:white;\nborder:1px solid white;\npadding:3px 5px;\ntext-align:center;\nmargin:0 2px;\n}\n\n.passage .internalLink:visited{\n\ncolor:red;\nborder:1px solid red;\n\n}\n.passage .internalLink:hover{\n\ncolor:Chartreuse;\nborder:1px solid Chartreuse;\n\n}\n.passage .internalLink:focus{\n\ncolor:DodgerBlue ;\nborder:1px solid DodgerBlue ;\n\n}\n.blurb{\nmargin:0 0 10px 0\n}\n.passage center{\nmax-width:90%;\n\n}</div><div tiddler="Woodland" tags="" created="201405301957" modifier="twee" twine-position="290,710">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_marijuana-fields.jpg]]\n&lt;center&gt;[[Work Area]][[Field]][[Search Woodland]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n\n\n</div><div tiddler="Field4" tags="" created="201405302000" modifier="twee" twine-position="125,852">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_marijuana-fields_man2.jpg]]\n&lt;center&gt;[[Work Area]][[Field]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Start" tags="" created="201405251923" modifier="twee" twine-position="10,10">&lt;&lt;display &quot;RealStart&quot;&gt;&gt;</div><div tiddler="Hill" tags="" created="201405301716" modifier="twee" twine-position="276,418">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_christiania2.jpg]]\n&lt;center&gt;[[Village Center]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div><div tiddler="ring" tags="" created="201405260011" modifier="twee" twine-position="151,292">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_women.jpg]]\n&lt;center&gt;[[Cave Entrance]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Secret Entrance" tags="" created="201405260010" modifier="twee" twine-position="289,11">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[Mammoth_Cave_Entrance.jpg]]\n&lt;center&gt;[[Hallway]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Search Woodland" tags="" created="201405311503" modifier="twee" twine-position="710,710">&lt;&lt;check_flag 3&gt;&gt;\n\n&lt;&lt;if this.flag == 3&gt;&gt;You find a dead lizard.&lt;&lt;else&gt;&gt;You find a sausage.&lt;&lt;endif&gt;&gt;</div><div tiddler="Cave Tunnel 4" tags="" created="201405280029" modifier="twee" twine-position="990,290">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_tunnel4.jpg]]\n&lt;center&gt;[[Back|Cave City]] [[Onwards|Cave Tunnel 3]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Cave Tunnel 2" tags="" created="201405272310" modifier="twee" twine-position="710,290">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_tunnel2.jpg]]\n&lt;center&gt;[[Hallway]] [[Cave City]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Cave Tunnel 3" tags="" created="201405280029" modifier="twee" twine-position="990,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_tunnel3.jpg]]\n&lt;center&gt;[[Back|Neon Van House]] [[Onwards|Cave Tunnel 4]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Cave Tunnel 1" tags="" created="201405272310" modifier="twee" twine-position="710,10">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_tunnel1.jpg]]\n&lt;center&gt;[[Hallway]] [[Neon Van House]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="StoryTitle" tags="" created="201405251923" modifier="twee" twine-position="10,150">Untitled Story</div><div tiddler="Cave City" tags="" created="201405272331" modifier="twee" twine-position="850,290">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_city.jpg]]\n&lt;center&gt;[[Cave Tunnel 2]][[Cave Tunnel 4]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Hallway" tags="" created="201405272310" modifier="twee" twine-position="570,150">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[Stone-Flower-Cave.jpg]]\n&lt;center&gt;[[Cave Tunnel 1]] - [[Cave Tunnel 2]] - [[Cave Entrance]] - [[Secret Exit|Secret Entrance]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="Theaterdome" tags="" created="201405301714" modifier="twee" twine-position="587,417">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_theaterdome.jpg]]\n&lt;center&gt;[[Village Center]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div><div tiddler="PassageIDHack" tags="script" created="201407031227" modifier="twee" twine-position="0,0">//requires jquery\ntry {\n\t  version.extensions['exampleMacro'] = \n\t{ \n\t\tmajor:1, minor:0, revision:0 \n\t  };\n\t  macros['status'] =\n\t  {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\t$.ajax({\n\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=get_status&quot;,\n\t\t\tdatatype : 'application/json',\n\t\t\tsuccess:function(result)\n\t\t\t{\n\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t$(&quot;#div1&quot;).html(newObject['name']);\n\t\t\t\t$(&quot;.health&quot;).html(newObject['health']);\n\t\t\t\t$(&quot;.slack&quot;).html(newObject['slack']);\t\t\n\t\t\t\t$(&quot;.money&quot;).html(newObject['money']);\n\t\t\t}});\n\t\t},\n\t\tinit: function() { },\n\t  };\n\t  \n\t   macros['remove_slack'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=remove_slack&quot;,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\t$(&quot;.slack&quot;).html(newObject['slack']);\t\t\n\t\t\t\t}});\n\t\t\tnew Wikifier(place, &quot;Life Goes On&quot;);\n\t\t\tconsole.log ('hello');\n\t\t},\n\t\tinit: function() { },\n\t  };\n\t  \n\t   macros['add_slack'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=add_slack&quot;,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\t$(&quot;.slack&quot;).html(newObject['slack']);\t\t\n\t\t\t}});\n\t\t},\n\t\tinit: function() { },\n\t  };\n\t  \n\t  macros['check_flag'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\tthis.m = params[0];\n\t\t\tvar stuff= this.m;\n\t\t//this.flag   = this.m;\n\t\t\t  \t$.ajax({\n\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=check_flag&amp;flag=&quot; + this.m,\n\t\t\tdatatype : 'application/json',\n\t\t\tsuccess:function(result)\n\t\t\t{\n\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\tstate.history[0].variables[&quot;flag&quot; + stuff] = newObject;\n\t\t\t\tnew Wikifier(place, &quot;Something Happens :&quot; + stuff + &quot;:  &quot;  + state.history[0].variables[&quot;flag&quot;+stuff]);\n\t\t\t}});\n \t\t},\n\t\tinit: function() { },\n\t  }; \n\t  \n\t   macros['tick_flag'] = {\n\t\thandler: function(place, macroName, params, parser) \n\t\t{\n\t\t\tthis.m = params[0];\n\t\t\tthis.flag   = this.m;\n\t\t\t$.ajax({\n\t\t\t\turl:&quot;http://eclecticmeme.com/index.php?option=com_battle&amp;format=raw&amp;task=twine_action&amp;action=tick_flag&amp;flag=&quot; + this.m,\n\t\t\t\tdatatype : 'application/json',\n\t\t\t\t\tsuccess:function(result)\n\t\t\t\t{\n\t\t\t\t\tvar newObject = JSON.parse(result);\n\t\t\t\t\tflag = result[0];\n\t\t\t\t}});\n\t\t\tnew Wikifier(place, &quot;Something Happens :&quot; + this.m);\n\t\t},\n\t\tinit: function() { },\n\t  }; \t  \n\t} catch(e) {\n\t\t\n\t\tthrowError(place,&quot;macrodemo Setup Error: &quot;+e.message); \n}</div><div tiddler="Field" tags="" created="201405301957" modifier="twee" twine-position="274,853">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_marijuana-fields2.jpg]]\n&lt;center&gt;[[Woodland]][[Field2]][[Field4]][[Field3]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;</div><div tiddler="StatusBar" tags="" created="201407031227" modifier="twee" twine-position="0,0">&lt;html&gt; \n&lt;center&gt;&lt;div id=&quot;div1&quot; &gt;&lt;/div&gt;\nSlack:&lt;span class = 'slack'&gt;0&lt;/span&gt;\nHealth:&lt;span class = 'health'&gt;0&lt;/span&gt;\nMoney: &lt;span class = 'money'&gt;0&lt;/span&gt; \n&lt;center&gt;\n&lt;/html&gt;</div><div tiddler="RealStart" tags="" created="201405251931" modifier="twee" twine-position="150,11">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[Hippy_Entrance.jpg]]\nDo you [[ring]] the doorbell use  [[Secret Entrance]] ?\n[[Return to Map|http://eclecticmeme.com/index.php?option=com_battle&amp;view=single&amp;Itemid=115]]</div><div tiddler="Cave Entrance" tags="" created="201405272309" modifier="twee" twine-position="433,278">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[cave_entrance.jpg]]\n&lt;center&gt;[[Hallway]][[Village Center]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div><div tiddler="House2" tags="" created="201405301716" modifier="twee" twine-position="433,560">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_house2.jpg]]\n&lt;center&gt;[[Village Center]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div><div tiddler="House1" tags="" created="201405301715" modifier="twee" twine-position="585,558">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_house.jpg]]\n&lt;center&gt;[[Village Center]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div><div tiddler="StoryAuthor" tags="" created="201405251923" modifier="twee" twine-position="10,290">Anonymous</div><div tiddler="Village Center" tags="" created="201405301713" modifier="twee" twine-position="433,418">&lt;&lt;display &quot;StatusBar&quot;&gt;&gt;\n[img[isis_uzupis.jpg]]\n&lt;center&gt;[[Cave Entrance]][[Work Area]][[Hill]][[Theaterdome]][[House1]][[House2]]&lt;/center&gt;\n&lt;&lt;status&gt;&gt;\n&lt;&lt;add_slack&gt;&gt;\n</div></div></body></html>

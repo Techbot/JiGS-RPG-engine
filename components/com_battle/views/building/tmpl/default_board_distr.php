@@ -5,8 +5,8 @@
 <h2>: <?php echo $this->building_hobbit_stats->distr; ?>:</h2>
 
 
-<span id= "assign_distr" class="assign label">Assign Hobbit to distribution:</span>
-<span id= "remove_distr" class="remove label">Remove Hobbit from distribution:</span>
+<span id= "assign_distr" class="assign button btn btn-success">Assign Hobbit</span>
+<span id= "remove_distr" class="remove button btn btn-danger">Remove Hobbit</span>
 
 
 </form>	

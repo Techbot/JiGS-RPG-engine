@@ -2,12 +2,8 @@
 
 <div class="board_panel clr">
 	
-<div class='panel' id="open_panel" style="visibility:visible;">
-<div class="name">Systems Control</div>
 
-<p>Open each System Control Panel by clicking on its icon.</p><p>Each CP allows you to manage your resources specific to each system.</p>
-	</div>
-	<div class='panel' id="first_panel" style="visibility:hidden;">
+	<div class='panel' id="first_panel" style="visibility:visible;">
 	<?php  echo $this->loadTemplate ('board_primary'); ?>
 
 	</div>

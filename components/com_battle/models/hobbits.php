@@ -10,14 +10,15 @@ class BattleModelHobbits extends JModel
 {
 	var $_data = null;
 
-	function getData($id=0)
+	function getData($id=0, $type='P')
 	{
 			$query = "SELECT * FROM #__jigs_hobbits";
 		
 		    if ($id !=0) 
 		    {
 		
-		    $query .= " WHERE owner = $id";
+			$query .= " WHERE owner = $id";
+			$query .= " AND owner_type = '$type'";
 	
 		    }
 		    
@@ -36,9 +37,9 @@ class BattleModelHobbits extends JModel
 		return $_data;
 	}
 
-    function get_hobbit_stats($id_){
+    function get_hobbit_stats($id_,$type='P'){
     
-        $hobbitList = $this->getData($id_);
+        $hobbitList = $this->getData($id_,$type);
         
         foreach ($hobbitList as $hobbit)
         {

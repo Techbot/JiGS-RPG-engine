@@ -1,6 +1,8 @@
 <?php
 $people = $this->people;
 
+$loses = $people->nbr_attacks - $people->nbr_kills;
+
 		$text ='
 		<div style=" width: 100%; height:auto; margin: 0 auto; text-align:center; background:#000; " id="screen_grid">
 
@@ -22,17 +24,10 @@ $people = $this->people;
 				</div>
 				
 				<div class="clearfix vitals">
+					
 					<div class="vital xp">
-						<div class="label">Experience:</div>
-						<div class="gauge"><div style="width:'. $people->xp .'%" id="xp"><span>' . $people->xp  . '</span></div></div>
-					</div>
-					<div class="vital xp">
-						<div class="label">Intelligence:</div>
-						<div class="gauge"><div style="width:'. $people->intelligence .'%" id="intel"><span>' . $people->intelligence  . '</span></div></div>
-					</div>
-					<div class="vital xp">
-						<div class="label">Strength:</div>
-						<div class="gauge"><div style="width:'. $people->strength .'%" id="strength"><span>' . $people->strength  . '</span></div></div>
+						<div class="label">Slack:</div>
+						<div class="gauge"><div style="width:'. $people->slack .'%" id="strength"><span>' . $people->slack  . '</span></div></div>
 					</div>	
 					<div class="vital xp">
 						<div class="label">Health:</div>
@@ -51,50 +46,166 @@ $people = $this->people;
 					</figure>
 					
 					<div class="stats">
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 						
 						<table class="stats">
 							<tr>
 								<th scope="row">ID</th>
 								<td>' . $people->id  . '</td>
 							</tr>
-							<tr>
-								<th scope="row">Name</th>
-								<td>' . $people->name  . '</td>
-							</tr>
+
 							<tr>		
-								<th scope="row">Money</th>
-								<td>' . $people->money  . '</td>
+								<th scope="row">Level</th>
+								<td>' . $people->level  . '</td>
 							</tr>
+
+							
 							<tr>		
 								<th scope="row">XP</th>
 								<td>' . $people->xp  . '</td>
 							</tr>
+
+
+
+							<tr>		
+								<th scope="row">Attack</th>
+								<td>' . $people->attack  . '</td>
+							</tr>
+
+
+							<tr>		
+								<th scope="row">Defence</th>
+								<td>' . $people->defence  . '</td>
+							</tr>
+
+
+							<tr>		
+								<th scope="row">Attacks</th>
+								<td>' . $people->nbr_attacks  . '</td>
+							</tr>
+
+
+							<tr>		
+								<th scope="row">Wins</th>
+								<td>' . $people->nbr_kills  . '</td>
+							</tr>
+
+
+							<tr>		
+								<th scope="row">Loses</th>
+								<td>' . $loses  . '</td>
+							</tr>
+
+
+
+							<tr>		
+								<th scope="row">Cash</th>
+								<td>' . $people->money  . '</td>
+							</tr>
+							
+							<tr>		
+								<th scope="row">Bank</th>
+								<td>' . $people->bank  . '</td>
+							</tr>	
+
+
+												
+													
+							
+						</table>
+						
+						
+
+					
+						
+						<table class="stats">
+						
 							<tr>		
 								<th scope="row">Intel</th>
 								<td>' . $people->intelligence  . '</td>
 							</tr>
+							
+							
+							
 							<tr>		
 								<th scope="row">Strength</th>
 								<td>' . $people->strength  . '</td>
 							</tr>
+							
+							<tr>		
+								<th scope="row">Speed</th>
+								<td>' . $people->speed  . '</td>
+							</tr>							
+													
+							
+							
+							
 						</table>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						
 						<dl class="char stats dl-horizontal">
 											
 							<dt>Name</dt>
 							<dd>' . $people->name  . '</dd>
 
-							<dt>Age</dt>
+							<dt>Faction</dt>
 							<dd>unknown</dd>
 
-							<dt>Gender</dt>
+							<dt>Group</dt>
 							<dd>unknown</dd>
 
 							<dt>Address</dt>
-							<dd>unknown</dd>
-
-							<dt>Vocation</dt>
-							<dd>unknown</dd>
+							<dd>' . $people->map  . ' / ' . $people->grid  . '</dd>
 
 						</dl>
 
@@ -112,11 +223,7 @@ $people = $this->people;
 
 							<p class="desc">' . $people->comment  . '</p>
 
-							<ul>
-								<li>unknown</li>
-								<li>unknown</li>
-								<li>unknown</li>
-							</ul>
+
 
 						</div>
 
@@ -126,8 +233,8 @@ $people = $this->people;
 							<h4>Characteristics</h4>
 							
 							<ul>
-								<li>unknown</li>
-								<li>unknown</li>
+								<li>' . $people->mood  . '</li>
+								<li>' . $people->aggression  . '</li>
 								<li>unknown</li>
 							</ul>
 							
@@ -137,7 +244,7 @@ $people = $this->people;
 							
 							<h4>History</h4>
 								
-							<p>	unknown</p>
+							<div>' . $people->history  . '</div>
 							
 						</div>	
 						

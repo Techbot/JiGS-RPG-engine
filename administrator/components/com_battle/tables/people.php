@@ -13,14 +13,22 @@ class Tablepeople extends JTable
 	var $defence		= null;
 	var $nbr_attacks	= null;
 	var $nbr_kills		= null;	
+	
 	var $health			= null;
-	var $humeur			= null;
+	var $slack			= null;	
+	
+	
+	var $aggression			= null;
 	var $posx			= null;
 	var $posy			= null;
 	var $map			= null;
 	var $grid			= null;
+	
 	var $strength		= null;
 	var $intelligence	= null;
+	var $speed		= null;
+	
+	
 	var $active			= null;
 	var $id_weapons		= null;
 	var $id_car			= null;

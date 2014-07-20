@@ -102,6 +102,12 @@ if (isset ($this->crop_types))
 
 		<?php echo $this->loadTemplate ("timebar"); ?>
 
+				<ul class="inline">
+					<li>Number of Employees: 7</li>
+					<li>Employees Morale: 70%</li>
+					<li>Employee Efficiency: 95%</li>
+				</ul>
+
 		 
 		  <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
 		  <input type="hidden" name="option" value="<?php echo $option;?>" />
@@ -117,63 +123,11 @@ if (isset ($this->crop_types))
 
 <?php //////////////////////////////////////////////////////////////////////////// ?>
 
-<<<<<<< HEAD
-		<div class='clear'></div>
-	</div>
 
-
-
-
-
-<div id = 'hobbit_names' style="float:right;" >
-<?php 
-
-
-
-	$i= 1;
-	foreach ($this->hobbit_names as $hobbit_name)
-	{
-			echo  "xyx<br/>";
-		
-		foreach ($hobbit_name[$i] as $hobbit)
-		
-		{
-			echo $hobbit . "xxx<br/>";
-		
-		}
-		
-		
-		
-		
-		
-		
-		
-		//$i++;
-	}?>
-
-
-=======
 <div class='clear'></div>
->>>>>>> 099d03ed79ce046055ed10e2d79efbc1fdcef55e
+
 </div>
 
-
-
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 099d03ed79ce046055ed10e2d79efbc1fdcef55e
 <?php // } ?>
 
 </div>

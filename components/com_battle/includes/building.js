@@ -21,14 +21,14 @@ $(function(){
 {
 	buy_building();
 	window.id1			= new Array();
-	window.metal_name_1 = new Array();
-	window.metal_name_2 = new Array();
-	window.current_object_quantity = new Array();
-	window.mystock1		= 0;
-	window.mystock2		= 0; 
+	window.metal_name_1		= new Array();
+	window.metal_name_2		= new Array();
+	window.current_object_quantity	= new Array();
+	window.mystock1			= 0;
+	window.mystock2			= 0; 
 	window.q_1			= new Array();
 	window.q_2			= new Array();	  
-	window.metals		= new Array();
+	window.metals			= new Array();
 	var refTab			= document.getElementById("stats");
 	var row				= refTab.rows[0];
 	var col				= row.cells[1]; 
@@ -48,8 +48,7 @@ $(function(){
 	set_type();
 	setup_hobbits();
 })();	
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 function changeDisplayImage()
 {
 	//var id1					= new Array();
@@ -58,20 +57,12 @@ function changeDisplayImage()
 	var object_quantity		= new Array();
 	//var mystock1 = 0;
 	//var mystock2 = 0; 
-	var q_1 = new Array();
-	var q_2 = new Array();			
-	var i		= 0;
-	
-	
+	var q_1				= new Array();
+	var q_2				= new Array();			
+	var i				= 0;
 	index                           = window.id1[document.adminForm.blueprints.value];
 	
-	
-	
-	
-//	console.log(document.adminForm.blueprints.value);
-	
-	
-	
+	// console.log(document.adminForm.blueprints.value);
 	
 	Array.each(metals, function( )
 	{
@@ -97,22 +88,20 @@ function changeDisplayImage()
 		document.adminForm.id1.value    = window.id1[index];
 		document.adminForm.q1.value     = window.q_1[index];
 		document.adminForm.n1.value     = window.metal_name_1[index];
-        document.adminForm.q2.value     = window.q_2[index];
-        document.adminForm.n2.value     = window.window.metal_name_2[index]  ;
-        //document.adminForm.stock.value  = object_quantity[index];
-      //document.adminForm.stock.value  = 7;                  		
+        	document.adminForm.q2.value     = window.q_2[index];
+        	document.adminForm.n2.value     = window.window.metal_name_2[index]  ;
+        	//document.adminForm.stock.value  = object_quantity[index];
+		//document.adminForm.stock.value  = 7;                  		
 		i                               = 0;
 		Array.each(metals, function( )
 		{
 			if (window.metals[i].name == window.metal_name_1[index])
 			{
-			//	window.mystock = metals[i].quantity;
-			//window.mystock = object_quantity[index];
+				// window.mystock = metals[i].quantity;
+				// window.mystock = object_quantity[index];
 			
-			document.adminForm.stock.value = window.current_object_quantity[index];	
-
-
-			console.log (window.current_object_quantity[index]);
+				document.adminForm.stock.value = window.current_object_quantity[index];	
+				console.log (window.current_object_quantity[index]);
 			
 			}
 			if (window.metals[i].name == window.metal_name_2[index])
@@ -121,7 +110,7 @@ function changeDisplayImage()
 			}
 			i++;
 		}); 
-        // document.adminForm.stock2.value = mystock2;
+       		// document.adminForm.stock2.value = mystock2;
 
 		if (window.building_type=="factory")
 		{
@@ -131,18 +120,12 @@ function changeDisplayImage()
 		{
 			check_inventory();
 		}
-   }
-    else 
-    {
-        document.adminForm.imagelib.src='images/blank.png';
-    }
+	}
+	else 
+	{
+        	document.adminForm.imagelib.src='images/blank.png';
+	}
 }
-
-
-
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 function change()
@@ -173,10 +156,10 @@ function change()
 		//document.adminForm.id1.value	= 2;
 		
 		
-    	document.adminForm.q1.value		= window.q_1[index];
+    		document.adminForm.q1.value		= window.q_1[index];
 		document.adminForm.n1.value		= window.metal_name_1[index];
-        document.adminForm.q2.value		= window.q_2[index];
-        document.adminForm.n2.value		= window.metal_name_2[index]  ;    		
+        	document.adminForm.q2.value		= window.q_2[index];
+        	document.adminForm.n2.value		= window.metal_name_2[index]  ;    		
 		i = 0;
 		Array.each(metals, function( )
 		{
@@ -191,24 +174,12 @@ function change()
         document.adminForm.stock.value = window.mystock1;
         document.adminForm.stock2.value = window.mystock2;
         check_stock_control();
-     }
+	}
 	else
 	{
 		document.adminForm.imagelib.src='images/blank.png';
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 function buy_building()
 {
@@ -231,10 +202,10 @@ function set_type()
 {
 
 	if (window.building_type=="papier")
-    {
+	{
         get_shop_papers();
         get_papers();				
-    }
+	}
     
     if (window.building_type=="mine")
     {
@@ -1105,13 +1076,13 @@ function setup_hobbits(){
 	});
 };
 
-
-function get_hobbit(){
+function get_hobbit(itemID){
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=building_action&action=get_hobbit&building_id=" 
     + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
-    
+		document.id('wfTotal').innerHTML = result;
+		document.id('primary_hobbits').innerHTML = result;	
      	}
     }).get();
 }
@@ -1122,8 +1093,9 @@ function put_hobbit(itemID){
     url: "index.php?option=com_battle&format=raw&task=building_action&action=put_hobbit&building_id=" 
     + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
-   	   
-    	}
+		document.id('wfTotal').innerHTML = result;
+  		document.id('primary_hobbits').innerHTML = result;	 
+}
     }).get();
 }
 
@@ -1693,6 +1665,7 @@ function dig() {
 	$$('.mine').addEvent('click', function(){
 		var type = this.get('type');
 		mine(type);
+		// alert (type);
 		});
 	}	
 
