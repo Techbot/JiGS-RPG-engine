@@ -207,7 +207,12 @@ foreach ($this->pages as $page)
 	   	   
     }
 
-     $open  ="<a href= '$link' title='$details' rel='{handler: \"iframe\", size: {x: 640, y: 600}}' class='modal'>";
+    // $open  ="<a href= '$link' title='$details' rel='{handler: \"iframe\", size: {x: 640, y: 600}}' class='modal'>";
+     $open  ="<a href= '$link' title='$details' >";
+     
+     
+     
+     
      $close = "</a>";
      $blank = " ";
 

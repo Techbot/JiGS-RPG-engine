@@ -78,16 +78,16 @@ class plgBattleHeartbeat extends JPlugin
                     $db->setQuery($query);
                     $userlist = $db->loadObjectList();
                     $captain = $userlist[0]->id;
-	                $total->$group->members = 0;
-		            foreach ($userlist as $user)
-	                {
+	            $total->$group->members = 0;
+		    foreach ($userlist as $user)
+	            {
 		             
 		                $total->$group->members     = $total->$group->members + 1; 
 		                $total->$group->xp          += $user->xp;
-	                    $total->$group->money       += $user->money;
+	                    	$total->$group->money       += $user->money;
 		                $total->$group->bank        += $user->bank;  
       	       
-		            }
+		    }
                     $one        = $total->$group->members; 
                     $two        = $total->$group->xp ;
                     $three      = $total->$group->money;
@@ -153,6 +153,9 @@ class plgBattleHeartbeat extends JPlugin
 		$result_7	= $this->events();
  		$result_8	= $this->check_generators();
  		$result_9   = $this->update_groups();
+ 		$result_10   = $this->check_rents();		
+		
+		
 		$now		= time();
 		$this->sendMessage($now,'heartbeat complete');
 		return ;
@@ -725,6 +728,74 @@ class plgBattleHeartbeat extends JPlugin
 		$this->sendMessage($now,'generators checked'); 
 		return ;
 	}
+	
+	
+	
+	
+	function check_rents()
+	{
+		$now		= time();
+		$duration	= 1*60*60*60*24;
+		$time_string    = gmdate("Y-m-d \T H:i:s ", $now);
+		$db		= JFactory::getDBO();
+		$query   	= "SELECT id,owner from #__jigs_buildings WHERE #__jigs_buildings.timer + $duration < $now";
+		$db->setQuery($query);
+		$result    	= $db->loadObjectlist();
+
+		$message    	= "Building Payments  at " . $time_string;
+		$this->sendMessage($now,$message);
+
+		$clients    	= count($result);
+		$this->sendMessage($now,"there are " . $clients . " making payments");
+
+		if ($result)
+		{
+			foreach ($result as $row)
+			{
+		
+				$query   	= "SELECT name,bank from #__jigs_players WHERE #__jigs_players.id = $row->owner";
+				$db->setQuery($query);
+				$result2    	= $db->loadObject();
+		
+				if ($result2->bank >=100){
+					$result2->bank = $result2->bank-100;
+					
+		
+					$query   	= "UPDATE #__jigs_players SET bank = $result2->bank WHERE #__jigs_players.id = $row->owner";
+					$db->setQuery($query);
+					$db->query();
+			
+					$query   	= "UPDATE #__jigs_buildings SET timer =$now WHERE #__jigs_buildings.id = $row->id";
+					$db->setQuery($query);
+					$db->query();
+			
+					$this->sendMessage($now,"citizen $result2->name paid rent on building $row->id ");
+				
+				}else
+				{
+					$this->evict($row->id);
+					$this->sendMessage($now,"citizen $result2->name was evicted from building $row->id ");
+				}
+
+			}
+		}	
+	}
+	
+	function evict($id)
+	{
+			$db		= JFactory::getDBO();
+			$query   	= "UPDATE #__jigs_buildings SET owner= 0 WHERE #__jigs_buildings.id = $id";
+			$db->setQuery($query);
+			$db->query();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	function sendWavyLines($text)
