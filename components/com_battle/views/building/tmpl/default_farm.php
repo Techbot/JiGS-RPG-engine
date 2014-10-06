@@ -50,7 +50,7 @@ $land=1;
 	            
             <div id="time_remaining" class='wrapper sec'>
                 <label title="until manufactoring is complete">Time Remaining: </label>
-                <span id="remaining"> </span>secs
+                <span id="remaining"> </span>Minutes
             </div>
 	  </div>
  
@@ -136,29 +136,17 @@ if (isset ($this->crop_types))
 
 <div id = 'hobbit_names' style="float:right;width:20%;" >
 <?php 
-
-
-
 	$i= 1;
-	foreach ($this->hobbit_names as $hobbit_name)
+	foreach ($this->building_hobbit_stats->hobbitList as $hobbit)
 	{
-			echo  "xyx<br/>";
-		
-		foreach ($hobbit_name[$i] as $hobbit)
-		
+		if ($hobbit->status == 2)
 		{
-			echo $hobbit . "xxx<br/>";
-		
+	//print_r($hobbit);
+			echo ($hobbit->name . " [remove]<br/>");
 		}
-		
-		
-		
-		
-		
-		
-		
 		//$i++;
-	}?>
+	}
+?>
 
 
 </div>

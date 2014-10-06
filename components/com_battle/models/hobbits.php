@@ -28,10 +28,7 @@ class BattleModelHobbits extends JModel
 		    
 		    
 		    }
-		    
-		    
-		    
-		    
+    
 			$_data = $this->_getList($query);
 		
 		return $_data;
@@ -39,9 +36,9 @@ class BattleModelHobbits extends JModel
 
     function get_hobbit_stats($id_,$type='P'){
     
-        $hobbitList = $this->getData($id_,$type);
+        $h_stats->hobbitList = $this->getData($id_,$type);
         
-        foreach ($hobbitList as $hobbit)
+        foreach ($h_stats->hobbitList as $hobbit)
         {
             if($hobbit->status==1)
             {
@@ -49,17 +46,17 @@ class BattleModelHobbits extends JModel
             }
             elseif($hobbit->status==2){
             
-                $h_stats->busy++;
+                $h_stats->primary++;
             }
             
             elseif($hobbit->status==3){
             
-                $h_stats->def++;
+                $h_stats->defence++;
             }
             
             elseif($hobbit->status==4){
             
-                $h_stats->distr++;
+                $h_stats->distribution++;
             }           
             
             
@@ -76,9 +73,9 @@ class BattleModelHobbits extends JModel
     {
   
         $db         = JFactory::getDBO();
-        
         if ($total >= $workforce_required)
 		{
+		
 		    $query                  = "UPDATE #__jigs_hobbits SET status = 2 
 		    WHERE owner = $id 
 		    ORDER BY xp ASC
@@ -86,18 +83,20 @@ class BattleModelHobbits extends JModel
 		    
 		    $db->setQuery($query);
 		    $db->query;
-            // $message_result = Jview::loadHelper('messages'); //got an error without this
- 
-            MessagesHelper::sendFeedback($id, "$workforce_required hobbits have begun work");
+          //  $message_result = Jview::loadHelper('messages'); //got an error without this
+ 			$message = "$workforce_required hobbits have begun work";
+            MessagesHelper::sendFeedback($id,$message );
+           
 
 		    return true;
         }
-        $message_result         = MessagesHelper::sendFeedback($id, "no hobbits");
+       
+       MessagesHelper::sendFeedback($id, "no hobbits");
     
         return false;
     }
 
-	function get_charactor_inventory()
+	function __get_character_inventory()
 	{
 
 		$db             = JFactory::getDBO();
@@ -111,7 +110,6 @@ class BattleModelHobbits extends JModel
 		$result = $db->loadAssocList();
 		return $result;
 	}
-
 
 	function get_subsection_hobbit_names()
 	{
@@ -145,22 +143,4 @@ class BattleModelHobbits extends JModel
 		return $result;
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 }

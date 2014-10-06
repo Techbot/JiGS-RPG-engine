@@ -44,25 +44,40 @@ class BattleViewBuilding extends JView
 		$this->assignRef('board_info_1',$board_info_1);
 
 
-
+		///////////////////////////////////////////////////////////////////////////////////////////////////	
+		// This is where we get the hobbits stats
+		///////////////////////////////////////////////////////////////////////////////////////////////////		
 
 		$model3                     = JModel::getInstance('hobbits','BattleModel');
-        	$player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
-        	$this->assignRef('player_hobbit_stats', $player_hobbit_stats);
+       	$player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
+       	
+       	$this->assignRef('player_hobbit_stats', $player_hobbit_stats);
 
-        	$building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id,'B');
+       	$building_hobbit_stats      = $model3->get_hobbit_stats($this->buildings->id,'B');
         
-        	$this->assignRef('building_hobbit_stats', $building_hobbit_stats);
+       	$this->assignRef('building_hobbit_stats', $building_hobbit_stats);
 
 		$sections = array('1');
+
+
+
+
+
+
 		///////////////////////////////////////////////////////////////////////////////////////////////////	
 		// This is where we make an object specific to each building type 	
 		///////////////////////////////////////////////////////////////////////////////////////////////////	
 
 		if($this->buildings->type=='farm')
 		{
-			$this->assignRef('crop_types', $model->get_crop_types($id));
+			$this->assignRef('crop_types', $model->get_seeds($id));
+			
+			
+			$this->assignRef('crop_stats', $model->get_cropstats($this->buildings->id));			
+			
+			
 			$this->assignRef('fields', $model->get_fields($id));
+			
 			
 			
 			foreach ($sections as $section_id)
@@ -105,7 +120,7 @@ class BattleViewBuilding extends JView
 
 		if($this->buildings->type=='food')
 		{
-			$model	= &$this->getModel();
+			//$model	= $this->getModel();
 			$crops	= $model->get_crops();
 			$this->assignRef('crops', $crops);
 		}

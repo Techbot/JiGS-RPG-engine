@@ -37,14 +37,28 @@ class plgBattleHeartbeat extends JPlugin
 		
 	}
 	
-	public function run_daily()
+	public function run_min_15()
 	{
 		$now			= time();
 		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
 		$message		= "Less Regular Cron activated at " . $time_string;
 		$this->sendMessage($now,$message);
-		$this->daily();
+		$this->min_15();
 		return ;
+		
+	}
+	
+	
+	
+	
+	public function run_daily()
+	{
+		$now			= time();
+		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);
+		$message		= "Daily Cron activated at " . $time_string;
+		$this->sendMessage($now,$message);
+		$this->daily();
+		return;
 		
 	}
 	
@@ -54,8 +68,65 @@ class plgBattleHeartbeat extends JPlugin
 		$now		= time();
 		$this->sendMessage($now,'Daily begun');
 		$this->update_groups();
+		$this->update_dividends();
+		$this->add_daily_battery();				
+		return;		
+	}
+	
+	
+	
+	public function add_daily_battery()
+	{	
+		$db         	= JFactory::getDBO();
+		$now			= time();
+		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);    
 		
+		$query			= "SELECT id, name FROM #__jigs_players";
+		$db->setQuery($query);
+		$playerlist		= $db->loadObjectList(); 
+		
+		foreach ($playerlist as $player)
+		{
+			$query					= "SELECT id From #__jigs_batteries WHERE user = $player->id";
+			$db->setQuery($query);
+			$db->query();
+			//$playerlist		= $db->loadObjectList();
+			$player->batteries = $db->getNumRows();
+								
+			if ($player->batteries < 6)
+			{
+				$query = "INSERT INTO #__jigs_batteries (user,timestamp) VALUES ($player->id, $player->batteries)";
+				        $db->setQuery($query);
+				        $db->query(); 
+				        $message		= "Citizen $player->name received one battery at " . $time_string;
+						$this->sendMessage($now,$message);
+			}
+		}
+		return;		
 	}	
+	
+	public function update_dividends()
+	{	
+		$now			= time();
+		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);    
+		$db         	= JFactory::getDBO();
+		$query			= "UPDATE #__jigs_players SET bank = bank  + 100 WHERE 1 = 1";
+		$db->setQuery($query);
+		$db->query(); 
+		$message		= "Dividends paid at  " . $time_string;
+		$this->sendMessage($now,$message);
+		return;		
+	}
+	
+	public function min_15()
+	{
+	    $db 	    = JFactory::getDBO();
+		$now		= time();
+		$this->sendMessage($now,'Regular begun');
+		$this->update_groups();
+		return;		
+	}
+	
     public function update_groups()
 	{
 	    $db         = JFactory::getDBO();
@@ -78,16 +149,16 @@ class plgBattleHeartbeat extends JPlugin
                     $db->setQuery($query);
                     $userlist = $db->loadObjectList();
                     $captain = $userlist[0]->id;
-	            $total->$group->members = 0;
-		    foreach ($userlist as $user)
-	            {
+					$total->$group->members = 0;
+					foreach ($userlist as $user)
+					{
 		             
 		                $total->$group->members     = $total->$group->members + 1; 
 		                $total->$group->xp          += $user->xp;
-	                    	$total->$group->money       += $user->money;
+	                    $total->$group->money       += $user->money;
 		                $total->$group->bank        += $user->bank;  
       	       
-		    }
+					}
                     $one        = $total->$group->members; 
                     $two        = $total->$group->xp ;
                     $three      = $total->$group->money;
@@ -109,8 +180,6 @@ class plgBattleHeartbeat extends JPlugin
 		    }
 		}
 		return ;
-   
-        	    
 	} 
 
 	public function get_faction_groups($faction)
@@ -320,71 +389,7 @@ class plgBattleHeartbeat extends JPlugin
 		}
 	}
 
-	function check_apartments()
-	{
-		//$user 	= JFactory::getUser();
-		$now		= time();
-		$db 		= JFactory::getDBO();
-		// Find all factories where finished(unix time) has passed 
-		$expire		= $now - (1*60*60*60);
-		$query		= "SELECT * FROM #__jigs_flats WHERE #__jigs_flats.timestamp < $expire AND timestamp !=0";
-		$db->setQuery($query);
-		$result		= $db->loadObjectlist();
-		$rent		= 100;
-		$text		= count($result);
-		$this->sendMessage($now,$text);
 
-		// loop 
-		if ($result)
-		{
-			foreach ($result as $row)
-			{
-				$query = "Select bank FROM #__jigs_players WHERE id = $row->resident";
-				$db->setQuery($query);
-				$bank = $db->loadResult();
-				$user				= JFactory::getUser($row->resident);
-				$playa_name			= $user->username;
-
-				if ($bank < $rent)// bank is less than rent so evict the player
-				{
-					$query	= "UPDATE #__jigs_flats SET timestamp = 0, resident = 0 
-						WHERE building = $row->building AND flat = $row->flat";
-					$db->setQuery($query);
-					$db->query();
-
-					// send wavy lines & feedback
-					$txt = "You were evicted";
-					$this->sendFeedback($user->id ,$txt);
-
-					$text = "Citizen  $playa_name  was evicted";
-					$this->sendWavyLines($text);
-
-					// end wavy lines
-				}
-				else
-				{
-					$query	= "UPDATE #__jigs_players SET bank = bank - $rent WHERE id = $row->resident";
-					$db->setQuery($query);
-					$db->query();
-					$query	= "UPDATE #__jigs_flats SET timestamp = $now WHERE building = $row->building AND flat = $row->flat";
-					$db->setQuery($query);
-					$db->query();
-
-					// send wavy lines & feedback
-					$txt = "Your lease was renewed.";
-
-					$this->sendFeedback($user->id ,$txt);
-					$text	= "Citizen  $playa_name  renewed a lease";
-					$this->sendWavyLines($text);
-					$this->sendFeedback($user->id, $text);
-					$this->sendMessage($now,$text);
-					// end wavy lines
-				}
-			}
-		}
-		$this->sendMessage($now,'apartments checked');
-		return;
-	}
 
 	function check_reprocessors()
 	{
@@ -492,17 +497,21 @@ class plgBattleHeartbeat extends JPlugin
 		$db		= JFactory::getDBO();
 		$duration	= $now - 50;
 		$query		= "SELECT #__jigs_mines.building, 
-			#__jigs_mines.type,
-			#__jigs_mines.timestamp, 
-			#__jigs_buildings.owner 
-			FROM #__jigs_mines 
-			LEFT JOIN #__jigs_buildings 
-			ON #__jigs_mines.building = #__jigs_buildings.id 
-			WHERE timestamp!=0 && timestamp < " . $duration;
+						#__jigs_mines.type,
+						#__jigs_mines.timestamp, 
+						#__jigs_buildings.owner 
+						FROM #__jigs_mines 
+						LEFT JOIN #__jigs_buildings 
+						ON #__jigs_mines.building = #__jigs_buildings.id 
+						WHERE timestamp!=0 && timestamp < " . $duration;
 
 		$db->setQuery($query);
 		$result			= $db->loadObjectlist();
 		$payment		= 100;
+		
+		
+		
+		
 		foreach ($result as $row)
 		{
 			$playa = & JFactory::getUser($row->owner);
@@ -569,44 +578,54 @@ class plgBattleHeartbeat extends JPlugin
 		$user	= JFactory::getUser();
 		$now	= time();
 		$db	= JFactory::getDBO();
-		// Find all fields where finished(unix time) has passed 
-		$query="SELECT 
+	// Find all fields where finished(unix time) has passed 
+		$query ="SELECT 
 			#__jigs_farms.finished,
 			#__jigs_farms.field,
 			#__jigs_farms.status,
-			#__jigs_farms.total,
+			#__jigs_farms.crop,			
+			#__jigs_farms.amount,
 			#__jigs_farms.building,
-			#__jigs_buildings.owner 
+
+			#__jigs_buildings.owner,
+			#__jigs_buildings.quality_rate
+			
 			FROM #__jigs_farms
 			LEFT JOIN #__jigs_buildings
 			ON #__jigs_farms.building = #__jigs_buildings.id
 			WHERE #__jigs_farms.finished !=0 AND  #__jigs_farms.finished < ". $now;
 		$db->setQuery($query);
 		$result	= $db->loadObjectlist();
-
+		$crop_quantity_index = 10; // gamesmaster global score
 		// loop through field array giving out rewards of type
 		// 0 : Barren/Harvested
 		// 1 : Tilling
 		// 2 : Tilled
 		// 3 : Sowing
 		// 4 : Sowed
-		// 5 : Harvestiing
+		// 5 : Harvesting
 		// 6 : Harvested/ Barren
-
 		if ($result)
 		{
 			foreach ($result as $row)
 			{
 				$row->status++;
 				$row->finished	= 0;
-
+				//$crop= $row->crop;
 				// If Field is harvested 
 				if ($row->status >= 6)
 				{
-					$row->total++;
+					$index		= $row->quality_rate * 3 * $crop_quantity_index;
+					//$harvested	= $row->crop - (1000 - (int) $index);	
+					$harvested	= 950;	
+					$query		= "INSERT INTO #__jigs_crops(owner, type, amount)
+					 values ($row->building, $row->crop, $harvested)
+					 On Duplicate KEY UPDATE amount = amount + $harvested";
+					$db->setQuery($query);
+					$db->query();
+					//$row->total++;
 					$row->status	= 0;
 					// send wavy lines
-
 					$playa		= JFactory::getUser($row->owner);
 					$playa_name	= $playa->username;
 					$playa_id	= $playa->id;
@@ -616,14 +635,12 @@ class plgBattleHeartbeat extends JPlugin
 					$this->sendMessage($now,$text);
 					// end wavy lines
 				}
-				//////////////////////////////////////////////////////////////////////////////////////////
+				/////////////////////////////total = $row->total,/////////////////////////////////////////////////////////////
 				$query		= "UPDATE #__jigs_farms SET status	= $row->status,
 					timestamp = $now,
-					total = $row->total,
 					finished = $row->finished
 					WHERE building	= $row->building
 					AND field = $row->field";
-
 				$db->setQuery($query);
 				$db->query();
 				$xp_type	= 'nbr_crops';
@@ -730,15 +747,79 @@ class plgBattleHeartbeat extends JPlugin
 	}
 	
 	
-	
+		function check_apartments()
+	{
+		//$user 	= JFactory::getUser();
+		$now		= time();
+		$db 		= JFactory::getDBO();
+		// Find all factories where finished(unix time) has passed 
+		$expire		= $now - (1*60*60*24);//24 hours ago
+		$query		= "SELECT * FROM #__jigs_flats WHERE #__jigs_flats.timestamp > $expire AND timestamp != 0";
+		$db->setQuery($query);
+		$result		= $db->loadObjectlist();
+		$rent		= 100;
+		$text		= count($result);
+		$this->sendMessage($now,$text);
+
+		// loop 
+		if ($result)
+		{
+			foreach ($result as $row)
+			{
+				$query = "Select bank FROM #__jigs_players WHERE id = $row->resident";
+				$db->setQuery($query);
+				$bank = $db->loadResult();
+				$user				= JFactory::getUser($row->resident);
+				$playa_name			= $user->username;
+
+				if ($bank < $rent)// bank is less than rent so evict the player
+				{
+					$query	= "UPDATE #__jigs_flats SET timestamp = 0, resident = 0 
+						WHERE building = $row->building AND flat = $row->flat";
+					$db->setQuery($query);
+					$db->query();
+
+					// send wavy lines & feedback
+					$txt = "You were evicted";
+					$this->sendFeedback($user->id ,$txt);
+
+					$text = "Citizen  $playa_name  was evicted";
+					$this->sendWavyLines($text);
+
+					// end wavy lines
+				}
+				else
+				{
+					$query	= "UPDATE #__jigs_players SET bank = bank - $rent WHERE id = $row->resident";
+					$db->setQuery($query);
+					$db->query();
+					$query	= "UPDATE #__jigs_flats SET timestamp = $now WHERE building = $row->building AND flat = $row->flat";
+					$db->setQuery($query);
+					$db->query();
+
+					// send wavy lines & feedback
+					$txt = "Your lease was renewed.";
+
+					$this->sendFeedback($user->id ,$txt);
+					$text	= "Citizen  $playa_name  renewed a lease";
+					$this->sendWavyLines($text);
+					$this->sendFeedback($user->id, $text);
+					$this->sendMessage($now,$text);
+					// end wavy lines
+				}
+			}
+		}
+		$this->sendMessage($now,'apartments checked');
+		return;
+	}
 	
 	function check_rents()
 	{
 		$now		= time();
-		$duration	= 1*60*60*60*24;
+		$duration	= 1*60*60*24;
 		$time_string    = gmdate("Y-m-d \T H:i:s ", $now);
 		$db		= JFactory::getDBO();
-		$query   	= "SELECT id,owner from #__jigs_buildings WHERE #__jigs_buildings.timer + $duration < $now";
+		$query   	= "SELECT id,owner from #__jigs_buildings WHERE #__jigs_buildings.timer + $duration < $now & owner != 0 ";
 		$db->setQuery($query);
 		$result    	= $db->loadObjectlist();
 

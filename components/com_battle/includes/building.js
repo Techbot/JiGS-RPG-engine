@@ -42,6 +42,7 @@ $(function(){
 	//var  col =   refTab.rows[1].cells[1]; 
 	//alert(col.firstChild.nodeValue);
 	window.building_type = col.firstChild.nodeValue;	
+	
 	request_batteries_cp();
 	//request_batteries.periodical(50085);	 
 	control_panel_system();
@@ -750,6 +751,39 @@ function request_batteries_cp()
 }
 
 
+function request_buildings_batteries_cp()
+{
+    var all = '';
+//	var details = this.details;
+    var a = new Request.JSON(
+    {
+        url: "index.php?option=com_battle&format=raw&task=action&action=get_building_batteries&building=" + building_id , 
+        onSuccess: function(result)
+        {
+            for (i = 0; i < result.length; ++ i)
+            {
+	            var row = "<span class=\"label\">Battery " + (i+1) + ":</span>" 
+	            + result[i][1]  + " : " + result[i][2] 
+                + "<a href='#' onclick='insert(" 
+                + result[i][0] +")'> [insert] </a> ";
+            
+                all= all + row + "<br/>";  
+	        }
+
+	        document.id('batteries').innerHTML = all;	
+        }	
+	
+    }).get();
+}
+
+
+
+
+
+
+
+
+
 
 
 ///////////////////////////////////////////////////////////////
@@ -1063,15 +1097,21 @@ function put_battery(itemID){
  
 }
 
+///////////////////////////////////////////////////////////////////////////////
+//                                                                           //
+//      itemID='assign_defense' or 'assign_primary' or 'assign_dist'         //
+//                                                                           //
+//                                                                           //
+///////////////////////////////////////////////////////////////////////////////
 function setup_hobbits(){
 
     $$('.assign').addEvent('click', function(){
-	var itemID = this.get('id');
+		var itemID = this.get('id');
 		put_hobbit(itemID);
 	});
 
 	$$('.remove').addEvent('click', function(){
-	var itemID = this.get('id');
+		var itemID = this.get('id');
 		get_hobbit(itemID);
 	});
 };
@@ -1081,8 +1121,22 @@ function get_hobbit(itemID){
     url: "index.php?option=com_battle&format=raw&task=building_action&action=get_hobbit&building_id=" 
     + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
-		document.id('wfTotal').innerHTML = result;
-		document.id('primary_hobbits').innerHTML = result;	
+	
+	
+		if (itemID=="remove_primary"){
+		itemID="assign_primary"
+	}
+	if (itemID=="remove_defence"){
+		itemID="assign_defence"
+	}
+	if (itemID=="remove_distribution"){
+		itemID="assign_distribution"
+	}
+	
+	
+		document.id(itemID +'_cp').innerHTML = result;
+
+		document.id(itemID+'_data').innerHTML = result;	
      	}
     }).get();
 }
@@ -1093,12 +1147,14 @@ function put_hobbit(itemID){
     url: "index.php?option=com_battle&format=raw&task=building_action&action=put_hobbit&building_id=" 
     + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
-		document.id('wfTotal').innerHTML = result;
-  		document.id('primary_hobbits').innerHTML = result;	 
+
+
+		document.id(itemID +'_cp').innerHTML = result;
+  		document.id(itemID+'_data').innerHTML = result;	 
 }
     }).get();
 }
-
+///////////////////////////////////////////////////////////////////////////////
 
 function get_shop_papers(){
 	
@@ -1208,16 +1264,12 @@ function sell_crops(){
 
 function work_field(itemID)
 {	 	
-    
       //Magic_index						= document.adminForm.Magic_Index.value;
-      Crop_index						= document.adminForm.Crop_Index.value;
+      Crop_index						= document.adminForm.crops.value;
       //Skill_index						= document.adminForm.Skill_Index.value; 
       hobbits_index                   = document.adminForm.hobbits_total.value ; 
     
     //alert (hobbits_index);
-    
-    
-    
     var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" 
     + building_id + "&crop=" + Crop_index + "&field=" + itemID +"&wf=" + hobbits_index ,

@@ -25,21 +25,6 @@ class plgUserBattle_add_player extends JPlugin
 		return true;
 	}
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
 	function onUserAfterDelete($user, $success, $msg)
         {
                 if (!$success) {

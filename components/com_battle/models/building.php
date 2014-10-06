@@ -1,6 +1,12 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
+
 jimport('joomla.application.component.model');
+
+jimport( 'joomla.filesystem.folder' );
+
+require_once JPATH_COMPONENT.'/helpers/messages.php';
+
 class BattleModelBuilding extends JModel
 {
 
@@ -222,88 +228,100 @@ class BattleModelBuilding extends JModel
 		return $result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
 /////////////////////////////////////////////////////////////////////////
 	function work_field()
-	
 	{
-		$db			= JFactory::getDBO();
+		$db				= JFactory::getDBO();
 		$user			= JFactory::getUser();
 		$field			= JRequest::getvar('field');
-		$building_id	        = JRequest::getvar('building_id');
-		$workforce              = JRequest::getvar('wf');
-		$now			        = time();
-        	$crop                   = JRequest::getvar('crop');
+		$building_id	= JRequest::getvar('building_id');
+		$workforce      = JRequest::getvar('wf');
+		$crop           = JRequest::getvar('crop');
+		$now			= time();
 
-        	$eta                    = (int) 60 * 1 * (1 - ($workforce * .02));
-
-		$finished		= $now + $eta;
-        	$model			= JModel::getInstance('jigs','BattleModel');
-
-		$model3                 = JModel::getInstance('hobbits','BattleModel');
-        
-        	$building_hobbit_stats  = $model3->get_hobbit_stats($building_id);
-        
-        	$quantity		= 1;
+		
+		$model2			= JModel::getInstance('jigs','BattleModel');
+		$model3         = JModel::getInstance('hobbits','BattleModel');
+		$building_hobbit_stats  = $model3->get_hobbit_stats($building_id,'B');
+		
+		$quantity		= 1;
 		$energy_required	= $quantity * 1;
-		
-		if (!$model->use_battery($building_id, $energy_required))
+		//$message_result = Jview::loadHelper('messages'); //got an error without this
+		if(!$model3->use_hobbits($user->id, $building_hobbit_stats->total,$workforce))
 		{
-			return "Not Enough Energy";
+  		//	MessagesHelper::sendFeedback($id, "Not Enough Hobbits");
+			return false;
 		}
-		
-		
-		if(!$model3->use_hobbits($building_id, $building_hobbit_stats->total,$workforce))
+		if (!$model2->use_battery($building_id, $energy_required))
 		{
-			return "Not Enough Hobbits";
+		//	MessagesHelper::sendFeedback($id, "Not Enough Energy");
+			return false;
 		}
-		   
-		    $query			        = "SELECT status,crop,finished FROM #__jigs_farms  WHERE building =" . $building_id . " AND field =" . $field;
+	   
+		    $query			        = "SELECT status, crop, finished, transfer_rate, quality_rate, amount 
+		    							FROM #__jigs_farms
+		    							LEFT JOIN #__jigs_buildings
+		    							ON building = id 
+		    							WHERE building = $building_id AND field =" . $field;
 		    $db->setQuery($query);
-		    $result			        = $db->loadRowList();
+		    $result			        = $db->loadAssoc();
 
-		    if (isset ($result[0][0]))
+		    if (isset ($result['status']))
 		    { 
-		        $status			= $result[0][0];
+		        $status			= $result['status'];
 		    }
 		    else
 		    {
 		        $status			= 0;
 		    }   
 		        
-		    if (isset ($result[0][1]))
+		    if (isset ($result['crop']))
 		    { 
-		        $crop			= $result[0][1];
+		        $crop			= $result['crop'];
+		      
 		    }
 		    else
 		    {
 		        $crop			= 0;
 		    } 		    
 	
-		    if ($result[0][2]==0)
+		   if (isset ($result['transfer_rate']))
+		    { 
+		        $transfer_rate			= $result['transfer_rate'];
+		      
+		    }
+		    else
+		    {
+		        $transfer_rate			= 33;
+		    } 	
+		   
+		   
+		   	if (isset ($result['quality_rate']))
+		    { 
+		        $quality_rate			= $result['quality_rate'];
+		      
+		    }
+		    else
+		    {
+		        $quality_rate			= 33;
+		    } 
+		    
+		  	if (isset ($result['amount']))
+		    { 
+		        $amount			= $result['amount'];
+		      
+		    }
+		    else
+		    {
+		        $amount			= 1000;
+		    } 	 
+
+		   
+		    if ($result['finished']==0)
 		    {
 		        $status++;
 		    }
@@ -312,18 +330,27 @@ class BattleModelBuilding extends JModel
 		    {
 		        $status=5;
 		    }
+		    
+		    if ($status==1){
+		      $crop           = JRequest::getvar('crop');
+		    }
+		    
+		    $eta_index		= (($result['transfer_rate'] * 3)/100) * .05 ;
+			$eta            = (int) 60 * 1 * (1 - ($workforce * $eta_index ));
+			$finished		= $now + $eta;
+		    
+		    $new_amount			= $amount - (1000 - ($result['quality_rate'] * 3)/100) * .05 ;
+		    
+		    $query			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,amount, finished ) 
+								VALUES  ($building_id,$field, $status,$now , $crop, $new_amount, $finished)
+								ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
 
-		    $sql			= "INSERT INTO #__jigs_farms (building,field, status,timestamp, crop,finished ) 
-		    VALUES  ($building_id,$field, $status,$now , $crop, $finished)
-		    ON DUPLICATE KEY UPDATE status =  $status ,timestamp = $now,  crop = $crop , finished = $finished ";
-
-		    $db->setQuery($sql);
-		
+		    $db->setQuery($query);
 		
 		    if(!$db->query())
 		    {
 			    $message	="error";
-			    return $sql;
+			    return $query;
 		    }
 		    else
 		    {
@@ -484,7 +511,7 @@ class BattleModelBuilding extends JModel
 		$result['now']			    = date('l jS \of F Y h:i:s A',$now);
 		$result['since']		    = date('l jS \of F Y h:i:s A',$result['timestamp']);
 		$result['elapsed']		    = (int)(($now-$result['timestamp']));
-		$result['remaining']	    = (int)($result['finished'] - $now );
+		$result['remaining']	    = (int)(($result['finished'] - $now )/60);
 		$result['status']		    = (int)($result['status']);
 		$result['status_message']   = $this->get_field_status_text($result['status']);
 		
@@ -629,7 +656,18 @@ class BattleModelBuilding extends JModel
 	
 	
 	//////////////////////////////////////////////////////////////////////////////////////
+	function get_cropstats($id)
+		{
+
+			$db			= JFactory::getDBO();	
+			$query		= "SELECT amount,name FROM #__jigs_crops LEFT JOIN #__jigs_crop_names ON #__jigs_crops.type = #__jigs_crop_names.id WHERE #__jigs_crops.owner = $id";
+			$db->setQuery($query);
+			$result		= $db->loadObjectList();
+			
+			return $result;
+			
 	
+	}
 	
 	
 	
@@ -784,6 +822,32 @@ class BattleModelBuilding extends JModel
 		return $result;
 
 	}
+	
+	function get_seeds() {
+		$db		    = JFactory::getDBO();
+		$user		= JFactory::getUser();
+		$db->setQuery("	SELECT seed_list FROM #__jigs_crop_seeds WHERE owner =".$user->id);
+		
+		$result		= $db->loadResult();
+	
+		$seedlist = explode(',',$result);
+		
+		foreach ($seedlist as $seed)
+		{
+			$query = "SELECT name FROM #__jigs_crop_names WHERE id =" . $seed;
+	
+			$db->setQuery($query);
+		
+			$name = $db->loadResult();
+		
+			$result2[$seed] = $name;
+			$result2[7] = "tobbacco";
+		}
+		return $result2;
+	}
+	
+	
+	
 	
 	function get_crop_index(){
 		$db		= JFactory::getDBO();
@@ -995,15 +1059,30 @@ class BattleModelBuilding extends JModel
 	{
 		$db		= JFactory::getDBO();
 		$building_id	= JRequest::getvar('building_id');
-		$status         = JRequest::getvar('itemid');
+		$item_id        = JRequest::getvar('itemid');
 		$owner_type     = "P"; 
 		$user		= JFactory::getUser();
 
-		$query		= "Update #__jigs_hobbits SET owner = $user->id, status = 0, owner_type = 'P' WHERE #__jigs_hobbits.owner = $building_id AND status = 1 LIMIT 1";
+		if ($item_id =='remove_primary')
+		{ 
+		    $status         = 2;
+		}
+		if ($item_id =='remove_defence')
+		{ 
+		    $status         = 3;
+		}
+		if ($item_id =='remove_distribution')
+		{ 
+		    $status         = 4;
+		}	
+				
+		$query		= "Update #__jigs_hobbits SET owner = $user->id, status = 0, owner_type = 'P' WHERE #__jigs_hobbits.owner = $building_id AND status = $status LIMIT 1";
 		$db->setQuery($query);
 		$db->query();
-
-		$sub_total	= $this->update_building_hobbits($building_id,1,'B' );
+		
+		
+		$sub_total	= $this->update_building_hobbits($building_id,$status,'B' );
+		
 		return $sub_total;
 	}
 
@@ -1018,13 +1097,13 @@ class BattleModelBuilding extends JModel
 		
 		if ($item_id =='assign_primary')
 		{ 
-		    $status         = 1;
+		    $status         = 2;
 		}
-		if ($item_id =='assign_defense')
+		if ($item_id =='assign_defence')
 		{ 
 		    $status         = 3;
 		}
-		if ($item_id =='assign_distr')
+		if ($item_id =='assign_distribution')
 		{ 
 		    $status         = 4;
 		}		
@@ -1033,7 +1112,7 @@ class BattleModelBuilding extends JModel
 		$db->setQuery($query);
 		$db->query();
 		
-		$sub_total = $this->update_building_hobbits($building_id,$status,$owner_type );
+		$sub_total = $this->update_building_hobbits($building_id,$status,$owner_type,'B' );
 		
 		return $sub_total;
 	}
