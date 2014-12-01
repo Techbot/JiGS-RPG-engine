@@ -138,8 +138,8 @@ table#registrationTable	{	width:98%;	border-width: 0px;	border-collapse: collaps
 	border-top-color: #ccc;
 	border-right-color: #aaa;
 	border-bottom-color: #bbb;
-	border-left-color: #aaa;	
-	
+	border-left-color: #aaa;
+
 	-webkit-box-shadow: rgba(170, 170, 170, 0.5) 0px 10px 16px;
 	-moz-box-shadow: rgba(170, 170, 170, 0.5) 0px 10px 16px;
 }
@@ -482,10 +482,10 @@ html>body .cbsMenu li ul a, html>body .cbsMenu li ul a:visited, html>body .cbsMe
 }
 
 div.cbclearboth:after {
-    content: "."; 
-    display: block; 
-    height: 0; 
-    clear: both; 
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
     visibility: hidden;
 }
 div.cbclearboth {display:inline-block;}
@@ -511,6 +511,10 @@ div.cbclearboth {display: block;}
 }
 #cb_comp_login .componentheading, #cb_comp_register .componentheading {
 	width: auto;
+}
+.componentheading {
+	font-size: 16px;
+	padding: 0 8px;
 }
 .cb_comp_outer {
 	float: none;
@@ -551,10 +555,10 @@ div.cbclearboth {display: block;}
 	background: transparent url("images/mini-icons/icon-16-info.png") no-repeat;
 }
 .cb_result_warning {
-	border: 1px solid #883300;
-	color: #dd7700;
+	border: 1px solid red;
+	color: red;
 	font-weight: bold;
-	background: #ffffcc url("images/mini-icons/icon-16-warning.png") no-repeat;
+	background: #010101 url("images/mini-icons/icon-16-warning.png") no-repeat;
 }
 .cb_result_error {
 	border: 1px solid #cc0000;
@@ -657,7 +661,7 @@ span.cbDateinputJs input.calendarDateInput {letter-spacing:.06em;font-family:Ver
   display: inline-block;
   width: 100%;		/* BBFIX bug 3359 */
 }
-.cluetip-jtip div#cluetip-close { 
+.cluetip-jtip div#cluetip-close {
   text-align: right;
   margin: 0 5px 5px;
   color: #900;
@@ -679,8 +683,8 @@ span.cbDateinputJs input.calendarDateInput {letter-spacing:.06em;font-family:Ver
   left: 50%;
   margin-left: -11px;
   height: 11px;
-  width: 22px;  
-}  
+  width: 22px;
+}
 .clue-bottom-jtip .cluetip-arrows {
   background-image: url(images/cluetip/arrowup.gif);
   top: -11px;
@@ -798,78 +802,6 @@ ul.cbMenuULlist li.cbMenu_UE_VIEWUSERREPORTS a:hover {background:#dee1e3 url(ima
 ul.cbMenuULlist li.cbMenu_UE_STATISTICS a {background:url(images/mini-icons/cbicons.png) repeat-y 0px -5400px; display:block;}
 ul.cbMenuULlist li.cbMenu_UE_STATISTICS a:hover {background:#dee1e3 url(images/mini-icons/cbicons.png) repeat-y 0px -5500px;}
 
+.cbFieldIcons img {display: inline-block;}
 
-
-/* Lisa's */
-
-div#cb_cb_comp_login {
-margin:1em;
-min-height:320px;
-position:relative;
-z-index:1;
-background:url(/components/com_battle/images/LesMaitres.gif) no-repeat 50% 50%;
-background-size:cover;
-text-align:center;
-}
-div#cb_cb_comp_login .componentheading {display:none;}
-
-div#cb_cb_comp_login div.cb_comp_inner {
-margin: 1em auto;
-position: relative;
-text-align:center;
-width:90%;
-}
-div#cb_cb_comp_login p, ul.cbLoginLinksList, li.cbLostLoginLi{margin:0}
-li.cbLostLoginLi{display:inline;}
-li.cbLostLoginLi,
-form.cbLoginForm label ,
-input#mod_login_remember{
-background-color:rgba(0,0,0,0.8);
-padding:0.5em 1em;
-}
-
-div#mainbody form.cbLoginForm a:link, 
-div#mainbody form.cbLoginForm a:visited,
-div#mainbody form.cbLoginForm a:hover
- {
-  color:#00FFFF;
-}
-
-form.cbLoginForm .inputbox {
-  background-image:none;
-background-color:rgba(0,0,0,0.8);
-  color: #fff;
-padding:0.5em 1em;
-margin:0 0 0.5em;
-}
-
-form.cbLoginForm .inputbox:hover,
-form.cbLoginForm .inputbox:focus {
-  background-image:none;
-background-color:rgba(0,0,0,0.8);
-}
-
-span.cbLoginButtonSpan .button {
-background-color:rgba(0,255,255,0.8);
-  box-shadow: 0 0 2px #FFFFFF;
-  color: #000000;
-  border:1px solid #000;
-  font-size: 100%;
-  font-weight: bold;
-padding:0.5em 1em;
-margin:0.5em 0;
-  text-transform: uppercase;
-}
-
-span.cbLoginButtonSpan .button:hover {
-background-color:rgba(0,153,153,0.8);
-    box-shadow: 0 0 5px #FFFFFF;
-    color: #333333;
-    text-shadow: 0 0 2px #FFFFFF;
-  border:1px solid #000;
-}
-
-
-span.cbFieldIcons img {
-float:left;
-}
+.cb_template_default input {color: white;padding: 5px;}
