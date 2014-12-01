@@ -68,7 +68,7 @@ $body ='
           
        $body .='     <tr>
             <th scope="row">Hobbits</th>
-            <td id ="wfTotal">' . $this->building_hobbit_stats->free . '</td>
+            <td id ="_h"><span id ="assign_primary_data">' . $this->building_hobbit_stats->primary . '</span> / <span id ="assign_distribution_data">' . $this->building_hobbit_stats->distribution . '</span> / <span id ="assign_defence_data">' . $this->building_hobbit_stats->defence . '</span></td>
           </tr>';
         
            

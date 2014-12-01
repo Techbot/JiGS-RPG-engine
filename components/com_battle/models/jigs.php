@@ -623,6 +623,61 @@ class BattleModelJigs extends JModellist{
 		return $_all_energy;
 	}
 
+
+/*
+    function use_hobbits($id,$total,$workforce_required)
+    {
+  		$message	= "$workforce_required hobbits have begun work";
+        MessagesHelper::sendFeedback($id,$message );
+ 
+        $db         = JFactory::getDBO();
+        
+        if ($total >= $workforce_required)
+		{
+		    $query                  = "UPDATE #__jigs_hobbits SET status = 2 
+		    WHERE owner = $id 
+		    ORDER BY xp ASC
+		    LIMIT $workforce_required";
+		    
+		    $db->setQuery($query);
+		    $db->query;
+          //  $message_result = Jview::loadHelper('messages'); //got an error without this
+ 			$message = "$workforce_required hobbits have begun work";
+            MessagesHelper::sendFeedback($id,$message );
+           
+
+		    return true;
+        }
+       
+       MessagesHelper::sendFeedback($id, "no hobbits");
+    
+        return false;
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	///// TAKE ENERGY FROM USER'S BATTERIES UNTIL $energy_units_required IS REACHED /////
 	function use_battery($id, $energy_units_required)
 	{
@@ -652,7 +707,7 @@ class BattleModelJigs extends JModellist{
 				{
 					$db			= JFactory::getDBO();
 					$battery->units 	= $battery->units - $energy_units_required;
-					$message		= $energy_units_required . " unit(s) deducted from  battery " . $i ;
+					$message		= $energy_units_required . " unit(s) deducted from battery " . $i ;
 					$energy_units_required	= 0;
 					MessagesHelper::sendFeedback($user->id,$message);
 				}

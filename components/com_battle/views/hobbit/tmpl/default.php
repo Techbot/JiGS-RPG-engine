@@ -1,15 +1,8 @@
 <?php
 
-print_r ($this->people);
+//print_r ($this->people);
 ?>
 
-
-
-
-
-
-
-<div id="profile_" class="clearfix">
 	<div class="name"><?php echo $this->people->name ; ?></div>
 	<div class="desc">
 		
@@ -55,10 +48,9 @@ print_r ($this->people);
 <div class="label">Strength:</div>
 <div class="gauge"><div class='strength'><span><?php echo $this->people->strength ; ?></span></div></div>-->
 <div class="label">Health:</div>
-<div class="gauge"><div class='health'><span><?php echo $this->people->health ; ?></span></div></div>
+<div class="gauge"><div class='health'><span><?php// echo $this->people->health ; ?></span></div></div>
 </div><!-- end vitals -->
-</div><!-- end profile -->
-
+<!--/div><!-- end profile -->
 
 <!--
 
@@ -70,16 +62,7 @@ foreach ($this->inv as $inv_object)
 	echo '<br>' . $inv_object['name'] ;
 }
 ?>-->
-</div><!-- end inventory -->
 
-<div id="action" class="clearfix">
-<!-- <div class="recruit"><a class="recruit" href="#">Recruit</a></div> --> 
-<div class="shoot"><a onclick="shoot_person(<?php echo $this->people->id ; ?>)" id="shoot" >Shoot</a></div>
-<div class="kick"><a onclick="kick_person(<?php echo $this->people->id ; ?>)" id="kick" >Kick</a> </div>
-<div class="punch"><a onclick="punch_person(<?php echo $this->people->id ; ?>)" id="punch">Punch</a> </div>
-<div class="talk"><a onclick="talk_person(<?php echo $this->people->id ; ?>)" id="talk">Talk</a> </div>
-<!--   <div class="bribe"><a class="bribe" href="#">Bribe</a></div>
-<div class="rob"><a class="rob" href="#">Rob</a></div>
-<div class="talk"><a class="talk" href="#">Talk</a></div>--> 
-</div>
+
+
 

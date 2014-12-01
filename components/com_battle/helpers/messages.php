@@ -25,7 +25,7 @@ abstract class MessagesHelper
 		$query		= "INSERT INTO #__jigs_logs (user_id, message) VALUES ($id,'$text')";
 		$db->setQuery($query) ;
 		$db->query();
-		return ;
+		return;
 	}       
       
 }
