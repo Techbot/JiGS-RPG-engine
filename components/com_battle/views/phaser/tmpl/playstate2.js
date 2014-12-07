@@ -16,31 +16,32 @@ playState2 = {
         //  The second is a URL to the JSON file the map data is stored in. This is actually optional, you can pass the JSON object as the 3rd
         //  parameter if you already have it loaded (maybe via a 3rd party source or pre-generated). In which case pass 'null' as the URL and
         //  the JSON object as the 3rd parameter.
-
+		grid=2;
         //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
         //  This could be Phaser.Tilemap.CSV too.
-        game.load.tilemap('tile base layer', 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('obstacles', 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('objects', 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('obstacles', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('ground2', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('objects', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
-        game.load.image('Zombie_A5', 'assets/tiles/Zombie_A5.png');
+        game.load.image('Zombie_A5', '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A5.png');
       //  game.load.image('Zombie_A4', 'assets/tiles/Zombie_A4.png');
-    	game.load.image('TileA4', 'assets/tiles/TileA4.png');
-    	game.load.image('TileA5', 'assets/tiles/TileA5.png');
-        game.load.image('TileE', 'assets/tiles/TileE.png');
+    	game.load.image('TileA4', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
+    	game.load.image('TileA5', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA5.png');
+        game.load.image('TileE', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileE.png');
 
-        game.load.image('arrow', 'assets/frog.gif');
-        game.load.image('mushroom', 'assets/sprites/mushroom2.png');
-        game.load.image('sonic', 'assets/sprites/sonic_havok_sanity.png');
-        game.load.image('phaser', 'assets/sprites/phaser1.png');
+        game.load.image('arrow', '/components/com_battle/views/phaser/tmpl/assets/frog.gif');
+        game.load.image('mushroom', '/components/com_battle/views/phaser/tmpl/assets/sprites/mushroom2.png');
+        game.load.image('sonic', '/components/com_battle/views/phaser/tmpl/assets/sprites/sonic_havok_sanity.png');
+        game.load.image('phaser', '/components/com_battle/views/phaser/tmpl/assets/sprites/phaser1.png');
 
         //  37x45 is the size of each frame
         //  There are 18 frames in the PNG - you can leave this value blank if the frames fill up the entire PNG, but in this case there are some
         //  blank frames at the end, so we tell the loader how many to load
-        game.load.spritesheet('ms', 'assets/sprites/metalslug_mummy37x45.png', 37, 45, 18);
+        game.load.spritesheet('ms', '/components/com_battle/views/phaser/tmpl/assets/sprites/metalslug_mummy37x45.png', 37, 45, 18);
         
-        game.load.spritesheet('monster', 'assets/Monsters/Beast of Burden/Monster_BeastofBurden_FullFrame.png', 185, 165, 8);  
+        game.load.spritesheet('monster', '/components/com_battle/views/phaser/tmpl/assets/Monsters/Beast of Burden/Monster_BeastofBurden_FullFrame.png', 185, 165, 8);  
 
         
         
@@ -70,21 +71,21 @@ playState2 = {
 
         // load the images for your tilesets, make sure the last param to "cacheKey" is
         // the name of the tileset in your map so the plugin can find it later
-        game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), 'assets/tiles/Zombie_A5.png');
-        game.load.image(cacheKey('obstacles', 'tileset', 'Zombie_A1'), 'assets/tiles/Zombie_A1.png');
-        game.load.image(cacheKey('obstacles', 'tileset', 'Zombie_A4'), 'assets/tiles/Zombie_A4.png'); 
+        game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A5.png');
+        game.load.image(cacheKey('obstacles', 'tileset', 'Zombie_A1'), '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A1.png');
+        game.load.image(cacheKey('obstacles', 'tileset', 'Zombie_A4'), '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A4.png'); 
        
-        game.load.image(cacheKey('002-Woods01', 'tileset', '002-Woods01'), ' assets/tiles/002-Woods01.png');
-        game.load.image(cacheKey('TileC', 'tileset', 'TileC'), 'assets/tiles/TileC.png');
-        game.load.image(cacheKey('032-Heaven01', 'tileset', '032-Heaven01'), '  assets/tiles/032-Heaven01.png');
+        game.load.image(cacheKey('002-Woods01', 'tileset', '002-Woods01'), '/components/com_battle/views/phaser/tmpl/assets/tiles/002-Woods01.png');
+        game.load.image(cacheKey('TileC', 'tileset', 'TileC'), '/components/com_battle/views/phaser/tmpl/assets/tiles/tiles/TileC.png');
+        game.load.image(cacheKey('032-Heaven01', 'tileset', '032-Heaven01'), '/components/com_battle/views/phaser/tmpl/assets/tiles/032-Heaven01.png');
        
               
-        game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), 'assets/tiles/TileA4.png');
-        game.load.image(cacheKey('obstacles', 'tileset', 'TileA5'), 'assets/tiles/TileA5.png');        
+        game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
+        game.load.image(cacheKey('obstacles', 'tileset', 'TileA5'), '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA5.png');        
 
         // if you have image layers, be sure to load those too! Again,
         // make sure the last param is the name of your layer in the map.
-        game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
+        game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), '/components/com_battle/views/phaser/tmpl/assets/grid001optimised.png');
 
         ////////////
         // Later after loading is complete:

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	 	<meta charset="utf-8">
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.14.0.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.14.0.js"></script>							
+		<script src="../../lib/crafty.js"></script>
+		<script src="source.js"></script>
+		<script src="../modules/create_mocks_module.js"></script>
+		<script src="../tiledmapbuilder.js"></script>
+		<script>
+		window.onload = function() {
+																		
+			var empty;
+			var broken = {width:10, height:10, layers:[], tilesets:[]}
+										
+			Crafty.init(320, 320);
+			
+			test("setMapDataSource", function() {	
+				var tmap = Crafty.e("2D, TiledMapBuilder").setMapDataSource( getSourceOrhogonal() );				
+				deepEqual( tmap._source , getSourceOrhogonal());			
+			});
+						
+			test("getRenderMethod", function() {														
+				equal( Crafty.e("2D, TiledMapBuilder").getRenderMethod() , "DOM", "Default is DOM.");
+				equal( Crafty.e("2D, DOM, TiledMapBuilder").getRenderMethod() , "DOM", "Entity has DOM component.");
+				equal( Crafty.e("2D, Canvas, TiledMapBuilder").getRenderMethod() , "Canvas", "Entity has Canvas component.");
+			});
+			
+			test("isValid", function() {									
+				equal( Crafty.e("2D, DOM, TiledMapBuilder").isValid( empty ), false, "Empty source");
+				equal( Crafty.e("2D, DOM, TiledMapBuilder").isValid( broken ), false, "Broken source");
+				ok( Crafty.e("2D, DOM, TiledMapBuilder").isValid( getSourceOrhogonal() ), "Valid source");
+			});
+			
+			test("isLayer", function() {	
+				var map = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();
+				
+				ok( map.isLayer('obstacles'), "Layer obstacles exists.");
+				ok( !map.isLayer("wrongName"), "Layer wrongName non exists.");
+			});
+			
+			test("getLayerFromSource", function() {	
+				var map = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();
+				
+				deepEqual( map.getLayerFromSource("obstacles"), getSourceOrhogonal().layers[2] );	
+				equal( map.getLayerFromSource("wrong name") , null , "Null");
+			});
+			
+			test("getTileIndex", function() {						
+				var groundLayer = getSourceOrhogonal().layers[0];
+				
+				equal( MockModule.getTileIndex(0, 0, groundLayer), 0);
+				equal( MockModule.getTileIndex(0, 9, groundLayer), 9);
+				equal( MockModule.getTileIndex(1, 0, groundLayer), 10);
+				equal( MockModule.getTileIndex(1, 1, groundLayer), 11);
+				equal( MockModule.getTileIndex(2, 3, groundLayer), 23);
+											
+				throws(function() { MockModule.getTileIndex(a, b, groundLayer) }, "Illegal argument exception");																	
+			});
+								
+			test("getEntitiesInLayer", function() {												
+				var map = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();
+									
+				equal( map.getEntitiesInLayer('obstacles').length, 11);
+				equal( map.getEntitiesInLayer('obstacles')[0].x, 64, "posX" );
+				equal( map.getEntitiesInLayer('obstacles')[0].y, 32, "posY" );
+				ok( map.getEntitiesInLayer('obstacles')[0].has("Tile4"));
+				
+				equal( map.getEntitiesInLayer("wrong name") , null , "Null");
+			});
+			
+			test("getTile", function() {												
+				var map = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();
+											
+				ok( map.getTile(1, 2, "obstacles").has("Tile4") );				
+				equal( map.getTile(1, 2, "obstacles").x, 64, "posX" );
+				equal( map.getTile(1, 2, "obstacles").y, 32, "posY" );
+											
+				equal( map.getTile("wrong name", 0 , 1) , null, "Layer does not exists");
+				equal( map.getTile(100, 100, "obstacles") , null, "Out of range.");		
+			});
+			
+			test("arrangeTiles", function() {									
+				deepEqual( Crafty.e("2D, DOM, TiledMapBuilder").arrangeTiles( getSourceOrhogonal().tilesets[1] )["Tile4"], [0,0]);	
+				deepEqual( Crafty.e("2D, DOM, TiledMapBuilder").arrangeTiles( getSourceOrhogonal().tilesets[1] )["Tile12"],[0,1]);
+			});
+			
+			test("createSprite", function() {											
+				var tilesMap = {Tile1:[0,0], Tile2:[1,0], Tile3:[2,0]};				
+				var result = Crafty.sprite( getSourceOrhogonal().tilesets[0].tilewidth, getSourceOrhogonal().tilesets[0].tileheight, getSourceOrhogonal().tilesets[0].image, tilesMap);
+														
+				deepEqual( Crafty.e("2D, DOM, TiledMapBuilder").createSprite( getSourceOrhogonal().tilesets[0] ), result);				
+			});
+			
+			test("createMockEntity", function() {							
+				MockModule.init( 0, 0, getSourceOrhogonal().width, getSourceOrhogonal().height, "DOM", getSourceOrhogonal());	
+				
+				equal( MockModule.createMockEntity(
+						getSourceOrhogonal().layers[2], 12).head, "2D,DOM,Tile,Tile4,obstacles"); 
+				equal( MockModule.createMockEntity( getSourceOrhogonal().layers[2], 12).x, 64, "X position");	
+				equal( MockModule.createMockEntity( getSourceOrhogonal().layers[2], 12).y, 32, "Y position");					
+			});
+			
+			test("getSource", function() {			
+				 var map = Crafty.e("2D, DOM, TiledMapBuilder")
+					.setMapDataSource( getSourceOrhogonal() )
+					.createWorld();
+				
+				deepEqual( map.getSource(), getSourceOrhogonal());
+			});
+						
+			test("createWorld", function() {										
+				throws( function() {Crafty.e("2D, DOM, TiledMapBuilder").createWorld( empty )}, "Empty source");
+				throws( function() {Crafty.e("2D, DOM, TiledMapBuilder").createWorld( broken )}, "Broken source");										
+			});
+			
+			test("getOrientation", function() {				
+				var ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();				
+				equal( ent.getOrientation(), MockModule.settings.ORTHOGONAL, "orthogonal");	
+							
+				ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceIsometric() )
+				.createWorld();				
+				equal( ent.getOrientation(), MockModule.settings.ISOMETRIC_DIAMOND, "isometric");			
+				
+				ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceStaggered() )
+				.createWorld();			
+				equal( ent.getOrientation(), MockModule.settings.ISOMETRIC_STAGGERED, "staggered");												
+			});
+			
+			test("isIsometric", function() {				
+				var ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();					
+				ok( !ent.isIsometric(), "is orthogonal" ); 
+							
+				ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceIsometric() )
+				.createWorld();					
+				ok( ent.isIsometric(), "is orthogonal" ); 	
+				
+				ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceStaggered() )
+				.createWorld();					
+				ok( ent.isIsometric(), "is stagged" ); 														
+			});
+			
+			test("getIsometric", function() {			
+				var ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceIsometric() )
+				.createWorld();	
+				deepEqual( ent.getIsometric(), Crafty.isometric.size(64, 32) ); 
+				
+				ent = Crafty.e("2D, DOM, TiledMapBuilder")
+				.setMapDataSource( getSourceOrhogonal() )
+				.createWorld();	
+				equal( ent.getIsometric(), null); 	
+			});
+			
+			test("setPositionOrtogonal", function() {					
+				var entity = {};
+								
+				MockModule.init( 0, 0, getSourceOrhogonal().width, getSourceOrhogonal().height, "DOM", getSourceOrhogonal());
+				
+				MockModule.setPosition( 0, 0, entity);				
+				equal(entity.x, 0);
+				equal(entity.y, 0);
+				
+				MockModule.setPosition( 1, 0, entity);				
+				equal(entity.x, 32);
+				equal(entity.y, 0);
+				
+				MockModule.setPosition( 2, 0, entity);				
+				equal(entity.x, 64);
+				equal(entity.y, 0);
+				
+				MockModule.setPosition( 0, 1, entity);				
+				equal(entity.x, 0);
+				equal(entity.y, 32);
+				
+				MockModule.setPosition( 1, 1, entity);				
+				equal(entity.x, 32);
+				equal(entity.y, 32);		
+			});
+			
+			
+			test("setPositionIsometricDiamond", function() {					
+				var mockEntity = {};
+				var entity = Crafty.e("2D, DOM");
+			
+				//isometric diamond 64x32
+				var isometric = Crafty.e("2D, DOM, TiledMapBuilder").setMapDataSource( getSourceIsometric() )
+														
+				MockModule.init( 0, 0, getSourceIsometric().width, getSourceIsometric().height, "DOM", getSourceIsometric());
+				
+				MockModule.setPosition( 0, 0, mockEntity);
+				isometric.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);				
+				equal(entity.x, 0);
+				equal(entity.y, 0);
+				
+				MockModule.setPosition(1, 0, mockEntity);
+				isometric.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity.x, 32);
+				equal(entity.y, 16);
+				
+				MockModule.setPosition( 2, 0, mockEntity);	
+				isometric.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity.x, 64);
+				equal(entity.y, 32);
+				
+				MockModule.setPosition( 0, 1, mockEntity);	
+				isometric.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity.x, -32);
+				equal(entity.y, 16);
+				
+				MockModule.setPosition( 1, 1, mockEntity);
+				isometric.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity.x, 0);
+				equal(entity.y, 32);
+			});
+			
+			test("setPositionIsometricStaggered", function() {
+				var mockEntity = {};
+				var entity = Crafty.e("2D, DOM");
+			
+				//isometric staggered 40x20
+				var staggered = Crafty.e("2D, DOM, TiledMapBuilder").setMapDataSource( getSourceStaggered() )
+				
+				MockModule.init( 0, 0, getSourceStaggered().width, getSourceStaggered().height, "DOM", getSourceStaggered());
+				
+				MockModule.setPosition( 0, 0, mockEntity);
+				staggered.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity._x, 0);
+				equal(entity._y, 0);
+				
+				MockModule.setPosition( 1, 0, mockEntity);				
+				staggered.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity._x, 40);
+				equal(entity._y, 0);
+				
+				MockModule.setPosition( 2, 0, mockEntity);				
+				staggered.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity._x, 80);
+				equal(entity._y, 0);
+				
+				MockModule.setPosition( 0, 1, mockEntity);				
+				staggered.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity._x, 20);
+				equal(entity._y, 10);
+				
+				MockModule.setPosition( 1, 1, mockEntity);				
+				staggered.getIsometric().place( mockEntity.x, mockEntity.y, 0, entity);
+				equal(entity._x, 60);
+				equal(entity._y, 10);
+			});
+													
+			test("makeSequence", function() {				
+				deepEqual( MockModule.makeSequence(9,18), [9,10,11,12,13,14,15,16,17]); 
+				deepEqual( MockModule.makeSequence(0,0), []);
+				deepEqual( MockModule.makeSequence(1,100).length, 99);			 
+			});	
+			
+			test("getIndexes", function() {							
+				var groundLayer = getSourceOrhogonal().layers[0];
+				
+				MockModule.init( 0, 0, 10, 2, "DOM", getSourceOrhogonal());							
+				deepEqual( MockModule.getIndexes(groundLayer), [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
+				
+				MockModule.init( 0, 0, 10, 10, "DOM", getSourceOrhogonal());	
+				equal( MockModule.getIndexes(groundLayer).length, 100); 
+				
+				MockModule.init( 5, 5, 5, 5, "DOM", getSourceOrhogonal());	
+				deepEqual( MockModule.getIndexes( groundLayer), [55,56,57,58,59,65,66,67,68,69,75,76,77,78,79,85,86,87,88,89,95,96,97,98,99]);
+				
+				MockModule.init( 8, 8, 2, 2, "DOM", getSourceOrhogonal());	
+				equal( MockModule.getIndexes( groundLayer).length, 4); 
+			});	
+			
+//-- SOURCE DATA----------------------------------------------
+			function getSourceOrhogonal(){
+				return ORTHOGONAL;			
+			}	
+
+			function getSourceIsometric(){
+				return ISOMETRIC;
+			}
+			
+			function getSourceStaggered(){
+				return STAGGERED;
+			}
+		} // onload
+		</script>				
+	</head>
+	<body>
+		<h1 id="qunit-header">Crafty: TiledMapBuilder</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">test markup, will be hidden</div>
+	</body>
+</html>

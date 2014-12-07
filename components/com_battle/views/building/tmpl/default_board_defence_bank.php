@@ -1,18 +1,14 @@
-<div class="name">Defence Systems Control</div>
-
-<form class="primary_0" action="index.php" method="get" name="adminForm_0" id= "adminForm_0">	
-
+<div class="name">Account Defence Systems Control</div>
+<form class="primary_0" action="index.php" method="get" name="adminForm_0" id= "adminForm_0">
 <h2>: <span id = 'assign_defence_cp'><?php echo $this->building_hobbit_stats->defence; ?></span>:</h2>
 
-<span id= "assign_defence" class="assign button btn btn-success">Assign Hobbit to building defence:</span>
-<span id= "remove_defence" class="remove remove button btn btn-danger">Remove Hobbit from building defence:</span>
+<span id= "assign_defence" class="assign button btn btn-success">Increase Account defence:</span>
+<span id= "remove_defence" class="remove remove button btn btn-danger">Decrease Account defence:</span>
 
-
+<span id= "assign_defence" class="assign button btn btn-success">Increase Account Insurance:</span>
+<span id= "remove_defence" class="remove remove button btn btn-danger">Decrease Account Insurance:</span>
 </form>	
 <br />
-
-
-
 
 <script type='text/javascript'>
 

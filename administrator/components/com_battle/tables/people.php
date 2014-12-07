@@ -18,7 +18,8 @@ class Tablepeople extends JTable
 	var $slack			= null;	
 	
 	
-	var $aggression			= null;
+	var $mood			= null;	
+	var $aggression		= null;
 	var $posx			= null;
 	var $posy			= null;
 	var $map			= null;

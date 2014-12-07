@@ -14,7 +14,7 @@ $body ='
 <div class="building_left">
   
 
-<a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
+<a href=/index.php?option=com_battle&view=phaser&Itemid=450" class="mid"></a>
 
   
   
@@ -106,7 +106,13 @@ $body ='
 	
 	if ($this->buildings->owner == 0)
 	{
-		$body .= $this->loadTemplate ("board_info_poster");
+		if ($this->buildings->type == 'bank')
+		{
+			$body .= $this->loadTemplate ("board_info_bank");
+		}else
+		{
+			$body .= $this->loadTemplate ("board_info_poster");
+		}
 	}
 
 	
@@ -132,8 +138,19 @@ $body ='
 //////////////////////////////   No Owner - Buy Only //////////////////////////////////
 	if ($this->buildings->owner == 0)
 	{
-		$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a></div> <!--buy-->';
+
+	if ($this->buildings->type == 'bank')
+			{
+					$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Hack this ' . $this->buildings->type .'</a></div> <!--hack-->';
+			}else
+			{
+					$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a></div> <!--buy-->';
+			}
+	
  
+	
+	
+	
 	}
 /////////////////////////////////////// Owned but not Player Owned //////////////////////////
 if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){

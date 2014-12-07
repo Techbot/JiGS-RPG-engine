@@ -25,7 +25,14 @@ playState = {
         game.load.tilemap('objects', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
-        game.load.image('Zombie_A5', '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A5.png');
+
+		game.load.image('Zombie_A3', '/components/com_battle/images/assets/tiles/Zombie_A3.png');
+		game.load.image('Zombie_A4', '/components/com_battle/images/assets/tiles/Zombie_A4.png');
+        game.load.image('Zombie_A5', '/components/com_battle/images/assets/tiles/Zombie_A5.png');
+        game.load.image('033-Heaven02', '/components/com_battle/images/assets/tiles/033-Heaven02.png');
+        game.load.image('032-Heaven01', '/components/com_battle/images/assets/tiles/032-Heaven01.png');
+        game.load.image('035-Ruins01', '/components/com_battle/images/assets/tiles/035-Ruins01.png'); 
+
       //  game.load.image('Zombie_A4', 'assets/tiles/Zombie_A4.png');
     	game.load.image('TileA4', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
     	game.load.image('TileA5', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA5.png');
@@ -41,10 +48,25 @@ playState = {
         //  blank frames at the end, so we tell the loader how many to load
         game.load.spritesheet('ms', '/components/com_battle/views/phaser/tmpl/assets/sprites/metalslug_mummy37x45.png', 37, 45, 18);
        
-        game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 40, 40, 1);  
-        game.load.spritesheet('stand', '/components/com_battle/images/buildings/Au_marche_butte.jpg', 40, 40, 1); 
-        game.load.spritesheet('church', '/components/com_battle/images/pages/pyramid.jpg', 40, 40, 1);
-        game.load.spritesheet('npc', '/components/com_battle/images/ennemis/miniatures/gurgeh.jpg', 32, 32, 1); 
+
+
+
+        game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);  
+        game.load.spritesheet('stand', '/components/com_battle/images/buildings/Au_marche_butte.jpg', 86, 86, 1);
+        game.load.spritesheet('church', '/components/com_battle/images/pages/pyramid.jpg', 90, 90, 1);
+
+
+
+
+        game.load.spritesheet('npc', '/components/com_battle/images/ennemis/miniatures/gurgeh.jpg', 48, 48, 1); 
+
+
+        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);  
+        game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1); 
+        game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/Dungeon_C.png', 32, 64, 1);
+
+
+
     },
 
     create: function() {
@@ -61,25 +83,37 @@ playState = {
         game.load.tiledmap(cacheKey('obstacles', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         // load the images for your tilesets, make sure the last param to "cacheKey" is
         // the name of the tileset in your map so the plugin can find it later
-        game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A5.png');
-        game.load.image(cacheKey('Zombie_A1', 'tileset', 'Zombie_A1'), '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A1.png');
-        game.load.image(cacheKey('Zombie_A4', 'tileset', 'Zombie_A4'), '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A4.png'); 
-        game.load.image(cacheKey('TileE', 'tileset', 'TileE'), '/components/com_battle/views/phaser/tmpl/assets/tiles/TileE.png');
-
+        game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/images/assets/tiles/Zombie_A5.png');
+        game.load.image(cacheKey('Zombie_A1', 'tileset', 'Zombie_A1'), '/components/com_battle/images/assets/tiles/Zombie_A1.png');
         
-        game.load.image(cacheKey('002-Woods01', 'tileset', '002-Woods01'), '/components/com_battle/views/phaser/tmpl/assets/tiles/002-Woods01.png');
-        game.load.image(cacheKey('TileC', 'tileset', 'TileC'), '/components/com_battle/views/phaser/tmpl/assets/tiles/TileC.png');
-        game.load.image(cacheKey('032-Heaven01', 'tileset', '032-Heaven01'), '/components/com_battle/views/phaser/tmpl/assets/tiles/032-Heaven01.png');
-        game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
-        game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA5.png');        
+        game.load.image(cacheKey('Zombie_A3', 'tileset', 'Zombie_A4'), '/components/com_battle/images/assets/tiles/Zombie_A3.png'); 
+        game.load.image(cacheKey('Zombie_A4', 'tileset', 'Zombie_A4'), '/components/com_battle/images/assets/tiles/Zombie_A4.png'); 
+        game.load.image(cacheKey('033-Heaven02', 'tileset', '033-Heaven02'), '/components/com_battle/assets/tiles/033-Heaven02.png'); 
+		game.load.image(cacheKey('032-Heaven01', 'tileset', '032-Heaven01'), '/components/com_battle/assets/tiles/032-Heaven01.png');
+		game.load.image(cacheKey('035-Ruins01', 'tileset', ' 035-Ruins01'), '/components/com_battle/assets/tiles/035-Ruins01.png');
 
         
         
+        
+        game.load.image(cacheKey('TileE', 'tileset', 'TileE'), '/components/com_battle/images/assets/tiles/TileE.png');
+
+        
+        game.load.image(cacheKey('002-Woods01', 'tileset', '002-Woods01'), '/components/com_battle/images/assets/tiles/002-Woods01.png');
+        game.load.image(cacheKey('TileC', 'tileset', 'TileC'), '/components/com_battle/images/assets/tiles/TileC.png');
+        
+        
+        game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), '/components/com_battle/images/assets/tiles/TileA4.png');
+        game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/tiles/TileA5.png');        
+
+        
+        game.load.image(cacheKey('portal00001', 'tileset', 'portal00001'), '/components/com_battle/images/assets/tiles/Dungeon_A1.png');
+        game.load.image(cacheKey('portal00002', 'tileset', 'portal00002'), '/components/com_battle/images/assets/tiles/Dungeon_B.png');
+        game.load.image(cacheKey('portal00003', 'tileset', 'portal00003'), '/components/com_battle/images/assets/tiles/Dungeon_C.png');        
         
         
         // if you have image layers, be sure to load those too! Again,
         // make sure the last param is the name of your layer in the map.
-        game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), '/components/com_battle/views/phaser/tmpl/assets/grid001optimised.png');
+        game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), '/components/com_battle/images/assets/grid001optimised.png');
         ////////////
         // Later after loading is complete:
 
@@ -165,17 +199,61 @@ playState = {
         monster3 = game.add.sprite(980, 110, 'stand');
 		game.physics.enable(monster3, Phaser.Physics.ARCADE);
 		
-		monster4 = game.add.sprite(980, 200, 'church');
+		monster4 = game.add.sprite(1530, 280, 'church');
 		game.physics.enable(monster4, Phaser.Physics.ARCADE);
 
-		monster5 = game.add.sprite(980, 320, 'npc');
+		monster5 = game.add.sprite(980, 860, 'npc');
 		game.physics.enable(monster5, Phaser.Physics.ARCADE);
     //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
 ///////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////
+        portal00001 = game.add.sprite(14, 628, 'portal00001');
+		game.physics.enable(portal00001, Phaser.Physics.ARCADE);
+		
+		portal00002 = game.add.sprite(1290, 1354, 'portal00002');
+		game.physics.enable(portal00002, Phaser.Physics.ARCADE);
+
+		portal00003 = game.add.sprite(31, 1365, 'portal00003');
+		
+		//portal00003 = game.add.sprite(840, 400, 'portal00003');
+		
+		
+		game.physics.enable(portal00003, Phaser.Physics.ARCADE);
+    //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
+///////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
     },
 
     update: function() {
         this.physics.arcade.collide(sprite, layer);
+        
+        this.physics.arcade.collide(sprite, portal00001,jump00002);
+        this.physics.arcade.collide(sprite, portal00002,jump00003); 
+    	this.physics.arcade.collide(sprite, portal00003,jump00004);
+         
+         
+             
         this.physics.arcade.collide(sprite, monster5,npc);
         this.physics.arcade.collide(sprite, monster4,church);
         this.physics.arcade.collide(sprite, monster3,shop);
@@ -270,16 +348,50 @@ function bank() {
 	}).done(function(result) {
 	
 //	mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
- 	
- 			document.getElementById("mainbody").innerHTML=result; 
-		 
- 			 //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
-				jQuery.ajax({
-					type: "GET",
-					url: "/components/com_battle/includes/building.js",
-					dataType: "script"
-					});
-			
+        document.getElementById("mainbody").innerHTML=result;
+    //    document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+
+
+/*
+
+        jQuery.ajax({
+            type: "GET",
+            url: "/components/com_battle/includes/building.js",
+            dataType: "script",
+            success: success
+        });
+
+*/
+
+        var url = "/components/com_battle/includes/building.js";
+        jQuery.getScript( url, function() {
+            alert ('hi');
+
+            success2();
+
+        });
+
+
+
+function success(){
+alert('one');
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			//	mything.replaces(document.id('world'));
 	});
 //http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
@@ -320,21 +432,47 @@ function npc() {
 	context: document.body,
 	dataType: "json"
 	}).done(function(result) {
-	
+
+
+        mything = new Element ('div',{'id':"NPC",
+            html:result,
+            'style':'border 1px solid #F00; '});
+
+
+
+
+
 //	mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
  	
- 			document.getElementById("mainbody").innerHTML=result; 
+ 			document.getElementById("mainbody").innerHTML=$(mything).val();
 		 
  			 //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
-				jQuery.ajax({
+		/*		jQuery.ajax({
 					type: "GET",
 					url: "/components/com_battle/includes/character.js",
 					dataType: "script"
 					});
-			
+		*/
 			//	mything.replaces(document.id('world'));
 	});
 //http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
 }
 
+
+function jump00002(){
+	grid = 2;
+    game.state.add('next', playState2);
+    game.state.start('next');
+}
+
+function jump00003(){
+	grid = 5;
+    game.state.add('next', playState5);
+    game.state.start('next');
+}
+function jump00004(){
+	grid = 4;
+    game.state.add('next', playState4);
+    game.state.start('next');
+}
 

@@ -54,7 +54,7 @@ else
         Comment:
       </td>
       <td>
-          <input class="text_area" type="text" name="commentaire" id="commentaire" size="250" maxlength="250" value="<?php echo $this->row->comment;?>" />
+          <textarea class="text_area" type="text" name="comment" id="comment" cols="100" rows ="10"  ><?php echo $this->row->comment;?></textarea>
       </td>
     </tr>
         <tr>
@@ -62,9 +62,25 @@ else
         Humour:
       </td>
       <td>
-            <input class="text_area" type="text" name="humeur" id="humeur" size="50" maxlength="250" value="<?php echo $this->row->humeur;?>" />
+            <input class="text_area" type="text" name="mood" id="mood" size="50" maxlength="250" value="<?php echo $this->row->mood;?>" />
       </td>
     </tr>
+    
+       </tr>
+        <tr>
+      <td width="100" align="right" class="key">
+        History:
+      </td>
+      <td>
+            <textarea class="text_area" type="text" name="history" id="history" cols="50" rows ="10"  ><?php echo $this->row->history;?></textarea>
+      </td>
+    </tr> 
+    
+    
+    
+    
+    
+    
     </table>
   </fieldset>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />

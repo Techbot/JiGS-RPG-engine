@@ -149,7 +149,8 @@ class plgBattleHeartbeat extends JPlugin
                     $db->setQuery($query);
                     $userlist = $db->loadObjectList();
                     $captain = $userlist[0]->id;
-					$total->$group->members = 0;
+                    $total = stdclass();
+                    $total->$group->members = 0;
 					foreach ($userlist as $user)
 					{
 		             
@@ -229,10 +230,7 @@ class plgBattleHeartbeat extends JPlugin
 		$this->sendMessage($now,'heartbeat complete');
 		return ;
 	}
-	
-	
-	
-	
+
 	function events(){
 	
 		$choice = rand (0,2);
@@ -240,16 +238,19 @@ class plgBattleHeartbeat extends JPlugin
 		switch ($choice){
 	
 			case 0:
-			$text				= $this->local();
+			$text	= $this->local();
 			break;
 	
 			case 1:
-			$text				= $this->npc_v_npc();
+			$text	= $this->npc_v_npc();
 			break;
 	
 			case 2:
-			$text				= $this->personel();
+			$text	= $this->personel();
 			break;
+
+            default:
+            $text   = "And so on";
 		}
 		$this->sendWavyLines($text);
 	}
@@ -279,8 +280,10 @@ class plgBattleHeartbeat extends JPlugin
 					case 4:
 					$text				= "A Zombie attack!";
 					break;
-			
-			
+
+                    default:
+                        $text           ="And so on";
+			        break;
 			
 			
 				}
@@ -492,7 +495,7 @@ class plgBattleHeartbeat extends JPlugin
 	function check_mines()
 	{
 
-		$user		= JFactory::getUser();
+		//$user		= JFactory::getUser();
 		$now		= time();
 		$db		= JFactory::getDBO();
 		$duration	= $now - 50;
@@ -635,7 +638,7 @@ class plgBattleHeartbeat extends JPlugin
 					$this->sendMessage($now,$text);
 					// end wavy lines
 				}
-				/////////////////////////////total = $row->total,/////////////////////////////////////////////////////////////
+				/////////////////////////////$total = $row->total,/////////////////////////////////////////////////////////////
 				$query		= "UPDATE #__jigs_farms SET status	= $row->status,
 					timestamp = $now,
 					finished = $row->finished
@@ -753,11 +756,11 @@ class plgBattleHeartbeat extends JPlugin
 		$now		= time();
 		$db 		= JFactory::getDBO();
 		// Find all factories where finished(unix time) has passed 
-		$expire		= $now - (1*60*60*24);//24 hours ago
-		$query		= "SELECT * FROM #__jigs_flats WHERE #__jigs_flats.timestamp > $expire AND timestamp != 0";
+		$expire		= $now - (1*60*60*1);//1 hour ago
+		$query		= "SELECT * FROM #__jigs_flats WHERE #__jigs_flats.timestamp < $expire AND timestamp != 0";
 		$db->setQuery($query);
 		$result		= $db->loadObjectlist();
-		$rent		= 100;
+		$rent		= 10;
 		$text		= count($result);
 		$this->sendMessage($now,$text);
 
@@ -798,12 +801,12 @@ class plgBattleHeartbeat extends JPlugin
 					$db->query();
 
 					// send wavy lines & feedback
-					$txt = "Your lease was renewed.";
+					$txt = "Your lease was renewed at apartment number $row->flat Building: $row->building @ ". gmdate("Y-m-d \TH:i:s\Z", $now);
 
 					$this->sendFeedback($user->id ,$txt);
-					$text	= "Citizen  $playa_name  renewed a lease";
+					$text	= "Citizen " .  $playa_name . " renewed a lease";
 					$this->sendWavyLines($text);
-					$this->sendFeedback($user->id, $text);
+					//$this->sendFeedback($user->id, $text);
 					$this->sendMessage($now,$text);
 					// end wavy lines
 				}
@@ -963,11 +966,10 @@ class plgBattleHeartbeat extends JPlugin
 	}
 
 	function get_player(){
-	
-	
-	
+
 		$db					= JFactory::getDBO();
 		$id					= rand(3000,3100);
+        $player	= JFactory::getUser($id);
 		$player->dice		= rand(0, 5);
 		$query				= "SELECT health,money,name FROM #__jigs_characters WHERE id > $id LIMIT 0,1";
 		$db->setQuery($query);

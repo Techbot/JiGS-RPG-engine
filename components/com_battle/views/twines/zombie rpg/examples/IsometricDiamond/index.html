@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Crafty TileMapBuilder demo: Isometric</title>
+    <style>
+    body, html { margin:0; padding: 0; overflow:hidden; font-family:Arial; font-size:20px }
+    #cr-stage { border:2px solid black; margin:5px auto; color:white }
+    </style>  
+  </head>
+  <body>
+    
+    <script src="../../libs/crafty.js"></script>
+    <script src="js/source.js"></script>
+    <script src="../../modules/create_mocks_module.js"></script>   
+    <script src="../../tiledmapbuilder.js"></script>    
+	<script>
+  		window.onload = function() {   			
+  			var WIDTH = 400;
+  			var HEIGHT = 400;
+  			var SPEED = 1;
+  			Crafty.init();  
+  			Crafty.viewport.init(WIDTH, HEIGHT);
+  			Crafty.viewport.clampToEntities=false; 
+  			Crafty.scene("Load", function() {
+  				  				
+  				Crafty.background("#000");
+  			    Crafty.e("2D, DOM, Text").attr({ w: WIDTH, h: 20, x: 0, y: HEIGHT/2 })
+  			            .text("Loading...")
+  			            .css({ "text-align": "center" });
+  				
+  								  			
+  				 Crafty.load([
+  				            "img/Terrain_tileset.png",
+  				          	"img/player.png"
+  				             ], function() {
+  					
+  					Crafty.sprite(35,40,"img/player.png", {
+ 						 Ogre:[0,0]
+ 					 });
+  				  					   					   					 					   					   	
+  					Crafty.scene("Main");		
+  					});  				
+  			});
+  			
+  			Crafty.scene("Load");
+  			  			  		
+			Crafty.scene("Main", function () {								
+				Crafty.e("2D, DOM, TiledMapBuilder").setMapDataSource( SOURCE_FROM_TILED_MAP_EDITOR )
+				.createWorld( function( tiledmap ){											
+					//Stone
+					for (var obstacle = 0; obstacle < tiledmap.getEntitiesInLayer('stones').length; obstacle++){
+						tiledmap.getEntitiesInLayer('stones')[obstacle]
+							.addComponent("Collision, Obstacle")
+							.collision( new Crafty.polygon([0,0],[35,0],[25,15]) );							
+					}
+					
+					//Logs
+					for (var obstacle = 0; obstacle < tiledmap.getEntitiesInLayer('tree').length; obstacle++){
+						tiledmap.getEntitiesInLayer('tree')[obstacle]
+							.addComponent("Collision, Obstacle")
+							.collision( new Crafty.polygon([15,0], [20,0], [20,15], [15,15]));							
+					}
+					
+					//Set z-index for correct view: front, back
+					for (var obstacle = 0; obstacle < tiledmap.getEntitiesInLayer('stoneTop').length; obstacle++){
+						tiledmap.getEntitiesInLayer('stoneTop')[obstacle]														
+							.z = Math.floor(tiledmap.getEntitiesInLayer('stoneTop')[obstacle]._y );			
+					}
+					
+					//Set z-index for correct view: front, back
+					for (var obstacle = 0; obstacle < tiledmap.getEntitiesInLayer('treeTop').length; obstacle++){
+						tiledmap.getEntitiesInLayer('treeTop')[obstacle]														
+							.z = Math.floor(tiledmap.getEntitiesInLayer('treeTop')[obstacle]._y + tiledmap.getEntitiesInLayer('treeTop')[obstacle]._h);						
+					}	
+					
+				});
+																		
+				Crafty.e("2D, DOM, SpriteAnimation, Ogre, Multiway, Keyboard, Collision").attr({x:0, y:HEIGHT/2, z:1000})					
+					.animate("walk_w", 0, 0, 2)
+  			   		.animate("walk_s", 0, 1, 2)	
+  			   		.animate("walk_q", 0, 3, 2)	
+  			   		.animate("walk_a", 0, 2, 2)	
+  			   		.collision( new Crafty.polygon([0,30],[18,30],[18,40], [0,40]) ) 
+  			   		.multiway(SPEED, {Q: 225, W: -45, S: 45, A: 135})  			   				
+					.bind('Moved', function(from) {					
+  			   			if( this.hit('Obstacle')){
+							this.attr({x: from.x, y:from.y});						
+						}
+  			   			//set z-index  
+  			   			this.z = Math.floor(this._y + this._h/2);  			   					  			   		  			   			  			   
+  			   		})
+  			   		.bind("NewDirection",
+					    function (direction) {
+					        if (direction.x < 0 && direction.y < 0) {
+					            if (!this.isPlaying("walk_q"))
+					                this.stop().animate("walk_q", 10, -1);
+					        }
+					        if (direction.x > 0 && direction.y > 0) {
+					            if (!this.isPlaying("walk_s"))
+					                this.stop().animate("walk_s", 10, -1);
+					        }
+					        if (direction.x < 0 && direction.y > 0) {
+					            if (!this.isPlaying("walk_a"))
+					                this.stop().animate("walk_a", 10, -1);
+					        }
+					        if (direction.x > 0 && direction.y < 0) {
+					            if (!this.isPlaying("walk_w"))
+					                this.stop().animate("walk_w", 10, -1);
+					        }
+					        if(!direction.x && !direction.y) {
+					            this.stop();
+					        }				      
+					})  
+									  			   		  			   		  			   		  			 
+  			   	// folow player	
+  			   	Crafty.viewport.follow(Crafty("Ogre"), 0, 0);  			   		  			   	
+  			});  			  													
+  	}	
+	</script>	
+	<p align="center">Use keys:Q, W, A, S for moving player.</p>
+  </body>
+</html>

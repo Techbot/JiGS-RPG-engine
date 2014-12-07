@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Crafty TileMapBuilder demo: EasterIsland</title>
+    <style>
+    body, html { margin:0; padding: 0; overflow:hidden; font-family:Arial; font-size:20px }
+    #cr-stage { border:2px solid black; margin:5px auto; color:white }
+    </style>  
+  </head>
+  <body>
+	<script src="../lib/crafty.js"></script>
+	<script src="src/source.js"></script>
+    <script src="EasterIsland_files/create_mocks_module.js"></script>  
+    <script src="EasterIsland_files/tiledmapbuilder.js"></script>    
+    <script src="src/components.js"></script>
+	<script src="src/game.js"></script>
+	<script src="src/scenes.js"></script>
+	<script>
+  		window.onload = function() { 
+  			var WIDTH = 576;
+  			var HEIGHT = 480;
+  			Crafty.init(WIDTH, HEIGHT);  			  		
+  			Crafty.scene("Load", function() {
+  				
+  				Crafty.background("#000");
+  			    Crafty.e("2D, DOM, Text").attr({ w:WIDTH, h: 20, x: 0, y: HEIGHT/2 })
+  			            .text("Loading...")
+  			            .css({ "text-align": "center" });
+  						Crafty.scene("Main");		
+  					});  				
+  			};
+  		//	Crafty.scene("Load");
+  	//}	
+	</script>	
+</body></html>

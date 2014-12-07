@@ -1,0 +1,95 @@
+{ "height":10,
+ "layers":[
+        {
+         "data":[130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 198, 198, 198, 198, 198, 198, 198, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 130, 130, 130, 130, 130, 130, 130, 130, 130, 198, 198, 198, 198, 198, 198, 198, 198, 198, 198, 198, 130],
+         "height":10,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }],
+ "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"..\/ZombieSurvival_GFX\/Tiles\/Zombie_A3.png",
+         "imageheight":256,
+         "imagewidth":512,
+         "margin":0,
+         "name":"Zombie_A3",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "firstgid":129,
+         "image":"..\/ZombieSurvival_GFX\/Tiles\/Zombie_A5.png",
+         "imageheight":512,
+         "imagewidth":256,
+         "margin":0,
+         "name":"Zombie_A5",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tileproperties":
+            {
+             "1":
+                {
+                 "solid":"1"
+                },
+             "69":
+                {
+                 "solid":"0"
+                }
+            },
+         "tilewidth":32
+        }, 
+        {
+         "firstgid":257,
+         "image":"..\/Futuristic Tiles\/System\/TileA1.png",
+         "imageheight":384,
+         "imagewidth":512,
+         "margin":0,
+         "name":"TileA1",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "firstgid":449,
+         "image":"..\/Futuristic Tiles\/System\/TileA2.png",
+         "imageheight":384,
+         "imagewidth":512,
+         "margin":0,
+         "name":"TileA2",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":32,
+         "tilewidth":32
+        }],
+ "tilewidth":32,
+ "version":1,
+ "width":10
+}

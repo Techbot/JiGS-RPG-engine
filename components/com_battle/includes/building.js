@@ -1,5 +1,5 @@
 //http://liquidslider.com/documentation/
-$(function(){
+/*$(function(){
 
 	$('#slider-id').liquidSlider({
 	  slideEaseFunction: "easeInOutCubic",
@@ -16,9 +16,11 @@ $(function(){
 	  dynamicTabsPosition:"bottom"
 	});
 });
+*/
 
-(function()
-{
+function success2(){
+
+    alert('hello');
 	buy_building();
 	window.id1			= new Array();
 	window.metal_name_1		= new Array();
@@ -48,7 +50,7 @@ $(function(){
 	control_panel_system();
 	set_type();
 	setup_hobbits();
-})();	
+};
 //////////////////////////////////////////////////////////////////////////
 function changeDisplayImage()
 {

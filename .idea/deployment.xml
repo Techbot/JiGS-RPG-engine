@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData">
+    <serverData>
+      <paths name="JiGS">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/docs" />
+            <excludedPath path="/cache" />
+            <excludedPath path="/includes" />
+            <excludedPath path="/jstree" />
+            <excludedPath path="/jupgrade" />
+            <excludedPath path="/language" />
+            <excludedPath path="/libraries" />
+            <excludedPath path="/logs" />
+            <excludedPath path="/media" />
+            <excludedPath path="/modules" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
+

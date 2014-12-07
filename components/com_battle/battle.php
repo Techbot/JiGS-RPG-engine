@@ -9,7 +9,7 @@ class BattleController extends JController
 		$action			= JRequest::getVar('action');
 		$result			= $model->$action();
 		//$heartbeat		= $model->heartbeat();
-		echo Json_encode($result);
+		echo json_encode($result);
 	}
 
 	function computer_action()
@@ -20,7 +20,7 @@ class BattleController extends JController
 		$model			= $this->getModel ('computer');
 		$action			= JRequest::getVar('action');
 		$result			= $model->$action($player);
-		echo Json_encode($result);
+		echo json_encode($result);
 	}
 
 	function building_action()
@@ -28,7 +28,7 @@ class BattleController extends JController
 		$model			= $this->getModel('building');
 		$action			= JRequest::getVar('action');
 		$result			= $model->$action();
-		echo Json_encode($result);
+		echo json_encode($result);
 	}
 	
 	function hobbit_action()
@@ -36,7 +36,7 @@ class BattleController extends JController
 		$model			= $this->getModel('hobbits');
 		$action			= JRequest::getVar('action');
 		$result			= $model->$action();
-		echo Json_encode($result);
+		echo json_encode($result);
 	}
 	
 		function twine_action()
@@ -44,10 +44,19 @@ class BattleController extends JController
 		$model			= $this->getModel('twine');
 		$action			= JRequest::getVar('action');
 		$result			= $model->$action();
-		echo Json_encode($result);
+		echo json_encode($result);
 	}
 	
+		function skills_action()
+	{	
+		$model			= $this->getModel('skills');
+		$action			= JRequest::getVar('action');
+		$result			= $model->$action();
+		echo json_encode($result);
 	
+	
+	
+	}	
 	
 	
 

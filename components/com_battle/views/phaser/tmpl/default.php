@@ -7,7 +7,9 @@
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate.js"></script>
          <script src="/components/com_battle/views/phaser/tmpl/playstate2.js"></script>     
-         <script src="/components/com_battle/views/phaser/tmpl/playstate3.js"></script>    
+         <script src="/components/com_battle/views/phaser/tmpl/playstate3.js"></script>   
+           <script src="/components/com_battle/views/phaser/tmpl/playstate4.js"></script> 
+                      <script src="/components/com_battle/views/phaser/tmpl/playstate5.js"></script> 
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>
      <div id ="world"></div>

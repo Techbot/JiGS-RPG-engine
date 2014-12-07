@@ -148,7 +148,7 @@ class BattleViewBuilding extends JView
 			//	echo $this->buildings->id;
 			$model			= $this->getModel();
 			$blueprints		= $model->get_blueprints($this->buildings->id);
-			print_r($blueprints	);
+			//print_r($blueprints	);
 			
 			$this->blueprints	= $model->get_objects_required($blueprints);
 		}					

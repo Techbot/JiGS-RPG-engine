@@ -53,7 +53,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/..\/experiments\/rtp\/Graphics\/Tiles\/001-Grassland01.png",
+         "image":"assets/tiles/001-Grassland01.png",
          "imageheight":576,
          "imagewidth":256,
          "margin":0,

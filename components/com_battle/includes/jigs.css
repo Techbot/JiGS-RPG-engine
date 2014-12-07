@@ -2049,3 +2049,47 @@ border:1px solid #7F7F7F;
 color:#7F7F7F;
 text-decoration:none;
 }
+
+
+#master_skills_table div,
+#primary_upgrade_table div,
+#skills_table div,
+#secondary_upgrade_table div{
+
+    width:16%;
+    float:left;
+    border: 1px solid darkred;
+    text-align: center;
+    min-height: 140px;
+    background:rgba(0,0,0,0.5);
+    padding-bottom:10px;
+
+}
+
+#master_skills_table h3,
+#primary_upgrade_table h3,
+#skills_table h3,
+#secondary_upgrade_table h3{
+
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#master_skills_table .btn,
+#primary_upgrade_table .btn,
+#skills_table .btn,
+#secondary_upgrade_table .btn{
+    margin-bottom:10px;
+}
+#master_skills_table span,
+#primary_upgrade_table span,
+#skills_table span,
+#secondary_upgrade_table span{
+    display:block;
+}
+#master_skills_table h3 span,
+#primary_upgrade_table h3 span,
+#skills_table h3 span,
+#secondary_upgrade_table h3 span{
+    display:inline-block;
+}
