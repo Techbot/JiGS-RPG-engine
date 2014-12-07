@@ -4,13 +4,13 @@
 jimport( 'joomla.methods' );
 ?>
 
-<div class="name">Primary</div>
+<div class="name">Primary Skills</div>
 <section id = "master_skills_table" class="shade-table">
 
 </section>
 
 
-<section id = "primary_upgrade_table" class="shade-table">
+<section id = "primary_upgrade_table" class="shade-table clearfix">
 </section>
 
 
@@ -18,7 +18,7 @@ jimport( 'joomla.methods' );
 
 
 
-<h2>Secondary</h2>
+<div class="name">Secondary Skills</div>
 <section id = "skills_table" class="shade-table">
 No Primary Skill Selected
 
@@ -31,6 +31,31 @@ No Primary Skill Selected
 
 
 <script type='text/javascript'>
+
+
+/* Add class "selected" to current primary skill */
+
+/*$( "body" ).append( "<div class='overlay'><div class='loader'>Loading...</div></div>" );*/
+
+$( document ).ready(function() {
+
+	//setTimeout(function() {
+	//      $(".overlay").remove();
+	//}, 400);
+
+
+	$( "#master_skills_table div, #primary_upgrade_table div" ).on( "click", function() {
+		//alert('works');
+		/* this adds class to selected div,and removes class from any other in the same section */
+		$( this ).toggleClass("selected").siblings().removeClass();
+		/* this adds removes class from any other in the other section */
+		$( this ).parent().siblings().children().removeClass();
+	});
+
+});
+
+
+
     var a = new Request.JSON(
         {
             url: "index.php?option=com_battle&format=raw&task=skills_action&action=get_available_skills&parent=1",
@@ -70,7 +95,7 @@ No Primary Skill Selected
 
             result_text += "<div>";
             result_text += "<h3> <span id = '" + result[i]['skill_id'] + "' class='open'>" + result[i]['name'] + "</span> <span>" + result[i]['level'] + " </span></h3>";
-            result_text += "<span id = 'upgrade_" + result[i]['skill_id'] + "' class='assign button btn btn-success '>Upgrade</span>";
+            result_text += "<span id = 'upgrade_" + result[i]['skill_id'] + "' class='assign button btn-sm btn-primary '>Upgrade</span>";
             result_text += "<span>Cost: " +  result[i]['cost_price'] + "</span>";
             result_text += "<span>Time: " +  result[i]['upgrade_time'] + " mins</span>";
             result_text += "</div>";
@@ -95,7 +120,7 @@ No Primary Skill Selected
 
             result_text += "<div>";
             result_text += "<h3><span id = '" + result[i]['id'] + "' class='open'>" + result[i]['name'] + "</span> <span>"+ result[i]['level'] + " </span></h3>";
-            result_text += "<span id = 'skill_" + result[i]['id'] + "' class='assign button btn btn-danger '>Inject</span>";
+            result_text += "<span id = 'skill_" + result[i]['id'] + "' class='assign button btn-sm btn-warning '>Inject</span>";
             result_text += "<span>Cost: " +  result[i]['cost_price'] + "</span>";
             result_text += "<span>Time: " +  result[i]['upgrade_time'] + " mins</span>";
             result_text += "</div>";
@@ -118,8 +143,7 @@ No Primary Skill Selected
         add_open();
     }
 
-
-
+     
 
 
 
