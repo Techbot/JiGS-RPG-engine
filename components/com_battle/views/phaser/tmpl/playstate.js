@@ -26,16 +26,16 @@ playState = {
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
 
-		game.load.image('Zombie_A3', '/components/com_battle/images/assets/tiles/Zombie_A3.png');
-		game.load.image('Zombie_A4', '/components/com_battle/images/assets/tiles/Zombie_A4.png');
+        game.load.image('Zombie_A3', '/components/com_battle/images/assets/tiles/Zombie_A3.png');
+        game.load.image('Zombie_A4', '/components/com_battle/images/assets/tiles/Zombie_A4.png');
         game.load.image('Zombie_A5', '/components/com_battle/images/assets/tiles/Zombie_A5.png');
         game.load.image('033-Heaven02', '/components/com_battle/images/assets/tiles/033-Heaven02.png');
         game.load.image('032-Heaven01', '/components/com_battle/images/assets/tiles/032-Heaven01.png');
         game.load.image('035-Ruins01', '/components/com_battle/images/assets/tiles/035-Ruins01.png'); 
 
       //  game.load.image('Zombie_A4', 'assets/tiles/Zombie_A4.png');
-    	game.load.image('TileA4', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
-    	game.load.image('TileA5', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA5.png');
+        game.load.image('TileA4', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
+        game.load.image('TileA5', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA5.png');
         game.load.image('TileE', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileE.png');
 
         game.load.image('arrow', '/components/com_battle/views/phaser/tmpl/assets/frog.gif');
@@ -89,8 +89,8 @@ playState = {
         game.load.image(cacheKey('Zombie_A3', 'tileset', 'Zombie_A4'), '/components/com_battle/images/assets/tiles/Zombie_A3.png'); 
         game.load.image(cacheKey('Zombie_A4', 'tileset', 'Zombie_A4'), '/components/com_battle/images/assets/tiles/Zombie_A4.png'); 
         game.load.image(cacheKey('033-Heaven02', 'tileset', '033-Heaven02'), '/components/com_battle/assets/tiles/033-Heaven02.png'); 
-		game.load.image(cacheKey('032-Heaven01', 'tileset', '032-Heaven01'), '/components/com_battle/assets/tiles/032-Heaven01.png');
-		game.load.image(cacheKey('035-Ruins01', 'tileset', ' 035-Ruins01'), '/components/com_battle/assets/tiles/035-Ruins01.png');
+        game.load.image(cacheKey('032-Heaven01', 'tileset', '032-Heaven01'), '/components/com_battle/assets/tiles/032-Heaven01.png');
+        game.load.image(cacheKey('035-Ruins01', 'tileset', ' 035-Ruins01'), '/components/com_battle/assets/tiles/035-Ruins01.png');
 
         
         
@@ -129,7 +129,7 @@ playState = {
 
         //  game.add.text(0, 0, "this text scrolls\nwith the background", { font: "32px Arial", fill: "#f26c4f", align: "center" });
         phaser = game.add.sprite(0, 0, 'phaser');
-		//  phaser.cameraOffset.setTo(280, 250);
+        //  phaser.cameraOffset.setTo(280, 250);
 
         //  phaser.anchor.setTo(0.5, 0.5);
         // game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -148,11 +148,11 @@ playState = {
         // The first parameter is the tileset name, as specified in the Tiled map editor (and in the tilemap json file)
         // The second parameter maps this name to the Phaser.Cache key 'tiles'
         // map.addTilesetImage('obstacles', 'obstacles');
-		// map.addTilesetImage('TileA4', 'TileA4');
-		// map.addTilesetImage('TileA5', 'TileA5');
-		// map.addTilesetImage('Zombie_A4', 'Zombie_A4');
-		map.addTilesetImage('Zombie_A5', 'Zombie_A5');
-		map.addTilesetImage('TileE', 'TileE');
+        // map.addTilesetImage('TileA4', 'TileA4');
+        // map.addTilesetImage('TileA5', 'TileA5');
+        // map.addTilesetImage('Zombie_A4', 'Zombie_A4');
+        map.addTilesetImage('Zombie_A5', 'Zombie_A5');
+        map.addTilesetImage('TileE', 'TileE');
         //  Creates a layer from the World1 layer in the map data.
         //  A Layer is effectively like a Phaser.Sprite, so is added to the display list.
         layer3 = map.createLayer('ground');
@@ -189,21 +189,21 @@ playState = {
         game.physics.enable(monster1, Phaser.Physics.ARCADE);
         monster1.animations.add('upwalk',[1, 2, 3,4,5,6,7,8]);
         monster1.animations.add('leftwalk',[9, 10, 11,12,13,14,15,16]);
-		monster1.animations.add('rightwalk',[9, 10, 11,12,13,14,15,16]);
-		monster1.animations.add('downwalk',[9, 10, 11,12,13,14,15,16]);
+        monster1.animations.add('rightwalk',[9, 10, 11,12,13,14,15,16]);
+        monster1.animations.add('downwalk',[9, 10, 11,12,13,14,15,16]);
         monster1.animations.play('rightwalk', 60, true);
     //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
 ///////////////////////////////////////////
 
 //////////////////////////////////////////////
         monster3 = game.add.sprite(980, 110, 'stand');
-		game.physics.enable(monster3, Phaser.Physics.ARCADE);
-		
-		monster4 = game.add.sprite(1530, 280, 'church');
-		game.physics.enable(monster4, Phaser.Physics.ARCADE);
+        game.physics.enable(monster3, Phaser.Physics.ARCADE);
 
-		monster5 = game.add.sprite(980, 860, 'npc');
-		game.physics.enable(monster5, Phaser.Physics.ARCADE);
+        monster4 = game.add.sprite(1530, 280, 'church');
+        game.physics.enable(monster4, Phaser.Physics.ARCADE);
+
+        monster5 = game.add.sprite(980, 860, 'npc');
+        game.physics.enable(monster5, Phaser.Physics.ARCADE);
     //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
 ///////////////////////////////////////////
 
@@ -218,17 +218,17 @@ playState = {
 
 //////////////////////////////////////////////
         portal00001 = game.add.sprite(14, 628, 'portal00001');
-		game.physics.enable(portal00001, Phaser.Physics.ARCADE);
-		
-		portal00002 = game.add.sprite(1290, 1354, 'portal00002');
-		game.physics.enable(portal00002, Phaser.Physics.ARCADE);
+        game.physics.enable(portal00001, Phaser.Physics.ARCADE);
 
-		portal00003 = game.add.sprite(31, 1365, 'portal00003');
-		
-		//portal00003 = game.add.sprite(840, 400, 'portal00003');
-		
-		
-		game.physics.enable(portal00003, Phaser.Physics.ARCADE);
+        portal00002 = game.add.sprite(1290, 1354, 'portal00002');
+        game.physics.enable(portal00002, Phaser.Physics.ARCADE);
+
+        portal00003 = game.add.sprite(31, 1365, 'portal00003');
+
+        //portal00003 = game.add.sprite(840, 400, 'portal00003');
+
+
+        game.physics.enable(portal00003, Phaser.Physics.ARCADE);
     //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
 ///////////////////////////////////////////
 
@@ -250,7 +250,7 @@ playState = {
         
         this.physics.arcade.collide(sprite, portal00001,jump00002);
         this.physics.arcade.collide(sprite, portal00002,jump00003); 
-    	this.physics.arcade.collide(sprite, portal00003,jump00004);
+        this.physics.arcade.collide(sprite, portal00003,jump00004);
          
          
              
@@ -274,18 +274,18 @@ playState = {
         //sprite.rotation = game.physics.arcade.moveToPointer(sprite, 600);
         game.physics.arcade.moveToXY(sprite, x, y, 200);
 
-			if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
-			
-			sprite.body.velocity.x = 0; 
+            if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
 
-			}
-			
-			
-			if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
-			
-			sprite.body.velocity.y = 0; 
+            sprite.body.velocity.x = 0;
 
-			}
+            }
+
+
+            if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
+
+            sprite.body.velocity.y = 0;
+
+            }
 
         // phaser.body.allowRotation = false;
 
@@ -327,26 +327,26 @@ function battle() {
 }
 
 function battle1() {
-	grid = 2;
+    grid = 2;
     game.state.add('next', playState2);
     game.state.start('next');
 }
 function battle2() {
-	grid = 3;
+    grid = 3;
     game.state.add('next', playState3);
     game.state.start('next');
 }
 
 function bank() {
-	monster1.destroy(true);
-	monster2.destroy(true);
-		
-	jQuery.ajax({
-	url: "/index.php?option=com_battle&format=json&view=building&id=11059",
-	context: document.body,
-	dataType: "json"
-	}).done(function(result) {
-	
+    monster1.destroy(true);
+    monster2.destroy(true);
+
+    jQuery.ajax({
+    url: "/index.php?option=com_battle&format=json&view=building&id=11059",
+    context: document.body,
+    dataType: "json"
+    }).done(function(result) {
+
 //	mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
         document.getElementById("mainbody").innerHTML=result;
     //    document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
@@ -392,46 +392,46 @@ alert('one');
 
 
 
-			//	mything.replaces(document.id('world'));
-	});
+            //  mything.replaces(document.id('world'));
+    });
 //http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
 }
 
 //1739
 function shop() {
-	monster1.destroy(true);
-	monster2.destroy(true);
-	jQuery.ajax({
-	url: "/index.php?option=com_battle&format=json&view=building&id=1739",
-	context: document.body,
-	dataType: "json"
-	}).done(function(result) {
- 			document.getElementById("mainbody").innerHTML=result; 
- 			 //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
-				jQuery.ajax({
-					type: "GET",
-					url: "/components/com_battle/includes/building.js",
-					dataType: "script"
-					});
-			//	mything.replaces(document.id('world'));
-	});
+    monster1.destroy(true);
+    monster2.destroy(true);
+    jQuery.ajax({
+    url: "/index.php?option=com_battle&format=json&view=building&id=1739",
+    context: document.body,
+    dataType: "json"
+    }).done(function(result) {
+            document.getElementById("mainbody").innerHTML=result;
+             //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+                jQuery.ajax({
+                    type: "GET",
+                    url: "/components/com_battle/includes/building.js",
+                    dataType: "script"
+                    });
+            //	mything.replaces(document.id('world'));
+    });
 }
 function church() {
-	monster3.destroy(true);
-	monster4.destroy(true);
- 	window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
+    monster3.destroy(true);
+    monster4.destroy(true);
+    window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
 
-	
+
 }
 function npc() {
-	monster4.destroy(true);
-	monster5.destroy(true);
-		
-	jQuery.ajax({
-	url: "/index.php?option=com_battle&format=json&view=character&id=3002",
-	context: document.body,
-	dataType: "json"
-	}).done(function(result) {
+    monster4.destroy(true);
+    monster5.destroy(true);
+
+    jQuery.ajax({
+    url: "/index.php?option=com_battle&format=json&view=character&id=3002",
+    context: document.body,
+    dataType: "json"
+    }).done(function(result) {
 
 
         mything = new Element ('div',{'id':"NPC",
@@ -442,36 +442,36 @@ function npc() {
 
 
 
-//	mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});			
- 	
- 			document.getElementById("mainbody").innerHTML=$(mything).val();
-		 
- 			 //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
-		/*		jQuery.ajax({
-					type: "GET",
-					url: "/components/com_battle/includes/character.js",
-					dataType: "script"
-					});
-		*/
-			//	mything.replaces(document.id('world'));
-	});
+//  mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});
+
+            document.getElementById("mainbody").innerHTML=$(mything).val();
+
+             //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+        /*      jQuery.ajax({
+                    type: "GET",
+                    url: "/components/com_battle/includes/character.js",
+                    dataType: "script"
+                    });
+        */
+            //  mything.replaces(document.id('world'));
+    });
 //http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
 }
 
 
 function jump00002(){
-	grid = 2;
+    grid = 2;
     game.state.add('next', playState2);
     game.state.start('next');
 }
 
 function jump00003(){
-	grid = 5;
+    grid = 5;
     game.state.add('next', playState5);
     game.state.start('next');
 }
 function jump00004(){
-	grid = 4;
+    grid = 4;
     game.state.add('next', playState4);
     game.state.start('next');
 }

@@ -35,9 +35,9 @@
 	 <div style = "width:33%;float:left;">
 
 		 <ul>
-			<li>Increase Protection Premium:</li>
-			<li>Invest in Bank:</li>
-			 <li>Apply For Load:</li>
+			<li><button type="button" class="btn btn-info btn-xs">Increase Protection Premium</button></li>
+			<li><button type="button" class="btn btn-warning btn-xs">Invest in Bank</button></li>
+			 <li><button type="button" class="btn btn-success ">Apply For Loan</button></li>
 		  </ul>
 	 </div>
 	 <div style = "width:33%;float:left;">

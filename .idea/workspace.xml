@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34f4c636-5dfa-48da-bd68-0f4991ca20a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/techbot.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/models/bank.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/administrator/components/com_battle/views/person/tmpl/default.php_" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/d_ef_aul_t.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_defence.php" afterPath="" />
@@ -13,31 +13,12 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cron/battleHeartbeat/battleHeartbeat.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/stuff/Composers/joomla" afterPath="$PROJECT_DIR$/plugins/stuff/Composers/joomla" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stuff/Composers/joomla" afterPath="$PROJECT_DIR$/stuff/Composers/joomla" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/bower_components/bootstrap/Gruntfile.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/bower_components/bootstrap/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/js/app.js" afterPath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/battle.php" afterPath="$PROJECT_DIR$/components/com_battle/battle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cron/BattleHeartbeat/battleHeartbeat.php" afterPath="$PROJECT_DIR$/plugins/cron/BattleHeartbeat/battleHeartbeat.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/includes/building.js" afterPath="$PROJECT_DIR$/components/com_battle/includes/building.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/administrator/components/com_battle/views/person/tmpl/default.php" afterPath="$PROJECT_DIR$/administrator/components/com_battle/views/person/tmpl/default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/default.php" afterPath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/default.php" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php" afterPath="$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_defence_bank.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_defence_bank.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_json.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_json.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid001.json" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid001.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid004.json" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid004.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid005.json" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid005.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/index.html" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/includes/jigs.css" afterPath="$PROJECT_DIR$/components/com_battle/includes/jigs.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/administrator/components/com_battle/tables/people.php" afterPath="$PROJECT_DIR$/administrator/components/com_battle/tables/people.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate2.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate3.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/models/skills.php" afterPath="$PROJECT_DIR$/components/com_battle/models/skills.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/skills/view.html.php" afterPath="$PROJECT_DIR$/components/com_battle/views/skills/view.html.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/view.json.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/view.json.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JiGS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,13 +43,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="jigs.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/includes/jigs.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.248555" vertical-offset="35063" max-vertical-offset="37818">
+              <caret line="2056" column="29" selection-start-line="2056" selection-start-column="29" selection-end-line="2056" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="default_json.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/com_battle/views/character/tmpl/default_json.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="5004">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.0" vertical-offset="0" max-vertical-offset="5004">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding>
-                <marker date="1405862156677" expanded="false" signature="110:189" placeholder="..." />
+                <marker date="1405862156677" expanded="true" signature="110:189" placeholder="..." />
                 <marker date="1405862156677" expanded="true" signature="207:5224" placeholder="..." />
                 <marker date="1405862156677" expanded="true" signature="248:5224" placeholder="..." />
                 <marker date="1405862156677" expanded="true" signature="438:1205" placeholder="..." />
@@ -108,22 +99,150 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/single/tmpl/default.php">
+      <file leaf-file-name="default_bank.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.592592" vertical-offset="5609" max-vertical-offset="6714">
-              <caret line="378" column="7" selection-start-line="378" selection-start-column="7" selection-end-line="378" selection-end-column="7" />
+            <state vertical-scroll-proportion="-7.962963" vertical-offset="451" max-vertical-offset="1314">
+              <caret line="39" column="62" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playstate.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js">
+      <file leaf-file-name="default_farm.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_farm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6197183" vertical-offset="7732" max-vertical-offset="8712">
-              <caret line="454" column="10" selection-start-line="454" selection-start-column="10" selection-end-line="454" selection-end-column="10" />
+            <state vertical-scroll-proportion="79.55556" vertical-offset="2148" max-vertical-offset="2844">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="building.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/includes/building.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="8330" max-vertical-offset="32058">
+              <caret line="483" column="42" selection-start-line="483" selection-start-column="42" selection-end-line="483" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="battle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/battle.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.0" vertical-offset="162" max-vertical-offset="2574">
+              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+              <folding>
+                <marker date="1417973794720" expanded="true" signature="2506:2551" placeholder="Select activ..#__jigs_players..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bank.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/models/bank.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="774">
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+              <folding>
+                <marker date="1417987348479" expanded="true" signature="264:396" placeholder="SELECT #__ji..#__jigs_blueprints..." />
+                <marker date="1417987348479" expanded="true" signature="727:1093" placeholder="SELECT * , j..j17_jigs_bank_accounts..." />
+                <marker date="1417987348479" expanded="true" signature="727:1105" placeholder="SELECT * fro..j17jigs_bank_accounts..." />
+                <marker date="1417987348479" expanded="true" signature="727:1183" placeholder="SELECT * fro..j17jigs_bnk_aoccounts..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="building.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/models/building.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.0" vertical-offset="2268" max-vertical-offset="21348">
+              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="146" selection-end-column="55" />
+              <folding>
+                <marker date="1411470775227" expanded="true" signature="802:925" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="929:970" placeholder="UPDATE quant..." />
+                <marker date="1411470775227" expanded="true" signature="1387:1428" placeholder="SELECT * FRO..#__jigs_objects..." />
+                <marker date="1411470775227" expanded="true" signature="1829:1914" placeholder="SELECT quant..#__jigs_metals..." />
+                <marker date="1411470775227" expanded="true" signature="2020:2105" placeholder="SELECT quant..#__jigs_metals..." />
+                <marker date="1411470775227" expanded="true" signature="2660:2837" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="2838:2912" placeholder="UPDATE type ..." />
+                <marker date="1411470775227" expanded="true" signature="3040:3147" placeholder="UPDATE #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="3277:3384" placeholder="UPDATE #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="3970:4011" placeholder="SELECT * FRO..#__jigs_objects..." />
+                <marker date="1411470775227" expanded="true" signature="4443:4513" placeholder="SELECT id FR..#__jigs_inventory..." />
+                <marker date="1411470775227" expanded="true" signature="5248:5529" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="5530:5655" placeholder="UPDATE metal..." />
+                <marker date="1411470775227" expanded="true" signature="5724:5835" placeholder="DELETE FROM ..." />
+                <marker date="1411470775227" expanded="true" signature="6557:6650" placeholder="SELECT times..." />
+                <marker date="1411470775227" expanded="true" signature="8048:8274" placeholder="SELECT statu..#__jigs_farms..." />
+                <marker date="1411470775227" expanded="true" signature="9742:9936" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="9937:10008" placeholder="UPDATE statu..." />
+                <marker date="1411470775227" expanded="true" signature="10363:10450" placeholder="SELECT #__co..#__comprofiler..." />
+                <marker date="1411470775227" expanded="true" signature="10710:10794" placeholder="SELECT statu..#__jigs_flats..." />
+                <marker date="1411470775227" expanded="true" signature="11078:11122" placeholder="SELECT bank ..#__jigs_players..." />
+                <marker date="1411470775227" expanded="true" signature="11375:11425" placeholder="UPDATE #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="11750:11894" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="11895:11956" placeholder="UPDATE statu..." />
+                <marker date="1411470775227" expanded="true" signature="12998:13103" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="13104:13138" placeholder="UPDATE type ..." />
+                <marker date="1411470775227" expanded="true" signature="13711:13764" placeholder="SELECT times..." />
+                <marker date="1411470775227" expanded="true" signature="14316:14500" placeholder="SELECT statu..." />
+                <marker date="1411470775227" expanded="true" signature="16220:16310" placeholder="SELECT times..." />
+                <marker date="1411470775227" expanded="true" signature="17975:18019" placeholder="SELECT * FRO..#__jigs_mines..." />
+                <marker date="1411470775227" expanded="true" signature="18248:18304" placeholder="UPDATE #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="18466:18586" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="18593:18623" placeholder="UPDATE quant..." />
+                <marker date="1411470775227" expanded="true" signature="18900:19018" placeholder="INSERT INTO ..." />
+                <marker date="1411470775227" expanded="true" signature="19025:19055" placeholder="UPDATE quant..." />
+                <marker date="1411470775227" expanded="true" signature="19138:19194" placeholder="SELECT money..#__jigs_players..." />
+                <marker date="1411470775227" expanded="true" signature="19317:19368" placeholder="Update #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="19892:20033" placeholder="SELECT amoun..#__jigs_crops..." />
+                <marker date="1411470775227" expanded="true" signature="20259:20400" placeholder="SELECT total..#__jigs_farms..." />
+                <marker date="1411470775227" expanded="true" signature="20784:20829" placeholder="SELECT * FRO..#__jigs_farms..." />
+                <marker date="1411470775227" expanded="true" signature="21206:21262" placeholder="SELECT money..#__jigs_players..." />
+                <marker date="1411470775227" expanded="true" signature="21374:21425" placeholder="UPDATE #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="21487:21637" placeholder="UPDATE #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="21794:21837" placeholder="SELECT * FRO..#__jigs_flats..." />
+                <marker date="1411470775227" expanded="true" signature="23755:23860" placeholder="SELECT #__ji..#__jigs_crops..." />
+                <marker date="1411470775227" expanded="true" signature="24040:24094" placeholder="SELECT seed_..#__jigs_crop_seeds..." />
+                <marker date="1411470775227" expanded="true" signature="24232:24278" placeholder="SELECT name ..#__jigs_crop_names..." />
+                <marker date="1411470775227" expanded="true" signature="24673:24743" placeholder="SELECT #__ji..#__jigs_crops..." />
+                <marker date="1411470775227" expanded="true" signature="25056:25163" placeholder="SELECT #__ji..#__jigs_hobbits..." />
+                <marker date="1411470775227" expanded="true" signature="25346:25499" placeholder="SELECT * FRO..#__jigs_blueprints..." />
+                <marker date="1411470775227" expanded="true" signature="25663:25731" placeholder="SELECT name ..#__jigs_metal_names..." />
+                <marker date="1411470775227" expanded="true" signature="25843:25911" placeholder="SELECT name ..#__jigs_metal_names..." />
+                <marker date="1411470775227" expanded="true" signature="26069:26186" placeholder="SELECT quant..#__jigs_metals..." />
+                <marker date="1411470775227" expanded="true" signature="26299:26416" placeholder="SELECT quant..#__jigs_metals..." />
+                <marker date="1411470775227" expanded="true" signature="26579:26654" placeholder="SELECT id FR..#__jigs_inventory..." />
+                <marker date="1411470775227" expanded="true" signature="27032:27160" placeholder="SELECT id FR..#__jigs_inventory..." />
+                <marker date="1411470775227" expanded="true" signature="27473:27535" placeholder="SELECT * FRO..#__jigs_generators..." />
+                <marker date="1411470775227" expanded="true" signature="27723:27772" placeholder="SELECT messa..#__jigs_buildings..." />
+                <marker date="1411470775227" expanded="true" signature="28005:28056" placeholder="SELECT strin..#__jigs_messages..." />
+                <marker date="1411470775227" expanded="true" signature="28403:28448" placeholder="SELECT * FRO..#__jigs_batteries..." />
+                <marker date="1411470775227" expanded="true" signature="28744:28820" placeholder="Update #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="29062:29153" placeholder="Update #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="29393:29471" placeholder="Update #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="30004:30150" placeholder="Update #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="30750:30891" placeholder="Update #__ji..." />
+                <marker date="1411470775227" expanded="true" signature="31170:31279" placeholder="SELECT id FR..#__jigs_hobbits..." />
+                <marker date="1411470775227" expanded="true" signature="31982:32219" placeholder="SELECT #__ji..#__jigs_papers..." />
+                <marker date="1411470775227" expanded="true" signature="32415:32621" placeholder="SELECT #__ji..#__jigs_blueprints..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default_board_primary_bank.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="270">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -150,10 +269,13 @@
         <option value="$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php" />
         <option value="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/js/app.js" />
         <option value="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/includes/building.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" />
         <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_defence_bank.php" />
         <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js" />
+        <option value="$PROJECT_DIR$/components/com_battle/battle.php" />
+        <option value="$PROJECT_DIR$/components/com_battle/models/bank.php" />
+        <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" />
+        <option value="$PROJECT_DIR$/components/com_battle/includes/building.js" />
+        <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php" />
       </list>
     </option>
   </component>
@@ -257,119 +379,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com_battle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="single" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com_battle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="single" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com_battle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phaser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com_battle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phaser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tmpl" />
+              <option name="myItemId" value="includes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -393,6 +403,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/com_battle/models" />
       <recent name="$PROJECT_DIR$/components/com_battle/views/ember" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -460,16 +471,16 @@
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.051446944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19292605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19292605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18356457" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="720" y="180" width="500" height="802" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18356457" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="720" y="180" width="500" height="802" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15365854" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24066168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24066168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -480,6 +491,30 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1137339" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.051446944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19292605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18356457" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="720" y="180" width="500" height="802" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15365854" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24066168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1137339" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -502,39 +537,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_info_bank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1134">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/skills/view.html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="522">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/models/skills.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1098">
-          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="7938">
@@ -703,14 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/includes/jigs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="36751" max-vertical-offset="37818">
-          <caret line="2056" column="29" selection-start-line="2056" selection-start-column="29" selection-end-line="2056" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_hr.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="954">
@@ -847,36 +846,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34260616" vertical-offset="0" max-vertical-offset="683">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1314">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/tables.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25864455" vertical-offset="3665" max-vertical-offset="4500">
           <caret line="214" column="17" selection-start-line="214" selection-start-column="17" selection-end-line="214" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/includes/building.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48169014" vertical-offset="0" max-vertical-offset="32994">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -889,12 +862,123 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_farm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="79.55556" vertical-offset="2148" max-vertical-offset="2844">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/battle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0" vertical-offset="162" max-vertical-offset="2574">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <folding>
+            <marker date="1417973794720" expanded="true" signature="2506:2551" placeholder="Select activ..#__jigs_players..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/models/building.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.0" vertical-offset="2268" max-vertical-offset="21348">
+          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="146" selection-end-column="55" />
+          <folding>
+            <marker date="1411470775227" expanded="true" signature="802:925" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="929:970" placeholder="UPDATE quant..." />
+            <marker date="1411470775227" expanded="true" signature="1387:1428" placeholder="SELECT * FRO..#__jigs_objects..." />
+            <marker date="1411470775227" expanded="true" signature="1829:1914" placeholder="SELECT quant..#__jigs_metals..." />
+            <marker date="1411470775227" expanded="true" signature="2020:2105" placeholder="SELECT quant..#__jigs_metals..." />
+            <marker date="1411470775227" expanded="true" signature="2660:2837" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="2838:2912" placeholder="UPDATE type ..." />
+            <marker date="1411470775227" expanded="true" signature="3040:3147" placeholder="UPDATE #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="3277:3384" placeholder="UPDATE #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="3970:4011" placeholder="SELECT * FRO..#__jigs_objects..." />
+            <marker date="1411470775227" expanded="true" signature="4443:4513" placeholder="SELECT id FR..#__jigs_inventory..." />
+            <marker date="1411470775227" expanded="true" signature="5248:5529" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="5530:5655" placeholder="UPDATE metal..." />
+            <marker date="1411470775227" expanded="true" signature="5724:5835" placeholder="DELETE FROM ..." />
+            <marker date="1411470775227" expanded="true" signature="6557:6650" placeholder="SELECT times..." />
+            <marker date="1411470775227" expanded="true" signature="8048:8274" placeholder="SELECT statu..#__jigs_farms..." />
+            <marker date="1411470775227" expanded="true" signature="9742:9936" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="9937:10008" placeholder="UPDATE statu..." />
+            <marker date="1411470775227" expanded="true" signature="10363:10450" placeholder="SELECT #__co..#__comprofiler..." />
+            <marker date="1411470775227" expanded="true" signature="10710:10794" placeholder="SELECT statu..#__jigs_flats..." />
+            <marker date="1411470775227" expanded="true" signature="11078:11122" placeholder="SELECT bank ..#__jigs_players..." />
+            <marker date="1411470775227" expanded="true" signature="11375:11425" placeholder="UPDATE #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="11750:11894" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="11895:11956" placeholder="UPDATE statu..." />
+            <marker date="1411470775227" expanded="true" signature="12998:13103" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="13104:13138" placeholder="UPDATE type ..." />
+            <marker date="1411470775227" expanded="true" signature="13711:13764" placeholder="SELECT times..." />
+            <marker date="1411470775227" expanded="true" signature="14316:14500" placeholder="SELECT statu..." />
+            <marker date="1411470775227" expanded="true" signature="16220:16310" placeholder="SELECT times..." />
+            <marker date="1411470775227" expanded="true" signature="17975:18019" placeholder="SELECT * FRO..#__jigs_mines..." />
+            <marker date="1411470775227" expanded="true" signature="18248:18304" placeholder="UPDATE #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="18466:18586" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="18593:18623" placeholder="UPDATE quant..." />
+            <marker date="1411470775227" expanded="true" signature="18900:19018" placeholder="INSERT INTO ..." />
+            <marker date="1411470775227" expanded="true" signature="19025:19055" placeholder="UPDATE quant..." />
+            <marker date="1411470775227" expanded="true" signature="19138:19194" placeholder="SELECT money..#__jigs_players..." />
+            <marker date="1411470775227" expanded="true" signature="19317:19368" placeholder="Update #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="19892:20033" placeholder="SELECT amoun..#__jigs_crops..." />
+            <marker date="1411470775227" expanded="true" signature="20259:20400" placeholder="SELECT total..#__jigs_farms..." />
+            <marker date="1411470775227" expanded="true" signature="20784:20829" placeholder="SELECT * FRO..#__jigs_farms..." />
+            <marker date="1411470775227" expanded="true" signature="21206:21262" placeholder="SELECT money..#__jigs_players..." />
+            <marker date="1411470775227" expanded="true" signature="21374:21425" placeholder="UPDATE #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="21487:21637" placeholder="UPDATE #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="21794:21837" placeholder="SELECT * FRO..#__jigs_flats..." />
+            <marker date="1411470775227" expanded="true" signature="23755:23860" placeholder="SELECT #__ji..#__jigs_crops..." />
+            <marker date="1411470775227" expanded="true" signature="24040:24094" placeholder="SELECT seed_..#__jigs_crop_seeds..." />
+            <marker date="1411470775227" expanded="true" signature="24232:24278" placeholder="SELECT name ..#__jigs_crop_names..." />
+            <marker date="1411470775227" expanded="true" signature="24673:24743" placeholder="SELECT #__ji..#__jigs_crops..." />
+            <marker date="1411470775227" expanded="true" signature="25056:25163" placeholder="SELECT #__ji..#__jigs_hobbits..." />
+            <marker date="1411470775227" expanded="true" signature="25346:25499" placeholder="SELECT * FRO..#__jigs_blueprints..." />
+            <marker date="1411470775227" expanded="true" signature="25663:25731" placeholder="SELECT name ..#__jigs_metal_names..." />
+            <marker date="1411470775227" expanded="true" signature="25843:25911" placeholder="SELECT name ..#__jigs_metal_names..." />
+            <marker date="1411470775227" expanded="true" signature="26069:26186" placeholder="SELECT quant..#__jigs_metals..." />
+            <marker date="1411470775227" expanded="true" signature="26299:26416" placeholder="SELECT quant..#__jigs_metals..." />
+            <marker date="1411470775227" expanded="true" signature="26579:26654" placeholder="SELECT id FR..#__jigs_inventory..." />
+            <marker date="1411470775227" expanded="true" signature="27032:27160" placeholder="SELECT id FR..#__jigs_inventory..." />
+            <marker date="1411470775227" expanded="true" signature="27473:27535" placeholder="SELECT * FRO..#__jigs_generators..." />
+            <marker date="1411470775227" expanded="true" signature="27723:27772" placeholder="SELECT messa..#__jigs_buildings..." />
+            <marker date="1411470775227" expanded="true" signature="28005:28056" placeholder="SELECT strin..#__jigs_messages..." />
+            <marker date="1411470775227" expanded="true" signature="28403:28448" placeholder="SELECT * FRO..#__jigs_batteries..." />
+            <marker date="1411470775227" expanded="true" signature="28744:28820" placeholder="Update #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="29062:29153" placeholder="Update #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="29393:29471" placeholder="Update #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="30004:30150" placeholder="Update #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="30750:30891" placeholder="Update #__ji..." />
+            <marker date="1411470775227" expanded="true" signature="31170:31279" placeholder="SELECT id FR..#__jigs_hobbits..." />
+            <marker date="1411470775227" expanded="true" signature="31982:32219" placeholder="SELECT #__ji..#__jigs_papers..." />
+            <marker date="1411470775227" expanded="true" signature="32415:32621" placeholder="SELECT #__ji..#__jigs_blueprints..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.769343" vertical-offset="5880" max-vertical-offset="8712">
+          <caret line="394" column="16" selection-start-line="394" selection-start-column="16" selection-end-line="394" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/single/tmpl/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8860182" vertical-offset="5609" max-vertical-offset="6714">
+          <caret line="378" column="7" selection-start-line="378" selection-start-column="7" selection-end-line="378" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/character/tmpl/default_json.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5004">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.0" vertical-offset="0" max-vertical-offset="5004">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
           <folding>
-            <marker date="1405862156677" expanded="false" signature="110:189" placeholder="..." />
+            <marker date="1405862156677" expanded="true" signature="110:189" placeholder="..." />
             <marker date="1405862156677" expanded="true" signature="207:5224" placeholder="..." />
             <marker date="1405862156677" expanded="true" signature="248:5224" placeholder="..." />
             <marker date="1405862156677" expanded="true" signature="438:1205" placeholder="..." />
@@ -933,18 +1017,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/single/tmpl/default.php">
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.592592" vertical-offset="5609" max-vertical-offset="6714">
-          <caret line="378" column="7" selection-start-line="378" selection-start-column="7" selection-end-line="378" selection-end-column="7" />
+        <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="270">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/includes/building.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8330" max-vertical-offset="32058">
+          <caret line="483" column="42" selection-start-line="483" selection-start-column="42" selection-end-line="483" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js">
+    <entry file="file://$PROJECT_DIR$/components/com_battle/models/bank.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6197183" vertical-offset="7732" max-vertical-offset="8712">
-          <caret line="454" column="10" selection-start-line="454" selection-start-column="10" selection-end-line="454" selection-end-column="10" />
+        <state vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="774">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <marker date="1417987348479" expanded="true" signature="264:396" placeholder="SELECT #__ji..#__jigs_blueprints..." />
+            <marker date="1417987348479" expanded="true" signature="727:1093" placeholder="SELECT * , j..j17_jigs_bank_accounts..." />
+            <marker date="1417987348479" expanded="true" signature="727:1105" placeholder="SELECT * fro..j17jigs_bank_accounts..." />
+            <marker date="1417987348479" expanded="true" signature="727:1183" placeholder="SELECT * fro..j17jigs_bnk_aoccounts..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.962963" vertical-offset="451" max-vertical-offset="1314">
+          <caret line="39" column="62" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/includes/jigs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.248555" vertical-offset="35063" max-vertical-offset="37818">
+          <caret line="2056" column="29" selection-start-line="2056" selection-start-column="29" selection-end-line="2056" selection-end-column="29" />
           <folding />
         </state>
       </provider>
