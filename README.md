@@ -30,5 +30,7 @@ Plugin Archetecture
 
 
 index.php
+
+this is a test
 <html>
 </html>
