@@ -2051,36 +2051,87 @@ text-decoration:none;
 }
 
 
+
+/* Skills*/
+#master_skills_table,
+#primary_upgrade_table,
+#skills_table,
+#secondary_upgrade_table{
+/*display: flex;
+flex-wrap: wrap;
+justify-content: flex-start;*/
+}
+
 #master_skills_table div,
 #primary_upgrade_table div,
 #skills_table div,
 #secondary_upgrade_table div{
-
-    width:16%;
+cursor: pointer;
+    width:16.5%;
     float:left;
-    border: 1px solid darkred;
+    border: 1px solid #999;
     text-align: center;
-    min-height: 140px;
     background:rgba(0,0,0,0.5);
-    padding-bottom:10px;
-
+    padding-bottom:6px;
+margin-bottom: 1px;
+margin-right: 1px;
+/*flex: 0 0 auto;
+    align-self: center;
+  flex-basis: 16.5%;*/
 }
+
+#master_skills_table div:hover,
+#primary_upgrade_table div:hover,
+#skills_table div:hover,
+#secondary_upgrade_table div:hover,
+#master_skills_table div.selected,
+#primary_upgrade_table div.selected,
+#skills_table div.selected,
+#secondary_upgrade_table div.selected{
+    border: 1px solid #fff;
+    background:rgba(0,0,0,0.8);
+}
+
 
 #master_skills_table h3,
 #primary_upgrade_table h3,
 #skills_table h3,
 #secondary_upgrade_table h3{
-
     font-size: 12px;
     font-weight: 400;
+margin: 0 0 6px;
+background: #222;
+  border-bottom: 1px solid #a00808;
+  color: #999;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+padding: 3px 0;
+}
+
+#master_skills_table div:hover h3,
+#primary_upgrade_table div:hover h3,
+#skills_table div:hover h3,
+#secondary_upgrade_table div:hover h3{
+    background:rgba(0,0,0,1);
+}
+
+#master_skills_table div.selected h3,
+#primary_upgrade_table div.selected h3,
+#skills_table div.selected h3,
+#secondary_upgrade_table div.selected h3{
+    background:#a00808;
+color: #fff;
 }
 
 #master_skills_table .btn,
 #primary_upgrade_table .btn,
 #skills_table .btn,
 #secondary_upgrade_table .btn{
-    margin-bottom:10px;
+    margin-bottom:6px;
 }
+
 #master_skills_table span,
 #primary_upgrade_table span,
 #skills_table span,
@@ -2093,3 +2144,12 @@ text-decoration:none;
 #secondary_upgrade_table h3 span{
     display:inline-block;
 }
+
+#master_skills_table .button,
+#primary_upgrade_table .button,
+#skills_table .button,
+#secondary_upgrade_table .button{
+    width: 90%;
+margin: 0 auto;
+}
+
