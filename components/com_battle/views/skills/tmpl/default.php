@@ -131,6 +131,27 @@ No Primary Skill Selected
        //}, 400);
        jQuery("#master_skills_table div, #primary_upgrade_table div").on("click", function () {
 
+/* Add class "selected" to current primary skill */
+
+/*jQuery( "body" ).append( "<div class='overlay'><div class='loader'>Loading...</div></div>" );*/
+
+jQuery( document ).ready(function() {
+
+	//setTimeout(function() {
+	//      jQuery(".overlay").remove();
+	//}, 400);
+
+
+	jQuery("#master_skills_table, #primary_upgrade_table" ).on( "click", "div", function() {
+		//alert('works');
+		/* this adds class to selected div, and removes class from any other in the same section */
+		jQuery( this ).addClass("selected").siblings().removeClass();
+		/* this adds removes class from any other in the other section */
+		jQuery( this ).parent().siblings().children().removeClass();
+	});
+
+});
+
            /* this adds class to selected div,and removes class from any other in the same section */
            jQuery(this).toggleClass("selected").siblings().removeClass();
            /* this adds removes class from any other in the other section */
