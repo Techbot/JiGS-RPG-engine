@@ -483,13 +483,68 @@ function get_account_list(){
         text  = "<table id ='accountList'>";
         text += " <tr><td>Name</td><td>Sec Level</td><td>Action</span></td></tr>";
         for (var i = 0; i<result.length; i++){
-          text += "<tr><td>" + result[i].name + "</td><td>" + result[i].level
-          + "</td><td>" + "<span id= 'remove_primary' class='remove button btn btn-danger'>H</span><span id= 'assign_primary' class='assign button btn btn-success'>A</span>"
+          text += "<tr><td>" + result[i].name + "</td><td>" + result[i].bank_sec_level
+          + "</td><td><span id= '" + result[i].id + "' class='remove button btn btn-danger hack'>H</span><span id='" + result[i].id + "' class='assign button btn btn-success assist'>A</span>"
           + "</td></tr>";
        }
         text += "</table>";
         document.getElementById("account_list").innerHTML = text;
+
+        add_hack_links();
+        add_assist_links();
     });
+}
+
+function add_hack_links(){
+    jQuery( ".hack" ).click(function(){
+
+       var itemId= jQuery(this).attr('id');
+
+        jQuery.ajax({
+            url: "/index.php?option=com_battle&format=json&task=bank_action&action=hack_player_account&bank_id=" + building_id + "&playerid=" + itemId,
+            context: document.body,
+            dataType: "json"
+        }).done(function(result) {
+            var text ;
+            text  = "<table id ='accountList'>";
+            text += " <tr><td>Name</td><td>Sec Level</td><td>Action</span></td></tr>";
+            for (var i = 0; i<result.length; i++){
+                text += "<tr><td>" + result[i].name + "</td><td>" + result[i].bank_sec_level
+                + "</td><td><span id= '" + result[i].id + "' class='remove button btn btn-danger hack'>H</span><span id= '" + result[i].id + "' class='assign button btn btn-success assist'>A</span>"
+                + "</td></tr>";
+            }
+            text += "</table>";
+            document.getElementById("account_list").innerHTML = text;
+            add_hack_links();
+            add_assist_links();
+        });
+    } );
+}
+
+function add_assist_links(){
+    jQuery( ".assist" ).click(function(){
+
+        var itemId= jQuery(this).attr('id');
+
+        jQuery.ajax({
+            url: "/index.php?option=com_battle&format=json&task=bank_action&action=assist_player_account&bank_id=" + building_id + "&playerid=" + itemId,
+            context: document.body,
+            dataType: "json"
+        }).done(function(result) {
+            var text ;
+            text  = "<table id ='accountList'>";
+            text += " <tr><td>Name</td><td>Sec Level</td><td>Action</span></td></tr>";
+            for (var i = 0; i<result.length; i++){
+                text += "<tr><td>" + result[i].name + "</td><td>" + result[i].bank_sec_level
+                + "</td><td><span id= '" + result[i].id + "' class='remove button btn btn-danger hack'>H</span><span id= '" + result[i].id + "' class='assign button btn btn-success assist'>A</span>"
+                + "</td></tr>";
+            }
+            text += "</table>";
+            document.getElementById("account_list").innerHTML = text;
+            add_hack_links();
+            add_assist_links();
+        });
+    } );
 }
 
 function reprocess(){

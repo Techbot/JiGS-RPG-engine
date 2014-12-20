@@ -2,7 +2,7 @@
  * Created by techbot on 17/11/14.
  */
 
-playState3 = {
+playState[3] = {
     init: function() {
         //Called as soon as we enter this state
     },
@@ -76,17 +76,7 @@ playState3 = {
         // automagically find all the necessary items in the cache
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
 
-		grid=3;
-        //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
-        //  This could be Phaser.Tilemap.CSV too.
-		game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('obstacles', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('ground2', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('objects', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
-
-
-        // load the images for your tilesets, make sure the last param to "cacheKey" is
+		        // load the images for your tilesets, make sure the last param to "cacheKey" is
         // the name of the tileset in your map so the plugin can find it later
         game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle//images/assets/Zombie_A5.png');
         game.load.image(cacheKey('Zombie_TileD', 'tileset', 'Zombie_TileD'), '/components/com_battle//images/assets/Zombie_TileD.png');
