@@ -32,6 +32,7 @@ No Primary Skill Selected
 
 <script type='text/javascript'>
 
+
     var a = new Request.JSON(
         {
             url: "index.php?option=com_battle&format=raw&task=skills_action&action=get_available_skills&parent=1",
@@ -50,6 +51,7 @@ No Primary Skill Selected
         {
             var parent = this.get('id');
             open(parent);
+            add_highlight();
         });
     }
 
@@ -89,6 +91,7 @@ No Primary Skill Selected
         add_open();
     }
 
+
     function print_upgrades(result,parent)
     {
         var result_text = "";
@@ -118,9 +121,15 @@ No Primary Skill Selected
         }
         add_open();
     }
+    /* Add class "selected" to current primary skill */
+    /*$( "body" ).append( "<div class='overlay'><div class='loader'>Loading...</div></div>" );*/
 
-     
+   function add_highlight() {
 
+       //setTimeout(function() {
+       //      $(".overlay").remove();
+       //}, 400);
+       jQuery("#master_skills_table div, #primary_upgrade_table div").on("click", function () {
 
 /* Add class "selected" to current primary skill */
 
@@ -143,5 +152,10 @@ jQuery( document ).ready(function() {
 
 });
 
-
+           /* this adds class to selected div,and removes class from any other in the same section */
+           jQuery(this).toggleClass("selected").siblings().removeClass();
+           /* this adds removes class from any other in the other section */
+           jQuery(this).parent().siblings().children().removeClass();
+       });
+   }
 </script>

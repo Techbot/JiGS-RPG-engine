@@ -14,20 +14,13 @@ loadState = {
         //game.load.image('fire2', 'assets/particles/fire2.png');
      //   game.load.image('fire3', 'assets/particles/fire3.png');
         
-        
-        
+
         game.load.image('fighter001', 'assets/Battlers/001-Fighter01.png');
-        
-        
-        
-        
+
         game.load.image('smoke', 'assets/particles/smoke-puff.png');
-        
-        
-        
-        
+
         game.load.spritesheet('ball', 'assets/particles/plasmaball.png', 128, 128);
-   
+
    
    
    

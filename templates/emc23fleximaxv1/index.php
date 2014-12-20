@@ -64,6 +64,8 @@ else { ?>
   
 	<!--[if lte IE 6]>
 	<style type="text/css"> img { behavior: url(<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/iepngfix.htc); }</style>
+
+
 	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie_hacks.css" media="screen, projection" />
 	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/iehover.js"></script>
 	<![endif]-->	
@@ -73,11 +75,16 @@ else { ?>
 	<!--[if IE 8]>
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie_8.css" media="screen, projection" />
 	<![endif]-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 	
     <!-- Le styles -->
     <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap.css" rel="stylesheet">
-	<!--<style type="text/css">
+    <!-- Latest compiled and minified CSS -->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"-->
+
+
+    <!--<style type="text/css">
       body {
         padding-top: 68px;
         padding-bottom: 40px;

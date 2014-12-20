@@ -2,3 +2,9 @@
 .ember-application {
     margin: 20px;
 }
+
+.active{
+
+font-weight:bold;
+
+}

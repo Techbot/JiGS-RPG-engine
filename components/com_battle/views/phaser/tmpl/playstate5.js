@@ -2,7 +2,7 @@
  * Created by techbot on 17/11/14.
  */
 
-playState5 = {
+playState[5] = {
     init: function() {
         //Called as soon as we enter this state
     },
@@ -22,11 +22,11 @@ playState5 = {
 		grid=5;
         //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
         //  This could be Phaser.Tilemap.CSV too.
-		game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('obstacles', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('ground2', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('objects', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-
+		//game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+       // game.load.tilemap('obstacles', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+       // game.load.tilemap('ground2', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+     //   game.load.tilemap('objects', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
         //game.load.image('Zombie_A5', 'assets/tiles/Zombie_A5.png');
@@ -54,9 +54,9 @@ playState5 = {
         
         
             
-        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);  
-        game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1); 
-        game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/Dungeon_C.png', 32, 64, 1); 
+      //  game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);
+      //  game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1);
+     //   game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/Dungeon_C.png', 32, 64, 1);
         
     },
 
@@ -75,15 +75,8 @@ playState5 = {
         // By using the built-in cache key creator, the plugin can
         // automagically find all the necessary items in the cache
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-
-		grid=3;
-        //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
-        //  This could be Phaser.Tilemap.CSV too.
-		game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('obstacles', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('ground2', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('objects', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
+        // load the tiled map, notice it is "tiledmap" and not "tilemap"
+        game.load.tiledmap(cacheKey('world5', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
 
         // load the images for your tilesets, make sure the last param to "cacheKey" is
@@ -100,9 +93,9 @@ playState5 = {
        
              
         
-        game.load.image(cacheKey('portal00001', 'tileset', 'portal00001'), '/components/com_battle/images/assets/tiles/Dungeon_A1.png');
-        game.load.image(cacheKey('portal00002', 'tileset', 'portal00002'), '/components/com_battle/images/assets/tiles/Dungeon_B.png');
-        game.load.image(cacheKey('portal00003', 'tileset', 'portal00003'), '/components/com_battle/images/assets/tiles/Dungeon_C.png');   
+      //  game.load.image(cacheKey('portal00001', 'tileset', 'portal00001'), '/components/com_battle/images/assets/tiles/Dungeon_A1.png');
+     //   game.load.image(cacheKey('portal00002', 'tileset', 'portal00002'), '/components/com_battle/images/assets/tiles/Dungeon_B.png');
+    //    game.load.image(cacheKey('portal00003', 'tileset', 'portal00003'), '/components/com_battle/images/assets/tiles/Dungeon_C.png');
         
         
         
@@ -113,7 +106,7 @@ playState5 = {
 
         // if you have image layers, be sure to load those too! Again,
         // make sure the last param is the name of your layer in the map.
-        game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
+      //  game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
 
         ////////////
         // Later after loading is complete:
@@ -153,10 +146,7 @@ playState5 = {
         phaser.body.collideWorldBounds = true;
 
         //  The 'mario' key here is the Loader key given in game.load.tilemap
-        map = game.add.tilemap('ground');
-        
-     
-
+        //map = game.add.tilemap('ground');
 
         //  Creates a layer from the World1 layer in the map data.
         //  A Layer is effectively like a Phaser.Sprite, so is added to the display list.
@@ -169,30 +159,16 @@ playState5 = {
         //  The second parameter maps this name to the Phaser.Cache key 'tiles'
         //map.addTilesetImage('obstacles', 'obstacles');
   //    map.addTilesetImage('TileA4', 'TileA4');
-      map.addTilesetImage('TileA5', 'TileA5');
+   //   map.addTilesetImage('TileA5', 'TileA5');
   //    map.addTilesetImage('TileB', 'TileB');       
     //   map.addTilesetImage('Zombie_TileC', 'Zombie_TileC');
     //   map.addTilesetImage('Zombie_TileD', 'Zombie_TileD');
        
-        map.addTilesetImage('TileE', 'TileE');
+   //     map.addTilesetImage('TileE', 'TileE');
         
         
     //     map.addTilesetImage('TileB', 'TileB');
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         //  This resizes the game world to match the layer dimensions
         //   layer.resizeWorld();
 
@@ -237,18 +213,18 @@ playState5 = {
 
 
 //////////////////////////////////////////////
-        portal00001 = game.add.sprite(2110, 256, 'portal00001');
-		game.physics.enable(portal00001, Phaser.Physics.ARCADE);
+      //  portal00001 = game.add.sprite(2110, 256, 'portal00001');
+	//	game.physics.enable(portal00001, Phaser.Physics.ARCADE);
 		
-		portal00002 = game.add.sprite(1396, 128, 'portal00002');
-		game.physics.enable(portal00002, Phaser.Physics.ARCADE);
+	//	portal00002 = game.add.sprite(1396, 128, 'portal00002');
+	//	game.physics.enable(portal00002, Phaser.Physics.ARCADE);
 
 		//portal00003 = game.add.sprite(31, 1365, 'portal00003');
 		
-		portal00003 = game.add.sprite(140, 200, 'portal00003');
+	//	portal00003 = game.add.sprite(140, 200, 'portal00003');
 		
 		
-		game.physics.enable(portal00003, Phaser.Physics.ARCADE);
+	//	game.physics.enable(portal00003, Phaser.Physics.ARCADE);
     //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
 ///////////////////////////////////////////
 

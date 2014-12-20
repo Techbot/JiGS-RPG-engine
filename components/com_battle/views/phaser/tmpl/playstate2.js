@@ -2,7 +2,7 @@
  * Created by techbot on 17/11/14.
  */
 
-playState2 = {
+playState[2] = {
     init: function() {
         //Called as soon as we enter this state
     },
@@ -16,7 +16,7 @@ playState2 = {
         //  The second is a URL to the JSON file the map data is stored in. This is actually optional, you can pass the JSON object as the 3rd
         //  parameter if you already have it loaded (maybe via a 3rd party source or pre-generated). In which case pass 'null' as the URL and
         //  the JSON object as the 3rd parameter.
-		grid=2;
+		var grid=2;
         //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
         //  This could be Phaser.Tilemap.CSV too.
 		game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
@@ -51,22 +51,18 @@ playState2 = {
 
     create: function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
-
         game.add.plugin(Phaser.Plugin.Tiled);
-
         //  Modify the world and camera bounds
         game.world.setBounds(-1000, -1000, 3200, 3200);
-
         game.stage.backgroundColor = '#787878';
 
         game.input.onDown.add(moveBall, this);
-
         // By using the built-in cache key creator, the plugin can
         // automagically find all the necessary items in the cache
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-
         // load the tiled map, notice it is "tiledmap" and not "tilemap"
-        game.load.tiledmap(cacheKey('obstacles', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+
 
 
         // load the images for your tilesets, make sure the last param to "cacheKey" is
@@ -262,3 +258,160 @@ playState2 = {
 // game.debug.cameraInfo(game.camera, 96, 64);
     }
 };
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function battle() {
+    game.state.add('next', loadState);
+    game.state.start('next');
+}
+
+function battle1() {
+    grid = 7;
+    game.state.add('next', playState7);
+    game.state.start('next');
+}
+function battle2() {
+    grid = 8;
+    game.state.add('next', playState8);
+    game.state.start('next');
+}
+
+function bank() {
+    monster1.destroy(true);
+    monster2.destroy(true);
+
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=building&id=11059",
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+
+//	mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});
+        document.getElementById("mainbody").innerHTML=result;
+        //    document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+
+
+        /*
+
+         jQuery.ajax({
+         type: "GET",
+         url: "/components/com_battle/includes/building.js",
+         dataType: "script",
+         success: success
+         });
+
+         */
+
+        var url = "/components/com_battle/includes/building.js";
+        jQuery.getScript( url, function() {
+            alert ('hi');
+
+            success2();
+
+        });
+
+
+
+        function success(){
+            alert('one');
+
+
+        }
+
+
+        //  mything.replaces(document.id('world'));
+    });
+//http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
+}
+
+//1739
+function shop() {
+    monster1.destroy(true);
+    monster2.destroy(true);
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=building&id=1739",
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        document.getElementById("mainbody").innerHTML=result;
+        //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+        jQuery.ajax({
+            type: "GET",
+            url: "/components/com_battle/includes/building.js",
+            dataType: "script"
+        });
+        //	mything.replaces(document.id('world'));
+    });
+}
+function church() {
+    monster3.destroy(true);
+    monster4.destroy(true);
+    window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
+
+
+}
+function npc() {
+    monster4.destroy(true);
+    monster5.destroy(true);
+
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=character&id=3002",
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+
+
+        mything = new Element ('div',{'id':"NPC",
+            html:result,
+            'style':'border 1px solid #F00; '});
+
+
+
+
+
+//  mything = new Element ('div',{'id':"building",html:result,'style':'border 1px solid #F00; '});
+
+        document.getElementById("mainbody").innerHTML=$(mything).val();
+
+        //   document.getElementById('loadarea_0').src= '/components/com_battle/includes/building.js';
+        /*      jQuery.ajax({
+         type: "GET",
+         url: "/components/com_battle/includes/character.js",
+         dataType: "script"
+         });
+         */
+        //  mything.replaces(document.id('world'));
+    });
+//http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
+}
+
+
+function jump00002(){
+    grid = 2;
+    console.log("grid : " + grid);
+    game.state.add('next', playState2);
+    game.state.start('next');
+}
+
+function jump00003(){
+    grid = 3;
+    console.log("grid : " + grid);
+    game.state.add('next', playState3);
+    game.state.start('next');
+}
+function jump00004(){
+    grid = 4;
+    console.log("grid : " + grid);
+    game.state.add('next', playState4);
+    game.state.start('next');
+}
+
