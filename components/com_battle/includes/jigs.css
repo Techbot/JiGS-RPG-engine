@@ -1860,8 +1860,36 @@ display:block;
   /*padding: 4px 5px !important;*/
 }
 
+.table-striped > thead > tr > td,
+.table-striped > thead > tr > th,
+.table-striped > tfoot > tr > td,
+.table-striped > tfoot > tr > th  {
+  background-color: #333333 !important;
+}
+
+.table-striped > tbody > tr > td,
+.table-striped > tbody > tr > th {
+  background-color: #080808 !important;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td,
+.table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #131313 !important;
+}
 
 
+
+
+/* Accounts */
+.description,
+.dataTables_wrapper {
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+}
+
+.dataTables_wrapper label {
+  color: white;
+}
 
 
 
