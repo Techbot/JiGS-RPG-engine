@@ -174,8 +174,8 @@ div#mine_progress {
 	z-index:222;
 	width:636px;
 }
-	
-	
+
+
 div#mine_board p,
 div#mine_progress p {
 	margin:0;
@@ -242,15 +242,15 @@ div#crystals_board div.remove a:hover {
 	clear:both;
 }
 .clearfix:after {
-	content: "."; 
-	display: block; 
-	height: 0; 
-	clear: both; 
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
 	visibility: hidden;
 }
 .clearfix {
-	min-width: 0; 
-	display: inline-block; /* \*/	
+	min-width: 0;
+	display: inline-block; /* \*/
 	display: block;
 }
 body {
@@ -352,10 +352,10 @@ div.building_left {
 	width:60%;
 	min-height: 373px;
 	float:left;
-	
+
 }
 div.building_left div.name {
-	min-height:49px;	
+	min-height:49px;
 }
 div.building_right {
 	width:40%;
@@ -466,7 +466,7 @@ div#profile+div#inventory {
 }
 div#inventory div.object {
 display:block;
-float:left; 
+float:left;
 background:rgba(0,0,0,0.7);
 border:#222 dotted 1px;
 margin:2px 2px 0 0;
@@ -555,7 +555,7 @@ a.buy, a.sell, a.attack, a.recruit, a.kick, a.punch, a.shoot, a.bribe, a.rob, a.
 	color:#FFF;
 	text-decoration:none;
 }
-a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover, div.buy_battery a:hover, div.sell_battery a:hover {	
+a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punch:hover, a.shoot:hover, a.bribe:hover, a.rob:hover, a.talk:hover, div.buy_battery a:hover, div.sell_battery a:hover {
 	color:#CCC;
 	text-decoration:none;
 }
@@ -639,7 +639,7 @@ div#health {
 }
 div#diner_noob.sample .buttons{padding:0;background:#333;}
 div#diner_noob.sample .buttons span{color:#666;border:0px solid #3F3F3F;padding:0 10px;cursor:pointer;font:80%;text-transform:uppercase}
-div#diner_noob.sample .buttons span.active, 
+div#diner_noob.sample .buttons span.active,
 div#diner_noob.sample .buttons span:hover{background:none;color:#fff}
 /* /23\ ################ CONVEYOR ############*/
 label {
@@ -673,7 +673,7 @@ form.conveyor select#blueprints {
 
 
 form.conveyor .object{
-	text-align:left; 
+	text-align:left;
 	display:inline-block;
 	width:38%;
 	float:left;
@@ -683,7 +683,7 @@ form.conveyor .object{
 	height:80px;
 }
 form.conveyor .metal {
-	text-align:left; 
+	text-align:left;
 	display:inline-block;
 	width:56%;
 	float:right;
@@ -697,7 +697,7 @@ display:none;
 }
 
 form.conveyor .object2{
-	text-align:left; 
+	text-align:left;
 	display:inline-block;
 	width:260px;
 	float:left;
@@ -707,7 +707,7 @@ form.conveyor .object2{
 	height:72px;
 }
 form.conveyor .metal2 {
-	text-align:left; 
+	text-align:left;
 	display:inline-block;
 	width:300px;
 	float:right;
@@ -727,7 +727,7 @@ form.conveyor .metal2 {
 width:50%;
 padding:0 10px;
 float:left;
--moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
+-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 .generator ul li,
 .batteries_inv ul li {
@@ -752,16 +752,16 @@ float:left;
 
 
 div#time_elapsed{
-	text-align:center; 
+	text-align:center;
 	display:inline-block;
 	width:50%;
 	float:left;
 	padding:0;
 	color:#FFF;border:1px solid #333;background:rgba(26,130,26,1);
 }
-	
+
 div#time_remaining{
-	text-align:center; 
+	text-align:center;
 	display:inline-block;
 	width:50%;
 	float:right;
@@ -777,7 +777,7 @@ color:#fff;
 #box4 ul {
 	list-style-type: disc;
 }
-div#sell_crops  {	
+div#sell_crops  {
 	width:200px;
 	background:rgba(160,8,8,1);
 	padding:3px 10px;
@@ -883,7 +883,7 @@ div#eat_burger {
 	width:40px;
 	background:url(../images/buildings/board_sprites.png) -80px 0 no-repeat #000;
 }
-.board_buttons #defence:hover, 
+.board_buttons #defence:hover,
 .board_buttons #defence.active {
 	background:url(../images/buildings/board_sprites.png) -80px -40px no-repeat #000;
 }
@@ -968,20 +968,20 @@ background:rgba(26,130,26,1);
 }
 
 /*
- #demo { 
-  background:#fa0000; 
-  color:#fff; 
-  padding:0px; 
+ #demo {
+  background:#fa0000;
+  color:#fff;
+  padding:0px;
   border:1px solid #000;
   width:37px;
   height:37px;
 position:absolute;
 z-index:1;
 }
-.character { 
-  background:#fa0000; 
-  color:#fff; 
-  padding:0px; 
+.character {
+  background:#fa0000;
+  color:#fff;
+  padding:0px;
   border:1px solid #000;
   width:48px;
   height:48px;
@@ -989,10 +989,10 @@ position:absolute;
 z-index:888;
 }
 
-.character a { 
+.character a {
 display:block;
 }
-.character a img.npc { 
+.character a img.npc {
 display:block;
 }
 
@@ -1098,7 +1098,7 @@ to {background: transparent;color:#ccc;}
 {
 from {background:#009999;color:#fff;}
 to {background: transparent;color:#ccc;}
-} 
+}
 
 
 
@@ -1171,30 +1171,30 @@ border: 1px solid #333333;
 /* Single Map view */
 
 
-#demo { 
-background-color:#fa0000; 
-color:#fff; 
-padding:0px; 
+#demo {
+background-color:#fa0000;
+color:#fff;
+padding:0px;
 border:1px solid #000;
 width:48px;
 height:48px;
 position:absolute;
 z-index:999;
 }
-.character { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
+.character {
+background:#fa0000;
+color:#fff;
+padding:0px;
 border:1px solid #000;
 width:48px;
 height:48px;
 position:absolute;
 z-index:111;
 }
-.players { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
+.players {
+background:#fa0000;
+color:#fff;
+padding:0px;
 border:1px solid #000;
 width:48px;
 height:48px;
@@ -1209,19 +1209,19 @@ z-index:111;
 
 
 
-.buildings_class { 
-color:#fff; 
-padding:0px; 
+.buildings_class {
+color:#fff;
+padding:0px;
 border:0px solid #000;
 width:37px;
 height:37px;
 position:absolute;
 z-index:999;
 }
-.pages_class { 
-background:#fa0000; 
-color:#fff; 
-padding:0px; 
+.pages_class {
+background:#fa0000;
+color:#fff;
+padding:0px;
 border:1px solid #000;
 width:37px;
 height:37px;
@@ -1265,7 +1265,7 @@ a.left:hover{background-image:url(/components/com_battle/views/single/tmpl/left-
 
 
 #world{
-margin: 0 auto; 
+margin: 0 auto;
 text-align:center;
 position:relative;
 width: 100%;
@@ -1280,24 +1280,24 @@ width: 100%;
 	width:108px;
 	height:108px;
 	}
-	
+
 	.compass a{
 	background-size:contain;
 	}
-		
+
 	a.up{width:108px;height:36px;}
 	a.left,
 	a.mid,
 	a.right{width:36px;height:36px;}
 	a.down{width:108px;height:36px;}
-	
+
 }
 
 
 #screen_grid{
 width:400px;
 height:400px;
-margin: 0 auto; 
+margin: 0 auto;
 text-align:center;
 background:#000;
 position:relative;
@@ -1305,7 +1305,7 @@ position:relative;
 
 #demo{
  background-size:cover;
- background-position:50% 50%;background-size:cover; 
+ background-position:50% 50%;background-size:cover;
 }
 
 
@@ -1319,18 +1319,18 @@ position:relative;
  background-size:cover;
  background-position:50% 50%;
  }
- 
- 
+
+
 .squares{
-	display:inline; 
-	position:absolute; 
-	width:50px; 
-	height:50px; 
+	display:inline;
+	position:absolute;
+	width:50px;
+	height:50px;
 	padding:5px;
 	margin:0px;
 	text-align:center;
 }
- 
+
 
 
 
@@ -1356,9 +1356,9 @@ color: #4B4B4B;
 
 	/* Form */
 
-	
-	
-	
+
+
+
 button {
 text-align: center;
 font-size: 85%;
@@ -1369,7 +1369,7 @@ color: #009999;
 border: 1px #009999 solid;
 }
 
-button:hover, 
+button:hover,
 button:focus {
 border: 1px solid #999999;
 background: #333333;
@@ -1388,7 +1388,7 @@ background:#101010;
 color: #999999;
 }
 
-input:hover, 
+input:hover,
 input:focus {
 border:1px solid #666;
 }
@@ -1495,19 +1495,19 @@ display:block;
 
 1.  Define the total number of images to use in the slider
     5
-	
+
 2.  Define the length of -moz-animation for each image
     5 seconds
-	
+
 3.  Define the total duration of the -moz-animation
     Multiply the total number of images by the duration of each image:
     5 images � 5 seconds = 25 seconds
-	
+
 4.  Calculate how many keyframes equals one second
     Divide the total number of keyframes by the total duration of the -moz-animation.
     100 keyframes / 25 seconds = 4 keyframes
     4 keyframes = 1 second
-	
+
 */
 
 #slider li.firstanimation {
@@ -1676,7 +1676,7 @@ display:block;
 
    /* In these keyframes, the progress-bar will disappear and then resume the cycle */
    18%, 38%, 58%, 78%, 98% { width: 100%; opacity: 0; }
-}   
+}
 
 
 #slider .tooltip {
@@ -1792,7 +1792,7 @@ display:block;
 
 	#slider .tooltip h3 {
 	  font-size: 1.3em;
-	  
+
 	}
 
 
@@ -1805,14 +1805,14 @@ display:block;
 		width:100%;
 		min-height: 373px;
 		float:none;
-		
+
 	}
 	div.building_right {
 		width:100%;
 		min-height: 373px;
 		float:none;
 	}
-		
+
 	.stand_left,
 	.stand_right{float:none;width:100%;clear:both;}
 
@@ -1844,7 +1844,7 @@ display:block;
 
 	#slider .tooltip h3 {
 	  font-size: 1em;
-	  
+
 	}
 
 
@@ -1857,7 +1857,7 @@ display:block;
 
 #building .btn {
   font-size: 11px !important;
-  padding: 4px 5px !important;
+  /*padding: 4px 5px !important;*/
 }
 
 
@@ -1888,7 +1888,7 @@ display:block;
 	  float:left;
 	  width:50%;
 	}
-	
+
 	#NPC .npc_char,
 	#PLAYERS .npc_char {
 	  font-size: 8pt;
@@ -1896,9 +1896,9 @@ display:block;
 	  padding: 0 10px 10px 5px;
 	  text-align: left;
 	  float:left;
-	  width:50%;	
+	  width:50%;
 	  }
-	
+
 	#NPC .npc_history,
 	#PLAYERS .npc_history {
 	  font-size: 8pt;
@@ -1918,18 +1918,18 @@ display:block;
 		width:70%;
 		float:left;
 	}
-	
+
 	#NPC .dl-horizontal.char dt,
 	#PLAYERS .dl-horizontal.char dt {
 	  width: 80px;
 	}
-	
+
 	#NPC .dl-horizontal.char dd,
 	#PLAYERS .dl-horizontal.char dd {
 	  margin-left: 90px;
 	  text-align:left;
 	}
-	
+
 	#NPC .desc figure,
 	#PLAYERS .desc figure {
 		float:left;
@@ -1945,7 +1945,7 @@ display:block;
 	  width: 70%;
 	  margin:0;
 	}
-	
+
 	#NPC img.thumbnail,
 	#PLAYERS img.thumbnail {
 	  border: 3px solid #333333;
@@ -1958,7 +1958,7 @@ display:block;
 	  float: left;
 	  width: 100%;
 	}
-	
+
 	#NPC .desc h4,
 	#PLAYERS .desc h4 {
 	  background:#222;
@@ -1984,13 +1984,13 @@ display:block;
 	  padding: 3px 10px;
 	  float:none;
 	}
-	
+
 	#NPC div.vital,
 	#PLAYERS div.vital {
 		float:left;
 		width:25%;
 	}
-	
+
 	#NPC div.vitals,
 	#PLAYERS div.vitals {
 	  float: none;
@@ -1998,14 +1998,14 @@ display:block;
 	  width: 100%;
 	  padding:0 10px;
 	}
-	
+
 	#NPC #action,
 	#PLAYERS #action {
 		display:block;
 		margin:0 auto;
 		text-align:center;
 	}
-	
+
 	#NPC .npc_bio ul,
 	#PLAYERS .npc_bio ul {
 		list-style: square outside none;
@@ -2228,5 +2228,3 @@ margin: 0 auto;
     height: 5em;
   }
 }
-
-
