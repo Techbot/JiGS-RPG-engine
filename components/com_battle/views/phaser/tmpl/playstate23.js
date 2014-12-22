@@ -40,7 +40,7 @@ playState[23] = {
 
         game.input.onDown.add(moveBall, this);
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/images/assets/Zombie_A5.png');
         game.load.image(cacheKey('Zombie_TileD', 'tileset', 'Zombie_TileD'), '/components/com_battle/images/assets/Zombie_TileD.png');
         game.load.image(cacheKey('Zombie_TileC', 'tileset', 'Zombie_TileC'), '/components/com_battle/images/assets/Zombie_TileC.png');

@@ -15,7 +15,7 @@ playState[10] = {
         //game.load.image('Zombie_TileC', '/components/com_battle/images/assets/tiles/Zombie_TileC.png');
         //game.load.image('Zombie_TileD', '/components/com_battle/images/assets/tiles/Zombie_TileD.png');
         //game.load.image('TileA4', '/components/com_battle/images/assets/tiles/TileA4.png');
-        //game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
+        game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
         //game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileE.png');
         //game.load.image('TileB', '/components/com_battle/images/assets/tiles/TileB.png');
         game.load.image('B-E_HF1R_Dungeon_1', '/components/com_battle/images/assets/tiles/B-E_HF1R_Dungeon_1.png');
@@ -34,7 +34,7 @@ playState[10] = {
         game.stage.backgroundColor = '#787878';
         game.input.onDown.add(moveBall, this);
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
         game.load.image(cacheKey('Southern-Symbols', 'tileset', 'Southern-Symbols'), '/components/com_battle/images/assets/cutnpaste/Southern-Symbols.png');
         //game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/images/assets/Zombie_A5.png');
@@ -42,7 +42,7 @@ playState[10] = {
         game.load.image(cacheKey('portal00001', 'tileset', 'portal00001'), '/components/com_battle/images/assets/tiles/Dungeon_A1.png');
         game.load.image(cacheKey('portal00002', 'tileset', 'portal00002'), '/components/com_battle/images/assets/tiles/Dungeon_B.png');
         game.load.image(cacheKey('portal00003', 'tileset', 'portal00003'), '/components/com_battle/images/assets/tiles/Dungeon_C.png');   
-        // game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/TileA5.png');
+        game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/TileA5.png');
         game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
         cursors = game.input.keyboard.createCursorKeys();
         game.input.onDown.add(moveBall, this);
@@ -53,7 +53,7 @@ playState[10] = {
         layer4  = map.createLayer('ground2');
         layer2  = map.createLayer('objects');
 
-        // map.addTilesetImage('TileA5', 'TileA5');
+        map.addTilesetImage('TileA5', 'TileA5');
         // map.addTilesetImage('TileE', 'TileE');
         map.addTilesetImage('Southern-Symbols', 'Southern-Symbols');
         map.addTilesetImage('B-E_HF1R_Dungeon_1', 'B-E_HF1R_Dungeon_1');

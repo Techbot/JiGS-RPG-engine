@@ -18,7 +18,7 @@ playState[18] = {
         game.stage.backgroundColor = '#787878';
         game.input.onDown.add(moveBall, this);
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image(cacheKey('TileE', 'tileset', 'TileE'), '/components/com_battle/images/assets/TileE.png');
         game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/TileA5.png');
         game.load.image(cacheKey('arrow','image','arrow'),  '/components/com_battle/views/phaser/tmpl/assets/frog.gif');

@@ -31,7 +31,7 @@ playState[8] = {
         // automagically find all the necessary items in the cache
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
 
-        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), '/components/com_battle/images/assets/TileA4.png');
         game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/TileA5.png');
         game.load.image(cacheKey('TileC', 'tileset', 'TileC'), '/components/com_battle/images/assets/TileC.png');

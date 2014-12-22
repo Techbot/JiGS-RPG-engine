@@ -52,7 +52,7 @@ playState[12] = {
         // automagically find all the necessary items in the cache
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
         // load the tiled map, notice it is "tiledmap" and not "tilemap"
-        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
 
         // load the images for your tilesets, make sure the last param to "cacheKey" is
@@ -165,7 +165,7 @@ playState[12] = {
         //this.physics.arcade.collide(sprite, monster1,bank);
         //this.physics.arcade.collide(monster2, layer);
 
-        game.physics.arcade.moveToXY(sprite, x, y, 200);
+        game.physics.arcade.moveToXY(sprite, x, y, 100);
 
         if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
             sprite.body.velocity.x = 0;

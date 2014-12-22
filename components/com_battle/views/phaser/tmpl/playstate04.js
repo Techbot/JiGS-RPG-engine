@@ -52,7 +52,7 @@ playState[4] = {
         // By using the built-in cache key creator, the plugin can
         // automagically find all the necessary items in the cache
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-
+        game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
         // load the images for your tilesets, make sure the last param to "cacheKey" is
         // the name of the tileset in your map so the plugin can find it later

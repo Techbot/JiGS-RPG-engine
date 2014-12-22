@@ -11,11 +11,6 @@ playState[5] = {
         var grid = paddy(5,3);
         game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
-
-        //game.load.image('Zombie_TileC', '/components/com_battle/images/assets/tiles/Zombie_TileC.png');
-        //game.load.image('Zombie_TileD', '/components/com_battle/images/assets/tiles/Zombie_TileD.png');
-        
-        //game.load.image('TileA4', '/components/com_battle/images/assets/tiles/TileA4.png');
         game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
         game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileE.png');
         //game.load.image('TileB', '/components/com_battle/images/assets/tiles/TileB.png');
@@ -40,7 +35,7 @@ playState[5] = {
         game.input.onDown.add(moveBall, this);
 
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-        game.load.tiledmap(cacheKey('world5', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world5', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
         //game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/images/assets/Zombie_A5.png');
 

@@ -20,10 +20,7 @@ playState[14] = {
         game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileE.png');
         //game.load.image('TileB', '/components/com_battle/images/assets/tiles/TileB.png');
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
-        //game.load.image('mushroom', '/components/com_battle/images/assets/sprites/mushroom2.png');
-        //game.load.image('sonic', '/components/com_battle/images/assets/sprites/sonic_havok_sanity.png');
-        //game.load.image('phaser', '/components/com_battle/images/assets/sprites/phaser1.png');
-        //game.load.spritesheet('ms', '/components/com_battle/images/assets/sprites/metalslug_mummy37x45.png', 37, 45, 18);
+
         
         //game.load.spritesheet('monster', '/components/com_battle/images/assets/Monsters/Beast of Burden/Monster_BeastofBurden_FullFrame.png', 185, 165, 8);
 
@@ -46,7 +43,7 @@ playState[14] = {
         game.input.onDown.add(moveBall, this);
 
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
-        game.load.tiledmap(cacheKey('world5', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tiledmap(cacheKey('world5', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
         //game.load.image(cacheKey('Zombie_A5', 'tileset', 'Zombie_A5'), '/components/com_battle/images/assets/Zombie_A5.png');
 
