@@ -95,11 +95,11 @@ playState[4] = {
         map.addTilesetImage('Zombie_A5', 'Zombie_A5');
         map.addTilesetImage('TileE', 'TileE');
 
-        map.addTilesetImage('032-Heaven01', '032-Heaven01')
-        map.addTilesetImage('033-Heaven02', '033-Heaven02')
-        map.addTilesetImage('035-Ruins01','035-Ruins01');
+        //map.addTilesetImage('032-Heaven01', '032-Heaven01')
+        //map.addTilesetImage('033-Heaven02', '033-Heaven02')
+        //map.addTilesetImage('035-Ruins01','035-Ruins01');
 
-        map.addTilesetImage('001-Grassland01', '001-Grassland01');
+        //map.addTilesetImage('001-Grassland01', '001-Grassland01');
 
         map.setCollisionBetween(0, 10000,true,'obstacles');
 
@@ -120,7 +120,7 @@ playState[4] = {
         game.physics.enable(portal[1], Phaser.Physics.ARCADE);
         portal[1]['dest']=8;
 
-        portal[2] = game.add.sprite(1290, 1354, 'portal00002');
+        portal[2] = game.add.sprite(1623, 610, 'portal00002');
         game.physics.enable(portal[2], Phaser.Physics.ARCADE);
         portal[2]['dest']=9;
 

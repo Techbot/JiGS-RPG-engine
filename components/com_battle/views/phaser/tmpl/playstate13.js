@@ -2,24 +2,14 @@
  * Created by techbot on 17/11/14.
  */
 
-playState[4] = {
+playState[13] = {
     init: function() {
         //Called as soon as we enter this state
     },
 
     preload: function() {
         //  Tilemaps are split into two parts: The actual map data (usually stored in a CSV or JSON file)
-        //  and the tileset/s used to render the map.
-
-        //  Here we'll load the tilemap data. The first parameter is a unique key for the map data.
-
-        //  The second is a URL to the JSON file the map data is stored in. This is actually optional, you can pass the JSON object as the 3rd
-        //  parameter if you already have it loaded (maybe via a 3rd party source or pre-generated). In which case pass 'null' as the URL and
-        //  the JSON object as the 3rd parameter.
-
-        //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
-        //  This could be Phaser.Tilemap.CSV too.
-		grid=4;
+        var grid = paddy(13,3);
         //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
         //  This could be Phaser.Tilemap.CSV too.
 		//game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
@@ -41,11 +31,7 @@ playState[4] = {
     //    game.load.image('TileB', '/components/com_battle/images/assets/tiles/TileB.png');
         game.load.image('001-Grassland01', '/components/com_battle/images/assets/tiles/001-Grassland01.png');
         
-       
-        
-        
-        
-        
+
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
    //     game.load.image('mushroom', '/components/com_battle/images/assets/sprites/mushroom2.png');
    //     game.load.image('sonic', '/components/com_battle/images/assets//sprites/sonic_havok_sanity.png');
@@ -106,34 +92,7 @@ playState[4] = {
         // make sure the last param is the name of your layer in the map.
         game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
 
-        ////////////
-        // Later after loading is complete:
 
-        // add the tiledmap to the game
-        // this method takes the key for the tiledmap which has been used in the cacheKey calls
-        // earlier, and an optional group to add the tilemap to (defaults to game.world).
-        //var map = game.add.tiledmap('obstacles');
-
-        for (var i = 0; i < 200; i++)
-        {
-            //      game.add.sprite(game.world.randomX, game.world.randomY, 'mushroom');
-        }
-
-        //  game.add.text(0, 0, "this text scrolls\nwith the background", { font: "32px Arial", fill: "#f26c4f", align: "center" });
-
-        //phaser = game.add.sprite(0, 0, 'phaser');
-
-        //  phaser.cameraOffset.setTo(280, 250);
-
-        //  phaser.anchor.setTo(0.5, 0.5);
-
-        // game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        // var t = game.add.text(0, 0, "this text is fixed to the camera", { font: "32px Arial", fill: "#ffffff", align: "center" });
-        // t.fixedToCamera = true;
-        // t.cameraOffset.setTo(200, 500);
-
-        // game.add.tween(logo2.cameraOffset).to( { y: 400 }, 2000, Phaser.Easing.Back.InOut, true, 0, 2000, true);
 
         cursors = game.input.keyboard.createCursorKeys();
         game.input.onDown.add(moveBall, this);
@@ -168,25 +127,6 @@ playState[4] = {
    //     map.addTilesetImage('TileE', 'TileE');
         map.addTilesetImage('001-Grassland01', '001-Grassland01');       
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //  This resizes the game world to match the layer dimensions
-        //   layer.resizeWorld();
-
-
         map.setCollisionBetween(0, 10000,true,'obstacles');
         // paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'Main_MP1_Cuthbert_FullFrame.png');
         sprite = game.add.sprite(370, 300, 'arrow');
@@ -199,75 +139,25 @@ playState[4] = {
         sprite.body.allowRotation = false;
 
         this.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
-        //phaser.fixedToCamera = true;
 
 
-
-        /*
-        sprite2 = game.add.sprite(40, 100, 'ms');
-        game.physics.enable(sprite2, Phaser.Physics.ARCADE);
-
-        sprite2.animations.add('walk');
-
-        sprite2.animations.play('walk', 50, true);
-
-        
-        destination = layer.width;
-        
-        if (sprite2.x > 300){
-        
-        destination = 10;
-        
-        }
-        
-        
-        
-        
-        game.add.tween(sprite2).to({ x: destination }, 10000, Phaser.Easing.Linear.None, true);
-
-*/
-
-
-//////////////////////////////////////////////
-
-/*
-
-        monster1 = game.add.sprite(1000, 200, 'monster');
-        game.physics.enable(monster1, Phaser.Physics.ARCADE);
-
-        monster1.animations.add('upwalk',[1, 2, 3,4,5,6,7,8]);
-        monster1.animations.add('leftwalk',[9, 10, 11,12,13,14,15,16]);
- 		 monster1.animations.add('rightwalk',[9, 10, 11,12,13,14,15,16]);
- 		 monster1.animations.add('downwalk',[9, 10, 11,12,13,14,15,16]);
-        
-        
-        monster1.animations.play('rightwalk', 60, true);
-
-        game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
-*/
 
 ///////////////////////////////////////////
+        portal = new Array();
 
+        portal[1] = game.add.sprite(889, 0, 'portal00001');
+        game.physics.enable(portal[1], Phaser.Physics.ARCADE);
+        portal[1]['dest']=8;
 
+        portal[2] = game.add.sprite(1290, 1354, 'portal00002');
+        game.physics.enable(portal[2], Phaser.Physics.ARCADE);
+        portal[2]['dest']=9;
 
-
-
-
-//////////////create Portals ///////////////////
-        portal00001 = game.add.sprite(14, 628, 'portal00001');
-		game.physics.enable(portal00001, Phaser.Physics.ARCADE);
-		
-		portal00002 = game.add.sprite(1290, 1354, 'portal00002');
-		game.physics.enable(portal00002, Phaser.Physics.ARCADE);
-
-		//portal00003 = game.add.sprite(31, 1365, 'portal00003');
-		
-		portal00003 = game.add.sprite(840, 400, 'portal00003');
-
-        portal00003.id="7";
-		game.physics.enable(portal00003, Phaser.Physics.ARCADE);
-    //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
+        portal[3]= game.add.sprite(640, 580, 'portal00003');
+        game.physics.enable(portal[3], Phaser.Physics.ARCADE);
+        portal[3]['dest']=10;
 ///////////////////////////////////////////
+
 
 
 
@@ -282,35 +172,27 @@ playState[4] = {
         
         
         
-        this.physics.arcade.collide(sprite, portal00001,jump);
-        this.physics.arcade.collide(sprite, portal00002,jump);
-    	this.physics.arcade.collide(sprite, portal00003,jump);
-         
-         
-             
+        this.physics.arcade.collide(sprite, portal[1],jump);
+        this.physics.arcade.collide(sprite, portal[2],jump);
+    	this.physics.arcade.collide(sprite, portal[3],jump);
+
      //   this.physics.arcade.collide(sprite, monster5,npc);
      //   this.physics.arcade.collide(sprite, monster4,church);
       //  this.physics.arcade.collide(sprite, monster3,shop);
       //  this.physics.arcade.collide(sprite, monster2,bank);
       //  this.physics.arcade.collide(sprite, monster1,bank);
    //     this.physics.arcade.collide(monster2, layer);
-
-        
-        
-        
        // this.physics.arcade.collide(sprite2, layer);
-
-        if ((parseInt(game.physics.arcade.distanceToPointer(sprite)) <= 50)) {
-          //  console.log('cool');
-        }
-        else {
-            //	console.log( (parseInt(game.physics.arcade.distanceToPointer(sprite))));
-
-        }
 
         //sprite.rotation = game.physics.arcade.moveToPointer(sprite, 600);
         game.physics.arcade.moveToXY(sprite, x, y, 100);
+        if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
+            sprite.body.velocity.x = 0;
+        }
 
+        if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
+            sprite.body.velocity.y = 0;
+        }
         // phaser.body.allowRotation = false;
 
         if (cursors.up.isDown) {
@@ -329,7 +211,6 @@ playState[4] = {
         else if (cursors.right.isDown) {
             game.camera.x += 4;
         }
-
 
      //   if (sprite2.x >= 300) {
             //   sprite2.scale.x += 0.01;

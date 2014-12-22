@@ -2,8 +2,9 @@ playState[9] = {
     init: function() {
     },
     preload: function() {
-        grid=9;
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+
+        var grid = paddy(9,3);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
         game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileE.png');
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
@@ -46,6 +47,12 @@ playState[9] = {
     update: function() {
         this.physics.arcade.collide(sprite, layer);
         game.physics.arcade.moveToXY(sprite, x, y, 100);
+        if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
+            sprite.body.velocity.x = 0;
+        }
+        if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
+            sprite.body.velocity.y = 0;
+        }
     },
     render: function() {
        // game.debug.spriteCoords(sprite, 32, 32);
