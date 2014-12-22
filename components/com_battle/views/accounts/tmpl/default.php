@@ -2,15 +2,14 @@
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css">
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>
-<i class="fa fa-camera-retro"></i> fa-camera-retro <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
-
-
-<span class="fa-stack fa-lg">
-  <i class="fa fa-camera fa-stack-1x"></i>
-  <i class="fa fa-ban fa-stack-2x text-danger"></i>
-</span>
-fa-ban on fa-camera
-
+<div class ="description">
+  <i class="fa fa-camera-retro"></i> fa-camera-retro <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-camera fa-stack-1x"></i>
+    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+  </span>
+  fa-ban on fa-camera
+</div>
 
 
 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
