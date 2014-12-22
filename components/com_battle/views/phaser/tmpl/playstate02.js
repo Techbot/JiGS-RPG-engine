@@ -73,7 +73,7 @@ playState[2] = {
 
         map.setCollisionBetween(0, 10000,true,'obstacles');
 
-        sprite = game.add.sprite(370, 300, 'arrow');
+        sprite = game.add.sprite(833, 862, 'arrow');
         sprite.anchor.setTo(0.5, 0.5);
 
         //	Enable Arcade Physics for the sprite
@@ -85,48 +85,20 @@ playState[2] = {
         this.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
         //phaser.fixedToCamera = true;
 
-        sprite2 = game.add.sprite(40, 100, 'ms');
-        game.physics.enable(sprite2, Phaser.Physics.ARCADE);
-
-        sprite2.animations.add('walk');
-
-        sprite2.animations.play('walk', 50, true);
-
-        
-        destination = layer.width;
-        
-        if (sprite2.x > 300){
-        
-        destination = 10;
-        
-        }
-        game.add.tween(sprite2).to({ x: destination }, 10000, Phaser.Easing.Linear.None, true);
-
-     /*   monster1 = game.add.sprite(1000, 200, 'monster');
-        game.physics.enable(monster1, Phaser.Physics.ARCADE);
-
-        monster1.animations.add('upwalk',[1, 2, 3,4,5,6,7,8]);
-        monster1.animations.add('leftwalk',[9, 10, 11,12,13,14,15,16]);
-        monster1.animations.add('rightwalk',[9, 10, 11,12,13,14,15,16]);
-        monster1.animations.add('downwalk',[9, 10, 11,12,13,14,15,16]);
-        monster1.animations.play('rightwalk', 60, true);
-
-        game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
-*/
 ///////////////////////////////////////////
         portal = new Array();
 
-        portal[1] = game.add.sprite(889, 0, 'portal00001');
+        portal[1] = game.add.sprite(833, 912, 'portal00001');
         game.physics.enable(portal[1], Phaser.Physics.ARCADE);
-        portal[1]['dest']=5;
+        portal[1]['dest']=1;
 
         portal[2] = game.add.sprite(1510, 726, 'portal00002');
         game.physics.enable(portal[2], Phaser.Physics.ARCADE);
-        portal[2]['dest']=6;
+        portal[2]['dest']=5;
 
         portal[3]= game.add.sprite(640, 580, 'portal00003');
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
-        portal[3]['dest']=7;
+        portal[3]['dest']=6;
 ///////////////////////////////////////////
 
     },
@@ -150,24 +122,6 @@ playState[2] = {
         if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
             sprite.body.velocity.y = 0;
         }
-
-        if (cursors.up.isDown) {
-            //  console.log("Down");
-            game.camera.y -= 4;
-            phaser.y -= 40;
-        }
-        else if (cursors.down.isDown) {
-            game.camera.y += 4;
-            phaser.y += 40;
-        }
-
-        if (cursors.left.isDown) {
-            game.camera.x -= 4;
-        }
-        else if (cursors.right.isDown) {
-            game.camera.x += 4;
-        }
-
     },
 
     render: function() {

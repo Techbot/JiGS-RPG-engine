@@ -2,8 +2,8 @@ playState[18] = {
     init: function() {
     },
     preload: function() {
-        grid=18;
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(18,3);;
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
         game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileE.png');
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');

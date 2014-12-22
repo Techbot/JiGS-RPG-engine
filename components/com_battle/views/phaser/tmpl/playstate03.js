@@ -11,7 +11,7 @@ playState[3] = {
         var grid = paddy(3,3);
 
        // game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('Zombie_A3', '/components/com_battle/images/assets/tiles/Zombie_A3.png');
         game.load.image('Zombie_A4', '/components/com_battle/images/assets/tiles/Zombie_A4.png');
         game.load.image('Zombie_A5', '/components/com_battle/images/assets/tiles/Zombie_A5.png');
@@ -149,7 +149,7 @@ playState[3] = {
 ///////////////////////////////////////////
         portal = new Array();
 
-        portal[1] = game.add.sprite(889, 0, 'portal00001');
+        portal[1] = game.add.sprite(192, 96, 'portal00001');
         game.physics.enable(portal[1], Phaser.Physics.ARCADE);
         portal[1]['dest']=1;
 
@@ -181,7 +181,7 @@ playState[3] = {
 
 
         //sprite.rotation = game.physics.arcade.moveToPointer(sprite, 600);
-        game.physics.arcade.moveToXY(sprite, x, y, 200);
+        game.physics.arcade.moveToXY(sprite, x, y, 100);
 
         if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
             sprite.body.velocity.x = 0;

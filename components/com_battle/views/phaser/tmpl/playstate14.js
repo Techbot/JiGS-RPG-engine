@@ -8,8 +8,8 @@ playState[14] = {
     },
 
     preload: function() {
-        grid=14;
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(14,3);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
         //game.load.image('Zombie_TileC', '/components/com_battle/images/assets/tiles/Zombie_TileC.png');

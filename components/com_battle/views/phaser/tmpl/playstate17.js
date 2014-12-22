@@ -8,10 +8,14 @@ playState[17] = {
     },
 
     preload: function() {
-		grid = 17;
-		game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(17,3);
+		game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
-    	game.load.image('TileA4', '/components/com_battle/images/assets/tiles/TileA4.png');
+    	game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
+        game.load.image('TileA4', '/components/com_battle/images/assets/tiles/TileA4.png');
+        game.load.image('TileA3', '/components/com_battle/images/assets/tiles/TileA3.png');
+
+        game.load.image('Zombie_A4', '/components/com_battle/images/assets/tiles/Zombie_A4.png');
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
 
     },
@@ -29,7 +33,15 @@ playState[17] = {
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
 
         game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/TileA5.png');
         game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), '/components/com_battle/images/assets/TileA4.png');
+        game.load.image(cacheKey('TileA3', 'tileset', 'TileA3'), '/components/com_battle/images/assets/TileA3.png');
+
+        game.load.image(cacheKey('Zombie_A4', 'tileset', 'Zombie_A4'), '/components/com_battle/images/assets/Zombie_A4.png');
+
+
+
+
         cursors = game.input.keyboard.createCursorKeys();
         game.input.onDown.add(moveBall, this);
 
@@ -40,8 +52,12 @@ playState[17] = {
         layer4 = map.createLayer('ground2');
         layer2 = map.createLayer('objects');
         
-        //map.addTilesetImage('obstacles', 'obstacles');
-      map.addTilesetImage('TileA4', 'TileA4');
+        map.addTilesetImage('TileA5', 'TileA5');
+        map.addTilesetImage('TileA4', 'TileA4');
+        map.addTilesetImage('TileA3', 'TileA3');
+
+        map.addTilesetImage('Zombie_A4', 'Zombie_A4');
+
         map.setCollisionBetween(0, 5000,true,'obstacles');
         // paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'Main_MP1_Cuthbert_FullFrame.png');
         sprite = game.add.sprite(370, 300, 'arrow');
@@ -58,17 +74,17 @@ playState[17] = {
 //////////////////////////////////////////////
         portal = new Array();
         portal[1] = game.add.sprite(480, 40, 'portal00001');
-        portal[1]['dest']=3;
+        portal[1]['dest']=9;
         game.physics.enable(portal[1], Phaser.Physics.ARCADE);
 
         portal[2] = game.add.sprite(996, 190, 'portal00002');
         game.physics.enable(portal[2], Phaser.Physics.ARCADE);
-        portal[2]['dest']=4;
+        portal[2]['dest']=8;
 
-        portal[3] = game.add.sprite(25, 190, 'portal00003');
-        portal[3]['dest']=5;
+        //portal[3] = game.add.sprite(25, 190, 'portal00003');
+        //game.physics.enable(portal[3], Phaser.Physics.ARCADE);
+        // portal[3]['dest']=5;
 
-        game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
 
     },

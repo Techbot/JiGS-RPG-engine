@@ -8,8 +8,8 @@ playState[21] = {
     },
 
     preload: function() {
-        grid=21;
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(21,3);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //game.load.image('Zombie_A5', 'assets/tiles/Zombie_A5.png');
         //game.load.image('Zombie_A4', 'assets/tiles/Zombie_A4.png');
         game.load.image('Zombie_TileC', '/components/com_battle/images/assets/tiles/Zombie_TileC.png');

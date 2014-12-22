@@ -7,8 +7,8 @@ playState[16] = {
         //Called as soon as we enter this state
     },
     preload: function() {
-		grid = 16;
-		game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(16,3);
+		game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
     	game.load.image('TileA4', '/components/com_battle/images/assets/tiles/TileA4.png');
     	game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
         game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileC.png');

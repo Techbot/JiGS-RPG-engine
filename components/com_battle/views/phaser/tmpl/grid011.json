@@ -64,7 +64,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"E:\/rtp\/Graphics\/tiles\/TileA1.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/TileA1.png",
          "imageheight":384,
          "imagewidth":512,
          "margin":0,
@@ -79,7 +79,7 @@
         }, 
         {
          "firstgid":193,
-         "image":"E:\/rtp\/Graphics\/tiles\/TileC_exterior_1.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/TileC_exterior_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -94,7 +94,7 @@
         }, 
         {
          "firstgid":449,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_A5.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Outside_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -109,7 +109,7 @@
         }, 
         {
          "firstgid":577,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_B.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Outside_B.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -124,7 +124,7 @@
         }, 
         {
          "firstgid":833,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_C.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Outside_C.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -139,7 +139,7 @@
         }, 
         {
          "firstgid":1089,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_A3.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -154,7 +154,7 @@
         }, 
         {
          "firstgid":1217,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_A4.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A4.png",
          "imageheight":480,
          "imagewidth":512,
          "margin":0,
@@ -169,7 +169,7 @@
         }, 
         {
          "firstgid":1457,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_A5.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -184,7 +184,7 @@
         }, 
         {
          "firstgid":1585,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_TileB.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -199,7 +199,7 @@
         }, 
         {
          "firstgid":1841,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_TileC.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileC.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -214,7 +214,7 @@
         }, 
         {
          "firstgid":2097,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_TileD.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileD.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,

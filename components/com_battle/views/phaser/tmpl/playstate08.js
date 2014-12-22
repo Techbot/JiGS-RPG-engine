@@ -8,10 +8,13 @@ playState[8] = {
     },
 
     preload: function() {
-		grid = 8;
-		game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(8,3);
+		game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
     	game.load.image('TileA4', '/components/com_battle/images/assets/tiles/TileA4.png');
+        game.load.image('TileA5', '/components/com_battle/images/assets/tiles/TileA5.png');
+        game.load.image('TileC', '/components/com_battle/images/assets/tiles/TileC.png');
+
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
 
     },
@@ -30,6 +33,8 @@ playState[8] = {
 
         game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image(cacheKey('TileA4', 'tileset', 'TileA4'), '/components/com_battle/images/assets/TileA4.png');
+        game.load.image(cacheKey('TileA5', 'tileset', 'TileA5'), '/components/com_battle/images/assets/TileA5.png');
+        game.load.image(cacheKey('TileC', 'tileset', 'TileC'), '/components/com_battle/images/assets/TileC.png');
         cursors = game.input.keyboard.createCursorKeys();
         game.input.onDown.add(moveBall, this);
 
@@ -41,7 +46,9 @@ playState[8] = {
         layer2 = map.createLayer('objects');
         
         //map.addTilesetImage('obstacles', 'obstacles');
-      map.addTilesetImage('TileA4', 'TileA4');
+        map.addTilesetImage('TileA4', 'TileA4');
+        map.addTilesetImage('TileA5', 'TileA5');
+        map.addTilesetImage('TileC', 'TileC');
         map.setCollisionBetween(0, 5000,true,'obstacles');
         // paddle = game.add.sprite(game.world.centerX, 500, 'breakout', 'Main_MP1_Cuthbert_FullFrame.png');
         sprite = game.add.sprite(370, 300, 'arrow');
@@ -61,12 +68,12 @@ playState[8] = {
         portal[1]['dest']=3;
         game.physics.enable(portal[1], Phaser.Physics.ARCADE);
 
-        portal[2] = game.add.sprite(996, 190, 'portal00002');
+        portal[2] = game.add.sprite(996, 845, 'portal00002');
         game.physics.enable(portal[2], Phaser.Physics.ARCADE);
-        portal[2]['dest']=4;
+        portal[2]['dest']=16;
 
-        portal[3] = game.add.sprite(25, 190, 'portal00003');
-        portal[3]['dest']=5;
+        portal[3] = game.add.sprite(168, 882, 'portal00003');
+        portal[3]['dest']=17;
 
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         //    game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);

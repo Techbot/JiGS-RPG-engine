@@ -8,8 +8,8 @@ playState[5] = {
     },
 
     preload: function() {
-        grid=5;
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(5,3);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         //  Next we load the tileset. This is just an image, loaded in via the normal way we load images:
 
         //game.load.image('Zombie_TileC', '/components/com_battle/images/assets/tiles/Zombie_TileC.png');
@@ -20,12 +20,6 @@ playState[5] = {
         game.load.image('TileE', '/components/com_battle/images/assets/tiles/TileE.png');
         //game.load.image('TileB', '/components/com_battle/images/assets/tiles/TileB.png');
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
-        //game.load.image('mushroom', '/components/com_battle/images/assets/sprites/mushroom2.png');
-        //game.load.image('sonic', '/components/com_battle/images/assets/sprites/sonic_havok_sanity.png');
-        //game.load.image('phaser', '/components/com_battle/images/assets/sprites/phaser1.png');
-        //game.load.spritesheet('ms', '/components/com_battle/images/assets/sprites/metalslug_mummy37x45.png', 37, 45, 18);
-        
-        //game.load.spritesheet('monster', '/components/com_battle/images/assets/Monsters/Beast of Burden/Monster_BeastofBurden_FullFrame.png', 185, 165, 8);
 
         game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1);
@@ -117,20 +111,6 @@ playState[5] = {
             sprite.body.velocity.y = 0;
         }
 
-        if (cursors.up.isDown) {
-            //  console.log("Down");
-            game.camera.y -= 4;
-
-        }
-        else if (cursors.down.isDown) {
-            game.camera.y += 4;
-        }
-        if (cursors.left.isDown) {
-            game.camera.x -= 4;
-        }
-        else if (cursors.right.isDown) {
-            game.camera.x += 4;
-        }
     },
 
     render: function() {

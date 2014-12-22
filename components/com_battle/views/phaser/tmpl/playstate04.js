@@ -9,11 +9,11 @@ playState[4] = {
 
     preload: function() {
         //  Tilemaps are split into two parts: The actual map data (usually stored in a CSV or JSON file)
-		grid=4;
+        var grid = paddy(4,3);
         //  The final one tells Phaser the foramt of the map data, in this case it's a JSON file exported from the Tiled map editor.
         //  This could be Phaser.Tilemap.CSV too.
 		//game.load.tilemap('ground', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
 
         game.load.image('Zombie_A3', '/components/com_battle/images/assets/tiles/Zombie_A3.png');
         game.load.image('Zombie_A4', '/components/com_battle/images/assets/tiles/Zombie_A4.png');

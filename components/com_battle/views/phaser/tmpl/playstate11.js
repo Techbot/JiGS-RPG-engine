@@ -2,14 +2,14 @@
  * Created by techbot on 17/11/14.
  */
 
-playState[2] = {
+playState[11] = {
     init: function() {
         //Called as soon as we enter this state
     },
 
     preload: function() {
-        var grid=2;
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid00' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+        var grid = paddy(11,3);
+        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('Zombie_A5', '/components/com_battle/views/phaser/tmpl/assets/tiles/Zombie_A5.png');
         // game.load.image('Zombie_A4', 'assets/tiles/Zombie_A4.png');
         game.load.image('TileA4', '/components/com_battle/views/phaser/tmpl/assets/tiles/TileA4.png');
