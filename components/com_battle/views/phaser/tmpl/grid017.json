@@ -68,7 +68,7 @@
         }, 
         {
          "firstgid":129,
-         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A4.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_A4.png",
          "imageheight":480,
          "imagewidth":512,
          "margin":0,
@@ -83,7 +83,7 @@
         }, 
         {
          "firstgid":369,
-         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -98,7 +98,7 @@
         }, 
         {
          "firstgid":625,
-         "image":"/components\/com_battle\/images\/assets\/tiles\/TileE.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/TileE.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -113,7 +113,7 @@
         }, 
         {
          "firstgid":881,
-         "image":"/components\/com_battle\/images\/assets\/tiles\/TileA3.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/TileA3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -128,7 +128,7 @@
         }, 
         {
          "firstgid":1009,
-         "image":"/components\/com_battle\/images\/assets\/tiles\/TileB.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -143,7 +143,7 @@
         }, 
         {
          "firstgid":1265,
-         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A4_EDIT.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_A4_EDIT.png",
          "imageheight":64,
          "imagewidth":65,
          "margin":0,
@@ -158,7 +158,7 @@
         }, 
         {
          "firstgid":1269,
-         "image":"/components\/com_battle\/images\/assets\/Monsters\/Dryad\/Monster_Dryad.png",
+         "image":"components\/com_battle\/images\/assets\/Monsters\/Dryad\/Monster_Dryad.png",
          "imageheight":280,
          "imagewidth":210,
          "margin":0,
@@ -173,7 +173,7 @@
         }, 
         {
          "firstgid":1317,
-         "image":"/components\/com_battle\/images\/assets\/Monsters\/Zombie\/$Monster_Zombie.png",
+         "image":"components\/com_battle\/images\/assets\/Monsters\/Zombie\/$Monster_Zombie.png",
          "imageheight":280,
          "imagewidth":210,
          "margin":0,
@@ -188,7 +188,7 @@
         }, 
         {
          "firstgid":1365,
-         "image":"/components\/com_battle\/images\/assets\/Monsters\/Ogre\/$Monster_Ogre.png",
+         "image":"components\/com_battle\/images\/assets\/Monsters\/Ogre\/$Monster_Ogre.png",
          "imageheight":480,
          "imagewidth":360,
          "margin":0,
@@ -203,7 +203,7 @@
         }, 
         {
          "firstgid":1530,
-         "image":"/components\/com_battle\/images\/assets\/Monsters\/Wolf Timber\/$Monster_Wolf_Timber.png",
+         "image":"components\/com_battle\/images\/assets\/Monsters\/Wolf Timber\/$Monster_Wolf_Timber.png",
          "imageheight":240,
          "imagewidth":180,
          "margin":0,
@@ -218,7 +218,7 @@
         }, 
         {
          "firstgid":1565,
-         "image":"/components\/com_battle\/images\/assets\/Monsters\/Venom Beast\/$Monster_VenomBeast.png",
+         "image":"components\/com_battle\/images\/assets\/Monsters\/Venom Beast\/$Monster_VenomBeast.png",
          "imageheight":320,
          "imagewidth":240,
          "margin":0,
@@ -233,7 +233,7 @@
         }, 
         {
          "firstgid":1635,
-         "image":"/components\/com_battle\/images\/assets\//Monsters\/Elemental Lightning\/$Monster_Elemental_Lightning.png",
+         "image":"components\/com_battle\/images\/assets\/Monsters\/Elemental Lightning\/$Monster_Elemental_Lightning.png",
          "imageheight":480,
          "imagewidth":360,
          "margin":0,

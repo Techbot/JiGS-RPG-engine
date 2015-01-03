@@ -3,36 +3,44 @@
         <!-- Phaser -->
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
+        <script src="/components/com_battle/includes/blip.min.js"></script>
         <!-- Main Game File -->
         <script>
-            var playState= new Array();
+            var playState = new Array();
+            var grid;
+            var number;
+            var tile_names = new Array();
+            var building = new Array();
+            var buildings = new Array();
+            var posx = new Array();
+            var posy = new Array();
+            var portal = new Array();
+            var add_building = new Array();
+            var add_npc = new Array();
+
+            var boundsX1 = new Array();
+            var boundsY1 = new Array();
+            var boundsX2 = new Array();
+            var boundsY2 = new Array();
+            var new_x;
+            var new_y;
+            var portal_sourceX1 = new Array();
+            var portal_sourceY1 = new Array();
+
+            var portal_sourceX2 = new Array();
+            var portal_sourceY2 = new Array();
+
+            var portal_sourceX3 = new Array();
+            var portal_sourceY3 = new Array();
+            var portal_dest_1 = new Array();
+            var portal_dest_2 = new Array();
+            var portal_dest_3 = new Array();
+            var npc_list = new Array();
         </script>
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
-
         <script src="/components/com_battle/views/phaser/tmpl/playstate01.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate02.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate03.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate04.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate05.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate06.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate07.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate08.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate09.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate10.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate11.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate12.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate13.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate14.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate15.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate16.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate17.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate18.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate19.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate20.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate21.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate22.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/playstate23.js"></script>
 
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>
         <div id ="world"></div>

@@ -53,7 +53,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -69,7 +69,7 @@
         }, 
         {
          "firstgid":129,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -85,7 +85,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/TileE.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/TileE.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -101,7 +101,7 @@
         }, 
         {
          "firstgid":513,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/002-Woods01.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/002-Woods01.png",
          "imageheight":800,
          "imagewidth":256,
          "margin":0,
@@ -117,7 +117,7 @@
         }, 
         {
          "firstgid":713,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/TileC.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/TileC.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -133,7 +133,7 @@
         }, 
         {
          "firstgid":969,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/032-Heaven01.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/032-Heaven01.png",
          "imageheight":1024,
          "imagewidth":256,
          "margin":0,
@@ -149,7 +149,7 @@
         }, 
         {
          "firstgid":1225,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/033-Heaven02.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/033-Heaven02.png",
          "imageheight":928,
          "imagewidth":256,
          "margin":0,
@@ -165,7 +165,7 @@
         }, 
         {
          "firstgid":1457,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/035-Ruins01.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/035-Ruins01.png",
          "imageheight":896,
          "imagewidth":256,
          "margin":0,
@@ -181,7 +181,7 @@
         }, 
         {
          "firstgid":1681,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/039-Tower01.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/039-Tower01.png",
          "imageheight":1056,
          "imagewidth":256,
          "margin":0,
