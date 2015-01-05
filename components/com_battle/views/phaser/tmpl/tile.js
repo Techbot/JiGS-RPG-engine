@@ -15,14 +15,26 @@ var bass;
 var phaser;
 var sprite;
 var sprite2;
-var grid = 1;
+var grid;
 var cursors;
 
+jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&format=raw', function(result)
+{
+    grid = result[0];
+    new_x = parseFloat(result[1]);
+    new_y = parseFloat(result[2]);
+    //console.log("buildings : " + buildings.length);
+    // console.log("buildings2 : " + buildings.length);
+    // load buildings
 
+    game.state.add('next', playState[1]);
+    //game.state.add('play', playState[1]);
+    //game.state.start('play');
 
-game.state.add('next', playState[1]);
-game.state.add('play', playState[1]);
-game.state.start('play');
+    game.state.start('next');
+
+});
+
 
 blip.sampleLoader()
     .samples({
@@ -42,7 +54,7 @@ function moveBall(pointer)
     //  phaser.rotation = game.physics.arcade.accelerateToPointer(phaser, 60, game.input.activePointer, 1000);
     //  phaser.x = pointer.x;
     //  phaser.y = pointer.y;
-
+    send = 1;
     x = pointer.worldX;
     y = pointer.worldY;
 }
@@ -63,10 +75,9 @@ function jump(one,two) {
     grid = two.dest;
     console.log('grid:' + grid);
     if (source == portal_dest_1[grid]) {
-
-    new_x = portal_sourceX1[grid];
-    new_y = portal_sourceY1[grid];
-}
+        new_x = portal_sourceX1[grid];
+        new_y = portal_sourceY1[grid];
+    }
     if (source == portal_dest_2[grid]) {
 
         new_x = portal_sourceX2[grid];
@@ -78,13 +89,10 @@ function jump(one,two) {
         new_x = portal_sourceX3[grid];
         new_y = portal_sourceY3[grid];
 
-
     }
-
-
     one.body.velocity.x = 0;
     one.body.velocity.y = 0;
-    one.body.enable = false;
+    two.body.enable = false;
 
     //game.state.add('next', playState[1]);
     //
@@ -141,11 +149,7 @@ function enter_building(one,two) {
         context: document.body,
         dataType: "json"
     }).done(function(result) {
-
-
         document.getElementById("mainbody").innerHTML=result;
-
-
         var url = "/components/com_battle/includes/building.js";
         jQuery.getScript( url, function() {
             // alert ('hi');
@@ -155,7 +159,6 @@ function enter_building(one,two) {
     });
 //http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function shop() {
   //  monster1.destroy(true);
@@ -293,4 +296,28 @@ function addMap() {
 */
 
 
+}
+
+function doSomething() {
+
+
+    if (x != undefined)
+    {
+        //console.log('x : ' + x + " y : " + y);
+        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=update_pos&format=raw&posx=' + x + '&posy=' + y, function (result)
+        {
+
+        //grid = result;
+        //console.log("buildings : " + buildings.length);
+        // console.log("buildings2 : " + buildings.length);
+        // load buildings
+
+        //game.state.add('next', playState[1]);
+        //game.state.add('play', playState[1]);
+        //game.state.start('play');
+
+        //game.state.start('next');
+
+        });
+    }
 }

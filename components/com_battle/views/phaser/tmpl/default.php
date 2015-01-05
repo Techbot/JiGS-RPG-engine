@@ -14,6 +14,7 @@
             var buildings = new Array();
             var posx = new Array();
             var posy = new Array();
+
             var portal = new Array();
             var add_building = new Array();
             var add_npc = new Array();
@@ -36,10 +37,10 @@
             var portal_dest_2 = new Array();
             var portal_dest_3 = new Array();
             var npc_list = new Array();
+            var send = 1;
         </script>
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate01.js"></script>
-
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>

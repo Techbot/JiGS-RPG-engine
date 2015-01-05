@@ -6,7 +6,7 @@ $text ='
 
             <div id="profile_" class="clearfix">
 
-            <a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
+            <a href="index.php?option=com_battle&amp;view=phaser&amp;Itemid=115" class="mid"></a>
                 <div class="name">' . $people->name  . '</div>
                 <div class="clearfix" id="action">
                     <div class="btn btn-danger shoot"><a onclick="shoot_character(' . $people->id  . ')" id="shoot" >Shoot</a></div>
@@ -80,8 +80,7 @@ $text ='
                                 <th scope="row">Bank</th>
                                 <td>' . $people->bank  . '</td>
                             </tr>
-                        </table>
-                        <table class="stats">
+
                             <tr>
                                 <th scope="row">Intel</th>
                                 <td>' . $people->intelligence  . '</td>
@@ -95,17 +94,13 @@ $text ='
                                 <td>' . $people->speed  . '</td>
                             </tr>
                         </table>
-                        <dl class="char stats dl-horizontal">
-                            <dt>Name</dt>
-                            <dd>' . $people->name  . '</dd>
-                            <dt>Faction</dt>
-                            <dd>unknown</dd>
-                            <dt>Group</dt>
-                            <dd>unknown</dd>
-                            <dt>Address</dt>
-                            <dd>' . $people->map  . ' / ' . $people->grid  . '</dd>
-                        </dl>
+
                     </div><!-- end stats -->
+
+
+
+
+
                     <hr style="clear:both;">
                     <div class="clearfix npc_bio">
                         <div class="npc_desc">
@@ -126,6 +121,24 @@ $text ='
                         </div>
                     </div><!-- end bio -->
                 </div><!-- end desc -->
+
+<div style = "float:right">
+                     <dl class="char stats dl-horizontal">
+                            <dt>Name</dt>
+                            <dd>' . $people->name  . '</dd>
+                            <dt>Faction</dt>
+                            <dd>unknown</dd>
+                            <dt>Group</dt>
+                            <dd>unknown</dd>
+                            <dt>Address</dt>
+                            <dd>' . $people->map  . ' / ' . $people->grid  . '</dd>
+                        </dl>
+</div>
+
+
+
+
+
             <!--
                 <div id="_inventory" class="clearfix">
                     <div class="name">Inventory</div>

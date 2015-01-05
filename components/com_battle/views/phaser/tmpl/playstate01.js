@@ -16,33 +16,27 @@ playState[1] = {
             game.load.image(filename, '/components/com_battle/images/assets/tiles/' + filename +'.png');
         }
 
-
-        ///////////////////// load buildings
-        for (var index = 0; index < buildings.length; index++) {
-            var filename = buildings[index].image;
-            var key = buildings[index].id;
-            console.log("filename : " + filename);
-            game.load.image("_" + key , '/components/com_battle/images/buildings/'+ filename );
-            // game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+        if(buildings.length != 0) {
+            ///////////////////// load buildings
+            for (var index = 0; index < buildings.length; index++) {
+                var filename = buildings[index].image;
+                var key = buildings[index].id;
+                console.log("filename : " + filename);
+                game.load.image("_" + key, '/components/com_battle/images/buildings/' + filename);
+                // game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+            }
         }
-
-        ///////////////////// load chars
-        for (var index = 0; index < npc_list.length; index++) {
-            var filename = npc_list[index].avatar;
-            var key = npc_list[index].name;
-            console.log("key : " + key);
-            console.log("filename : " + filename);
-            game.load.image(key , '/components/com_battle/images/ennemis/miniatures/' + filename );
-            // game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+        if(npc_list.length != 0) {
+            ///////////////////// load chars
+            for (var index = 0; index < npc_list.length; index++) {
+                var filename = npc_list[index].avatar;
+                var key = npc_list[index].name;
+                console.log("key : " + key);
+                console.log("filename : " + filename);
+                game.load.image(key, '/components/com_battle/images/ennemis/miniatures/' + filename);
+                // game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+            }
         }
-
-
-
-
-
-
-
-
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
         game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1); 
@@ -55,6 +49,12 @@ playState[1] = {
         game.world.setBounds(boundsX1[grid], boundsY1[grid], boundsX2[grid], boundsY2[grid]);
 
         game.stage.backgroundColor = '#787878';
+
+        //game.input.onDown.add(doSomething, this);
+
+
+
+
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
 
 
@@ -111,7 +111,7 @@ playState[1] = {
 
 
 ////////////////////////////////////Add Player /////////////////////////////////
-
+/*
        if (new_x<1 )
        {
            new_x = 380;
@@ -120,10 +120,15 @@ playState[1] = {
         {
             new_y=200;
         }
+*/
+
+        console.log (new_x);
+        console.log (new_y);
 
 
-        sprite = game.add.sprite(new_x, new_y, 'arrow');
+        //sprite = game.add.sprite(parseInt(new_x),parseInt(new_y), 'arrow');
 
+        sprite = game.add.sprite(parseInt(new_x),parseInt(new_y), 'arrow');
 
 
 
@@ -135,25 +140,33 @@ playState[1] = {
         this.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
 
 /////////////////////////////////////////////place buildings//////
-        for (var index = 0; index < buildings.length; index++) {
-            var key = buildings[index].id;
-            console.log("_" + key);
-            add_building[index] = game.add.sprite(buildings[index].posx * 2, buildings[index].posy *2 , "_" + key);
-            add_building[index].id = key;
-            game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+
+        if(buildings.length != 0) {
+            for (var index = 0; index < buildings.length; index++) {
+                var key = buildings[index].id;
+                //console.log("_" + key);
+                add_building[index] = game.add.sprite(buildings[index].posx * 2, buildings[index].posy * 2, "_" + key);
+                add_building[index].id = key;
+                game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+            }
+
         }
+
+
+
 /////////////////////////////////////////////////////////////////
+        if(npc_list.length !=0 ) {
+            /////////////////////////////////////////////place chars//////
+            for (var index = 0; index < npc_list.length; index++) {
+                var key = npc_list[index].name;
+                var key_id = npc_list[index].id;
+                //console.log(key);
+                add_npc[index] = game.add.sprite(npc_list[index].posx * 2, npc_list[index].posy * 2, key);
+                add_npc[index].id = key;
+                add_npc[index].key_id = key_id;
 
-        /////////////////////////////////////////////place chars//////
-        for (var index = 0; index < npc_list.length; index++) {
-            var key = npc_list[index].name;
-            var key_id = npc_list[index].id;
-            console.log(key);
-            add_npc[index] = game.add.sprite(npc_list[index].posx * 2, npc_list[index].posy *2 , key);
-            add_npc[index].id = key;
-            add_npc[index].key_id = key_id;
-
-            game.physics.enable(add_npc[index], Phaser.Physics.ARCADE);
+                game.physics.enable(add_npc[index], Phaser.Physics.ARCADE);
+            }
         }
 /////////////////////////////////////////////////////////////////
 
@@ -179,6 +192,9 @@ playState[1] = {
 
 /////////////////////////////////////////////////////////////////
 
+
+
+
         this.physics.arcade.collide(sprite, layer);
         //this.physics.arcade.collide(sprite2, layer);
 
@@ -194,8 +210,12 @@ playState[1] = {
         {
             //console.log(key);
             this.physics.arcade.collide(sprite, add_building[index], enter_building);
-            //add_building[index].body.immovable = true;
 
+             if(typeof (add_building[index]) != 'undefined')
+            {
+                add_building[index].body.immovable = true;
+
+            }
         }
 
         game.physics.arcade.moveToXY(sprite, x, y, 100);
@@ -213,21 +233,6 @@ playState[1] = {
 ////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////
 
 
@@ -235,9 +240,23 @@ playState[1] = {
 
         if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
             sprite.body.velocity.x = 0;
+            //console.log('x:' +sprite.body.velocity.x);
         }
         if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
             sprite.body.velocity.y = 0;
+            //console.log('y:' + sprite.body.velocity.y);
+        }
+
+        if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
+
+            //console.log('both' + send);
+
+
+            if (send == 1) {
+
+                doSomething();
+                send = 0;
+            }
         }
 
 ////////////////////////////////////////////////////////////////
