@@ -31,7 +31,7 @@ jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&for
     //game.state.add('play', playState[1]);
     //game.state.start('play');
 
-    game.state.start('next');
+    get_everything(grid);
 
 });
 
@@ -94,10 +94,16 @@ function jump(one,two) {
     one.body.velocity.y = 0;
     two.body.enable = false;
 
+    get_everything(two.dest);
     //game.state.add('next', playState[1]);
     //
     // game.state.add('next', playState[two.dest]);
-    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + two.dest, function(result)
+
+}
+
+function get_everything(dest){
+
+    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function(result)
     {
         buildings = result;
         //console.log("buildings : " + buildings.length);
@@ -112,7 +118,13 @@ function jump(one,two) {
             game.state.start('next');
         });
     });
+
+
+
+
 }
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function battle(one,two) {

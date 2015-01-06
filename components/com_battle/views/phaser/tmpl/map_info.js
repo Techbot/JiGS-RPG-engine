@@ -338,7 +338,7 @@ portal_sourceY3[10] = 855;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //// /////////////////////////////////////////////////////////////////////
-tile_names[11] = ['TileA1','TileC_exterior_1','Outside_A5','Outside_B','Outside_C','Zombie_A3','Zombie_A4','Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD'];
+tile_names[11] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3','Zombie_A5','Zombie_TileB','Zombie_TileC'];
 
 x1[11] = 889;
 y1[11] = 0;
@@ -566,19 +566,19 @@ portal_sourceY3[17] = 855;
 // /////////////////////////////////////////////////////////////////////
 tile_names[18] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT'];
 
-x1[18] = 600;
-y1[18] = 200;
+x1[18] = 400;
+y1[18] = 100;
 
-x2[18] = 1000;
-y2[18] = 560;
+x2[18] = 98;
+y2[18] = 1407;
 
-x3[18] = 670;
-y3[18] = 580;
+x3[18] = 680;
+y3[18] = 480;
 
 boundsX1[18] = 0;
 boundsY1[18] = 0;
-boundsX2[18] = 700;
-boundsY2[18] = 1300;
+boundsX2[18] = 780;
+boundsY2[18] = 1500;
 
 
 portal_dest_1[18] = 9;
@@ -586,14 +586,14 @@ portal_dest_2[18] = 29;
 portal_dest_3[18] = 30;
 
 
-portal_sourceX1[18] = 825;
-portal_sourceY1[18] = 855;
+portal_sourceX1[18] = 400;
+portal_sourceY1[18] = 100;
 
-portal_sourceX2[18] = 606;
-portal_sourceY2[18] = 594;
+portal_sourceX2[18] = 120;
+portal_sourceY2[18] = 1407;
 
-portal_sourceX3[18] = 825;
-portal_sourceY3[18] = 855;
+portal_sourceX3[18] = 640;
+portal_sourceY3[18] = 480;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
@@ -934,7 +934,7 @@ portal_sourceY3[28] = 855;
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[29] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT'];
+tile_names[29] = ['DungeonCrawl_ProjectUtumnoTileset'];
 
 x1[29] = 889;
 y1[29] = 0;
@@ -947,13 +947,13 @@ y3[29] = 580;
 
 boundsX1[29] = 0;
 boundsY1[29] = 0;
-boundsX2[29] = 1600;
-boundsY2[29] = 1600;
+boundsX2[29] = 1150;
+boundsY2[29] = 950;
 
 
-portal_dest_1[29] = 4;
-portal_dest_2[29] = 17;
-portal_dest_3[29] = 18;
+portal_dest_1[29] = 18;
+portal_dest_2[29] = 44;
+portal_dest_3[29] = 44;
 
 
 portal_sourceX1[29] = 825;
