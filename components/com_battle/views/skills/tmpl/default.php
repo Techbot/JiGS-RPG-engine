@@ -13,11 +13,6 @@ jimport( 'joomla.methods' );
 <section id = "primary_upgrade_table" class="shade-table clearfix">
 </section>
 
-
-
-
-
-
 <div class="name">Secondary Skills</div>
 <section id = "skills_table" class="shade-table">
 No Primary Skill Selected
@@ -73,7 +68,7 @@ No Primary Skill Selected
 
             result_text += "<div>";
             result_text += "<h3> <span id = '" + result[i]['skill_id'] + "' class='open'>" + result[i]['name'] + "</span> <span>" + result[i]['level'] + " </span></h3>";
-            result_text += "<span id = 'upgrade_" + result[i]['skill_id'] + "' class='assign button btn-sm btn-primary '>Upgrade</span>";
+            result_text += "<span id = 'upgrade_" + result[i]['skill_id'] + "' class='assign btn-sm btn-primary '>Upgrade</span>";
             result_text += "<span>Cost: " +  result[i]['cost_price'] + "</span>";
             result_text += "<span>Time: " +  result[i]['upgrade_time'] + " mins</span>";
             result_text += "</div>";
@@ -99,7 +94,7 @@ No Primary Skill Selected
 
             result_text += "<div>";
             result_text += "<h3><span id = '" + result[i]['id'] + "' class='open'>" + result[i]['name'] + "</span> <span>"+ result[i]['level'] + " </span></h3>";
-            result_text += "<span id = 'skill_" + result[i]['id'] + "' class='assign button btn-sm btn-warning '>Inject</span>";
+            result_text += "<span id = 'skill_" + result[i]['id'] + "' class='assign btn-sm btn-warning '>Inject</span>";
             result_text += "<span>Cost: " +  result[i]['cost_price'] + "</span>";
             result_text += "<span>Time: " +  result[i]['upgrade_time'] + " mins</span>";
             result_text += "</div>";
