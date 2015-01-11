@@ -48,27 +48,19 @@ $templateparams	= $app->getTemplate(true)->params;
 <script id="loadarea_0" type="text/javascript"></script>
     <script id="loadarea_1" type="text/javascript"></script>
 
-
-    <!-- Bootstrap core -->
-    <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap-responsive.min.css" rel="stylesheet">
-
-
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/theme.css" rel="stylesheet" type="text/css" media="screen" />
-
+<!-- Bootstrap core -->
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap-theme.min.css" rel="stylesheet">
 
-<!-- Menu Type -->
-<?php if($templateparams->get('menutype')=='suckerfish'){ ?>
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/suckerfish.css" rel="stylesheet" type="text/css" />
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/suckerfish_style.css" rel="stylesheet" type="text/css" />
-<?php }
-else { ?>
+<!-- EMC23 template -->
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/theme.css" rel="stylesheet" type="text/css" media="screen" />
+
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/dropdown.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/dropdown_style.css" rel="stylesheet" type="text/css" />
-<?php } ?>
+
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/custom_emc23.css" rel="stylesheet">
 
 	<!--[if lte IE 6]>
 	<style type="text/css"> img { behavior: url(<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/iepngfix.htc); }</style>
@@ -82,7 +74,6 @@ else { ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie_8.css" media="screen, projection" />
 	<![endif]-->
 
-    <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/custom_emc23.css" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -102,29 +93,6 @@ else { ?>
 <!-- ATTN this should be in component -->
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" media="screen" />
 
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/emctempus.js"></script>
-
-<script type="text/javascript">
-
-$(document).ready(function() {
-
-	// if login form is displayed - user not logged in
-	if ( $( '#login-form .userdata' ).length > 0) {
-
-		$("#jwts_a1").css({
-		"display":"block",
-		"height":"auto",
-		"visibility":"visible"
-		});
-
-		$("#jwts_ac1").css("top",0);
-
-	}
-
-});
-
-</script>
-
 </head>
 
 <body id="<?php echo $style ;?>">
@@ -137,7 +105,6 @@ $(document).ready(function() {
 </div><!-- end nav -->
 <?php endif; ?>
 
-
 <?php if ($this->countModules('emc23-search')) : ?><!-- search -->
 <div id="search">
 <jdoc:include type="modules" name="emc23-search" style="none" />
@@ -148,12 +115,9 @@ $(document).ready(function() {
 	<?php endif; ?>
 
 
-
-
 <div id="wrapper" class="container-fluid">
 
-
-<div id="header" class="row-fluid"><!--header-->
+<div id="header" class="row"><!--header-->
 
 	<div id="logo">
 	<a href="<?php echo $this->baseurl ?>/index.php" title="<?php echo $app->getCfg('sitename');?> Home"><img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/images/logo.png" border="0" alt="<?php echo $app->getCfg('sitename');?> Logo" /></a>
@@ -170,10 +134,10 @@ $(document).ready(function() {
 	</div><!-- end logo -->
 
 	<?php if ($this->countModules('emc23-top-1 or emc23-top-2')) : ?>
-	<div id="header-modules" class="span8">
+	<div id="header-modules" class="col-md-8">
 
 		<?php if ($this->countModules('emc23-top-1')) : ?><!--top-module-->
-		<div id="top-module-1" class="span<?php echo $headermodule_span ;?>">
+		<div id="top-module-1" class="col-md-<?php echo $headermodule_span ;?>">
 		<div class="inside">
 		<jdoc:include type="modules" name="emc23-top-1" style="xhtml" />
 		</div><!-- end inside -->
@@ -181,7 +145,7 @@ $(document).ready(function() {
 		<?php endif; ?>
 
 		<?php if ($this->countModules('emc23-top-2')) : ?><!--top-module-->
-		<div id="top-module-2" class="span<?php echo $headermodule_span ;?>">
+		<div id="top-module-2" class="col-md-<?php echo $headermodule_span ;?>">
 		<div class="inside">
 		<jdoc:include type="modules" name="emc23-top-2" style="xhtml" />
 		</div><!-- end inside -->
@@ -195,17 +159,16 @@ $(document).ready(function() {
  </div><!-- end header -->
 
 
-
 <?php if ($this->countModules('emc23-topnav')) : ?><!--horizontal nav-->
-   <div class="navbar">
+   <div class="navbar-nav">
       <div class="navbar-inner">
-          	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          	<a class="btn btn-default navbar-btn" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
 
- 		  <div class="nav-collapse collapse">
+ 		  <div class="navbar-collapse collapse">
             <!--<p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link">Username</a>
             </p>-->
@@ -216,10 +179,9 @@ $(document).ready(function() {
 <?php endif; ?>
 
 
-
 <!--breadcrumbs - display on all pages except Front Page-->
 <?php if ($this->countModules('emc23-breadcrumbs')) :?>
-<div id="breadcrumbs" class="row-fluid">
+<div id="breadcrumbs" class="row">
 <jdoc:include type="modules" name="emc23-breadcrumbs" />
 </div><!-- end breadcrumbs -->
 <?php endif; ?>
@@ -227,10 +189,10 @@ $(document).ready(function() {
 
 <!--top-modules-->
 <?php if ($this->countModules('emc23-position-1 or emc23-position-2 or emc23-position-3 or emc23-position-4')) : ?>
-<div id="top-modules" class="row-fluid">
+<div id="top-modules" class="row">
 
 	<?php if ($this->countModules('emc23-position-1')) { ?>
-	<div class="teaser-1 span<?php echo $topmodule_span ;?>">
+	<div class="teaser-1 col-md-<?php echo $topmodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-1" style="xhtml" />
 		</div><!-- end inside -->
@@ -238,7 +200,7 @@ $(document).ready(function() {
 	<?php } ?>
 
 	<?php if ($this->countModules('emc23-position-2')) : ?>
-	<div class="teaser-2 span<?php echo $topmodule_span ;?>">
+	<div class="teaser-2 col-md-<?php echo $topmodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-2" style="xhtml" />
 		</div><!-- end inside -->
@@ -246,7 +208,7 @@ $(document).ready(function() {
 	<?php endif; ?>
 
 	<?php if ($this->countModules('emc23-position-3')) : ?>
-	<div class="teaser-3 span<?php echo $topmodule_span ;?>">
+	<div class="teaser-3 col-md-<?php echo $topmodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-3" style="xhtml" />
 		</div><!-- end inside -->
@@ -255,7 +217,7 @@ $(document).ready(function() {
 
 
 	<?php if ($this->countModules('emc23-position-4')) : ?>
-	<div class="teaser-4 span<?php echo $topmodule_span ;?>">
+	<div class="teaser-4 col-md-<?php echo $topmodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-4" style="xhtml" />
 		</div><!-- end inside -->
@@ -268,19 +230,19 @@ $(document).ready(function() {
 
 
 <!--Main Content Area-->
-<div id="BodyContent" class="row-fluid">
-	<div id="LoadFirst" class="span<?php echo $loadfirst_span ;?>">
-		<div class="row-fluid">
+<div id="BodyContent" class="row">
+	<div id="LoadFirst" class="col-md-<?php echo $loadfirst_span ;?>">
+		<div class="row">
 
-		<div id="MiddleCol" class="span<?php echo $middlecol_span ;?>">
+		<div id="MiddleCol" class="col-md-<?php echo $middlecol_span ;?>">
 			<div class="inside">
 
 				<!--content-modules-->
 				<?php if ($this->countModules('emc23-position-5 or emc23-position-6 or emc23-position-7 or emc23-position-8')) : ?>
-				<div id="content-modules" class="row-fluid">
+				<div id="content-modules" class="row">
 
 					<?php if ($this->countModules('emc23-position-5')) : ?>
-					<div class="teaser-1 span<?php echo $contentmodule_span ;?>">
+					<div class="teaser-1 col-md-<?php echo $contentmodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-5" style="xhtml" />
 						</div><!-- end inside -->
@@ -288,7 +250,7 @@ $(document).ready(function() {
 					<?php endif; ?>
 
 					<?php if ($this->countModules('emc23-position-6')) : ?>
-					<div class="teaser-2 span<?php echo $contentmodule_span ;?>">
+					<div class="teaser-2 col-md-<?php echo $contentmodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-6" style="xhtml" />
 						</div><!-- end inside -->
@@ -296,7 +258,7 @@ $(document).ready(function() {
 					<?php endif; ?>
 
 					<?php if ($this->countModules('emc23-position-7')) : ?>
-					<div class="teaser-3 span<?php echo $contentmodule_span ;?>">
+					<div class="teaser-3 col-md-<?php echo $contentmodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-7" style="xhtml" />
 						</div><!-- end inside -->
@@ -305,7 +267,7 @@ $(document).ready(function() {
 
 
 					<?php if ($this->countModules('emc23-position-8')) : ?>
-					<div class="teaser-4 span<?php echo $contentmodule_span ;?>">
+					<div class="teaser-4 col-md-<?php echo $contentmodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-8" style="xhtml" />
 						</div><!-- end inside -->
@@ -317,7 +279,7 @@ $(document).ready(function() {
 
 
 				<!--Main Content-->
-				<div id="mainbody" class="row-fluid">
+				<div id="mainbody" class="row">
 					<?php if(count(JFactory::getApplication()->getMessageQueue())):?>
 					<div class="error">
 						<h2> Message </h2>
@@ -331,10 +293,10 @@ $(document).ready(function() {
 
 				<!--bottom-modules-->
 				<?php if ($this->countModules('emc23-position-9 or emc23-position-10 or emc23-position-11 or emc23-position-12')) : ?>
-				<div id="bottom-modules" class="row-fluid">
+				<div id="bottom-modules" class="row">
 
 					<?php if ($this->countModules('emc23-position-9')) : ?>
-					<div class="teaser-1 span<?php echo $bottommodule_span ;?>">
+					<div class="teaser-1 col-md-<?php echo $bottommodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-9" style="xhtml" />
 						</div><!-- end inside -->
@@ -342,7 +304,7 @@ $(document).ready(function() {
 					<?php endif; ?>
 
 					<?php if ($this->countModules('emc23-position-10')) : ?>
-					<div class="teaser-2 span<?php echo $bottommodule_span ;?>">
+					<div class="teaser-2 col-md-<?php echo $bottommodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-10" style="xhtml" />
 						</div><!-- end inside -->
@@ -350,7 +312,7 @@ $(document).ready(function() {
 					<?php endif; ?>
 
 					<?php if ($this->countModules('emc23-position-11')) : ?>
-					<div class="teaser-3 span<?php echo $bottommodule_span ;?>">
+					<div class="teaser-3 col-md-<?php echo $bottommodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-11" style="xhtml" />
 						</div><!-- end inside -->
@@ -358,7 +320,7 @@ $(document).ready(function() {
 					<?php endif; ?>
 
 					<?php if ($this->countModules('emc23-position-12')) : ?>
-					<div class="teaser-4 span<?php echo $bottommodule_span ;?>">
+					<div class="teaser-4 col-md-<?php echo $bottommodule_span ;?>">
 						<div class="inside">
 							<jdoc:include type="modules" name="emc23-position-12" style="xhtml" />
 						</div><!-- end inside -->
@@ -379,7 +341,7 @@ $(document).ready(function() {
 
 		<!--Left Column-->
 	<?php if($this->countModules('emc23-right') and JRequest::getCmd('layout') != 'form') : ?>
-		<div id="sidebar" class="span<?php echo $left_span ;?>">
+		<div id="sidebar" class="col-md-<?php echo $left_span ;?>">
 			<div class="inside">
 				<jdoc:include type="modules" name="emc23-right" style="xhtml" />
 			</div><!-- end inside -->
@@ -392,7 +354,7 @@ $(document).ready(function() {
 	<!--Right Column-->
 
 	<?php if ($this->countModules('emc23-menu or emc23-left or emc23-syndicate or emc23-rounded')) : ?>
-	<div id="sidebar-2" class="span<?php echo $right_span ;?>">
+	<div id="sidebar-2" class="col-md-<?php echo $right_span ;?>">
 		<div class="inside">
 				<?php if ($this->countModules('emc23-menu')) : ?>
 					<jdoc:include type="modules" name="emc23-menu" style="xhtml" />
@@ -416,10 +378,10 @@ $(document).ready(function() {
 
 <!--footer-modules-->
 <?php if ($this->countModules('emc23-position-13 or emc23-position-14 or emc23-position-15 or emc23-position-16')) : ?>
-<div id="footer-modules" class="row-fluid">
+<div id="footer-modules" class="row">
 
 	<?php if ($this->countModules('emc23-position-13')) : ?>
-	<div class="teaser-1 span<?php echo $footermodule_span ;?>">
+	<div class="teaser-1 col-md-<?php echo $footermodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-13" style="xhtml" />
 		</div><!-- end inside -->
@@ -427,7 +389,7 @@ $(document).ready(function() {
 	<?php endif; ?>
 
 	<?php if ($this->countModules('emc23-position-14')) : ?>
-	<div class="teaser-2 span<?php echo $footermodule_span ;?>">
+	<div class="teaser-2 col-md-<?php echo $footermodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-14" style="xhtml" />
 		</div><!-- end inside -->
@@ -435,7 +397,7 @@ $(document).ready(function() {
 	<?php endif; ?>
 
 	<?php if ($this->countModules('emc23-position-15')) : ?>
-	<div class="teaser-3 span<?php echo $footermodule_span ;?>">
+	<div class="teaser-3 col-md-<?php echo $footermodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-15" style="xhtml" />
 		</div><!-- end inside -->
@@ -443,7 +405,7 @@ $(document).ready(function() {
 	<?php endif; ?>
 
 	<?php if ($this->countModules('emc23-position-16')) : ?>
-	<div class="teaser-4 span<?php echo $footermodule_span ;?>">
+	<div class="teaser-4 col-md-<?php echo $footermodule_span ;?>">
 		<div class="inside">
 			<jdoc:include type="modules" name="emc23-position-16" style="xhtml" />
 		</div><!-- end inside -->
@@ -457,7 +419,7 @@ $(document).ready(function() {
 
 <!--footer-->
 <?php if ($this->countModules('emc23-footer-nav or emc23-footer')) : ?>
-<div id="footer" class="row-fluid">
+<div id="footer" class="row">
 <p class="pull-right"><a href="#">Back to top</a></p>
 
 
@@ -498,6 +460,22 @@ $(document).ready(function() {
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/emctempus.js"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			// if login form is displayed - user not logged in
+			if ( $( '#login-form .userdata' ).length > 0) {
+				$("#jwts_a1").css({
+					"display":"block",
+					"height":"auto",
+					"visibility":"visible"
+				});
+				$("#jwts_ac1").css("top",0);
+			}
+		});
+	</script>
 
 
 </body>
