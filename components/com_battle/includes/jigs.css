@@ -1920,7 +1920,6 @@ display:block;
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
-.btn-primary:hover,
 .btn-primary:active,
 .btn-primary.active,
 .btn-primary.disabled,
@@ -1928,9 +1927,13 @@ display:block;
   color: #ffffff;
   background-color: rgba(0,153,153,1);
   *background-color: rgba(13,122,122,1);
+  background-position: inherit;
 }
 
-
+.btn-primary:hover,
+.btn-primary:focus {
+  background-position: inherit;
+}
 
 
 
