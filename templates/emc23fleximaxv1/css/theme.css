@@ -215,7 +215,7 @@ text-align: center;
 font-size: 85%;
 font-weight: bold;
 line-height: 20px;
-background: url(../images/button_bg.png) repeat-x #003535;
+background: #003535;
 color: #009999;
 border: 1px #009999 solid;
 }
