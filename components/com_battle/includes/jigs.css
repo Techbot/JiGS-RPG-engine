@@ -391,6 +391,7 @@ img.thumbnail {
 	float: left;
 	margin: 0 10px 10px;
 	border: 3px solid #333;
+  background-color: transparent;
 }
 p.desc {
 	margin:0;
@@ -950,6 +951,7 @@ div#flats h4 {
 margin:0;
 text-align:center;
 font-size:14px;
+line-height: 20px;
 }
 div#flats h4 a {
 background:rgba(160,8,8,1);
@@ -1753,6 +1755,9 @@ display:block;
 	text-align:left;
 	padding:0 5px 5px;
 	width:100%;
+  background-color:transparent;
+  border-radius: 0;
+  border: 0 none;
 }
 .panel p {
 	margin:0 0 5px;
@@ -1890,6 +1895,47 @@ display:block;
 .dataTables_wrapper label {
   color: white;
 }
+.bg-success,
+.bg-info,
+.bg-warning,
+.bg-danger {
+  color: #000;
+}
+
+
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color:rgba(0,153,153,1);
+  *background-color:rgba(13,122,122,1);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,153,153,1)), to(rgba(13,122,122,1)));
+  background-image: -webkit-linear-gradient(top, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-image: -o-linear-gradient(top, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-image: linear-gradient(to bottom, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-image: -moz-linear-gradient(top, rgba(0,153,153,1), rgba(13,122,122,1));
+  background-repeat: repeat-x;
+  border-color: rgba(0,153,153,1) rgba(13,122,122,1) rgba(0,153,153,1);
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='rgba(0,153,153,1)', endColorstr='rgba(13,122,122,1)', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: rgba(0,153,153,1);
+  *background-color: rgba(13,122,122,1);
+  background-position: inherit;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-position: inherit;
+}
+
+
 
 
 
@@ -2173,12 +2219,13 @@ color: #fff;
     display:inline-block;
 }
 
-#master_skills_table .button,
-#primary_upgrade_table .button,
-#skills_table .button,
-#secondary_upgrade_table .button{
+#master_skills_table .btn-sm,
+#primary_upgrade_table .btn-sm,
+#skills_table .btn-sm,
+#secondary_upgrade_table .btn-sm {
     width: 90%;
 margin: 0 auto;
+color: #fff;
 }
 
 
@@ -2255,4 +2302,14 @@ margin: 0 auto;
     box-shadow: 0 -2em #ffffff;
     height: 5em;
   }
+}
+
+.building_left,
+.building_right,
+.building_function {
+  background-color: #000;
+}
+
+.instructions form > h2 {
+  margin: 10px 0;
 }
