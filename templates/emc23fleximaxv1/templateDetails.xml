@@ -10,7 +10,7 @@
 	<version>3.0</version>
 	<description><![CDATA[
 					<a href="http://www.emc23.com" target="_blank"><img src="http://www.emc23.com/images/logo.png" /></a>
-						<h2><a href="http://www.emc23.com" target="_blank">www.emc23.com</a><br />Joomla 2.5 Flexi Template v1 - Responsive by Bootstrap</h2>				 
+						<h2><a href="http://www.emc23.com" target="_blank">www.emc23.com</a><br />Joomla 2.5 Flexi Template v1 - Responsive by Bootstrap</h2>
 					<h5>Last Updated Dec 23 2012 by EMC23</h5>
 					]]>
 	</description>
@@ -58,8 +58,8 @@
 		<position>emc23-banner</position>
 		<position>emc23-debug</position>
 		</positions>
-	
-	
+
+
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
@@ -74,16 +74,8 @@
 					description="Site Description"
 					filter="string" />
 
-				<field name="menutype" type="list" default="normal"
-					label="Drop Down Menu Type"
-					description="For Suckerfish, Show Sub-menu Items = Yes (Module Manager > Basic Options)"
-					filter="word">
-					<option value="normal">Normal</option>
-					<option value="suckerfish">Suckerfish</option>
-				</field>
-
 			</fieldset>
 		</fields>
-	</config>	
-	
+	</config>
+
 </extension>

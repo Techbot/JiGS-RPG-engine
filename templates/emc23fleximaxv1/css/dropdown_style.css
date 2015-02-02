@@ -150,34 +150,35 @@ Output code is ul.menu etc.
 
 /* 1st Level */
 
-#sidebar-2 ul.menu{
+#sidebar ul.nav{
 border:0;
 border-bottom:solid 0px #F3F3F3;
 list-style-type:none !important;
 }
 
-#sidebar-2 ul.menu li{
-border-bottom:solid 1px #F3F3F3;
+#sidebar ul.nav li{
+border-bottom: dotted 1px #333;
 }
 
-#sidebar-2 ul.menu li a:link,
-#sidebar-2 ul.menu li a:visited{
+#sidebar ul.nav li a:link,
+#sidebar ul.nav li a:visited{
 display:block;
 text-decoration:none;
 }
 
-#sidebar-2 ul.menu li.active a:link,
-#sidebar-2 ul.menu li.active a:visited{
-color:#333;
+#sidebar ul.nav li.active a:link,
+#sidebar ul.nav li.active a:visited{
 font-weight:bold;
+background:#DFDFDF;
+color:#000;
 }
 
-#sidebar-2 ul.menu li a:hover,
-#sidebar-2 ul.menu li a:active,
-#sidebar-2 ul.menu li a:focus,
-#sidebar-2 ul.menu li.active a:hover,
-#sidebar-2 ul.menu li.active a:active,
-#sidebar-2 ul.menu li.active a:focus{
+#sidebar ul.nav li a:hover,
+#sidebar ul.nav li a:active,
+#sidebar ul.nav li a:focus,
+#sidebar ul.nav li.active a:hover,
+#sidebar ul.nav li.active a:active,
+#sidebar ul.nav li.active a:focus{
 background:#DFDFDF;
 color:#000;
 }
@@ -274,4 +275,4 @@ border-bottom:solid 0px #DFDFDF;
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active ul li.active a:visited{
 font-weight:bold;
 color:#333;
-}		
+}
