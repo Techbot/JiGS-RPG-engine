@@ -10,6 +10,9 @@
             var grid;
             var number;
             var tile_names = new Array();
+            var assets_name = new Array();
+            var assets_name_x = new Array();
+            var assets_name_y = new Array();
             var building = new Array();
             var buildings = new Array();
             var posx = new Array();
@@ -17,6 +20,7 @@
 
             var portal = new Array();
             var add_building = new Array();
+            var add_assets = new Array();
             var add_npc = new Array();
 
             var boundsX1 = new Array();

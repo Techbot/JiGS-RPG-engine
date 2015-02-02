@@ -10,37 +10,33 @@ playState[1] = {
 
         var number = paddy(grid,3);
         game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
+
+
+        game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
+
+
+
         //load tiles
         for	(var index = 0; index < tile_names[grid].length; index++) {
             var filename = tile_names[grid][index];
             game.load.image(filename, '/components/com_battle/images/assets/tiles/' + filename +'.png');
         }
 
-        if(buildings.length != 0) {
-            ///////////////////// load buildings
-            for (var index = 0; index < buildings.length; index++) {
-                var filename = buildings[index].image;
-                var key = buildings[index].id;
-                console.log("filename : " + filename);
-                game.load.image("_" + key, '/components/com_battle/images/buildings/' + filename);
-                // game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+        if (typeof assets_name[grid] != 'undefined') {
+
+            //load assets
+            for (var index = 0; index < assets_name[grid].length; index++) {
+                var filename = assets_name[grid][index];
+                game.load.spritesheet(filename, '/components/com_battle/images/assets/' + filename + '.png', 70, 60, 8);
             }
         }
-        if(npc_list.length != 0) {
-            ///////////////////// load chars
-            for (var index = 0; index < npc_list.length; index++) {
-                var filename = npc_list[index].avatar;
-                var key = npc_list[index].name;
-                console.log("key : " + key);
-                console.log("filename : " + filename);
-                game.load.image(key, '/components/com_battle/images/ennemis/miniatures/' + filename);
-                // game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
-            }
-        }
+
         game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
+
         game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);
-        game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1); 
+        game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1);
         game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/Dungeon_C.png', 32, 64, 1);
+
     },
     create: function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -66,6 +62,17 @@ playState[1] = {
             var filename = tile_names[grid][index];
             game.load.image(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/tiles/' + filename + '.png');
         }
+
+
+
+        if (typeof assets_name[grid] != 'undefined') {
+            ///////////////////// cache assets
+            for (var index = 0; index < assets_name[grid].length; index++) {
+                var filename = assets_name[grid][index];
+                game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/' + filename + '.png', 70, 120, 8);
+            }
+        }
+
 
 
         //////////////////// cache buildings
@@ -126,12 +133,7 @@ playState[1] = {
         console.log (new_y);
 
 
-        //sprite = game.add.sprite(parseInt(new_x),parseInt(new_y), 'arrow');
-
         sprite = game.add.sprite(parseInt(new_x),parseInt(new_y), 'arrow');
-
-
-
 
 
         game.physics.enable(sprite, Phaser.Physics.ARCADE);
@@ -145,7 +147,7 @@ playState[1] = {
             for (var index = 0; index < buildings.length; index++) {
                 var key = buildings[index].id;
                 //console.log("_" + key);
-                add_building[index] = game.add.sprite(buildings[index].posx * 2, buildings[index].posy * 2, "_" + key);
+                add_building[index] = game.add.sprite(buildings[index].posx * 1, buildings[index].posy * 1, "_" + key);
                 add_building[index].id = key;
                 game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
             }
@@ -154,14 +156,44 @@ playState[1] = {
 
 
 
+////////////////////////place assets//////
+
+
+        if (typeof assets_name[grid] != 'undefined') {
+            for (var index = 0; index < assets_name[grid].length; index++) {
+                var key = assets_name[grid][index];
+                //console.log("_" + key);
+                add_assets[index] = game.add.sprite(assets_name_x[grid][index], assets_name_y[grid][index], key);
+
+                //  Here we add a new animation called 'walk'
+                //  Because we didn't give any other parameters it's going to make an animation from all available frames in the 'mummy' sprite sheet
+                add_assets[index].animations.add('walk');
+                console.log('one');
+
+
+                //  And this starts the animation playing by using its key ("walk")
+                //  30 is the frame rate (30fp;s)
+                //  true means it will loop when it finishes
+                add_assets[index].animations.play('walk',8,true);
+                console.log('two');
+                add_assets[index].id = key;
+               // game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+            }
+
+        }
+
+
+
 /////////////////////////////////////////////////////////////////
+
+
         if(npc_list.length !=0 ) {
             /////////////////////////////////////////////place chars//////
             for (var index = 0; index < npc_list.length; index++) {
                 var key = npc_list[index].name;
                 var key_id = npc_list[index].id;
                 //console.log(key);
-                add_npc[index] = game.add.sprite(npc_list[index].posx * 2, npc_list[index].posy * 2, key);
+                add_npc[index] = game.add.sprite(parseInt(npc_list[index].posx) ,parseInt( npc_list[index].posy) , key);
                 add_npc[index].id = key;
                 add_npc[index].key_id = key_id;
 
@@ -183,6 +215,31 @@ playState[1] = {
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         portal[3]['dest']=portal_dest_3[grid];
         // game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
+
+
+
+
+
+
+        mummy = game.add.sprite(400, 300, 'ms');
+
+        mummy.animations.add('walk');
+
+        mummy.animations.play('walk', 50, true);
+
+      //  game.add.tween(mummy).to({ x: game.width }, 10000, Phaser.Easing.Linear.None, true);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -213,7 +270,7 @@ playState[1] = {
 
              if(typeof (add_building[index]) != 'undefined')
             {
-                add_building[index].body.immovable = true;
+               // add_building[index].body.immovable = true;
 
             }
         }
