@@ -49,12 +49,11 @@
     {
 
     },
- "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"/components/com_battle/images/assets/tiles/Zombie_A5.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -70,7 +69,7 @@
         }, 
         {
          "firstgid":129,
-         "image":"/components/com_battle/images/assets/tiles/Zombie_A3.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -86,7 +85,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"/components/com_battle/images/assets/tiles/TileE.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/TileE.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -102,7 +101,7 @@
         }, 
         {
          "firstgid":513,
-         "image":"/components/com_battle/images/assets/tiles/Inside_C.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Inside_C.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -118,7 +117,7 @@
         }, 
         {
          "firstgid":769,
-         "image":"/components/com_battle/images/assets/posters\/POSTER - ...AND NOW THE SCREAMING STARTS.JPG",
+         "image":"components\/com_battle\/images\/assets\/posters\/POSTER - ...AND NOW THE SCREAMING STARTS.JPG",
          "imageheight":1218,
          "imagewidth":763,
          "margin":0,
@@ -134,7 +133,7 @@
         }, 
         {
          "firstgid":1643,
-         "image":"/components/com_battle/images/assets/posters\/POSTER - 3 ON A MEATHOOK!.jpg",
+         "image":"components\/com_battle\/images\/assets\/posters\/POSTER - 3 ON A MEATHOOK!.jpg",
          "imageheight":424,
          "imagewidth":273,
          "margin":0,
@@ -150,7 +149,7 @@
         }, 
         {
          "firstgid":1747,
-         "image":"/components/com_battle/images/assets/tiles/sprite.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/sprite.png",
          "imageheight":1280,
          "imagewidth":640,
          "margin":0,
@@ -165,7 +164,7 @@
         }, 
         {
          "firstgid":2547,
-         "image":"/components/com_battle/images/assets/tiles/World_B.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/World_B.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -180,7 +179,7 @@
         }, 
         {
          "firstgid":2803,
-         "image":"/components/com_battle/images/assets/tiles/033-Heaven02.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/033-Heaven02.png",
          "imageheight":928,
          "imagewidth":256,
          "margin":0,

@@ -17,12 +17,15 @@ var sprite;
 var sprite2;
 var grid;
 var cursors;
+var players_list=0;
+var avatar;
 
 jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
     grid = result[0];
     new_x = parseFloat(result[1]);
     new_y = parseFloat(result[2]);
+    avatar = result[3];
     //console.log("buildings : " + buildings.length);
     // console.log("buildings2 : " + buildings.length);
     // load buildings
@@ -35,7 +38,7 @@ jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&for
 
 });
 
-
+/*
 blip.sampleLoader()
     .samples({
         'uke': 'http://www.eclecticmeme.com/components/com_battle/includes/ukeC.wav'
@@ -47,6 +50,8 @@ blip.sampleLoader()
     })
     .done(loaded)
     .load();
+*/
+
 
 function moveBall(pointer)
 {
@@ -112,16 +117,19 @@ function get_everything(dest){
         jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_chars&format=raw', function(result)
         {
             npc_list = result;
+
+            jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_players&format=raw', function(result)
+            {
+
+                players_list = result;
+
             //console.log("buildings : " + buildings.length);
             // console.log("buildings2 : " + buildings.length);
             // load buildings
             game.state.start('next');
+            });
         });
     });
-
-
-
-
 }
 
 

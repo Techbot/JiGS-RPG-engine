@@ -11,10 +11,7 @@ playState[1] = {
         var number = paddy(grid,3);
         game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
 
-
         game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
-
-
 
         //load tiles
         for	(var index = 0; index < tile_names[grid].length; index++) {
@@ -22,6 +19,7 @@ playState[1] = {
             game.load.image(filename, '/components/com_battle/images/assets/tiles/' + filename +'.png');
         }
 
+        //////////////////////// monsters
         if (typeof assets_name[grid] != 'undefined') {
 
             //load assets
@@ -31,11 +29,58 @@ playState[1] = {
             }
         }
 
-        game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
+        /////////////////////////////
+        if(players_list.length != 0) {
+///////////////////// load players
+            for (var index = 0; index < players_list.length; index++) {
+                var filename = players_list[index].avatar;
 
-        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/Dungeon_A1.png', 32, 64, 1);
-        game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/Dungeon_B.png', 32, 64, 1);
-        game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/Dungeon_C.png', 32, 64, 1);
+                if (filename==null){
+                    filename= 'gallery/skater.gif';
+                }
+                var key = players_list[index].name;
+
+
+                console.log("filename : " + filename);
+                game.load.image(key, 'images/comprofiler/tn' + filename);
+
+            }
+        }
+
+               if(buildings.length != 0) {
+///////////////////// load buildings
+            for (var index = 0; index < buildings.length; index++) {
+                var filename = buildings[index].image;
+                var key = buildings[index].id;
+                console.log("filename : " + filename);
+                game.load.image("_" + key, '/components/com_battle/images/buildings/' + filename);
+// game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+            }
+        }
+
+        if(npc_list.length != 0) {
+///////////////////// load chars
+            for (var index = 0; index < npc_list.length; index++) {
+                var filename = npc_list[index].avatar;
+                var key = npc_list[index].name;
+                console.log("key : " + key);
+                console.log("filename : " + filename);
+                game.load.image(key, '/components/com_battle/images/ennemis/miniatures/' + filename);
+// game.load.spritesheet('bank', '/components/com_battle/images/buildings/bank.jpg', 48, 48, 1);
+            }
+        }
+
+
+
+       // game.load.image('arrow', '/components/com_battle/images/assets/frog.gif');
+        game.load.image('arrow', '/images/comprofiler/tn' + avatar);
+
+
+
+
+        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portals_1.png', 64, 64, 1);
+        game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/portals_2.png', 64, 64, 1);
+        game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/portals_3.png', 64, 64, 1);
 
     },
     create: function() {
@@ -64,7 +109,7 @@ playState[1] = {
         }
 
 
-
+/////////////////// cache monsters
         if (typeof assets_name[grid] != 'undefined') {
             ///////////////////// cache assets
             for (var index = 0; index < assets_name[grid].length; index++) {
@@ -73,7 +118,14 @@ playState[1] = {
             }
         }
 
+        //////////////////// cache players
+        for (var index = 0; index < players_list.length; index++) {
+            //var filename = buildings[index].image;
+            var key = players_list[index].name;
 
+
+            game.load.image(cacheKey(key, 'tileset', key), '/images/comprofiler/' + filename );
+        }
 
         //////////////////// cache buildings
         for (var index = 0; index < buildings.length; index++) {
@@ -149,7 +201,11 @@ playState[1] = {
                 //console.log("_" + key);
                 add_building[index] = game.add.sprite(buildings[index].posx * 1, buildings[index].posy * 1, "_" + key);
                 add_building[index].id = key;
+
+
+
                 game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+                add_building[index].body.velocity = 0;
             }
 
         }
@@ -186,6 +242,62 @@ playState[1] = {
 
 /////////////////////////////////////////////////////////////////
 
+        ////////////////////////place players//////
+
+
+        if (typeof players_list != 'undefined') {
+            for (var index = 0; index < players_list.length; index++) {
+                var key = players_list[index].name;
+                //console.log("_" + key);
+                add_assets[index] = game.add.sprite(players_list[index].posx, players_list[index].posy, key);
+
+                //  Here we add a new animation called 'walk'
+                //  Because we didn't give any other parameters it's going to make an animation from all available frames in the 'mummy' sprite sheet
+                //add_assets[index].animations.add('walk');
+               // console.log('one');
+
+
+                //  And this starts the animation playing by using its key ("walk")
+                //  30 is the frame rate (30fp;s)
+                //  true means it will loop when it finishes
+                //add_assets[index].animations.play('walk',8,true);
+                //console.log('two');
+                //add_assets[index].id = key;
+                // game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+            }
+
+        }
+
+
+
+/////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         if(npc_list.length !=0 ) {
             /////////////////////////////////////////////place chars//////
@@ -198,6 +310,7 @@ playState[1] = {
                 add_npc[index].key_id = key_id;
 
                 game.physics.enable(add_npc[index], Phaser.Physics.ARCADE);
+                add_npc[index].body.velocity = 0;
             }
         }
 /////////////////////////////////////////////////////////////////

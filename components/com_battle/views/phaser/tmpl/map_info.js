@@ -46,7 +46,7 @@ portal_sourceY3[1] = 432;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-tile_names[2] = ['Zombie_A5','Zombie_A3','TileE','Inside_C'];
+tile_names[2] = ['Zombie_A5','Zombie_A3','TileE','Inside_C','sprite','World_B','033-Heaven02'];
 
 x1[2] = 963;
 y1[2] = 802;
@@ -54,7 +54,7 @@ y1[2] = 802;
 x2[2] = 300;
 y2[2] = 150;
 
-x3[2] = 1450;
+x3[2] = 1150;
 y3[2] = 50;
 
 boundsX1[2] = 0;
@@ -70,7 +70,7 @@ portal_sourceX1[2] = 1025;
 portal_sourceY1[2] = 755;
 
 portal_sourceX2[2] = 1632;
-portal_sourceY2[2]=711;
+portal_sourceY2[2] = 711;
 
 portal_sourceX3[2] = 400;
 portal_sourceY3[2] = 832;
@@ -154,7 +154,7 @@ y3[5] = 580;
 boundsX1[5] = 0;
 boundsY1[5] = 0;
 boundsX2[5] = 1100;
-boundsY2[5] = 1100;
+boundsY2[5] = 900;
 
 
 portal_dest_1[5] = 1;
@@ -173,12 +173,12 @@ portal_sourceY3[5] = 855;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-tile_names[6] = ['Zombie_A5','Zombie_A3','TileE','Inside_C'];
+tile_names[6] = ['Zombie_A5','Zombie_A3','TileE','Inside_C','TileA4','TileA5','TileC'];
 
 x1[6] = 889;
 y1[6] = 0;
 
-x2[6] = 1623;
+x2[6] = 1123;
 y2[6] = 610;
 
 x3[6] = 640;
@@ -186,8 +186,8 @@ y3[6] = 580;
 
 boundsX1[6] = 0;
 boundsY1[6] = 0;
-boundsX2[6] = 1600;
-boundsY2[6] = 1600;
+boundsX2[6] = 1200;
+boundsY2[6] = 940;
 
 
 portal_dest_1[6] = 1;
@@ -196,10 +196,10 @@ portal_dest_3[6] = 10;
 
 
 portal_sourceX1[6] = 825;
-portal_sourceY1[5] = 855;
+portal_sourceY1[6] = 855;
 
 portal_sourceX2[6] = 825;
-portal_sourceY2[5]=855;
+portal_sourceY2[6]= 855;
 
 portal_sourceX3[6] = 825;
 portal_sourceY3[6] = 855;
@@ -209,7 +209,7 @@ portal_sourceY3[6] = 855;
 tile_names[7] = ['TileA4','TileA5','TileE','Inside_C'];
 
 x1[7] = 889;
-y1[7] = 0;
+y1[7] = 10;
 
 x2[7] = 1623;
 y2[7] = 610;
@@ -313,7 +313,7 @@ portal_sourceY3[9] = 580;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[10] = ['B-E_HF1R_Dungeon_1','TileA5','TileE','TileA5'];
+tile_names[10] = ['B-E_HF1R_Dungeon_1','TileA5'];
 
 x1[10] = 889;
 y1[10] = 0;
@@ -326,8 +326,8 @@ y3[10] = 580;
 
 boundsX1[10] = 0;
 boundsY1[10] = 0;
-boundsX2[10] = 1600;
-boundsY2[10] = 1600;
+boundsX2[10] = 1100;
+boundsY2[10] = 800;
 
 
 portal_dest_1[10] = 4;
@@ -622,8 +622,8 @@ y3[19] = 580;
 
 boundsX1[19] = 0;
 boundsY1[19] = 0;
-boundsX2[19] = 1600;
-boundsY2[19] = 1600;
+boundsX2[19] = 1200;
+boundsY2[19] = 700;
 
 
 portal_dest_1[19] = 4;
@@ -631,14 +631,14 @@ portal_dest_2[19] = 17;
 portal_dest_3[19] = 18;
 
 
-portal_sourceX1[19] = 825;
-portal_sourceY1[19] = 855;
+portal_sourceX1[19] = 600;
+portal_sourceY1[19] = 0;
 
-portal_sourceX2[19] = 825;
-portal_sourceY2[19] = 855;
+portal_sourceX2[19] = 600;
+portal_sourceY2[19] = 300;
 
-portal_sourceX3[19] = 825;
-portal_sourceY3[19] = 855;
+portal_sourceX3[19] = 600;
+portal_sourceY3[19] = 600;
 // /////////////////////////////////////////////////////////////////////
 tile_names[20] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','ModernDay_A2',
     'ModernDay_A3',

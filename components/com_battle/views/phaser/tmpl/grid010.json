@@ -53,7 +53,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Dungeon_1.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Dungeon_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -68,7 +68,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/TileA5.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/TileA5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
