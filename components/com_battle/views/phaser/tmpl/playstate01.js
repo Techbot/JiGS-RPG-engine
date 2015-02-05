@@ -249,7 +249,7 @@ playState[1] = {
             for (var index = 0; index < players_list.length; index++) {
                 var key = players_list[index].name;
                 //console.log("_" + key);
-                add_assets[index] = game.add.sprite(players_list[index].posx, players_list[index].posy, key);
+                add_players[index] = game.add.sprite(players_list[index].posx, players_list[index].posy, key);
 
                 //  Here we add a new animation called 'walk'
                 //  Because we didn't give any other parameters it's going to make an animation from all available frames in the 'mummy' sprite sheet
@@ -264,6 +264,8 @@ playState[1] = {
                 //console.log('two');
                 //add_assets[index].id = key;
                 // game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+                game.physics.enable(add_players[index], Phaser.Physics.ARCADE);
+                add_players[index].body.velocity = 0;
             }
 
         }
