@@ -213,34 +213,33 @@ function church() {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function npc(one,two) {
-    //monster4.destroy(true);
-    //monster5.destroy(true);
-
 
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=character&id="+ two.key_id,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
-
-/*
-        mything = new Element ('div',{'id':"NPC",
-            html:result,
-            'style':'border 1px solid #F00; '});
-
-        document.getElementById("mainbody").innerHTML=$(mything).val();
-*/
-
         document.getElementById("mainbody").innerHTML=result;
-
-
-
-
-
     });
-//http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function player(one,two) {
+
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=player&id="+ two.key_id,
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        document.getElementById("mainbody").innerHTML=result;
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 function paddy(n, p, c) {
     var pad_char = typeof c !== 'undefined' ? c : '0';
