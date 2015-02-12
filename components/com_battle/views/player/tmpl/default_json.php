@@ -6,7 +6,7 @@ $id = 0;
 $text ='
 			<div id="profile_" class="PLAYERS clearfix">
 
-			<a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
+			<a href="index.php?option=com_battle&amp;view=phaser&amp;Itemid=115" class="mid"></a>
 
 
 				<div class="name">' . $people->name  . '</div>
