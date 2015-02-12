@@ -2,11 +2,10 @@
 $people = $this->people;
 $loses = $people->nbr_attacks - $people->nbr_kills;
 $text ='
-        <div style=" width: 100%; height:auto; margin: 0 auto; text-align:center; background:#000; " id="screen_grid">
 
-            <div id="profile_" class="clearfix">
+            <div id="profile_" class="NPC clearfix">
 
-            <a href="index.php?option=com_battle&amp;view=phaser&amp;Itemid=115" class="mid"></a>
+            <a href="index.php?option=com_battle&amp;view=single&amp;Itemid=115" class="mid"></a>
                 <div class="name">' . $people->name  . '</div>
                 <div class="clearfix" id="action">
                     <div class="btn btn-danger shoot"><a onclick="shoot_character(' . $people->id  . ')" id="shoot" >Shoot</a></div>
@@ -39,6 +38,18 @@ $text ='
                     </figure>
 
                     <div class="stats">
+
+                    <dl class="char stats dl-horizontal">
+                        <dt>Name</dt>
+                        <dd>' . $people->name  . '</dd>
+                        <dt>Faction</dt>
+                        <dd>unknown</dd>
+                        <dt>Group</dt>
+                        <dd>unknown</dd>
+                        <dt>Address</dt>
+                        <dd>' . $people->map  . ' / ' . $people->grid  . '</dd>
+                    </dl>
+
                         <table class="stats">
                             <tr>
                                 <th scope="row">ID</th>
@@ -80,7 +91,8 @@ $text ='
                                 <th scope="row">Bank</th>
                                 <td>' . $people->bank  . '</td>
                             </tr>
-
+                        </table>
+                        <table class="stats">
                             <tr>
                                 <th scope="row">Intel</th>
                                 <td>' . $people->intelligence  . '</td>
@@ -96,11 +108,6 @@ $text ='
                         </table>
 
                     </div><!-- end stats -->
-
-
-
-
-
                     <hr style="clear:both;">
                     <div class="clearfix npc_bio">
                         <div class="npc_desc">
@@ -121,24 +128,6 @@ $text ='
                         </div>
                     </div><!-- end bio -->
                 </div><!-- end desc -->
-
-<div style = "float:right">
-                     <dl class="char stats dl-horizontal">
-                            <dt>Name</dt>
-                            <dd>' . $people->name  . '</dd>
-                            <dt>Faction</dt>
-                            <dd>unknown</dd>
-                            <dt>Group</dt>
-                            <dd>unknown</dd>
-                            <dt>Address</dt>
-                            <dd>' . $people->map  . ' / ' . $people->grid  . '</dd>
-                        </dl>
-</div>
-
-
-
-
-
             <!--
                 <div id="_inventory" class="clearfix">
                     <div class="name">Inventory</div>
