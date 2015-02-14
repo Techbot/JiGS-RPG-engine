@@ -1,6 +1,6 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );?>
 
-<div class="board_panel clr">
+<div class="board_panel bank clr">
 	
 
 	<div class='panel' id="first_panel" style="visibility:visible;">
@@ -45,13 +45,5 @@ $$('.b_button').addEvent('click', function(){
   		}
     		 });
 </script>
-
-<style type="text/css">
-
-.board_panel {
-	background-image:url('images/money.jpg');
-}
-
-</style>
 
 

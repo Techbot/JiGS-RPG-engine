@@ -481,7 +481,7 @@ function get_account_list(){
     }).done(function(result) {
         var text ;
         text  = "<table id ='accountList'>";
-        text += " <tr><td>Name</td><td>Sec Level</td><td>Action</span></td></tr>";
+        text += " <tr><th>Name</th><th>Sec Level</th><th>Action</th></tr>";
         for (var i = 0; i<result.length; i++){
           text += "<tr><td>" + result[i].name + "</td><td>" + result[i].bank_sec_level
           + "</td><td><span id= '" + result[i].id + "' class='remove button btn btn-danger hack'>H</span><span id='" + result[i].id + "' class='assign button btn btn-success assist'>A</span>"

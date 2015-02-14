@@ -66,6 +66,25 @@ a#withdraw:hover,a#deposit:hover,#submit_c:hover{
 #bank_cash {
 	background:#333;
 }
+#account_list {
+    overflow-y : auto;
+    height: 260px;
+}
+#accountList {
+    width: 100%;
+}
+#accountList td,
+#accountList th {
+    text-align:left;
+    border-bottom:1px dotted #666;
+    padding: 0 2px;
+    font-size:8pt;
+}
+#accountList th {
+    font-weight:normal;
+    background:#222222;
+}
+
 .q1 {
 	width:30px;
 }
@@ -421,7 +440,7 @@ font-weight:normal;
 	padding: 0 2px 0 5px;
 	font-size:8pt;
 }
-table.stats td{
+table.stats td {
 	width: 50%;
 	text-align:left;
 	border-bottom:1px solid #252525;
@@ -1347,7 +1366,13 @@ position:relative;
 }
 
 
+.board_panel.bank {
+    background-image:url('../images/money.jpg');
+}
 
+.board_panel.bank .panel {
+    background-color:rgba(0,0,0,0.8);
+}
 
 
 label {
@@ -1357,8 +1382,6 @@ color: #4B4B4B;
 }
 
 	/* Form */
-
-
 
 
 button {
@@ -1755,9 +1778,9 @@ display:block;
 	text-align:left;
 	padding:0 5px 5px;
 	width:100%;
-  background-color:transparent;
-  border-radius: 0;
-  border: 0 none;
+      background-color:transparent;
+      border-radius: 0;
+      border: 0 none;
 }
 .panel p {
 	margin:0 0 5px;
