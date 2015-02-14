@@ -1,36 +1,305 @@
+eclecticmeme.com
 
-/**
- * @package		JiGS
- * @copyright	Copyright (C) 2011 - 2014 EMC23, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
- */
- 
- JiGS - JiGS InterActive Game System
+Using the JiGS Game Engine
 
- ![My image](http://emc23.com/images/twine1.png)
- 
-Wanna be a GamesMaster?
+Core Statement: The game is about exploration of a post modern literary world, each player is a character in a living book.
 
-Inifinitely configurable MMORPG in Php: Medium Multiplayer Online Role Playing Game Engine. 
+The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
 
-Watch your universe evolve over years as you swap in and out game elements via plugins.
+Featurelist:
 
-Current Features:
-Trading, Industry, Crime, Trading, PvP, PvE, Exploration, Politics, Social
+    Online Browser based Multiplayer RPG.
+    Primarily Tile based  Multiple Interfaces.
+    No client plugins or downloads required.
+    Game server plugin system allows mechanics of game to evolve over time
+    3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes. (see Joomla.org)
+    Post Peak Oil environment. Oil is rapidly declining. Riots, Tribalism and feudalism on the increase, genetic mutations etc.
+    Genetics, alien technology and singularity create new game stats, mechanics and content.
+    Soap Opera style monthly content revolving around numerous NPC arcs:  (think Lost tv show ).
+    Game Genres: RPG, Trading, Exploration, PvP, Factions and Guild Politics
+    Complexity & Economics. Think Eve Online in a low tech 2d, text like environment.
+    Open Source
+    NPCS and scenarios span modern pop and internet culture.
+    Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes
+    Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction
+    Secret Societies, Conspiracies and Guild politics 
 
+Table of Contents
 
-To do:
-Taxation
-Faction/Guild Alignment
-Canvas/Dom
-Plugin Archetecture
+Main Gameplay Screens
 
+Character Creation
 
- http://techbot.github.io 2013
+Buildings & Economics
 
+Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions
 
-index.php
+Exploration
 
-this is a test
-<html>
-</html>
+Raiding
+
+NPCs, Mobs, Hobbits
+
+Inventory
+
+Storyline  
+
+Depreciation, Taxation, Quality Reduction, Depletion and Balance.
+
+Extending JiGS: create your own universe with 3rd Party plugins and templates
+
+    Point & Click (Sierra Arts/ Lucasfilm style) Plugin
+    Puzzles Plugin
+    Extended Tile Map system Plugin
+    Extended Character Creation Plugin
+    Player owned Shop market replaces or augments gamemasters run market.
+    Extended PvP fight system
+    Templating system (Fantasy/Space/Cyberpunk fonts- templates -widget chromes- backgrounds
+    Extended configurable NPC & chat system
+    Add stats such as crime ratings, pollution
+    Social media plugins (Facebook Twitter)
+
+Main Gameplay Screen
+
+gui.png
+
+Default Modules:Screenshot from 2014-10-19 13:12:49.png
+
+Login
+
+Stats
+
+BackPack
+
+Weapons
+
+Metals
+
+Batteries
+
+Big Map -Main View Option 1
+
+Small Map - Main View 2
+
+Forums
+
+Factions
+
+Hobbits
+
+Profile
+
+Players
+
+Advanced Modules
+
+Terminal: ‘Command line’ style interface & Hollywood style computer interface.
+Character Creation and Management.
+
+Debug Module : Admin Only
+
+    Direct access to twine stories hidden inside various tiles in the main view.
+    Direct access to puzzles etc.
+    Direct Access to experimental Works in progress
+
+Communication Modules:
+
+wavy lines.png
+
+WavyLines is the Universe in action. All people receive numerous ESP messages from the people and world around them. Some messages are esoteric and obscure others are simple messages. Typical Messages would be “John increased one level” “John has converted to buddhism” “ A zombie horde attacks the outer villages.”
+
+Players can enter messages here.
+
+At one point this also collected spam, which had some interesting outcomes. This might be investigated again to re-introduce.
+
+Messenger: This is a direct line between the player and the world. Typical messages would be “You picked up the rock”, “You increased one level”
+
+Screenshot from 2014-10-19 13:29:40.png
+
+Main View Option One
+
+Uses point and click with pathfinder to move your player to tile(on hold).
+Tiles 32 *32 px
+
+Maps 18 * 14 tiles
+Grid: User Defined
+
+Main View Option Two
+
+Uses cursor or button presses( see compass button) to move one tile at a time .  
+Tiles 50 *50px
+
+Map 8*8 tiles
+Grid = 4*4 maps or 3*3 maps or 2*2 maps etc
+
+Screenshot from 2014-10-19 14:02:38.png
+
+Character Creation [On hold]
+
+Screenshot from 2014-10-19 14:16:40.png
+
+In the main views , players see themselves represented by webstyle  avatars as opposed to game style representations. This allows players to upload their own images. The conflict of styles creates part of the cut’paste aesthetic.
+Extended Character selection is on hold until third party plugin system is complete to allow for more varied character selection systems.
+
+Daz3d might be a good candidate for this.
+
+Profile Page
+
+Currently using Joomla Community Builder with customised plugins for game stats.This suits minimum requirements for both again and game at present. Basic plugins can be created with minimum coding skills via the CB gui.Screenshot from 2014-10-19 14:19:57.png
+
+Buildings & Economics
+
+All buildings contain an info module on the top left
+
+All player owned buildings contain a control panel on the top right.
+All government building contain a movie poster on the right
+
+Each building type contains a primary module on the bottom.
+
+The control panel allows the player assign workforce to primary, defence and distribution systems.
+
+The control panel allows the player assign energy batteries to buildings system as a whole
+
+The control panels allows the player to prioritise Quantity, quality and cost in terms of energy and credits.
+
+The primary systems allows the player to control the buildings primary system, farming, factory and mining functions. A building can upgrade or increase it’s primary systems depending on skills etc.
+
+for example a farm may have 1- 8 fields each growing different crops.
+
+Or a factory may have 1-8 conveyor belts each building different objects,
+
+Each additional primary system is accessed via tabs and is identical in layout.
+
+FactoriesScreenshot from 2014-10-19 14:27:09.png
+
+Factories require blueprints, energy, workforce(hobbits), materials to create objects - can be hacked/attacked
+
+Farms
+
+Screenshot from 2014-10-19 14:26:04.png
+
+Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
+
+Mines
+
+Screenshot from 2014-10-19 14:27:48.png
+
+ require energy workforce to mine oil,minerals( and crystals- on hold). - can be hacked/attacked
+
+Other Buildings
+
+    Re-processors -  turn object to metals.
+    scrap-yards sell metals
+    Food processors -  buy crops.
+    Blue Print Shops
+    Weaponry - Sell Weapons
+    Stands - Sell objects
+    Bullet Shops - Sell bullets
+    Mission Buildings
+    Banks - Offer credit , deposits, interest, can be hacked.
+    Diners- Exchange money for health
+    Apartments- Log off safely protecting cash in hand and back pack. Move objects from backpack to apartment inventory - can be hacked/attacked
+    WareHouses - Store large quantities of objects or crops
+
+Skills
+
+12 Main (levelable) Skills each with 6-12 sub skills
+
+    Farming
+    FireArms
+    Melee
+    Medic
+    Politic
+     Mining
+    Computers
+    Engineering
+    Reprocessing
+    Navigation
+    Trade
+
+Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions
+
+You are always part of a group, your group is part of one of three factions. Various stats affect faction and group standing (all other names are group synonyms) and vice versa.
+
+Actions within twine stories affect group and faction standings.
+
+You can change groups, but only to a group of the same faction.
+
+Exploration
+
+Exploration (via character development) is the primary chore of the virtual world. New Maps, Scenarios including time travel to familiar places will be added to the system on a monthly basis. ALternate realities, drug induced trips etc will play a part in the exploration narrative.
+
+Maps are creating using the open source Tiled Mapeditor.org. and imported to the systom using json files.
+
+Portals are a heavily used device in both the game mechanics and the overarching metastory.
+
+Portals need to be discovered in the real before they can be accessed via the portal network.
+
+Technically all portal are one way but may exist in pairs.
+
+Many of the portals are discovered via Twine stories.
+
+Banks and Hacking
+
+Players and NPCs can hack and be hacked, causing grief, stealing bank account percentages and spreading viruses. There are three global banks each with their own interest rates ,security packages and insurance deals.
+
+NPCs, Mobs, Hobbits(workforce)
+
+NPCS should be as deeply developed as possible. They should be as indistinguishable from players as possible in terms of fighting acquisitions and political power.
+
+Ai in terms of dialogue is not necessary tho’ can be investigated as a 3rd party plugin.
+
+Mobs include borgs, orcs, goblins, zombies of different classes. Largely indistinguishable from each other
+
+ Workforce: 1 is born every minute in realtime. It will align itself to a building owned by a member of one of the 3 factions. Likelihood of a players building being chosen is a result of various stats including building efficiency, hobbit magic etc.
+
+hobbits have a lifespan as defined by the gamemaster which can be altered via dynamic forces.
+
+Inventory
+
+BackPack: Currently limited to 12 objects. Weight and Size are not taken in consideration as yet.
+
+Warehouses:Crops, Mass quantities of objects for sale or transport. (On Hold)
+
+Apartment: Limited to 100 objects , cannot be lost, unless AWOL limit has be exceeded (if configured)
+
+Storylines-Hypertext  
+
+Several arcs spanning the rise of the internet from bbs to global hive minds, across numerous dimensions.
+
+Split into hypertexts which can be accessed via content management system based on faction, stats , player level and external events such as NPC actions.
+
+Javascript animations, cut scenes and minigames breakdown the difference between the game and the narrative.
+
+Depreciation, Rent Taxation, Quality Reduction, Depletion and Balance.
+
+Various cron jobs are set on regular intervals to reduce objects quality and deduct building rent. Failure to pay rent results in removal of acquisition.
+
+Not playing for a period of  three months should result in total non effect of player. All buildings should be repossessed , objects decline in quality etc.
+
+Extending JiGS: creating your own universe.
+
+Install 3rd party plugins that introduce pollution, crime, magic.
+
+Use external data such as weather statistics or open data to create a virtual internet world of things.
+
+Connect with twitter or Facebook
+
+Create scripts to give your npcs unique proclivities.
+
+Extending JiGS: create your own universe with 3rd Party plugins and templates: Examples
+
+    Point & Click (Sierra Arts/ Lucasfilm style) Plugin
+
+    Puzzles Plugin (Javascript Libraries)
+
+    Extended Tile Map system Plugin
+
+    Extended Character Creation Plugin
+    Player owned Shop market replaces or augments gamemasters run market.
+    Multiple  PvP fight system
+    Templating system (Fantasy/Space/Cyberpunk) fonts- widget chromes- backgrounds
+    Configurable NPC system
+    Extended Chat system
+    Other Non Games related Joomla plugins see here http://extensions.joomla.org/
+    Forums Plugin (Joomla/Kunena)
