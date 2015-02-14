@@ -1,5 +1,5 @@
 eclecticmeme.com
-![JiGS](emc23.github.com/JiGS/images/image01.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
 
 Using the JiGS Game Engine
 
