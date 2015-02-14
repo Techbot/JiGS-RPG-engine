@@ -66,6 +66,25 @@ a#withdraw:hover,a#deposit:hover,#submit_c:hover{
 #bank_cash {
 	background:#333;
 }
+#account_list {
+    overflow-y : auto;
+    height: 260px;
+}
+#accountList {
+    width: 100%;
+}
+#accountList td,
+#accountList th {
+    text-align:left;
+    border-bottom:1px dotted #666;
+    padding: 0 2px;
+    font-size:8pt;
+}
+#accountList th {
+    font-weight:normal;
+    background:#222222;
+}
+
 .q1 {
 	width:30px;
 }
@@ -421,7 +440,7 @@ font-weight:normal;
 	padding: 0 2px 0 5px;
 	font-size:8pt;
 }
-table.stats td{
+table.stats td {
 	width: 50%;
 	text-align:left;
 	border-bottom:1px solid #252525;
@@ -1295,7 +1314,7 @@ width: 100%;
 
 }
 
-
+/* this is the map wrapper */
 #screen_grid{
 width:400px;
 height:400px;
@@ -1347,7 +1366,13 @@ position:relative;
 }
 
 
+.board_panel.bank {
+    background-image:url('../images/money.jpg');
+}
 
+.board_panel.bank .panel {
+    background-color:rgba(0,0,0,0.8);
+}
 
 
 label {
@@ -1357,8 +1382,6 @@ color: #4B4B4B;
 }
 
 	/* Form */
-
-
 
 
 button {
@@ -1755,9 +1778,9 @@ display:block;
 	text-align:left;
 	padding:0 5px 5px;
 	width:100%;
-  background-color:transparent;
-  border-radius: 0;
-  border: 0 none;
+      background-color:transparent;
+      border-radius: 0;
+      border: 0 none;
 }
 .panel p {
 	margin:0 0 5px;
@@ -1939,8 +1962,12 @@ display:block;
 /* NPC */
 /* This needs to be reviewed and duplicate rules (above) removed or combined*/
 
-#NPC a.mid,
-#PLAYERS a.mid {
+.NPC {
+  background: #000;
+}
+
+.NPC a.mid,
+.PLAYERS a.mid {
   height: 24px;
   left: 0;
   position: absolute;
@@ -1949,8 +1976,8 @@ display:block;
 }
 
 
-#NPC .npc_desc,
-#PLAYERS .npc_desc {
+.NPC .npc_desc,
+.PLAYERS .npc_desc {
 	  font-size: 8pt;
 	  margin: 0;
 	  padding: 0 5px 10px 10px;
@@ -1959,8 +1986,8 @@ display:block;
 	  width:50%;
 	}
 
-	#NPC .npc_char,
-	#PLAYERS .npc_char {
+	.NPC .npc_char,
+	.PLAYERS .npc_char {
 	  font-size: 8pt;
 	  margin: 0;
 	  padding: 0 10px 10px 5px;
@@ -1969,120 +1996,121 @@ display:block;
 	  width:50%;
 	  }
 
-	#NPC .npc_history,
-	#PLAYERS .npc_history {
+	.NPC .npc_history,
+	.PLAYERS .npc_history {
 	  font-size: 8pt;
 	  margin: 0;
 	  padding: 0 5px 10px 10px;
 	  text-align: left;
 	  clear:both;
 	}
-	#NPC table.stats,
-	#PLAYERS table.stats {
+	.NPC table.stats,
+	.PLAYERS table.stats {
 		float:left;
 		width:30%;
 		display:inline-block;
 	}
-	#NPC dl.char.stats,
-	#PLAYERS dl.char.stats {
-		width:70%;
+	.NPC dl.char.stats,
+	.PLAYERS dl.char.stats {
+		width:40%;
 		float:left;
 	}
 
-	#NPC .dl-horizontal.char dt,
-	#PLAYERS .dl-horizontal.char dt {
+	.NPC .dl-horizontal.char dt,
+	.PLAYERS .dl-horizontal.char dt {
 	  width: 80px;
 	}
 
-	#NPC .dl-horizontal.char dd,
-	#PLAYERS .dl-horizontal.char dd {
+	.NPC .dl-horizontal.char dd,
+	.PLAYERS .dl-horizontal.char dd {
 	  margin-left: 90px;
 	  text-align:left;
 	}
 
-	#NPC .desc figure,
-	#PLAYERS .desc figure {
+	.NPC .desc figure,
+	.PLAYERS .desc figure {
 		float:left;
-		width:30%;
+		width:20%;
 		margin:0;
 		padding:0 1em 1em 0;
 	}
 
-	#NPC div.stats,
-	#PLAYERS div.stats {
+	.NPC div.stats,
+	.PLAYERS div.stats {
 	  float: right;
 	  padding: 0 10px 10px 0;
-	  width: 70%;
+	  width: 80%;
 	  margin:0;
 	}
 
-	#NPC img.thumbnail,
-	#PLAYERS img.thumbnail {
+	.NPC img.thumbnail,
+	.PLAYERS img.thumbnail {
 	  border: 3px solid #333333;
 	  float: left;
 	  margin-top:0;
 	}
 
-	#NPC div.desc,
-	#PLAYERS div.desc {
+	.NPC div.desc,
+	.PLAYERS div.desc {
 	  float: left;
 	  width: 100%;
 	}
 
-	#NPC .desc h4,
-	#PLAYERS .desc h4 {
+	.NPC .desc h4,
+	.PLAYERS .desc h4 {
 	  background:#222;
 	  color: #999;
 	  font-weight: bold;
 	  margin: 0 0 10px;
 	  padding: 0 5px;
-	  font-size:10px;
+	  font-size:12px;
+    line-height: 18px;
 	  text-align: left;
 	  text-transform: uppercase;
 	  border-bottom:1px solid #A00808;
 	}
 
 
-	#NPC div.btn a,
-	#PLAYERS div.btn a {
+	.NPC div.btn a,
+	.PLAYERS div.btn a {
 	 color:#fff;
 	}
 
-	#NPC div.buy a, #NPC div.attack, #NPC div.recruit, #NPC div.kick, #NPC div.punch, #NPC div.shoot, #NPC div.bribe, #NPC div.rob, #NPC div.talk, #NPC div.buy_battery, #NPC div.sell_battery,
-	#PLAYERS div.buy, #PLAYERS div.attack, #PLAYERS div.recruit, #PLAYERS div.kick, #PLAYERS div.punch, #PLAYERS div.shoot, #PLAYERS div.bribe, #PLAYERS div.rob, #PLAYERS div.talk, #PLAYERS div.buy_battery, #PLAYERS div.sell_battery {
+	.NPC div.buy a, .NPC div.attack, .NPC div.recruit, .NPC div.kick, .NPC div.punch, .NPC div.shoot, .NPC div.bribe, .NPC div.rob, .NPC div.talk, .NPC div.buy_battery, .NPC div.sell_battery,
+	.PLAYERS div.buy, .PLAYERS div.attack, .PLAYERS div.recruit, .PLAYERS div.kick, .PLAYERS div.punch, .PLAYERS div.shoot, .PLAYERS div.bribe, .PLAYERS div.rob, .PLAYERS div.talk, .PLAYERS div.buy_battery, .PLAYERS div.sell_battery {
 	  margin: 0 3px 10px 0;
 	  padding: 3px 10px;
 	  float:none;
 	}
 
-	#NPC div.vital,
-	#PLAYERS div.vital {
+	.NPC div.vital,
+	.PLAYERS div.vital {
 		float:left;
 		width:25%;
 	}
 
-	#NPC div.vitals,
-	#PLAYERS div.vitals {
+	.NPC div.vitals,
+	.PLAYERS div.vitals {
 	  float: none;
 	  margin: 0 auto;
 	  width: 100%;
 	  padding:0 10px;
 	}
 
-	#NPC #action,
-	#PLAYERS #action {
+	.NPC #action,
+	.PLAYERS #action {
 		display:block;
 		margin:0 auto;
 		text-align:center;
 	}
 
-	#NPC .npc_bio ul,
-	#PLAYERS .npc_bio ul {
+	.NPC .npc_bio ul,
+	.PLAYERS .npc_bio ul {
 		list-style: square outside none;
 	}
 
-	#NPC .npc_bio ul li,
-	#PLAYERS .npc_bio ul li {
+	.NPC .npc_bio ul li,
+	.PLAYERS .npc_bio ul li {
 		line-height:1.2em;
 	}
 
@@ -2102,20 +2130,20 @@ display:inline-block;
 
 .btn.inactive,
 .btn.inactive:hover,
-#NPC .btn.inactive,
-#NPC .btn.inactive:hover,
-#PLAYERS .btn.inactive,
-#PLAYERS .btn.inactive:hover  {
+.NPC .btn.inactive,
+.NPC .btn.inactive:hover,
+.PLAYERS .btn.inactive,
+.PLAYERS .btn.inactive:hover  {
 background:#999;
 border:1px solid #7F7F7F;
 }
 
 .btn.inactive a,
 .btn.inactive a:hover,
-#NPC .btn.inactive a,
-#NPC .btn.inactive a:hover,
-#PLAYERS .btn.inactive a,
-#PLAYERS .btn.inactive a:hover {
+.NPC .btn.inactive a,
+.NPC .btn.inactive a:hover,
+.PLAYERS .btn.inactive a,
+.PLAYERS .btn.inactive a:hover {
 color:#7F7F7F;
 text-decoration:none;
 }
