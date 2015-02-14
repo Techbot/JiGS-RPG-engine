@@ -90,7 +90,7 @@ Profile
 
 Players
 
-Advanced Modules
+<h3>Advanced Modules<h3>
 
 Terminal: ‘Command line’ style interface & Hollywood style computer interface.
 Character Creation and Management.
@@ -101,9 +101,10 @@ Debug Module : Admin Only
     Direct access to puzzles etc.
     Direct Access to experimental Works in progress
 
-Communication Modules:
+<h3>Communication Modules:</h3>
 
-wavy lines.png
+Default Modules:
+![Wavy Lines](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
 
 WavyLines is the Universe in action. All people receive numerous ESP messages from the people and world around them. Some messages are esoteric and obscure others are simple messages. Typical Messages would be “John increased one level” “John has converted to buddhism” “ A zombie horde attacks the outer villages.”
 
@@ -111,9 +112,10 @@ Players can enter messages here.
 
 At one point this also collected spam, which had some interesting outcomes. This might be investigated again to re-introduce.
 
-Messenger: This is a direct line between the player and the world. Typical messages would be “You picked up the rock”, “You increased one level”
+Messenger Module:
+This is a direct line between the player and the world. Typical messages would be “You picked up the rock”, “You increased one level”
 
-Screenshot from 2014-10-19 13:29:40.png
+![WMessenger](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
 
 Main View Option One
 
@@ -131,11 +133,11 @@ Tiles 50 *50px
 Map 8*8 tiles
 Grid = 4*4 maps or 3*3 maps or 2*2 maps etc
 
-Screenshot from 2014-10-19 14:02:38.png
+![8X8 tiles](https://github.com/EMC23/JiGS/blob/master/images/image04.png)
 
 Character Creation [On hold]
 
-Screenshot from 2014-10-19 14:16:40.png
+![Charector Creation ](https://github.com/EMC23/JiGS/blob/master/images/image08.png)
 
 In the main views , players see themselves represented by webstyle  avatars as opposed to game style representations. This allows players to upload their own images. The conflict of styles creates part of the cut’paste aesthetic.
 Extended Character selection is on hold until third party plugin system is complete to allow for more varied character selection systems.
