@@ -1,31 +1,29 @@
-eclecticmeme.com
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
+<hr>
+<h1>JiGS</h1>
 
-Using the JiGS Game Engine
-
-Core Statement: The game is about exploration of a post modern literary world, each player is a character in a living book.
-
-The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
+<hr>
+JiGS Interactive Game System is an open source Online RPG engine built in php. The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
 
 Featurelist:
+<ul>
+   <li> Online Browser based Multiplayer RPG.</li>
+    <li> Primarily Tile based  Multiple Interfaces.</li>
+    <li> No client plugins or downloads required.</li>
+    <li> Game server plugin system allows mechanics of game to evolve over time</li>
+    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes. (see Joomla.org)</li>
+    <li> Post Peak Oil environment. Oil is rapidly declining. Riots, Tribalism and feudalism on the increase, genetic mutations etc.</li>
+    <li> Genetics, alien technology and singularity create new game stats, mechanics and content.</li>
+    <li> Soap Opera style monthly content revolving around numerous NPC arcs:  (think Lost tv show ).</li>
+    <li> Game Genres: RPG, Trading, Exploration, PvP, Factions and Guild Politics</li>
+    <li> Complexity & Economics. Think Eve Online in a low tech 2d, text like environment.</li>
+    <li> Open Source</li>
+    <li> NPCS and scenarios span modern pop and internet culture.</li>
+    <li> Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes</li>
+    <li> Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction</li>
+    <li> Secret Societies, Conspiracies and Guild politics </li>
 
-    Online Browser based Multiplayer RPG.
-    Primarily Tile based  Multiple Interfaces.
-    No client plugins or downloads required.
-    Game server plugin system allows mechanics of game to evolve over time
-    3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes. (see Joomla.org)
-    Post Peak Oil environment. Oil is rapidly declining. Riots, Tribalism and feudalism on the increase, genetic mutations etc.
-    Genetics, alien technology and singularity create new game stats, mechanics and content.
-    Soap Opera style monthly content revolving around numerous NPC arcs:  (think Lost tv show ).
-    Game Genres: RPG, Trading, Exploration, PvP, Factions and Guild Politics
-    Complexity & Economics. Think Eve Online in a low tech 2d, text like environment.
-    Open Source
-    NPCS and scenarios span modern pop and internet culture.
-    Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes
-    Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction
-    Secret Societies, Conspiracies and Guild politics 
-
-Table of Contents
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 
 Main Gameplay Screens
 
@@ -64,7 +62,7 @@ Main Gameplay Screen
 
 gui.png
 
-Default Modules:Screenshot from 2014-10-19 13:12:49.png
+Default Modules:![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
 
 Login
 
