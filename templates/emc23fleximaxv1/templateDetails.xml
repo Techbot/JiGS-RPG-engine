@@ -10,22 +10,27 @@
 	<version>3.0</version>
 	<description><![CDATA[
 					<a href="http://www.emc23.com" target="_blank"><img src="http://www.emc23.com/images/logo.png" /></a>
-						<h2><a href="http://www.emc23.com" target="_blank">www.emc23.com</a><br />Joomla 2.5 Flexi Template v1 - Responsive by Bootstrap</h2>				 
-					<h5>Last Updated Dec 23 2012 by EMC23</h5>
+						<h2><a href="http://www.emc23.com" target="_blank">www.emc23.com</a><br />Joomla 2.5 Flexi Template v1 - Responsive by Bootstrap</h2>
+					<h5>Last Updated Feb 23 2015 by EMC23</h5>
 					]]>
 	</description>
 	<files>
 		<folder>css</folder>
+        <folder>less</folder>
 		<folder>html</folder>
 		<folder>images</folder>
 		<folder>includes</folder>
 		<folder>js</folder>
+        <folder>grunt</folder>
+        <folder>node_modules</folder>
 		<filename>favicon.ico</filename>
 		<filename>index.html</filename>
 		<filename>index.php</filename>
 		<filename>templateDetails.xml</filename>
 		<filename>template_thumbnail.png</filename>
 		<filename>palette.txt</filename>
+        <filename>Gruntfile.js</filename>
+        <filename>package.json</filename>
 	</files>
 	<positions>
 		<position>emc23-top-1</position>
@@ -58,8 +63,8 @@
 		<position>emc23-banner</position>
 		<position>emc23-debug</position>
 		</positions>
-	
-	
+
+
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
@@ -74,16 +79,8 @@
 					description="Site Description"
 					filter="string" />
 
-				<field name="menutype" type="list" default="normal"
-					label="Drop Down Menu Type"
-					description="For Suckerfish, Show Sub-menu Items = Yes (Module Manager > Basic Options)"
-					filter="word">
-					<option value="normal">Normal</option>
-					<option value="suckerfish">Suckerfish</option>
-				</field>
-
 			</fieldset>
 		</fields>
-	</config>	
-	
+	</config>
+
 </extension>
