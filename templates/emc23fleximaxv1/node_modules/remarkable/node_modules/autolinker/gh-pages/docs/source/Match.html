@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">/*global Autolinker */
+<span id='Autolinker-match-Match'>/**
+</span> * @abstract
+ * @class Autolinker.match.Match
+ * 
+ * Represents a match found in an input string which should be Autolinked. A Match object is what is provided in a 
+ * {@link Autolinker#replaceFn replaceFn}, and may be used to query for details about the match.
+ * 
+ * For example:
+ * 
+ *     var input = &quot;...&quot;;  // string with URLs, Email Addresses, and Twitter Handles
+ *     
+ *     var linkedText = Autolinker.link( input, {
+ *         replaceFn : function( autolinker, match ) {
+ *             console.log( &quot;href = &quot;, match.getAnchorHref() );
+ *             console.log( &quot;text = &quot;, match.getAnchorText() );
+ *         
+ *             switch( match.getType() ) {
+ *                 case 'url' : 
+ *                     console.log( &quot;url: &quot;, match.getUrl() );
+ *                     
+ *                 case 'email' :
+ *                     console.log( &quot;email: &quot;, match.getEmail() );
+ *                     
+ *                 case 'twitter' :
+ *                     console.log( &quot;twitter: &quot;, match.getTwitterHandle() );
+ *             }
+ *         }
+ *     } );
+ *     
+ * See the {@link Autolinker} class for more details on using the {@link Autolinker#replaceFn replaceFn}.
+ */
+Autolinker.match.Match = Autolinker.Util.extend( Object, {
+	
+<span id='Autolinker-match-Match-cfg-matchedText'>	/**
+</span>	 * @cfg {String} matchedText (required)
+	 * 
+	 * The original text that was matched.
+	 */
+	
+	
+<span id='Autolinker-match-Match-method-constructor'>	/**
+</span>	 * @constructor
+	 * @param {Object} cfg The configuration properties for the Match instance, specified in an Object (map).
+	 */
+	constructor : function( cfg ) {
+		Autolinker.Util.assign( this, cfg );
+	},
+
+	
+<span id='Autolinker-match-Match-method-getType'>	/**
+</span>	 * Returns a string name for the type of match that this class represents.
+	 * 
+	 * @abstract
+	 * @return {String}
+	 */
+	getType : Autolinker.Util.abstractMethod,
+	
+	
+<span id='Autolinker-match-Match-method-getMatchedText'>	/**
+</span>	 * Returns the original text that was matched.
+	 * 
+	 * @return {String}
+	 */
+	getMatchedText : function() {
+		return this.matchedText;
+	},
+	
+
+<span id='Autolinker-match-Match-method-getAnchorHref'>	/**
+</span>	 * Returns the anchor href that should be generated for the match.
+	 * 
+	 * @abstract
+	 * @return {String}
+	 */
+	getAnchorHref : Autolinker.Util.abstractMethod,
+	
+	
+<span id='Autolinker-match-Match-method-getAnchorText'>	/**
+</span>	 * Returns the anchor text that should be generated for the match.
+	 * 
+	 * @abstract
+	 * @return {String}
+	 */
+	getAnchorText : Autolinker.Util.abstractMethod
+
+} );</pre>
+</body>
+</html>
