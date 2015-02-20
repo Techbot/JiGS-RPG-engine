@@ -2,68 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34f4c636-5dfa-48da-bd68-0f4991ca20a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/seeds/tmpl/default.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid008.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid009.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/accounts/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate10.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate6.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate7.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate8.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate9.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/accounts/view.html.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/seeds/view.html.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/com_battle/views/accounts/view.json.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/angular/tmpl/js/angular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/backbone/tmpl/js/backbone.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/img/Thumbs.db" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/stuff/Composers/joomla" afterPath="$PROJECT_DIR$/plugins/stuff/Composers/joomla" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stuff/Composers/joomla" afterPath="$PROJECT_DIR$/stuff/Composers/joomla" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/js/app.js" afterPath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/models/bank.php" afterPath="$PROJECT_DIR$/components/com_battle/models/bank.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/includes/building.js" afterPath="$PROJECT_DIR$/components/com_battle/includes/building.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/models/building.php" afterPath="$PROJECT_DIR$/components/com_battle/models/building.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/default.php" afterPath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/default.php" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php" afterPath="$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" afterPath="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/character/tmpl/default_json.php" afterPath="$PROJECT_DIR$/components/com_battle/views/character/tmpl/default_json.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid001.json" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid001.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid006.json" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid006.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid007.json" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid007.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/.bin/gulp" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/.bin/gulp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-concat/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/has-ansi" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-concat/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/has-ansi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/has-ansi" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/has-ansi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/chalk/node_modules/.bin/has-ansi" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/chalk/node_modules/.bin/has-ansi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/index.html" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/emc23fleximaxv1/index.php" afterPath="$PROJECT_DIR$/templates/emc23fleximaxv1/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/models/jigs.php" afterPath="$PROJECT_DIR$/components/com_battle/models/jigs.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/.bin/jshint" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/.bin/jshint" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/loadstate.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/loadstate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/vinyl-fs/node_modules/.bin/mkdirp" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/vinyl-fs/node_modules/.bin/mkdirp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate2.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate3.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate4.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate4.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate5.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/.bin/semver" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/.bin/semver" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/jshint/node_modules/.bin/shjs" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/jshint/node_modules/.bin/shjs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-concat/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/strip-ansi" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-concat/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/strip-ansi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/strip-ansi" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/strip-ansi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/chalk/node_modules/.bin/strip-ansi" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/chalk/node_modules/.bin/strip-ansi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/vinyl-fs/node_modules/.bin/strip-bom" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/vinyl-fs/node_modules/.bin/strip-bom" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/jshint/node_modules/.bin/strip-json-comments" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/jshint/node_modules/.bin/strip-json-comments" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/css/style.css" afterPath="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-concat/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/supports-color" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-concat/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/supports-color" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/supports-color" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp-jshint/node_modules/gulp-util/node_modules/chalk/node_modules/.bin/supports-color" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/chalk/node_modules/.bin/supports-color" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/chalk/node_modules/.bin/supports-color" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/tile.js" afterPath="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/tile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/tildify/node_modules/.bin/user-home" afterPath="$PROJECT_DIR$/components/com_battle/views/twines/zombie rpg/node_modules/gulp/node_modules/tildify/node_modules/.bin/user-home" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JiGS.iws" />
@@ -99,19 +37,38 @@
       <file leaf-file-name="tile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/tile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3672">
+            <state vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="6246">
               <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playstate8.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate8.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1458" max-vertical-offset="5688">
-              <caret line="81" column="0" selection-start-line="80" selection-start-column="5" selection-end-line="81" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1424458821096" expanded="true" signature="1595:1718" placeholder="/*...*/" />
+                <marker date="1424458821096" expanded="true" signature="2141:2156" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="2269:2328" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="2938:3093" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="3218:3369" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="3299:3354" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="3537:3584" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="3638:3785" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="3840:3973" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="4037:4792" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="5825:5956" placeholder="{&quot;dataType&quot;: &quot;json&quot;...}" />
+                <marker date="1424458821096" expanded="true" signature="5980:6078" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="6380:6637" placeholder="{&quot;dataType&quot;: &quot;json&quot;...}" />
+                <marker date="1424458821096" expanded="true" signature="7173:7252" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="7351:7499" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="7541:9449" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="7779:7836" placeholder="/*...*/" />
+                <marker date="1424458821096" expanded="true" signature="7946:8036" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="7990:8039" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="8176:8253" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="8192:8241" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="8424:9058" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="8498:8697" placeholder="{&quot;gain&quot;: 0.4...}" />
+                <marker date="1424458821096" expanded="true" signature="9078:9096" placeholder="/*...*/" />
+                <marker date="1424458821096" expanded="true" signature="9297:9390" placeholder="/*...*/" />
+                <marker date="1424458821096" expanded="true" signature="9497:9658" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="9527:9650" placeholder="{...}" />
+                <marker date="1424458821096" expanded="true" signature="9615:9653" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,8 +76,8 @@
       <file leaf-file-name="default.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="9234">
-              <caret line="8" column="42" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="9216">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -129,18 +86,18 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/emc23fleximaxv1/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.666667" vertical-offset="594" max-vertical-offset="9342">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.0" vertical-offset="648" max-vertical-offset="8676">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playstate9.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate9.js">
+      <file leaf-file-name="templateDetails.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/emc23fleximaxv1/templateDetails.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5482234" vertical-offset="0" max-vertical-offset="1062">
-              <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.8440567" vertical-offset="0" max-vertical-offset="1692">
+              <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -149,7 +106,7 @@
       <file leaf-file-name="grid009.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid009.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2962964" vertical-offset="901" max-vertical-offset="1692">
+            <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="2772">
               <caret line="55" column="73" selection-start-line="55" selection-start-column="73" selection-end-line="55" selection-end-column="73" />
               <folding />
             </state>
@@ -166,36 +123,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playstate7.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate7.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1566" max-vertical-offset="5976">
-              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playstate6.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate6.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="5940">
-              <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playstate.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1042" max-vertical-offset="5922">
-              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="120" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -207,61 +134,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/components/com_battle/views/building/view.json.php" />
-        <option value="$PROJECT_DIR$/plugins/cron/BattleHeartbeat/battleHeartbeat.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/skills/view.html.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/models/skills.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/ember/view.html.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_defence_bank.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/battle.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/includes/jigs.css" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_board_primary_bank.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/building/tmpl/default_bank.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/character/tmpl/default_json.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/models/building.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/includes/building.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/models/bank.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/seeds/view.html.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/seeds/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/models/jigs.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/css/style.css" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/ember/tmpl/js/app.js" />
-        <option value="$PROJECT_DIR$/components/com_tada/views/items/tmpl/default.html.php" />
-        <option value="$PROJECT_DIR$/components/com_tada_/tada.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/loadstate.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.xml" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/accounts/view.html.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate2.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate3.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate6.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate10.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/index.html" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/default.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid001.json" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate4.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate5.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid007.json" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate7.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate8.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid008.json" />
         <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/tile.js" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.php" />
         <option value="$PROJECT_DIR$/templates/emc23fleximaxv1/index.php" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid009.json" />
-        <option value="$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate9.js" />
+        <option value="$PROJECT_DIR$/templates/emc23fleximaxv1/templateDetails.xml" />
       </list>
     </option>
   </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
-    <option name="width" value="1920" />
-    <option name="height" value="1056" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1855" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -289,7 +178,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -308,94 +196,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="emc23fleximaxv1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com_battle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JiGS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com_battle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -440,15 +243,16 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
-      <pass-parent-env-vars>false</pass-parent-env-vars>
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -482,35 +286,41 @@
       <option name="project" value="LOCAL" />
       <updated>1417991932866</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="merge">
+      <created>1424459380846</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1424459380846</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.050375134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16770834" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1664888" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15955175" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="720" y="180" width="500" height="802" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2171825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15920398" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="720" y="180" width="500" height="802" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21945827" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15326902" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.050375134" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19292605" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1137339" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -532,9 +342,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21291356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1137339" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1137339" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -555,7 +365,9 @@
     <MESSAGE value="removed head tag" />
     <MESSAGE value="commit ember directory" />
     <MESSAGE value="commit new bank panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit new bank panel" />
+    <MESSAGE value="Merge branch 'bootstrap_less' of https://github.com/left23/JiGS into left23-bootstrap_less&#10;&#10;Conflicts:&#10;&#9;templates/emc23fleximaxv1/css/bootstrap-theme.css&#10;&#9;templates/emc23fleximaxv1/css/bootstrap-theme.css.map&#10;&#9;templates/emc23fleximaxv1/css/bootstrap-theme.min.css&#10;&#9;templates/emc23fleximaxv1/css/bootstrap.css&#10;&#9;templates/emc23fleximaxv1/css/bootstrap.css.map&#10;&#9;templates/emc23fleximaxv1/css/bootstrap.min.css&#10;&#9;templates/emc23fleximaxv1/index.php&#10;&#9;templates/emc23fleximaxv1/js/npm.js&#10;&#9;templates/emc23fleximaxv1/templateDetails.xml&#10;" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -564,6 +376,75 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/tile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5634">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1424458821096" expanded="true" signature="1595:1718" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="2141:2156" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="2269:2328" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="2938:3093" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3218:3369" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3299:3354" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3537:3584" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3638:3785" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3840:3973" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="4037:4792" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="5825:5956" placeholder="{&quot;dataType&quot;: &quot;json&quot;...}" />
+            <marker date="1424458821096" expanded="true" signature="5980:6078" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="6380:6637" placeholder="{&quot;dataType&quot;: &quot;json&quot;...}" />
+            <marker date="1424458821096" expanded="true" signature="7173:7252" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7351:7499" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7541:9449" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7779:7836" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="7946:8036" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7990:8039" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8176:8253" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8192:8241" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8424:9058" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8498:8697" placeholder="{&quot;gain&quot;: 0.4...}" />
+            <marker date="1424458821096" expanded="true" signature="9078:9096" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="9297:9390" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="9497:9658" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="9527:9650" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="9615:9653" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="9216">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/emc23fleximaxv1/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="8514">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid009.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="2772">
+          <caret line="55" column="73" selection-start-line="55" selection-start-column="73" selection-end-line="55" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid008.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1980">
+          <caret line="55" column="60" selection-start-line="55" selection-start-column="60" selection-end-line="55" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/skills/tmpl/default.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="2628">
@@ -669,72 +550,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/views/item/tmpl/default.html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="819">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/resources/config/bootstrapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="832">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/dispatcher/http.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="832">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/controller/toolbar/item.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="819">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/views/item/tmpl/manage.html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1116">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/views/items/tmpl/default.html.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="504">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="339" max-vertical-offset="1116">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/models/jigs.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.3333333" vertical-offset="270" max-vertical-offset="30060">
           <caret line="20" column="1" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="38" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_tada/tada.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.666667" vertical-offset="0" max-vertical-offset="504">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/images/assets/frog.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/test.html">
@@ -786,27 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7614">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5976">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate10.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6156">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/default.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="612">
@@ -821,26 +620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4444" max-vertical-offset="6372">
-          <caret line="266" column="25" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="648">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3265" max-vertical-offset="5724">
-          <caret line="208" column="5" selection-start-line="208" selection-start-column="5" selection-end-line="208" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,7 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1189" max-vertical-offset="1980">
           <caret line="87" column="60" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,48 +644,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/accounts/tmpl/default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="9234">
-          <caret line="8" column="42" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/emc23fleximaxv1/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.666667" vertical-offset="594" max-vertical-offset="9342">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate8.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="5688">
-          <caret line="81" column="0" selection-start-line="80" selection-start-column="5" selection-end-line="81" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate7.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5976">
-          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate6.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="5940">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1042" max-vertical-offset="5922">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="120" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="9216">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -912,26 +654,62 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1926" max-vertical-offset="3672">
           <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-          <folding />
+          <folding>
+            <marker date="1424458821096" expanded="true" signature="1595:1718" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="2141:2156" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="2269:2328" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="2938:3093" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3218:3369" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3299:3354" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3537:3584" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3638:3785" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="3840:3973" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="4037:4792" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="5825:5956" placeholder="{&quot;dataType&quot;: &quot;json&quot;...}" />
+            <marker date="1424458821096" expanded="true" signature="5980:6078" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="6380:6637" placeholder="{&quot;dataType&quot;: &quot;json&quot;...}" />
+            <marker date="1424458821096" expanded="true" signature="7173:7252" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7351:7499" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7541:9449" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7779:7836" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="7946:8036" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="7990:8039" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8176:8253" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8192:8241" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8424:9058" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="8498:8697" placeholder="{&quot;gain&quot;: 0.4...}" />
+            <marker date="1424458821096" expanded="true" signature="9078:9096" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="9297:9390" placeholder="/*...*/" />
+            <marker date="1424458821096" expanded="true" signature="9497:9658" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="9527:9650" placeholder="{...}" />
+            <marker date="1424458821096" expanded="true" signature="9615:9653" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/grid009.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2962964" vertical-offset="901" max-vertical-offset="1692">
+        <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="2772">
           <caret line="55" column="73" selection-start-line="55" selection-start-column="73" selection-end-line="55" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/com_battle/views/phaser/tmpl/playstate9.js">
+    <entry file="file://$PROJECT_DIR$/templates/emc23fleximaxv1/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5482234" vertical-offset="0" max-vertical-offset="1062">
-          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        <state vertical-scroll-proportion="-10.0" vertical-offset="648" max-vertical-offset="8676">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/emc23fleximaxv1/templateDetails.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8440567" vertical-offset="0" max-vertical-offset="1692">
+          <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
   </component>
 </project>
-
