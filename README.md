@@ -111,7 +111,7 @@ This is a direct line between the player and the world. Typical messages would b
 
 ![WMessenger](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
 
-<h3>Main View Option One<h3>
+<h3>Main View Option One</h3>
 
 Uses point and click with pathfinder to move your player to tile(on hold).
 Tiles 32 *32 px
@@ -138,7 +138,7 @@ Extended Character selection is on hold until third party plugin system is compl
 
 Daz3d might be a good candidate for this.
 
-<h3>Profile Page<h3>
+<h3>Profile Page</h3>
 
 Currently using Joomla Community Builder with customised plugins for game stats.This suits minimum requirements for both again and game at present. Basic plugins can be created with minimum coding skills via the CB gui.Screenshot from 2014-10-19 14:19:57.png
 
@@ -148,24 +148,17 @@ All buildings contain an info module on the top left
 
 All player owned buildings contain a control panel on the top right.
 All government building contain a movie poster on the right
-
 Each building type contains a primary module on the bottom.
-
 The control panel allows the player assign workforce to primary, defence and distribution systems.
-
 The control panel allows the player assign energy batteries to buildings system as a whole
-
 The control panels allows the player to prioritise Quantity, quality and cost in terms of energy and credits.
-
 The primary systems allows the player to control the buildings primary system, farming, factory and mining functions. A building can upgrade or increase it’s primary systems depending on skills etc.
-
 for example a farm may have 1- 8 fields each growing different crops.
-
 Or a factory may have 1-8 conveyor belts each building different objects,
-
 Each additional primary system is accessed via tabs and is identical in layout.
 
-FactoriesScreenshot from 2014-10-19 14:27:09.png
+<h3>Factories</h3>
+Screenshot from 2014-10-19 14:27:09.png
 
 Factories require blueprints, energy, workforce(hobbits), materials to create objects - can be hacked/attacked
 
