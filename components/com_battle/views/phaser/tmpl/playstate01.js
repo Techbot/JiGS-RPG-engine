@@ -245,6 +245,9 @@ playState[1] = {
         portal[3] = game.add.sprite(x3[grid], y3[grid], 'portal00003');
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         portal[3]['dest']=portal_dest_3[grid];
+
+
+//////////////////////////////////////The Mummy///////////////////
         // game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
         mummy = game.add.sprite(400, 300, 'ms');
         mummy.animations.add('walk');
