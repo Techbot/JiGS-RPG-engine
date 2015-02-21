@@ -111,7 +111,7 @@ This is a direct line between the player and the world. Typical messages would b
 
 ![WMessenger](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
 
-Main View Option One
+<h3>Main View Option One<h3>
 
 Uses point and click with pathfinder to move your player to tile(on hold).
 Tiles 32 *32 px
@@ -119,7 +119,7 @@ Tiles 32 *32 px
 Maps 18 * 14 tiles
 Grid: User Defined
 
-Main View Option Two
+<h3>Main View Option Two</h3>
 
 Uses cursor or button presses( see compass button) to move one tile at a time .  
 Tiles 50 *50px
@@ -131,7 +131,7 @@ Grid = 4*4 maps or 3*3 maps or 2*2 maps etc
 
 <h3>Character Creation</h3> [On hold]
 
-![Charector Creation ](https://github.com/EMC23/JiGS/blob/master/images/image08.png)
+![Character Creation ](https://github.com/EMC23/JiGS/blob/master/images/image08.png)
 
 In the main views , players see themselves represented by webstyle  avatars as opposed to game style representations. This allows players to upload their own images. The conflict of styles creates part of the cut’paste aesthetic.
 Extended Character selection is on hold until third party plugin system is complete to allow for more varied character selection systems.
@@ -215,42 +215,31 @@ Screenshot from 2014-10-19 14:27:48.png
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
 You are always part of a group, your group is part of one of three factions. Various stats affect faction and group standing (all other names are group synonyms) and vice versa.
-
 Actions within twine stories affect group and faction standings.
-
 You can change groups, but only to a group of the same faction.
 
-Exploration
+<h3>Exploration</h3>
 
 Exploration (via character development) is the primary chore of the virtual world. New Maps, Scenarios including time travel to familiar places will be added to the system on a monthly basis. ALternate realities, drug induced trips etc will play a part in the exploration narrative.
-
 Maps are creating using the open source Tiled Mapeditor.org. and imported to the systom using json files.
-
 Portals are a heavily used device in both the game mechanics and the overarching metastory.
-
 Portals need to be discovered in the real before they can be accessed via the portal network.
-
 Technically all portal are one way but may exist in pairs.
-
 Many of the portals are discovered via Twine stories.
 
-Banks and Hacking
+</h3>Banks and Hacking</h3>
 
 Players and NPCs can hack and be hacked, causing grief, stealing bank account percentages and spreading viruses. There are three global banks each with their own interest rates ,security packages and insurance deals.
 
-NPCs, Mobs, Hobbits(workforce)
+<h3>NPCs, Mobs, Hobbits(workforce)</h3>
 
 NPCS should be as deeply developed as possible. They should be as indistinguishable from players as possible in terms of fighting acquisitions and political power.
-
 Ai in terms of dialogue is not necessary tho’ can be investigated as a 3rd party plugin.
-
 Mobs include borgs, orcs, goblins, zombies of different classes. Largely indistinguishable from each other
-
  Workforce: 1 is born every minute in realtime. It will align itself to a building owned by a member of one of the 3 factions. Likelihood of a players building being chosen is a result of various stats including building efficiency, hobbit magic etc.
-
 hobbits have a lifespan as defined by the gamemaster which can be altered via dynamic forces.
 
-Inventory
+<h3>Inventory</h3>
 
 BackPack: Currently limited to 12 objects. Weight and Size are not taken in consideration as yet.
 
@@ -258,30 +247,21 @@ Warehouses:Crops, Mass quantities of objects for sale or transport. (On Hold)
 
 Apartment: Limited to 100 objects , cannot be lost, unless AWOL limit has be exceeded (if configured)
 
-Storylines-Hypertext  
+<h3>Storylines-Hypertext  </h3>
 
 Several arcs spanning the rise of the internet from bbs to global hive minds, across numerous dimensions.
-
 Split into hypertexts which can be accessed via content management system based on faction, stats , player level and external events such as NPC actions.
-
 Javascript animations, cut scenes and minigames breakdown the difference between the game and the narrative.
-
 Depreciation, Rent Taxation, Quality Reduction, Depletion and Balance.
-
 Various cron jobs are set on regular intervals to reduce objects quality and deduct building rent. Failure to pay rent results in removal of acquisition.
-
 Not playing for a period of  three months should result in total non effect of player. All buildings should be repossessed , objects decline in quality etc.
 
-Extending JiGS: creating your own universe.
+<h3>Extending JiGS: creating your own universe.</h3>
 
 Install 3rd party plugins that introduce pollution, crime, magic.
-
 Use external data such as weather statistics or open data to create a virtual internet world of things.
-
 Connect with twitter or Facebook
-
 Create scripts to give your npcs unique proclivities.
-
 Extending JiGS: create your own universe with 3rd Party plugins and templates: Examples
 
     Point & Click (Sierra Arts/ Lucasfilm style) Plugin
