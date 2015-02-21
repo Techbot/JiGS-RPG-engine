@@ -22,30 +22,32 @@ Featurelist:
     <li> Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes</li>
     <li> Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction</li>
     <li> Secret Societies, Conspiracies and Guild politics </li>
-
+<ul>
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 
-Main Gameplay Screens
 
-Character Creation
 
-Buildings & Economics
+   <li> Main Gameplay Screens</li>
 
-Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions
+   <li> Character Creation</li>
 
-Exploration
+   <li> Buildings & Economics</li>
 
-Raiding
+   <li> Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</li>
 
-NPCs, Mobs, Hobbits
+   <li> Exploration</li>
 
-Inventory
+   <li> Raiding</li>
 
-Storyline  
+   <li> NPCs, Mobs, Hobbits</li>
 
-Depreciation, Taxation, Quality Reduction, Depletion and Balance.
+   <li> Inventory</li>
 
-Extending JiGS: create your own universe with 3rd Party plugins and templates
+   <li> Storyline  </li>
+
+   <li> Depreciation, Taxation, Quality Reduction, Depletion and Balance.</li>
+
+   <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
 
     Point & Click (Sierra Arts/ Lucasfilm style) Plugin
     Puzzles Plugin
@@ -58,39 +60,31 @@ Extending JiGS: create your own universe with 3rd Party plugins and templates
     Add stats such as crime ratings, pollution
     Social media plugins (Facebook Twitter)
 
-Main Gameplay Screen
+<hr>
+<h2> Main Gameplay Screen</h2>
 
 gui.png
 
-Default Modules:![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
+<h3>Default Modules:</h3>
+![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
 
-Login
+<ul>
+<li>Stats</li>
+<li>Login</li>
+<li> BackPack</li>
+<li> Weapons</li>
+<li> Metals</li>
+<li> Batteries</li>
+<li> Big Map -Main View Option 1</li>
+<li> Small Map - Main View 2</li>
+<li> Forums</li>
+<li> Factions</li>
+<li> Hobbits</li>
+<li> Profile</li>
+<li> Players</li>
+</ul>
 
-Stats
-
-BackPack
-
-Weapons
-
-Metals
-
-Batteries
-
-Big Map -Main View Option 1
-
-Small Map - Main View 2
-
-Forums
-
-Factions
-
-Hobbits
-
-Profile
-
-Players
-
-<h3>Advanced Modules<h3>
+<h3>Advanced Modules</h3>
 
 Terminal: ‘Command line’ style interface & Hollywood style computer interface.
 Character Creation and Management.
@@ -135,7 +129,7 @@ Grid = 4*4 maps or 3*3 maps or 2*2 maps etc
 
 ![8X8 tiles](https://github.com/EMC23/JiGS/blob/master/images/image04.png)
 
-Character Creation [On hold]
+<h3>Character Creation</h3> [On hold]
 
 ![Charector Creation ](https://github.com/EMC23/JiGS/blob/master/images/image08.png)
 
@@ -144,11 +138,11 @@ Extended Character selection is on hold until third party plugin system is compl
 
 Daz3d might be a good candidate for this.
 
-Profile Page
+<h3>Profile Page<h3>
 
 Currently using Joomla Community Builder with customised plugins for game stats.This suits minimum requirements for both again and game at present. Basic plugins can be created with minimum coding skills via the CB gui.Screenshot from 2014-10-19 14:19:57.png
 
-Buildings & Economics
+<h3>Buildings & Economics</h3>
 
 All buildings contain an info module on the top left
 
@@ -175,19 +169,19 @@ FactoriesScreenshot from 2014-10-19 14:27:09.png
 
 Factories require blueprints, energy, workforce(hobbits), materials to create objects - can be hacked/attacked
 
-Farms
+<h3>Farms</h3>
 
 Screenshot from 2014-10-19 14:26:04.png
 
 Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
 
-Mines
+<h3>Mines</h3>
 
 Screenshot from 2014-10-19 14:27:48.png
 
  require energy workforce to mine oil,minerals( and crystals- on hold). - can be hacked/attacked
 
-Other Buildings
+<h3>Other Buildings</h3>
 
     Re-processors -  turn object to metals.
     scrap-yards sell metals
@@ -202,7 +196,7 @@ Other Buildings
     Apartments- Log off safely protecting cash in hand and back pack. Move objects from backpack to apartment inventory - can be hacked/attacked
     WareHouses - Store large quantities of objects or crops
 
-Skills
+<h3>Skills</h3>
 
 12 Main (levelable) Skills each with 6-12 sub skills
 
@@ -218,7 +212,7 @@ Skills
     Navigation
     Trade
 
-Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions
+<h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
 You are always part of a group, your group is part of one of three factions. Various stats affect faction and group standing (all other names are group synonyms) and vice versa.
 
