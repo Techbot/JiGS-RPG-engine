@@ -9,9 +9,6 @@ class BattleViewPlayer extends JView
 {	
 	function display($tpl = 'json')
 	{
-
-
-
         $id		= substr(JRequest::getvar('id'), 5);
 	/*	$people		= JTable::getInstance('players', 'Table');
 		$people->load($id);
@@ -20,31 +17,16 @@ class BattleViewPlayer extends JView
 		$query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
 		$db->setQuery($query);
 		$people->avatar	= $db->loadresult();
-
 */
-
 		//$id = (int) JRequest::getVar('id', 0);
-	
-		$player =& JTable::getInstance('players', 'Table');
-		$player->load($id);
-		
-		
-		$model = &$this->getModel();
-		$player->avatar = $model->get_avatar($id);
-		
-	//	echo '<pre>';
-	//	print_r($model);
-	//	echo '</pre>';
-		
-				
-		
-		
-		$this->assignRef('player', $player);		
-	
-		
-		
-		
-		
+
+        $model = $this->getModel();
+        $player = $model->getPlayer($id);
+        $player->avatar = $model->get_avatar($id);
+        //echo '<pre>';
+		//print_r($player);
+		//echo '</pre>';
+		$this->player = $player;
 		parent::display($tpl);
 	}
 }

@@ -90,13 +90,16 @@ playState[1] = {
         game.world.setBounds(boundsX1[grid], boundsY1[grid], boundsX2[grid], boundsY2[grid]);
         game.stage.backgroundColor = '#787878';
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
+
         /////////////////// cache json file
         game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
+
         /////////////////// cache tiles
         for (var index = 0; index < tile_names[grid].length; index++) {
             var filename = tile_names[grid][index];
             game.load.image(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/tiles/' + filename + '.png');
         }
+
         /////////////////// cache monsters
         if (typeof assets_name[grid] != 'undefined') {
             ///////////////////// cache assets
@@ -105,6 +108,7 @@ playState[1] = {
                 game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/' + filename + '.png', 70, 120, 8);
             }
         }
+
         //////////////////// cache players
         for (var index = 0; index < players_list.length; index++) {
             var filename =players_list[index].avatar;
@@ -112,6 +116,7 @@ playState[1] = {
                 filename= 'gallery/skater.gif';
             }
             var key = players_list[index].id;
+
             if (filename.substring(0,7)!= 'gallery') {
                 game.load.image(cacheKey(key, 'tileset', key), '/images/comprofiler/tn' + filename );
             }else
@@ -125,12 +130,14 @@ playState[1] = {
             var key = buildings[index].id;
             game.load.image(cacheKey("_" + key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
+
         //////////////////// cache chars
         for (var index = 0; index < npc_list.length; index++) {
             var filename = npc_list[index].avatar;
             var key = npc_list[index].id;
             game.load.image(cacheKey(key, 'tileset', key), '/components/com_battle/images/ennemis/miniatures/' + filename );
         }
+
         //////////////////// cache Portals
         game.load.image(cacheKey('portal00001', 'tileset', 'portal00001'), '/components/com_battle/images/assets/tiles/Dungeon_A1.png');
         game.load.image(cacheKey('portal00002', 'tileset', 'portal00002'), '/components/com_battle/images/assets/tiles/Dungeon_B.png');
@@ -187,10 +194,12 @@ playState[1] = {
         players_group  = game.add.group();
         if (typeof players_list != 'undefined') {
             for (var index = 0; index < players_list.length; index++) {
-
+                var key_id =players_list[index].id;
                 var key = players_list[index].id
 
+
                 add_players[index] = game.add.sprite(parseInt(players_list[index].posx),parseInt( players_list[index].posy), key);
+                add_players[index].key_id = key_id;
                 game.physics.enable(add_players[index], Phaser.Physics.ARCADE);
             }
         }
@@ -277,20 +286,25 @@ playState[1] = {
             }
         }
 
-        ///////////////////////collide npc list////////////////////////
+        ///////////////////////collide npc list
         for (var index = 0; index < npc_list.length; index++)
         {
 
             this.physics.arcade.collide(sprite, add_npc[index], npc);
         }
-        /////////////////////collide players ///
+
+
+
+        /////////////////////collide players
         for (var index = 0; index < players_list.length; index++)
         {
             //console.log(key);
             this.physics.arcade.collide(sprite, add_players[index], player);
             //add_building[index].body.immovable = true;
         }
-////////////////////////////////////////////////////////////////
+
+
+        ///////////////////// Stop Player
 
         if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
             sprite.body.velocity.x = 0;

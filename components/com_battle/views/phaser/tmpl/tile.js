@@ -226,7 +226,8 @@ function npc(one,two) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
-
+    two.body.enable = false;
+    one.body.enable = false;
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=player&id="+ two.key_id,
         context: document.body,
@@ -236,10 +237,6 @@ function player(one,two) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 function paddy(n, p, c) {
     var pad_char = typeof c !== 'undefined' ? c : '0';
