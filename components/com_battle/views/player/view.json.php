@@ -9,7 +9,12 @@ class BattleViewPlayer extends JView
 {	
 	function display($tpl = 'json')
 	{
-        $id		= substr(JRequest::getvar('id'), 5);
+        $id		= JRequest::getvar('id');
+
+        //echo $id;
+       // exit();
+
+
 	/*	$people		= JTable::getInstance('players', 'Table');
 		$people->load($id);
 		$inv		= $this->get_character_inventory($id);

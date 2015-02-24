@@ -203,9 +203,9 @@ playState[1] = {
                 game.physics.enable(add_players[index], Phaser.Physics.ARCADE);
             }
         }
-        /////////////////////////////////////////////////////////////////
+        ////////////////////place chars//////
         if(npc_list.length !=0 ) {
-            ////////////////////place chars//////
+
             for (var index = 0; index < npc_list.length; index++) {
                 var key = npc_list[index].name;
                 var key_id = npc_list[index].id;
@@ -233,11 +233,10 @@ playState[1] = {
         mummy.animations.add('walk');
         mummy.animations.play('walk', 50, true);
 
-        //  game.add.tween(mummy).to({ x: game.width }, 10000, Phaser.Easing.Linear.None, true);
         ///////////////////////////////////////////
     },
     update: function() {
-        ///////////////////////////////////////////////
+        //////////////////////////////collide obstacle layer
         this.physics.arcade.collide(sprite, layer);
 
         ////////////////////////////////////////////////
@@ -249,7 +248,6 @@ playState[1] = {
         {
             //console.log(key);
             this.physics.arcade.collide(sprite, add_building[index], enter_building);
-
         }
         ////////////////////////move player
         game.physics.arcade.moveToXY(sprite, x, y, 100);
@@ -269,31 +267,22 @@ playState[1] = {
         ////////////////////////stop players
         if (typeof add_players != 'undefined' && typeof players_list !='undefined') {
             for (var index = 0; index < add_players.length; index++) {
-
                 if (typeof players_list[index] != 'undefined') {
-
                     if ((add_players[index].body.x >= players_list[index].posx - 20) || (add_players[index].body.x <= players_list[index].posx + 20)) {
                         add_players[index].body.velocity.x = 0;
                     }
-
                     if ((add_players[index].body.posy >=players_list[index].posy-20) ||(add_players[index].body.posy <=players_list[index].posy+20)){
                         add_players[index].body.velocity.y = 0;
                     }
-
                 }
-
-
             }
         }
-
         ///////////////////////collide npc list
         for (var index = 0; index < npc_list.length; index++)
         {
 
             this.physics.arcade.collide(sprite, add_npc[index], npc);
         }
-
-
 
         /////////////////////collide players
         for (var index = 0; index < players_list.length; index++)
@@ -302,7 +291,6 @@ playState[1] = {
             this.physics.arcade.collide(sprite, add_players[index], player);
             //add_building[index].body.immovable = true;
         }
-
 
         ///////////////////// Stop Player
 
@@ -321,7 +309,6 @@ playState[1] = {
                 send = 0;
             }
         }
-
 
 /////////////////////////////////////////////
 
