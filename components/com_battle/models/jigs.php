@@ -411,7 +411,12 @@ class BattleModelJigs extends JModellist{
         $user		= JFactory::getUser();
         //$char		= 62;
 
-        $db->setQuery("SELECT #__jigs_weapon_names.* ,#__jigs_weapons.magazine, #__jigs_players.ammunition
+        $db->setQuery("SELECT
+
+            #__jigs_weapon_names.* ,
+
+            #__jigs_weapons.magazine,
+            #__jigs_players.ammunition
             FROM #__jigs_players
 
             LEFT JOIN #__jigs_weapons
@@ -422,18 +427,20 @@ class BattleModelJigs extends JModellist{
 
 
             WHERE #__jigs_players.id = " . $user->id);
-        $result = $db->loadRow();
+        $result = $db->loadAssocList();
+
+
 
         $image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
-            '<img src="components/com_battle/images/weapons/' . $result[1] . '"></a>' .
-            '<span class="label">Id: </span>' . $result[0] .'<br><span class="label">Bullets per clip:</span> ' . $result[2] .
-            '<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
-            '<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
-            '<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8];
+            '<img src="components/com_battle/images/weapons/' . $result[0]['image'] . '"></a>' .
+            '<span class="label">Id: </span>' . $result[0][0] .'<br><span class="label">Bullets per clip:</span> ' . $result[0][2] .
+            '<br><span class="label">Attack: </span>' . $result[0]['attack'] .' <span class="label">Defence:</span> ' . $result[0][4] .
+            '<br><span class="label">Precision: </span>' . $result[0][5] .' <span class="label">Trigger:</span> ' . $result[0][6] .
+            '<br><span class="label">Price: </span>' . $result[0][7] .' <span class="label">Ammunition Price:</span> ' . $result[0][8];
             if ($user->id>0)
             {
-            $image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. '</div>';
-            $image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[17]. '</div><input type="button" value="Reload" onclick= "reload();"></button>';
+            $image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[0]['magazine']. '</div>';
+            $image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[0]['ammunition']. '</div><input type="button" value="Reload" onclick= "reload();"></button>';
             }
             return $image;
     }
@@ -786,6 +793,9 @@ class BattleModelJigs extends JModellist{
         $db->query();
     }
 
+    /**
+     * @return mixed
+     */
     function buy()
     {
         $db				= JFactory::getDBO();
@@ -793,6 +803,7 @@ class BattleModelJigs extends JModellist{
         $building_id	= JRequest::getvar('building_id');
         $item			= JRequest::getvar('item');
         $buy			= JRequest::getvar('buy');
+        $amount         = JRequest::getvar('amount');
         $player_money	= $this->get_player_money($db,$user);
 
 
@@ -846,12 +857,23 @@ class BattleModelJigs extends JModellist{
             $message 	= "You bought the building";
         }
 
+        if($buy=="bullets")
+        {
+            $query2		= "UPDATE #__jigs_players SET ammunition = ammunition + $amount  WHERE #__jigs_players.id = " . $user->id;
+            $message 	= $message2->message = "You bought $amount bullets";
+        }
+
+
 //////////////////////////////////////////// Get Sell Price	
         if ($buy == "batteries")
         {
             $sell_price	 = 100;
         }
-        else
+        elseif($buy == "bullets")
+        {
+            $sell_price	 = $amount * 10;
+        }
+         else
         {
             $sell_price = $this->get_sell_price($db,$query);
         }
@@ -873,10 +895,13 @@ class BattleModelJigs extends JModellist{
         {
             $message = "You do not have enough cash";
         }
-
+        ////////////////// Send Messages //////////////////////////
         MessagesHelper::sendFeedback($user->id,$message);
 
-        return $player_money;
+
+        $message2->money = $player_money;
+        $message2->amount= $amount;
+        return $message2;
         }
 
 ////////////////////////////////////////////////////////////////
@@ -970,9 +995,20 @@ class BattleModelJigs extends JModellist{
     function update_players_money($db,$player_money,$user)
     {
         $query		= "UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id;
+
+
+        ////////////////// Send Messages //////////////////////////
+        $text = "You have $player_money credit";
+
+        MessagesHelper::sendFeedback($user->id, $text);
+
         $db->setQuery($query);
         $db->query();
         return;
+
+
+
+
     }
 
     function sell()
