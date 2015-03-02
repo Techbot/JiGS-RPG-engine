@@ -17,12 +17,12 @@ class BattleModelPlayer extends JModel
 		return $this->_data;
 	}
 
-    function getPlayer()
+    function getPlayer($id)
     {
         $db = JFactory::getDBO();
-        $user = JFactory::getUser();
+        //$user = JFactory::getUser();
 
-        $query = "SELECT * FROM #__jigs_players WHERE id = $user->id";
+        $query = "SELECT * FROM #__jigs_players WHERE id = $id";
         $db->setQuery($query);
         $result = $db->loadObjectList();
         return $result[0];

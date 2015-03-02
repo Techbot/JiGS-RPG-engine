@@ -96,7 +96,7 @@ class BattleModelJigs extends JModellist{
     {
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
-        $query= "Update #__jigs_players SET active=1 WHERE id = $user->id";
+        $query= "Update #__jigs_players SET active=1,posx=100,posy=100 WHERE id = $user->id";
         $db->setQuery($query);
         $db->query();
         return true;
@@ -1188,7 +1188,7 @@ class BattleModelJigs extends JModellist{
             FROM #__jigs_players
             LEFT JOIN #__comprofiler
             ON #__jigs_players.id = #__comprofiler.user_id
-            WHERE grid ='".$grid."' AND map='".$map."' AND #__jigs_players.id !='".$user->id."'");
+            WHERE grid ='$grid' AND map='$map' AND #__jigs_players.id !='$user->id' AND active =1'");
         $result		= $db->loadAssocList();
         return $result;
     }
@@ -1221,28 +1221,30 @@ class BattleModelJigs extends JModellist{
 
     function attack_player()
     {
-        $db= JFactory::getDBO();
-        $player= JFactory::getUser();
+        $db                 = JFactory::getDBO();
+        $player             = JFactory::getUser();
         //$user2			= substr(JRequest::getvar('character'),5);
-        $user2= JRequest::getvar('character');
-        $player2= JFactory::getUser($user2);
+        $user2              = JRequest::getvar('character');
+        $player2            = JFactory::getUser($user2);
 
-        $player->dice= rand(0, 15);
-        $player2->dice= rand(0, 5);
+        $player->dice       = rand(0, 15);
+        $player2->dice      = rand(0, 5);
 
-        $query= "SELECT health,money,active FROM #__jigs_players WHERE id = $player->id";
+        // todo reduce this to one call using in array
+
+        $query              = "SELECT health,money,active FROM #__jigs_players WHERE id = $player->id";
         $db->setQuery($query);
-        $result= $db->loadRow();
-        $player->health= $result[0];
-        $player->money= $result[1];
-        $player->status= $result[2];
+        $result             = $db->loadRow();
+        $player->health     = $result[0];
+        $player->money      = $result[1];
+        $player->status     = $result[2];
 
-        $query= "SELECT health,money,active FROM #__jigs_players WHERE id = $user2";
+        $query              = "SELECT health,money,active FROM #__jigs_players WHERE id = $user2";
         $db->setQuery($query);
-        $result= $db->loadRow();
-        $player2->health= $result[0];
-        $player2->money= $result[1];
-        $player2->status= $result[2];
+        $result             = $db->loadRow();
+        $player2->health    = $result[0];
+        $player2->money     = $result[1];
+        $player2->status    = $result[2];
 
 
         if ($player2->status!=1)
@@ -1255,19 +1257,69 @@ class BattleModelJigs extends JModellist{
         }
         else// roll the dice and let the games begin
         {
-            if ($player->dice > $player2->dice)
-            {
-                $player->health= $player->health -1;
-                $player2->health= $player2->health-30;
-                $message= "You attacked $player2->username  and inflicted 30 points of damage. You: $player->health ,Opponent: $player2->health";
-            }
-            else
-            {
-                $player->health     = $player->health - 10;
-                $player2->health    = $player2->health + 10;
 
-                $message        = "You attacked " . $player2->username . " and missed. " . $player2->username .
-                    " retaliated and inflicted 10 points of damage. You: $player->health ,Opponent: $player2->health ";
+            $attack_type        = JRequest::getCmd('type');
+
+            switch ($attack_type)
+            {
+                ///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
+                case 'shoot':
+                    $query= "SELECT #__jigs_weapons.magazine,#__jigs_weapon_names.attack
+                                            FROM #__jigs_weapons
+                                            LEFT JOIN #__jigs_weapon_names
+                                            ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
+                                            WHERE #__jigs_weapons.id =" . $player->id_weapon;
+                    $db->setQuery($query);
+                    $player->weapon		= $db->loadAssoc();
+                    $damage                 = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
+
+                    if ($player->weapon['magazine'] > 0)
+                    {
+                        if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+                        {
+                            $npc->health	= intval($npc->health - $damage );
+                            $attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You:
+                    $player->health ,Opponent: $npc->health ";
+                        }
+                        else
+                        {
+                            $attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+                        }
+                        $player->weapon['magazine']--;
+
+                        $attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
+                    }
+                    else{
+                        $attack_message	= "You have no bullets in your gun clip";
+                    }
+
+                case 'kick':
+                if ($player->dice > $player2->dice)
+                {
+                    $npc->health= intval($npc->health - 30);
+                    $attack_message	= "You kick " . $player2->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
+                }
+                else
+                {
+                    $player->health	=intval($player->health - 10);
+                    $attack_message	="You kick " . $player2->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
+                }
+                break;
+
+                // If Player punches, test punch and other fighting skills + speed + dexterity against NPCs speed /////////////
+                case 'punch':
+                if ($player->dice >= $npc->dice)
+                {
+                    $npc->health=intval($player2->health - 20);
+                    $attack_message	= "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
+                }
+                else
+                {
+                    $player->health = intval($player->health - 10);
+                    $attack_message = "You punch " . $player2->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health";
+                }
+                break;
+
             }
 
             if ($player2->health <= 0)
@@ -1276,17 +1328,19 @@ class BattleModelJigs extends JModellist{
 
                 $player->money      =  $player->money + $player2->money;
                 $player2->money     = 0;
-                $query              = "UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now
-                    WHERE id = $user2";
+                $query              = "UPDATE #__jigs_players
+                  SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now
+                    WHERE id        = $user2";
                 $db->setQuery($query);
                 $db->query();
 
-                $query             = "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $player->id
+                $query             = "UPDATE #__jigs_inventory
+                    SET #__jigs_inventory.player_id = $player->id
                     WHERE #__jigs_inventory.player_id = $player2->id ";
                 $db->setQuery($query);
                 $db->query();
 
-                $query           = "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money
+                $query              = "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money
                     WHERE #__jigs_players.id = $player->id" ;
                 $db->setQuery($query);
                 $db->query();
@@ -1304,9 +1358,9 @@ class BattleModelJigs extends JModellist{
             $db->setQuery("UPDATE #__jigs_players SET health='" . $player2->health. "'  WHERE id ='" . $player2->id . "'");
             $db->query();
         }
-        $results[0]	= $player->health;
-        $results[1]	= $player2->health;
-        $results[2]	= $message;
+        $results[0]	                = $player->health;
+        $results[1]	                = $player2->health;
+        $results[2]	                = $message;
 
         MessagesHelper::sendFeedback($player->id,$message);
 
@@ -1314,57 +1368,58 @@ class BattleModelJigs extends JModellist{
     }
 
 
+
+
+
     function attack_character()
     {
-        $db= JFactory::getDBO();
-        $user= JFactory::getUser();
-        $character_id= JRequest::getInt('character');
-        $sql= "SELECT id, health, money, final_attack, final_defence, dexterity, level, id_weapon
+        $db                 = JFactory::getDBO();
+        $user               = JFactory::getUser();
+        $character_id       = JRequest::getInt('character');
+        $sql                = "SELECT id, health, money, final_attack, final_defence, dexterity, level, id_weapon
         FROM #__jigs_players
         WHERE id = " . $user->id;
         $db->setQuery($sql);
-        $player	= $db->loadObject();
-
-        $player->dice= rand(0, 15);
+        $player	            = $db->loadObject();
+        $player->dice       = rand(0, 15);
         $query= "SELECT id, name, level, health, money FROM #__jigs_characters WHERE id =" . $character_id;
         $db->setQuery($query);
-        $npc= $db->loadObject();
-
-        $npc->dice= rand(0, 5);
-        $attack_type= JRequest::getCmd('type');
+        $npc                = $db->loadObject();
+        $npc->dice          = rand(0, 5);
+        $attack_type        = JRequest::getCmd('type');
 
         switch ($attack_type)
         {
             ///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
-        case 'shoot':
-            $query= "SELECT #__jigs_weapons.magazine,#__jigs_weapon_names.attack
+            case 'shoot':
+                $query= "SELECT #__jigs_weapons.magazine,#__jigs_weapon_names.attack
                                             FROM #__jigs_weapons
                                             LEFT JOIN #__jigs_weapon_names
                                             ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
                                             WHERE #__jigs_weapons.id =" . $player->id_weapon;
-            $db->setQuery($query);
-            $player->weapon		= $db->loadAssoc();
-            $damage                 = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
+                $db->setQuery($query);
+                $player->weapon		= $db->loadAssoc();
+                $damage                 = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
 
-            if ($player->weapon['magazine'] > 0)
-            {
-                if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+                if ($player->weapon['magazine'] > 0)
                 {
-                    $npc->health	= intval($npc->health - $damage );
-                    $attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You:
+                    if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+                    {
+                        $npc->health	= intval($npc->health - $damage );
+                        $attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You:
                     $player->health ,Opponent: $npc->health ";
-                }
-                else
-                {
-                    $attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
-                }
-                $player->weapon['magazine']--;
+                    }
+                    else
+                    {
+                        $attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+                    }
+                    $player->weapon['magazine']--;
 
-                $attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
-            }
-            else{
+                    $attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
+                }
+                else{
                     $attack_message	= "You have no bullets in your gun clip";
-            }
+                }
             break;
 
             //====== If Player kicks, test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
@@ -1492,6 +1547,20 @@ class BattleModelJigs extends JModellist{
         $text = 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
         $db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
         $db->query() ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
   
@@ -1629,8 +1698,14 @@ class BattleModelJigs extends JModellist{
         if ($money > 10)
         {
             $money  = $money - 10;
-            $health = $health + 10;
-            $sql    = "Update #__jigs_players SET money = $money, health = $health WHERE iduser= " . $user->id;
+            $health = $health + 100;
+
+            if ($health >100){
+                $health = 100;
+
+            }
+
+            $sql    = "Update #__jigs_players SET money = $money, health = $health WHERE id= " . $user->id;
             $db->setQuery($sql);
             $db->query();
             $return = "success";

@@ -234,6 +234,11 @@ function player(one,two) {
         dataType: "json"
     }).done(function(result) {
         document.getElementById("mainbody").innerHTML=result;
+        var url = "/components/com_battle/includes/jigs.js";
+        jQuery.getScript( url, function() {
+            // alert ('hi');
+          //  success2();
+        });
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

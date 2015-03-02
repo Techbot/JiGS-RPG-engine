@@ -19,7 +19,7 @@ class BattleModelAwardNames extends JModel
 		return $result;
 	}
 
-	function removeAwardName($id)
+	function deleteAwardName($id)
 	{
 		$db	= JFactory::getDBO();
 

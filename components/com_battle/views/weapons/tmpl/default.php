@@ -59,8 +59,8 @@ function request_weapon1()
     url: "index.php?option=com_battle&format=raw&task=action&action=get_weapon", 
     onSuccess: function(result){
 
-        $('weapon_module').innerHTML = result;	
-    	$('weapon').innerHTML = result;	
+        document.id('weapon_module').innerHTML = result;
+        document.id('weapon').innerHTML = result;
    }	
    }).get();
 }

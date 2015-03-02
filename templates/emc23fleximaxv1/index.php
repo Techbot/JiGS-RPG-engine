@@ -101,7 +101,7 @@ $templateparams	= $app->getTemplate(true)->params;
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-
+    <script src="/components/com_battle/includes/jigs.js"></script>
 </head>
 
 <body id="<?php echo $style ;?>">

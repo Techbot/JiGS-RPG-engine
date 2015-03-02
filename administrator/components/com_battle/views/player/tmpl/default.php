@@ -30,9 +30,11 @@ else
         Name:
       </td>
       <td>
-        <input class="text_area" type="text" name="username" id="username" size="50" maxlength="250" value="<?php echo $this->row->username;?>" />
+        <input class="text_area" type="text" name="username" id="username" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
       </td>
     </tr>
+
+
     <tr>
       <td width="100" align="right" class="key">
        Latitude:
@@ -49,6 +51,29 @@ else
          <input class="text_area" type="text" name="posy" id="posy" size="50" maxlength="250" value="<?php echo $this->row->posy;?>" />
       </td>
     </tr>
+
+
+        <tr>
+            <td width="100" align="right" class="key">
+                map:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="map" id="map" size="50" maxlength="250" value="<?php echo $this->row->map;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">
+                grid:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="grid" id="grid" size="50" maxlength="250" value="<?php echo $this->row->grid;?>" />
+            </td>
+        </tr>
+
+
+
+
+
     <tr>
       <td width="100" align="right" class="key">
         Health:
@@ -59,10 +84,10 @@ else
     </tr>
         <tr>
       <td width="100" align="right" class="key">
-         $image 
+         Image
       </td>
       <td>
-            <input class="text_area" type="text" name="image" id="image" size="50" maxlength="250" value="<?php echo $this->row->image ;?>" />
+            <input class="text_area" type="text" name="image" id="image" size="50" maxlength="250" value="<?php echo $this->row->avatar ;?>" />
       </td>
     </tr>
         <!--tr>
@@ -83,14 +108,14 @@ else
     </tr-->	
 		        <tr>
       <td width="100" align="right" class="key">
-      attaque :
+          attack :
       </td>
       <td>
             <input class="text_area" type="text" name="attack" id="attack" size="50" maxlength="250" value="<?php echo $this->row->attack ;?>" />
       </td>
     </tr>		        <tr>
       <td width="100" align="right" class="key">
-      defense :
+          defence :
       </td>
       <td>
             <input class="text_area" type="text" name="defence" id="defence" size="50" maxlength="250" value="<?php echo $this->row->defence ;?>" />
@@ -118,14 +143,7 @@ else
       <td>
             <input class="text_area" type="text" name="visibilite" id="visibilite" size="50" maxlength="250" value="< ?php echo $this->row->visibilite ;?>" />
       </td>
-    </tr-->		        <tr>
-      <td width="100" align="right" class="key">
-      puissance:
-      </td>
-      <td>
-            <input class="text_area" type="text" name="puissance" id="puissance" size="50" maxlength="250" value="<?php echo $this->row->puissance ;?>" />
-      </td>
-    </tr>
+
 				        <tr>
       <td width="100" align="right" class="key">
       intelligence :
@@ -228,7 +246,7 @@ else
   commentaire:
       </td>
       <td>
-            <input class="text_area" type="text" name="commentaire" id="commentaire" size="50" maxlength="250" value="<?php echo $this->row->commentaire;?>" />
+            <input class="text_area" type="text" name="comment" id="comment" size="50" maxlength="250" value="<?php echo $this->row->comment;?>" />
       </td>
     </tr>
 				        <!--tr>
@@ -248,48 +266,85 @@ else
     </tr-->
 					        <tr>
       <td width="100" align="right" class="key">
-  parrainage  :
+          sponsorship  :
       </td>
       <td>
-            <input class="text_area" type="text" name="parrainage" id="parrainage" size="50" maxlength="250" value="<?php echo $this->row->parrainage ;?>" />
+            <input class="text_area" type="text" name="sponsorship" id="sponsorship" size="50" maxlength="250" value="<?php echo $this->row->sponsorship ;?>" />
       </td>
-    </tr>		        <tr>
+    </tr>
+        <tr>
       <td width="100" align="right" class="key">
- stupefiant :
+ narcotics :
       </td>
       <td>
-            <input class="text_area" type="text" name="stupefiant" id="stupefiant" size="50" maxlength="250" value="<?php echo $this->row->stupefiant ;?>" />
+            <input class="text_area" type="text" name="narcotics" id="narcotics" size="50" maxlength="250" value="<?php echo $this->row->narcotics ;?>" />
       </td>
     </tr>
 				        <tr>
       <td width="100" align="right" class="key">
-  volevoiture  :
+  stolen cars  :
       </td>
       <td>
-            <input class="text_area" type="text" name="volevoiture" id="volevoiture" size="50" maxlength="250" value="<?php echo $this->row->volevoiture ;?>" />
+            <input class="text_area" type="text" name="stolen_cars" id="stolen_cars" size="50" maxlength="250" value="<?php echo $this->row->stolen_cars ;?>" />
       </td>
     </tr>		        <tr>
       <td width="100" align="right" class="key">
- volearme  :
+          stolen weapons   :
       </td>
       <td>
-            <input class="text_area" type="text" name="volearme" id="volearme" size="50" maxlength="250" value="<?php echo $this->row->volearme  ;?>" />
+            <input class="text_area" type="text" name="stolen_weapons" id="stolen_weapons" size="50" maxlength="250" value="<?php echo $this->row->stolen_weapons  ;?>" />
       </td>
     </tr>				        <tr>
       <td width="100" align="right" class="key">
-  voleargent  :
+          stolen money :
       </td>
       <td>
-            <input class="text_area" type="text" name="voleargent" id="voleargent" size="50" maxlength="250" value="<?php echo $this->row->voleargent ;?>" />
-      </td>
-    </tr>		        <tr>
-      <td width="100" align="right" class="key">
- nbrattaque :
-      </td>
-      <td>
-            <input class="text_area" type="text" name="nbrattaque" id="nbrattaque" size="50" maxlength="250" value="<?php echo $this->row->nbrattaque ;?>" />
+            <input class="text_area" type="text" name="stolen_money" id="stolen_money" size="50" maxlength="250" value="<?php echo $this->row->stolen_money ;?>" />
       </td>
     </tr>
+
+        <tr>
+            <td width="100" align="right" class="key">nbr_attacks  :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="nbr_attacks" id="nbr_attacks" size="50" maxlength="250" value="<?php echo $this->row->nbr_attacks ;?>" />
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100" align="right" class="key">nbr_kills  :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="nbr_kills" id="nbr_kills" size="50" maxlength="250" value="<?php echo $this->row->nbr_kills ;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">nbr_crops  :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="nbr_crops" id="nbr_crops" size="50" maxlength="250" value="<?php echo $this->row->nbr_crops ;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">nbr_objs  :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="nbr_objs" id="nbr_objs" size="50" maxlength="250" value="<?php echo $this->row->nbr_objs ;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">nbr_drills  :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="nbr_drills" id="nbr_drills" size="50" maxlength="250" value="<?php echo $this->row->nbr_drills ;?>" />
+            </td>
+        </tr>
+
+
+
+
+
+
     </table>
   </fieldset>
  <?php echo JHTML::_( 'form.token' ); ?>
