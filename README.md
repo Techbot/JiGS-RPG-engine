@@ -164,12 +164,13 @@ Factories require blueprints, energy, workforce(hobbits), materials to create ob
 
 <h3>Farms</h3>
 
+![Farms ](https://github.com/EMC23/JiGS/blob/master/images/image03.png)
 Screenshot from 2014-10-19 14:26:04.png
 
 Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
 
 <h3>Mines</h3>
-
+![Mines ](https://github.com/EMC23/JiGS/blob/master/images/image14.png)
 Screenshot from 2014-10-19 14:27:48.png
 
  require energy workforce to mine oil,minerals( and crystals- on hold). - can be hacked/attacked
