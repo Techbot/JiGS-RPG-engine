@@ -84,8 +84,23 @@
 					<li>Employees Morale: 70%</li>
 					<li>Employee Efficiency: 95%</li>
 				</ul>
-                
-		
+
+                    <div id = 'hobbit_names' style="float:right;width:20%;" >
+                        <?php
+                        $i= 1;
+                        foreach ($this->building_hobbit_stats->hobbitList as $hobbit)
+                        {
+                            if ($hobbit->status == 2)
+                            {
+                                //print_r($hobbit);
+                                echo ($hobbit->name . " [remove]<br/>");
+                            }
+                            //$i++;
+                        }
+                        ?>
+
+
+                    </div>
         </form>
 				
                 
