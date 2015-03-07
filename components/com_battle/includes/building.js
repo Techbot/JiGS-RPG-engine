@@ -560,6 +560,7 @@ function reprocess(){
                 alert (result['message']);
                 document.id('adminForm').setStyle('display','none');
                 document.id('conveyor_progress').setStyle('display','block');
+                document.id('conveyor_progress').setStyle('visibility','visible');
             }
             else
             {
@@ -797,25 +798,13 @@ function request_buildings_batteries_cp()
         }
     }).get();
 }
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////
-
 function request_shop_metals()
 {
-    var all = '';
+    var all     = '';
     var details = this.details;
     //	var id = $('image').get('number');
-    var a = new Request.JSON({
+    var a       = new Request.JSON({
         url: "index.php?option=com_battle&format=raw&task=action&action=get_shop_metals&building_id="
         + building_id ,
     onSuccess: function(result){
@@ -900,7 +889,6 @@ function buy_metal(itemID){
     url: "index.php?option=com_battle&format=raw&task=action&action=buy&buy=metal&building_id=" 
     + building_id + "&metal=" + itemID, 
     onSuccess: function(result){
-
         }
     }).get();
 }
@@ -911,12 +899,9 @@ function sell_metal(itemID){
     url: "index.php?option=com_battle&format=raw&task=action&action=sell&sell=metal&building_id=" 
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
-
         }
     }).get();
 }
-
-
 
 function eat(itemID)
 {
@@ -956,15 +941,11 @@ function deposit()
                 url: "index.php?option=com_battle&format=raw&task=action&action=deposit&building_id="
                 + building_id + "&amount=" + qty  ,
                 onSuccess: function(result){
-
                // $(result[0]).innerHTML = result[1];
                // $(result[2]).innerHTML = result[3];
               //  $(deposit).setStyle('visibility','hidden');
-
                     }
                 }).get();
-
-
         });
 }
 
@@ -973,7 +954,6 @@ function withdraw()
 
     $$('#withdraw').addEvent('click', function()
     {
-
             var qty_el = document.getElementById('quantity_adjust2');
             var qty = qty_el.value;
             var a = new Request.JSON({
@@ -1000,7 +980,6 @@ function buy_bullets()
 
     $$('#buy_bullets').addEvent('click', function()
     {
-
             var qty_el = document.getElementById('quantity_adjust');
             var qty = qty_el.value;
             var a = new Request.JSON({
@@ -1009,26 +988,13 @@ function buy_bullets()
                     + "&amount="
                     + qty  ,
                     onSuccess: function(result){
-
                    // $(result[0]).innerHTML = result[1];
                    // $(result[2]).innerHTML = result[3];
                   //  $(deposit).setStyle('visibility','hidden');
-
                         }
                     }).get();
       });	
-}	
-
-
-
-
-
-
-
-
-
-
-    
+}
 
 function request_batteries()
 {
@@ -1145,7 +1111,7 @@ function get_hobbit(itemID){
     onSuccess: function(result){
 
 
-        if (itemID=="remove_primary"){
+    if (itemID=="remove_primary"){
         itemID="assign_primary"
     }
     if (itemID=="remove_defence"){
@@ -1154,10 +1120,7 @@ function get_hobbit(itemID){
     if (itemID=="remove_distribution"){
         itemID="assign_distribution"
     }
-
-
         document.id(itemID +'_cp').innerHTML = result;
-
         document.id(itemID+'_data').innerHTML = result;
         }
     }).get();
@@ -1190,7 +1153,6 @@ function get_shop_papers(){
         {
             for (i = 0; i < result.length; ++ i)
             {
-
                 var row = "<div class='row'><span>"
                 + (i+1)
                 + ": "
@@ -1202,24 +1164,21 @@ function get_shop_papers(){
                 + "'>BUY</a></div>";
                 all= all + row;
             }
-
             all= all + '';
-
             document.id('building_papers_table').innerHTML = all;
             $$('.buy').addEvent('click', function()
             {
                 var itemID = this.get('id');
                 buy_papers(itemID);
             });
-
         }
    }).get();
 }
 
 function get_papers(){
-    var all		= '';
-    var details = this.details;
-    var a		= new Request.JSON(
+    var all      = '';
+    var details  = this.details;
+    var a        = new Request.JSON(
     {
         url: "index.php?option=com_battle&format=raw&task=building_action&action=get_papers",
         onSuccess: function(result)
@@ -1286,9 +1245,9 @@ function sell_crops(){
 
 function work_field(itemID)
 {	 	
-      //Magic_index						= document.adminForm.Magic_Index.value;
-      Crop_index						= document.adminForm.crops.value;
-      //Skill_index						= document.adminForm.Skill_Index.value; 
+      //Magic_index                = document.adminForm.Magic_Index.value;
+      Crop_index               = document.adminForm.crops.value;
+      //Skill_index                 = document.adminForm.Skill_Index.value;
       hobbits_index                   = document.adminForm.hobbits_total.value ; 
     
     //alert (hobbits_index);
@@ -1331,8 +1290,6 @@ function check_farm(){
 
         if (result['remaining'] <= 0 )
         {
-                    
-                    
                    // $('adminForm').setStyle('visibility','visible');
  
                     document.id('farm_progress_'+ itemID).setStyle('display','none');
