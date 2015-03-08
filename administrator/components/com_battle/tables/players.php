@@ -6,53 +6,40 @@ class TablePlayers extends JTable
 {
 	var $id = null;
 	var $name = null;
-	var $id_weapon = null;
-	var $money = null;	
-	var $attack= null;	
+    var $type = null;
+    var $id_weapon = null;
+    var $money = null;
+    var $bank = null;
+	var $attack= null;
+    var $final_attack;
 	var $defence = null;
-	var $nbrattacks = null;		
+    var $final_defence;
+	var $nbrattacks = null;
 	var $nbrkills = null;
-
-	var $health = null;	  
-	var $level = null;     
-	var $xp = null;   
+	var $health = null;
+	var $level = null;
+    var $slack = null;
+    var $energy = null;
+    var $statpoints = null;
+	var $xp = null;
 	var $intelligence = null;    
 	var $strength = null;      
-	var $dexterity = null;    
-
-	var $grid = null;	
+	var $dexterity = null;
+    var $speed = null;
+	var $grid = null;
 	var $posx = null;	
-	var $posy = null;	
+	var $posy = null;
+    var $map = null;
+    var $team = null;
 	var $published = null;
-
-	var $image = null;	
-	var $coffre = null;	
-
-	var $discretion = null;
-	var $rapidte = null;
-	var $visibilite = null;
-
-
-	var $equipe = null;
-	var $idvoiture = null;
-	var $reservoir = null;	
-
-	var $munition = null;	
-	var $actif = null;
-	var $tempsplanque = null;	
-	var $tempsmove = null;
-	var $ip = null;	
+	var $image = null;
+	var $ammunition = null;
+	var $active = null;
+	var $ip = null;
 	var $comment = null;	
-	var $banque = null;	
-	var $casier = null;	
-	var $mort = null;
-	var $parrainage = null;
-	var $stupefiant = null;
-	var $volevoiture = null;	
-	var $volearme = null;	
-	var $voleargent = null;
+	var $narcotics = null;
 
- 	
+
 
 	function __construct(&$db)
 	{

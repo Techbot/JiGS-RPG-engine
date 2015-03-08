@@ -269,8 +269,7 @@ function safety_check()
 function jump()
 {
 	safety_check();
-	location.href = 'index.php?option=com_battle&view=single&id=' + map
-		+ '&update=1&posx=' + PosX + '&posy=' + PosY + '&grid=' + grid;
+	location.href = 'index.php?option=com_battle&view=phaser';
 }
 
 function Move_Player()

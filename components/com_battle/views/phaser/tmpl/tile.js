@@ -226,20 +226,22 @@ function npc(one,two) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
-
+    two.body.enable = false;
+    one.body.enable = false;
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=player&id="+ two.key_id,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
         document.getElementById("mainbody").innerHTML=result;
+        var url = "/components/com_battle/includes/jigs.js";
+        jQuery.getScript( url, function() {
+            // alert ('hi');
+          //  success2();
+        });
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 function paddy(n, p, c) {
     var pad_char = typeof c !== 'undefined' ? c : '0';

@@ -142,11 +142,16 @@ $body ='
 	if ($this->buildings->type == 'bank')
 			{
 					$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Hack this ' . $this->buildings->type .'</a></div> <!--hack-->';
-			}else
+			}
+        if ($this->buildings->type == 'farm' ||$this->buildings->type == 'mine'  ||$this->buildings->type == 'factory')
 			{
 					$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a></div> <!--buy-->';
 			}
-	
+
+     if ($this->buildings->type == 'stand' ||$this->buildings->type == 'reprocessor'  ||$this->buildings->type == 'factory')
+        {
+            $body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Attack this ' . $this->buildings->type .'</a></div> <!--buy-->';
+        }
  
 	
 	

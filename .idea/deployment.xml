@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" autoUpload="Always" serverName="eclecticmeme">
     <serverData>
-      <paths name="JiGS">
+      <paths name="eclecticmeme">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/var/www/www.eclecticmeme.com" local="$PROJECT_DIR$" web="/" />
           </mappings>
-          <excludedPaths>
-            <excludedPath path="/docs" />
-            <excludedPath path="/cache" />
-            <excludedPath path="/includes" />
-            <excludedPath path="/jstree" />
-            <excludedPath path="/jupgrade" />
-            <excludedPath path="/language" />
-            <excludedPath path="/libraries" />
-            <excludedPath path="/logs" />
-            <excludedPath path="/media" />
-            <excludedPath path="/modules" />
-          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
-

@@ -29,4 +29,24 @@ class battleModelPages extends JModel
 		$db->setQuery($query);
 		return  $db->query();
 	}
+
+    function deletepage($cid)
+    {
+        $db     = JFactory::getDBO();
+
+        if(count($cid))
+        {
+            $cids = implode(',',$cid);
+            $query = "
+				DELETE FROM #__jigs_pages
+				WHERE id IN ($cids)
+				";
+            $db->setQuery($query);
+            if($db->query())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

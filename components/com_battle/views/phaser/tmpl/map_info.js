@@ -49,7 +49,7 @@ portal_sourceY3[1] = 432;
 tile_names[2] = ['Zombie_A5','Zombie_A3','TileE','Inside_C','sprite','World_B','033-Heaven02'];
 
 x1[2] = 963;
-y1[2] = 802;
+y1[2] = 402;
 
 x2[2] = 300;
 y2[2] = 150;
@@ -105,7 +105,7 @@ portal_sourceX2[3] = 0;
 portal_sourceY2[3] = 0;
 
 portal_sourceX3[3] = 632;
-portal_sourceY3[3] = 632;
+portal_sourceY3[3] = 432;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 tile_names[4] = ['Zombie_A5','Zombie_A3','Inside_C','sprite','World_B'];
@@ -280,7 +280,7 @@ portal_sourceY3[8] = 855;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-tile_names[9] = ['TileA5','TileE','Zombie_A4'];
+tile_names[9] = ['TileA5','TileE','Zombie_A4','Zombie_A4_011b','Zombie_A4_015b'];
 
 x1[9] = 889;
 y1[9] = 0;

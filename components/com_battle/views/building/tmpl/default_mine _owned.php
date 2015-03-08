@@ -1,1 +1,1 @@
-xxxxxxxxxxxxxxxx
+This mine is owned so unless you wanna end up fulla lead. I suggest you back away.

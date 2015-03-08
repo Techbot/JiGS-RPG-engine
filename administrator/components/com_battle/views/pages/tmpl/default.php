@@ -26,6 +26,8 @@ JToolBarHelper::addNew();
 	<th width="5%">grid</th>    
       <th width="5%">posx</th>
       <th width="5%">posy</th>
+        <th width="5%">published</th>
+
     </tr>
   </thead>
 <?php
@@ -70,6 +72,13 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
       <td>
 	<?php echo $row->posy; ?>
       </td>
+
+        <td>
+            <?php echo $published; ?>
+        </td>
+
+
+
     </tr>
 <?php
 	$k = 1 - $k;

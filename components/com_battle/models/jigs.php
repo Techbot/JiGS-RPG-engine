@@ -13,45 +13,45 @@ class BattleModelJigs extends JModellist{
 
     function get_cells(){
 
-        $map		= JRequest::getvar('map');
-        $db			= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $map= JRequest::getvar('map');
+        $db = JFactory::getDBO();
+        $user = JFactory::getUser();
         $db->setQuery("SELECT row0,row1,row2,row3,row4,row5,row6,row7 FROM #__jigs_maps WHERE id = ".$map);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
 
 }
 
     function get_portals(){
 
-        $map		= JRequest::getvar('map');
-        $db			= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $map= JRequest::getvar('map');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
         $db->setQuery("SELECT * FROM #__jigs_portals WHERE from_map =" . $map);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
 }
 
 
     function get_messages(){
 
-        $db			= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
         $db->setQuery("SELECT message FROM #__jigs_logs WHERE user_id = $user->id  ORDER BY timestamp DESC LIMIT 6");
-        $message_list	= $db->loadObjectList();
+        $message_list= $db->loadObjectList();
         return $message_list;
     }
 
 
     function get_stats()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
         //	$test = self::set_final_stats();
-        $sql		= "SELECT level, health, strength, intelligence,speed, posx, posy, xp,energy, money, bank, defence, final_defence,
+        $sql= "SELECT level, health, strength, intelligence,speed, posx, posy, xp,energy, money, bank, defence, final_defence,
             attack, final_attack, nbr_attacks, nbr_kills, flags FROM #__jigs_players WHERE id = " . $user->id;
         $db->setQuery($sql);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
 
         return $result;
     }
@@ -59,34 +59,34 @@ class BattleModelJigs extends JModellist{
 
     function get_player()
      {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $test		= self::set_final_stats();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $test= self::set_final_stats();
         $db->setQuery("	SELECT posx, posy, xp, grid, map FROM #__jigs_players WHERE id =".$user->id);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function set_final_stats()
     {
 
-        $db			= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
         $db->setQuery("Select attack, defence FROM  #__jigs_players WHERE id =".$user->id);
         $db->query();
-        $result		= $db->loadRow();
-        $attack		= $result[0];
-        $defence	= $result[1];
+        $result= $db->loadRow();
+        $attack= $result[0];
+        $defence= $result[1];
         $db->setQuery("	Select #__jigs_weapon_names.attack, #__jigs_weapon_names.defence FROM #__jigs_players
             LEFT JOIN #__jigs_weapon_names
             ON #__jigs_players.id_weapon = #__jigs_weapon_names.id
             WHERE id =".$user->id);
         $db->query();
-        $result			= $db->loadRow();
-        $weapon_attack	= $result[0];
-        $weapon_defence	= $result[1];
-        $final_attack	= $attack + $weapon_attack;
-        $final_defence	= $defence + $weapon_defence;
+        $result= $db->loadRow();
+        $weapon_attack= $result[0];
+        $weapon_defence= $result[1];
+        $final_attack= $attack + $weapon_attack;
+        $final_defence= $defence + $weapon_defence;
         $db->setQuery("UPDATE #__jigs_players SET final_attack = '" . $final_attack. "', final_defence = '" . $final_defence . "'WHERE id =".$user->id);
         $db->query();
         return ($result);
@@ -94,9 +94,9 @@ class BattleModelJigs extends JModellist{
 
     function leave_room()
     {
-        $db			= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $query		= "Update #__jigs_players SET active=1 WHERE id = $user->id";
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $query= "Update #__jigs_players SET active=1,posx=100,posy=100 WHERE id = $user->id";
         $db->setQuery($query);
         $db->query();
         return true;
@@ -105,14 +105,14 @@ class BattleModelJigs extends JModellist{
     function get_shop_blueprints()
     {
 
-        $db					= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_blueprints.object, #__jigs_blueprints.sell_price, #__jigs_objects.name
                 FROM #__jigs_blueprints
                 LEFT JOIN  #__jigs_objects
                 ON #__jigs_blueprints.object = #__jigs_objects.id WHERE #__jigs_blueprints.user_id =" . $building_id);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
 
     }
@@ -120,13 +120,13 @@ class BattleModelJigs extends JModellist{
     function get_shop_clothing()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_clothing.item_id, #__jigs_clothing.sell_price, #__jigs_clothing_names.name
                 FROM #__jigs_clothing LEFT JOIN  #__jigs_clothing_names ON #__jigs_clothing.item_id = #__jigs_clothing_names.id
                 WHERE #__jigs_clothing.player_id =" . $building_id);
-        $result			= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
 
     }
@@ -134,35 +134,35 @@ class BattleModelJigs extends JModellist{
     function get_shop_spells()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_spells.item_id, #__jigs_spells.sell_price, #__jigs_spell_names.name
         FROM #__jigs_spells LEFT JOIN  #__jigs_spell_names ON #__jigs_spells.item_id = #__jigs_spell_names.id
         WHERE #__jigs_spells.player_id =" . $building_id);
-        $result			= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function get_shop_weapons()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.sell_price, #__jigs_weapon_names.name
         FROM #__jigs_weapons LEFT JOIN  #__jigs_weapon_names ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
         WHERE #__jigs_weapons.player_id =" . $building_id);
-        $result			= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function get_inventory_to_sell()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name, #__jigs_shop_prices.buy_price
                 FROM #__jigs_inventory
             LEFT JOIN #__jigs_objects ON #__jigs_inventory.item_id = #__jigs_objects.id
@@ -177,11 +177,11 @@ class BattleModelJigs extends JModellist{
     function get_metals_to_sell()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
 
-        $query			= "SELECT #__jigs_metals.item_id,
+        $query= "SELECT #__jigs_metals.item_id,
             #__jigs_metal_names.name,
             #__jigs_shop_metal_prices.buy_price
             FROM #__jigs_metal_names
@@ -193,16 +193,16 @@ class BattleModelJigs extends JModellist{
             AND #__jigs_shop_metal_prices.shop_id = " . $building_id ;
 
         $db->setQuery($query);
-        $result 		= $db->loadAssocList();
+        $result = $db->loadAssocList();
         return $result;
     }
 
     function get_metals_for_sale()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	=  JRequest::getvar('building_id');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id=  JRequest::getvar('building_id');
 
         $db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name, #__jigs_shop_prices.buy_price
         FROM #__jigs_inventory LEFT JOIN #__jigs_objects
@@ -218,9 +218,9 @@ class BattleModelJigs extends JModellist{
     function get_crystals()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db = JFactory::getDBO();
+        $user = JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
 
         $db->setQuery(
             "SELECT #__jigs_crystals.item_id, #__jigs_crystal_names.name, #__jigs_crystal_prices.buy_price
@@ -236,23 +236,23 @@ class BattleModelJigs extends JModellist{
     function get_backpack()
     {
 
-        $db		    	= JFactory::getDBO();
-        $user		    = JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user   = JFactory::getUser();
         $db->setQuery("SELECT #__jigs_inventory.id, #__jigs_inventory.item_id, #__jigs_objects.name
             FROM #__jigs_inventory
             LEFT JOIN #__jigs_objects ON #__jigs_inventory.item_id = #__jigs_objects.id
             WHERE #__jigs_inventory.player_id = ". $user->id
         );
-        $result		= $db->loadObjectList();
+        $result= $db->loadObjectList();
         return $result;
     }
 
     function get_inventory2()
     {
 
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
 
         $db->setQuery("SELECT DISTINCT
             #__jigs_inventory.item_id, #__jigs_objects.name FROM #__jigs_inventory
@@ -260,10 +260,10 @@ class BattleModelJigs extends JModellist{
         $result		= $db->loadObjectList();
         foreach ($result as $row)
         {
-            $sql			= "SELECT id FROM #__jigs_inventory WHERE #__jigs_inventory.player_id = $user->id  and #__jigs_inventory.item_id = $row->item_id";
+            $sql= "SELECT id FROM #__jigs_inventory WHERE #__jigs_inventory.player_id = $user->id  and #__jigs_inventory.item_id = $row->item_id";
             $db->setQuery($sql);
-            $quantity		= $db->loadAssocList();
-            $row->quantity	= count($quantity);
+            $quantity= $db->loadAssocList();
+            $row->quantity= count($quantity);
         }
         return $result;
     }
@@ -271,8 +271,8 @@ class BattleModelJigs extends JModellist{
     function get_metals2()
     {
 
-        $db		= JFactory::getDBO();
-        $user	= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT #__jigs_metals.item_id, " .
             "#__jigs_metals.quantity, #__jigs_metal_names.name FROM #__jigs_metals LEFT JOIN  #__jigs_metal_names ON #__jigs_metals.item_id = #__jigs_metal_names.id  WHERE #__jigs_metals.player_id =" . $user->id);
@@ -284,23 +284,23 @@ class BattleModelJigs extends JModellist{
     function get_crystals2()
     {
 
-        $db		= JFactory::getDBO();
-        $user	= JFactory::getUser();
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT #__jigs_crystals.item_id, #__jigs_crystal_names.name, #__jigs_crystals.quantity
         FROM #__jigs_crystals LEFT JOIN  #__jigs_crystal_names
         ON #__jigs_crystals.item_id = #__jigs_crystal_names.id
         WHERE #__jigs_crystals.player_id =" . $user->id);
 
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function get_skills()
     {
 
-        $db		= JFactory::getDBO();
-        $user	= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT * FROM #__jigs_skills WHERE #__jigs_skills.id =".$user->id);
         $result1 = $db->loadObject();
@@ -330,8 +330,8 @@ class BattleModelJigs extends JModellist{
 
     function reload()
     {
-        $db		            = JFactory::getDBO();
-        $user	            = JFactory::getUser();
+        $db            = JFactory::getDBO();
+        $user            = JFactory::getUser();
         // Get all the info from the database
         // There are three tables.
         // 1) The player table which includes the player stats ,what actual gun and how many spare bullets
@@ -341,7 +341,7 @@ class BattleModelJigs extends JModellist{
         //
         $query              = "SELECT id_weapon,ammunition FROM #__jigs_players WHERE id = " . $user->id;
         $db->setQuery($query);
-        $_result		    = $db->loadAssoc();
+        $_result    = $db->loadAssoc();
         $id_weapon          = $_result['id_weapon'];// current weapon
         $ammunition         = $_result['ammunition'];// total ammunition
          /*
@@ -356,7 +356,7 @@ class BattleModelJigs extends JModellist{
         {
             $query              = "Select magazine, item_id from #__jigs_weapons WHERE id = $id_weapon";
             $db->setQuery($query);
-            $_result		    = $db->loadAssoc(); //load assoc is a joomla method that loads an associated array
+            $_result    = $db->loadAssoc(); //load assoc is a joomla method that loads an associated array
             $current_magazine   = $_result['magazine']; //current ammunition
             $weapon_type        = $_result['item_id']; //current weapon_type
             $query              = "Select max_ammunition from #__jigs_weapon_names WHERE id = $weapon_type";
@@ -377,10 +377,10 @@ class BattleModelJigs extends JModellist{
             // the current magazine has more empty slots than player has bullets,
             // so whatever bullets player has is added to the clip
             // and the player now has no remaining bullets
-            else
+            elseif(current_magazine < $max_ammunition && $ammunition < $empty_slots)
             {
                 $current_magazine = $current_magazine + $ammunition;
-                $ammunition        = 0;
+                $ammunition        = $ammunition - $empty_slots;
                 $message= "You reload your weapon to $current_magazine bullets ";
             }
             // now we need to save the info back to two tables
@@ -407,11 +407,14 @@ class BattleModelJigs extends JModellist{
     function get_weapon()
     {
 
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        //$char		= 62;
+        $db     = JFactory::getDBO();
+        $user   = JFactory::getUser();
+        $db->setQuery("SELECT
 
-        $db->setQuery("SELECT #__jigs_weapon_names.* ,#__jigs_weapons.magazine, #__jigs_players.ammunition
+            #__jigs_weapon_names.* ,
+
+            #__jigs_weapons.magazine,
+            #__jigs_players.ammunition
             FROM #__jigs_players
 
             LEFT JOIN #__jigs_weapons
@@ -422,18 +425,27 @@ class BattleModelJigs extends JModellist{
 
 
             WHERE #__jigs_players.id = " . $user->id);
-        $result = $db->loadRow();
+        $result = $db->loadAssocList();
+
+
 
         $image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
-            '<img src="components/com_battle/images/weapons/' . $result[1] . '"></a>' .
-            '<span class="label">Id: </span>' . $result[0] .'<br><span class="label">Bullets per clip:</span> ' . $result[2] .
-            '<br><span class="label">Attack: </span>' . $result[3] .' <span class="label">Defence:</span> ' . $result[4] .
-            '<br><span class="label">Precision: </span>' . $result[5] .' <span class="label">Trigger:</span> ' . $result[6] .
-            '<br><span class="label">Price: </span>' . $result[7] .' <span class="label">Ammunition Price:</span> ' . $result[8];
+            '<img src="components/com_battle/images/weapons/' . $result[0]['image'] . '"></a>' .
+            '<span class="label">Id: </span>' . $result[0][0] .'<br>
+
+            <span class="label">Bullets per clip:</span> ' . $result[0][2] .
+            '<br><span class="label">Attack: </span>' . $result[0]['attack'] .'
+
+            <span class="label">Defence:</span> ' . $result[0]['defence'] .
+            '<br>
+            <span class="label">Precision: </span>' . $result[0]['precision'] .'
+            <span class="label">Trigger:</span> ' . $result[0]['trigger'] .
+            '<br><span class="label">Price: </span>' . $result[0]['price'] .'
+            <span class="label">Ammunition Price:</span> ' . $result[0]['prix_munition'];
             if ($user->id>0)
             {
-            $image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[16]. '</div>';
-            $image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[17]. '</div><input type="button" value="Reload" onclick= "reload();"></button>';
+            $image .= '<br><span class="label">Magazine: </span><div id = "magazine">' . $result[0]['magazine']. '</div>';
+            $image .= '<br><span class="label">Ammunition: </span><div id = "ammunition">' . $result[0]['ammunition']. '</div><input type="button" value="Reload" onclick= "reload();"></button>';
             }
             return $image;
     }
@@ -441,8 +453,8 @@ class BattleModelJigs extends JModellist{
     function get_weapons()
     {
 
-        $db		    = JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db    = JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.name, #__jigs_weapon_names.sell_price FROM #__jigs_weapons
                 LEFT JOIN #__jigs_weapon_names ON #__jigs_weapons.item_id =  #__jigs_weapon_names.id
@@ -455,14 +467,14 @@ class BattleModelJigs extends JModellist{
     function get_weapons2()
     {
 
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.name FROM #__jigs_weapons
                 LEFT JOIN #__jigs_weapon_names
                 ON #__jigs_weapons.item_id =  #__jigs_weapon_names.id
                 WHERE #__jigs_weapons.player_id =".$user->id);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
@@ -471,36 +483,36 @@ class BattleModelJigs extends JModellist{
     function get_spells()
     {
 
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT #__jigs_spells.item_id, #__jigs_spell_names.name
                 FROM #__jigs_spells LEFT JOIN #__jigs_spell_names
                 ON #__jigs_spells.item_id =#__jigs_spell_names.id
                 WHERE #__jigs_spells.player_id =".$user->id);
 
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function get_software()
     {
 
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT * FROM #__jigs_software WHERE #__jigs_software.id =".$user->id);
 
-        $result		= $db->loadRow();
+        $result= $db->loadRow();
         return $result;
     }
 
     function get_shop_software()
     {
 
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $building_id	= JRequest::getvar(building_id);
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar(building_id);
 
         $db->setQuery("SELECT  " .
             "quantity_1 ,	price_1 ,	quantity_2 ,price_2 ,	quantity_3 	,price_3, " .
@@ -515,12 +527,12 @@ class BattleModelJigs extends JModellist{
     function get_property()
     {
 
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT image FROM #__jigs_buildings WHERE #__jigs_buildings.proprio  =".$user->id);
 
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
@@ -528,23 +540,23 @@ class BattleModelJigs extends JModellist{
     {
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
-        $item		= JRequest::getvar('item');
+        $building_id= JRequest::getvar('building_id');
+        $item= JRequest::getvar('item');
         $sql            = "UPDATE #__jigs_inventory SET player_id = $user->id, location = 1 WHERE id = $item";
         $db->setQuery($sql);
-        $result2	= $db->query();
-        $result3	='true';
+        $result2= $db->query();
+        $result3='true';
         return $sql;
 
     }
 
     function store()
     {
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
-        $item			= JRequest::getvar('item');
-        $room			= JRequest::getvar('room');
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
+        $item= JRequest::getvar('item');
+        $room= JRequest::getvar('room');
         $sql            = "UPDATE #__jigs_inventory SET player_id = $building_id, location = $room WHERE id= $item";
         $db->setQuery($sql);
         $db->query();
@@ -601,11 +613,11 @@ class BattleModelJigs extends JModellist{
     ///// ADD UP ALL ENERGY FROM ALL BATTERIES FOR ONE USER /////
     function get_total_energy($id)
     {
-        $batteries	= $this->get_all_energy($id);
+        $batteries= $this->get_all_energy($id);
 
-        //$batteries	= $EnergyHelper::get_all_energy_new($id);
+        //$batteries= $EnergyHelper::get_all_energy_new($id);
 
-        $total		= 0;
+        $total= 0;
         foreach ($batteries as $battery)
         {
             $total	= $total + $battery->units;
@@ -616,10 +628,10 @@ class BattleModelJigs extends JModellist{
     ///// GET ALL BATTERIES FOR ONE USER /////
     function get_all_energy($id)
     {
-        $db		= JFactory::getDBO();
-        $sql		= "SELECT * FROM #__jigs_batteries WHERE user = " . $id;
+        $db= JFactory::getDBO();
+        $sql= "SELECT * FROM #__jigs_batteries WHERE user = " . $id;
         $db->setQuery($sql);
-        $_all_energy	= $db->loadObjectList();
+        $_all_energy= $db->loadObjectList();
         return $_all_energy;
     }
 
@@ -660,14 +672,14 @@ class BattleModelJigs extends JModellist{
     ///// TAKE ENERGY FROM USER'S BATTERIES UNTIL $energy_units_required IS REACHED /////
     function use_battery($id, $energy_units_required)
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $message	= "Energy Required : " . $energy_units_required;
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $message= "Energy Required : " . $energy_units_required;
         MessagesHelper::sendFeedback($user->id,$message);
 
-        $batteries	= $this->get_all_energy($id);
-        $total		= $this->get_total_energy($id);
-        $message	= "Total Energy available : " . $total;
+        $batteries= $this->get_all_energy($id);
+        $total= $this->get_total_energy($id);
+        $message= "Total Energy available : " . $total;
         MessagesHelper::sendFeedback($user->id,$message);
 
         if ($total < $energy_units_required)
@@ -684,22 +696,22 @@ class BattleModelJigs extends JModellist{
             {
                 if ($energy_units_required < $battery->units)
                 {
-                    $db			= JFactory::getDBO();
-                    $battery->units 	= $battery->units - $energy_units_required;
-                    $message		= $energy_units_required . " unit(s) deducted from battery " . $i ;
+                    $db= JFactory::getDBO();
+                    $battery->units = $battery->units - $energy_units_required;
+                    $message= $energy_units_required . " unit(s) deducted from battery " . $i ;
                     $energy_units_required	= 0;
                     MessagesHelper::sendFeedback($user->id,$message);
                 }
                 else
                 {
                     $energy_units_required	= $energy_units_required - $battery->units;
-                    $message 		.= $battery->units . " unit(s) deducted from  battery " . $i . "<br/>";
-                    $battery->units		= 0;
-                    $message 		.= "zero units remaining in battery " . $i ."</br>";
+                    $message .= $battery->units . " unit(s) deducted from  battery " . $i . "<br/>";
+                    $battery->units	= 0;
+                    $message .= "zero units remaining in battery " . $i ."</br>";
                     MessagesHelper::sendFeedback($user->id,$message);
                 }
 
-                $sql	= "UPDATE #__jigs_batteries SET units = " . $battery->units . " WHERE id = " . $battery->id;
+                $sql= "UPDATE #__jigs_batteries SET units = " . $battery->units . " WHERE id = " . $battery->id;
                 $db->setQuery($sql);
                 $result	= $db->query();
             }
@@ -712,8 +724,8 @@ class BattleModelJigs extends JModellist{
             $i++;
         }
 
-        $total		= $this->get_total_energy($id);
-        $message	= $total . " remaining energy units";
+        $total= $this->get_total_energy($id);
+        $message= $total . " remaining energy units";
         MessagesHelper::sendFeedback($user->id,$message);
         return true;
     }
@@ -721,13 +733,13 @@ class BattleModelJigs extends JModellist{
     /// GIVE BATTERY FROM USER TO BUILDING ///
     function swap_battery()
     {
-        $user		    = JFactory::getUser();
+        $user    = JFactory::getUser();
         $db             = JFactory::getDBO();
-        $building_id	= JRequest::getvar('building_id');
-        $id		        = JRequest::getvar('id');
-        $sql		    = "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
+        $building_id= JRequest::getvar('building_id');
+        $id       = JRequest::getvar('id');
+        $sql    = "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
         $db->setQuery($sql);
-        $result		    = $db->query();
+        $result   = $db->query();
          $energy_total   = $this->get_total_energy($building_id);
 
         MessagesHelper::sendFeedback($user->id, "transferred battery $id to building $building_id. Building now has $energy_total energy units");
@@ -741,23 +753,23 @@ class BattleModelJigs extends JModellist{
     ///// SELECT ALL BATTERIES FOR A USER /////
     function get_batteries()
     {
-        $db		    = JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $sql		= "SELECT * FROM #__jigs_batteries WHERE user =" . $user->id;
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $sql= "SELECT * FROM #__jigs_batteries WHERE user =" . $user->id;
         $db->setQuery($sql);
-        $result		= $db->loadRowlist();
+        $result= $db->loadRowlist();
         //return $sql;
         return $result;
     }
 
     function moved_get_character_inventory($id)
     {
-        $db		    = JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db    = JFactory::getDBO();
+        $user= JFactory::getUser();
 
         $db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name FROM #__jigs_inventory LEFT JOIN #__jigs_objects
                 ON #__jigs_inventory.item_id = #__jigs_objects.id WHERE #__jigs_inventory.player_id =".$id);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
@@ -786,72 +798,87 @@ class BattleModelJigs extends JModellist{
         $db->query();
     }
 
+    /**
+     * @return mixed
+     */
     function buy()
     {
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
-        $item			= JRequest::getvar('item');
-        $buy			= JRequest::getvar('buy');
-        $player_money	= $this->get_player_money($db,$user);
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
+        $item= JRequest::getvar('item');
+        $buy= JRequest::getvar('buy');
+        $amount         = JRequest::getvar('amount');
+        $player_money= $this->get_player_money($db,$user);
 
 
         if ($buy=='objects')
         {
 
-            $query		= "SELECT sell_price FROM #__jigs_shop_prices WHERE #__jigs_shop_prices.item_id = $item AND #__jigs_shop_prices.shop_id = " . $building_id;
-            $query2		= "INSERT INTO #__jigs_inventory (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")";
-            $message 	= "You bought the object";
+            $query= "SELECT sell_price FROM #__jigs_shop_prices WHERE #__jigs_shop_prices.item_id = $item AND #__jigs_shop_prices.shop_id = " . $building_id;
+            $query2= "INSERT INTO #__jigs_inventory (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")";
+            $message = "You bought the object";
         }
 
         if ($buy=='batteries')
         {
-            $query2		= "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
-            $message 	= "You bought the battery";
+            $query2= "INSERT INTO #__jigs_batteries (charge_percentage,capacity,id) VALUES (100,10,$user->id)";
+            $message = "You bought the battery";
         }
 
         if ($buy=='weapon')
         {
-            $query		= "SELECT sell_price FROM #__jigs_weapon_names WHERE #__jigs_weapon_names.id = " . $item;
-            $query2		= "INSERT INTO #__jigs_weapons (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")";
-            $message 	= "You bought the weapon";
+            $query= "SELECT sell_price FROM #__jigs_weapon_names WHERE #__jigs_weapon_names.id = " . $item;
+            $query2= "INSERT INTO #__jigs_weapons (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")";
+            $message = "You bought the weapon";
 
         }
 
         if ($buy=='crystal')
         {
-            $query		= "SELECT sell_price FROM #__jigs_crystals WHERE #__jigs_crystals.id =".$item;
-            $query2		= "INSERT INTO #__jigs_crystals (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")";
-            $message 	= "You bought the crystal";
+            $query= "SELECT sell_price FROM #__jigs_crystals WHERE #__jigs_crystals.id =".$item;
+            $query2= "INSERT INTO #__jigs_crystals (player_id , item_id) VALUES (" . $user->id . " , " . $item . ")";
+            $message = "You bought the crystal";
         }
 
         if ($buy=='papers')
         {
-            $query 		= "SELECT sell_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item;
-            $query2 	= "INSERT INTO #__jigs_papers (user_id, item_id) VALUES ( $user->id  ,  $item )";
-            $message 	= "You bought the papers";
+            $query = "SELECT sell_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item;
+            $query2 = "INSERT INTO #__jigs_papers (user_id, item_id) VALUES ( $user->id  ,  $item )";
+            $message = "You bought the papers";
         }
 
         if($buy=='blueprints')
         {
-            $query 		= "SELECT sell_price FROM #__jigs_blueprints WHERE #__jigs_blueprints.id =".$item;
-            $query2 	= "INSERT INTO #__jigs_blueprints (user_id, object) VALUES ( $user->id  ,  $item )";
-            $message 	= "You bought the blueprints";
+            $query = "SELECT sell_price FROM #__jigs_blueprints WHERE #__jigs_blueprints.id =".$item;
+            $query2 = "INSERT INTO #__jigs_blueprints (user_id, object) VALUES ( $user->id  ,  $item )";
+            $message = "You bought the blueprints";
         }
 
         if($buy=="building")
         {
-            $query		= "SELECT price FROM #__jigs_buildings WHERE #__jigs_buildings.id =" . $building_id;
-            $query2		= "UPDATE #__jigs_buildings SET owner = $user->id WHERE #__jigs_buildings.id = " . $building_id;
-            $message 	= "You bought the building";
+            $query      = "SELECT price FROM #__jigs_buildings WHERE #__jigs_buildings.id =" . $building_id;
+            $query2     = "UPDATE #__jigs_buildings SET owner = $user->id WHERE #__jigs_buildings.id = " . $building_id;
+            $message    = "You bought the building";
         }
+
+        if($buy=="bullets")
+        {
+            $query2     = "UPDATE #__jigs_players SET ammunition = ammunition + $amount  WHERE #__jigs_players.id = " . $user->id;
+            $message    = $message2->message = "You bought $amount bullets";
+        }
+
 
 //////////////////////////////////////////// Get Sell Price	
         if ($buy == "batteries")
         {
             $sell_price	 = 100;
         }
-        else
+        elseif($buy == "bullets")
+        {
+            $sell_price	 = $amount * 10;
+        }
+         else
         {
             $sell_price = $this->get_sell_price($db,$query);
         }
@@ -873,10 +900,13 @@ class BattleModelJigs extends JModellist{
         {
             $message = "You do not have enough cash";
         }
-
+        ////////////////// Send Messages //////////////////////////
         MessagesHelper::sendFeedback($user->id,$message);
 
-        return $player_money;
+
+        $message2->money = $player_money;
+        $message2->amount= $amount;
+        return $message2;
         }
 
 ////////////////////////////////////////////////////////////////
@@ -961,28 +991,39 @@ class BattleModelJigs extends JModellist{
     /////////// Select Money /////////////////////////
     function get_player_money($db,$user)
     {
-        $query		= "SELECT money FROM #__jigs_players WHERE id =".$user->id;
+        $query = "SELECT money FROM #__jigs_players WHERE id =".$user->id;
         $db->setQuery($query);
-        $player_money	= $db->loadResult();
+        $player_money = $db->loadResult();
         return $player_money;
     }
 
     function update_players_money($db,$player_money,$user)
     {
-        $query		= "UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id;
+        $query = "UPDATE #__jigs_players SET #__jigs_players.money = " . $player_money . " WHERE id = " . $user->id;
+
+
+        ////////////////// Send Messages //////////////////////////
+        $text = "You have $player_money credit";
+
+        MessagesHelper::sendFeedback($user->id, $text);
+
         $db->setQuery($query);
         $db->query();
         return;
+
+
+
+
     }
 
     function sell()
     {
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
-        $item			= JRequest::getvar('item');
-        $sell			= JRequest::getvar('sell');
-        $player_money	= $this->get_player_money($db,$user);
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
+        $item= JRequest::getvar('item');
+        $sell= JRequest::getvar('sell');
+        $player_money= $this->get_player_money($db,$user);
 
 
         if ($sell == 'objects')
@@ -994,43 +1035,43 @@ class BattleModelJigs extends JModellist{
 
         if ($sell == 'crops')
         {
-            $total_crops	= $this->get_total_crops();
-            $query2			= "Update #__jigs_farms LEFT JOIN #__jigs_buildings on #__jigs_farms.building = #__jigs_buildings.id SET total = 0 WHERE #__jigs_buildings.owner = $user->id";
-            $text			= "You sold $total_crops crops.";
-            $xp_type		= 'nbr_crops';
+            $total_crops= $this->get_total_crops();
+            $query2= "Update #__jigs_farms LEFT JOIN #__jigs_buildings on #__jigs_farms.building = #__jigs_buildings.id SET total = 0 WHERE #__jigs_buildings.owner = $user->id";
+            $text= "You sold $total_crops crops.";
+            $xp_type= 'nbr_crops';
         }
 
         if ($sell=="battery")
         {
-            $query2		= "UPDATE #__jigs_batteries SET id = $building_id WHERE id =  $user->id LIMIT 1";
-            $text		= "You sold battery";
+            $query2= "UPDATE #__jigs_batteries SET id = $building_id WHERE id =  $user->id LIMIT 1";
+            $text= "You sold battery";
         }
 
         if ($sell=="metal")
         {
-            $query1		= "SELECT buy_price FROM #__jigs_shop_metal_prices WHERE item_id = $item AND shop_id = " . $building_id;
-            $query2		= "UPDATE #__jigs_metals SET quantity = quantity - 1 WHERE #__jigs_metals.player_id = $user->id AND item_id= $item ";
-            $text		= "You sold metal";
+            $query1= "SELECT buy_price FROM #__jigs_shop_metal_prices WHERE item_id = $item AND shop_id = " . $building_id;
+            $query2= "UPDATE #__jigs_metals SET quantity = quantity - 1 WHERE #__jigs_metals.player_id = $user->id AND item_id= $item ";
+            $text= "You sold metal";
         }
         if ($sell=="weapon")
         {
-            $query1		= "SELECT sell_price FROM #__jigs_weapon_names WHERE id = ". $item ;
-            $query2		= "DELETE FROM  #__jigs_weapons WHERE #__jigs_weapons.player_id = $user->id AND item_id=" . $item . " LIMIT 1";
-            $text		= "You sold weapon";
+            $query1= "SELECT sell_price FROM #__jigs_weapon_names WHERE id = ". $item ;
+            $query2= "DELETE FROM  #__jigs_weapons WHERE #__jigs_weapons.player_id = $user->id AND item_id=" . $item . " LIMIT 1";
+            $text= "You sold weapon";
         }
 
         if ($sell=="crystals")
         {
-            $query1		= "SELECT buy_price FROM #__jigs_crystal_prices WHERE #__jigs_crystal_prices.item_id =".$item;
-            $query2		= "DELETE FROM  #__jigs_crystals WHERE #__jigs_crystals.player_id = $user->id AND item_id= $item  LIMIT 1";
-            $text		= "You sold crystals";
+            $query1= "SELECT buy_price FROM #__jigs_crystal_prices WHERE #__jigs_crystal_prices.item_id =".$item;
+            $query2= "DELETE FROM  #__jigs_crystals WHERE #__jigs_crystals.player_id = $user->id AND item_id= $item  LIMIT 1";
+            $text= "You sold crystals";
         }
 
         if ($sell=="papers")
         {
-            $query1		= "SELECT buy_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item ;
-            $query2		= "DELETE FROM #__jigs_papers WHERE #__jigs_papers.player_id = $user->id  AND item_id= $item  LIMIT 1";
-            $text		= "You sold papers";
+            $query1= "SELECT buy_price FROM #__jigs_papers WHERE #__jigs_papers.id =".$item ;
+            $query2= "DELETE FROM #__jigs_papers WHERE #__jigs_papers.player_id = $user->id  AND item_id= $item  LIMIT 1";
+            $text= "You sold papers";
         }
 
         //////////////////////////Get Buy Price for player /////////
@@ -1063,7 +1104,7 @@ class BattleModelJigs extends JModellist{
         $db->query();
 
         /////////////////// Increment XP ///////////////////////////
-        $test		= $this->increment_xp($xp_type,$user->id);
+        $test       = $this->increment_xp($xp_type,$user->id);
 
         ////////////////// Send Messages //////////////////////////
         MessagesHelper::sendFeedback($user->id, $text);
@@ -1075,23 +1116,23 @@ class BattleModelJigs extends JModellist{
 
     function get_shop_inventory()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_shop_prices.item_id, #__jigs_objects.name, #__jigs_shop_prices.sell_price
                 FROM #__jigs_shop_prices
                 LEFT JOIN #__jigs_objects
                 ON #__jigs_shop_prices.item_id = #__jigs_objects.id
                 WHERE #__jigs_shop_prices.shop_id =" . $building_id);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function get_flat_inventory()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar('building_id');
 
         $query          = "SELECT #__jigs_objects.name,	#__jigs_inventory.item_id
         FROM #__jigs_objects
@@ -1100,15 +1141,15 @@ class BattleModelJigs extends JModellist{
         WHERE #__jigs_inventory.player_id =" . $building_id;
 
         $db->setQuery($query);
-        $result		= $db->loadAssocList();
+        $result= $db->loadAssocList();
         return $result;
     }
 
     function get_shop_metals()
     {
-        $db		= JFactory::getDBO();
-        $building_id	= JRequest::getvar('building_id');
-        $query 		= "
+        $db	= JFactory::getDBO();
+        $building_id= JRequest::getvar('building_id');
+        $query = "
             SELECT #__jigs_shop_metal_prices.item_id, #__jigs_metal_names.name, #__jigs_shop_metal_prices.sell_price
             FROM #__jigs_shop_metal_prices
             LEFT JOIN #__jigs_metals
@@ -1123,31 +1164,31 @@ class BattleModelJigs extends JModellist{
 
     function get_shop_crystals()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $building_id	= JRequest::getvar('building_id');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id = JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_crystal_prices.item_id, #__jigs_crystal_names.name, #__jigs_crystal_prices.sell_price
             FROM #__jigs_crystal_prices
             LEFT JOIN  #__jigs_crystal_names
             ON #__jigs_crystal_prices.item_id = #__jigs_crystal_names.id
             WHERE #__jigs_crystal_prices.shop_id =" . $building_id);
-        $result		= $db->loadAssocList();
+        $result = $db->loadAssocList();
         return $result;
     }
 
     function get_players()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
         $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
-        $result		= $db->loadRow();
-        $map		= $result[0];
-        $grid		= $result[1];
+        $result= $db->loadRow();
+        $map= $result[0];
+        $grid= $result[1];
         $db->setQuery("SELECT	#__jigs_players.id,#__jigs_players.posx, #__jigs_players.posy, #__comprofiler.avatar
             FROM #__jigs_players
             LEFT JOIN #__comprofiler
             ON #__jigs_players.id = #__comprofiler.user_id
-            WHERE grid ='".$grid."' AND map='".$map."' AND #__jigs_players.id !='".$user->id."'");
+            WHERE grid ='$grid' AND map='$map' AND #__jigs_players.id !='$user->id' AND active =1'");
         $result		= $db->loadAssocList();
         return $result;
     }
@@ -1155,12 +1196,12 @@ class BattleModelJigs extends JModellist{
     // Called by JiGS.js.php via JSON On successful call the player is moved by mootools
     function save_coordinate()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $posx		= JRequest::getvar('posx');
-        $posy		= JRequest::getvar('posy');
-        $map		= JRequest::getvar('map');
-        $grid		= JRequest::getvar('grid');
+        $db= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $posx= JRequest::getvar('posx');
+        $posy= JRequest::getvar('posy');
+        $map= JRequest::getvar('map');
+        $grid= JRequest::getvar('grid');
 
         $db->setQuery("SELECT active FROM #__jigs_players WHERE id ='$user->id'");
         $active		= $db->loadResult();
@@ -1180,53 +1221,105 @@ class BattleModelJigs extends JModellist{
 
     function attack_player()
     {
-        $db					= JFactory::getDBO();
-        $player				= JFactory::getUser();
+        $db                 = JFactory::getDBO();
+        $player             = JFactory::getUser();
         //$user2			= substr(JRequest::getvar('character'),5);
-        $user2				= JRequest::getvar('character');
-        $player2			= JFactory::getUser($user2);
+        $user2              = JRequest::getvar('character');
+        $player2            = JFactory::getUser($user2);
 
-        $player->dice		= rand(0, 15);
-        $player2->dice		= rand(0, 5);
+        $player->dice       = rand(0, 15);
+        $player2->dice      = rand(0, 5);
 
-        $query				= "SELECT health,money,active FROM #__jigs_players WHERE id = $player->id";
+        // todo reduce this to one call using in array
+
+        $query              = "SELECT health,money,active FROM #__jigs_players WHERE id = $player->id";
         $db->setQuery($query);
-        $result				= $db->loadRow();
-        $player->health		= $result[0];
-        $player->money		= $result[1];
-        $player->status		= $result[2];
+        $result             = $db->loadRow();
+        $player->health     = $result[0];
+        $player->money      = $result[1];
+        $player->status     = $result[2];
 
-        $query				= "SELECT health,money,active FROM #__jigs_players WHERE id = $user2";
+        $query              = "SELECT health,money,active FROM #__jigs_players WHERE id = $user2";
         $db->setQuery($query);
-        $result			= $db->loadRow();
-        $player2->health	= $result[0];
-        $player2->money		= $result[1];
-        $player2->status	= $result[2];
+        $result             = $db->loadRow();
+        $player2->health    = $result[0];
+        $player2->money     = $result[1];
+        $player2->status    = $result[2];
 
 
         if ($player2->status!=1)
         {
-            $message	= "This player is inactive. You cannot attack this player at this time<br/>";
+            $message= "This player is inactive. You cannot attack this player at this time<br/>";
         }
         elseif ($player->status !=1)
         {
-            $message	= "You are inactive. You cannot attack players at this time<br/>";
+            $message= "You are inactive. You cannot attack players at this time<br/>";
         }
         else// roll the dice and let the games begin
         {
-            if ($player->dice > $player2->dice)
-            {
-                $player->health		= $player->health -1;
-                $player2->health	= $player2->health-30;
-                $message			= "You attacked $player2->username  and inflicted 30 points of damage. You: $player->health ,Opponent: $player2->health";
-            }
-            else
-            {
-                $player->health     = $player->health - 10;
-                $player2->health    = $player2->health + 10;
 
-                $message	        = "You attacked " . $player2->username . " and missed. " . $player2->username .
-                    " retaliated and inflicted 10 points of damage. You: $player->health ,Opponent: $player2->health ";
+            $attack_type        = JRequest::getCmd('type');
+
+            switch ($attack_type)
+            {
+                ///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
+                case 'shoot':
+                    $query= "SELECT #__jigs_weapons.magazine,#__jigs_weapon_names.attack
+                                            FROM #__jigs_weapons
+                                            LEFT JOIN #__jigs_weapon_names
+                                            ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
+                                            WHERE #__jigs_weapons.id =" . $player->id_weapon;
+                    $db->setQuery($query);
+                    $player->weapon		= $db->loadAssoc();
+                    $damage                 = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
+
+                    if ($player->weapon['magazine'] > 0)
+                    {
+                        if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+                        {
+                            $npc->health	= intval($npc->health - $damage );
+                            $attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You:
+                    $player->health ,Opponent: $npc->health ";
+                        }
+                        else
+                        {
+                            $attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+                        }
+                        $player->weapon['magazine']--;
+
+                        $attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
+                    }
+                    else{
+                        $attack_message	= "You have no bullets in your gun clip";
+                    }
+
+                case 'kick':
+                if ($player->dice > $player2->dice)
+                {
+                    $npc->health= intval($npc->health - 30);
+                    $attack_message	= "You kick " . $player2->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
+                }
+                else
+                {
+                    $player->health	=intval($player->health - 10);
+                    $attack_message	="You kick " . $player2->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
+                }
+                break;
+
+                // If Player punches, test punch and other fighting skills + speed + dexterity against NPCs speed /////////////
+                case 'punch':
+                if ($player->dice >= $npc->dice)
+                {
+                    $npc->health=intval($player2->health - 20);
+                    $attack_message	= "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
+                }
+                else
+                {
+                    $player->health = intval($player->health - 10);
+                    $attack_message = "You punch " . $player2->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health";
+                }
+                break;
+
             }
 
             if ($player2->health <= 0)
@@ -1235,17 +1328,19 @@ class BattleModelJigs extends JModellist{
 
                 $player->money      =  $player->money + $player2->money;
                 $player2->money     = 0;
-                $query              = "UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now
-                    WHERE id = $user2";
+                $query              = "UPDATE #__jigs_players
+                  SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = $now
+                    WHERE id        = $user2";
                 $db->setQuery($query);
                 $db->query();
 
-                $query             = "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $player->id
+                $query             = "UPDATE #__jigs_inventory
+                    SET #__jigs_inventory.player_id = $player->id
                     WHERE #__jigs_inventory.player_id = $player2->id ";
                 $db->setQuery($query);
                 $db->query();
 
-                $query           = "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money
+                $query              = "UPDATE #__jigs_players SET nbr_kills=nbr_kills+1, money = $player->money
                     WHERE #__jigs_players.id = $player->id" ;
                 $db->setQuery($query);
                 $db->query();
@@ -1263,9 +1358,9 @@ class BattleModelJigs extends JModellist{
             $db->setQuery("UPDATE #__jigs_players SET health='" . $player2->health. "'  WHERE id ='" . $player2->id . "'");
             $db->query();
         }
-        $results[0]	= $player->health;
-        $results[1]	= $player2->health;
-        $results[2]	= $message;
+        $results[0]	                = $player->health;
+        $results[1]	                = $player2->health;
+        $results[2]	                = $message;
 
         MessagesHelper::sendFeedback($player->id,$message);
 
@@ -1273,57 +1368,58 @@ class BattleModelJigs extends JModellist{
     }
 
 
+
+
+
     function attack_character()
     {
-        $db				= JFactory::getDBO();
-        $user			= JFactory::getUser();
-        $character_id	= JRequest::getInt('character');
-        $sql			= "SELECT id, health, money, final_attack, final_defence, dexterity, level, id_weapon
+        $db                 = JFactory::getDBO();
+        $user               = JFactory::getUser();
+        $character_id       = JRequest::getInt('character');
+        $sql                = "SELECT id, health, money, final_attack, final_defence, dexterity, level, id_weapon
         FROM #__jigs_players
         WHERE id = " . $user->id;
         $db->setQuery($sql);
-        $player			= $db->loadObject();
-
-        $player->dice	= rand(0, 15);
-        $query			= "SELECT id, name, level, health, money FROM #__jigs_characters WHERE id =" . $character_id;
+        $player	            = $db->loadObject();
+        $player->dice       = rand(0, 15);
+        $query= "SELECT id, name, level, health, money FROM #__jigs_characters WHERE id =" . $character_id;
         $db->setQuery($query);
-        $npc			= $db->loadObject();
-
-        $npc->dice		= rand(0, 5);
-        $attack_type	= JRequest::getCmd('type');
+        $npc                = $db->loadObject();
+        $npc->dice          = rand(0, 5);
+        $attack_type        = JRequest::getCmd('type');
 
         switch ($attack_type)
         {
             ///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
-        case 'shoot':
-            $query			= "SELECT #__jigs_weapons.magazine,#__jigs_weapon_names.attack
+            case 'shoot':
+                $query= "SELECT #__jigs_weapons.magazine,#__jigs_weapon_names.attack
                                             FROM #__jigs_weapons
                                             LEFT JOIN #__jigs_weapon_names
                                             ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
                                             WHERE #__jigs_weapons.id =" . $player->id_weapon;
-            $db->setQuery($query);
-            $player->weapon		= $db->loadAssoc();
-            $damage                 = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
+                $db->setQuery($query);
+                $player->weapon		= $db->loadAssoc();
+                $damage                 = (int)(($player->weapon['attack'] * $player->dexterity * $player->level) / $npc->level) + ($player->dice - $npc->dice);
 
-            if ($player->weapon['magazine'] > 0)
-            {
-                if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+                if ($player->weapon['magazine'] > 0)
                 {
-                    $npc->health	= intval($npc->health - $damage );
-                    $attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You:
+                    if ($player->dice * $player->level + $player->dexterity > $npc->dice * $npc->level)
+                    {
+                        $npc->health	= intval($npc->health - $damage );
+                        $attack_message	= "You shoot $npc->name and inflict $damage damage points to his health.You:
                     $player->health ,Opponent: $npc->health ";
-                }
-                else
-                {
-                    $attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
-                }
-                $player->weapon['magazine']--;
+                    }
+                    else
+                    {
+                        $attack_message	= "You shoot $npc->name and miss. You: $player->health, Opponent: $npc->health";
+                    }
+                    $player->weapon['magazine']--;
 
-                $attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
-            }
-            else{
+                    $attack_message	.= "number of bullets left: " . $player->weapon['magazine'];
+                }
+                else{
                     $attack_message	= "You have no bullets in your gun clip";
-            }
+                }
             break;
 
             //====== If Player kicks, test kicking and other fighting skills + speed + dexterity against NPCs speed ////////
@@ -1331,13 +1427,13 @@ class BattleModelJigs extends JModellist{
         case 'kick':
             if ($player->dice > $npc->dice)
             {
-                $npc->health		= intval($npc->health - 30);
-                $attack_message		= "You kick " . $npc->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
+                $npc->health= intval($npc->health - 30);
+                $attack_message	= "You kick " . $npc->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
             }
             else
             {
-                $player->health		=	intval($player->health - 10);
-                $attack_message		=	"You kick " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
+                $player->health	=intval($player->health - 10);
+                $attack_message	="You kick " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
             }
             break;
 
@@ -1345,20 +1441,20 @@ class BattleModelJigs extends JModellist{
         case 'punch':
             if ($player->dice >= $npc->dice)
             {
-                $npc->health	=	intval($npc->health - 20);
+                $npc->health=intval($npc->health - 20);
                 $attack_message	= "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
             }
             else
             {
-                $player->health	= intval($player->health - 10);
-                $attack_message	= "You punch " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health";
+                $player->health = intval($player->health - 10);
+                $attack_message = "You punch " . $npc->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health";
             }
             break;
         }
         ////////////////////////////////////////// If NPC is dead ////////////////////////////////////
         if ($npc->health <= 0)
         {
-            $npc->health	= 0;
+            $npc->health = 0;
             $this->dead_npc($npc);
         }
 
@@ -1399,30 +1495,30 @@ class BattleModelJigs extends JModellist{
 
     function dead_npc($npc)
     {
-        $db			= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $now		= time();
-        $sql		= "UPDATE #__jigs_characters SET active = 0, empty = 1 , time_killed = $now WHERE id  = $npc->id";
+        $db	 = JFactory::getDBO();
+        $user= JFactory::getUser();
+        $now= time();
+        $sql= "UPDATE #__jigs_characters SET active = 0, empty = 1 , time_killed = $now WHERE id  = $npc->id";
         $db->setQuery($sql);
         $db->query();
-        $sql		= "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $user->id WHERE #__jigs_inventory.player_id = $npc->id";
+        $sql= "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $user->id WHERE #__jigs_inventory.player_id = $npc->id";
         $db->setQuery($sql);
         $db->query();
         //// Update specific and General stats and payout when applicable
-        $xp_type	= 'nbr_kills';
+        $xp_type= 'nbr_kills';
         $this->increment_xp($xp_type,$user->id);
 
-        $player_money	= $this->get_player_money($db,$user);
-        $player_money	= $player_money + $npc->money;
+        $player_money= $this->get_player_money($db,$user);
+        $player_money= $player_money + $npc->money;
         $this->update_player_money($db,$player_money,$user);
 
-        $text		= 'Citizen ' . $npc->name . ' was hospitalised by citizen ' . $user->username . '<br/>' ;
+        $text= 'Citizen ' . $npc->name . ' was hospitalised by citizen ' . $user->username . '<br/>' ;
         $this->sendWavyLines($text);
 
 
-        $text		= "You hospitalised citizen $npc->name <br/>";
-        $text		.= "You took $npc->money credits <br/>";
-        $text		.= "You picked up some items<br/>";
+        $text= "You hospitalised citizen $npc->name <br/>";
+        $text.= "You took $npc->money credits <br/>";
+        $text.= "You picked up some items<br/>";
 
         MessagesHelper::sendFeedback($user->id, $text);
         return $text;
@@ -1430,9 +1526,9 @@ class BattleModelJigs extends JModellist{
 
     function dead_player($winner)
     {
-        $user		= JFactory::getUser();
-        $db			= JFactory::getDBO();
-        $now		= time();
+        $user= JFactory::getUser();
+        $db	= JFactory::getDBO();
+        $now= time();
         $db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . "
                 WHERE id ='".$user->id."'");
         $db->query();
@@ -1448,16 +1544,30 @@ class BattleModelJigs extends JModellist{
         //	$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
         //	$db->query() ;
 
-        $text= 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
+        $text = 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
         $db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
         $db->query() ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
   
     function increment_xp($xp_type,$user_id)
     {
-        $db 	= JFactory::getDBO();
-        $query	="UPDATE #__jigs_players SET $xp_type  = $xp_type + 1, xp = xp+1, WHERE #__jigs_players.id = " .  $user_id;
+        $db = JFactory::getDBO();
+        $query= "UPDATE #__jigs_players SET $xp_type  = $xp_type + 1, xp = xp+1, WHERE #__jigs_players.id = " .  $user_id;
         $db->setQuery($query);
         $db->query();
         $this->test_level($user_id);
@@ -1466,12 +1576,12 @@ class BattleModelJigs extends JModellist{
 
     function test_level($user_id)
     {
-        $user		= JFactory::getUser();
-        $db		= JFactory::getDBO();
-        $now		= time();
-        $query		= "SELECT xp FROM #__jigs_players where id = $user_id";
+        $user= JFactory::getUser();
+        $db	    = JFactory::getDBO();
+        $now= time();
+        $query= "SELECT xp FROM #__jigs_players where id = $user_id";
         $db->setQuery($query);
-        $xp		= $db->loadResult();
+        $xp	    = $db->loadResult();
         $milestones	= array(100,200,400,800,1600,2000,4000,8000);
 
         foreach ($milestones as $check)
@@ -1490,13 +1600,13 @@ class BattleModelJigs extends JModellist{
 
     function swap()
     {
-        $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
-        $weapon_id	= JRequest::getvar('weapon_id');
-
+        $db	        = JFactory::getDBO();
+        $user    = JFactory::getUser();
+        $weapon_id    = JRequest::getvar('weapon_id');
+        //todo does player own this weapon type?
         $db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE id =".$user->id);
         $db->query();
-        $result		= $weapon_id ;
+        $result    = $weapon_id ;
         return $result;
     }
 
@@ -1570,7 +1680,7 @@ class BattleModelJigs extends JModellist{
 
     function eat()
     {
-        $db = JFactory::getDBO();
+        $db     = JFactory::getDBO();
         $user   = JFactory::getUser();
         $query  = $db->getQuery(true);
 
@@ -1588,8 +1698,14 @@ class BattleModelJigs extends JModellist{
         if ($money > 10)
         {
             $money  = $money - 10;
-            $health = $health + 10;
-            $sql    = "Update #__jigs_players SET money = $money, health = $health WHERE iduser= " . $user->id;
+            $health = $health + 100;
+
+            if ($health >100){
+                $health = 100;
+
+            }
+
+            $sql    = "Update #__jigs_players SET money = $money, health = $health WHERE id= " . $user->id;
             $db->setQuery($sql);
             $db->query();
             $return = "success";

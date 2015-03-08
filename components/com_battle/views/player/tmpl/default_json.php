@@ -12,9 +12,9 @@ $text ='
 				<div class="name">' . $people->name  . '</div>
 
 				<div class="clearfix" id="action">
-					<div class="btn btn-danger shoot"><a onclick="shoot_character(' . $people->id  . ')" id="shoot" >Shoot</a></div>
-					<div class="btn btn-danger kick"><a onclick="kick_character(' . $people->id  . ')" id="kick" >Kick</a></div>
-					<div class="btn btn-danger punch"><a onclick="punch_character(' . $people->id  . ')" id="punch">Punch</a></div>
+					<div class="btn btn-danger shoot"><a onclick="shoot_player(' . $people->id  . ')" id="shoot" >Shoot</a></div>
+					<div class="btn btn-danger kick"><a onclick="kick_player(' . $people->id  . ')" id="kick" >Kick</a></div>
+					<div class="btn btn-danger punch"><a onclick="punch_player(' . $people->id  . ')" id="punch">Punch</a></div>
 					<div class="inactive btn recruit btn-warning"><a class="recruit" href="#">Recruit</a></div>
 					<div class="inactive btn bribe btn-warning"><a class="bribe_character" href="#">Bribe</a></div>
 					<div class="inactive btn rob btn-warning"><a class="rob_character" href="#">Rob</a></div>
@@ -47,8 +47,9 @@ $text ='
 				<div class="desc">
 
 					<figure>
-						<img src="/components/com_battle/images/ennemis/' . $people->avatar . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" />
-					</figure>
+						<!--img src="/components/com_battle/images/ennemis/' . $people->avatar . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" /-->
+				<img src="/images/comprofiler/' . $people->avatar . '" class="thumbnail" alt="'. $people->name . ' " title="' . $people->name .'" width="100" height="100" id="character_image" />
+						</figure>
 
 					<div class="stats">
 

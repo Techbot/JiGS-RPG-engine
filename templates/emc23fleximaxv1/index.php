@@ -55,12 +55,17 @@ $templateparams	= $app->getTemplate(true)->params;
 
 <!-- EMC23 template -->
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />
+
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/theme.css" rel="stylesheet" type="text/css" media="screen" />
 
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/dropdown.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/dropdown_style.css" rel="stylesheet" type="text/css" />
 
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/custom_emc23.css" rel="stylesheet">
+
+<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/emc_styles.css" rel="stylesheet" type="text/css" media="screen" />
+
+
 
 	<!--[if lte IE 6]>
 	<style type="text/css"> img { behavior: url(<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/iepngfix.htc); }</style>
@@ -93,6 +98,10 @@ $templateparams	= $app->getTemplate(true)->params;
 <!-- ATTN this should be in component -->
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" media="screen" />
 
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="/components/com_battle/includes/jigs.js"></script>
 </head>
 
 <body id="<?php echo $style ;?>">

@@ -24,7 +24,7 @@ function leave()
 					onSuccess: function(result)
 					{
 			   	    	
-						location.href = 'index.php?option=com_battle&view=single';
+						location.href = 'index.php?option=com_battle&amp;view=phaser&amp;Itemid=115';
 		 
 					}
 			}).get();
