@@ -1,0 +1,96 @@
+#chatoutput {
+
+/* Height of the shoutbox*/
+height: 200px;
+
+/*Uncomment width below*/
+/*width: 220px;*/
+
+/* Horizontal Scrollbar Killer */
+padding: 6px 8px; 
+
+/* Borders */
+border: 1px solid #00FFFF;
+font: 11px helvetica, arial, sans-serif;
+color: #FFFFFF;
+background: #222;
+overflow: auto;
+margin-top: 10px;
+}
+
+#chatoutput span {
+font-size: 1.1em;
+color: #666;
+}
+
+#chatForm label, #shoutboxAdmin {
+display: block;
+margin: 4px 0;
+}
+
+
+
+#chatoutput a {
+font-style: normal;
+font-weight: bold;
+color: #00FFFF;}
+
+/* User names with links */
+#chatoutput li span a {
+font-weight: normal;
+display: inline !important;
+border-bottom: 1px dotted #00FFFF;}
+
+#chatForm textarea {
+width: 150px;
+}
+
+#chatoutput ul#outputList {
+padding: 0;
+position: static;
+margin: 0;
+}
+
+#chatoutput li {
+padding: 4px;
+margin: 0;
+color: #fff;
+background: none;
+font-size: 1em;
+list-style: none;
+text-overflow:ellipsis;
+overflow:hidden;
+width: 100%;
+}
+
+/* No bullets from Kubrick et al. */
+#chatoutput ul#outputList li:before {
+content: '';
+}
+
+ul#outputList li:first-line {
+line-height: 16px;
+}
+
+#lastMessage {
+padding-bottom: 2px;
+text-align: center;
+border-bottom: 2px dotted #666666;
+}
+
+em#responseTime {
+font-style: normal;
+display: block;
+}
+
+#chatoutput .wp-smiley {
+vertical-align: middle;
+}
+
+.website {
+	display: none;
+}
+
+input#homepage {
+  display: none;
+}
