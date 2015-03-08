@@ -37,47 +37,25 @@ $templateparams	= $app->getTemplate(true)->params;
 <jdoc:include type="head" />
 <?php  JHTML::_('behavior.mootools'); ?>
 
-<!-- stops internally-linked content loading in iframes -->
-<script type="text/javascript">
-	<!--
-		if (top.location!= self.location) {
-			top.location = self.location.href
-		}
-	-->
-</script>
-<script id="loadarea_0" type="text/javascript"></script>
+	<!-- stops internally-linked content loading in iframes -->
+	<script type="text/javascript">
+		<!--
+			if (top.location!= self.location) {
+				top.location = self.location.href
+			}
+		-->
+	</script>	
+	<script id="loadarea_0" type="text/javascript"></script>
     <script id="loadarea_1" type="text/javascript"></script>
 
-<!-- Bootstrap core -->
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap theme -->
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap-theme.min.css" rel="stylesheet">
+	<!-- Bootstrap core -->
+	<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap theme -->
+	<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/bootstrap-theme.min.css" rel="stylesheet">
 
-<!-- EMC23 template -->
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />
-
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/theme.css" rel="stylesheet" type="text/css" media="screen" />
-
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/dropdown.css" rel="stylesheet" type="text/css" />
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/dropdown_style.css" rel="stylesheet" type="text/css" />
-
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/custom_emc23.css" rel="stylesheet">
-
-<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/emc_styles.css" rel="stylesheet" type="text/css" media="screen" />
-
-
-
-	<!--[if lte IE 6]>
-	<style type="text/css"> img { behavior: url(<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/iepngfix.htc); }</style>
-	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie_hacks.css" media="screen, projection" />
-	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/iehover.js"></script>
-	<![endif]-->
-	<!--[if IE 7]>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie_7.css" media="screen, projection" />
-	<![endif]-->
-	<!--[if IE 8]>
-		<link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie_8.css" media="screen, projection" />
-	<![endif]-->
+	<!-- EMC23 template -->
+	<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/emc_styles.css" rel="stylesheet" type="text/css" media="screen" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -91,15 +69,13 @@ $templateparams	= $app->getTemplate(true)->params;
     <link rel="apple-touch-icon-precomposed" sizes="32x32" href="/fnord_32x32.png">
     <link rel="apple-touch-icon-precomposed" href="/fnord_128x128.png">
 
-<script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/modal.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseurl ?>/media/system/js/modal.js"></script>
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/media/system/css/modal.css" type="text/css" />
 
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/media/system/css/modal.css" type="text/css" />
+	<!-- ATTN this should be in component -->
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" media="screen" />
 
-<!-- ATTN this should be in component -->
-<link rel="stylesheet" href="<?php echo $this->baseurl ?>/components/com_battle/includes/jigs.css" type="text/css" media="screen" />
-
-
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <script src="/components/com_battle/includes/jigs.js"></script>
 </head>
