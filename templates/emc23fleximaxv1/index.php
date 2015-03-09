@@ -78,6 +78,7 @@ $templateparams	= $app->getTemplate(true)->params;
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <script src="/components/com_battle/includes/jigs.js"></script>
+
 </head>
 
 <body id="<?php echo $style ;?>">
@@ -444,12 +445,20 @@ $templateparams	= $app->getTemplate(true)->params;
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/bootstrap.min.js"></script>
+	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/bootstrap3/bootstrap.min.js"></script>
+
 
 	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/emctempus.js"></script>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
+
+
+            $('.carousel').carousel({
+                interval: 2000
+            });
+
+
 			// if login form is displayed - user not logged in
 			if ( $( '#login-form .userdata' ).length > 0) {
 				$("#jwts_a1").css({
@@ -459,7 +468,7 @@ $templateparams	= $app->getTemplate(true)->params;
 				});
 				$("#jwts_ac1").css("top",0);
 			}
-		});
+        });
 	</script>
 
 
