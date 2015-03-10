@@ -25,6 +25,29 @@ class BattleModelMap extends JModel{
         //}
     }
 
+
+    function update_pos()
+    {
+        $db = JFactory::getDBO();
+        $user = JFactory::getUser();
+        //$update = JRequest::getVar('update');
+        //if ($update==1){
+        $posx = JRequest::getVar('posx');
+        $posy = JRequest::getVar('posy');
+        //$map_id = JRequest::getVar('id');
+        //$grid =	JRequest::getVar('grid');
+        //$query = "UPDATE #__jigs_players SET map = '".$map_id."', grid = '".$grid."', posx = '".$posx."',posy = '".$posy."' WHERE id ='".$user->id."'" ;
+        $query = "UPDATE #__jigs_players SET posx = '$posx',posy = '$posy'  WHERE id ='$user->id'";
+        $db->setQuery($query);
+        $db->query();
+        return;
+        //}
+    }
+
+
+
+
+
     function get_coord()
     {
         $db     = JFactory::getDBO();
@@ -43,6 +66,9 @@ class BattleModelMap extends JModel{
         return $result;
     }
 
+
+    /*old
+
     function get_grid()
     {
 
@@ -51,11 +77,32 @@ class BattleModelMap extends JModel{
         $db->setQuery("SELECT grid FROM #__jigs_players WHERE id =" . $user->id);
         $gridnumber = $db->loadResult();
         // echo $gridnumber;
-        $query      = "SELECT grid_index FROM #__jigs_maps WHERE grid = ".$gridnumber;
-        $db->setQuery($query);
-        $result     = $db->loadResult();
+        //$query      = "SELECT grid_index FROM #__jigs_maps WHERE grid = ".$gridnumber;
+       // $db->setQuery($query);
+        //$result     = $db->loadResult();
+        return $gridnumber;
+    }
+    */
+
+    function get_grid()
+    {
+
+        $db         = JFactory::getDBO();
+        $user       = JFactory::getUser();
+        $db->setQuery("SELECT  #__jigs_players.grid,
+                #__jigs_players.posx,
+                #__jigs_players.posy,
+                #__comprofiler.avatar,
+                #__jigs_players.active
+                FROM #__jigs_players
+                LEFT JOIN #__comprofiler
+                ON #__comprofiler.user_id = #__jigs_players.id
+                WHERE #__jigs_players.id =" . $user->id);
+
+        $result = $db->loadRow();
         return $result;
     }
+
 
     function get_chars()
     {
@@ -95,7 +142,7 @@ class BattleModelMap extends JModel{
         $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
         $result = $db->loadRow();
         $map = $result[0];
-        $grid = $result[1];		
+        $grid = $result[1];
         $db->setQuery("SELECT * FROM #__jigs_pages WHERE grid ='".$grid."' AND map='".$map."'");
         $result = $db->loadObjectlist();
         return $result;
