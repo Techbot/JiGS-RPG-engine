@@ -53,7 +53,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/TileC_exterior_1.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/TileC_exterior_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -68,7 +68,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Outside_A5.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Outside_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -83,7 +83,7 @@
         }, 
         {
          "firstgid":385,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Outside_B.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Outside_B.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -98,7 +98,7 @@
         }, 
         {
          "firstgid":641,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -113,7 +113,7 @@
         }, 
         {
          "firstgid":769,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -128,7 +128,7 @@
         }, 
         {
          "firstgid":897,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -143,7 +143,7 @@
         }, 
         {
          "firstgid":1153,
-         "image":"C:\/users\/techbot\/My Documents\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_TileC.png",
+         "image":"components\/com_battle\/images\/assets\/tiles\/Zombie_TileC.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,

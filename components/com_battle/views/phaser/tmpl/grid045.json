@@ -53,7 +53,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"E:\/rtp\/Graphics\/tiles\/TileA1.png",
+         "image":"images\/assets\/tiles\/TileA1.png",
          "imageheight":384,
          "imagewidth":512,
          "margin":0,
@@ -68,7 +68,7 @@
         }, 
         {
          "firstgid":193,
-         "image":"E:\/rtp\/Graphics\/tiles\/TileC_exterior_1.png",
+         "image":"images\/assets\/tiles\/TileC_exterior_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -83,7 +83,7 @@
         }, 
         {
          "firstgid":449,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_A5.png",
+         "image":"images\/assets\/tiles\/Outside_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -98,7 +98,7 @@
         }, 
         {
          "firstgid":577,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_B.png",
+         "image":"images\/assets\/tiles\/Outside_B.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -113,7 +113,7 @@
         }, 
         {
          "firstgid":833,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_C.png",
+         "image":"images\/assets\/tiles\/Outside_C.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -128,7 +128,7 @@
         }, 
         {
          "firstgid":1089,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_A3.png",
+         "image":"images\/assets\/tiles\/Zombie_A3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -143,7 +143,7 @@
         }, 
         {
          "firstgid":1217,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_A4.png",
+         "image":"images\/assets\/tiles\/Zombie_A4.png",
          "imageheight":480,
          "imagewidth":512,
          "margin":0,
@@ -158,7 +158,7 @@
         }, 
         {
          "firstgid":1457,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_A5.png",
+         "image":"images\/assets\/tiles\/Zombie_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -173,7 +173,7 @@
         }, 
         {
          "firstgid":1585,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_TileB.png",
+         "image":"images\/assets\/tiles\/Zombie_TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -188,7 +188,7 @@
         }, 
         {
          "firstgid":1841,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_TileC.png",
+         "image":"images\/assets\/tiles\/Zombie_TileC.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -203,7 +203,7 @@
         }, 
         {
          "firstgid":2097,
-         "image":"E:\/rtp\/Graphics\/tiles\/Zombie_TileD.png",
+         "image":"images\/assets\/tiles\/Zombie_TileD.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -218,7 +218,7 @@
         }, 
         {
          "firstgid":2353,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/space-blks-1.034.png",
+         "image":"images\/assets\/tiles\/space-blks-1.034.png",
          "imageheight":768,
          "imagewidth":1024,
          "margin":0,

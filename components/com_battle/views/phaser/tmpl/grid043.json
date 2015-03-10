@@ -53,7 +53,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"E:\/rtp\/Graphics\/tiles\/Outside_A5.png",
+         "image":"tiles\/Outside_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -68,7 +68,7 @@
         }, 
         {
          "firstgid":129,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/A5_HF1R_Outdoors.png",
+         "image":"tiles\/A5_HF1R_Outdoors.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -83,7 +83,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Outdoors_1.png",
+         "image":"tiles\/B-E_HF1R_Outdoors_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -98,7 +98,7 @@
         }, 
         {
          "firstgid":513,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Outdoors_6.png",
+         "image":"tiles\/B-E_HF1R_Outdoors_6.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -113,7 +113,7 @@
         }, 
         {
          "firstgid":769,
-         "image":"C:\/users\/techbot\/Desktop\/Dropbox\/Git\/JiGSGit\/JiGS\/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Market_2.png",
+         "image":"tiles\/B-E_HF1R_Market_2.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
