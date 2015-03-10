@@ -1962,7 +1962,8 @@ display:block;
 /* NPC */
 /* This needs to be reviewed and duplicate rules (above) removed or combined*/
 
-.NPC {
+.NPC,
+.PLAYERS{
   background: #000;
 }
 
