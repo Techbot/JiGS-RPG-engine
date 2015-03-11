@@ -23,6 +23,7 @@
             var add_assets = new Array();
             var add_npc = new Array();
             var add_players = new Array();
+            var add_pages = new Array();
 
             var boundsX1 = new Array();
             var boundsY1 = new Array();

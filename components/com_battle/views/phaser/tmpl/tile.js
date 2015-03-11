@@ -22,7 +22,7 @@ var avatar;
 
 jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
-    grid = result[0];
+    grid = parseInt(result[0]);
     new_x = parseFloat(result[1]);
     new_y = parseFloat(result[2]);
     avatar = result[3];
@@ -126,7 +126,16 @@ function get_everything(dest){
             //console.log("buildings : " + buildings.length);
             // console.log("buildings2 : " + buildings.length);
             // load buildings
-            game.state.start('next');
+                jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_pages&format=raw', function(result)
+                {
+
+                    pages_list = result;
+
+                    //console.log("buildings : " + buildings.length);
+                    // console.log("buildings2 : " + buildings.length);
+                    // load buildings
+                    game.state.start('next');
+                });
             });
         });
     });
@@ -223,7 +232,18 @@ function npc(one,two) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function page(one,two) {
 
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=page&id="+ two.key,
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        document.getElementById("mainbody").innerHTML=result;
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
     two.body.enable = false;

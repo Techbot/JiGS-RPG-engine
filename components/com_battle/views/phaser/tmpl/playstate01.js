@@ -59,7 +59,16 @@ playState[1] = {
                 game.load.image("_" + key, '/components/com_battle/images/buildings/' + filename);
             }
         }
+        ///////////////////// load pages
+        if(pages_list.length != 0) {
 
+            for (var index = 0; index < pages_list.length; index++) {
+                var filename = pages_list[index].image;
+                var key = pages_list[index].id;
+                //  console.log("filename : " + filename);
+                game.load.image( key, '/components/com_battle/images/pages/' + filename);
+            }
+        }
 
 
         ///////////////////// load chars
@@ -130,7 +139,12 @@ playState[1] = {
             var key = buildings[index].id;
             game.load.image(cacheKey("_" + key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
-
+        //////////////////// cache pages_list
+        for (var index = 0; index < pages_list.length; index++) {
+            //var filename = pages_list[index].image;
+            var key = pages_list[index].id;
+            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/pages/' + filename );
+        }
         //////////////////// cache chars
         for (var index = 0; index < npc_list.length; index++) {
             var filename = npc_list[index].avatar;
@@ -162,6 +176,8 @@ playState[1] = {
         game.physics.enable(sprite, Phaser.Physics.ARCADE);
         sprite.body.enable =true;
         sprite.body.allowRotation = false;
+        x = sprite.body.x;
+        y = sprite.body.y;
         this.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
         ///////////////////////place buildings//////
 
@@ -173,6 +189,17 @@ playState[1] = {
                 add_building[index].id = key;
                 game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
                 add_building[index].body.velocity = 0;
+            }
+        }
+        ///////////////////////place pages//////
+        if(pages_list.length != 0) {
+            for (var index = 0; index < pages_list.length; index++) {
+                var key = pages_list[index].id;
+                //console.log("_" + key);
+                add_pages[index] = game.add.sprite(pages_list[index].posx * 1, pages_list[index].posy * 1, key);
+                add_pages[index].id = key;
+                game.physics.enable(add_pages[index], Phaser.Physics.ARCADE);
+              //  add_pages[index].body.velocity = 0;
             }
         }
         ////////////////////////place assets//////
@@ -196,8 +223,6 @@ playState[1] = {
             for (var index = 0; index < players_list.length; index++) {
                 var key_id =players_list[index].id;
                 var key = players_list[index].id
-
-
                 add_players[index] = game.add.sprite(parseInt(players_list[index].posx),parseInt( players_list[index].posy), key);
                 add_players[index].key_id = key_id;
                 game.physics.enable(add_players[index], Phaser.Physics.ARCADE);
@@ -263,7 +288,6 @@ playState[1] = {
                 }
             }
         }
-        
         ////////////////////////stop players
         if (typeof add_players != 'undefined' && typeof players_list !='undefined') {
             for (var index = 0; index < add_players.length; index++) {
@@ -283,7 +307,11 @@ playState[1] = {
 
             this.physics.arcade.collide(sprite, add_npc[index], npc);
         }
-
+        ///////////////////////collide pages_list
+        for (var index = 0; index < pages_list.length; index++)
+        {
+            this.physics.arcade.collide(sprite, add_pages[index], page);
+        }
         /////////////////////collide players
         for (var index = 0; index < players_list.length; index++)
         {

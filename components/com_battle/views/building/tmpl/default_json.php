@@ -203,6 +203,6 @@ $body .='</div><!--end building_function-->';
 
 //$body = "hello";
 echo json_encode($body);
-?>
+
 
 

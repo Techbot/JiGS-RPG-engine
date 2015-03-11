@@ -33,7 +33,8 @@ class BattleViewBuilding extends JView
             'scrapyard' => 'scrapyard',
             'generator' => 'generator',
             'tunnell'=>'tunnell',
-            'diner'=>'diner'
+            'diner'=>'diner',
+            'bank'=>'bank'
         );
 	
 		## Initialize array to store dropdown options ##

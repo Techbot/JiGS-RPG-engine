@@ -7,16 +7,13 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'t
 
 class BattleViewPage extends JView
 {	
-	function display()
+	function display($tpl = null)
 	{
-	//	$id = (int) JRequest::getVar('id', 0);
+		$id = (int) JRequest::getVar('id', 0);
 	
 		$model = $this->getModel();
-		$tpl = $model->enter_Canvas();
-		
-	//	echo '<pre>';
-	//	print_r($model);
-	//	echo '</pre>';
+
+		$this->page = $model->get_page($id);
 
 		parent::display($tpl);
 	}

@@ -78,7 +78,7 @@ class BattleController extends JController
         $user       = JFactory::getUser();
         $view       = JRequest::getVar('view');
 
-        if ($view=='factions'||$view=='group'||$view=='canvas'||$view=='hobbits'||$view=='hobbit'||$view=='phaser')
+        if ($view=='factions'||$view=='group'||$view=='canvas'||$view=='hobbits'||$view=='hobbit'||$view=='phaser'||$view=='page')
         {
             JRequest::setVar('view', $view);
             //$view = $this->getView($view, 'html') ;
@@ -130,7 +130,7 @@ class BattleController extends JController
         parent::display();
     }
 }
-// Get an instance of the controller prefixed by HelloWorld
+// Get an instance of the controller prefixed by
 $controller = JController::getInstance('Battle');
 // Perform the Request task
 $controller->execute(JRequest::getCmd('task'));
