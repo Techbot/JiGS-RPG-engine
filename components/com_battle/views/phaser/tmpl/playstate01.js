@@ -199,7 +199,7 @@ playState[1] = {
                 add_pages[index] = game.add.sprite(pages_list[index].posx * 1, pages_list[index].posy * 1, key);
                 add_pages[index].id = key;
                 game.physics.enable(add_pages[index], Phaser.Physics.ARCADE);
-              //  add_pages[index].body.velocity = 0;
+                add_pages[index].body.velocity = 0;
             }
         }
         ////////////////////////place assets//////
