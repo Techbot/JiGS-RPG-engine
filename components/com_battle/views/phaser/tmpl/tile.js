@@ -120,17 +120,13 @@ function get_everything(dest){
 
             jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_players&format=raw', function(result)
             {
-
                 players_list = result;
-
             //console.log("buildings : " + buildings.length);
             // console.log("buildings2 : " + buildings.length);
             // load buildings
                 jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_pages&format=raw', function(result)
                 {
-
                     pages_list = result;
-
                     //console.log("buildings : " + buildings.length);
                     // console.log("buildings2 : " + buildings.length);
                     // load buildings
@@ -140,7 +136,6 @@ function get_everything(dest){
         });
     });
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -178,7 +173,13 @@ function enter_building(one,two) {
         context: document.body,
         dataType: "json"
     }).done(function(result) {
-        document.getElementById("mainbody").innerHTML=result;
+
+        document.getElementById("building").innerHTML=result;
+
+        document.getElementById("building").show();
+        document.getElementById("world").hide();
+        loadUp();
+
         var url = "/components/com_battle/includes/building.js";
         jQuery.getScript( url, function() {
             // alert ('hi');
@@ -217,47 +218,58 @@ function church() {
     monster3.destroy(true);
     monster4.destroy(true);
     window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
-
-
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function npc(one,two) {
+
+    two.body.enable =false;
 
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=character&id="+ two.key_id,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
+        two.body.enable =true;
         document.getElementById("mainbody").innerHTML=result;
+        loadUp();
+        var url = "/components/com_battle/includes/character.js";
+        jQuery.getScript( url, function() {
+
+        });
+
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function page(one,two) {
-
+   // two.body.enable =false;
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=page&id="+ two.key,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
+     //   two.body.enable =true;
         document.getElementById("mainbody").innerHTML=result;
+        //loadUp();//not yet
+
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
-    two.body.enable = false;
-    one.body.enable = false;
+   // two.body.enable = false;
+
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=player&id="+ two.key_id,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
+     //   two.body.enable = true;
         document.getElementById("mainbody").innerHTML=result;
-        var url = "/components/com_battle/includes/jigs.js";
+        loadUp();
+        var url = "/components/com_battle/includes/player.js";
         jQuery.getScript( url, function() {
-            // alert ('hi');
-          //  success2();
+
         });
     });
 }

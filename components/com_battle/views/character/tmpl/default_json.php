@@ -5,7 +5,7 @@ $text ='
 
             <div id="profile_" class="NPC clearfix">
 
-            <a href="index.php?option=com_battle&amp;view=phaser&amp;Itemid=115" class="mid"></a>
+          <a href="#" class="mid"></a>
                 <div class="name">' . $people->name  . '</div>
                 <div class="clearfix" id="action">
                     <div class="btn btn-danger shoot"><a onclick="shoot_character(' . $people->id  . ')" id="shoot" >Shoot</a></div>
@@ -128,7 +128,7 @@ $text ='
                         </div>
                     </div><!-- end bio -->
                 </div><!-- end desc -->
-            <!--
+    <!--
                 <div id="_inventory" class="clearfix">
                     <div class="name">Inventory</div>
 

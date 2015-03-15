@@ -51,3 +51,4 @@
         <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>
         <div id ="world"></div>
+        <div id ="building"></div>
