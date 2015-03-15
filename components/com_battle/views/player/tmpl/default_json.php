@@ -164,3 +164,6 @@ $text ='
 			';
 
 		echo json_encode($text);
+
+?>
+

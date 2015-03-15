@@ -108,6 +108,24 @@ window.addEvent('domready',function()
 });
 // End of initialise process
 
+
+
+
+function show_world(){
+
+    document.getElementById("building").hide();
+    document.getElementById("world").show();
+    game.state.start('next');
+}
+
+// Init the little green buttons at the top left of each json view
+function loadUp() {
+    var x = document.getElementsByClassName('mid');
+   for (i=0;i<x.length;i++) {
+       x[i].addEventListener("click", show_world);
+   }
+}
+
 // Standard Function to test for keypresses
 function check(e)
 {

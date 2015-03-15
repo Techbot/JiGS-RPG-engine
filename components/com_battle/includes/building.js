@@ -1,22 +1,14 @@
 //http://liquidslider.com/documentation/
-/*$(function(){
-
-    $('#slider-id').liquidSlider({
-      slideEaseFunction: "easeInOutCubic",
-      autoHeight: true,
-      minHeight: 170,
-      dynamicTabs: true,
-      dynamicTabsAlign: "center",
-      includeTitle:false,
-      slideEaseFunction:'animate.css',
-      slideEaseDuration:1000,
-      heightEaseDuration:1000,
-      animateIn:"bounceInLeft",
-      animateOut:"bounceOutRight",
-      dynamicTabsPosition:"bottom"
-    });
+jQuery(function() {
+  loadUp();
 });
-*/
+
+
+
+
+
+
+
 
 function success2(){
 
@@ -235,7 +227,14 @@ function set_type()
         work_reprocessor();
         get_blueprints()
         check_reprocessor();
-        check_reprocessor.periodical(5000);
+
+        if ( $('reprocessor').css('display') != 'none' ){
+
+            check_reprocessor.periodical(5000);   // element is hidden
+
+        }
+
+
         request_metals();
         //change();
     }

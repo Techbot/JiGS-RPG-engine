@@ -59,6 +59,8 @@ playState[1] = {
                 game.load.image("_" + key, '/components/com_battle/images/buildings/' + filename);
             }
         }
+
+
         ///////////////////// load pages
         if(pages_list.length != 0) {
 
@@ -191,6 +193,8 @@ playState[1] = {
                 add_building[index].body.velocity = 0;
             }
         }
+
+
         ///////////////////////place pages//////
         if(pages_list.length != 0) {
             for (var index = 0; index < pages_list.length; index++) {
@@ -199,9 +203,10 @@ playState[1] = {
                 add_pages[index] = game.add.sprite(pages_list[index].posx * 1, pages_list[index].posy * 1, key);
                 add_pages[index].id = key;
                 game.physics.enable(add_pages[index], Phaser.Physics.ARCADE);
-                add_pages[index].body.velocity = 0;
+                //add_pages[index].body.velocity = 0;
             }
         }
+
         ////////////////////////place assets//////
         if (typeof assets_name[grid] != 'undefined') {
             for (var index = 0; index < assets_name[grid].length; index++)
@@ -217,6 +222,9 @@ playState[1] = {
                 add_assets[index].id = key;
             }
         }
+
+
+
         ////////////////////////place players//////
         players_group  = game.add.group();
         if (typeof players_list != 'undefined') {
@@ -254,9 +262,7 @@ playState[1] = {
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         portal[3]['dest']=portal_dest_3[grid];
         // game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
-        mummy = game.add.sprite(400, 300, 'ms');
-        mummy.animations.add('walk');
-        mummy.animations.play('walk', 50, true);
+
 
         ///////////////////////////////////////////
     },
@@ -304,7 +310,6 @@ playState[1] = {
         ///////////////////////collide npc list
         for (var index = 0; index < npc_list.length; index++)
         {
-
             this.physics.arcade.collide(sprite, add_npc[index], npc);
         }
         ///////////////////////collide pages_list
@@ -312,6 +317,7 @@ playState[1] = {
         {
             this.physics.arcade.collide(sprite, add_pages[index], page);
         }
+
         /////////////////////collide players
         for (var index = 0; index < players_list.length; index++)
         {

@@ -2,8 +2,8 @@
 
 jimport( 'joomla.methods' ); 
 if ($this->player->id == 0){
-	$this->player->name = 'Nobody';
-} 
+	$this->player->name = 'The King';
+}
 //echo 'test:';
 // print_r($this->buildings);
 //exit();
@@ -12,13 +12,9 @@ if ($this->player->id == 0){
 
 $body ='
 <div class="building_left">
-  
 
-<a href=/index.php?option=com_battle&view=phaser&Itemid=450" class="mid"></a>
 
-  
-  
-  
+<a href="#" class="mid"></a>
     <div id="info" class=" clearfix">
       <div class="name">'. $this->player->name  . ' owns ' . $this->buildings->name . '
         <span class="small">[Level 1]</span>
