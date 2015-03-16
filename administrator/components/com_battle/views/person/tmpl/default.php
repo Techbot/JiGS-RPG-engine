@@ -30,15 +30,27 @@ else
         Name:
       </td>
       <td>
-        <input class="text_area" type="text" name="name" id="nom" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
+        <input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
       </td>
     </tr>
+
+        <tr>
+            <td width="100" align="right" class="key">
+                level :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="level" id="level" size="50" maxlength="250" value="<?php echo $this->row->level  ;?>" />
+            </td>
+        </tr>
+
+
+
     <tr>
       <td width="100" align="right" class="key">
         Health:
       </td>
       <td>
-        <input class="text_area" type="text" name="vie" id="vie" size="50" maxlength="250" value="<?php echo $this->row->health;?>" />
+        <input class="text_area" type="text" name="health" id="health" size="50" maxlength="250" value="<?php echo $this->row->health;?>" />
       </td>
     </tr>
     <tr>
@@ -46,7 +58,7 @@ else
         Money:
       </td>
       <td>
-         <input class="text_area" type="text" name="argent" id="argent" size="50" maxlength="250" value="<?php echo $this->row->money;?>" />
+         <input class="text_area" type="text" name="money" id="money" size="50" maxlength="250" value="<?php echo $this->row->money;?>" />
       </td>
     </tr>
     <tr>
@@ -57,6 +69,52 @@ else
           <textarea class="text_area" type="text" name="comment" id="comment" cols="100" rows ="10"  ><?php echo $this->row->comment;?></textarea>
       </td>
     </tr>
+
+
+
+        <tr>
+            <td width="100" align="right" class="key">
+                Latitude:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="posx" id="posx" size="50" maxlength="250" value="<?php echo $this->row->posx;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">
+                Longitude:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="posy" id="posy" size="50" maxlength="250" value="<?php echo $this->row->posy;?>" />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td width="100" align="right" class="key">
+                map:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="map" id="map" size="50" maxlength="250" value="<?php echo $this->row->map;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">
+                grid:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="grid" id="grid" size="50" maxlength="250" value="<?php echo $this->row->grid;?>" />
+            </td>
+        </tr>
+
+
+
+
+
+
+
+
+
         <tr>
       <td width="100" align="right" class="key">
         Humour:
@@ -74,9 +132,32 @@ else
       <td>
             <textarea class="text_area" type="text" name="history" id="history" cols="50" rows ="10"  ><?php echo $this->row->history;?></textarea>
       </td>
-    </tr> 
-    
-    
+
+
+
+        <tr>
+            <td width="100" align="right" class="key">
+                xp :
+            </td>
+            <td>
+                <input class="text_area" type="text" name="xp" id="xp" size="50" maxlength="250" value="<?php echo $this->row->xp  ;?>" />
+            </td>
+        </tr>
+
+
+
+
+    </tr>
+
+
+        <tr>
+            <td width="100" align="right" class="key">
+                Image
+            </td>
+            <td>
+                <input class="text_area" type="text" name="image" id="image" size="50" maxlength="250" value="<?php echo $this->row->avatar ;?>" />
+            </td>
+        </tr>
     
     
     

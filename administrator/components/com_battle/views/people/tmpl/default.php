@@ -47,6 +47,11 @@ $this->grid = JRequest::getVar('filter_grid', 1, '', 'int');
 				<option value="4" <?php if($this->grid ==4){echo "selected ='TRUE'";}?>>4</option>
 				<option value="5" <?php if($this->grid ==5){echo "selected ='TRUE'";}?>>5</option>
 				<option value="6" <?php if($this->grid ==6){echo "selected ='TRUE'";}?>>6</option>
+                <option value="2" <?php if($this->grid ==7){echo "selected ='TRUE'";}?>>7</option>
+                <option value="3" <?php if($this->grid ==8){echo "selected ='TRUE'";}?>>8</option>
+                <option value="4" <?php if($this->grid ==9){echo "selected ='TRUE'";}?>>9</option>
+                <option value="5" <?php if($this->grid ==10){echo "selected ='TRUE'";}?>>10</option>
+                <option value="6" <?php if($this->grid ==11){echo "selected ='TRUE'";}?>>11</option>
 			
 			</select>
 			
@@ -91,7 +96,15 @@ $this->grid = JRequest::getVar('filter_grid', 1, '', 'int');
        <th width="15%">Health</th>
       <th width="10%">Money</th>
       <th width="10%">Attack</th>   
-            <th width="10%">Defence</th>   
+      <th width="10%">Defence</th>
+        <th width="10%">Attacks</th>
+        <th width="10%">Kills</th>
+        <th width="10%">grid</th>
+        <th width="10%">map</th>
+        <th width="10%">x</th>
+        <th width="10%">y</th>
+        <th width="5%">published</th>
+
     </tr>
   </thead>
 <?php
@@ -141,6 +154,15 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
  <td>	 <?php echo $row->defence; ?>    </td>
   <td>   <?php echo $row->nbr_attacks;	 ?>	    </td>
   <td>   <?php echo $row->nbr_kills; ?>    </td>
+        <td>   <?php echo $row->grid; ?>    </td>
+  <td>   <?php echo $row->map; ?>    </td>
+  <td>   <?php echo $row->posx; ?>    </td>
+  <td>   <?php echo $row->posy; ?>    </td>
+        <td>   <?php echo $published; ?>    </td>
+
+
+
+
     </tr>
 <?php
 	$k = 1 - $k;

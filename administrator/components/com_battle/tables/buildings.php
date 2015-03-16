@@ -5,18 +5,19 @@ defined('_JEXEC') or die('Restricted access');
 class TableBuildings extends JTable
 {
 	var $id         = null;
-	var $name       = null;	
+	var $name       = null;
+    var $level      = null;
 	var $comment    = null;	
 	var $posy       = null;	
 	var $posx       = null;	
 	var $protection = null;	
 	var $image      = null;	
-	var $coffers    = null;	
+	var $cash       = null;
 	var $type       = null;
 	var $public     = null;
 	var $xp         = null;	
 	var $owner      = null;
-	var $owner_team = null;
+	var $owners_team= null;
 	var $price      = null;	
 	var $timestamp  = null;
 	var $grid       = null;

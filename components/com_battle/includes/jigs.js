@@ -112,7 +112,8 @@ window.addEvent('domready',function()
 
 
 function show_world(){
-
+    document.getElementById("npc").hide();
+    document.getElementById("player").hide();
     document.getElementById("building").hide();
     document.getElementById("world").show();
     game.state.start('next');

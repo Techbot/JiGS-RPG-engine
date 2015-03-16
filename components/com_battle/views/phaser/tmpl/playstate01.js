@@ -11,7 +11,7 @@ playState[1] = {
         var number = paddy(grid,3);
         game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
 
-        game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
+     //   game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
 
         //load tiles
         for	(var index = 0; index < tile_names[grid].length; index++) {
@@ -83,12 +83,17 @@ playState[1] = {
                 game.load.image(key, '/components/com_battle/images/ennemis/miniatures/' + filename);
             }
         }
+
+
+       ////////////////// load player
         if (avatar.substring(0,7)!='gallery') {
             game.load.image('arrow', '/images/comprofiler/tn' + avatar);
         }else
         {
             game.load.image('arrow', '/images/comprofiler/' + avatar);
         }
+
+        ////////////////// load portals
         game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portals_1.png', 64, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/portals_2.png', 64, 64, 1);
         game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/portals_3.png', 64, 64, 1);
@@ -163,7 +168,8 @@ playState[1] = {
         // make sure the last param is the name of your layer in the map.
         game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
         cursors = game.input.keyboard.createCursorKeys();
-        game.input.onDown.add(moveBall, this);
+        game.input.onDown.add
+       (moveBall, this);
         ///////////////////////////////////////////
         addMap();
         ///////////////////////////////////////////

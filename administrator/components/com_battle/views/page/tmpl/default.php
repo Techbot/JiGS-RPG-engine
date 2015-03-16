@@ -73,6 +73,7 @@ else
 	<input class="text_area" type="text" name="details" id="details" size="50" maxlength="250" value="<?php echo $this->row->details;?>" />
       </td>
     </tr>		
+
       <tr>
       <td width="100" align="right" class="key">
 	image:
@@ -89,17 +90,62 @@ else
 	<input class="text_area" type="text" name="grid" id="grid" size="50" maxlength="250" value="<?php echo $this->row->grid;?>" />
       </td>
     </tr>   	
+
+
       <tr>
       <td width="100" align="right" class="key">
 	map:
       </td>
       <td>
-	<input class="text_area" type="text" name="map" id="grid" size="50" maxlength="250" value="<?php echo $this->row->map;?>" />
+	<input class="text_area" type="text" name="map" id="map" size="50" maxlength="250" value="<?php echo $this->row->map;?>" />
       </td>
-    </tr>	 
-      <tr>
+    </tr>
+
+
+
+        <tr>
+            <td width="100" align="right" class="key">
+                owner:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="owner" id="owner" size="50" maxlength="250" value="<?php echo $this->row->owner;?>" />
+            </td>
+        </tr>
+
+        <tr>
+            <td width="100" align="right" class="key">
+                owner team:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="owner_team" id="owner_team" size="50" maxlength="250" value="<?php echo $this->row->owner_team;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">
+                price:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="price" id="price" size="50" maxlength="250" value="<?php echo $this->row->price;?>" />
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right" class="key">
+                timer:
+            </td>
+            <td>
+                <input class="text_area" type="text" name="timer" id="timer" size="50" maxlength="250" value="<?php echo $this->row->timer;?>" />
+            </td>
+        </tr>
+
+
+        <tr>
+
+
+
+
+
       <td width="100" align="right" class="key">
-	owner	owner team	price	timer	access		
+			access
       </td>
       
       

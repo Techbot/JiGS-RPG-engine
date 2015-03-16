@@ -178,6 +178,8 @@ function enter_building(one,two) {
 
         document.getElementById("building").show();
         document.getElementById("world").hide();
+        document.getElementById("npc").hide();
+        document.getElementById("player").hide();
         loadUp();
 
         var url = "/components/com_battle/includes/building.js";
@@ -230,7 +232,12 @@ function npc(one,two) {
         dataType: "json"
     }).done(function(result) {
         two.body.enable =true;
-        document.getElementById("mainbody").innerHTML=result;
+        document.getElementById("npc").innerHTML=result;
+
+        document.getElementById("npc").show();
+        document.getElementById("world").hide();
+        document.getElementById("building").hide();
+        document.getElementById("player").hide();
         loadUp();
         var url = "/components/com_battle/includes/character.js";
         jQuery.getScript( url, function() {
@@ -357,7 +364,7 @@ function doSomething() {
     if (x != undefined)
     {
         //console.log('x : ' + x + " y : " + y);
-        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=update_pos&format=raw&posx=' + x + '&posy=' + y, function (result)
+        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=update_pos&format=raw&posx=' + sprite.body.x + '&posy=' + sprite.body.y, function (result)
         {
 
         //grid = result;

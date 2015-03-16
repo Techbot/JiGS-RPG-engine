@@ -52,3 +52,5 @@
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>
         <div id ="world"></div>
         <div id ="building"></div>
+        <div id ="npc"></div>
+        <div id ="player"></div>

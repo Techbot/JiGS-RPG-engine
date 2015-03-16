@@ -166,7 +166,9 @@ else
       <td>
             <input class="text_area" type="text" name="money" id="money" size="50" maxlength="250" value="<?php echo $this->row->money  ;?>" />
       </td>
-    </tr>		        <tr>
+    </tr>
+
+     <tr>
       <td width="100" align="right" class="key">
      xp :
       </td>

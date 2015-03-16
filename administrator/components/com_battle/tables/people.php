@@ -4,6 +4,7 @@ class Tablepeople extends JTable
 {
 	var $id				= null;
 	var $name			= null;
+    var $level  		= null;
 	var $gid			= null;
 	var $type			= null;
 	var $avatar			= null;
@@ -31,13 +32,14 @@ class Tablepeople extends JTable
 	
 	
 	var $active			= null;
+    var $time_killed    = null;
 	var $id_weapons		= null;
 	var $id_car			= null;
 	var $xp				= null;
-	var $discuter		= null;
-	var $taxi			= null;
+
+
 	var $reserve		= null;
-	var $munition		= null;
+	var $ammunition		= null;
 	var $published		= null;
 
 	function __construct(&$db)

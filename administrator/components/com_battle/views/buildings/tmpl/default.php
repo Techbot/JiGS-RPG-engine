@@ -55,10 +55,34 @@ $this->type = JRequest::getVar('filter_type');
 				<option value="9" <?php if($this->grid ==9){echo "selected ='TRUE'";}?>>9</option>
 				<option value="10" <?php if($this->grid ==10){echo "selected ='TRUE'";}?>>10</option>
 				<option value="11" <?php if($this->grid ==11){echo "selected ='TRUE'";}?>>11</option>
-				<option value="12" <?php if($this->grid ==12){echo "selected ='TRUE'";}?>>12</option>				
-				
-				
-				
+				<option value="12" <?php if($this->grid ==12){echo "selected ='TRUE'";}?>>12</option>
+                <option value="13" <?php if($this->grid ==13){echo "selected ='TRUE'";}?>>13</option>
+                <option value="14" <?php if($this->grid ==14){echo "selected ='TRUE'";}?>>14</option>
+                <option value="15" <?php if($this->grid ==15){echo "selected ='TRUE'";}?>>15</option>
+                <option value="16" <?php if($this->grid ==16){echo "selected ='TRUE'";}?>>16</option>
+                <option value="17" <?php if($this->grid ==17){echo "selected ='TRUE'";}?>>17</option>
+                <option value="18" <?php if($this->grid ==18){echo "selected ='TRUE'";}?>>18</option>
+                <option value="19" <?php if($this->grid ==19){echo "selected ='TRUE'";}?>>19</option>
+                <option value="20" <?php if($this->grid ==20){echo "selected ='TRUE'";}?>>20</option>
+                <option value="21" <?php if($this->grid ==21){echo "selected ='TRUE'";}?>>21</option>
+                <option value="22" <?php if($this->grid ==22){echo "selected ='TRUE'";}?>>22</option>
+                <option value="23" <?php if($this->grid ==23){echo "selected ='TRUE'";}?>>23</option>
+                <option value="24" <?php if($this->grid ==24){echo "selected ='TRUE'";}?>>24</option>
+                <option value="25" <?php if($this->grid ==25){echo "selected ='TRUE'";}?>>25</option>
+                <option value="26" <?php if($this->grid ==26){echo "selected ='TRUE'";}?>>26</option>
+                <option value="27" <?php if($this->grid ==27){echo "selected ='TRUE'";}?>>27</option>
+                <option value="28" <?php if($this->grid ==28){echo "selected ='TRUE'";}?>>28</option>
+                <option value="29" <?php if($this->grid ==29){echo "selected ='TRUE'";}?>>29</option>
+                <option value="30" <?php if($this->grid ==30){echo "selected ='TRUE'";}?>>30</option>
+                <option value="31" <?php if($this->grid ==31){echo "selected ='TRUE'";}?>>31</option>
+                <option value="32" <?php if($this->grid ==32){echo "selected ='TRUE'";}?>>32</option>
+                <option value="33" <?php if($this->grid ==33){echo "selected ='TRUE'";}?>>33</option>
+                <option value="34" <?php if($this->grid ==34){echo "selected ='TRUE'";}?>>34</option>
+                <option value="35" <?php if($this->grid ==35){echo "selected ='TRUE'";}?>>35</option>
+                <option value="36" <?php if($this->grid ==36){echo "selected ='TRUE'";}?>>36</option>
+                <option value="37" <?php if($this->grid ==37){echo "selected ='TRUE'";}?>>37</option>
+                <option value="38" <?php if($this->grid ==38){echo "selected ='TRUE'";}?>>38</option>
+                <option value="39" <?php if($this->grid ==39){echo "selected ='TRUE'";}?>>39</option>
 				
 				
 
@@ -141,7 +165,7 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 	<td> <?php echo $row->map; ?> </td>    
 	<td> <?php echo $row->posx; ?> </td>
 	<td> <?php echo $row->posy; ?> </td>
-	<td> <?php //echo $row->published; ?> </td>
+	<td> <?php echo $published; ?> </td>
 </tr>
 <?php
 	$k = 1 - $k;

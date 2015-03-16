@@ -373,7 +373,7 @@ portal_sourceY3[11] = 96;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //// /////////////////////////////////////////////////////////////////////
-tile_names[12] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[12] = ['TileA5','TileA4','TileC'];
 
 x1[12] = 889;
 y1[12] = 0;
@@ -470,12 +470,12 @@ portal_sourceY3[14] = 855;
 
 
 //// /////////////////////////////////////////////////////////////////////
-tile_names[15] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[15] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','Zombie_A4_014b'];
 
 x1[15] = 889;
 y1[15] = 0;
 
-x2[15] = 1623;
+x2[15] = 1023;
 y2[15] = 610;
 
 x3[15] = 640;
@@ -725,16 +725,16 @@ tile_names[22] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','
 x1[22] = 889;
 y1[22] = 0;
 
-x2[22] = 1623;
-y2[22] = 610;
+x2[22] = 653;
+y2[22] = 210;
 
-x3[22] = 640;
-y3[22] = 580;
+x3[22] = 1540;
+y3[22] = 320;
 
 boundsX1[22] = 0;
 boundsY1[22] = 0;
 boundsX2[22] = 1600;
-boundsY2[22] = 1600;
+boundsY2[22] = 400;
 
 
 portal_dest_1[22] = 35;
@@ -743,13 +743,13 @@ portal_dest_3[22] = 12;
 
 
 portal_sourceX1[22] = 825;
-portal_sourceY1[22] = 855;
+portal_sourceY1[22] = 455;
 
 portal_sourceX2[22] = 825;
-portal_sourceY2[22] = 855;
+portal_sourceY2[22] = 455;
 
 portal_sourceX3[22] = 825;
-portal_sourceY3[22] = 855;
+portal_sourceY3[22] = 455;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -820,7 +820,7 @@ portal_sourceY3[24] = 855;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[25] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[25] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileA4','TileB','Zombie_A4_EDIT','Tile_A2_003b'];
 
 x1[25] = 889;
 y1[25] = 0;

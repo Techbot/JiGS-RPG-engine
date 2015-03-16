@@ -40,7 +40,7 @@ class BattleModelMap extends JModel{
         $query = "UPDATE #__jigs_players SET posx = '$posx',posy = '$posy'  WHERE id ='$user->id'";
         $db->setQuery($query);
         $db->query();
-        return;
+        return $query ;
         //}
     }
 
