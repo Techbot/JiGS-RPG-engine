@@ -376,13 +376,13 @@ portal_sourceY3[11] = 96;
 tile_names[12] = ['TileA5','TileA4','TileC','sprite'];
 
 x1[12] = 192;
-y1[12] = 928;
+y1[12] = 896;
 
-x2[12] = 0;
-y2[11] = 416;
+x2[12] = 416;
+y2[11] = 0;
 
-x3[12] = 96;
-y3[12] = 1024;
+x3[12] = 992;
+y3[12] = 64;
 
 boundsX1[12] = 0;
 boundsY1[12] = 0;
@@ -396,7 +396,7 @@ portal_dest_3[12] = 22;
 
 
 portal_sourceX1[12] = 192;
-portal_sourceY1[11] = 928;
+portal_sourceY1[11] = 896;
 
 portal_sourceX2[12] = 0;
 portal_sourceY2[12] = 416;
