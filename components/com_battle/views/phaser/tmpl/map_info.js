@@ -376,13 +376,13 @@ portal_sourceY3[11] = 96;
 tile_names[12] = ['TileA5','TileA4','TileC','sprite'];
 
 x1[12] = 192;
-y1[12] = 928;
+y1[12] = 896;
 
-x2[12] = 0;
-y2[11] = 416;
+x2[12] = 416;
+y2[11] = 0;
 
-x3[12] = 96;
-y3[12] = 1024;
+x3[12] = 992;
+y3[12] = 64;
 
 boundsX1[12] = 0;
 boundsY1[12] = 0;
@@ -396,7 +396,7 @@ portal_dest_3[12] = 22;
 
 
 portal_sourceX1[12] = 192;
-portal_sourceY1[11] = 928;
+portal_sourceY1[11] = 896;
 
 portal_sourceX2[12] = 0;
 portal_sourceY2[12] = 416;
@@ -407,14 +407,14 @@ portal_sourceY3[12] = 1024;
 //// /////////////////////////////////////////////////////////////////////
 tile_names[13] = ['RoyalTileset-TileB','TileA5','sprite'];
 
-x1[13] = 889;
-y1[13] = 0;
+x1[13] = 832;
+y1[13] = 1500;
 
-x2[13] = 1623;
-y2[13] = 610;
+x2[13] = 128;
+y2[13] = 288;
 
-x3[13] = 640;
-y3[13] = 580;
+x3[13] = 1504;
+y3[13] = 704;
 
 boundsX1[13] = 0;
 boundsY1[13] = 0;
@@ -427,14 +427,14 @@ portal_dest_2[13] = 22;
 portal_dest_3[13] = 23;
 
 
-portal_sourceX1[13] = 825;
-portal_sourceY1[13] = 855;
+portal_sourceX1[13] = 832;
+portal_sourceY1[13] = 1476;
 
-portal_sourceX2[13] = 825;
-portal_sourceY2[13] = 855;
+portal_sourceX2[13] = 128;
+portal_sourceY2[13] = 320;
 
-portal_sourceX3[13] = 825;
-portal_sourceY3[13] = 855;
+portal_sourceX3[13] = 1504;
+portal_sourceY3[13] = 736;
 
 //// /////////////////////////////////////////////////////////////////////
 tile_names[14] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','sprite'];
