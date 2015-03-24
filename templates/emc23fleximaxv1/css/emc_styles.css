@@ -74,6 +74,34 @@ h3.nav-header {
   margin-right: auto;
   margin-left: auto;
 }
+.fa.fa-arrows-alt,
+.fa.fa-compress {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  padding: .5em;
+  margin-right: .5em;
+  font-size: 18px !important;
+  color: #099;
+  cursor: pointer;
+  background: rgba(0, 0, 0, .7);
+  border-radius: 4px;
+}
+.fa.fa-compress {
+  display: none !important;
+}
+:-webkit-full-screen .fa.fa-compress,
+:-moz-full-screen .fa.fa-compress,
+:-ms-fullscreen .fa.fa-compress,
+:fullscreen .fa.fa-compress {
+  display: inline-block !important;
+}
+:-webkit-full-screen .fa.fa-arrows-alt,
+:-moz-full-screen .fa.fa-arrows-alt,
+:-ms-fullscreen .fa.fa-arrows-alt,
+:fullscreen .fa.fa-arrows-alt {
+  display: none !important;
+}
 @media (min-width: 900px) {
   #mainbody {
     min-height: 560px;
