@@ -439,14 +439,14 @@ portal_sourceY3[13] = 736;
 //// /////////////////////////////////////////////////////////////////////
 tile_names[14] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','sprite'];
 
-x1[14] = 889;
-y1[14] = 0;
+x1[14] = 960;
+y1[14] = 1344;
 
-x2[14] = 1623;
-y2[14] = 610;
+x2[14] = 352;
+y2[14] = 544;
 
-x3[14] = 640;
-y3[14] = 580;
+x3[14] = 1344;
+y3[14] = 32;
 
 boundsX1[14] = 0;
 boundsY1[14] = 0;
@@ -459,14 +459,14 @@ portal_dest_2[14] = 6;
 portal_dest_3[14] = 24;
 
 
-portal_sourceX1[14] = 825;
-portal_sourceY1[14] = 855;
+portal_sourceX1[14] = 960;
+portal_sourceY1[14] = 1376;
 
-portal_sourceX2[14] = 825;
-portal_sourceY2[14] = 855;
+portal_sourceX2[14] = 352;
+portal_sourceY2[14] = 576;
 
-portal_sourceX3[14] = 825;
-portal_sourceY3[14] = 855;
+portal_sourceX3[14] = 1344;
+portal_sourceY3[14] = 64;
 
 
 //// /////////////////////////////////////////////////////////////////////
