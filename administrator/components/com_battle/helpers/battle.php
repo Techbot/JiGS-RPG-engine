@@ -83,6 +83,11 @@ class BattleHelper
 			$vName == 'pages'
 		);
 
+        JSubMenuHelper::addEntry(
+            JText::_('COM_BATTLE_SUBMENU_TERMINALS'),
+            'index.php?option=com_battle&view=terminals',
+            $vName == 'terminals'
+        );
 		/*
 		JSubMenuHelper::addEntry(
 			JText::_('COM_BATTLE_SUBMENU_CATEGORIES'),

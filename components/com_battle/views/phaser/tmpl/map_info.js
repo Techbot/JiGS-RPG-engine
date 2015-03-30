@@ -373,7 +373,7 @@ portal_sourceY3[11] = 96;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //// /////////////////////////////////////////////////////////////////////
-tile_names[12] = ['TileA5','TileA4','TileC'];
+tile_names[12] = ['TileA5','TileA4','TileC','sprite'];
 
 x1[12] = 889;
 y1[12] = 0;
@@ -405,7 +405,7 @@ portal_sourceX3[12] = 825;
 portal_sourceY3[12] = 855;
 
 //// /////////////////////////////////////////////////////////////////////
-tile_names[13] = ['RoyalTileset-TileB','TileA5'];
+tile_names[13] = ['RoyalTileset-TileB','TileA5','sprite'];
 
 x1[13] = 889;
 y1[13] = 0;
@@ -437,7 +437,7 @@ portal_sourceX3[13] = 825;
 portal_sourceY3[13] = 855;
 
 //// /////////////////////////////////////////////////////////////////////
-tile_names[14] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE'];
+tile_names[14] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','sprite'];
 
 x1[14] = 889;
 y1[14] = 0;
@@ -470,7 +470,7 @@ portal_sourceY3[14] = 855;
 
 
 //// /////////////////////////////////////////////////////////////////////
-tile_names[15] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','Zombie_A4_014b'];
+tile_names[15] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','Zombie_A4_014b','sprite'];
 
 x1[15] = 889;
 y1[15] = 0;

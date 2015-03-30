@@ -72,6 +72,17 @@ playState[1] = {
             }
         }
 
+        ///////////////////// load terminals
+        if(terminals_list.length != 0) {
+
+            for (var index = 0; index < terminals_list.length; index++) {
+                var filename = terminals_list[index].image;
+                var key = terminals_list[index].id;
+                //  console.log("filename : " + filename);
+                game.load.image( key, '/components/com_battle/images/buildings/' + filename);
+            }
+        }
+
 
         ///////////////////// load chars
         if(npc_list.length != 0) {
@@ -106,6 +117,7 @@ playState[1] = {
         game.world.setBounds(boundsX1[grid], boundsY1[grid], boundsX2[grid], boundsY2[grid]);
         game.stage.backgroundColor = '#787878';
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
+
 
         /////////////////// cache json file
         game.load.tiledmap(cacheKey('world', 'tiledmap'), 'grid' + grid + '.json', null, Phaser.Tilemap.TILED_JSON);
@@ -151,6 +163,12 @@ playState[1] = {
             //var filename = pages_list[index].image;
             var key = pages_list[index].id;
             game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/pages/' + filename );
+        }
+        //////////////////// cache terminals_list
+        for (var index = 0; index < terminals_list.length; index++) {
+            //var filename = pages_list[index].image;
+            var key = terminals_list[index].id;
+            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
         //////////////////// cache chars
         for (var index = 0; index < npc_list.length; index++) {
@@ -209,6 +227,19 @@ playState[1] = {
                 add_pages[index] = game.add.sprite(pages_list[index].posx * 1, pages_list[index].posy * 1, key);
                 add_pages[index].id = key;
                 game.physics.enable(add_pages[index], Phaser.Physics.ARCADE);
+                //add_pages[index].body.velocity = 0;
+            }
+        }
+
+        ///////////////////////place terminals//////
+        if(terminals_list.length != 0) {
+            for (var index = 0; index < terminals_list.length; index++) {
+
+                var key = terminals_list[index].id;
+                //console.log("_" + key);
+                add_terminals[index] = game.add.sprite(terminals_list[index].posx * 1, terminals_list[index].posy * 1, key);
+                add_terminals[index].id = key;
+                game.physics.enable(add_terminals[index], Phaser.Physics.ARCADE);
                 //add_pages[index].body.velocity = 0;
             }
         }
@@ -280,12 +311,8 @@ playState[1] = {
         this.physics.arcade.collide(sprite, portal[1],jump);
         this.physics.arcade.collide(sprite, portal[2],jump);
         this.physics.arcade.collide(sprite, portal[3],jump);
-        ///////////////////////collide buildings/////////
-        for (var index = 0; index < buildings.length; index++)
-        {
-            //console.log(key);
-            this.physics.arcade.collide(sprite, add_building[index], enter_building);
-        }
+
+
         ////////////////////////move player
         game.physics.arcade.moveToXY(sprite, x, y, 100);
 
@@ -323,13 +350,23 @@ playState[1] = {
         {
             this.physics.arcade.collide(sprite, add_pages[index], page);
         }
-
+        ///////////////////////collide terminals_list
+        for (var index = 0; index < terminals_list.length; index++)
+        {
+            this.physics.arcade.collide(sprite, add_terminals[index], terminal);
+        }
         /////////////////////collide players
         for (var index = 0; index < players_list.length; index++)
         {
             //console.log(key);
             this.physics.arcade.collide(sprite, add_players[index], player);
             //add_building[index].body.immovable = true;
+        }
+        ///////////////////////collide buildings/////////
+        for (var index = 0; index < buildings.length; index++)
+        {
+            //console.log(key);
+            this.physics.arcade.collide(sprite, add_building[index], enter_building);
         }
 
         ///////////////////// Stop Player

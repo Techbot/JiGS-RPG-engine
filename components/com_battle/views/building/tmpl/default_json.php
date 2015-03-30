@@ -33,8 +33,8 @@ $body ='
         <p class="desc">' . $this->buildings->comment  . '</p>
       </div><!-- end desc -->
 
-     
-     
+
+
       <div class="stats">
         <table class="stats" id="stats" >
           <tr>
@@ -57,8 +57,8 @@ $body ='
             <th scope="row">Owner</th>
             <td>' .$this->buildings->owner  . '</td>
           </tr>';
-          
-          
+
+
           
           
           
@@ -83,7 +83,7 @@ $body ='
             <th scope="row">Timer</th>
             <td>' . $this->buildings->timer . '</td>
           </tr>
-        </table> 
+        </table>
       </div><!-- end stats -->
     </div><!-- end info -->
     <div class="extra clearfix">
@@ -92,14 +92,14 @@ $body ='
       </div>
     </div>
   </div><!--end building_left-->
-  
-  
-  
+
+
+
   <div class="building_right">
     <div id="status">
       <div class="instructions">';
 
-	
+
 	if ($this->buildings->owner == 0)
 	{
 		if ($this->buildings->type == 'bank')
@@ -111,22 +111,22 @@ $body ='
 		}
 	}
 
-	
+
 	if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
 	{
 		$body .= $this->loadTemplate ("board_info_poster");
 	}
 
-	   
+
 	//if player owned
-	
+
 	if ($this->buildings->owner == $this->user->id)
 	{
 		$body .= $this->loadTemplate ("board_info1");
 	}
 	$body .='  </div>
-	
-	
+
+
 	
 	<div id="action" class="clearfix">
 	';
