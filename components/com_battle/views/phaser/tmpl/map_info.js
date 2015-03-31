@@ -221,8 +221,8 @@ boundsX2[7] = 1152;
 boundsY2[7] = 960;
 
 
-portal_dest_1[7] = 15;
-portal_dest_2[7] = 16;
+portal_dest_1[7] = 14;
+portal_dest_2[7] = 15;
 portal_dest_3[7] = 3;
 
 
@@ -476,7 +476,7 @@ x1[15] = 64;
 y1[15] = 960;
 
 x2[15] = 64;
-y2[15] = 320;
+y2[15] = 384;
 
 x3[15] = 928;
 y3[15] = 64;
@@ -496,7 +496,7 @@ portal_sourceX1[15] = 96;
 portal_sourceY1[15] = 960;
 
 portal_sourceX2[15] = 64;
-portal_sourceY2[15] = 352;
+portal_sourceY2[15] = 384;
 
 portal_sourceX3[15] = 928;
 portal_sourceY3[15] = 96;
