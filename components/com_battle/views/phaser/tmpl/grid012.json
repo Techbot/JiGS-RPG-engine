@@ -28,7 +28,7 @@
          "name":"ground2",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":36,
          "x":0,
          "y":0
@@ -39,7 +39,7 @@
          "name":"objects",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":36,
          "x":0,
          "y":0

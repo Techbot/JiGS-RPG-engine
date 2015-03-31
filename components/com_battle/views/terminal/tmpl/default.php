@@ -1,18 +1,13 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 jimport( 'joomla.methods' ); 
-/*if ($this->player->id == 0){
-	$this->player->username = 'Nobody';
-} 
-
-*/
-echo 'test:';
-// print_r($this->buildings);
-//exit();
+if ($this->player->id == 0){
+    $this->player->username = 'Nobody';
+}
 ?>
- <div class="terminal">
-  <div class="building_left">
+<a href="#" class="mid"></a>
     <div id="info" class=" clearfix">
-      <div class="name"><?php //echo $this->player->username; ?> owns <?php //echo $this->buildings->name; ?> 
+
+    <div class="name"><?php //echo $this->player->username; ?> owns <?php //echo $this->buildings->name; ?>
         <span class="small">[Level 1]</span>
         <span class="red"><a href="#" title="Allocate stats points">-</a></span>
         <span class="small">
@@ -20,139 +15,44 @@ echo 'test:';
           <span class="red"><a href="#" title="Allocate stats points">-</a></span>
         </span>
       </div>
-     
-   
-   <img id ="cyber1" class="cyber" src  = "/components/com_battle/images/terminal/002a.png">
-   
-   
+<img id ="cyber1" class="cyber" src  = "/components/com_battle/images/terminal/002a.png">
+
     </div><!-- end info -->
-    <div class="extra clearfix">
-      <div class="message_board">
-        <?php //echo $this->loadTemplate ('board_message'); ?>
-          <img id ="cyber2" class="cyber" src = "/components/com_battle/images/terminal/001b.png">
-      </div>
-      
-      
-            <div id = "container"></div>
-        <div id = "input_form"></div>
-        <div id = "http"></div>   
-   
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    </div>
-  </div><!--end building_left-->
-  <div class="building_right">
-    <div id="status">
-    
-    
-    
-     
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-      <div class="instructions">
-        <?php //echo $this->loadTemplate ('board_info1'); ?>
-          <img id ="cyber3" class="cyber" src = "/components/com_battle/images/terminal/001a.png">
-      </div>
-      
-      
-      
-      
-      
-      <div id="action" class="clearfix">
-        <img id ="cyber4" class="cyber" src = "/components/com_battle/images/terminal/003a.png">
-<?php
-//////////////////////////////   No Owner - Buy Only //////////////////////////////////
-//if ($this->buildings->owner == 0){?>
-        <div class="buy" >
-          <a href="#" class= "buy" id = "<?php //echo $this->buildings->id ; ?>">Buy this <?php //echo $this->buildings->type ; ?></a>
-        </div> <!--buy-->
-<?php 
-
-//}?>
-<?php
-/////////////////////////////////////// Owned but not Player Owned //////////////////////////
-//if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){?>
-       <div class= "attack" >
-          <a href="#" class= "attack" id = "<?php //echo $this->buildings->id ; ?>"> Attack this  <?php //echo $this->buildings->type ; ?></a>
-        </div><!-- attack-->
-<?php 
-
-?>
-      </div><!-- end action -->
-    </div><!-- end status. Is this being used? I mean, really?? -->
-  </div><!--end building_right-->
-</div><!-- end terminal -->
-<?php
-
 
 ?>
 <script type="text/javascript">
-	
-	
-	//var head = document.getElementsByTagName('head')[0] ;
-	//var script = document.createElement('script');
-	//script.type = "text/javascript";
-	//script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';  
-	//head.appendChild(script);
-	
-	        var message = [];
+    //var head = document.getElementsByTagName('head')[0] ;
+    //var script = document.createElement('script');
+    //script.type = "text/javascript";
+    //script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';
+    //head.appendChild(script);
+        var message = [];
         var gameForm =  ' Your Input:<input type="text" id="answer"> <input type ="button" id ="enter" onclick="yourMove()" value = "enter">';
         var stage = 1;
         var number = 1;
-	    var irc_complete = false;
-	    var email_complete = false;
-	    var ftp_complete = false;
-	    var complete = false;
-	    var attempts = 9;
-	    var message={};	    
-	    var http_message; 
-	
-	
-	stuff();
-	
+        var irc_complete = false;
+        var email_complete = false;
+        var ftp_complete = false;
+        var complete = false;
+        var attempts = 9;
+        var message={};
+        var http_message;
 
-	
-	$$('.cyber').addEvent('click', function(){
-		var itemID = this.get('id');
-		var a = new Request.JSON({
-			url:"index.php?option=com_battle&format=json&task=computer_action&action=display_terminal&id="+itemID,
-			onSuccess: function(result){
-				mything = new Element ('div',{'id':"term2",
-				html:result,
-				'style':'border 1px solid #F00; '});
-				mything.replaces(document.id('mainbody'));
-			}
-		}).get();
-	});
+    stuff();
 
-
-	
-	
-	
-	
-	
-	        function stuff()
+    $$('.cyber').addEvent('click', function(){
+        var itemID = this.get('id');
+        var a = new Request.JSON({
+            url:"index.php?option=com_battle&format=json&task=computer_action&action=display_terminal&id="+itemID,
+            onSuccess: function(result){
+                mything = new Element ('div',{'id':"term2",
+                html:result,
+                'style':'border 1px solid #F00; '});
+                mything.replaces(document.id('mainbody'));
+            }
+        }).get();
+    });
+    function stuff()
         {
             var output = document.getElementById("container");  // Get the content of the container element
             var input = document.getElementById("input_form");// Get the content of the input_form element
@@ -214,11 +114,11 @@ echo 'test:';
         };
         return http_message;
     }
-	
-	
-	
-	
-	
+
+
+
+
+
 function define_stages(){
    
     ///////////////////////// Stage 0 /////////////////////////      
@@ -240,54 +140,54 @@ function define_stages(){
             }
     ///////////////////////// Stage 2 /////////////////////////
             if (stage == 2 && answer == "IRC") 
-		    {
+            {
                 stage   = 3;
                 number  = 4;
-		    }
-		    if (stage == 2 && answer == "email")
-		    {
+            }
+            if (stage == 2 && answer == "email")
+            {
                 stage  = 3;
                 number = 5;
-		    }
+            }
              if (stage == 2 && answer == "ftp") 
-		    {
+            {
                 stage   = 3;
                 number  = 6;
-		    }
+            }
     ///////////////////////// Stage 3 IRC /////////////////////
 
             if (stage == 3 && answer == "view source") 
-		    {
+            {
                 stage   = 4;
                 number  = 7;
                 irc_complete = true;
-		    }
+            }
     ///////////////////////// Stage 3 email ///////////////////      
-		    if (stage == 3 && answer == "zxmbf2.gif")
-		    {
+            if (stage == 3 && answer == "zxmbf2.gif")
+            {
                 stage  = 4;
                 number = 8;
                 email_complete = true;
-		    }
+            }
     ///////////////////////// Stage FTP ////////////////////////
             if (stage == 3 && answer == 66) 
-		    {
+            {
                 stage   = 4;
                 number  = 9;
                 ftp_complete = true;
-     		}
+            }
             if (stage == 3 && answer > 66) // too low
             {
                 stage   = 3;
                 number  = 10;
                 attempts =1;
-     		}
+            }
             if (stage == 3 && answer < 66) // too high
-	        {
+            {
                 stage   = 3;
                 number  = 11;
                 attempts=1;
-         	}
+            }
             if (stage == 3 && attempts<0 ) // run out of attempts
                 {
                    stage   = 1;
@@ -296,7 +196,7 @@ function define_stages(){
                    irc_complete = false;
                    email_complete = false;
                    ftp_complete = false;
-         		}
+                }
 ////////////////////////// Stage 4 ///////////////////////// 
             if  (irc_complete == true && email_complete == true && ftp_complete == true) 
             {
@@ -310,11 +210,11 @@ function define_stages(){
 
 
 
-	
-	
-	
-	
-	function define_messages(){
+
+
+
+
+    function define_messages(){
 
 
 //stage 1
@@ -353,13 +253,13 @@ message [14] = "<p>You have all the information required. Now go find the snipte
 
 
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
 </script>	

@@ -72,6 +72,14 @@ class BattleController extends JController
         echo json_encode($result);
     }
 
+    function terminal_action()
+    {
+        $model          = $this->getModel('terminal');
+        $action         = JRequest::getVar('action');
+        $result         = $model->$action();
+        echo json_encode($result);
+    }
+
     function display()
     {
         $db         = JFactory::getDBO();

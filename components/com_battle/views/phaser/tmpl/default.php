@@ -24,6 +24,7 @@
             var add_npc = new Array();
             var add_players = new Array();
             var add_pages = new Array();
+            var add_terminals = new Array();
 
             var boundsX1 = new Array();
             var boundsY1 = new Array();
@@ -42,7 +43,11 @@
             var portal_dest_1 = new Array();
             var portal_dest_2 = new Array();
             var portal_dest_3 = new Array();
+
             var npc_list = new Array();
+            var terminals_list = new Array();
+
+
             var send = 1;
         </script>
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
@@ -54,3 +59,4 @@
         <div id ="building"></div>
         <div id ="npc"></div>
         <div id ="player"></div>
+        <div id ="terminal"></div>

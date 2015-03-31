@@ -130,7 +130,11 @@ function get_everything(dest){
                     //console.log("buildings : " + buildings.length);
                     // console.log("buildings2 : " + buildings.length);
                     // load buildings
-                    game.state.start('next');
+
+                    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_terminals&format=raw', function(result) {
+                        terminals_list = result;
+                        game.state.start('next');
+                    });
                 });
             });
         });
@@ -262,6 +266,41 @@ function page(one,two) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function terminal(one,two) {
+    one.body.enable = false;
+
+    one.body.immovable = true;
+    two.body.immovable = true;
+
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=terminal&id="+ two.key,
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        //   two.body.enable = true;
+        document.getElementById("world").hide();
+        document.getElementById("terminal").innerHTML=result;
+        document.getElementById("terminal").show();
+        loadUp();
+        var url = "/components/com_battle/includes/terminal.js";
+        jQuery.getScript( url, function() {
+
+
+
+        });
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
    // two.body.enable = false;
@@ -297,62 +336,62 @@ function addMap() {
     layer2 = map.createLayer('objects');
 }
 
-    function loaded() {
+function loaded() {
 
-        // set base tempo var
-        var TEMPO = 125;
+    // set base tempo var
+    var TEMPO = 125;
 
-        // create clips
-        var uke1 = blip.clip().sample('bass_note');
-        var uke2 = blip.clip().sample('uke');
-        var bassDrum = blip.clip().sample('drumloop');
+    // create clips
+    var uke1 = blip.clip().sample('bass_note');
+    var uke2 = blip.clip().sample('uke');
+    var bassDrum = blip.clip().sample('drumloop');
 
-        /* ====================== LOOPS ====================== */
+    /* ====================== LOOPS ====================== */
 
-        bass = blip.loop()
-            .tempo(TEMPO)
-            .data([1, 1/2])
-            .tick(function (t, d) {
-                if (blip.chance(1)) uke1.play(t, {
-                    rate: d,
-                    gain: 0.5 / Math.sqrt(d)
-                });
+    bass = blip.loop()
+        .tempo(TEMPO)
+        .data([1, 1/2])
+        .tick(function (t, d) {
+            if (blip.chance(1)) uke1.play(t, {
+                rate: d,
+                gain: 0.5 / Math.sqrt(d)
             });
-
-
-        rhythmic = blip.loop()
-            .tempo(TEMPO)
-            .data([1,0,0,0])
-            .tick(function(t,d) {
-                if (d) {
-                    bassDrum.play(t)
-                }
-            });
-
-        melody = blip.loop()
-            .tempo(TEMPO * 2)
-            .data([3 / 2, 2, 3, 5 / 4, 5 / 2, 5 / 8])
-            .tick(function (t, d) {
-                if (blip.chance(1 / 3)) uke2.play(t, {
-                    rate: d,
-                    gain: 0.4
-                })
-                if (blip.chance(1 / 6)) uke2.play(t, {
-                    rate: d * 3 / 2,
-                    gain: 0.4
-                })
-            });
-
-        /* click events */
-      //  document.getElementById('play').addEventListener('click', function () {
-        //    bass.start();
-       //     melody.start();
-     //   rhythmic.start();
-      //  });
-   /*     document.getElementById('pause').addEventListener('click', function () {
-            bass.stop();
-            melody.stop();
         });
+
+
+    rhythmic = blip.loop()
+        .tempo(TEMPO)
+        .data([1,0,0,0])
+        .tick(function(t,d) {
+            if (d) {
+                bassDrum.play(t)
+            }
+        });
+
+    melody = blip.loop()
+        .tempo(TEMPO * 2)
+        .data([3 / 2, 2, 3, 5 / 4, 5 / 2, 5 / 8])
+        .tick(function (t, d) {
+            if (blip.chance(1 / 3)) uke2.play(t, {
+                rate: d,
+                gain: 0.4
+            })
+            if (blip.chance(1 / 6)) uke2.play(t, {
+                rate: d * 3 / 2,
+                gain: 0.4
+            })
+        });
+
+    /* click events */
+  //  document.getElementById('play').addEventListener('click', function () {
+    //    bass.start();
+   //     melody.start();
+ //   rhythmic.start();
+  //  });
+/*     document.getElementById('pause').addEventListener('click', function () {
+        bass.stop();
+        melody.stop();
+    });
 */
 
 
