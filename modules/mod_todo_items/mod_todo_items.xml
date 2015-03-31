@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.0.0" client="site" method="upgrade">
+	<identifier>mod://site/todo_items</identifier>
+	<name>mod_todo_items</name>
+	<creationDate>July 2014</creationDate>
+	<author>Joomlatools</author>
+	<copyright>Copyright (C) 2011 - 2014 Timble CVBA (http://www.timble.net)</copyright>
+    <license>GNU GPLv3 - http://www.gnu.org/licenses/gpl.html</license>
+	<authorEmail>support@joomlatools.com</authorEmail>
+	<authorUrl>www.joomlatools.com</authorUrl>
+	<version>2.0.0</version>
+	<description>MOD_TODO_ITEMS_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_todo_items">mod_todo_items.php</filename>
+		<filename>html.php</filename>
+		<folder>tmpl</folder>
+        <folder>language</folder>
+	</files>
+
+	<config>
+		<fields name="params" addfieldpath="/components/com_todo/forms/fields">
+			<fieldset name="basic">
+				<field name="limit" type="text" default="10"
+                       label="MOD_TODO_ITEMS_FIELD_LIMIT_LABEL"
+                       description="MOD_TODO_ITEMS_FIELD_LIMIT_DESC"
+					/>
+
+                <field name="sort" type="list"
+                       default="reverse_created_on"
+                       label="MOD_TODO_ITEMS_FIELD_SORT_LABEL"
+                       description="MOD_TODO_ITEMS_FIELD_SORT_DESC"
+                >
+                    <option value="title">JGLOBAL_TITLE_ALPHABETICAL</option>
+                    <option value="reverse_title">JGLOBAL_TITLE_REVERSE_ALPHABETICAL</option>
+                    <option value="reverse_created_on">JGLOBAL_MOST_RECENT_FIRST</option>
+                    <option value="created_on">JGLOBAL_OLDEST_FIRST</option>
+                </field>
+                <field name="show_created" type="radio" default="0"
+                       class="btn-group"
+                       label="MOD_TODO_ITEMS_FIELD_SHOW_CREATED_LABEL"
+                       description="MOD_TODO_ITEMS_FIELD_SHOW_CREATED_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+			</fieldset>
+			<fieldset
+				name="advanced">
+
+				<field
+					name="layout"
+					type="modulelayout"
+                    default="_:default.html"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid"
+                >
+					<option value="itemid" />
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
