@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class TablePages extends JTable
+class TableTerminals extends JTable
 {
     var $id         = null;
     var $grid       = null;
