@@ -13,7 +13,7 @@ class TableTerminals extends JTable
     var $type       = null;
     var $level      = null;
     var $ip         = null;
-    var $domiain    = null;
+    var $domain    = null;
     var $bandwidth  = null;
     var $capacity   = null;
     var $version    = null;
