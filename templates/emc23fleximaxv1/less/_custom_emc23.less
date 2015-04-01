@@ -81,6 +81,38 @@ h3.nav-header {margin:0;}
 }
 
 
+// font awesome fullscreen toggles
+.fa.fa-arrows-alt,
+.fa.fa-compress {
+  font-size: 18px !important;
+  color: #099;
+  padding: 0.5em;
+  background: rgba(0,0,0,0.7);
+  margin-right: 0.5em;
+  border-radius: 4px;
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  cursor: pointer;
+}
+
+.fa.fa-compress {
+  display: none !important;
+}
+
+:-webkit-full-screen .fa.fa-compress,
+:-moz-full-screen .fa.fa-compress,
+:-ms-fullscreen .fa.fa-compress,
+:fullscreen .fa.fa-compress {
+  display: inline-block !important;
+}
+
+:-webkit-full-screen .fa.fa-arrows-alt,
+:-moz-full-screen .fa.fa-arrows-alt,
+:-ms-fullscreen .fa.fa-arrows-alt,
+:fullscreen .fa.fa-arrows-alt {
+  display: none !important;
+}
 
 
 
