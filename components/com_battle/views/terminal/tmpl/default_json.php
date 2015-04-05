@@ -55,7 +55,8 @@ $body .="
     <div class='punch'><a onclick='enter(\"Execute\")' id='Execute'>Execute</a> </div>
     <div class='punch'><a onclick='' id='enter'>Enter</a> </div>
     <input type='text' onchange='type_scan' name='commandLine'
-           class='form-control input-lg' id='commandLine' placeholder='Enter Command'>
+           class='form-control' id='commandLine' placeholder='Enter Command'>
+
     <!--   <div class='bribe'><a class='bribe' href='#'>Bribe</a></div>
     <div class='rob'><a class='rob' href=#'>Rob</a></div>
     <div class='talk'<a class='talk' href=''#'>Talk</a></div>-->
