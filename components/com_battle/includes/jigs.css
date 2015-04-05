@@ -579,6 +579,27 @@ a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punc
 	color:#CCC;
 	text-decoration:none;
 }
+
+/* terminal input */
+#action .input-group  {
+    padding-top: 10px;
+}
+.input-group-addon {
+    background-color: #111111;
+    color: limegreen;
+    border-right: 0 none;
+}
+.input-group .form-control {
+    background-color: #222222;
+    display: block;
+    border-left: 0 none;
+}
+#action .form-control {
+    margin-top: 10px;
+    width: auto;
+    display: inline-block;
+}
+
 /* NPC and Player Layout */
 div.vitals {
 	//float: left;
