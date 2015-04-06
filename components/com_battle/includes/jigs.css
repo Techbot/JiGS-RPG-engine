@@ -594,11 +594,6 @@ a.buy:hover, a.sell:hover, a.attack:hover, a.recruit:hover, a.kick:hover, a.punc
     display: block;
     border-left: 0 none;
 }
-#action .form-control {
-    margin-top: 10px;
-    width: auto;
-    display: inline-block;
-}
 
 /* NPC and Player Layout */
 div.vitals {
