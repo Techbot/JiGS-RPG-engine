@@ -9,12 +9,10 @@ var position = 0;
 
 //http://liquidslider.com/documentation/
 jQuery(function() {
-
     $( "#enter" ).click(function() {
         var id =1;
         var command = document.getElementById('commandLine').value;
         var command_post = jQuery.trim(command.replace(command_pre, ''));
-
         jQuery.ajax({
             url: "/index.php?option=com_battle&format=raw&task=terminal_action&action=" + command_pre + "&id=" + command_post,
             context: document.body,
@@ -27,7 +25,6 @@ jQuery(function() {
              }
             txt.forEach(function (item){
                 scroll(0,item);
-
             });
         });
         location1 = 1;
@@ -37,12 +34,10 @@ jQuery(function() {
 function enter(txt){
     document.getElementById('commandLine').value = txt;
     command_pre = txt;
-
 }
 
 // Original: Pun Man Kit mkpunnl@netvigator.com
 function scroll(position,text) {
-
     var out = '';
     var sc = document.getElementById('scroller'+location1);
     for (var i=0; i < position; i++){
