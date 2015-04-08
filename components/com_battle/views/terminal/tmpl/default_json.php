@@ -11,14 +11,40 @@ $version    = $this->info['version'];
 $status     = $this->info['status'];
 $faction    = $this->info['faction'];
 $battery    = $this->info['battery'];
+$link= '/components/com_battle/images/hacker-map.jpg';
+
 $table = file_get_contents( 'http://eclecticmeme.com/components/com_battle/views/terminal/tmpl/table.php');
 
 $body       = "
 <a href='#' class='mid'></a>
-<img src = '/components/com_battle/images/hacker-map.jpg'>";
+
+<div style = 'background-image: url($link);
+                          height:400px;
+                          width: 600px;
+                            '>
+<p id='scroller1' style = 'margin:.1em 0;'></p>
+<p id='scroller2'  style = 'margin:.1em 0;'></p>
+<p id='scroller3'  style = 'margin:.1em 0;'></p>
+<p id='scroller4'  style = 'margin:.1em 0;'></p>
+<p id='scroller5'  style = 'margin:.1em 0;'></p>
+<p id='scroller6'  style = 'margin:.1em 0;'></p>
+<p id='scroller7'  style = 'margin:.1em 0;'></p>
+<p id='scroller8'  style = 'margin:.1em 0;'></p>
+<p id='scroller9'  style = 'margin:.1em 0;'></p>
+<p id='scroller10'  style = 'margin:.1em 0;'></p>
+<p id='scroller11'  style = 'margin:.1em 0;'></p>
+<p id='scroller12'  style = 'margin:.1em 0;'></p>
+<p id='scroller13'  style = 'margin:.1em 0;'></p>
+<p id='scroller14'  style = 'margin:.1em 0;'></p>
+<p id='scroller15'  style = 'margin:.1em 0;'></p>
+<p id='scroller16'  style = 'margin:.1em 0;'></p>
+<p id='scroller17'  style = 'margin:.1em 0;'></p>
+<p id='scroller18' style = 'margin:.1em 0;'> </p>
+
+</div>";
+
 
 //$body       .= $table;
-
 
 $body .="
 
@@ -53,16 +79,18 @@ $body .="
     <div class='punch'><a onclick='enter(\"Killtrace\")' id='Killtrace'>Killtrace</a> </div>
     <div class='punch'><a onclick='enter(\"Deploy Virus\")' id='Deploy Virus'>Deploy Virus</a> </div>
     <div class='punch'><a onclick='enter(\"Execute\")' id='Execute'>Execute</a> </div>
+
+<div class='input-group'>
+    <span class='input-group-addon' id='sizing-addon2'>$</span>
+    <input type='text' onchange='type_scan' name='commandLine' class='form-control' id='commandLine' placeholder='Enter Command'>
     <div class='punch'><a onclick='' id='enter'>Enter</a> </div>
-    <input type='text' onchange='type_scan' name='commandLine'
-           class='form-control input-lg' id='commandLine' placeholder='Enter Command'>
+</div>
     <!--   <div class='bribe'><a class='bribe' href='#'>Bribe</a></div>
     <div class='rob'><a class='rob' href=#'>Rob</a></div>
     <div class='talk'<a class='talk' href=''#'>Talk</a></div>-->
-</div><!-- end action --><!--
+</div>
+
+<!-- end action --><!--
 ";
 
 echo json_encode($body);
-
-
-

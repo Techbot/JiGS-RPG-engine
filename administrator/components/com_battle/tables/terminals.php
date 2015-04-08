@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class TableTerminals extends JTable
+class Tableterminals extends JTable
 {
     var $id         = null;
     var $grid       = null;
@@ -13,7 +13,7 @@ class TableTerminals extends JTable
     var $type       = null;
     var $level      = null;
     var $ip         = null;
-    var $domain    = null;
+    var $domain     = null;
     var $bandwidth  = null;
     var $capacity   = null;
     var $version    = null;
