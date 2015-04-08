@@ -84,6 +84,9 @@ $body .="
     <span class='input-group-addon' id='sizing-addon2'>$</span>
     <input type='text' onchange='type_scan' name='commandLine' class='form-control' id='commandLine' placeholder='Enter Command'>
     <div class='punch'><a onclick='' id='enter'>Enter</a> </div>
+    <input type='text' onchange='type_scan' name='commandLine'
+           class='form-control' id='commandLine' placeholder='Enter Command'>
+
 </div>
     <!--   <div class='bribe'><a class='bribe' href='#'>Bribe</a></div>
     <div class='rob'><a class='rob' href=#'>Rob</a></div>
