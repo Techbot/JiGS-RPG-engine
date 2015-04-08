@@ -22,10 +22,10 @@ class BattleControllerTerminals extends JController
     function save()
     {
         //JRequest::checkToken() or jexit( 'Invalid Token' );
-    //	global $option;
+        //	global $option;
         $row =& JTable::getInstance('terminals', 'Table');
-                    $cid = JRequest::getVar( 'cid', array(0), '', 'array' );
-$row->id = $cid[0];
+        $cid = JRequest::getVar( 'cid', array(0), '', 'array' );
+        $row->id = $cid[0];
         if (!$row->bind(JRequest::get('get')))
         {
             JError::raiseError(500, $row->getError() );
@@ -36,17 +36,14 @@ $row->id = $cid[0];
 
             print_r($row->getError());
             exit();
-
         }
-
         if(JRequest::getVar('task')=='apply'){
 
-            $this->setRedirect('index.php?option=com_battle&controller=terminals&task=edit&cid='.$row->id, 'Building Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=terminals&task=edit&cid='. $row->id, 'Terminal Saved');
         }
-
         else{
 
-        $this->setRedirect('index.php?option=com_battle&view=terminals', 'Building Saved');
+            $this->setRedirect('index.php?option=com_battle&view=terminals', 'Terminal Saved');
         }
     }
     function display()
@@ -65,25 +62,5 @@ $row->id = $cid[0];
             }
         }
         parent::display();
-    }
-    function save_flats()
-    {
-        $model		= $this->getModel('terminals');
-        $x			= JRequest::get('get');
-        $building	= $x['building_0'];
-
-        $message	= $model->save_flats($x);
-        $this->setRedirect('index.php?option=com_battle&controller=terminals&task=edit&cid[]=' . $building . '', $message);
-        $this->display();
-    }
-    function save_fields()
-    {
-        $model = $this->getModel('buildings');
-        $array = JRequest::get('get');
-
-        $building = $array['building'];
-        $message = $model->save_fields($array);
-        $this->setRedirect('index.php?option=com_battle&controller=terminals&task=edit&cid[]=' . $building . '', $message);
-        $this->display();
     }
 }

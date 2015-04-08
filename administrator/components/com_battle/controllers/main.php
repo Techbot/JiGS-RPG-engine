@@ -104,6 +104,16 @@ class BattleControllerMain extends JController
 		echo Json_encode($message);
 
 	}
+
+    function add_hacking()
+    {
+        $model		=	$this->getModel('main');
+        $message	=	$model->add_hacking();
+        echo Json_encode($message);
+
+    }
+
+
 	function display()
 	{
 		$view		= JRequest::getVar('view');

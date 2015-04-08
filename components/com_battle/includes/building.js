@@ -3,38 +3,31 @@ jQuery(function() {
   loadUp();
 });
 
-
-
-
-
-
-
-
 function success2(){
 
     buy_building();
-    window.id1  = new Array();
-    window.metal_name_1 = new Array();
-    window.metal_name_2 = new Array();
-    window.current_object_quantity  = new Array();
-    window.mystock1 = 0;
-    window.mystock2 = 0;
-    window.q_1  = new Array();
-    window.q_2  = new Array();
-    window.metals   = new Array();
-    var refTab  = document.getElementById("stats");
-    var row = refTab.rows[0];
-    var col = row.cells[1];
+    window.id1                      = [];
+    window.metal_name_1             = [];
+    window.metal_name_2             = [];
+    window.current_object_quantity  = [];
+    window.mystock1                 = 0;
+    window.mystock2                 = 0;
+    window.q_1                      = [];
+    window.q_2                      = [];
+    window.metals                   = [];
+    var refTab                      = document.getElementById("stats");
+    var row                         = refTab.rows[0];
+    var col                         = row.cells[1];
     // alert(col.firstChild.nodeValue);
     // var  col =   refTab.rows[1].cells[1];
     // alert(col.firstChild.nodeValue);
-    building_id = col.firstChild.nodeValue;
-    var row = refTab.rows[3];
-    var col = row.cells[1];
+    building_id                     = col.firstChild.nodeValue;
+    var row                         = refTab.rows[3];
+    var col                         = row.cells[1];
     //alert(col.firstChild.nodeValue);
     //var  col =   refTab.rows[1].cells[1];
     //alert(col.firstChild.nodeValue);
-    window.building_type = col.firstChild.nodeValue;
+    window.building_type            = col.firstChild.nodeValue;
 
     request_batteries_cp();
     //request_batteries.periodical(50085);
@@ -1413,33 +1406,6 @@ function buy_blueprint(itemID){
     }).get();
  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function get_blueprints()

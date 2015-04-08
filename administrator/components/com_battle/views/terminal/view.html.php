@@ -4,15 +4,15 @@ jimport( 'joomla.application.component.view');
 
 class BattleViewTerminal extends JView
 {
-	function display($tpl = null)
-	{
-		$row =& JTable::getInstance('Terminals', 'Table');
-		$cid = JRequest::getVar( 'cid', array(0), '', 'array' );
-		$id = $cid[0];
-		$row->load($id);
-		$this->assignRef('row', $row);
-		$editor =& JFactory::getEditor();
-		$this->assignRef('editor', $editor);
-		parent::display($tpl);
-	}
+    function display($tpl = null)
+    {
+        $row            = JTable::getInstance('terminals', 'Table');
+        $cid            = JRequest::getVar( 'cid', array(0), '', 'array' );
+        $id             = $cid[0];
+        $row->load($id);
+        $this->assignRef('row', $row);
+        $editor         = JFactory::getEditor();
+        $this->assignRef('editor', $editor);
+        parent::display($tpl);
+    }
 }
