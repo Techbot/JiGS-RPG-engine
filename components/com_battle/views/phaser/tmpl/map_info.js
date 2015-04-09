@@ -583,8 +583,8 @@ y3[18] = 64;
 
 boundsX1[18] = 0;
 boundsY1[18] = 0;
-boundsX2[18] = 780;
-boundsY2[18] = 1500;
+boundsX2[18] = 768;
+boundsY2[18] = 768;
 
 
 portal_dest_1[18] = 29;
@@ -608,8 +608,8 @@ tile_names[19] = ['TileA5','Zombie_A4','TileA3','A2_HF1R_Indoors','sprite'];
 x1[19] = 160;
 y1[19] = 512;
 
-x2[19] = 0;
-y2[19] = 512;
+x2[19] = 640;
+y2[19] = 32;
 
 x3[19] = 1440;
 y3[19] = 448;
