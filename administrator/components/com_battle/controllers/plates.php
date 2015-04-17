@@ -5,6 +5,10 @@ class BattleControllerplates extends JController
 {
     function __construct ($config = array())
     {
+
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         parent::__construct($config);
         $this->registerTask('unpublish','publish');
         $this->registerTask('apply','save');
@@ -24,7 +28,7 @@ class BattleControllerplates extends JController
         //JRequest::checkToken() or jexit( 'Invalid Token' );
 
         $row =& JTable::getInstance('plates', 'Table');
-        if (!$row->bind(JRequest::get('post')))
+        if (!$row->bind(JRequest::get('get')))
         {
             JError::raiseError(500, $row->getError() );
         }
@@ -96,17 +100,6 @@ class BattleControllerplates extends JController
        // $this->setRedirect('index.php?option=' . $option, $msg);
         $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     function display()
     {

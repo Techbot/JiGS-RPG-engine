@@ -1,7 +1,7 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
-class BattleControllerTwines extends JController
+class BattleControllerplates extends JController
 {
     function __construct ($config = array())
     {
@@ -11,18 +11,18 @@ class BattleControllerTwines extends JController
     }
     function edit()
     {
-        JRequest::setVar('view', 'twine');
+        JRequest::setVar('view', 'plate');
         $this->display();
     }
     function add()
     {
-        JRequest::setVar('view', 'twine');
+        JRequest::setVar('view', 'plate');
         $this->display();
     }
     function save()
     {
         //JRequest::checkToken() or jexit( 'Invalid Token' );
-        $row =& JTable::getInstance('twines', 'Table');
+        $row =& JTable::getInstance('plates', 'Table');
         if (!$row->bind(JRequest::get('post')))
         {
             JError::raiseError(500, $row->getError() );
@@ -32,33 +32,36 @@ class BattleControllerTwines extends JController
             JError::raiseError(500, $row->getError() );
         }
         if(JRequest::getVar('task')=='apply'){
-            $this->setRedirect('index.php?option=com_battle&controller=twines&task=edit&cid='.$row->id, 'Page Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=plates&task=edit&cid='.$row->id, 'plate Saved');
         }
         else{
-        $this->setRedirect('index.php?option=com_battle&view=twines', 'Page Saved');
+        $this->setRedirect('index.php?option=com_battle&view=plate', 'plate Saved');
         }
         $this->display();
+
     }
     function remove()
     {
         $cid        = JRequest::getVar( 'cid', array(0), '', 'array' );
-        $model      = $this->getModel('twines');
+        $model      = $this->getModel('plates');
         if(!$model->deletepage($cid))
         {
-            $msg = JText::_("One or more twines could not be deleted");
+            $msg = JText::_("One or more plates could not be deleted");
         }
         else
         {
-            $msg = JText::_("twines deleted");
+            $msg = JText::_("plates deleted");
         }
 
-        $this->setRedirect('index.php?option=com_battle&view=twines', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
     }
+
+
     function publish()
     {
-//      global $option;
-        $cid        = JRequest::getVar('cid', array());
-        $row        = JTable::getInstance('twines', 'Table');
+//        global $option;
+        $cid = JRequest::getVar('cid', array());
+        $row = JTable::getInstance('plates', 'Table');
         $publish = 1;
         if($this->getTask() == 'unpublish')
         {
@@ -75,6 +78,7 @@ class BattleControllerTwines extends JController
         }
         $msg = 'Page' . $s;
         if ($this->getTask() == 'unpublish')
+
         {
             $msg .= ' unpublished';
         }
@@ -83,21 +87,34 @@ class BattleControllerTwines extends JController
             $msg .= ' published';
         }
        // $this->setRedirect('index.php?option=' . $option, $msg);
-        $this->setRedirect('index.php?option=com_battle&view=twines', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
     }
+
+
+
+
+
+
+
+
+
+
+
+
     function display()
     {
         $view = JRequest::getVar('view');
         if (!$view) {
             switch ($this->getTask()) {
             case 'edit':
-                JRequest::setVar('view', 'twine');
+                JRequest::setVar('view', 'page');
                 break;
             default:
-                JRequest::setVar('view', 'twines');
+                JRequest::setVar('view', 'pages');
                 break;
             }
         }
         parent::display();
     }
+
 }
