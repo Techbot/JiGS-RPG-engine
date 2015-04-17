@@ -173,7 +173,7 @@ height: 1%; /*For IE*/
 			left: 75%;
 			}
 /* Do Not Move - Must Come Before display:block for Gecko */
-/* Hide sub submneus on page load */
+/* Hide sub submneus on twine load */
 			#left ul.menu li:hover ul ul,
 				#left ul.menu li:hover ul ul ul,
 			#left ul.menu li.iehover ul ul,
@@ -272,7 +272,7 @@ visibility: hidden;
 			left: -75%;
 			}
 /* Do Not Move - Must Come Before display:block for Gecko */
-/* Hide sub submenus on page load */
+/* Hide sub submenus on twine load */
 				#right ul.menu li:hover ul ul,
 					#right ul.menu li:hover ul ul ul,
 				#right ul.menu li.iehover ul ul,

@@ -19,7 +19,7 @@ if ($templateparams->get('html5')!=1)
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 $cparams =& JComponentHelper::getParams('com_media');
 
-// If the page class is defined, add to class as suffix.
+// If the twine class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space
 ?>
 <section class="blog<?php echo $this->pageclass_sfx;?>">
@@ -113,7 +113,7 @@ $cparams =& JComponentHelper::getParams('com_media');
 		</div>
 	<?php endif; ?>
 
-<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
+<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('twines.total') > 1)) : ?>
 		<div class="pagination">
 						<?php  if ($this->params->def('show_pagination_results', 1)) : ?>
 						<p class="counter">

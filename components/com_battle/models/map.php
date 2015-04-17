@@ -135,7 +135,7 @@ class BattleModelMap extends JModel{
         return $result;
     }
 
-    function get_pages()
+    function get_twines()
     {
         $db =& JFactory::getDBO();
         $user =& JFactory::getUser();
@@ -143,7 +143,7 @@ class BattleModelMap extends JModel{
         $result = $db->loadRow();
         $map = $result[0];
         $grid = $result[1];
-        $db->setQuery("SELECT * FROM #__jigs_pages WHERE grid ='".$grid."' AND published ='1'");
+        $db->setQuery("SELECT * FROM #__jigs_twines WHERE grid ='".$grid."' AND published ='1'");
         $result = $db->loadObjectlist();
         return $result;
     }

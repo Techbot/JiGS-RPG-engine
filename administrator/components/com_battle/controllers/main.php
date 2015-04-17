@@ -70,7 +70,7 @@ class BattleControllerMain extends JController
 	}
 	function edit()
 	{
-		JRequest::setVar('view', 'page');
+		JRequest::setVar('view', 'twine');
 		$this->display();
 	}
 	function add()

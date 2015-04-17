@@ -28,7 +28,7 @@ class battleViewSingle extends JView
 		$this->assignRef('row', $map);
 		$this->assignRef('players',$model->getplayers());
 		$this->assignRef('buildings',$model->getbuildings());	
-		$this->assignRef('pages',$model->getpages());
+		$this->assignRef('twines',$model->getpages());
 		//print_r($model->getbuildings());
 		parent::display($tpl);
 	}

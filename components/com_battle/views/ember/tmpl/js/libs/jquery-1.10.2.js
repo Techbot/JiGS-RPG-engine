@@ -376,7 +376,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 };
 
 jQuery.extend({
-	// Unique for each copy of jQuery on the page
+	// Unique for each copy of jQuery on the twine
 	// Non-digits removed to match rinlinejQuery
 	expando: "jQuery" + ( core_version + Math.random() ).replace( /\D/g, "" ),
 
@@ -4761,7 +4761,7 @@ jQuery.event = {
 		if ( !(eventHandle = elemData.handle) ) {
 			eventHandle = elemData.handle = function( e ) {
 				// Discard the second event of a jQuery.event.trigger() and
-				// when an event is called after a page has unloaded
+				// when an event is called after a twine has unloaded
 				return typeof jQuery !== core_strundefined && (!e || jQuery.event.triggered !== e.type) ?
 					jQuery.event.dispatch.apply( eventHandle.elem, arguments ) :
 					undefined;

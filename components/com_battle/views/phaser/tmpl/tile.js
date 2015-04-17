@@ -111,9 +111,7 @@ function get_everything(dest){
     jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function(result)
     {
         buildings = result;
-        //console.log("buildings : " + buildings.length);
-        // console.log("buildings2 : " + buildings.length);
-        // load buildings
+
         jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_chars&format=raw', function(result)
         {
             npc_list = result;
@@ -121,19 +119,21 @@ function get_everything(dest){
             jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_players&format=raw', function(result)
             {
                 players_list = result;
-            //console.log("buildings : " + buildings.length);
-            // console.log("buildings2 : " + buildings.length);
-            // load buildings
-                jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_pages&format=raw', function(result)
-                {
-                    pages_list = result;
-                    //console.log("buildings : " + buildings.length);
-                    // console.log("buildings2 : " + buildings.length);
-                    // load buildings
 
-                    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_terminals&format=raw', function(result) {
+                jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_twiness&format=raw', function(result)
+                {
+                    twines_list = result;
+
+                    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_terminals&format=raw', function(result)
+                    {
                         terminals_list = result;
-                        game.state.start('next');
+
+                        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_terminals&format=raw', function(result)
+                        {
+                            plates_list = result;
+
+                            game.state.start('next');
+                        });
                     });
                 });
             });
@@ -255,7 +255,7 @@ function npc(one,two) {
 function page(one,two) {
    // two.body.enable =false;
     jQuery.ajax({
-        url: "/index.php?option=com_battle&format=json&view=page&id="+ two.key,
+        url: "/index.php?option=com_battle&format=json&view=twine&id="+ two.key,
         context: document.body,
         dataType: "json"
     }).done(function(result) {

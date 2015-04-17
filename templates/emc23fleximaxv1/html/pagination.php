@@ -24,7 +24,7 @@ function pagination_list_render($list)
 	$html = '<ul>';
 	$html .= $list['start']['data'];
 	$html .= $list['previous']['data'];
-	foreach ($list['pages'] as $page)
+	foreach ($list['twines'] as $page)
 	{
 			$html .= $page['data'];
 	}

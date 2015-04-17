@@ -30,12 +30,12 @@ left:0;
 			</iframe>
 			</canvas>
 		</div><!-- end container -->
-</div><!-- end page -->
+</div><!-- end twine -->
 
-<script src=/components/com_battle/views/pages/tmpl/script.js></script>
+<script src=/components/com_battle/views/twines/tmpl/script.js></script>
 	
 ";
 
-//echo json_encode($this->page[0]->details);
+//echo json_encode($this->twine[0]->details);
 //exit();
 echo json_encode($x);

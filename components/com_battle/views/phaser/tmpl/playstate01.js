@@ -61,14 +61,26 @@ playState[1] = {
         }
 
 
-        ///////////////////// load pages
-        if(pages_list.length != 0) {
+        ///////////////////// load twines
+        if(twines_list.length != 0) {
 
-            for (var index = 0; index < pages_list.length; index++) {
-                var filename = pages_list[index].image;
-                var key = pages_list[index].id;
+            for (var index = 0; index < twines_list.length; index++) {
+                var filename = twines_list[index].image;
+                var key = twines_list[index].id;
                 //  console.log("filename : " + filename);
-                game.load.image( key, '/components/com_battle/images/pages/' + filename);
+                game.load.image( key, '/components/com_battle/images/twines/' + filename);
+            }
+        }
+
+
+        ///////////////////// load plates
+        if(plates_list.length != 0) {
+
+            for (var index = 0; index < plates_list.length; index++) {
+                var filename = plates_list[index].image;
+                var key = plates_list[index].id;
+                //  console.log("filename : " + filename);
+                game.load.image( key, '/components/com_battle/images/plates/' + filename);
             }
         }
 
@@ -105,7 +117,7 @@ playState[1] = {
         }
 
         ////////////////// load portals
-        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portals_1.png', 64, 64, 1);
+        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portal_1.png', 64, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/portals_2.png', 64, 64, 1);
         game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/portals_3.png', 64, 64, 1);
 
@@ -152,21 +164,28 @@ playState[1] = {
                 game.load.image(cacheKey(key, 'tileset', key), '/images/comprofiler/' + filename );
             }
         }
+
         //////////////////// cache buildings
         for (var index = 0; index < buildings.length; index++) {
             //var filename = buildings[index].image;
             var key = buildings[index].id;
             game.load.image(cacheKey("_" + key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
-        //////////////////// cache pages_list
-        for (var index = 0; index < pages_list.length; index++) {
-            //var filename = pages_list[index].image;
-            var key = pages_list[index].id;
-            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/pages/' + filename );
+        //////////////////// cache twines_list
+        for (var index = 0; index < twines_list.length; index++) {
+            //var filename = twines_list[index].image;
+            var key = twines_list[index].id;
+            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/twines/' + filename );
+        }
+        //////////////////// cache plates_list
+        for (var index = 0; index < plates_list.length; index++) {
+            //var filename = twines_list[index].image;
+            var key = plates_list[index].id;
+            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/plates/' + filename );
         }
         //////////////////// cache terminals_list
         for (var index = 0; index < terminals_list.length; index++) {
-            //var filename = pages_list[index].image;
+            //var filename = twines_list[index].image;
             var key = terminals_list[index].id;
             game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
@@ -219,18 +238,28 @@ playState[1] = {
         }
 
 
-        ///////////////////////place pages//////
-        if(pages_list.length != 0) {
-            for (var index = 0; index < pages_list.length; index++) {
-                var key = pages_list[index].id;
+        ///////////////////////place twines//////
+        if(twines_list.length != 0) {
+            for (var index = 0; index < twines_list.length; index++) {
+                var key = twines_list[index].id;
                 //console.log("_" + key);
-                add_pages[index] = game.add.sprite(pages_list[index].posx * 1, pages_list[index].posy * 1, key);
+                add_pages[index] = game.add.sprite(twines_list[index].posx * 1, twines_list[index].posy * 1, key);
                 add_pages[index].id = key;
                 game.physics.enable(add_pages[index], Phaser.Physics.ARCADE);
                 //add_pages[index].body.velocity = 0;
             }
         }
-
+        ///////////////////////place plates//////
+        if(plates_list.length != 0) {
+            for (var index = 0; index < plates_list.length; index++) {
+                var key = plates_list[index].id;
+                //console.log("_" + key);
+                add_plates[index] = game.add.sprite(plates_list[index].posx * 1, plates_list[index].posy * 1, key);
+                add_plates[index].id = key;
+                game.physics.enable(add_plates[index], Phaser.Physics.ARCADE);
+                //add_plates[index].body.velocity = 0;
+            }
+        }
         ///////////////////////place terminals//////
         if(terminals_list.length != 0) {
             for (var index = 0; index < terminals_list.length; index++) {
@@ -243,25 +272,17 @@ playState[1] = {
                 //add_pages[index].body.velocity = 0;
             }
         }
-
         ////////////////////////place assets//////
         if (typeof assets_name[grid] != 'undefined') {
             for (var index = 0; index < assets_name[grid].length; index++)
             {
                 var key = assets_name[grid][index];
-
                 add_assets[index] = game.add.sprite(assets_name_x[grid][index], assets_name_y[grid][index], key);
-
                 add_assets[index].animations.add('walk');
-
                 add_assets[index].animations.play('walk',8,true);
-
                 add_assets[index].id = key;
             }
         }
-
-
-
         ////////////////////////place players//////
         players_group  = game.add.group();
         if (typeof players_list != 'undefined') {
@@ -299,31 +320,22 @@ playState[1] = {
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         portal[3]['dest']=portal_dest_3[grid];
         // game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
-
-
         ///////////////////////////////////////////
     },
     update: function() {
         //////////////////////////////collide obstacle layer
         this.physics.arcade.collide(sprite, layer);
-
         ////////////////////////////////////////////////
         this.physics.arcade.collide(sprite, portal[1],jump);
         this.physics.arcade.collide(sprite, portal[2],jump);
         this.physics.arcade.collide(sprite, portal[3],jump);
-
-
         ////////////////////////move player
         game.physics.arcade.moveToXY(sprite, x, y, 100);
-
         ////////////////////////move players
         if (typeof add_players != 'undefined' && players_list !='undefined') {
             for (var index = 0; index < add_players.length; index++) {
-
                 if (typeof add_players[index] != 'undefined' && typeof players_list[index] !='undefined') {
-
                     game.physics.arcade.moveToXY(add_players[index], parseInt(players_list[index].posx), parseInt(players_list[index].posy), 100);
-
                 }
             }
         }
@@ -345,8 +357,13 @@ playState[1] = {
         {
             this.physics.arcade.collide(sprite, add_npc[index], npc);
         }
-        ///////////////////////collide pages_list
-        for (var index = 0; index < pages_list.length; index++)
+        ///////////////////////collide plates list
+        for (var index = 0; index < plates_list.length; index++)
+        {
+            this.physics.arcade.collide(sprite, add_plates[index], npc);
+        }
+        ///////////////////////collide twines_list
+        for (var index = 0; index < twines_list.length; index++)
         {
             this.physics.arcade.collide(sprite, add_pages[index], page);
         }
@@ -368,9 +385,7 @@ playState[1] = {
             //console.log(key);
             this.physics.arcade.collide(sprite, add_building[index], enter_building);
         }
-
         ///////////////////// Stop Player
-
         if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
             sprite.body.velocity.x = 0;
             //console.log('x:' +sprite.body.velocity.x);
@@ -378,7 +393,6 @@ playState[1] = {
         if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
             sprite.body.velocity.y = 0;
         }
-
         if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
 
             if (send == 1) {
@@ -386,9 +400,7 @@ playState[1] = {
                 send = 0;
             }
         }
-
 /////////////////////////////////////////////
-
         if (cursors.up.isDown) {
             game.camera.y -= 4;
         }

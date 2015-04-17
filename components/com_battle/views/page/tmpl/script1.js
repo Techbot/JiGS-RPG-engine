@@ -32,49 +32,49 @@
 	var destYObj = {};
 	
 		imageObj[1] = new Image();
-		imageObj[1].src = "/components/com_battle/views/pages/tmpl/poster-sprite-voodoo-woman.png";
+		imageObj[1].src = "/components/com_battle/views/twines/tmpl/poster-sprite-voodoo-woman.png";
 		destXObj[1] = 260;
 		destYObj[1] = 50;
 		
 		
 		imageObj[2] = new Image();
-		imageObj[2].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[2].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[2] = 20;
 		destYObj[2] = 330;
 		
 		imageObj[3] = new Image();
-		imageObj[3].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[3].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[3] = 20;
 		destYObj[3] = 330;
 		
 		imageObj[4] = new Image();
-		imageObj[4].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[4].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[4] = 20;
 		destYObj[4] = 330;
 		
 		imageObj[5] = new Image();
-		imageObj[5].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[5].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[5] = 20;
 		destYObj[5] = 330;
 		
 		imageObj[6] = new Image();
-		imageObj[6].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[6].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[6] = 20;
 		destYObj[6] = 330;
 		
 		imageObj[7] = new Image();
-		imageObj[7].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[7].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[7] = 20;
 		destYObj[7] = 330;
 		
 		imageObj[8] = new Image();
-		imageObj[8].src = "/components/com_battle/views/pages/tmpl/poster-sprite-acid.png";
+		imageObj[8].src = "/components/com_battle/views/twines/tmpl/poster-sprite-acid.png";
 		destXObj[8] = 20;
 		destYObj[8] = 330;
 		
 
 	var imagePlayer = new Image();
-		imagePlayer.src = "/components/com_battle/views/pages/tmpl/walk.png";
+		imagePlayer.src = "/components/com_battle/views/twines/tmpl/walk.png";
 		
 		//var destX = canvas.width / 4 - (imageObj2.width / 2);
 		//var destY = canvas.height / 2 - (imageObj2.height / 2);
@@ -88,28 +88,28 @@
 	var imageBgObj= {};	
 			
 	    imageBgObj[1] = new Image();
-		imageBgObj[1].src = "/components/com_battle/views/pages/tmpl/frame001.jpg";
+		imageBgObj[1].src = "/components/com_battle/views/twines/tmpl/frame001.jpg";
 
 	    imageBgObj[2] = new Image();
-		imageBgObj[2].src = "/components/com_battle/views/pages/tmpl/np-dream.jpg";
+		imageBgObj[2].src = "/components/com_battle/views/twines/tmpl/np-dream.jpg";
 
 	    imageBgObj[3] = new Image();
-		imageBgObj[3].src = "/components/com_battle/views/pages/tmpl/ta-cafe_aubette.jpg";
+		imageBgObj[3].src = "/components/com_battle/views/twines/tmpl/ta-cafe_aubette.jpg";
 
 	    imageBgObj[4] = new Image();
-		imageBgObj[4].src = "/components/com_battle/views/pages/tmpl/ty-landscape.jpg";
+		imageBgObj[4].src = "/components/com_battle/views/twines/tmpl/ty-landscape.jpg";
 
 	    imageBgObj[5] = new Image();
-		imageBgObj[5].src = "/components/com_battle/views/pages/tmpl/ty-white.jpg";
+		imageBgObj[5].src = "/components/com_battle/views/twines/tmpl/ty-white.jpg";
 
 	    imageBgObj[6] = new Image();
-		imageBgObj[6].src = "/components/com_battle/views/pages/tmpl/ty-waiting.jpg";
+		imageBgObj[6].src = "/components/com_battle/views/twines/tmpl/ty-waiting.jpg";
 
 	    imageBgObj[7] = new Image();
-		imageBgObj[7].src = "/components/com_battle/views/pages/tmpl/ty- surrealist_landscape.jpg";
+		imageBgObj[7].src = "/components/com_battle/views/twines/tmpl/ty- surrealist_landscape.jpg";
 
 	    imageBgObj[8] = new Image();
-		imageBgObj[8].src = "/components/com_battle/views/pages/tmpl/ty-destroy.jpg";
+		imageBgObj[8].src = "/components/com_battle/views/twines/tmpl/ty-destroy.jpg";
 
 	//var imageGridObj = new Image();
 	//	imageGridObj.src = "guides50x50.png";	

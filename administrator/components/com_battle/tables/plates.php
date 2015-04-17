@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class TablePages extends JTable
+class TablePlates extends JTable
 {
 	var $id		= null;
 	var $name	= null;	
@@ -19,6 +19,6 @@ class TablePages extends JTable
 
 	function __construct(&$db)
 	{
-		parent::__construct( '#__jigs_pages', 'id', $db );
+		parent::__construct( '#__jigs_plates', 'id', $db );
 	}
 }

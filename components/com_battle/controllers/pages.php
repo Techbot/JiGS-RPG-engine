@@ -11,12 +11,12 @@ class BattleControllerPages extends JController
     }
     function edit()
     {
-        JRequest::setVar('view', 'page');
+        JRequest::setVar('view', 'twine');
         $this->display();
     }
     function add()
     {
-        JRequest::setVar('view', 'page');
+        JRequest::setVar('view', 'twine');
         $this->display();
     }
 
@@ -28,7 +28,7 @@ class BattleControllerPages extends JController
     {
         //JRequest::checkToken() or jexit( 'Invalid Token' );
 
-        $row =& JTable::getInstance('pages', 'Table');
+        $row =& JTable::getInstance('twines', 'Table');
         if (!$row->bind(JRequest::get('post')))
         {
             JError::raiseError(500, $row->getError() );
@@ -40,12 +40,12 @@ class BattleControllerPages extends JController
 
         if(JRequest::getVar('task')=='apply'){
 
-            $this->setRedirect('index.php?option=com_battle&controller=pages&task=edit&cid='.$row->id, 'Page Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=twines&task=edit&cid='.$row->id, 'Page Saved');
         }
 
         else{
 
-        $this->setRedirect('index.php?option=com_battle&view=pages', 'Page Saved');
+        $this->setRedirect('index.php?option=com_battle&view=twines', 'Page Saved');
 
         }
         $this->display();
@@ -54,18 +54,18 @@ class BattleControllerPages extends JController
     function remove()
     {
         $cid = JRequest::getVar( 'cid', array(0), '', 'array' );
-        $model = $this->getModel('pages');
+        $model = $this->getModel('twines');
 
         if(!$model->deletepage($cid))
         {
-            $msg = JText::_("One or more pages could not be deleted");
+            $msg = JText::_("One or more twines could not be deleted");
         }
         else
         {
-            $msg = JText::_("pages deleted");
+            $msg = JText::_("twines deleted");
         }
 
-        $this->setRedirect('index.php?option=com_battle&view=pages', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=twines', $msg);
     }
 
 
@@ -73,7 +73,7 @@ class BattleControllerPages extends JController
     {
 //        global $option;
         $cid = JRequest::getVar('cid', array());
-        $row =& JTable::getInstance('pages', 'Table');
+        $row =& JTable::getInstance('twines', 'Table');
         $publish = 1;
         if($this->getTask() == 'unpublish')
         {
@@ -99,7 +99,7 @@ class BattleControllerPages extends JController
             $msg .= ' published';
         }
        // $this->setRedirect('index.php?option=' . $option, $msg);
-        $this->setRedirect('index.php?option=com_battle&view=pages', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=twines', $msg);
     }
 
 
@@ -119,10 +119,10 @@ class BattleControllerPages extends JController
         if (!$view) {
             switch ($this->getTask()) {
             case 'edit':
-                JRequest::setVar('view', 'page');
+                JRequest::setVar('view', 'twine');
                 break;
             default:
-                JRequest::setVar('view', 'pages');
+                JRequest::setVar('view', 'twines');
                 break;
             }
         }

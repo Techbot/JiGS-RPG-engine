@@ -1,7 +1,7 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
-class BattleControllerPages extends JController
+class BattleControllerplates extends JController
 {
     function __construct ($config = array())
     {
@@ -11,24 +11,19 @@ class BattleControllerPages extends JController
     }
     function edit()
     {
-        JRequest::setVar('view', 'page');
+        JRequest::setVar('view', 'plate');
         $this->display();
     }
     function add()
     {
-        JRequest::setVar('view', 'page');
+        JRequest::setVar('view', 'plate');
         $this->display();
     }
-
-
-
-
-
     function save()
     {
         //JRequest::checkToken() or jexit( 'Invalid Token' );
 
-        $row =& JTable::getInstance('pages', 'Table');
+        $row =& JTable::getInstance('plates', 'Table');
         if (!$row->bind(JRequest::get('post')))
         {
             JError::raiseError(500, $row->getError() );
@@ -40,12 +35,12 @@ class BattleControllerPages extends JController
 
         if(JRequest::getVar('task')=='apply'){
 
-            $this->setRedirect('index.php?option=com_battle&controller=pages&task=edit&cid='.$row->id, 'Page Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=plates&task=edit&cid='.$row->id, 'plate Saved');
         }
 
         else{
 
-        $this->setRedirect('index.php?option=com_battle&view=pages', 'Page Saved');
+        $this->setRedirect('index.php?option=com_battle&view=plate', 'plate Saved');
 
         }
         $this->display();
@@ -54,18 +49,18 @@ class BattleControllerPages extends JController
     function remove()
     {
         $cid = JRequest::getVar( 'cid', array(0), '', 'array' );
-        $model = $this->getModel('pages');
+        $model = $this->getModel('plates');
 
         if(!$model->deletepage($cid))
         {
-            $msg = JText::_("One or more pages could not be deleted");
+            $msg = JText::_("One or more plates could not be deleted");
         }
         else
         {
-            $msg = JText::_("pages deleted");
+            $msg = JText::_("plates deleted");
         }
 
-        $this->setRedirect('index.php?option=com_battle&view=pages', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
     }
 
 
@@ -73,7 +68,7 @@ class BattleControllerPages extends JController
     {
 //        global $option;
         $cid = JRequest::getVar('cid', array());
-        $row =& JTable::getInstance('pages', 'Table');
+        $row =& JTable::getInstance('plates', 'Table');
         $publish = 1;
         if($this->getTask() == 'unpublish')
         {
@@ -99,7 +94,7 @@ class BattleControllerPages extends JController
             $msg .= ' published';
         }
        // $this->setRedirect('index.php?option=' . $option, $msg);
-        $this->setRedirect('index.php?option=com_battle&view=pages', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
     }
 
 
@@ -119,10 +114,10 @@ class BattleControllerPages extends JController
         if (!$view) {
             switch ($this->getTask()) {
             case 'edit':
-                JRequest::setVar('view', 'page');
+                JRequest::setVar('view', 'twine');
                 break;
             default:
-                JRequest::setVar('view', 'pages');
+                JRequest::setVar('view', 'twines');
                 break;
             }
         }

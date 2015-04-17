@@ -2300,7 +2300,7 @@ enifed("ember-application/system/application",
 
       By default, the application sets up these event listeners on the document
       body. However, in cases where you are embedding an Ember application inside
-      an existing page, you may want it to set up the listeners on an element
+      an existing twine, you may want it to set up the listeners on an element
       inside the body.
 
       For example, if only events inside a DOM element with the ID of `ember-app`
@@ -20192,7 +20192,7 @@ enifed("ember-routing-handlebars/helpers/action",
 
 
       ### Use
-      Given the following application Handlebars template on the page
+      Given the following application Handlebars template on the twine
 
       ```handlebars
       <div {{action 'anActionName'}}>
@@ -23011,7 +23011,7 @@ enifed("ember-routing/location/hash_location",
       },
 
       /**
-        Uses location.replace to update the url without a page reload
+        Uses location.replace to update the url without a twine reload
         or history modification.
 
         @private
@@ -23049,7 +23049,7 @@ enifed("ember-routing/location/hash_location",
       },
 
       /**
-        Given a URL, formats it to be placed into the page as part
+        Given a URL, formats it to be placed into the twine as part
         of an element's `href` attribute.
 
         This is used, for example, when using the {{action}} helper
@@ -23157,7 +23157,7 @@ enifed("ember-routing/location/history_location",
       },
 
       /**
-        Uses `history.pushState` to update the url without a page reload.
+        Uses `history.pushState` to update the url without a twine reload.
 
         @private
         @method setURL
@@ -23173,7 +23173,7 @@ enifed("ember-routing/location/history_location",
       },
 
       /**
-        Uses `history.replaceState` to update the url without a page reload
+        Uses `history.replaceState` to update the url without a twine reload
         or history modification.
 
         @private
@@ -23258,7 +23258,7 @@ enifed("ember-routing/location/history_location",
         var self = this;
 
         jQuery(window).on('popstate.ember-location-'+guid, function(e) {
-          // Ignore initial page load popstate event in Chrome
+          // Ignore initial twine load popstate event in Chrome
           if (!popstateFired) {
             popstateFired = true;
             if (self.getURL() === self._previousURL) { return; }
@@ -23319,7 +23319,7 @@ enifed("ember-routing/location/none_location",
       Ember.NoneLocation does not interact with the browser. It is useful for
       testing, or when you need to manage state with your Router, but temporarily
       don't want it to muck with the URL (for example when you embed your
-      application in a larger page).
+      application in a larger twine).
 
       @class NoneLocation
       @namespace Ember
@@ -23378,7 +23378,7 @@ enifed("ember-routing/location/none_location",
       },
 
       /**
-        Given a URL, formats it to be placed into the page as part
+        Given a URL, formats it to be placed into the twine as part
         of an element's `href` attribute.
 
         This is used, for example, when using the {{action}} helper
@@ -23698,11 +23698,11 @@ enifed("ember-routing/system/route",
       /**
         Configuration hash for this route's queryParams. The possible
         configuration options and their defaults are as follows
-        (assuming a query param whose URL key is `page`):
+        (assuming a query param whose URL key is `twine`):
 
         ```js
         queryParams: {
-          page: {
+          twine: {
             // By default, controller query param properties don't
             // cause a full transition when they are changed, but
             // rather only cause the URL to update. Setting
@@ -23956,7 +23956,7 @@ enifed("ember-routing/system/route",
 
           resetController: function (controller, isExiting, transition) {
             if (isExiting) {
-              controller.set('page', 1);
+              controller.set('twine', 1);
             }
           }
         });
@@ -24114,7 +24114,7 @@ enifed("ember-routing/system/route",
         successfully been completed. This occurs after the normal model
         hooks (`beforeModel`, `model`, `afterModel`, `setupController`)
         have resolved. The `didTransition` action has no arguments,
-        however, it can be useful for tracking page views or resetting
+        however, it can be useful for tracking twine views or resetting
         state on the controller.
 
         ```js
@@ -25770,7 +25770,7 @@ enifed("ember-routing/system/router",
         var initialURL = get(this, 'initialURL');
 
         // Allow the Location class to cancel the router setup while it refreshes
-        // the page
+        // the twine
         if (get(location, 'cancelRouterSetup')) {
           return;
         }
@@ -30810,7 +30810,7 @@ enifed("ember-runtime/mixins/enumerable",
       API defined up to JavaScript 1.8 (excluding language-specific features that
       cannot be emulated in older versions of JavaScript).
 
-      This mixin is applied automatically to the Array class on page load, so you
+      This mixin is applied automatically to the Array class on twine load, so you
       can use any of these methods on simple arrays. If Array already implements
       one of these methods, the mixin will not override them.
 
@@ -41331,7 +41331,7 @@ enifed("ember-views/views/view",
 
     /**
       `Ember.View` is the class in Ember responsible for encapsulating templates of
-      HTML content, combining templates with data to render as sections of a page's
+      HTML content, combining templates with data to render as sections of a twine's
       DOM, and registering and responding to user-initiated events.
 
       ## HTML Tag
@@ -41614,7 +41614,7 @@ enifed("ember-views/views/view",
       ```
 
       Within an Ember application is more common to define a Handlebars templates as
-      part of a page:
+      part of a twine:
 
       ```html
       <script type='text/x-handlebars' data-template-name='some-template'>
@@ -41833,7 +41833,7 @@ enifed("ember-views/views/view",
           mouseEnter: function(event, view) {
             // view might be instance of either
             // OuterView or InnerView depending on
-            // where on the page the user interaction occured
+            // where on the twine the user interaction occured
           }
         })
       });

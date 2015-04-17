@@ -1224,7 +1224,7 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
   left: 75%;
 }
 /* Do Not Move - Must Come Before display:block for Gecko */
-/* Hide sub submneus on page load */
+/* Hide sub submneus on twine load */
 #sidebar ul.menu li:hover ul ul,
 #sidebar ul.menu li:hover ul ul ul,
 #sidebar ul.menu li.iehover ul ul,
@@ -1332,7 +1332,7 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
   left: -75%;
 }
 /* Do Not Move - Must Come Before display:block for Gecko */
-/* Hide sub submenus on page load */
+/* Hide sub submenus on twine load */
 #sidebar-2 ul.menu li:hover ul ul,
 #sidebar-2 ul.menu li:hover ul ul ul,
 #sidebar-2 ul.menu li.iehover ul ul,
@@ -1809,8 +1809,8 @@ div.pagination ul li {
   padding: 2px 5px;
   margin: 0 2px;
 }
-/* current page */
-/* linked pages */
+/* current twine */
+/* linked twines */
 /*** TOC ***/
 /* Article Index Container*/
 #article-index {

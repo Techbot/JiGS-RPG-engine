@@ -75,7 +75,7 @@ var Slimbox = (function() {
 
 	function keyDown(event) {
 		var code = event.code;
-		// Prevent default keyboard action (like navigating inside the page)
+		// Prevent default keyboard action (like navigating inside the twine)
 		return options.closeKeys.contains(code) ? close()
 			: options.nextKeys.contains(code) ? next()
 			: options.previousKeys.contains(code) ? previous()

@@ -188,7 +188,7 @@ foreach ($this->pages as $page)
     }
     $text .= $open;
     $image_ = $page->image;
-    $text .= "<img src ='components/com_battle/images/pages/miniatures/" . $image_ ."'>";
+    $text .= "<img src ='components/com_battle/images/twines/miniatures/" . $image_ ."'>";
     $text .= $close;
     $text .= "</div>";
     echo $text;

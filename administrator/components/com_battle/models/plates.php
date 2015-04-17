@@ -1,21 +1,21 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.model');
-class battleModelPages extends JModel
+class battleModelPlates extends JModel
 {
 	var $_data = null;
 	function &getData()
 	{
 		if (empty($this->_data))
 		{
-			$query = "SELECT * FROM `#__jigs_pages`";
+			$query = "SELECT * FROM `#__jigs_plates`";
 			$this->_data = $this->_getList($query);
 		}
 		return $this->_data;
 	}
 	function getpage()
 	{
-		$query = "SELECT * FROM `#__jigs_pages`";
+		$query = "SELECT * FROM `#__jigs_plates`";
 		$this->_data2 = $this->_getList($query);
 		//	echo $query;
 		//	print_r($this->_data2);
@@ -25,7 +25,7 @@ class battleModelPages extends JModel
 	{
 		//	echo $building ;
 		$db =& JFactory::getDBO();
-		$query = "INSERT INTO `#__jigs_pages` (`page`) VALUES ($page)  ON DUPLICATE KEY UPDATE `unused`=0 ";
+		$query = "INSERT INTO `#__jigs_plates` (`twine`) VALUES ($page)  ON DUPLICATE KEY UPDATE `unused`=0 ";
 		$db->setQuery($query);
 		return  $db->query();
 	}
@@ -38,7 +38,7 @@ class battleModelPages extends JModel
         {
             $cids = implode(',',$cid);
             $query = "
-				DELETE FROM #__jigs_pages
+				DELETE FROM #__jigs_pag__jigs_plateses
 				WHERE id IN ($cids)
 				";
             $db->setQuery($query);

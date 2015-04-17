@@ -86,7 +86,7 @@ class BattleController extends JController
         $user       = JFactory::getUser();
         $view       = JRequest::getVar('view');
 
-        if ($view=='factions'||$view=='group'||$view=='canvas'||$view=='hobbits'||$view=='hobbit'||$view=='phaser'||$view=='page')
+        if ($view=='factions'||$view=='group'||$view=='canvas'||$view=='hobbits'||$view=='hobbit'||$view=='phaser'||$view=='twine')
         {
             JRequest::setVar('view', $view);
             //$view = $this->getView($view, 'html') ;

@@ -43,7 +43,7 @@ defined('_JEXEC') or die('Restricted access');
  *		 $list[end]
  *			 [data]		: string
  *			 [active]	: boolean
- *		 $list[pages]
+ *		 $list[twines]
  *			 [{PAGE}][data]		: string
  *			 [{PAGE}][active]	: boolean
  *
@@ -89,7 +89,7 @@ function pagination_list_render($list)
 	$html .= $list['start']['data'];
 	$html .= $list['previous']['data'];
 
-	foreach( $list['pages'] as $page )
+	foreach( $list['twines'] as $page )
 	{
 		if($page['data']['active']) {
 			// $html .= '<strong>';
