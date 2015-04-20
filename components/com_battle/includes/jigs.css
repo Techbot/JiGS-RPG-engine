@@ -2354,3 +2354,59 @@ color: #fff;
 .instructions form > h2 {
   margin: 10px 0;
 }
+
+.hacker_rig {
+	background: url(../images/hacker_rig.jpg) no-repeat 50% 0;
+	padding: 1em;
+	min-height: 250px;
+	color: #fff;
+	position: relative;
+}
+
+.hacker_rig > div {
+	position: absolute;
+	background-color: rgba(0, 153, 153, 0.8);
+	padding: 0 1em;
+}
+
+.hacker_rig .level {
+	top: 25px;
+	left: 20px;
+}
+
+.hacker_rig .system {
+	top: 10px;
+	right: 20px;
+}
+
+.hacker_rig .speed {
+	top: 100px;
+	left: 90px;
+}
+
+.hacker_rig .firewall {
+	top: 142px;
+	left: 60px;
+}
+
+.hacker_rig .modem {
+	bottom: 12px;
+	left: 10px;
+}
+
+.hacker_rig .ip {
+	bottom: 12px;
+	left: 110px;
+}
+
+.hacker_rig span.label {
+	border-radius: 0.25em;
+	color: #fff;
+	text-shadow: 1px 1px 1px #000;
+	background: transparent;
+	font-weight: 400;
+	text-align: left;
+	text-transform: uppercase;
+	padding: 0;
+}
+

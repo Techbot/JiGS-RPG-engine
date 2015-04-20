@@ -117,7 +117,7 @@ playState[1] = {
         }
 
         ////////////////// load portals
-        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portal_1.png', 64, 64, 1);
+        game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portals_1.png', 64, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/portals_2.png', 64, 64, 1);
         game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/portals_3.png', 64, 64, 1);
 
