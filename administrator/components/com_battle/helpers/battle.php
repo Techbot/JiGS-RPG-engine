@@ -92,8 +92,8 @@ class BattleHelper
 
         JSubMenuHelper::addEntry(
             JText::_('COM_BATTLE_SUBMENU_PLATES'),
-            'index.php?option=com_battle&view=plates',
-            $vName == 'plates'
+            'index.php?option=com_battle&view=plate',
+            $vName == 'plate'
         );
 
 

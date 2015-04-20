@@ -5,7 +5,7 @@ JToolBarHelper::publishList();
 JToolBarHelper::unpublishList();
 JToolBarHelper::preferences('com_battle');
 JToolBarHelper::editList();
-JToolBarHelper::deleteList('Are you sure you want to delete plates?');
+JToolBarHelper::deleteList('Are you sure you want to delete plate?');
 JToolBarHelper::addNew();
 ?>
 <form action="index.php" method="post" name="adminForm">

@@ -120,7 +120,7 @@ function get_everything(dest){
             {
                 players_list = result;
 
-                jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_twiness&format=raw', function(result)
+                jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_twines&format=raw', function(result)
                 {
                     twines_list = result;
 
@@ -128,7 +128,7 @@ function get_everything(dest){
                     {
                         terminals_list = result;
 
-                        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_terminals&format=raw', function(result)
+                        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_plates&format=raw', function(result)
                         {
                             plates_list = result;
 
@@ -227,7 +227,6 @@ function church() {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function npc(one,two) {
-
     two.body.enable =false;
 
     jQuery.ajax({
@@ -237,7 +236,6 @@ function npc(one,two) {
     }).done(function(result) {
         two.body.enable =true;
         document.getElementById("npc").innerHTML=result;
-
         document.getElementById("npc").show();
         document.getElementById("world").hide();
         document.getElementById("building").hide();
@@ -250,7 +248,6 @@ function npc(one,two) {
 
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function page(one,two) {
    // two.body.enable =false;
@@ -267,6 +264,40 @@ function page(one,two) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function plate(one,two) {
+    // two.body.enable =false;
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=plate&id="+ two.key,
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        //   two.body.enable =true;
+        document.getElementById("world").hide();
+        document.getElementById("plates").innerHTML=result;
+        document.getElementById("plates").show();
+        //loadUp();//not yet
+
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function twine(one,two) {
+    // two.body.enable =false;
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&view=twine&id="+ two.key,
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        //   two.body.enable =true;
+        document.getElementById("mainbody").innerHTML=result;
+        //loadUp();//not yet
+
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

@@ -1,4 +1,4 @@
-<?php // @version $Id: default.php 12352 2009-06-24 13:52:57Z ian $
+<?php // @version $Id: default_json.php 12352 2009-06-24 13:52:57Z ian $
 defined( '_JEXEC' ) or die( 'Restricted access' );
  ?>
 <?php if($this->params->get('show_page_title',1)) : ?>

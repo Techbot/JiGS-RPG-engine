@@ -22,7 +22,7 @@ class BattleControllerplates extends JController
     function save()
     {
         //JRequest::checkToken() or jexit( 'Invalid Token' );
-        $row =& JTable::getInstance('plates', 'Table');
+        $row =& JTable::getInstance('plate', 'Table');
         if (!$row->bind(JRequest::get('post')))
         {
             JError::raiseError(500, $row->getError() );
@@ -32,7 +32,7 @@ class BattleControllerplates extends JController
             JError::raiseError(500, $row->getError() );
         }
         if(JRequest::getVar('task')=='apply'){
-            $this->setRedirect('index.php?option=com_battle&controller=plates&task=edit&cid='.$row->id, 'plate Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=plate&task=edit&cid='.$row->id, 'plate Saved');
         }
         else{
         $this->setRedirect('index.php?option=com_battle&view=plate', 'plate Saved');
@@ -43,17 +43,17 @@ class BattleControllerplates extends JController
     function remove()
     {
         $cid        = JRequest::getVar( 'cid', array(0), '', 'array' );
-        $model      = $this->getModel('plates');
+        $model      = $this->getModel('plate');
         if(!$model->deletepage($cid))
         {
-            $msg = JText::_("One or more plates could not be deleted");
+            $msg = JText::_("One or more plate could not be deleted");
         }
         else
         {
-            $msg = JText::_("plates deleted");
+            $msg = JText::_("plate deleted");
         }
 
-        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plate', $msg);
     }
 
 
@@ -61,7 +61,7 @@ class BattleControllerplates extends JController
     {
 //        global $option;
         $cid = JRequest::getVar('cid', array());
-        $row = JTable::getInstance('plates', 'Table');
+        $row = JTable::getInstance('plate', 'Table');
         $publish = 1;
         if($this->getTask() == 'unpublish')
         {
@@ -87,7 +87,7 @@ class BattleControllerplates extends JController
             $msg .= ' published';
         }
        // $this->setRedirect('index.php?option=' . $option, $msg);
-        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plate', $msg);
     }
 
 

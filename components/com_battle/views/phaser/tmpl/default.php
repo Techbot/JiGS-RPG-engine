@@ -1,4 +1,3 @@
-
         <!--link href="/components/com_battle/views/phaser/tmpl/_site/css/phaser-examples.css" media="screen" rel="stylesheet" type="text/css"-->
         <!-- Phaser -->
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
@@ -23,8 +22,10 @@
             var add_assets = new Array();
             var add_npc = new Array();
             var add_players = new Array();
+            var add_plates = new Array();
             var add_pages = new Array();
             var add_terminals = new Array();
+            var add_twines = new Array();
 
             var boundsX1 = new Array();
             var boundsY1 = new Array();
@@ -46,7 +47,8 @@
 
             var npc_list = new Array();
             var terminals_list = new Array();
-
+            var twines_list = new Array();
+            var plates_list = new Array();
 
             var send = 1;
         </script>
@@ -60,3 +62,5 @@
         <div id ="npc"></div>
         <div id ="player"></div>
         <div id ="terminal"></div>
+        <div id ="twines"></div>
+        <div id ="plates"></div>

@@ -26,16 +26,16 @@ if ($this->player->id == 0){
     //script.type = "text/javascript";
     //script.src = '<?php echo $this->baseurl; ?>/components/com_battle/includes/character.js';
     //head.appendChild(script);
-        var message = [];
-        var gameForm =  ' Your Input:<input type="text" id="answer"> <input type ="button" id ="enter" onclick="yourMove()" value = "enter">';
-        var stage = 1;
-        var number = 1;
-        var irc_complete = false;
-        var email_complete = false;
-        var ftp_complete = false;
-        var complete = false;
-        var attempts = 9;
-        var message={};
+        var message         = [];
+        var gameForm        =  ' Your Input:<input type="text" id="answer"> <input type ="button" id ="enter" onclick="yourMove()" value = "enter">';
+        var stage           = 1;
+        var number          = 1;
+        var irc_complete    = false;
+        var email_complete  = false;
+        var ftp_complete    = false;
+        var complete        = false;
+        var attempts        = 9;
+        var message         ={};
         var http_message;
 
     stuff();
@@ -54,29 +54,23 @@ if ($this->player->id == 0){
     });
     function stuff()
         {
-            var output = document.getElementById("container");  // Get the content of the container element
-            var input = document.getElementById("input_form");// Get the content of the input_form element
-            var http = document.getElementById("http");// Get the content of the http element. This is where we show the percentage complete by displaying the ip address segments
+            var output          = document.getElementById("container");  // Get the content of the container element
+            var input           = document.getElementById("input_form");// Get the content of the input_form element
+            var http            = document.getElementById("http");// Get the content of the http element. This is where we show the percentage complete by displaying the ip address segments
             define_messages();
-            output.innerHTML = message[1];// The first message is displayed
-            input.innerHTML = gameForm;
+            output.innerHTML    = message[1];// The first message is displayed
+            input.innerHTML     = gameForm;
          }  
         function yourMove()
         {
-            output = document.getElementById("container");  //Duplicated code. How would you suggest it be refactored?
-            input = document.getElementById("input_form"); 
-            
-            answer = document.getElementById("answer").value;
-         
+            output              = document.getElementById("container");  //Duplicated code. How would you suggest it be refactored?
+            input               = document.getElementById("input_form");
+            answer              = document.getElementById("answer").value;
             define_stages();
             define_messages();// messages needs to be redifined each time because one of the messages is dynamic. Can you think of a better way?
-           
-           
-           
-           
             // After each stage is configured print to screen ////
-            output.innerHTML = message[number];
-            input.innerHTML= gameForm;
+            output.innerHTML    = message[number];
+            input.innerHTML     = gameForm;
             if (stage > 1)
             {
                 http.innerHTML = completed();

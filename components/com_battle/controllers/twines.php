@@ -41,6 +41,9 @@ class BattleControllerPages extends JController
     }
     function remove()
     {
+
+        echo "hi";
+        exit();
         $cid        = JRequest::getVar( 'cid', array(0), '', 'array' );
         $model      = $this->getModel('twines');
         if(!$model->deletepage($cid))

@@ -1,5 +1,5 @@
 <?php
-// @version $Id: default.php 15183 2010-03-04 23:15:59Z ian $
+// @version $Id: default_json.php 15183 2010-03-04 23:15:59Z ian $
 defined('_JEXEC') or die('Restricted access');
 ?>
 

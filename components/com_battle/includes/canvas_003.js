@@ -24,46 +24,46 @@
 
 	var destX = 260;
 	var destY = 50;
-	imageObj.src = "/components/com_battle/images/plates/sprite-voodoo-woman.png";
+	imageObj.src = "/components/com_battle/images/plate/sprite-voodoo-woman.png";
 
 
 	var imageObj2 = new Image();
 
 	var destX2 = 0;
 	var destY2 = 415;
-	imageObj2.src = "/components/com_battle/images/plates/walk.png";
+	imageObj2.src = "/components/com_battle/images/plate/walk.png";
 	var number=1;
 
 
 	var imageBgObj= {};	
 			
     imageBgObj[1] = new Image();
-	imageBgObj[1].src = "/components/com_battle/images/plates/bg.jpg";
+	imageBgObj[1].src = "/components/com_battle/images/plate/bg.jpg";
 
 
     imageBgObj[2] = new Image();
-	imageBgObj[2].src = "/components/com_battle/images/plates/np-dream.jpg";
+	imageBgObj[2].src = "/components/com_battle/images/plate/np-dream.jpg";
 
     imageBgObj[3] = new Image();
-	imageBgObj[3].src = "/components/com_battle/images/plates/ta-cafe_aubette.jpg";
+	imageBgObj[3].src = "/components/com_battle/images/plate/ta-cafe_aubette.jpg";
 
     imageBgObj[4] = new Image();
-	imageBgObj[4].src = "/components/com_battle/images/plates/ty-landscape.jpg";
+	imageBgObj[4].src = "/components/com_battle/images/plate/ty-landscape.jpg";
 
     imageBgObj[5] = new Image();
-	imageBgObj[5].src = "/components/com_battle/images/plates/ty-white.jpg";
+	imageBgObj[5].src = "/components/com_battle/images/plate/ty-white.jpg";
 
     imageBgObj[6] = new Image();
-	imageBgObj[6].src = "/components/com_battle/images/plates/ty-waiting.jpg";
+	imageBgObj[6].src = "/components/com_battle/images/plate/ty-waiting.jpg";
 
     imageBgObj[7] = new Image();
-	imageBgObj[7].src = "/components/com_battle/images/plates/ty- surrealist_landscape.jpg";
+	imageBgObj[7].src = "/components/com_battle/images/plate/ty- surrealist_landscape.jpg";
 
     imageBgObj[8] = new Image();
-	imageBgObj[8].src = "/components/com_battle/images/plates/ty-destroy.jpg";
+	imageBgObj[8].src = "/components/com_battle/images/plate/ty-destroy.jpg";
 
 	var imageGridObj = new Image();
-	imageGridObj.src = "/components/com_battle/images/plates/guides50x50.png";	
+	imageGridObj.src = "/components/com_battle/images/plate/guides50x50.png";
 	
 	var smallX = 0;
 	var pause = 15;

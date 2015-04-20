@@ -73,14 +73,14 @@ playState[1] = {
         }
 
 
-        ///////////////////// load plates
+        ///////////////////// load plate
         if(plates_list.length != 0) {
 
             for (var index = 0; index < plates_list.length; index++) {
                 var filename = plates_list[index].image;
                 var key = plates_list[index].id;
                 //  console.log("filename : " + filename);
-                game.load.image( key, '/components/com_battle/images/plates/' + filename);
+                game.load.image( key, '/components/com_battle/images/plate/' + filename);
             }
         }
 
@@ -181,7 +181,7 @@ playState[1] = {
         for (var index = 0; index < plates_list.length; index++) {
             //var filename = twines_list[index].image;
             var key = plates_list[index].id;
-            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/plates/' + filename );
+            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/plate/' + filename );
         }
         //////////////////// cache terminals_list
         for (var index = 0; index < terminals_list.length; index++) {
@@ -236,20 +236,18 @@ playState[1] = {
                 add_building[index].body.velocity = 0;
             }
         }
-
-
         ///////////////////////place twines//////
         if(twines_list.length != 0) {
             for (var index = 0; index < twines_list.length; index++) {
                 var key = twines_list[index].id;
                 //console.log("_" + key);
-                add_pages[index] = game.add.sprite(twines_list[index].posx * 1, twines_list[index].posy * 1, key);
-                add_pages[index].id = key;
-                game.physics.enable(add_pages[index], Phaser.Physics.ARCADE);
+                add_twines[index] = game.add.sprite(twines_list[index].posx * 1, twines_list[index].posy * 1, key);
+                add_twines[index].id = key;
+                game.physics.enable(add_twines[index], Phaser.Physics.ARCADE);
                 //add_pages[index].body.velocity = 0;
             }
         }
-        ///////////////////////place plates//////
+        ///////////////////////place plate//////
         if(plates_list.length != 0) {
             for (var index = 0; index < plates_list.length; index++) {
                 var key = plates_list[index].id;
@@ -357,15 +355,15 @@ playState[1] = {
         {
             this.physics.arcade.collide(sprite, add_npc[index], npc);
         }
-        ///////////////////////collide plates list
+        ///////////////////////collide plate list
         for (var index = 0; index < plates_list.length; index++)
         {
-            this.physics.arcade.collide(sprite, add_plates[index], npc);
+            this.physics.arcade.collide(sprite, add_plates[index], plate);
         }
         ///////////////////////collide twines_list
         for (var index = 0; index < twines_list.length; index++)
         {
-            this.physics.arcade.collide(sprite, add_pages[index], page);
+            this.physics.arcade.collide(sprite, add_twines[index], twine);
         }
         ///////////////////////collide terminals_list
         for (var index = 0; index < terminals_list.length; index++)

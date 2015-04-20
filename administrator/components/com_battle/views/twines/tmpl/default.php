@@ -32,10 +32,10 @@ JToolBarHelper::addNew();
     jimport('joomla.filter.output');
         $k = 0;
         for ($i=0, $n=count( $this->rows ); $i < $n; $i++){
-            $row = &$this->rows[$i];
-            $checked = JHTML::_('grid.id', $i, $row->id );
-            $published = JHTML::_('grid.published', $row, $i );
-            $link = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=twines&cid[]='. $row->id );
+            $row            = $this->rows[$i];
+            $checked        = JHTML::_('grid.id', $i, $row->id );
+            $published      = JHTML::_('grid.published', $row, $i );
+            $link           = JFilterOutput::ampReplace( 'index.php?option=com_battle&task=edit&controller=twines&cid[]='. $row->id );
             ?>
             <tr class="<?php echo "$k"; ?>">
                 <td>
@@ -45,10 +45,10 @@ JToolBarHelper::addNew();
                     <?php echo $row->id; ?>
                 </td>
                 <td>
-                    <a href="<?php echo $link; ?>"> <img src="/components/com_battle/images/pages/miniatures/<?php echo $row->image ?>" height = '50px' width='50px' >
+                    <a href = "<?php echo $link; ?>"> <img src="/components/com_battle/images/pages/miniatures/<?php echo $row->image ?>" height = '50px' width='50px' >
                     </a>
                 </td>
-                <td><a href="<?php echo $link; ?>"><?php echo $row->name; ?></a></td>
+                <td><a href = "<?php echo $link; ?>"><?php echo $row->name; ?></a></td>
                 <td><?php echo $row->type; ?></td>
                 <td><?php echo $row->level; ?></td>
                 <td><?php echo $row->comment; ?></td>

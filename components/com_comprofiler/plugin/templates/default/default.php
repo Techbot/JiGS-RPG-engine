@@ -1,7 +1,7 @@
 <?php
 /**
  * Core CB default template for user profiles rendering
- * @version $Id: default.php 1323 2010-12-02 18:21:41Z beat $
+ * @version $Id: default_json.php 1323 2010-12-02 18:21:41Z beat $
  * @package Community Builder
  * @subpackage Default CB template
  * @author Beat

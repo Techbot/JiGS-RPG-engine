@@ -137,26 +137,40 @@ class BattleModelMap extends JModel{
 
     function get_twines()
     {
-        $db =& JFactory::getDBO();
-        $user =& JFactory::getUser();
+        $db         = JFactory::getDBO();
+        $user       = JFactory::getUser();
         $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
-        $result = $db->loadRow();
-        $map = $result[0];
-        $grid = $result[1];
+        $result     = $db->loadRow();
+        $map        = $result[0];
+        $grid       = $result[1];
         $db->setQuery("SELECT * FROM #__jigs_twines WHERE grid ='".$grid."' AND published ='1'");
-        $result = $db->loadObjectlist();
+        $result     = $db->loadObjectlist();
         return $result;
     }
+
+    function get_plates()
+    {
+        $db         = JFactory::getDBO();
+        $user       = JFactory::getUser();
+        $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
+        $result     = $db->loadRow();
+        $map        = $result[0];
+        $grid       = $result[1];
+        $db->setQuery("SELECT * FROM #__jigs_plates WHERE grid ='$grid' AND published ='1'");
+        $result     = $db->loadObjectlist();
+        return $result;
+    }
+
     function get_terminals()
     {
-        $db = JFactory::getDBO();
-        $user = JFactory::getUser();
+        $db         = JFactory::getDBO();
+        $user       = JFactory::getUser();
         $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
-        $result = $db->loadRow();
-        $map = $result[0];
-        $grid = $result[1];
+        $result     = $db->loadRow();
+        $map        = $result[0];
+        $grid       = $result[1];
         $db->setQuery("SELECT * FROM #__jigs_terminals WHERE grid ='".$grid."' AND published ='1'");
-        $result = $db->loadObjectlist();
+        $result     = $db->loadObjectlist();
         return $result;
     }
     function get_players()

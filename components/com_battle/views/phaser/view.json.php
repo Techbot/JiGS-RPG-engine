@@ -11,25 +11,25 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'t
 
 class battleViewSingle extends JView
 {	
-	function display($tpl = "")
-	{
-		$model		= JModel::getInstance('single','BattleModel');
-		$backlink	= JRoute::_('index.php?option=com_battle');
+    function display($tpl = "")
+    {
+        $model		= JModel::getInstance('single','BattleModel');
+        $backlink	= JRoute::_('index.php?option=com_battle');
 
-		$this->assignRef('backlink', $backlink);
-		$model->savecoord();
-		$this->assignRef('player_pos',$model->getcoord());
-		$this->assignRef('grid',$model->getgrid());
-		$this->assignRef('characters',$model->getchars());
+        $this->assignRef('backlink', $backlink);
+        $model->savecoord();
+        $this->assignRef('player_pos',$model->getcoord());
+        $this->assignRef('grid',$model->getgrid());
+        $this->assignRef('characters',$model->getchars());
 
-		$map		= JTable::getInstance('maps', 'Table');
-		$map->load($this->player_pos[2]);
-		
-		$this->assignRef('row', $map);
-		$this->assignRef('players',$model->getplayers());
-		$this->assignRef('buildings',$model->getbuildings());	
-		$this->assignRef('twines',$model->getpages());
-		//print_r($model->getbuildings());
-		parent::display($tpl);
-	}
+        $map		= JTable::getInstance('maps', 'Table');
+        $map->load($this->player_pos[2]);
+
+        $this->assignRef('row', $map);
+        $this->assignRef('players',$model->getplayers());
+        $this->assignRef('buildings',$model->getbuildings());
+        $this->assignRef('twines',$model->getpages());
+        //print_r($model->getbuildings());
+        parent::display($tpl);
+    }
 }

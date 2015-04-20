@@ -145,7 +145,7 @@ module.exports = function (grunt) {
       options: {
         inject: 'js/tests/unit/phantom.js'
       },
-      files: 'js/tests/default.php'
+      files: 'js/tests/default_json.php'
     },
 
     less: {
@@ -363,7 +363,7 @@ module.exports = function (grunt) {
           build: process.env.TRAVIS_JOB_ID,
           concurrency: 10,
           maxRetries: 3,
-          urls: ['http://127.0.0.1:3000/js/tests/default.php'],
+          urls: ['http://127.0.0.1:3000/js/tests/default_json.php'],
           browsers: grunt.file.readYAML('grunt/sauce_browsers.yml')
         }
       }

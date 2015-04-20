@@ -13,7 +13,7 @@ $templateparams =$app->getTemplate(true)->params;
 
 if (!$templateparams->get('html5', 0))
 {
-	require JPATH_BASE.'/components/com_content/views/category/tmpl/default.php';
+	require JPATH_BASE.'/components/com_content/views/category/tmpl/default_json.php';
 	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
 } else {
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');

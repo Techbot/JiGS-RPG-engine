@@ -117,6 +117,8 @@ function show_world(){
     document.getElementById("building").hide();
     document.getElementById("world").show();
     document.getElementById("terminal").hide();
+    document.getElementById("twines").hide();
+    document.getElementById("plates").hide();
     game.state.start('next');
 }
 

@@ -4,10 +4,10 @@ jimport( 'joomla.application.component.view');
 
 class BattleViewPlates extends JView
 {	
-	function display($tpl = null)
-	{
-		$rows =& $this->get('data');
-		$this->assignRef('rows', $rows);
-		parent::display($tpl);
-	}
+    function display($tpl = null)
+    {
+        $rows =& $this->get('data');
+        $this->assignRef('rows', $rows);
+        parent::display($tpl);
+    }
 }

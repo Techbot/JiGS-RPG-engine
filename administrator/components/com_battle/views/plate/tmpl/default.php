@@ -4,21 +4,21 @@ JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
 if ($this->row->id)
 {
-	JToolBarHelper::title( JText::_( 'Edit Page Profile' ), 'addedit.png' );
+    JToolBarHelper::title( JText::_( 'Edit Page Profile' ), 'addedit.png' );
 }
 else
 {
-	JToolBarHelper::title( JText::_( 'Add Page Profile' ), 'addedit.png' );
+    JToolBarHelper::title( JText::_( 'Add Page Profile' ), 'addedit.png' );
 }
 JToolBarHelper::save();
 JToolBarHelper::apply();
 if ($this->row->id)
 {
-	JToolBarHelper::cancel( 'cancel', 'Close' );
+    JToolBarHelper::cancel( 'cancel', 'Close' );
 }
 else
 {
-	JToolBarHelper::cancel();
+    JToolBarHelper::cancel();
 }
 ?>
 <form action="index.php" method="post" name="adminForm" id="adminForm">
@@ -27,7 +27,7 @@ else
     <table class="admintable">
     <tr>
       <td width="100" align="right" class="key">
-	id:
+    id:
       </td>
       <td>
        <?php echo $this->row->id;?>
@@ -35,69 +35,69 @@ else
     </tr>
      <tr>
       <td width="100" align="right" class="key">
-	Name:
+    Name:
       </td>
       <td>
-	<input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
+    <input class="text_area" type="text" name="name" id="name" size="50" maxlength="250" value="<?php echo $this->row->name;?>" />
       </td>
     </tr>
       <tr>
       <td width="100" align="right" class="key">
-	posy:
+    posy:
       </td>
       <td>
-	<input class="text_area" type="text" name="posy" id="posy" size="50" maxlength="250" value="<?php echo $this->row->posy;?>" />
+    <input class="text_area" type="text" name="posy" id="posy" size="50" maxlength="250" value="<?php echo $this->row->posy;?>" />
       </td>
     </tr>
        <tr>
       <td width="100" align="right" class="key">
-	posx:
+    posx:
       </td>
       <td>
-	<input class="text_area" type="text" name="posx" id="posx" size="50" maxlength="250" value="<?php echo $this->row->posx;?>" />
+    <input class="text_area" type="text" name="posx" id="posx" size="50" maxlength="250" value="<?php echo $this->row->posx;?>" />
       </td>
     </tr>     
       <tr>
       <td width="100" align="right" class="key">
-	type:
+    type:
       </td>
       <td>
-	<input class="text_area" type="text" name="type" id="type" size="50" maxlength="250" value="<?php echo $this->row->type;?>" />
+    <input class="text_area" type="text" name="type" id="type" size="50" maxlength="250" value="<?php echo $this->row->type;?>" />
       </td>
     </tr>
       <tr>
       <td width="100" align="right" class="key">
-	details:
+    details:
       </td>
       <td>
-	<input class="text_area" type="text" name="details" id="details" size="50" maxlength="250" value="<?php echo $this->row->details;?>" />
+    <input class="text_area" type="text" name="details" id="details" size="50" maxlength="250" value="<?php echo $this->row->details;?>" />
       </td>
     </tr>		
 
       <tr>
       <td width="100" align="right" class="key">
-	image:
+    image:
       </td>
       <td>
-	<input class="text_area" type="text" name="image" id="image" size="50" maxlength="250" value="<?php echo $this->row->image;?>" />
+    <input class="text_area" type="text" name="image" id="image" size="50" maxlength="250" value="<?php echo $this->row->image;?>" />
       </td>
     </tr>	
-	<tr>
+    <tr>
       <td width="100" align="right" class="key">
-	grid:
+    grid:
       </td>
       <td>
-	<input class="text_area" type="text" name="grid" id="grid" size="50" maxlength="250" value="<?php echo $this->row->grid;?>" />
+    <input class="text_area" type="text" name="grid" id="grid" size="50" maxlength="250" value="<?php echo $this->row->grid;?>" />
       </td>
     </tr>   	
 
 
       <tr>
       <td width="100" align="right" class="key">
-	map:
+    map:
       </td>
       <td>
-	<input class="text_area" type="text" name="map" id="map" size="50" maxlength="250" value="<?php echo $this->row->map;?>" />
+    <input class="text_area" type="text" name="map" id="map" size="50" maxlength="250" value="<?php echo $this->row->map;?>" />
       </td>
     </tr>
 
@@ -136,32 +136,21 @@ else
                 <input class="text_area" type="text" name="timer" id="timer" size="50" maxlength="250" value="<?php echo $this->row->timer;?>" />
             </td>
         </tr>
-
-
         <tr>
 
-
-
-
-
       <td width="100" align="right" class="key">
-			access
+            access
       </td>
-      
-      
-      
-      
-      
       
       <td>
-	<input class="text_area" type="text" name="map3333" id="grid" size="50" maxlength="250" value="" />
+    <input class="text_area" type="text" name="map3333" id="grid" size="50" maxlength="250" value="" />
       </td>
-    </tr>	  		
+    </tr>
     </table>
   </fieldset>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
   <input type="hidden" name="option" value="com_battle" />
-      <input type="hidden" name="controller" value="pages" />
+      <input type="hidden" name="controller" value="plates" />
   <input type="hidden" name="task" value="" />
   <?php echo JHTML::_( 'form.token' ); ?>
 </form>

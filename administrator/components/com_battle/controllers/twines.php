@@ -39,6 +39,22 @@ class BattleControllerTwines extends JController
         }
         $this->display();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function remove()
     {
         $cid        = JRequest::getVar( 'cid', array(0), '', 'array' );
@@ -54,6 +70,12 @@ class BattleControllerTwines extends JController
 
         $this->setRedirect('index.php?option=com_battle&view=twines', $msg);
     }
+
+
+
+
+
+
     function publish()
     {
 //      global $option;

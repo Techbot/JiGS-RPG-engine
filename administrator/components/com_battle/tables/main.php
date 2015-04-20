@@ -7,12 +7,12 @@ defined('_JEXEC') or die('Restricted access');
 
 class TableMain extends JTable
 {
-	var $id = null;
-	var $name = null;	
-	function __construct(&$db)
-	{
-		parent::__construct( '#__jigs_main', 'id', $db );
-	}
+    var $id = null;
+    var $name = null;
+    function __construct(&$db)
+    {
+        parent::__construct( '#__jigs_main', 'id', $db );
+    }
         /**
          * Overloaded bind function
          *

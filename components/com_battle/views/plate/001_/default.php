@@ -33,7 +33,7 @@
 
 </div><!-- end page -->
 
-<script src=/components/com_battle/views/plates/001_/script.js></script>
+<script src=/components/com_battle/views/plate/001_/script.js></script>
 	
 	</body>
 	</html>

@@ -2,7 +2,7 @@
 
 jimport( 'joomla.methods' ); 
 if ($this->player->id == 0){
-	$this->player->name = 'The King';
+    $this->player->name = 'The King';
 }
 //echo 'test:';
 // print_r($this->buildings);
@@ -28,8 +28,8 @@ $body ='
       
       <div class="desc">
         <img src="components/com_battle/images/buildings/'.$this->buildings->image  . '"
-		class="thumbnail" alt="' . $this->buildings->name . ' title="' . $this->buildings->name . '"
-		width="100" height="100" id="building_image" />
+        class="thumbnail" alt="' . $this->buildings->name . ' title="' . $this->buildings->name . '"
+        width="100" height="100" id="building_image" />
         <p class="desc">' . $this->buildings->comment  . '</p>
       </div><!-- end desc -->
 
@@ -100,59 +100,59 @@ $body ='
       <div class="instructions">';
 
 
-	if ($this->buildings->owner == 0)
-	{
-		if ($this->buildings->type == 'bank')
-		{
-			$body .= $this->loadTemplate ("board_info_bank");
-		}else
-		{
-			$body .= $this->loadTemplate ("board_info_poster");
-		}
-	}
+    if ($this->buildings->owner == 0)
+    {
+        if ($this->buildings->type == 'bank')
+        {
+            $body .= $this->loadTemplate ("board_info_bank");
+        }else
+        {
+            $body .= $this->loadTemplate ("board_info_poster");
+        }
+    }
 
 
-	if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
-	{
-		$body .= $this->loadTemplate ("board_info_poster");
-	}
+    if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
+    {
+        $body .= $this->loadTemplate ("board_info_poster");
+    }
 
 
-	//if player owned
+    //if player owned
 
-	if ($this->buildings->owner == $this->user->id)
-	{
-		$body .= $this->loadTemplate ("board_info1");
-	}
-	$body .='  </div>
+    if ($this->buildings->owner == $this->user->id)
+    {
+        $body .= $this->loadTemplate ("board_info1");
+    }
+    $body .='  </div>
 
 
-	
-	<div id="action" class="clearfix">
-	';
+
+    <div id="action" class="clearfix">
+    ';
 
 //////////////////////////////   No Owner - Buy Only //////////////////////////////////
-	if ($this->buildings->owner == 0)
-	{
+    if ($this->buildings->owner == 0)
+    {
 
-	if ($this->buildings->type == 'bank')
-			{
-					$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Hack this ' . $this->buildings->type .'</a></div> <!--hack-->';
-			}
+    if ($this->buildings->type == 'bank')
+            {
+                    $body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Hack this ' . $this->buildings->type .'</a></div> <!--hack-->';
+            }
         if ($this->buildings->type == 'farm' ||$this->buildings->type == 'mine'  ||$this->buildings->type == 'factory')
-			{
-					$body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a></div> <!--buy-->';
-			}
+            {
+                    $body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Buy this ' . $this->buildings->type .'</a></div> <!--buy-->';
+            }
 
      if ($this->buildings->type == 'stand' ||$this->buildings->type == 'reprocessor'  ||$this->buildings->type == 'factory')
         {
             $body .=' <div class="buy" ><a href="#" class= "buy" id = "'. $this->buildings->id .'" >Attack this ' . $this->buildings->type .'</a></div> <!--buy-->';
         }
  
-	
-	
-	
-	}
+
+
+
+    }
 /////////////////////////////////////// Owned but not Player Owned //////////////////////////
 if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 ){
   $body .='      <div class= "attack" >
@@ -163,8 +163,8 @@ if ($this->buildings->owner != $this->user->id && $this->buildings->owner != 0 )
 } 
 ///////////////////////////////////// Owned by Player  ////////////////////////// 
 if ($this->buildings->owner == $this->user->id){
-	// echo $this->loadTemplate ('board_info1'); 
-	//  echo $this->loadTemplate ('board_crystals'); 
+    // echo $this->loadTemplate ('board_info1');
+    //  echo $this->loadTemplate ('board_crystals');
 }
 $body .='
       </div><!-- end action -->
@@ -179,19 +179,19 @@ $body .='
 if ($this->buildings->owner == $this->user->id || $this->buildings->public == 1 )
 {
 
-	$body .= $this->loadTemplate ($this->buildings->type);
+    $body .= $this->loadTemplate ($this->buildings->type);
 
 
 }
 elseif ($this->buildings->owner == 0 ||$this->buildings->owner == "")
 {
-	
-	$body .= $this->loadTemplate ($this->buildings->type . "_not_owned");
+
+    $body .= $this->loadTemplate ($this->buildings->type . "_not_owned");
 }
 elseif($this->buildings->owner != $this->user->id )
 {
-	
-	$body .= $this->loadTemplate ($this->buildings->type . "_owned");
+
+    $body .= $this->loadTemplate ($this->buildings->type . "_owned");
 }
 
 
