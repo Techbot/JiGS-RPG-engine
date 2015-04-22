@@ -666,31 +666,21 @@ portal_sourceY3[20] = 704;
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[21] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','ModernDay_A2',
-    'ModernDay_A3',
-    'ModernDay_A4',
-    'ModernDay_A5',
-   'ModernDay_TileB',
-    'ModernDay_TileC',
-    'ModernDay_TileD',
+tile_names[21] = ['TileB','cutnpaste/465411759_a2b3e8d081','sprite'];
 
-
-    'Zombie_A4_EDIT'
-	,'sprite'];
-
-x1[21] = 889;
+x1[21] = 224;
 y1[21] = 0;
 
-x2[21] = 1623;
-y2[21] = 610;
+x2[21] = 416;
+y2[21] = 416;
 
-x3[21] = 640;
-y3[21] = 580;
+x3[21] = 32;
+y3[21] = 384;
 
 boundsX1[21] = 0;
 boundsY1[21] = 0;
-boundsX2[21] = 1600;
-boundsY2[21] = 1600;
+boundsX2[21] = 480;
+boundsY2[21] = 480;
 
 
 portal_dest_1[21] = 34;
@@ -698,14 +688,14 @@ portal_dest_2[21] = 12;
 portal_dest_3[21] = 33;
 
 
-portal_sourceX1[21] = 825;
-portal_sourceY1[21] = 855;
+portal_sourceX1[21] = 224;
+portal_sourceY1[21] = 32;
 
-portal_sourceX2[21] = 825;
-portal_sourceY2[21] = 855;
+portal_sourceX2[21] = 384;
+portal_sourceY2[21] = 384;
 
-portal_sourceX3[21] = 825;
-portal_sourceY3[21] = 855;
+portal_sourceX3[21] = 32;
+portal_sourceY3[21] = 352;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
