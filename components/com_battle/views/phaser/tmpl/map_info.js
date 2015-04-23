@@ -632,29 +632,21 @@ portal_sourceY2[19] = 512;
 portal_sourceX3[19] = 1440;
 portal_sourceY3[19] = 512;
 // /////////////////////////////////////////////////////////////////////
-tile_names[20] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','ModernDay_A2',
-    'ModernDay_A3',
-    'ModernDay_A4',
-    'ModernDay_A5',
-    'ModernDay_TileB',
-    'ModernDay_TileC',
-    'ModernDay_TileD',
-	'sprite'
-];
+tile_names[20] = ['ModernDay_A4','Dungeon_A4','Dungeon_A5','sprite'];
 
-x1[20] = 889;
-y1[20] = 0;
+x1[20] = 704;
+y1[20] = 32;
 
-x2[20] = 1623;
-y2[20] = 610;
+x2[20] = 928;
+y2[20] = 896;
 
-x3[20] = 640;
-y3[20] = 580;
+x3[20] = 64;
+y3[20] = 672;
 
 boundsX1[20] = 0;
 boundsY1[20] = 0;
-boundsX2[20] = 1200;
-boundsY2[20] = 1200;
+boundsX2[20] = 1024;
+boundsY2[20] = 1024;
 
 
 portal_dest_1[20] = 33;
@@ -662,43 +654,33 @@ portal_dest_2[20] = 11;
 portal_dest_3[20] = 32;
 
 
-portal_sourceX1[20] = 825;
-portal_sourceY1[20] = 855;
+portal_sourceX1[20] = 704;
+portal_sourceY1[20] = 64;
 
-portal_sourceX2[20] = 825;
-portal_sourceY2[20] = 855;
+portal_sourceX2[20] = 896;
+portal_sourceY2[20] = 896;
 
-portal_sourceX3[20] = 825;
-portal_sourceY3[20] = 855;
+portal_sourceX3[20] = 96;
+portal_sourceY3[20] = 704;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[21] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','ModernDay_A2',
-    'ModernDay_A3',
-    'ModernDay_A4',
-    'ModernDay_A5',
-   'ModernDay_TileB',
-    'ModernDay_TileC',
-    'ModernDay_TileD',
+tile_names[21] = ['TileB','cutnpaste/465411759_a2b3e8d081','sprite'];
 
-
-    'Zombie_A4_EDIT'
-	,'sprite'];
-
-x1[21] = 889;
+x1[21] = 224;
 y1[21] = 0;
 
-x2[21] = 1623;
-y2[21] = 610;
+x2[21] = 416;
+y2[21] = 416;
 
-x3[21] = 640;
-y3[21] = 580;
+x3[21] = 32;
+y3[21] = 384;
 
 boundsX1[21] = 0;
 boundsY1[21] = 0;
-boundsX2[21] = 1600;
-boundsY2[21] = 1600;
+boundsX2[21] = 480;
+boundsY2[21] = 480;
 
 
 portal_dest_1[21] = 34;
@@ -706,14 +688,14 @@ portal_dest_2[21] = 12;
 portal_dest_3[21] = 33;
 
 
-portal_sourceX1[21] = 825;
-portal_sourceY1[21] = 855;
+portal_sourceX1[21] = 224;
+portal_sourceY1[21] = 32;
 
-portal_sourceX2[21] = 825;
-portal_sourceY2[21] = 855;
+portal_sourceX2[21] = 384;
+portal_sourceY2[21] = 384;
 
-portal_sourceX3[21] = 825;
-portal_sourceY3[21] = 855;
+portal_sourceX3[21] = 32;
+portal_sourceY3[21] = 352;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
