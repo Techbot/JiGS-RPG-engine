@@ -74,7 +74,7 @@ portal_sourceY3[2] = 224;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-tile_names[3] = ['Zombie_A5','Zombie_A3','002-Woods01','032-Heaven01','033-Heaven02','035-Ruins01','039-Tower01','sprite'];
+tile_names[3] = ['Zombie_A5','Zombie_A3','002-Woods01','032-Heaven01','033-Heaven02','035-Ruins01','039-Tower01','World_B','sprite'];
 
 x1[3] = 896;
 y1[3] = 1056;
@@ -534,7 +534,7 @@ portal_sourceX3[16] = 1312;
 portal_sourceY3[16] = 406;
 // /////////////////////////////////////////////////////////////////////
 //// /////////////////////////////////////////////////////////////////////
-tile_names[17] = ['TileA5','Zombie_A4','Zombie_TileB','Zombie_A4_015b','015b','TileE','TileA3','TileB','sprite'];
+tile_names[17] = ['TileA5','Zombie_A4','Zombie_TileB','Zombie_A4_015b','TileE','TileA3','TileB','sprite'];
 assets_name[17] = ['\/Monsters\/Dryad\/$Monster_Dryad'];
 
 assets_name_x[17] = [791];
