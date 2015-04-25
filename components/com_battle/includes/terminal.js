@@ -19,10 +19,20 @@ jQuery(function() {
             dataType: "json"
         }).done(function(result) {
             txt =[];
+
+ /*
             for (var k in result){
                 txt[txt.length] =k + " : " + result[k];
                 //console.log(txt);
              }
+  */
+            txt[0]='|--------------------------------------------------------------------------|'
+            txt[1]='| Id : '+result[id]+'Grid : '+result[grid]+
+
+
+
+
+
             txt.forEach(function (item){
                 scroll(0,item);
             });
