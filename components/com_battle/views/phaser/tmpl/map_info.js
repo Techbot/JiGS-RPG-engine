@@ -267,7 +267,7 @@ portal_sourceX1[8] = 416;
 portal_sourceY1[8] = 96;
 
 portal_sourceX2[8] = 736;
-portal_sourceY2[8] = 832;
+portal_sourceY2[8] = 864;
 
 portal_sourceX3[8] = 192;
 portal_sourceY3[8] = 864;
@@ -508,7 +508,7 @@ x1[16] = 576;
 y1[16] = 992;
 
 x2[16] = 288;
-y2[15] = 512;
+y2[16] = 512;
 
 x3[16] = 1312;
 y3[16] = 384;
