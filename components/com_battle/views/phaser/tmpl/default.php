@@ -53,7 +53,9 @@
             var send = 1;
         </script>
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/playstate00.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate01.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/playstate02.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>

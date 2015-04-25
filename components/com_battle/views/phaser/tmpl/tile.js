@@ -1,5 +1,8 @@
 var game = new Phaser.Game(636, 500, Phaser.AUTO, "world");
 
+game.state.add('login', playState[0]);
+game.state.add('next', playState[1]);
+game.state.add('terminal', playState[2]);
 //All parameters are optional but you usually want to set width and height
 //Remember that the game object inherits many properties and methods!
 var map;
@@ -22,19 +25,30 @@ var avatar;
 
 jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
-    grid = parseInt(result[0]);
-    new_x = parseFloat(result[1]);
-    new_y = parseFloat(result[2]);
-    avatar = result[3];
-    //console.log("buildings : " + buildings.length);
-    // console.log("buildings2 : " + buildings.length);
-    // load buildings
+    if (result != null) {
+        grid = parseInt(result[0]);
+        new_x = parseFloat(result[1]);
+        new_y = parseFloat(result[2]);
+        avatar = result[3];
+        //console.log("buildings : " + buildings.length);
+        // console.log("buildings2 : " + buildings.length);
+        // load buildings
+        //game.state.add('play', playState[1]);
+        //game.state.start('play');
+        get_everything(grid);
 
-    game.state.add('next', playState[1]);
-    //game.state.add('play', playState[1]);
-    //game.state.start('play');
+    }else{
 
-    get_everything(grid);
+
+
+        game.state.start('login');
+
+
+    }
+
+
+
+
 
 });
 
@@ -314,10 +328,20 @@ function terminal(one,two) {
         dataType: "json"
     }).done(function(result) {
         //   two.body.enable = true;
-        document.getElementById("world").hide();
-        document.getElementById("terminal").innerHTML=result;
-        document.getElementById("terminal").show();
-        loadUp();
+
+
+
+
+        game.state.start('terminal');
+
+
+
+
+
+        //   document.getElementById("world").hide();
+     //   document.getElementById("terminal").innerHTML=result;
+     //   document.getElementById("terminal").show();
+   //     loadUp();
         var url = "/components/com_battle/includes/terminal.js";
         jQuery.getScript( url, function() {
 
@@ -450,4 +474,31 @@ function doSomething() {
 
         });
     }
+}
+function updateLine() {
+
+    if (line.length < content[index].length)
+    {
+        line = content[index].substr(0, line.length + 1);
+        // text.text = line;
+        text2.setText(line);
+    }
+    else
+    {
+        //  Wait 2 seconds then start a new line
+        game.time.events.add(Phaser.Timer.SECOND * 2, nextLine, this);
+    }
+
+}
+
+function nextLine() {
+
+    index++;
+
+    if (index < content.length)
+    {
+        line = '';
+        game.time.events.repeat(80, content[index].length + 1, updateLine, this);
+    }
+
 }
