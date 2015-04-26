@@ -74,7 +74,7 @@ portal_sourceY3[2] = 224;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-tile_names[3] = ['Zombie_A5','Zombie_A3','002-Woods01','032-Heaven01','033-Heaven02','035-Ruins01','039-Tower01','sprite'];
+tile_names[3] = ['Zombie_A5','Zombie_A3','002-Woods01','032-Heaven01','033-Heaven02','035-Ruins01','039-Tower01','World_B','sprite'];
 
 x1[3] = 896;
 y1[3] = 1056;
@@ -267,7 +267,7 @@ portal_sourceX1[8] = 416;
 portal_sourceY1[8] = 96;
 
 portal_sourceX2[8] = 736;
-portal_sourceY2[8] = 832;
+portal_sourceY2[8] = 864;
 
 portal_sourceX3[8] = 192;
 portal_sourceY3[8] = 864;
@@ -345,8 +345,8 @@ tile_names[11] = ['019-DesertTown01','006-Desert01','sprite'];
 x1[11] = 544;
 y1[11] = 320;
 
-x2[11] = 64;
-y2[11] = 192;
+x2[11] = 288;
+y2[11] = 32;
 
 x3[11] = 1088;
 y3[11] = 32;
@@ -365,8 +365,8 @@ portal_dest_3[11] = 5;
 portal_sourceX1[11] = 544;
 portal_sourceY1[11] = 352;
 
-portal_sourceX2[11] = 96;
-portal_sourceY2[11] = 192;
+portal_sourceX2[11] = 288;
+portal_sourceY2[11] = 64;
 
 portal_sourceX3[11] = 1088;
 portal_sourceY3[11] = 96;
@@ -379,7 +379,7 @@ x1[12] = 192;
 y1[12] = 896;
 
 x2[12] = 416;
-y2[11] = 0;
+y2[12] = 0;
 
 x3[12] = 992;
 y3[12] = 64;
@@ -508,7 +508,7 @@ x1[16] = 576;
 y1[16] = 992;
 
 x2[16] = 288;
-y2[15] = 512;
+y2[16] = 512;
 
 x3[16] = 1312;
 y3[16] = 384;
