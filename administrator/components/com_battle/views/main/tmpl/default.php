@@ -77,6 +77,16 @@ $params = $this->form->params;
         <input type="hidden" name="controller" value="main" />
         <input type="submit" name="submit"/>
     </form>
+    <form action="index.php" method="get" name="adminForm11" id="adminForm11">Sync IP
+        <input type="hidden" name="task" value="sync_ip" />
+        <input type="hidden" name="option" value="com_battle" />
+        <input type="hidden" name="controller" value="main" />
+        <input type="submit" name="submit"/>
+    </form>
+
+
+
+
 
 <?php
 /*if (!$this->row->id) { echo "can add specifics after save"; }
