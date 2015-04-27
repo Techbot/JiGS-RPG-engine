@@ -396,7 +396,7 @@ portal_dest_3[12] = 22;
 
 
 portal_sourceX1[12] = 192;
-portal_sourceY1[11] = 896;
+portal_sourceY1[12] = 864;
 
 portal_sourceX2[12] = 0;
 portal_sourceY2[12] = 416;
@@ -666,7 +666,7 @@ portal_sourceY3[20] = 704;
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[21] = ['TileB','cutnpaste/465411759_a2b3e8d081','sprite'];
+tile_names[21] = ['TileB','sprite','465411759_a2b3e8d081','RoyalTileset-TileA2'];
 
 x1[21] = 224;
 y1[21] = 0;
@@ -679,8 +679,8 @@ y3[21] = 384;
 
 boundsX1[21] = 0;
 boundsY1[21] = 0;
-boundsX2[21] = 480;
-boundsY2[21] = 480;
+boundsX2[21] = 768;
+boundsY2[21] = 768;
 
 
 portal_dest_1[21] = 34;
