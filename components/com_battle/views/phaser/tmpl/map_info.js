@@ -398,11 +398,11 @@ portal_dest_3[12] = 22;
 portal_sourceX1[12] = 192;
 portal_sourceY1[12] = 864;
 
-portal_sourceX2[12] = 0;
-portal_sourceY2[12] = 416;
+portal_sourceX2[12] = 416;
+portal_sourceY2[12] = 32;
 
-portal_sourceX3[12] = 96;
-portal_sourceY3[12] = 1024;
+portal_sourceX3[12] = 992;
+portal_sourceY3[12] = 96;
 
 //// /////////////////////////////////////////////////////////////////////
 tile_names[13] = ['RoyalTileset-TileB','TileA5','sprite'];
