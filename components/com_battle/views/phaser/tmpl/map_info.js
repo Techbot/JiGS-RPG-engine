@@ -668,14 +668,14 @@ portal_sourceY3[20] = 704;
 // /////////////////////////////////////////////////////////////////////
 tile_names[21] = ['TileB','sprite','465411759_a2b3e8d081','RoyalTileset-TileA2'];
 
-x1[21] = 224;
-y1[21] = 0;
+x1[21] = 512;
+y1[21] = 160;
 
-x2[21] = 416;
-y2[21] = 416;
+x2[21] = 352;
+y2[21] = 608;
 
-x3[21] = 32;
-y3[21] = 384;
+x3[21] = 160;
+y3[21] = 320;
 
 boundsX1[21] = 0;
 boundsY1[21] = 0;
@@ -688,13 +688,13 @@ portal_dest_2[21] = 12;
 portal_dest_3[21] = 33;
 
 
-portal_sourceX1[21] = 224;
-portal_sourceY1[21] = 32;
+portal_sourceX1[21] = 512;
+portal_sourceY1[21] = 128;
 
-portal_sourceX2[21] = 384;
-portal_sourceY2[21] = 384;
+portal_sourceX2[21] = 352;
+portal_sourceY2[21] = 640;
 
-portal_sourceX3[21] = 32;
+portal_sourceX3[21] = 160;
 portal_sourceY3[21] = 352;
 
 /////////////////////////////////////////////
