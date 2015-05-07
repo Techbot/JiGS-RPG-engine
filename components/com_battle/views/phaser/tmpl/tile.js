@@ -328,19 +328,10 @@ function terminal(one,two) {
         dataType: "json"
     }).done(function(result) {
         //   two.body.enable = true;
-
-
-
-
         game.state.start('terminal');
-
-
-
-
-
         //   document.getElementById("world").hide();
-     //   document.getElementById("terminal").innerHTML=result;
-     //   document.getElementById("terminal").show();
+        document.getElementById("terminal").innerHTML=result;
+        document.getElementById("terminal").show();
    //     loadUp();
         var url = "/components/com_battle/includes/terminal.js";
         jQuery.getScript( url, function() {

@@ -18,38 +18,14 @@ $table = file_get_contents( 'http://eclecticmeme.com/components/com_battle/views
 $body       = "
 <a href='#' class='mid'></a>
 
-<div style = 'background-image: url($link);
-                background-repeat: no-repeat ;
-                          height:344px;
-                          width: 640px;
-                            '>
-<p id='scroller1' style = 'margin:.1em 0;'></p>
-<p id='scroller2'  style = 'margin:.1em 0;'></p>
-<p id='scroller3'  style = 'margin:.1em 0;'></p>
-<p id='scroller4'  style = 'margin:.1em 0;'></p>
-<p id='scroller5'  style = 'margin:.1em 0;'></p>
-<p id='scroller6'  style = 'margin:.1em 0;'></p>
-<p id='scroller7'  style = 'margin:.1em 0;'></p>
-<p id='scroller8'  style = 'margin:.1em 0;'></p>
-<p id='scroller9'  style = 'margin:.1em 0;'></p>
-<p id='scroller10'  style = 'margin:.1em 0;'></p>
-<p id='scroller11'  style = 'margin:.1em 0;'></p>
-<p id='scroller12'  style = 'margin:.1em 0;'></p>
-<p id='scroller13'  style = 'margin:.1em 0;'></p>
-<p id='scroller14'  style = 'margin:.1em 0;'></p>
-<p id='scroller15'  style = 'margin:.1em 0;'></p>
-<p id='scroller16'  style = 'margin:.1em 0;'></p>
-<p id='scroller17'  style = 'margin:.1em 0;'></p>
-<p id='scroller18' style = 'margin:.1em 0;'> </p>
-
-</div>";
+";
 
 
 //$body       .= $table;
 
 $body .="
 
-<table width ='100%'>
+<table width ='100%' style = 'font-size:10px;' >
     <tr>
         <td>id:</td><td>$id </td>
 <td>Level:</td><td>$level</td>
@@ -66,7 +42,7 @@ $body .="
     <td>battery</td><td>$battery</td>
 </tr>
 </table>
-<div id='action' class='clearfix'>
+<div id='action' class='clearfix' style = 'font-size:10px;'>
     <!-- <div class='recruit'><a class='recruit' href='#'>Recruit</a></div> -->
     <div class='shoot'><a onclick='enter(\"scan\")' id='type_scan' >Scan</a></div>
     <div class='kick'><a onclick='enter(\"Decrypt\")' id='Decrypt' >Decrypt</a> </div>

@@ -1,7 +1,7 @@
 /**
  * Created by techbot on 17/11/14.
  */
-var content = [
+content = [
     " ",
     "Everything you read on the 'Net is true",
     "",

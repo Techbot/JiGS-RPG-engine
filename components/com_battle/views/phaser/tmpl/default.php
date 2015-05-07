@@ -36,19 +36,20 @@
             var portal_sourceX1 = new Array();
             var portal_sourceY1 = new Array();
 
-            var portal_sourceX2 = new Array();
-            var portal_sourceY2 = new Array();
+            var portal_sourceX2 = [];
+            var portal_sourceY2 = [];
 
-            var portal_sourceX3 = new Array();
-            var portal_sourceY3 = new Array();
-            var portal_dest_1 = new Array();
-            var portal_dest_2 = new Array();
-            var portal_dest_3 = new Array();
+            var portal_sourceX3 = [];
+            var portal_sourceY3 =[];
+            var portal_dest_1 = [];
+            var portal_dest_2 = [];
+            var portal_dest_3 = [];
 
-            var npc_list = new Array();
-            var terminals_list = new Array();
-            var twines_list = new Array();
-            var plates_list = new Array();
+            var npc_list = [];
+            var terminals_list = [];
+            var twines_list = [];
+            var plates_list = [];
+            var content =[];
 
             var send = 1;
         </script>
@@ -63,6 +64,8 @@
         <div id ="building"></div>
         <div id ="npc"></div>
         <div id ="player"></div>
-        <div id ="terminal"></div>
+        <div id ="terminal" style = "margin: -194px 0 0 0; z-index:9999;    position: absolute;
+    left: 0px;
+    top: 540px;"></div>
         <div id ="twines"></div>
         <div id ="plates"></div>

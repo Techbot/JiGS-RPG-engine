@@ -18,26 +18,44 @@ jQuery(function() {
             context: document.body,
             dataType: "json"
         }).done(function(result) {
-            txt =[];
-
- /*
-            for (var k in result){
-                txt[txt.length] =k + " : " + result[k];
-                //console.log(txt);
+            /*
+             for (var k in result){
+             txt[txt.length] =k + " : " + result[k];
+             //console.log(txt);
              }
-  */
-            txt[0]='|--------------------------------------------------------------------------|'
-            txt[1]='| Id : '+result[id]+'Grid : '+result[grid]+
+             */
+            content = ['|---------------------------------------------------------|',
+                '|---------- Id : ' + result["id"] + ' Grid : ' + result["grid"] + '     ---|',
+                '|---Open Port  : ' + result["open_port"] + ' Closed Port : ' + result["closed_port"] + '     ---|',
+                '|---  Comment  : ' + result["comment"] + ' ---------|',
+            ];
 
+            line = '';
+            index = 0;
+            console.log(content);
+            nextLine();
+            $i = 0;
+            for(line in  content){
+            var summary = game.add.bitmapText(100, 300,
+            {
+                font: "18pt Courier",
+                fill: "#19cb65",
+                stroke: "#119f4e",
+                strokeThickness: 2
+            },
+            content[$i++],
+            64)
+            ;
 
+            summary.anchor.x = 0.5;
+            summary.anchor.y = 0.5;
+        }
 
-
-
-            txt.forEach(function (item){
-                scroll(0,item);
-            });
+          //  txt.forEach(function (item){
+       //         scroll(0,item);
+      //      });
         });
-        location1 = 1;
+
     });
 });
 
