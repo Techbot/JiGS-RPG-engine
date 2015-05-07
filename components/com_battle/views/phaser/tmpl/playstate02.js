@@ -2,9 +2,6 @@
  * Created by techbot on 17/11/14.
  */
 
-var content;
-
-
 jQuery.getJSON('index.php?options=com_battle&task=map_action&action=sing_song', function (result)
 {
 
@@ -18,30 +15,7 @@ jQuery.getJSON('index.php?options=com_battle&task=map_action&action=sing_song', 
     //game.state.start('play');
 
     //game.state.start('next');
-    content = [
-        " ",
-        "Everything you read on the 'Net is true",
-        "",
-        "Register to begin",
-        "Upload an Avatar to your profile",
-        "Login to Enter",
-        " ",
-        "    ",
-        " Be a soldier   ",
-        "  or a hacker,  ",
-        "  a tradesman,  ",
-        "  or an explorer  ",
-        " Be all that you can be   ",
-        "    ",
-        "    ",
-        " or be Batman   ",
-        " Always be Batman ",
 
-        "03:45, July 23rd,  2053",
-        "somewhere outside of Pyramid City ",
-        " - Europe",
-        "The Eclectic Meme Conspiracy",
-    ];
 
 });
 
@@ -52,6 +26,27 @@ playState[2] = {
 
    preload: function() {
             game.load.image('arrow', '/components/com_battle/images/hacker-map.jpg');
+
+       content = [
+           " ",
+           "This terminal belongs to Elle Corp",
+           "",
+           "Enter PIN to begin",
+           "",
+           "One Moment PLease",
+           ".",
+           "..",
+           "...",
+           "--Scan Complete--",
+
+           "--Open Ports: None-",
+           "- Port: 80 HTTP: Encrypted - 128 bits-",
+           "- You may proceed -",
+           "- You're Welcome -",
+       ];
+
+
+
     },
     create: function() {
         background = game.add.sprite(0,0, 'arrow');
@@ -61,6 +56,8 @@ playState[2] = {
         cursors = game.input.keyboard.createCursorKeys();
         text2 = game.add.text(32, 80, '', { font: "18pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 2 });
         nextLine();
+
+
     }
 };
 
