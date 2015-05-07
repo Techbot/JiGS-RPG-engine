@@ -127,7 +127,7 @@ playState[1] = {
         game.add.plugin(Phaser.Plugin.Tiled);
         //  Modify the world and camera bounds
         game.world.setBounds(boundsX1[grid], boundsY1[grid], boundsX2[grid], boundsY2[grid]);
-        game.stage.backgroundColor = '#787878';
+        //game.stage.backgroundColor = '#000000';
         var cacheKey = Phaser.Plugin.Tiled.utils.cacheKey;
 
 

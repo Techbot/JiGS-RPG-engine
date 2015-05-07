@@ -1,6 +1,6 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
 
-$imagesDir = 'images/posters/';
+$imagesDir = 'images/assets/building_posters/';
 
 $images = glob($imagesDir . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
