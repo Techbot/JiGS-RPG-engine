@@ -1,4 +1,4 @@
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 <hr>
 <h1>JiGS</h1>
 
@@ -23,7 +23,7 @@ Featurelist:
     <li> Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction</li>
     <li> Secret Societies, Conspiracies and Guild politics </li>
 <ul>
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
 
 
 
@@ -63,7 +63,7 @@ Featurelist:
 <hr>
 <h2> Main Gameplay Screen</h2>
 
-gui.png
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/portal.gif)
 
 <h3>Default Modules:</h3>
 ![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
