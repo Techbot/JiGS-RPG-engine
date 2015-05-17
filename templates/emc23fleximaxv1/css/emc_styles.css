@@ -88,8 +88,8 @@ h3.nav-header {
 }
 .fa.fa-compress {
   font-size: 24px !important;
+  padding: 1em;
   background: #000000;
-    color: #0ff;
   display: none !important;
 }
 :-webkit-full-screen .fa.fa-compress,
@@ -127,6 +127,10 @@ h3.nav-header {
 }
 :fullscreen .fa.fa-arrows-alt {
   display: none !important;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: transparent;
 }
 @media (min-width: 900px) {
   #mainbody {
@@ -369,6 +373,7 @@ label {
   border: 1px solid #333;
   background: url(../images/trans.png) transparent center top repeat;
 }
+#footer-modules .moduletable_menu,
 #sidebar-2 .moduletable,
 #sidebar-2 .moduletable_menu,
 #sidebar-2 .moduletable_text {
@@ -376,6 +381,18 @@ label {
   border-radius: 0;
   border: 0 solid #333;
   background: url(../images/trans_dark.png) transparent center top repeat;
+}
+#footer-modules .moduletable h3,
+#footer-modules .moduletable_menu h3 {
+  background-color: #009999;
+  color: #000;
+  text-align: center;
+  font-size: 90%;
+  border-bottom: 1px solid #333;
+  text-transform: uppercase;
+  font-weight: normal;
+  -moz-border-radius: 15px 15px 0 0;
+  border-radius: 15px 15px 0 0;
 }
 .moduletable h3,
 .moduletable_menu h3,
