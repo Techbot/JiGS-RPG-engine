@@ -10,16 +10,20 @@ Output code is ul.menu etc.
 
 /* 1st Level */
 
+#footer-modules .moduletable > ul.nav,
 #sidebar-2 ul.nav {
 border:0;
 border-bottom:solid 0px #F3F3F3;
 list-style-type:none !important;
 }
 
+#footer-modules .moduletable > ul.nav > li,
 #sidebar-2 ul.nav li {
 border-bottom: 1px solid #666;
 }
 
+#footer-modules .moduletable > ul.nav > li > a:link,
+#footer-modules .moduletable > ul.nav > li > a:visited,
 #sidebar-2 ul.nav li a:link,
 #sidebar-2 ul.nav li a:visited {
 border-left: 10px solid #333;
@@ -28,6 +32,8 @@ color: #ccc;
 background: url(../images/trans.png) transparent center top repeat;
 }
 
+#footer-modules .moduletable > ul.nav > li.active > a:link,
+#footer-modules .moduletable > ul.nav > li.active > a:visited,
 #sidebar-2 ul.nav li.active a:link,
 #sidebar-2 ul.nav li.active a:visited {
 border-left: 10px solid #009999;
@@ -35,6 +41,12 @@ border-right: 10px solid #00ffff;
 color: #00ffff;
 }
 
+#footer-modules .moduletable > ul.nav > li a:hover,
+#footer-modules .moduletable > ul.nav > li a:active,
+#footer-modules .moduletable > ul.nav > li a:focus,
+#footer-modules .moduletable > ul.nav > li.active a:hover,
+#footer-modules .moduletable > ul.nav > li.active a:active,
+#footer-modules .moduletable > ul.nav > li.active a:focus,
 #sidebar-2 ul.nav li a:hover,
 #sidebar-2 ul.nav li a:active,
 #sidebar-2 ul.nav li a:focus,
@@ -46,17 +58,27 @@ border-right: 10px solid #333;
 color: #00ffff;
 }
 
+.separator {
+  background: #000;
+  color: white;
+}
+
+#footer-modules .jwts_slider li {
+  border-bottom: 1px dotted #666;
+}
+
 #sidebar-2 ul.menu li.parent a:after {content: " +";}
 #sidebar-2 ul.menu li.parent li a:after {content: none;}
 
 /* 2nd Level */
 
-#sidebar ul.menu li ul{
+#sidebar ul.menu li ul {
 border:solid 0px #F3F3F3;
 border-top:solid 1px #F3F3F3;
 }
 
-#sidebar ul.menu li ul li{border-bottom:solid 1px #DFDFDF;
+#sidebar ul.menu li ul li{
+border-bottom:solid 1px #DFDFDF;
 background:none;
 }
 

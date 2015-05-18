@@ -668,14 +668,18 @@ Note: Menu should be in Module Position 'emc23-left' with Module Class Suffix '_
 Output code is ul.menu etc.
 ---------------------------------------*/
 /* 1st Level */
+#footer-modules .moduletable > ul.nav,
 #sidebar-2 ul.nav {
   border: 0;
   border-bottom: solid 0px #F3F3F3;
   list-style-type: none !important;
 }
+#footer-modules .moduletable > ul.nav > li,
 #sidebar-2 ul.nav li {
   border-bottom: 1px solid #666;
 }
+#footer-modules .moduletable > ul.nav > li > a:link,
+#footer-modules .moduletable > ul.nav > li > a:visited,
 #sidebar-2 ul.nav li a:link,
 #sidebar-2 ul.nav li a:visited {
   border-left: 10px solid #333;
@@ -683,12 +687,20 @@ Output code is ul.menu etc.
   color: #ccc;
   background: url(../images/trans.png) transparent center top repeat;
 }
+#footer-modules .moduletable > ul.nav > li.active > a:link,
+#footer-modules .moduletable > ul.nav > li.active > a:visited,
 #sidebar-2 ul.nav li.active a:link,
 #sidebar-2 ul.nav li.active a:visited {
   border-left: 10px solid #009999;
   border-right: 10px solid #00ffff;
   color: #00ffff;
 }
+#footer-modules .moduletable > ul.nav > li a:hover,
+#footer-modules .moduletable > ul.nav > li a:active,
+#footer-modules .moduletable > ul.nav > li a:focus,
+#footer-modules .moduletable > ul.nav > li.active a:hover,
+#footer-modules .moduletable > ul.nav > li.active a:active,
+#footer-modules .moduletable > ul.nav > li.active a:focus,
 #sidebar-2 ul.nav li a:hover,
 #sidebar-2 ul.nav li a:active,
 #sidebar-2 ul.nav li a:focus,
@@ -698,6 +710,13 @@ Output code is ul.menu etc.
   border-left: 10px solid #666;
   border-right: 10px solid #333;
   color: #00ffff;
+}
+.separator {
+  background: #000;
+  color: white;
+}
+#footer-modules .jwts_slider li {
+  border-bottom: 1px dotted #666;
 }
 #sidebar-2 ul.menu li.parent a:after {
   content: " +";
@@ -911,13 +930,17 @@ Note: nav should be in Module Position 'emc23-left' with Module Class Suffix '_n
 Output code is ul.nav etc.
 ---------------------------------------*/
 /* 1st Level */
+#footer-modules ul.nav,
 #sidebar ul.nav {
   margin: 0;
   padding: 0;
 }
+#footer-modules ul.nav li,
 #sidebar ul.nav li {
   margin: 0;
 }
+#footer-modules ul.nav li a:link,
+#footer-modules ul.nav li a:visited,
 #sidebar ul.nav li a:link,
 #sidebar ul.nav li a:visited {
   display: block;
