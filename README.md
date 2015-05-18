@@ -22,7 +22,7 @@ Featurelist:
     <li> Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes</li>
     <li> Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction</li>
     <li> Secret Societies, Conspiracies and Guild politics </li>
-
+</ul>
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
 
@@ -49,6 +49,7 @@ Featurelist:
    <li> Depreciation, Taxation, Quality Reduction, Depletion and Balance.</li>
 
    <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
+</ul>
 
     Point & Click (Sierra Arts/ Lucasfilm style) Plugin
     Puzzles Plugin
