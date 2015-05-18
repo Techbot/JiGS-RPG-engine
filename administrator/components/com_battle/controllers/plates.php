@@ -1,10 +1,15 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
+
 class BattleControllerPlates extends JController
 {
+
     function __construct ($config = array())
     {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         parent::__construct($config);
         $this->registerTask('unpublish','publish');
         $this->registerTask('apply','save');
@@ -23,7 +28,7 @@ class BattleControllerPlates extends JController
     {
         //JRequest::checkToken() or jexit( 'Invalid Token' );
 
-        $row = JTable::getInstance('plate', 'Table');
+        $row = JTable::getInstance('plates', 'Table');
         if (!$row->bind(JRequest::get('post')))
         {
             JError::raiseError(500, $row->getError() );
@@ -35,12 +40,12 @@ class BattleControllerPlates extends JController
 
         if(JRequest::getVar('task')=='apply'){
 
-            $this->setRedirect('index.php?option=com_battle&controller=plate&task=edit&cid='.$row->id, 'plate Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=plates&task=edit&cid='.$row->id, 'plate Saved');
         }
 
         else{
 
-        $this->setRedirect('index.php?option=com_battle&view=plate', 'plate Saved');
+        $this->setRedirect('index.php?option=com_battle&view=plates', 'plate Saved');
 
         }
         $this->display();
@@ -76,7 +81,7 @@ class BattleControllerPlates extends JController
     {
 //        global $option;
         $cid = JRequest::getVar('cid', array());
-        $row =& JTable::getInstance('plate', 'Table');
+        $row =& JTable::getInstance('plates', 'Table');
         $publish = 1;
         if($this->getTask() == 'unpublish')
         {
@@ -102,7 +107,7 @@ class BattleControllerPlates extends JController
             $msg .= ' published';
         }
        // $this->setRedirect('index.php?option=' . $option, $msg);
-        $this->setRedirect('index.php?option=com_battle&view=plate', $msg);
+        $this->setRedirect('index.php?option=com_battle&view=plates', $msg);
     }
 
     function display()
@@ -111,10 +116,10 @@ class BattleControllerPlates extends JController
         if (!$view) {
             switch ($this->getTask()) {
             case 'edit':
-                JRequest::setVar('view', 'twine');
+                JRequest::setVar('view', 'plate');
                 break;
             default:
-                JRequest::setVar('view', 'twines');
+                JRequest::setVar('view', 'plates');
                 break;
             }
         }
