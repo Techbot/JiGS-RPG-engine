@@ -171,7 +171,10 @@ Players and NPCs can hack and be hacked, causing grief, stealing bank account pe
 <h3>Factories</h3>
 Screenshot from 2014-10-19 14:27:09.png
 
-Factories require blueprints, energy, workforce(hobbits), materials to create objects - can be hacked/attacked
+Factories require blueprints, energy, workforce(hobbits) & materials to create objects - can be hacked/attacked. 
+Objects vary in quality time and cost to produce.
+![Factories ](https://github.com/EMC23/JiGS/blob/master/images/image16.png)
+
 
 <h3>Farms</h3>
 
