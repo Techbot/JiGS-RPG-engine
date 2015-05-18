@@ -159,6 +159,15 @@ for example a farm may have 1- 8 fields each growing different crops.
 Or a factory may have 1-8 conveyor belts each building different objects,
 Each additional primary system is accessed via tabs and is identical in layout.
 
+
+
+
+<h3>Banks, Terminals, Banks and hacking</h3>
+Players and NPCs can hack and be hacked, causing grief, stealing bank account percentages and spreading viruses. There are three global banks each with their own interest rates ,security packages and insurance deals.
+
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/terminal.gif)
+
+
 <h3>Factories</h3>
 Screenshot from 2014-10-19 14:27:09.png
 
