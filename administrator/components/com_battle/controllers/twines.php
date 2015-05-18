@@ -32,10 +32,10 @@ class BattleControllerTwines extends JController
             JError::raiseError(500, $row->getError() );
         }
         if(JRequest::getVar('task')=='apply'){
-            $this->setRedirect('index.php?option=com_battle&controller=twines&task=edit&cid='.$row->id, 'Page Saved');
+            $this->setRedirect('index.php?option=com_battle&controller=twines&task=edit&cid='.$row->id, 'Twine Saved');
         }
         else{
-        $this->setRedirect('index.php?option=com_battle&view=twines', 'Page Saved');
+        $this->setRedirect('index.php?option=com_battle&view=twines', 'Twine Saved');
         }
         $this->display();
     }

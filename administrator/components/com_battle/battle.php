@@ -7,6 +7,7 @@ $controller = JRequest::getCmd('controller','main');
 BattleHelper::addSubmenu(JRequest::getCmd('view', $controller));
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
+
 require_once( JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php' );
 
 $controllerName = 'BattleController'.$controller;

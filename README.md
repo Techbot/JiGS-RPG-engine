@@ -22,11 +22,12 @@ Featurelist:
     <li> Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes</li>
     <li> Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction</li>
     <li> Secret Societies, Conspiracies and Guild politics </li>
-<ul>
+
+
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
 
 
-
+<ul>
    <li> Main Gameplay Screens</li>
 
    <li> Character Creation</li>
