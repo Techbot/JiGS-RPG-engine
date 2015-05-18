@@ -229,7 +229,7 @@ You can change groups, but only to a group of the same faction.
 
 <h3>Exploration</h3>
 
-Exploration (via character development) is the primary chore of the virtual world. New Maps, Scenarios including time travel to familiar places will be added to the system on a monthly basis. ALternate realities, drug induced trips etc will play a part in the exploration narrative.
+Exploration (via character development) is the primary core loop of the virtual world. New Maps, Scenarios including time travel to familiar places will be added to the system on a monthly basis. ALternate realities, drug induced trips etc will play a part in the exploration narrative.
 Maps are creating using the open source Tiled Mapeditor.org. and imported to the systom using json files.
 Portals are a heavily used device in both the game mechanics and the overarching metastory.
 Portals need to be discovered in the real before they can be accessed via the portal network.
