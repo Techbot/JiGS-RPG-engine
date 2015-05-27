@@ -734,36 +734,36 @@ portal_sourceY3[22] = 224;
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[23] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[23] = ['001-Grassland01','sprite'];
 
-x1[23] = 889;
-y1[23] = 0;
+x1[23] = 960;
+y1[23] = 256;
 
-x2[23] = 1623;
-y2[23] = 610;
+x2[23] = 1120;
+y2[23] = 1152;
 
-x3[23] = 640;
-y3[23] = 580;
+x3[23] = 352;
+y3[23] = 928;
 
 boundsX1[23] = 0;
 boundsY1[23] = 0;
-boundsX2[23] = 1600;
-boundsY2[23] = 1600;
+boundsX2[23] = 1440;
+boundsY2[23] = 1440;
 
 
 portal_dest_1[23] = 36;
 portal_dest_2[23] = 37;
-portal_dest_3[23] = 3;
+portal_dest_3[23] = 13;
 
 
-portal_sourceX1[23] = 825;
-portal_sourceY1[23] = 855;
+portal_sourceX1[23] = 960;
+portal_sourceY1[23] = 256;
 
-portal_sourceX2[23] = 825;
-portal_sourceY2[23] = 855;
+portal_sourceX2[23] = 1120;
+portal_sourceY2[23] = 1152;
 
-portal_sourceX3[23] = 825;
-portal_sourceY3[23] = 855;
+portal_sourceX3[23] = 352;
+portal_sourceY3[23] = 928;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
