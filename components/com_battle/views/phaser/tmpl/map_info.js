@@ -408,7 +408,7 @@ portal_sourceY3[12] = 96;
 tile_names[13] = ['RoyalTileset-TileB','TileA5','sprite'];
 
 x1[13] = 832;
-y1[13] = 1500;
+y1[13] = 1480;
 
 x2[13] = 128;
 y2[13] = 288;
