@@ -193,8 +193,8 @@ portal_dest_2[6] = 14;
 portal_dest_3[6] = 2;
 
 
-portal_sourceX1[6] = 825;
-portal_sourceY1[6] = 855;
+portal_sourceX1[6] = 889;
+portal_sourceY1[6] = 32;
 
 portal_sourceX2[6] = 64;
 portal_sourceY2[6] = 64;
