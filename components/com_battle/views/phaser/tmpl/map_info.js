@@ -767,36 +767,36 @@ portal_sourceY3[23] = 928;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[24] = ['TileA5','TileA4','TileC','Zombie_A4_016b'];
+tile_names[24] = ['007-Swamp01','sprite'];
 
-x1[24] = 889;
-y1[24] = 0;
+x1[24] = 640;
+y1[24] = 32;
 
-x2[24] = 1623;
-y2[24] = 610;
+x2[24] = 1024;
+y2[24] = 384;
 
-x3[24] = 640;
-y3[24] = 580;
+x3[24] = 256;
+y3[24] = 448;
 
 boundsX1[24] = 0;
 boundsY1[24] = 0;
-boundsX2[24] = 1600;
-boundsY2[24] = 1600;
+boundsX2[24] = 1188;
+boundsY2[24] = 736;
 
 
-portal_dest_1[24] = 4;
-portal_dest_2[24] = 17;
-portal_dest_3[24] = 18;
+portal_dest_1[24] = 37;
+portal_dest_2[24] = 38;
+portal_dest_3[24] = 14;
 
 
-portal_sourceX1[24] = 825;
-portal_sourceY1[24] = 855;
+portal_sourceX1[24] = 640;
+portal_sourceY1[24] = 64;
 
-portal_sourceX2[24] = 825;
-portal_sourceY2[24] = 855;
+portal_sourceX2[24] = 1024;
+portal_sourceY2[24] = 352;
 
-portal_sourceX3[24] = 825;
-portal_sourceY3[24] = 855;
+portal_sourceX3[24] = 256;
+portal_sourceY3[24] = 416;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
