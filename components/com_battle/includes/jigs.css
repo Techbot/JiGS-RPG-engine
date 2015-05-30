@@ -2410,3 +2410,10 @@ color: #fff;
 	padding: 0;
 }
 
+
+/* map */
+
+#sidebar-2 ul.nav li.item-450 a {
+  background: url("../images/Pyramid_24.png") no-repeat 5px 0 transparent !important;
+  padding-left: 35px;
+}
