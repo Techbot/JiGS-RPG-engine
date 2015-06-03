@@ -5,6 +5,8 @@
 <hr>
 JiGS Interactive Game System is an open source Online RPG engine built in php. The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
 
+[Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
+
 Featurelist:
 <ul>
    <li> Online Browser based Multiplayer RPG.</li>
@@ -287,8 +289,5 @@ Extending JiGS: create your own universe with 3rd Party plugins and templates: E
     Extended Chat system
     Other Non Games related Joomla plugins see here http://extensions.joomla.org/
     Forums Plugin (Joomla/Kunena)
-
-[![Join the chat at https://gitter.im/EMC23/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/EMC23/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 
 [![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
