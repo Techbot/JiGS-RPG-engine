@@ -54,7 +54,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/..\/..\/..\/..\/..\/..\/..\/Dropbox\/Git\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A5.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -70,7 +70,7 @@
         }, 
         {
          "firstgid":129,
-         "image":"..\/..\/..\/..\/..\/..\/..\/..\/Dropbox\/Git\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_A3.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -86,7 +86,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"..\/..\/..\/..\/..\/..\/..\/..\/Dropbox\/Git\/JiGS\/components\/com_battle\/images\/assets\/tiles\/Inside_C.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Inside_C.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -102,7 +102,7 @@
         }, 
         {
          "firstgid":513,
-         "image":"..\/..\/..\/..\/..\/..\/..\/..\/Dropbox\/Git\/JiGS\/components\/com_battle\/images\/assets\/tiles\/World_B.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/World_B.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -117,7 +117,7 @@
         }, 
         {
          "firstgid":769,
-         "image":"..\/..\/..\/..\/..\/..\/..\/..\/Dropbox\/Git\/JiGS\/components\/com_battle\/images\/assets\/tiles\/sprite.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/sprite.png",
          "imageheight":1280,
          "imagewidth":640,
          "margin":0,
