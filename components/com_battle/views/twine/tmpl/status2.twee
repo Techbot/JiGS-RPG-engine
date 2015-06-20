@@ -1,0 +1,450 @@
+::9999 Macro example.twee About [Twine.private]
+LICENSE: Public Domain
+PURPOSE: 
+A macro that serves as an excellent example of how
+to be excellent in all that you code.
+
+Well, it tries. And that's excellent.
+
+USAGE:
+<<status>>
+
+CONTRIBUTORS: 
+Techbot
+And even more people
+
+::PassageIDHack [script]
+//requires jquery
+try {
+      version.extensions['exampleMacro'] =
+      {
+            major:1, minor:0, revision:0
+      };
+
+     ////////////////////////////////////////////////
+        macros['status'] =
+        {
+            handler: function(place, status, params, parser)
+            {
+                $.ajax({
+                url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twine_action&action=get_status",
+                datatype : 'application/json',
+                success:function(result) {
+                    $(".div1").html(localStorage.name);
+                    $(".health-value").html(localStorage.health);
+                    $(".health").css('width' , localStorage.health + '%');
+                    $(".health-value").css('left' , localStorage.health + '%');
+
+                    $(".slack-value").html(localStorage.slack);
+                    $(".slack").css('width' , localStorage.slack + '%');
+                    $(".slack-value").css('left' , localStorage.slack + '%');
+                    $(".mission-value").html(localStorage.mission);
+                    $(".mission").css('width' , localStorage.mission + '%');
+                    $(".mission-value").css('left' , localStorage.mission + '%');
+
+                    $(".money-value").html(localStorage.money);
+
+                }});
+            },
+            init: function() {
+            },
+        };
+///////////////////////////////////////
+
+
+
+
+
+
+    macros['resetLocalStorage'] =
+    {
+        handler: function(place, object, parameters)
+        {
+            localStorage.health=100;
+            localStorage.screwdriver=0;
+            localStorage.grillunlocked=0;
+            localStorage.mission=0;
+            localStorage.cyberguard1=0;
+            localStorage.cyberguard1=0;
+            localStorage.starmap=0;
+
+        }
+    };
+
+    macros['init'] =
+    {
+            handler: function(place, name, params, parser)
+            {
+                state.history[0].variables["name"]          = 'Guest';
+                state.history[0].variables["health"]        = '100';
+                state.history[0].variables["slack"]         = '100';
+                state.history[0].variables["money"]         = '100';
+                state.history[0].variables["screwdriver"]   = '0';
+                state.history[0].variables["grillunlocked"] = '0';
+                state.history[0].variables["mission"]       = '0';
+                state.history[0].variables["cyberguard1"]   = '0';
+                state.history[0].variables["cyberguard2"]   = '0';
+                localStorage.health         =100;
+                localStorage.slack          =100;
+                localStorage.screwdriver    =0;
+                localStorage.grillunlocked  =0;
+                localStorage.mission        =0;
+                localStorage.cyberguard1    =0;
+                localStorage.cyberguard1    =0;
+                localStorage.starmap        =0;		  
+            },
+            init: function() {
+
+            },
+          };
+
+    macros['loadJS'] =
+    {
+        handler: function(place, object, parameters)
+        {
+            var se = document.createElement("script");
+            se.type = 'text/javascript';
+            se.src = parameters[0];
+            var hT = document.getElementsByTagName("HEAD")[0];
+            hT.appendChild(se);
+            if(se.innerText) {eval(se.innerText);}
+            else {eval(se.textContent);}
+        }
+    };
+
+    macros['store'] =
+    {
+        handler: function(place, object, parameters)
+        {
+           localStorage.setItem(parameters[0], parameters[1]);
+        }
+    };
+
+    macros['add'] =
+    {
+        handler: function(place, object, parameters)
+        {
+            if(localStorage.getItem(parameters[0])) 
+            {
+                localStorage.setItem(parameters[0],  parseInt(localStorage.getItem(parameters[0])) + parseInt(parameters[1]));
+
+            } 
+            else 
+            {
+              localStorage.setItem(parameters[0], parameters[1]);
+            }
+        }
+    };
+    
+    
+    macros['subtract'] =
+    {
+        handler: function(place, object, parameters)
+        {
+            if(localStorage.getItem(parameters[0])) 
+            {
+                localStorage.setItem(parameters[0],  parseInt(localStorage.getItem(parameters[0])) - parseInt(parameters[1]));
+
+            } 
+            else 
+            {
+              localStorage.setItem(parameters[0], parameters[1]);
+            }
+        }
+    }; 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+      version.extensions.timedgotoMacro={major:1,minor:2,revision:0};
+      macros["goto"] = macros.timedgoto=
+      {
+      timer:null,handler:function(a,b,c,d){
+      function cssTimeUnit(s){
+      if(typeof s=="string"){
+      if(s.slice(-2).toLowerCase()=="ms"){
+      return +(s.slice(0,-2))||0
+}else{if(s.slice(-1).toLowerCase()=="s"){
+return +(s.slice(0,-1))*1000||0
+}}}throwError(a,s+" isn't a CSS time unit");return 0}var t,d,m,s;
+t=c[c.length-1];d=d.fullArgs();m=0;if(b!="goto"){d=d.slice(0,d.lastIndexOf(t));
+m=cssTimeUnit(t)}d=eval(Wikifier.parse(d));
+if(d+""&&state&&state.init){if(macros["goto"].timer){clearTimeout(macros["goto"].timer)
+}s=state.history[0].passage.title;macros["goto"].timer=setTimeout(function(){if(state.history[0].passage.title==s){state.display(d,a)
+}},m)}}};
+
+
+  
+
+
+
+    } catch(e) {
+
+        throwError(place,"macrodemo Setup Error: "+e.message);
+}
+
+
+(function () {
+  "use strict";
+  version.extensions['soundMacros'] = {
+    major: 1,
+    minor: 1,
+    revision: 2
+  };
+  var p = macros['playsound'] = {
+    soundtracks: {},
+    handler: function (a, b, c, d) {
+      var loop = function (m) {
+          if (m.loop == undefined) {
+            m.loopfn = function () {
+              this.play();
+            };
+            m.addEventListener('ended', m.loopfn, 0);
+          } else m.loop = true;
+          m.play();
+          };
+      var s = eval(d.fullArgs());
+      if (s) {
+        s = s.toString();
+        var m = this.soundtracks[s.slice(0, s.lastIndexOf("."))];
+        if (m) {
+          if (b == "playsound") {
+            m.play();
+          } else if (b == "loopsound") {
+            loop(m);
+          } else if (b == "pausesound") {
+            m.pause();
+          } else if (b == "unloopsound") {
+            if (m.loop != undefined) {
+              m.loop = false;
+            } else if (m.loopfn) {
+              m.removeEventListener('ended', m.loopfn);
+              delete m.loopfn;
+            }
+          } else if (b == "stopsound") {
+            m.pause();
+            m.currentTime = 0;
+          } else if (b == "fadeoutsound" || b == "fadeinsound") {
+            if (m.interval) clearInterval(m.interval);
+            if (b == "fadeinsound") {
+              if (m.currentTime>0) return;
+              m.volume = 0;
+              loop(m);
+            } else {
+              if (!m.currentTime) return;
+              m.play();
+            }
+            var v = m.volume;
+            m.interval = setInterval(function () {
+              v = Math.min(1, Math.max(0, v + 0.005 * (b == "fadeinsound" ? 1 : -1)));
+              m.volume = Math.easeInOut(v);
+              if (v == 0 || v == 1) clearInterval(m.interval);
+              if (v == 0) {
+                m.pause();
+                m.currentTime = 0;
+                m.volume = 1;
+              }
+            }, 10);
+          }
+        }
+      }
+    }
+  }
+  macros['fadeinsound'] = p;
+  macros['fadeoutsound'] = p;
+  macros['unloopsound'] = p;
+  macros['loopsound'] = p;
+  macros['pausesound'] = p;
+  macros['stopsound'] = p;
+  macros['stopallsound'] = {
+    handler: function () {
+      var s = macros.playsound.soundtracks;
+      for (var j in s) {
+        if (s.hasOwnProperty(j)) {
+          s[j].pause();
+          if (s[j].currentTime) {
+            s[j].currentTime = 0;
+          }
+        }
+      }
+    }
+  }
+  var div = document.getElementById("storeArea").firstChild;
+  var fe = ["ogg", "mp3", "wav", "webm"];
+  while (div) {
+    var b = String.fromCharCode(92);
+    var q = '"';
+    var re = "['" + q + "]([^" + q + "']*?)" + b + ".(ogg|mp3|wav|webm)['" + q + "]";
+    k(new RegExp(re, "gi"));
+    div = div.nextSibling;
+  }
+
+  function k(c, e) {
+    do {
+      var d = c.exec(div.innerHTML);
+      if (d) {
+        var a = new Audio();
+        if (a.canPlayType) {
+          for (var i = -1; i < fe.length; i += 1) {
+            if (i >= 0) d[2] = fe[i];
+            if (a.canPlayType("audio/" + d[2])) break;
+          }
+          if (i < fe.length) {
+            a.setAttribute("src", d[1] + "." + d[2]);
+            a.interval = null;
+            macros.playsound.soundtracks[d[1]] = a;
+          } else console.log("Browser can't play '" + d[1] + "'");
+        }
+      }
+    } while (d);
+  }
+}());
+
+
+
+
+
+
+
+
+// Begin Inventory Macros
+// Original macros by F2Andy: http://strugglingwithtwine.blogspot.ca/2014/03/handling-inventory.html
+//
+// Instructions:
+//
+// 1. In a passage, check if there's an item in the inventory...
+// ...if not, give the user the option to link to a passage that adds it to inventory:
+// <<if $inventory.indexOf("An Unsigned Note") == -1>>There is a note here. [[Pick up the note.]]<<endif>>
+//
+// 2. In a passage, check if there's an item in the inventory..
+// ...if so, give the user a choice to progress to a new passage:
+// <<if $inventory.indexOf("The Golden Key") == -1>>[[Unlock the door.]]<<endif>>
+//
+// 3. To add an "Inventory" link in your sidebar menu, create a passage named "StoryMenu".
+// In it, create a link to your inventory's passage: [[Inventory]] or [[Backpack]], for example.
+// Create a passage named "Inventory", and in it, write something like the following:
+// <<if $inventory.length == 0>>You are not carrying anything.<<else>>You are carrying:
+// <<invWithLinks>> <<endif>>
+// <<back>>
+
+// A helper function for the following macros.
+window.getInv = function() {
+  return state.history[0].variables.inventory;
+}
+
+// Starts your inventory. You need to call this once at the start of your game in order to make the inventory work.
+// Usage: Place <<initInv>> in your StoryInit passage. Don't have a StoryInit passage? Make one.
+macros.initInv = {
+  handler: function(place, macroName, params, parser)   {
+      state.history[0].variables.inventory = [];
+
+
+      if (localStorage.getItem('inventory')!=null)
+      {
+          foreach (item in localStorage.getItem('inventory'))
+          {
+            if (state.history[0].variables.inventory.indexOf(item) == -1) {
+                    state.history[0].variables.inventory.push(item);
+        }
+          }
+     
+  }}
+  
+};
+
+
+// Add an item to your inventory:
+// Usage: <<addToInv rock>> or <<addToInv "a smooth rock">>
+macros.addToInv = {
+  handler: function(place, macroName, params, parser) {
+    if (params.length == 0) {
+      throwError(place, "<<" + macroName + ">>: no parameters given");
+      return;
+    }
+    if (state.history[0].variables.inventory.indexOf(params[0]) == -1) {
+      state.history[0].variables.inventory.push(params[0]);
+    }
+  }
+};
+
+// Removes an item from your inventory
+// Usage: <<removeFromInv rock>> or <<removeFromInv "a smooth rock">>
+macros.removeFromInv = {
+  handler: function(place, macroName, params, parser) {
+    if (params.length == 0) {
+      throwError(place, "<<" + macroName + ">>: no parameters given");
+      return;
+    }
+    var index = state.history[0].variables.inventory.indexOf(params[0]);
+    if (index != -1) {
+      state.history[0].variables.inventory.splice(index, 1);
+    }
+  }
+};
+
+// Display the inventory as a list: Rock, Paper, Scissors
+// This can go in any passage, but the best spot would be your [[Inventory]] passage.
+// Usage: <<inv>>
+macros.inv = {
+  handler: function(place, macroName, params, parser) {
+    if (state.history[0].variables.inventory.length == 0) {
+      new Wikifier(place, 'nothing');
+    } else {
+      new Wikifier(place, state.history[0].variables.inventory.join(','));
+    }
+  }
+};
+
+// Display the inventory as a series of links to passages with the same names.
+// This can go in any passage, but the best spot would be your [[Inventory]] passage.
+// Usage: <<invWithLinks>>
+// If those passages don't exist, the links will be broken.
+// There is a line break after every item in the inventory.
+macros.invWithLinks = { 
+  handler: function(place, macroName, params, parser) {
+    if (state.history[0].variables.inventory.length == 0) {
+      new Wikifier(place, 'nothing');
+    } else {
+      new Wikifier(place, '[[' + state.history[0].variables.inventory.join(']]<br>[[') + ']]');
+    }
+  }
+};
+
+// Empty the inventory entirely.
+// Note: This is not like "dropping" an object; they are not added to the current room/passage. It just erases them all entirely.
+// Usage: <<emptyInv>>
+macros.emptyInv = { 
+  handler: function(place, macroName, params, parser) {
+    state.history[0].variables.inventory = []
+  }
+};
+// End Inventory Macros
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
