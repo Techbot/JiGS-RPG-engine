@@ -1,0 +1,4222 @@
+(dp0
+S'buildDestination'
+p1
+VZ:\u005chome\u005ctechbot\u005cDropbox\u005cGit\u005cJiGS\u005ccomponents\u005ccom_battle\u005cviews\u005ctwine\u005ctmpl\u005camerica - pentagon\u005cpentagon.html
+p2
+sS'saveDestination'
+p3
+S'Z:\\home\\techbot\\Desktop\\twine\\tmpl\\america - pentagon\\pentagon.tws'
+p4
+sS'metadata'
+p5
+(dp6
+sS'target'
+p7
+S'sugarcane'
+p8
+sS'storyPanel'
+p9
+(dp10
+S'widgets'
+p11
+(lp12
+(dp13
+S'selected'
+p14
+I00
+sS'pos'
+p15
+(lp16
+F10.0
+aF150.0
+asS'passage'
+p17
+(itiddlywiki
+Tiddler
+p18
+(dp20
+S'text'
+p21
+V<<display "RealStart">>
+p22
+sS'title'
+p23
+VStart
+p24
+sS'modified'
+p25
+ctime
+struct_time
+p26
+((I2014
+I8
+I3
+I11
+I13
+I54
+I6
+I215
+I1
+tp27
+(dp28
+tp29
+Rp30
+sS'tags'
+p31
+(lp32
+sS'created'
+p33
+g26
+((I2014
+I8
+I3
+I11
+I13
+I36
+I6
+I215
+I1
+tp34
+(dp35
+tp36
+Rp37
+sbsa(dp38
+g14
+I00
+sg15
+(lp39
+F290.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p40
+(dp41
+g21
+V<<display "StatusBar">>\u000a<img src = entrance.jpg>\u000a<div class="start">\u000a[[The Pentagon]]\u000a</div>\u000a[[reset game]]\u000a<<store name guest>>\u000a<<status>>\u000a<<initInv>> \u000a\u000a\u000a
+p42
+sg23
+VRealStart
+p43
+sg25
+g26
+((I2015
+I6
+I19
+I20
+I2
+I22
+I4
+I170
+I1
+tp44
+(dp45
+tp46
+Rp47
+sg31
+(lp48
+Vnobr
+p49
+asg33
+g26
+((I2014
+I8
+I3
+I11
+I13
+I44
+I6
+I215
+I1
+tp50
+(dp51
+tp52
+Rp53
+sbsa(dp54
+g14
+I00
+sg15
+(lp55
+F3790.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p56
+(dp57
+g21
+V<<display "StatusBar">>\u000a<img src = door.jpg>\u000a<div class = overlay><p>\u000aYou are greeted by a young black man, no more that 22, maybe 23. "Secretary", he salutes you.<div class="special"> [[Unexpected.]]</div></p>\u000a<p>"Follow me, Ma'am", he says as he turns on his heel and strides militaristically down an endless maze of corridors. Not quite a Pakistani border dance or the gun balancing acts of the Kremlin guards, but an extraordinary surreal act of personality deficiency as executed by all practitioners of warfare. Left Right Left Hip Hop Hip Hop. [[Follow|Office]]\u000a</p>\u000a</div>\u000a<<if visited () is 1>>\u000a<<add mission 10>>\u000a<<endif>>\u000a<<status>>\u000a\u000a
+p58
+sg23
+VRing
+p59
+sg25
+g26
+((I2015
+I6
+I17
+I22
+I40
+I42
+I2
+I168
+I1
+tp60
+(dp61
+tp62
+Rp63
+sg31
+(lp64
+Vnobr
+p65
+asg33
+g26
+((I2014
+I8
+I3
+I11
+I14
+I26
+I6
+I215
+I1
+tp66
+(dp67
+tp68
+Rp69
+sbsa(dp70
+g14
+I01
+sg15
+(lp71
+F3230.0
+aF430.0
+asg17
+(itiddlywiki
+Tiddler
+p72
+(dp73
+g21
+V<<display "StatusBar">>\u000a<img src = square.jpg>\u000a<div class = overlay>\u000a<<if visited ("Square") > 1 or visited ("ring") >><p>You stand on the balcony, watching the soldiers and cyberguards taking potshots at the zombies wondering by. Resurrected like the saviour, they wait for.</p>\u000a<p>\u000aIf only they knew. \u000a</p>\u000a<<else>>\u000a<p>Hey you!<br/>\u000aA rope ladder is dropped down the 40 or so foot wall. You look behind you. 10 to 15 zombies are heading your way. Probably best if you climb the ladder. You could easily phase the phuck out of them but would blow your cover. <br/>Whatever your cover is.</p>\u000a<<endif>>\u000a<div class = nav>\u000a[[Zombie killing outside the gates|zombie killing]] [[Foyer]]\u000a</div>\u000a</div>\u000a<<if visited () is 1>>\u000a<<add mission 10>>\u000a<<endif>>\u000a<<status>>\u000a
+p74
+sg23
+VSquare
+p75
+sg25
+g26
+((I2015
+I6
+I20
+I9
+I50
+I15
+I5
+I171
+I1
+tp76
+(dp77
+tp78
+Rp79
+sg31
+(lp80
+Vnobr
+p81
+asg33
+g26
+((I2014
+I8
+I3
+I11
+I14
+I26
+I6
+I215
+I1
+tp82
+(dp83
+tp84
+Rp85
+sbsa(dp86
+g14
+I00
+sg15
+(lp87
+F10.0
+aF290.0
+asg17
+(itiddlywiki
+Tiddler
+p88
+(dp89
+g21
+V../status2.twee\u000a../status_bar2.twee\u000a
+p90
+sg23
+VStoryIncludes
+p91
+sg25
+g26
+((I2015
+I6
+I2
+I7
+I43
+I28
+I1
+I153
+I1
+tp92
+(dp93
+tp94
+Rp95
+sg31
+(lp96
+sg33
+g26
+((I2014
+I8
+I3
+I11
+I15
+I8
+I6
+I215
+I1
+tp97
+(dp98
+tp99
+Rp100
+sbsa(dp101
+g14
+I00
+sg15
+(lp102
+F10.0
+aF430.0
+asg17
+(itiddlywiki
+Tiddler
+p103
+(dp104
+g21
+Vhtml {\u000a  box-sizing: border-box;\u000a}\u000a*, *:before, *:after {\u000a  box-sizing: inherit;\u000a}\u000a\u000a\u000a/* Main images in content */\u000aimg{\u000amargin:0 auto 1em;\u000aheight:300px;\u000awidth:500px;\u000adisplay:block;\u000a}\u000a\u000aimg[align=right]{\u000aheight:auto;\u000awidth:auto;\u000amargin:0 0 0 10px\u000a}\u000a\u000a/* Content area */\u000a#passages .body.content {\u000awidth:640px;\u000amargin:0 auto;\u000aposition:relative;\u000apadding: 10px 10px 0;\u000aline-height: 100%;\u000a}\u000a\u000a/* Content area with canvas */\u000a#world {\u000amargin-left: -10px;\u000amargin-right: -10px;\u000a}\u000a\u000a\u000a\u000a\u000a/* Generic Links */\u000a.passage .internalLink:link{\u000afont-weight:bold;\u000acolor:rgb(255,255,255);\u000acolor: #00ffff;\u000a}\u000a.passage .internalLink:visited{\u000acolor:rgb(245,245,245);\u000a}\u000a.passage .internalLink:hover{\u000acolor:rgb(235,235,235);\u000acolor: #009999;\u000a}\u000a.passage .internalLink:focus{\u000acolor:rgb(225,225,225);\u000a}\u000a\u000a\u000a/* Content Styles */\u000a\u000ap {\u000amargin:0 0 1em;\u000aline-height:1.5em;\u000afont-size:1em;\u000a} \u000a\u000a.hotpink {\u000acolor:magenta;\u000aletter-spacing:3px;\u000afont-size:1.5em;\u000a}\u000a\u000a.body.content ul {\u000alist-style:none;\u000a}\u000a\u000a.body.content ul li{\u000amargin-right: 1em;\u000adisplay:inline-block;\u000a}\u000a\u000a\u000a/* buttons positioned overtop of the image */\u000a.touch {\u000aposition:absolute;\u000awidth:500px;\u000aheight:300px;\u000atop:0;\u000a}\u000a\u000a.touch a {\u000aposition:absolute;\u000atop:10%;\u000aleft:20%;\u000a}\u000a\u000a.touch a.internalLink:link{\u000acolor:white;\u000aborder:0 none;\u000apadding:3px 5px;\u000atext-align:center;\u000atext-shadow:2px 2px 2px #000;\u000abackground: rgba(0, 0, 0, 0.7);\u000a}\u000a\u000a.touch a.internalLink:visited{\u000acolor:#009999;\u000aborder:0 none;\u000a}\u000a\u000a.touch a.internalLink:hover{\u000acolor:Chartreuse;\u000a}\u000a\u000a.touch a.internalLink:focus{\u000acolor:DodgerBlue;\u000a}\u000a\u000a.touch a.internalLink:nth-child(1){\u000atop:50%;\u000aleft:70%;\u000a}\u000a\u000a.touch a.internalLink:nth-child(2){\u000atop:80%;\u000aleft:30%;\u000a}\u000a\u000a.touch a.internalLink:nth-child(3){\u000atop:5%;\u000aleft:90%;\u000a}\u000a\u000a\u000a/* Navigation */\u000a.nav ul {\u000amargin:0;\u000apadding:0;\u000a}\u000a\u000a.nav .internalLink:link{\u000abackground:rgba(255, 255, 255, 0.2);\u000acolor:white;\u000aborder:1px solid white;\u000apadding:5px;\u000atext-align:center;\u000amargin:0 2px;\u000aborder-radius:6px;\u000atext-shadow:2px 2px 2px #000;\u000a}\u000a\u000a.nav .internalLink:visited{\u000acolor: #009999;\u000aborder:1px solid #009999;\u000a}\u000a\u000a.nav .internalLink:hover{\u000acolor:Chartreuse;\u000aborder:1px solid Chartreuse;\u000atext-decoration:none;\u000a	-webkit-box-shadow: 0 4px 3px -3px #888;\u000a	   -moz-box-shadow: 0 4px 3px -3px #888;\u000a	        box-shadow: 0 4px 3px -3px #888;\u000a}\u000a\u000a.nav .internalLink:focus{\u000acolor:DodgerBlue;\u000aborder:1px solid DodgerBlue;\u000a}\u000a\u000a\u000a/* Text (including nav etc.) */\u000a.overlay {\u000aposition:absolute;\u000abottom:0;\u000aleft:0;\u000apadding: 0 10px;\u000abackground: rgba(0, 0, 0, 0.7);\u000a}\u000a\u000a.overlay > p:first-child {\u000amargin-top: 1em;\u000a}\u000a\u000a/* Start button  */\u000a.start {\u000atext-align:center;\u000a}\u000a\u000a.start a {\u000adisplay:inline-block;\u000a}\u000a\u000a.start .internalLink:link,\u000a.start .internalLink:visited {\u000abackground:rgba(160, 8, 8, 0.8);\u000acolor:white;\u000aborder:1px solid rgba(160, 8, 8, 1);\u000apadding:5px;\u000atext-align:center;\u000amargin:0 2px;\u000aborder-radius:6px;\u000atext-shadow:2px 2px 2px #000;\u000a}\u000a\u000a.start .internalLink:hover{\u000abackground:rgba(160, 8, 8, 0.9);\u000acolor:white;\u000aborder:1px solid rgba(160, 8, 8, 1);\u000atext-decoration:none;\u000a	-webkit-box-shadow: 0 4px 3px -3px #888;\u000a	   -moz-box-shadow: 0 4px 3px -3px #888;\u000a	        box-shadow: 0 4px 3px -3px #888;\u000a}\u000a\u000a/* Back button  */\u000a.back {\u000adisplay:inline-block;\u000a}\u000a\u000a.back .internalLink:link,\u000a.back .internalLink:visited{\u000abackground:rgba(0, 153, 153, 0.8);\u000acolor:white;\u000aborder:1px solid rgba(0, 153, 153, 1);\u000apadding:5px;\u000atext-align:center;\u000amargin:0 2px;\u000aborder-radius:6px;\u000atext-shadow:2px 2px 2px #000;\u000a}\u000a\u000a.back .internalLink:hover{\u000abackground:rgba(0, 255, 255, 0.9);\u000acolor:white;\u000aborder:1px solid rgba(0, 255, 255, 1);\u000atext-decoration:none;\u000a	-webkit-box-shadow: 0 4px 3px -3px #888;\u000a	   -moz-box-shadow: 0 4px 3px -3px #888;\u000a	        box-shadow: 0 4px 3px -3px #888;\u000a}\u000a\u000a/* Special button  */\u000a.special .internalLink {\u000adisplay:inline-block;\u000a}\u000a\u000a.special .internalLink:link,\u000a.special .internalLink:visited{\u000abackground:rgba(0, 0, 0, 0);\u000acolor: white;\u000aborder:0 solid rgba(100, 100, 100, 1);\u000apadding:5px;\u000atext-align:center;\u000amargin:0 2px;\u000aborder-radius:6px;\u000atext-shadow:2px 2px 2px #000;\u000a-moz-box-shadow:26px 6px 26px #7CFC00 inset;\u000a-webkit-box-shadow:26px 6px 26px #7CFC00 inset;\u000abox-shadow:26px 6px 26px #7CFC00 inset;\u000a}\u000a\u000a.special .internalLink:hover{\u000abackground:rgba(0, 0, 0, 0);\u000acolor:white;\u000aborder:0 solid rgba(100, 100, 100, 1);\u000atext-decoration:none;\u000a-moz-box-shadow:    inset 26px 6px 26px rgba(124,252,0,0.8);\u000a-webkit-box-shadow: inset 26px 6px 26px rgba(124,252,0,0.8);\u000abox-shadow:         inset 26px 6px 26px  rgba(124,252,0,0.8);\u000a}\u000a\u000a\u000a/* status bar */\u000a\u000a.clearfix {\u000aclear: both;\u000a}\u000a \u000a.status-bar div.vitals {\u000a  float: left;\u000a  width: 20%;\u000a  padding: 20px 20px 0 0;\u000a}\u000a\u000a.status-bar .label {\u000a	font-weight: bold;\u000a	line-height: 1;\u000a	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);\u000a	border-radius: 0.25em;\u000a	color: #fff;\u000a	font-size: 75%;\u000a	font-weight: 700;\u000a	white-space: nowrap;\u000a	text-align:left;\u000a	text-transform:uppercase;\u000a	width: 100%;\u000a	display: block;\u000a	margin: 0 0 5px;\u000a}\u000a\u000a.status-bar div.gauge-wrapper {\u000a	position: relative;\u000a	width: 100%;\u000a}\u000a\u000a.status-bar div.gauge {\u000a	background: none repeat scroll 0 0 #0F0F0F;\u000a	border: 1px solid #333;\u000a	border-radius: 25px 25px 25px 25px;\u000a	color: #000000;\u000a	width: 100%;\u000a	float:right;\u000a	margin:5px 0;\u000a	overflow:hidden;\u000a	text-align:right;\u000a	height:22px;\u000a	position: relative;\u000a	padding: 0;\u000a}\u000a\u000a.status-bar div.gauge > div {\u000a	width: 14px;\u000a	height: 20px;\u000a	z-index: 555;\u000a}\u000a\u000a.status-bar div.gauge-wrapper span {\u000a	color:#000;\u000a	background:rgba(255,255,255,0.9);\u000a	border-radius:100%;\u000a	width:22px;\u000a	line-height:22px;\u000a	height:22px;\u000a	position: absolute;\u000a	top: -3px;\u000a	/*left: 0;*/\u000a	z-index: 777;\u000a	font-size: 11px;\u000a	text-align: center;\u000a	margin-left: -11px;\u000a}\u000a\u000a\u000adiv.slack {\u000a	background: none repeat scroll 0 0 rgba(8,8,160,1);\u000a	border-radius: 25px 0 0 25px;\u000a}\u000a\u000adiv.health {\u000a	background: none repeat scroll 0 0 rgba(160,8,8,1);\u000a	border-radius: 25px 0 0 25px;\u000a}\u000a\u000adiv.money {\u000a	background: none repeat scroll 0 0 rgba(8,160,8,1);\u000a	border-radius: 25px 0 0 25px;\u000a}\u000a\u000adiv.mission {\u000a	background: none repeat scroll 0 0 rgba(160,160,8,1);\u000a	border-radius: 25px 0 0 25px;\u000a}\u000a
+p105
+sg23
+Vimage
+p106
+sg25
+g26
+((I2015
+I6
+I18
+I22
+I15
+I20
+I3
+I169
+I1
+tp107
+(dp108
+tp109
+Rp110
+sg31
+(lp111
+Vstylesheet
+p112
+asg33
+g26
+((I2014
+I8
+I3
+I11
+I15
+I44
+I6
+I215
+I1
+tp113
+(dp114
+tp115
+Rp116
+sbsa(dp117
+g14
+I00
+sg15
+(lp118
+F5750.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p119
+(dp120
+g21
+V<<display "StatusBar">>\u000a<p>Enter the Pentagram with your panties on. Be the Queen Bee and remove her sting. Fill the air with rainbows and give peace a fighting chance.</p>\u000a<center>[[Translate]]</center>\u000a<<status>>\u000a\u000a
+p121
+sg23
+VYour Mission
+p122
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I12
+I5
+I157
+I1
+tp123
+(dp124
+tp125
+Rp126
+sg31
+(lp127
+Vnobr
+p128
+asg33
+g26
+((I2014
+I8
+I6
+I17
+I57
+I48
+I2
+I218
+I1
+tp129
+(dp130
+tp131
+Rp132
+sbsa(dp133
+g14
+I00
+sg15
+(lp134
+F3090.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p135
+(dp136
+g21
+V<<display "StatusBar">>\u000a<img src = hall.jpg>\u000a<p>The Foyer. Its marvellous marble floors and pillars that harken back to its roman heritage. Its clean, cold lines are actually pleasing to your eye. It almost reminds you of home. A single guard stands to attention by the exit. He pays you no heed.</p>\u000a<div class=nav>\u000a[[West|Corridor]]   [[Front|front]]   [[East|corridor2]] [[Speak to guard]][[Square]][[Office|Office2]]\u000a</div>\u000a<<status>>\u000a
+p137
+sg23
+VFoyer
+p138
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I1
+I53
+I5
+I157
+I1
+tp139
+(dp140
+tp141
+Rp142
+sg31
+(lp143
+Vnobr
+p144
+asg33
+g26
+((I2014
+I8
+I6
+I21
+I9
+I48
+I2
+I218
+I1
+tp145
+(dp146
+tp147
+Rp148
+sbsa(dp149
+g14
+I00
+sg15
+(lp150
+F2390.0
+aF570.0
+asg17
+(itiddlywiki
+Tiddler
+p151
+(dp152
+g21
+V<<display "StatusBar">>\u000a<img src = corridor.jpg>\u000a<div class = overlay><p><i>Madam Secretary</i></p>\u000a<p>\u000a"Yes?"\u000a</p>\u000a<p><i>We've been monitoring and controlling various utilities between the city-states over the past few years. We've been indirectly controlling the population by controlling access to resources, pleasure time and living expenses.</i>\u000a</p><p>\u000a"And?"\u000a</p><p>\u000a<i>Something's not right. The populations in various city-states are going down. If anything, when we fail (and we do), the numbers should go up.</i>\u000a</p><p>\u000a"Thank you sergeant".\u000a</p><p>\u000a<i>Yes Ma'am.</i>\u000a</p>\u000a<div class="nav">\u000a [[West|corridor3]] [[Foyer]][[south|Offices2]]\u000a</div>\u000a</div>\u000a\u000a<<status>>\u000a
+p153
+sg23
+VCorridor
+p154
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I26
+I34
+I3
+I162
+I1
+tp155
+(dp156
+tp157
+Rp158
+sg31
+(lp159
+Vnobr
+p160
+asg33
+g26
+((I2014
+I8
+I6
+I21
+I10
+I28
+I2
+I218
+I1
+tp161
+(dp162
+tp163
+Rp164
+sbsa(dp165
+g14
+I00
+sg15
+(lp166
+F3090.0
+aF1130.0
+asg17
+(itiddlywiki
+Tiddler
+p167
+(dp168
+g21
+V<<display "StatusBar">>\u000a<img src = corridor2.jpg>\u000a<p>Evening and nobody is about. No doubt your every move is being scrutinised by hidden cameras. The recordings will display what you want them to. They are of no consequence.</p>\u000a<div class="nav">\u000a[[West|Foyer]] [[East|corridor4]]\u000a</div>\u000a<<status>>\u000a
+p169
+sg23
+Vcorridor2
+p170
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I17
+I4
+I5
+I157
+I1
+tp171
+(dp172
+tp173
+Rp174
+sg31
+(lp175
+Vnobr
+p176
+asg33
+g26
+((I2014
+I8
+I6
+I21
+I11
+I42
+I2
+I218
+I1
+tp177
+(dp178
+tp179
+Rp180
+sbsa(dp181
+g14
+I00
+sg15
+(lp182
+F3510.0
+aF1130.0
+asg17
+(itiddlywiki
+Tiddler
+p183
+(dp184
+g21
+V<<display "StatusBar">>\u000a<img src = front.jpg>\u000a<p><i>What is it these humans desire? These death cults? </i></p>\u000a<div class="nav">\u000a[[Foyer]]\u000a</div>\u000a<<status>>\u000a
+p185
+sg23
+Vfront
+p186
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I17
+I8
+I5
+I157
+I1
+tp187
+(dp188
+tp189
+Rp190
+sg31
+(lp191
+Vnobr
+p192
+asg33
+g26
+((I2014
+I8
+I6
+I21
+I12
+I37
+I2
+I218
+I1
+tp193
+(dp194
+tp195
+Rp196
+sbsa(dp197
+g14
+I00
+sg15
+(lp198
+F4630.0
+aF290.0
+asg17
+(itiddlywiki
+Tiddler
+p199
+(dp200
+g21
+V<<display "StatusBar">>\u000a<img src = office.jpg>\u000a<div class="overlay">\u000a<p>You are lead by the young man to the highest, furthest point from the Pentagon's entrance. You are the man in charge. Waiting for you is an old man, the Secretary's secretary.</p>\u000a<p>"If there is anything you need Ma'am, I'll be right outside. You can get me on the intercom. I'll leave you to familiarise yourself with your surroundings and take it all in, then we can debrief you." </p>\u000a<p>He closes the door after him.</p>\u000a<div class="nav"> [[Next|Office2]]</div>\u000a</div>\u000a<<status>><<set $visited to 0>>\u000a\u000a
+p201
+sg23
+VOffice
+p202
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I17
+I38
+I5
+I157
+I1
+tp203
+(dp204
+tp205
+Rp206
+sg31
+(lp207
+Vnobr
+p208
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I16
+I18
+I4
+I220
+I1
+tp209
+(dp210
+tp211
+Rp212
+sbsa(dp213
+g14
+I00
+sg15
+(lp214
+F1690.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p215
+(dp216
+g21
+V<<display "StatusBar">>\u000a<img src = corridor3.jpg>\u000a<div class = overlay>\u000a<p>@@.hotpink;Madam Secretary@@</p>\u000a<p>Yes</p>\u000a<p>\u000a@@.hotpink;It's the Lord of the Cenobytes. He says his army is the moral army and has a right to defend itself?@@</p>\u000a<p>\u000aAnd?</p>\u000a<p>\u000a@@.hotpink;He's invaded England.@@</p>\u000a<p>To the East and West are more corridors. To the North and South are offices.</p>\u000a<div class="nav">\u000a[[West|Offices]] [[East|Corridor]] [[South|Office3choice]][[North|Office5]]\u000a</div>\u000a</div>\u000a\u000a<<status>>\u000a
+p217
+sg23
+Vcorridor3
+p218
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I49
+I53
+I3
+I162
+I1
+tp219
+(dp220
+tp221
+Rp222
+sg31
+(lp223
+Vnobr
+p224
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I31
+I39
+I4
+I220
+I1
+tp225
+(dp226
+tp227
+Rp228
+sbsa(dp229
+g14
+I00
+sg15
+(lp230
+F3090.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p231
+(dp232
+g21
+V<<display "StatusBar">>\u000a<img src = corridor4.jpg>\u000a<div class = overlay>\u000a<p>\u000a"Ma'am Secretary."\u000a</p>\u000a<p>\u000aYes?\u000a</p>\u000a<p>\u000a"We may have developed a new off-road Tank."</p>\u000a<p>\u000aOh? And if we have no oil, how will it be powered?</p>\u000a<p>\u000a"Hobbits,  Ma'am. We've found in tests they can reach speeds of up to 40 mph using a modular bycycle type system - 6 halflings per tank. However, as you know, they won't go into any kind of battle situation."</p>\u000a<p>\u000aAnd?</p>\u000a<p>\u000a"Dr.Bob is proposing a genetic mutation. He's calling it Project OrK."</p>\u000a<div class="nav">\u000a[[West|corridor2]] [[East|Command]]\u000a</div>\u000a</div>\u000a<<status>>\u000a
+p233
+sg23
+Vcorridor4
+p234
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I15
+I5
+I5
+I157
+I1
+tp235
+(dp236
+tp237
+Rp238
+sg31
+(lp239
+Vnobr
+p240
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I32
+I0
+I4
+I220
+I1
+tp241
+(dp242
+tp243
+Rp244
+sbsa(dp245
+g14
+I00
+sg15
+(lp246
+F1410.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p247
+(dp248
+g21
+V<<display "StatusBar">>\u000a<img src = offices.jpg>\u000a<div class = overlay>\u000a<p>Madam Secretary.</p>\u000a<p>\u000a<i>Yes?</i></p>\u000a<p>There's an issue with the water situation in California.</p>\u000a<p><i>There's a drought, what am I supposed to do about it?</i></p>\u000a<p>\u000aWell, actually, there isn't. Nestle keep bottling it, and shipping it to emerging markets in the East.</p>\u000a<p>\u000a<i>As I said, what's it got to do with the Pentagon?</i></p>\u000a<p>\u000aThe people have revolted. The president of Nestle has been assassinated; drowned in a giant battle of his own water,   Ma'am.</p>\u000a	<div class="nav">\u000a	[[West|corridor1]][[East|corridor3]]\u000a	</div>\u000a</div>\u000a<<status>>\u000a
+p249
+sg23
+VOffices
+p250
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I8
+I26
+I5
+I157
+I1
+tp251
+(dp252
+tp253
+Rp254
+sg31
+(lp255
+Vnobr
+p256
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I34
+I12
+I4
+I220
+I1
+tp257
+(dp258
+tp259
+Rp260
+sbsa(dp261
+g14
+I00
+sg15
+(lp262
+F1970.0
+aF850.0
+asg17
+(itiddlywiki
+Tiddler
+p263
+(dp264
+g21
+V<<display "StatusBar">>\u000a<img src = offices.jpg>\u000a<div class = "overlay">\u000a<p>\u000aMa'am Secretary.\u000a</p><p>\u000a'Yes?'\u000a</p><p>\u000aThese alien devices we've been stripping down...\u000a</p><p>\u000a'Yes?'\u000a</p><p>\u000aWhat if they come back for it? What if they think we shouldn't have it?\u000a</p><p>\u000a'I'm here to deal with exactly that.'\u000a</p>\u000a<div class="nav">\u000aTo the [[North|Corridor]] is a corridor . To the  [[South|Office 4]] is an Office\u000a</div>\u000a</div>\u000a<<status>>\u000a
+p265
+sg23
+VOffices2
+p266
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I27
+I54
+I3
+I162
+I1
+tp267
+(dp268
+tp269
+Rp270
+sg31
+(lp271
+Vnobr
+p272
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I36
+I3
+I4
+I220
+I1
+tp273
+(dp274
+tp275
+Rp276
+sbsa(dp277
+g14
+I00
+sg15
+(lp278
+F5330.0
+aF430.0
+asg17
+(itiddlywiki
+Tiddler
+p279
+(dp280
+g21
+V<<display "StatusBar">>\u000a<img src = briefcase.jpg>\u000a<div class="nav">\u000a[[Take Briefcase]] [[Close Drawer|Office2]]\u000a</div>\u000a<<status>>\u000a\u000a
+p281
+sg23
+VOpen Drawer
+p282
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I7
+I5
+I157
+I1
+tp283
+(dp284
+tp285
+Rp286
+sg31
+(lp287
+Vnobr
+p288
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I39
+I30
+I4
+I220
+I1
+tp289
+(dp290
+tp291
+Rp292
+sbsa(dp293
+g14
+I00
+sg15
+(lp294
+F5330.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p295
+(dp296
+g21
+V<<display "StatusBar">>\u000a<img src = briefcase.jpg>\u000a<<set $case =1>><<set $mission+=10>>\u000a<div class="nav">\u000a[[Close Drawer|Office2]]\u000a</div>\u000a<<status>>\u000a\u000a
+p297
+sg23
+VTake Briefcase
+p298
+sg25
+g26
+((I2015
+I6
+I2
+I8
+I29
+I44
+I1
+I153
+I1
+tp299
+(dp300
+tp301
+Rp302
+sg31
+(lp303
+Vnobr
+p304
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I40
+I15
+I4
+I220
+I1
+tp305
+(dp306
+tp307
+Rp308
+sbsa(dp309
+g14
+I00
+sg15
+(lp310
+F3090.0
+aF1970.0
+asg17
+(itiddlywiki
+Tiddler
+p311
+(dp312
+g21
+V<<display "StatusBar">>\u000a<img src = command.jpg>\u000a<div class = overlay>\u000a<p>You are standing in command central. Hundreds of screens of all shapes and sizes emit the iridescence glow depicting the virtual souls of soldiers and spies around the globe.</p>\u000a<p>\u000aEvery few seconds, somewhere, a light flickers out. Elsewhere, another blinks into life. A game within a game.</p>\u000a<p>\u000a"Come in. Welcome", says Lord Vader. "Madam Secretary, we've been expecting you".</p>\u000a<p>\u000a"Thank you Lord Vader", you reply.</p>\u000a<p>\u000a"Today, we witness the testing of a new weapon", Vader intones. "We have been tracking signals to Sirius from this planet, and we believe a grey is on Earth right now". </p>\u000a<div class="nav">\u000a[[West|corridor4]][[Next|Command2]][[Weapon Test]]\u000a</div>\u000a</div>\u000a<<status>>\u000a
+p313
+sg23
+VCommand
+p314
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I14
+I3
+I5
+I157
+I1
+tp315
+(dp316
+tp317
+Rp318
+sg31
+(lp319
+Vnobr
+p320
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I41
+I2
+I4
+I220
+I1
+tp321
+(dp322
+tp323
+Rp324
+sbsa(dp325
+g14
+I00
+sg15
+(lp326
+F3090.0
+aF2110.0
+asg17
+(itiddlywiki
+Tiddler
+p327
+(dp328
+g21
+V<<display "StatusBar">>\u000a<img src = teleporter.jpg>\u000a<div class = overlay>\u000a<p>"Begin the countdown", orders Lord Vader.</p>\u000a<p>\u000a"Countdown?"</p>\u000a<p>\u000a"For too long, the rebels have eluded us. Their use of portals has allowed them to evade us for too long. Not any more! We will fight fire with fire".</p>\u000a<p>\u000a"Magic, Lord Vader?"</p>\u000a<p>\u000a<i>"No, not Magic, Madam Secratary."</i>replies The Sith Lord.<i> "We will not be using portals. Even if we could utilise them in the same way as the rebels, we need a method that we can control... Teleportation."</i></p>\u000a<p>\u000a"You've built a teleporter?"</p>\u000a<div class="nav">\u000a[[Back|Command]][[Next|Command3]]\u000a</div>\u000a</div>\u000a<<status>>\u000a
+p329
+sg23
+VCommand2
+p330
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I13
+I40
+I5
+I157
+I1
+tp331
+(dp332
+tp333
+Rp334
+sg31
+(lp335
+Vnobr
+p336
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I41
+I29
+I4
+I220
+I1
+tp337
+(dp338
+tp339
+Rp340
+sbsa(dp341
+g14
+I00
+sg15
+(lp342
+F3090.0
+aF2250.0
+asg17
+(itiddlywiki
+Tiddler
+p343
+(dp344
+g21
+V<<display "StatusBar">>\u000a<img src = command3.jpg>\u000a<div class = "overlay">\u000a<p>\u000a<i>"Commander, have your men ready. We begin the attack at dawn."</i></p>\u000a<p>\u000a"Yes, Lord Vader".</p>\u000a<p>\u000a<i>"Set the satellites to focus on Puma Punku. This is one of the areas where the signal has originated. I don't want any surprises".</i></p>\u000a<p>\u000aVader turns to you. <i>"Madam Secretary, you are invited to dinner this evening.  We serve at nine". </i></p>\u000a<p>\u000a"Yes, Lord Vader. I'm looking forward to it".</p>\u000a<p>\u000aHe turns his back on you.</p>\u000a<div class="nav">\u000a[[West|corridor2]][[Search Room|Grill]][[Next|Command4]]\u000a</div>\u000a</div>\u000a<<status>>\u000a
+p345
+sg23
+VCommand3
+p346
+sg25
+g26
+((I2015
+I6
+I7
+I19
+I49
+I47
+I6
+I158
+I1
+tp347
+(dp348
+tp349
+Rp350
+sg31
+(lp351
+Vnobr
+p352
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I42
+I20
+I4
+I220
+I1
+tp353
+(dp354
+tp355
+Rp356
+sbsa(dp357
+g14
+I00
+sg15
+(lp358
+F3370.0
+aF2250.0
+asg17
+(itiddlywiki
+Tiddler
+p359
+(dp360
+g21
+V<<display "StatusBar">>\u000a<img src = command4.jpg>\u000a<div class = overlay>\u000a<p>\u000a<i>Madam Secretary.</i></p>\u000a<p>\u000a"Yes?"</p>\u000a<p>\u000a<i>We have spies monitoring most of the city-states across North and South America. We believe Texas and Arizona are about to launch an attack on Mexico, and secure the South. We're talking everything north of Honduras. We can't do nothing, or we're talking civil war all over again.</i></p>\u000a<p>\u000a"Son, it's going to happen, one way or another".\u000a</p>\u000a<div class=nav>\u000a[[Back|Command3]][[Next|Screenshot01]]\u000a</div>\u000a</div>\u000a<<status>>\u000a
+p361
+sg23
+VCommand4
+p362
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I13
+I0
+I5
+I157
+I1
+tp363
+(dp364
+tp365
+Rp366
+sg31
+(lp367
+Vnobr
+p368
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I43
+I13
+I4
+I220
+I1
+tp369
+(dp370
+tp371
+Rp372
+sbsa(dp373
+g14
+I00
+sg15
+(lp374
+F2810.0
+aF2250.0
+asg17
+(itiddlywiki
+Tiddler
+p375
+(dp376
+g21
+V<<loadJS script4.js>>\u000a<<display "StatusBar">>\u000a<div id="world"></div>\u000a<p>\u000a<i>Madam Secretary, we have a problem. We've been scanning the area over Puma Punku and our computers have gone haywire. I think we are being hacked.</i></p>\u000a<p>\u000a"Ah! You'll need a visual basic interface for that. They use them for catching rapists and terrorists and such... Everybody, leave the room".</p>\u000a<div class="nav">\u000a[[Back|Command3]][[Unhack the computer|Screenshot02]]\u000a</div>\u000a<<status>>\u000a\u000a\u000a
+p377
+sg23
+VScreenshot01
+p378
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I11
+I9
+I5
+I157
+I1
+tp379
+(dp380
+tp381
+Rp382
+sg31
+(lp383
+Vnobr
+p384
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I45
+I12
+I4
+I220
+I1
+tp385
+(dp386
+tp387
+Rp388
+sbsa(dp389
+g14
+I00
+sg15
+(lp390
+F2810.0
+aF2390.0
+asg17
+(itiddlywiki
+Tiddler
+p391
+(dp392
+g21
+V<<display "StatusBar">>\u000a<img src = Screenshot01.png>\u000a<<set $hacked to 1>>\u000a<div class =nav>\u000a<<textinput $code [[lnput|Input]] >>\u000a</div>\u000a<div class =nav>\u000a[[Back|Command]]\u000a</div>\u000a<<status>>\u000a
+p393
+sg23
+VScreenshot02
+p394
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I17
+I42
+I5
+I157
+I1
+tp395
+(dp396
+tp397
+Rp398
+sg31
+(lp399
+Vnobr
+p400
+asg33
+g26
+((I2014
+I8
+I8
+I12
+I45
+I41
+I4
+I220
+I1
+tp401
+(dp402
+tp403
+Rp404
+sbsa(dp405
+g14
+I00
+sg15
+(lp406
+F3230.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p407
+(dp408
+g21
+V<<display "StatusBar">>\u000a<p><strong>Arlington County, Virginia:</strong> \u000aYou stand before the headquarters of the United States Department of Defence.</p>\u000a\u000a\u000a<p> As  Hollywood is to America's Movie Industry and Wall Street is to its financial identity, the Pentagon is America's centre of defence, if ever an Orwellian doublespeak.</p>\u000a<<inv>>\u000a\u000a<p>Karma, is it?</p>\u000a<p> Karma has brought you here.</p>\u000a<p>You don't feel fearless this time. This is a center of evil. Fuck sake, it could be <i>the</i> centre of evil. Who knows? God knows. But whose God?</p>\u000a<p>\u000aDo you [[ring|Ring]] the doorbell or [[climb|Square]] the gates?\u000a</p>\u000a<<if $inventory.indexOf("sonic screwdriver") == -1>>[[Unlock the door.]]<<endif>>\u000a<<set $mission+=10>>\u000a<<add mission 10>>\u000a\u000a<<status>>\u000a
+p409
+sg23
+VThe Pentagon
+p410
+sg25
+g26
+((I2015
+I6
+I19
+I19
+I49
+I12
+I4
+I170
+I1
+tp411
+(dp412
+tp413
+Rp414
+sg31
+(lp415
+Vnobr
+p416
+asg33
+g26
+((I2014
+I8
+I13
+I11
+I22
+I40
+I2
+I225
+I1
+tp417
+(dp418
+tp419
+Rp420
+sbsa(dp421
+g14
+I00
+sg15
+(lp422
+F3790.0
+aF430.0
+asg17
+(itiddlywiki
+Tiddler
+p423
+(dp424
+g21
+V<<display "StatusBar">>\u000a<p>\u000aUnexpected, but cool. This will do your slack a world of good. Or does it? Does being saluted by a 23 year old puppet of one of the most notorious faction on this near dead planet count as good karma? Note to self: check rule book re Slack from the enemy.</p>\u000a<div class="back">\u000a[[Back|Office]]\u000a</div>\u000a<<status>>\u000a\u000a
+p425
+sg23
+VUnexpected.
+p426
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I25
+I33
+I5
+I157
+I1
+tp427
+(dp428
+tp429
+Rp430
+sg31
+(lp431
+Vnobr
+p432
+asg33
+g26
+((I2014
+I8
+I13
+I12
+I1
+I5
+I2
+I225
+I1
+tp433
+(dp434
+tp435
+Rp436
+sbsa(dp437
+g14
+I00
+sg15
+(lp438
+F4630.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p439
+(dp440
+g21
+V<<display "StatusBar">>\u000a<img src = office.jpg>\u000a<p>These pure, simple barbarians, simple-circuited, territorial mammals; you almost pity them, and the pain n' misery they cause themselves. Which is worse, to kill or be killed? Many would choose martyrdom, but how many choose to live and die a cold-blooded murderer, or unthinking robot at the service of heartless machine men, dictators and sociopaths.</p>\u000a<div class="nav"><<display "Pot Actions">></div><div class="touch">[[Open Drawer]][[Press Intercom button]][[Leave Office|Foyer]] [[Search Room]]</div><<status>>\u000a\u000a
+p441
+sg23
+VOffice2
+p442
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I41
+I32
+I5
+I157
+I1
+tp443
+(dp444
+tp445
+Rp446
+sg31
+(lp447
+Vnobr
+p448
+asg33
+g26
+((I2014
+I8
+I13
+I12
+I18
+I18
+I2
+I225
+I1
+tp449
+(dp450
+tp451
+Rp452
+sbsa(dp453
+g14
+I00
+sg15
+(lp454
+F4910.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p455
+(dp456
+g21
+V<<display "StatusBar">>\u000a<img src = office.jpg>\u000a<p>You relax. \u000aFocus.</p>\u000a<<actions "Meditate">><div class="nav">\u000a[[Open Drawer]][[Press Intercom button]]</div>\u000a<<status>>\u000a
+p457
+sg23
+VSit on Chair
+p458
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I31
+I35
+I5
+I157
+I1
+tp459
+(dp460
+tp461
+Rp462
+sg31
+(lp463
+Vnobr
+p464
+asg33
+g26
+((I2014
+I8
+I13
+I12
+I28
+I20
+I2
+I225
+I1
+tp465
+(dp466
+tp467
+Rp468
+sbsa(dp469
+g14
+I00
+sg15
+(lp470
+F4910.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p471
+(dp472
+g21
+V<<display "StatusBar">>\u000a<img src = office.jpg>\u000a<p>\u000aYou don't find anything. Maybe you don't have enough slack... [[but wait]]!</p>\u000a\u000a<div class="touch"><<display "Pot Actions">></div>\u000a<div class="nav">[[Open Drawer]][[Press Intercom button]]</div>\u000a<<status>>\u000a\u000a
+p473
+sg23
+VSearch Room
+p474
+sg25
+g26
+((I2015
+I6
+I3
+I22
+I56
+I58
+I2
+I154
+I1
+tp475
+(dp476
+tp477
+Rp478
+sg31
+(lp479
+Vnobr
+p480
+asg33
+g26
+((I2014
+I8
+I13
+I12
+I28
+I20
+I2
+I225
+I1
+tp481
+(dp482
+tp483
+Rp484
+sbsa(dp485
+g14
+I00
+sg15
+(lp486
+F4630.0
+aF1270.0
+asg17
+(itiddlywiki
+Tiddler
+p487
+(dp488
+g21
+V<<display "StatusBar">>\u000a<img src = office.jpg>\u000a<p>"Can I ask you a question?"<br>\u000a"Yes, Ma'am."<br>\u000a"How do I get to the Ancient Alien Artifacts department?"<br>\u000a"West, Ma'am."</p>\u000a<div class="nav"><<display "Pot Actions">></div><div class="touch">[[Open Drawer]][[Press Intercom button]][[Leave Office|Foyer]]</div>\u000a<<status>>\u000a\u000a
+p489
+sg23
+VPress Intercom button
+p490
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I46
+I22
+I5
+I157
+I1
+tp491
+(dp492
+tp493
+Rp494
+sg31
+(lp495
+Vnobr
+p496
+asg33
+g26
+((I2014
+I8
+I13
+I12
+I28
+I20
+I2
+I225
+I1
+tp497
+(dp498
+tp499
+Rp500
+sbsa(dp501
+g14
+I00
+sg15
+(lp502
+F5330.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p503
+(dp504
+g21
+V<<print $visited>>\u000a<<if $visited is 0>>\u000a<p>In the North, the Snow Orcs have destroyed all of the outposts north of the Yukon, or what was once the Yukon.\u000a</p>\u000a<<endif>>\u000a<<if $visited is 1>> \u000a<p>In the East, Zombies plague the farmers and any village not totally surrounded by walls. Russia is decimated.\u000a</p>\u000a<<endif>>\u000a<<if $visited is 2>>\u000a<p>China was a bloodbath. Nobody has heard anything from them in over two years. Maybe they are recovering and resorting to old isolationist tactics, but we doubt it. \u000a</p><<endif>>\u000a<<if $visited is 3>>\u000a<p>The Borg and the Cenobytes have joined forces, as have the Mafia and the League of Vampires. \u000a</p><<endif>>\u000a<<if $visited is 4>>\u000a<p>Rose and her crew are being beaten down by the Rosicrucians, and she probably doesn't even know it.\u000a</p><<endif>>\u000a<<if $visited is 5>>\u000a<p>Unless the Time Lords intervene in Buckingham Palace, there's going to be a new cloned police force/army. Once that happens, Scotland can kiss its independence goodbye.\u000a</p> <<endif>>\u000a<<if $visited is 6>>\u000a<p>After that, an invasion of Ireland and France is only a matter of time.  \u000a</p><<endif>>\u000a<<if $visited is 7>>\u000a<p>The only hope: Rose gets Thomas back into the game and somehow gets the attention of Pope Turlock and his hobbits.\u000a</p><<endif>>\u000a<<set $visited += 1>>\u000a<<if $visited is 8>><<set $visited to 0>><<endif>>\u000a<div class="nav">[[More|Meditate]][[Finish|Office2]]</div>\u000a
+p505
+sg23
+VMeditate
+p506
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I40
+I48
+I5
+I157
+I1
+tp507
+(dp508
+tp509
+Rp510
+sg31
+(lp511
+Vnobr
+p512
+asg33
+g26
+((I2014
+I8
+I13
+I12
+I37
+I40
+I2
+I225
+I1
+tp513
+(dp514
+tp515
+Rp516
+sbsa(dp517
+g14
+I00
+sg15
+(lp518
+F4910.0
+aF1270.0
+asg17
+(itiddlywiki
+Tiddler
+p519
+(dp520
+g21
+V<div class=nav>\u000a<<actions "Sit on Chair" "Your Mission">>\u000a</div>
+p521
+sg23
+VPot Actions
+p522
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I20
+I18
+I5
+I157
+I1
+tp523
+(dp524
+tp525
+Rp526
+sg31
+(lp527
+Vnobr
+p528
+asg33
+g26
+((I2014
+I8
+I13
+I13
+I12
+I59
+I2
+I225
+I1
+tp529
+(dp530
+tp531
+Rp532
+sbsa(dp533
+g14
+I00
+sg15
+(lp534
+F5890.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p535
+(dp536
+g21
+V<<display "StatusBar">>\u000a<p>Your mission is to infilitrate the Pentagon as the new Secretary of Defence and [[turn]]</p>\u000a<<status>>\u000a\u000a
+p537
+sg23
+VTranslate
+p538
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I15
+I5
+I157
+I1
+tp539
+(dp540
+tp541
+Rp542
+sg31
+(lp543
+Vnobr
+p544
+asg33
+g26
+((I2014
+I8
+I13
+I14
+I36
+I30
+I2
+I225
+I1
+tp545
+(dp546
+tp547
+Rp548
+sbsa(dp549
+g14
+I00
+sg15
+(lp550
+F6170.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p551
+(dp552
+g21
+V<<display "StatusBar">>\u000a<img src=one.jpg> \u000a[[into]]\u000a<<status>>\u000a\u000a
+p553
+sg23
+Vturn
+p554
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I25
+I5
+I157
+I1
+tp555
+(dp556
+tp557
+Rp558
+sg31
+(lp559
+Vnobr
+p560
+asg33
+g26
+((I2014
+I8
+I13
+I14
+I37
+I5
+I2
+I225
+I1
+tp561
+(dp562
+tp563
+Rp564
+sbsa(dp565
+g14
+I00
+sg15
+(lp566
+F6310.0
+aF150.0
+asg17
+(itiddlywiki
+Tiddler
+p567
+(dp568
+g21
+V<<display "StatusBar">>\u000a<img src=two.jpg>\u000a<div class = back>\u000a[[Back|Office2]]</div>\u000a<<status>>\u000a\u000a
+p569
+sg23
+Vinto
+p570
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I20
+I41
+I5
+I157
+I1
+tp571
+(dp572
+tp573
+Rp574
+sg31
+(lp575
+Vnobr
+p576
+asg33
+g26
+((I2014
+I8
+I13
+I14
+I37
+I39
+I2
+I225
+I1
+tp577
+(dp578
+tp579
+Rp580
+sbsa(dp581
+g14
+I00
+sg15
+(lp582
+F2670.0
+aF1550.0
+asg17
+(itiddlywiki
+Tiddler
+p583
+(dp584
+g21
+V<<display "StatusBar">>\u000a<p>You approach the young guard. "Where is communications?"</p>\u000a\u000a<p><i>"Take a right, and continue until you can't go no further."</i></p>\u000a\u000a<p>[[What's down the Left corridor?|Whats down the Left corridor?]]</p>\u000a<p>"Thank you".</p>\u000a<p><i>"You're welcome, Ma'am Secretary".</i> He salutes.</p>\u000a<p>[[Unexpected.]]</p>\u000a<div class ="nav">\u000a[[West|Corridor]]   [[front]]   [[East|corridor2]]\u000a</div>\u000a<<status>>\u000a
+p585
+sg23
+VSpeak to guard
+p586
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I17
+I16
+I5
+I157
+I1
+tp587
+(dp588
+tp589
+Rp590
+sg31
+(lp591
+Vnobr
+p592
+asg33
+g26
+((I2015
+I5
+I20
+I23
+I31
+I30
+I2
+I140
+I1
+tp593
+(dp594
+tp595
+Rp596
+sbsa(dp597
+g14
+I00
+sg15
+(lp598
+F3510.0
+aF1550.0
+asg17
+(itiddlywiki
+Tiddler
+p599
+(dp600
+g21
+V<<display "StatusBar">>\u000a<p>\u000a"Offices, Ma'am".</p>\u000a\u000a<div class = "nav">\u000a\u000a[[West|Corridor]]   [[Front|front]]   [[East|corridor2]][[Speak to guard]]</div>\u000a<<status>>\u000a
+p601
+sg23
+VWhats down the Left corridor?
+p602
+sg25
+g26
+((I2015
+I6
+I6
+I23
+I1
+I55
+I5
+I157
+I1
+tp603
+(dp604
+tp605
+Rp606
+sg31
+(lp607
+Vnobr
+p608
+asg33
+g26
+((I2015
+I5
+I20
+I23
+I40
+I22
+I2
+I140
+I1
+tp609
+(dp610
+tp611
+Rp612
+sbsa(dp613
+g14
+I00
+sg15
+(lp614
+F1550.0
+aF1410.0
+asg17
+(itiddlywiki
+Tiddler
+p615
+(dp616
+g21
+V<<display "StatusBar">><<set $guard = 100>>\u000a<img src = cyberguard1.jpg>\u000a<p>You are confronted by a cyberguard.</p>\u000a<p>He has <<print $guard>> hitpoints</p>\u000a<div class =nav>\u000a[[Attack|Cyberguard]][[North|corridor3]]\u000a</div>\u000a\u000a<<add mission 10>>\u000a<<status>>
+p617
+sg23
+VOffice 3a
+p618
+sg25
+g26
+((I2015
+I6
+I20
+I9
+I21
+I32
+I5
+I171
+I1
+tp619
+(dp620
+tp621
+Rp622
+sg31
+(lp623
+Vnobr
+p624
+asg33
+g26
+((I2015
+I5
+I22
+I21
+I40
+I57
+I4
+I142
+I1
+tp625
+(dp626
+tp627
+Rp628
+sbsa(dp629
+g14
+I00
+sg15
+(lp630
+F2250.0
+aF850.0
+asg17
+(itiddlywiki
+Tiddler
+p631
+(dp632
+g21
+V<<display "StatusBar">>\u000a<p>You are standing in an office approx 6 metres squared.\u000a</p><p>\u000aTo the north, there is a desk.\u000a</p><p>\u000aTo the east, there is a window.\u000a</p><p>\u000aTo the south, there is the door you can in.\u000a</p><p>\u000aTo the west, there is a filing cabinet.\u000a</p>\u000a<div class = nav>\u000a[[Search|Starmap]][[North|Offices2]]\u000a</div>\u000a<<status>>\u000a
+p633
+sg23
+VOffice 4
+p634
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I5
+I3
+I5
+I157
+I1
+tp635
+(dp636
+tp637
+Rp638
+sg31
+(lp639
+Vnobr
+p640
+asg33
+g26
+((I2015
+I5
+I22
+I21
+I40
+I57
+I4
+I142
+I1
+tp641
+(dp642
+tp643
+Rp644
+sbsa(dp645
+g14
+I00
+sg15
+(lp646
+F850.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p647
+(dp648
+g21
+V<<display "StatusBar">>\u000a<p>Ah, these humans and their mazes, their corridors and tunnels. Like rodents they scurry about undeground in small tight corridors. </p>\u000a<p>How you prefer the vast halls of home with their towering pillars, and shimmering crystal walls. This is your last mission and then retirement.</p>\u000a<p>Sheesh.</p>\u000a<div class="nav">\u000a[[West|Office2choice]][[East|Offices]]\u000a</div>\u000a\u000a\u000a\u000a
+p649
+sg23
+Vcorridor1
+p650
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I40
+I29
+I3
+I162
+I1
+tp651
+(dp652
+tp653
+Rp654
+sg31
+(lp655
+Vnobr
+p656
+asg33
+g26
+((I2015
+I5
+I22
+I21
+I43
+I35
+I4
+I142
+I1
+tp657
+(dp658
+tp659
+Rp660
+sbsa(dp661
+g14
+I00
+sg15
+(lp662
+F290.0
+aF710.0
+asg17
+(itiddlywiki
+Tiddler
+p663
+(dp664
+g21
+V<<display "StatusBar">>\u000a<img src = cyberguard2.jpg>\u000a<p>You are confronted by a cyberguard.</p>\u000a<<if $slack < 251 >>\u000a<p>You don't have enough slack to even face this thing. Go get more slack, then come back.</p>\u000a<div class="nav">\u000a[[Run Away|corridor1]]\u000a</div>\u000a<<else>>\u000a<<set $guard = 100>>\u000a<div class="nav">\u000a[[Attack|Cyberguard2]][[Run Away|corridor1]]\u000a</div>\u000a<<endif>>\u000a<<status>>
+p665
+sg23
+VOffice 2a
+p666
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I42
+I57
+I3
+I162
+I1
+tp667
+(dp668
+tp669
+Rp670
+sg31
+(lp671
+Vnobr
+p672
+asg33
+g26
+((I2015
+I5
+I22
+I21
+I43
+I35
+I4
+I142
+I1
+tp673
+(dp674
+tp675
+Rp676
+sbsa(dp677
+g14
+I00
+sg15
+(lp678
+F2390.0
+aF1270.0
+asg17
+(itiddlywiki
+Tiddler
+p679
+(dp680
+g21
+V<<display "StatusBar">>\u000a<img src = starmap.jpg>\u000a<p>You take the starmap. This will help you get home.</p>\u000a<div class =nav>\u000a[[Leave|Office 4]]\u000a</div>
+p681
+sg23
+VStarmap
+p682
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I21
+I7
+I5
+I157
+I1
+tp683
+(dp684
+tp685
+Rp686
+sg31
+(lp687
+Vnobr
+p688
+asg33
+g26
+((I2015
+I5
+I24
+I14
+I47
+I13
+I6
+I144
+I1
+tp689
+(dp690
+tp691
+Rp692
+sbsa(dp693
+g14
+I00
+sg15
+(lp694
+F1270.0
+aF1550.0
+asg17
+(itiddlywiki
+Tiddler
+p695
+(dp696
+g21
+V<<display "StatusBar">>\u000a<img src = cyberguard1.jpg>\u000a<<set $value = either(0,1,2,3)>> \u000a<<if $value < 3>>\u000a<<set $guard -=10>>\u000a<p>\u000aYou strike the cyberguard causing 10 damage points. He is now at <<print $guard>> points.\u000a</p>\u000a<<else>>\u000a<<subtract health 10>>\u000a<p>The cyberguard strikes you and you lose 10 hitpoints (and a slack). You are now at <<print $health>> hitpounts.</p>\u000a<<endif>>\u000a\u000a<<if  $guard < 0 >>\u000a<<add mission 10>>\u000a<<timedgoto "victory2" .5s >> \u000a<<endif>>\u000a<<if  $health < 0 >>\u000a<<timedgoto "RealStart" .5s >> \u000a<<endif>>\u000a<p>You are confronted by a cyberguard. He has <<print $guard>> hitpoints.</p>\u000a<div class="nav">\u000a[[Attack|Cyberguard]][[Run Away|corridor3]]\u000a</div>\u000a<<status>>\u000a
+p697
+sg23
+VCyberguard
+p698
+sg25
+g26
+((I2015
+I6
+I20
+I9
+I36
+I26
+I5
+I171
+I1
+tp699
+(dp700
+tp701
+Rp702
+sg31
+(lp703
+Vnobr
+p704
+asg33
+g26
+((I2015
+I5
+I24
+I14
+I48
+I10
+I6
+I144
+I1
+tp705
+(dp706
+tp707
+Rp708
+sbsa(dp709
+g14
+I00
+sg15
+(lp710
+F290.0
+aF1130.0
+asg17
+(itiddlywiki
+Tiddler
+p711
+(dp712
+g21
+V<<display "StatusBar">>\u000a<img src = cyberguard2.jpg>\u000a<<set $value = either(0,1,2,3)>> \u000a<<if $value < 3>>\u000a<<set $guard -=10>>\u000a<p>You strike the cyberguard causing 10 damage points. He is now at <<print $guard>> points.</p>\u000a<<else>>\u000a<<subtract health 10>>\u000a<p>The cyberguard strikes you and you lose 10 hitpoints (and a slack). You are now at <<print $health>> hit points.</p>\u000a<<endif>>\u000a<<if  $guard < 0 >>\u000a<<add mission 10>>\u000a<<timedgoto "victory1" .5s >> \u000a<<endif>>\u000a<<if  $health < 0 >>\u000a<<timedgoto "RealStart" .5s >> \u000a<<endif>><p>\u000aYou are confronted by a cyberguard.</p>\u000a<div class="nav">\u000a[[Attack|Cyberguard2]][[Run Away|corridor1]]\u000a</div>\u000a<<status>>\u000a
+p713
+sg23
+VCyberguard2
+p714
+sg25
+g26
+((I2015
+I6
+I20
+I9
+I2
+I56
+I5
+I171
+I1
+tp715
+(dp716
+tp717
+Rp718
+sg31
+(lp719
+Vnobr
+p720
+asg33
+g26
+((I2015
+I5
+I24
+I14
+I49
+I0
+I6
+I144
+I1
+tp721
+(dp722
+tp723
+Rp724
+sbsa(dp725
+g14
+I00
+sg15
+(lp726
+F1830.0
+aF1550.0
+asg17
+(itiddlywiki
+Tiddler
+p727
+(dp728
+g21
+V<<display "StatusBar">>\u000a<img src = rubble.jpg>\u000a<p>\u000aYou: <<print $health>> Cyberguard:<<print $guard>>\u000aYou defeat the cyberguard. You gain 20 slack points.</p>\u000a<<add slack 20>><<add cyberguard2 1>>\u000a<div class = nav>\u000a[[Search Office2]][[Search Robot2]][[Leave Office|corridor3]]\u000a</div>\u000a<<status>>
+p729
+sg23
+Vvictory2
+p730
+sg25
+g26
+((I2015
+I6
+I20
+I9
+I20
+I7
+I5
+I171
+I1
+tp731
+(dp732
+tp733
+Rp734
+sg31
+(lp735
+Vnobr
+p736
+asg33
+g26
+((I2015
+I5
+I25
+I22
+I9
+I2
+I0
+I145
+I1
+tp737
+(dp738
+tp739
+Rp740
+sbsa(dp741
+g14
+I00
+sg15
+(lp742
+F290.0
+aF1270.0
+asg17
+(itiddlywiki
+Tiddler
+p743
+(dp744
+g21
+V<<display "StatusBar">>\u000a<img src = rubble.jpg>\u000a<p>You defeat the cyberguard. You gain 20 slack points. But you do not feel good about it. 3 years ago several of these robots where given citizenry. It's doubtful that this was one of those, but still.</p>\u000a<<add slack 20>><<add mission 10>><<add cyberguard1 1>>\u000a<div class = nav>\u000a[[Search Office]][[Search Robot]][[Leave Office|corridor1]]\u000a</div>\u000a<<status>>
+p745
+sg23
+Vvictory1
+p746
+sg25
+g26
+((I2015
+I6
+I17
+I22
+I46
+I54
+I2
+I168
+I1
+tp747
+(dp748
+tp749
+Rp750
+sg31
+(lp751
+Vnobr
+p752
+asg33
+g26
+((I2015
+I5
+I25
+I22
+I9
+I43
+I0
+I145
+I1
+tp753
+(dp754
+tp755
+Rp756
+sbsa(dp757
+g14
+I00
+sg15
+(lp758
+F150.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p759
+(dp760
+g21
+V<<display "StatusBar">>\u000a<img src = rubble.jpg>\u000a<<set $slack +=20>>\u000a<p>\u000aYou don't find anything. Maybe you don't have enough slack.</p>\u000a<div class = nav>\u000a[[Search Office]][[Leave Office|corridor1]]\u000a</div>\u000a<<status>>
+p761
+sg23
+VSearch Robot
+p762
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I17
+I18
+I3
+I162
+I1
+tp763
+(dp764
+tp765
+Rp766
+sg31
+(lp767
+Vnobr
+p768
+asg33
+g26
+((I2015
+I5
+I25
+I22
+I53
+I35
+I0
+I145
+I1
+tp769
+(dp770
+tp771
+Rp772
+sbsa(dp773
+g14
+I00
+sg15
+(lp774
+F430.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p775
+(dp776
+g21
+V<<display "StatusBar">>\u000a<img src =n5004edfa5a216.jpg>\u000a<p>\u000aYou find a little, gold space shuttle.</p>\u000a<<set $spaceshuttle =1>>\u000a<div class = "nav">\u000a[[Search Robot]][[Leave Office|corridor1]]\u000a</div>\u000a<<status>>
+p777
+sg23
+VSearch Office
+p778
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I17
+I35
+I3
+I162
+I1
+tp779
+(dp780
+tp781
+Rp782
+sg31
+(lp783
+Vnobr
+p784
+asg33
+g26
+((I2015
+I5
+I25
+I22
+I53
+I35
+I0
+I145
+I1
+tp785
+(dp786
+tp787
+Rp788
+sbsa(dp789
+g14
+I00
+sg15
+(lp790
+F1970.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p791
+(dp792
+g21
+V<<display "StatusBar">>\u000a<img src = 00021451.jpg>\u000a<p>You find a set of marble artifacts, created by worshippers of you and your fathers, oh so long ago.</p>\u000a<<set $slack +=20>><<set $mission +=10>>\u000a<div class =nav>\u000a[[Search Office2]][[Leave Office|corridor3]]\u000a</div>\u000a<<status>>
+p793
+sg23
+VSearch Office2
+p794
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I19
+I31
+I3
+I162
+I1
+tp795
+(dp796
+tp797
+Rp798
+sg31
+(lp799
+Vnobr
+p800
+asg33
+g26
+((I2015
+I5
+I25
+I22
+I56
+I58
+I0
+I145
+I1
+tp801
+(dp802
+tp803
+Rp804
+sbsa(dp805
+g14
+I00
+sg15
+(lp806
+F1690.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p807
+(dp808
+g21
+V<<display "StatusBar">>\u000a<img src = rubble.jpg>\u000a<p>\u000aYou find a Sonic screw driver. No doubt owned by Dr. wasisname?</p>\u000a<<addToInv screwdriver>>\u000a\u000a\u000a<div class = "nav">\u000a[[Search Office2]][[Leave Office|corridor3]]\u000a</div>\u000a<<status>>
+p809
+sg23
+VSearch Robot2
+p810
+sg25
+g26
+((I2015
+I6
+I19
+I20
+I54
+I50
+I4
+I170
+I1
+tp811
+(dp812
+tp813
+Rp814
+sg31
+(lp815
+Vnobr
+p816
+asg33
+g26
+((I2015
+I5
+I25
+I22
+I56
+I59
+I0
+I145
+I1
+tp817
+(dp818
+tp819
+Rp820
+sbsa(dp821
+g14
+I00
+sg15
+(lp822
+F4770.0
+aF1410.0
+asg17
+(itiddlywiki
+Tiddler
+p823
+(dp824
+g21
+V<<display "StatusBar">>\u000a<img src = grill.jpg>\u000a<p>\u000aYou see an air vent behind the desk, which is wide enough for you to crawl through (if you can remove the grill).</p>\u000a<div class="nav">\u000a[[Open Vent|Vent1]]<div class = "back">[[Back|Office2]]\u000a</div></div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p825
+sg23
+Vbut wait
+p826
+sg25
+g26
+((I2015
+I6
+I6
+I23
+I13
+I43
+I5
+I157
+I1
+tp827
+(dp828
+tp829
+Rp830
+sg31
+(lp831
+Vnobr
+p832
+asg33
+g26
+((I2015
+I5
+I27
+I18
+I28
+I32
+I2
+I147
+I1
+tp833
+(dp834
+tp835
+Rp836
+sbsa(dp837
+g14
+I00
+sg15
+(lp838
+F4770.0
+aF1550.0
+asg17
+(itiddlywiki
+Tiddler
+p839
+(dp840
+g21
+V<<display "StatusBar">>\u000a<img src = vent1.jpg>\u000a<div class="nav">\u000a[[North|Vent2]]<div class = "back">[[Back|but wait]]\u000a</div></div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p841
+sg23
+VVent1
+p842
+sg25
+g26
+((I2015
+I6
+I6
+I23
+I14
+I22
+I5
+I157
+I1
+tp843
+(dp844
+tp845
+Rp846
+sg31
+(lp847
+Vnobr
+p848
+asg33
+g26
+((I2015
+I5
+I27
+I20
+I20
+I15
+I2
+I147
+I1
+tp849
+(dp850
+tp851
+Rp852
+sbsa(dp853
+g14
+I00
+sg15
+(lp854
+F4770.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p855
+(dp856
+g21
+V<<display "StatusBar">>\u000a<img src = vent2.jpg>\u000a<p>Air vent.</p>\u000a<div class="nav">[[North|Vent3]] [[South|Vent1]] [[West|Vent4]] [[East|Vent5]]</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p857
+sg23
+VVent2
+p858
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I20
+I2
+I5
+I157
+I1
+tp859
+(dp860
+tp861
+Rp862
+sg31
+(lp863
+Vnobr
+p864
+asg33
+g26
+((I2015
+I5
+I27
+I20
+I21
+I3
+I2
+I147
+I1
+tp865
+(dp866
+tp867
+Rp868
+sbsa(dp869
+g14
+I00
+sg15
+(lp870
+F4770.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p871
+(dp872
+g21
+V<<display "StatusBar">>\u000a<img src = vent3.jpg>\u000a<<if $grillunlocked is 1>>\u000a<p>On the other side of the heavy grill, you see the Transporter room. Red lights blinking and flashing signal your dissapearance has been discovered.</p>\u000a<<else>>\u000a<p>On the other side of the heavy grill, you see the  Transporter room. Vader has one of his minnions by the throat. The grill is locked tight from the other side.</p>\u000a<<endif>>\u000a<div class="nav">\u000a[[South|Vent2]]<<if $grillunlocked is 1>>[[Remove Grill]]<<endif>>\u000a</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p873
+sg23
+VVent3
+p874
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I19
+I59
+I5
+I157
+I1
+tp875
+(dp876
+tp877
+Rp878
+sg31
+(lp879
+Vnobr
+p880
+asg33
+g26
+((I2015
+I5
+I27
+I20
+I22
+I16
+I2
+I147
+I1
+tp881
+(dp882
+tp883
+Rp884
+sbsa(dp885
+g14
+I00
+sg15
+(lp886
+F4630.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p887
+(dp888
+g21
+V<<display "StatusBar">>\u000a<img src = vent4.jpg>\u000a<p>You are in an air vent.</p>\u000a<div class="nav">[[West|Vent7]][[East|Vent2]]</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p889
+sg23
+VVent4
+p890
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I59
+I11
+I5
+I157
+I1
+tp891
+(dp892
+tp893
+Rp894
+sg31
+(lp895
+Vnobr
+p896
+asg33
+g26
+((I2015
+I5
+I27
+I20
+I22
+I16
+I2
+I147
+I1
+tp897
+(dp898
+tp899
+Rp900
+sbsa(dp901
+g14
+I00
+sg15
+(lp902
+F4910.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p903
+(dp904
+g21
+V<<display "StatusBar">>\u000a<img src = vent5.jpg>\u000a<p>You are in an air vent.</p>\u000a<div class="nav">[[West|Vent2]][[East|Vent6]]</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p905
+sg23
+VVent5
+p906
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I19
+I57
+I5
+I157
+I1
+tp907
+(dp908
+tp909
+Rp910
+sg31
+(lp911
+Vnobr
+p912
+asg33
+g26
+((I2015
+I5
+I27
+I20
+I22
+I16
+I2
+I147
+I1
+tp913
+(dp914
+tp915
+Rp916
+sbsa(dp917
+g14
+I00
+sg15
+(lp918
+F3370.0
+aF2530.0
+asg17
+(itiddlywiki
+Tiddler
+p919
+(dp920
+g21
+V<<display "StatusBar">>\u000a<img src = command3.jpg>\u000a<p>\u000aYou see a grill but if you bend down to open it, you will be noticed.</p>\u000a<div class="nav">\u000a<<if $inventory.indexOf("screwdriver") != -1>>\u000a[[Unlock grill with Sonic screwdriver|Unlock Grill]]<<endif>>[[Back|Command2]][[Next|Command4]]</div>\u000a<<status>>
+p921
+sg23
+VGrill
+p922
+sg25
+g26
+((I2015
+I6
+I19
+I20
+I59
+I10
+I4
+I170
+I1
+tp923
+(dp924
+tp925
+Rp926
+sg31
+(lp927
+Vnobr
+p928
+asg33
+g26
+((I2015
+I5
+I27
+I21
+I29
+I25
+I2
+I147
+I1
+tp929
+(dp930
+tp931
+Rp932
+sbsa(dp933
+g14
+I00
+sg15
+(lp934
+F3090.0
+aF2530.0
+asg17
+(itiddlywiki
+Tiddler
+p935
+(dp936
+g21
+V<<display "StatusBar">>\u000a<img src = command3.jpg>\u000a<p>You slip the Sonic screwdriver out of your pocket and slide it up your sleeve. Casually leaning against the wall, you aim the screwdriver at the grill screws which begin to turn. The grill is unlocked. You might be able to get back in here later and get to that transporter.</p>\u000a<<set $grillunlocked=1>><<set $mission +=10>>\u000a<div class="nav">\u000a[[Back|Command2]][[Next|Command4]]</div>\u000a<<status>>
+p937
+sg23
+VUnlock Grill
+p938
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I11
+I28
+I5
+I157
+I1
+tp939
+(dp940
+tp941
+Rp942
+sg31
+(lp943
+Vnobr
+p944
+asg33
+g26
+((I2015
+I5
+I27
+I21
+I32
+I6
+I2
+I147
+I1
+tp945
+(dp946
+tp947
+Rp948
+sbsa(dp949
+g14
+I00
+sg15
+(lp950
+F4770.0
+aF2110.0
+asg17
+(itiddlywiki
+Tiddler
+p951
+(dp952
+g21
+V<<display "StatusBar">>\u000a<img src = teleporter.jpg>\u000a<p>\u000aYou stand in the teleporter room. Alone.\u000aEverybody is looking for you. </p>\u000a<p>\u000a\u000aYou [[hack the computer]] and enter the transporter.</p>\u000a<<set $mission+=10>>\u000a<<status>>\u000a\u000a\u000a\u000a
+p953
+sg23
+VRemove Grill
+p954
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I16
+I20
+I5
+I157
+I1
+tp955
+(dp956
+tp957
+Rp958
+sg31
+(lp959
+Vnobr
+p960
+asg33
+g26
+((I2015
+I5
+I27
+I21
+I38
+I31
+I2
+I147
+I1
+tp961
+(dp962
+tp963
+Rp964
+sbsa(dp965
+g14
+I00
+sg15
+(lp966
+F2950.0
+aF430.0
+asg17
+(itiddlywiki
+Tiddler
+p967
+(dp968
+g21
+V<<loadJS script3.js>>\u000a<<display "StatusBar">>\u000a  <div id="world"></div>\u000a<div class="nav">\u000a[[Square]]\u000a</div>\u000a<<status>>\u000a\u000a\u000a
+p969
+sg23
+Vzombie killing
+p970
+sg25
+g26
+((I2015
+I6
+I7
+I16
+I39
+I31
+I6
+I158
+I1
+tp971
+(dp972
+tp973
+Rp974
+sg31
+(lp975
+Vnobr
+p976
+asg33
+g26
+((I2015
+I5
+I27
+I22
+I32
+I43
+I2
+I147
+I1
+tp977
+(dp978
+tp979
+Rp980
+sbsa(dp981
+g14
+I00
+sg15
+(lp982
+F5050.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p983
+(dp984
+g21
+V<<display "StatusBar">>\u000a<img src = vent6.jpg>\u000a<p>You are in an air vent.</p>\u000a<p>The office is to the West. To the East, you see an ending where the chute slopes steeply downwards. You could probably slide down it.</p>\u000a<div class="nav"> \u000a<<set $down to 1>>\u000a[[West|Vent5]][[Down]]\u000a</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p985
+sg23
+VVent6
+p986
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I19
+I53
+I5
+I157
+I1
+tp987
+(dp988
+tp989
+Rp990
+sg31
+(lp991
+Vnobr
+p992
+asg33
+g26
+((I2015
+I5
+I28
+I21
+I53
+I9
+I3
+I148
+I1
+tp993
+(dp994
+tp995
+Rp996
+sbsa(dp997
+g14
+I00
+sg15
+(lp998
+F4490.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p999
+(dp1000
+g21
+V<<display "StatusBar">>\u000a<img src = vent7.png>\u000a<p>You are in an air vent.</p>\u000a<div class="nav">\u000a[[East|Vent4]]\u000a</div>\u000a<<status>>
+p1001
+sg23
+VVent7
+p1002
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I20
+I9
+I5
+I157
+I1
+tp1003
+(dp1004
+tp1005
+Rp1006
+sg31
+(lp1007
+Vnobr
+p1008
+asg33
+g26
+((I2015
+I5
+I28
+I21
+I53
+I49
+I3
+I148
+I1
+tp1009
+(dp1010
+tp1011
+Rp1012
+sbsa(dp1013
+g14
+I00
+sg15
+(lp1014
+F5610.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p1015
+(dp1016
+g21
+V<<display "StatusBar">>\u000a<<if $down is 1>><p>It's very steep. Aaaaaaa</p><<endif>>\u000a<<if $down is 2>><p>It's very steep. Aaaaaaaaaaaaaaaaaaaaaaaaaa</p><<endif>>\u000a<<if $down is 3>><p>It's very steep. Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaargh</p><<endif>>\u000a<<if $down is 4>><img src = face.jpg><<endif>>\u000a<<if $down is 5>><p>You land on your ass. Damage: minimum.</p><<endif>>\u000a<div class="nav"> <<if $down is 5>>[[West|West Tunnel]][[East|Tunnel]]<<else>><<set $down +=1>>[[Down]]<<endif>>\u000a</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p1017
+sg23
+VDown
+p1018
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I57
+I12
+I5
+I157
+I1
+tp1019
+(dp1020
+tp1021
+Rp1022
+sg31
+(lp1023
+Vnobr
+p1024
+asg33
+g26
+((I2015
+I5
+I31
+I14
+I31
+I35
+I6
+I151
+I1
+tp1025
+(dp1026
+tp1027
+Rp1028
+sbsa(dp1029
+g14
+I00
+sg15
+(lp1030
+F5890.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p1031
+(dp1032
+g21
+V<<display "StatusBar">>\u000a<img src = lavey-ritual-lg.jpg>\u000a<p>You are miles beneath the surface. There are 12 people in a circle, robed in black. In the centre of the circle lies a naked woman on an alter. Satan stands leaning over her. Her legs are spread apart and a piece of Catholic Communion bread is pressed against her sex.</p>\u000a<div class="nav">\u000a[[Next|Ritual]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1033
+sg23
+VTunnel
+p1034
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I56
+I5
+I157
+I1
+tp1035
+(dp1036
+tp1037
+Rp1038
+sg31
+(lp1039
+Vnobr
+p1040
+asg33
+g26
+((I2015
+I5
+I31
+I14
+I40
+I43
+I6
+I151
+I1
+tp1041
+(dp1042
+tp1043
+Rp1044
+sbsa(dp1045
+g14
+I00
+sg15
+(lp1046
+F6170.0
+aF1690.0
+asg17
+(itiddlywiki
+Tiddler
+p1047
+(dp1048
+g21
+V<<display "StatusBar">>\u000a<img src = deathfacecobrasnake.jpg>\u000a<p>The bread is moist.</p>\u000a<div class="nav">\u000a<<if $case is 1>>\u000a[[Set the Bomb|Bomb]]\u000a<<else>>\u000a[[Tune in next week|Vent6]]<<endif>>\u000a</div>\u000a<<status>>\u000a\u000a
+p1049
+sg23
+VRitual
+p1050
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I51
+I5
+I157
+I1
+tp1051
+(dp1052
+tp1053
+Rp1054
+sg31
+(lp1055
+Vnobr
+p1056
+asg33
+g26
+((I2015
+I5
+I31
+I16
+I43
+I50
+I6
+I151
+I1
+tp1057
+(dp1058
+tp1059
+Rp1060
+sbsa(dp1061
+g14
+I00
+sg15
+(lp1062
+F5470.0
+aF1830.0
+asg17
+(itiddlywiki
+Tiddler
+p1063
+(dp1064
+g21
+V<<display "StatusBar">>\u000a<p>\u000aStanding in front of you is a halfling, one of the homoflorensis resurrected by Dr. Bob Roberts at Info Corp. For the first time, during their short time here so far, a human (since that's the body you now inhabit) speaks to one of them in their native tongue.</p>\u000a<p>"Yes Consultant, follow me", intones the halfling and scampers down a dark tunnel. "Follow me, East leads only to decadence."</p>\u000a<div class="nav">\u000a[[West|Rose]][[East|Tunnel]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1065
+sg23
+VWest Tunnel
+p1066
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I58
+I17
+I5
+I157
+I1
+tp1067
+(dp1068
+tp1069
+Rp1070
+sg31
+(lp1071
+Vnobr
+p1072
+asg33
+g26
+((I2015
+I6
+I1
+I18
+I7
+I30
+I0
+I152
+I1
+tp1073
+(dp1074
+tp1075
+Rp1076
+sbsa(dp1077
+g14
+I00
+sg15
+(lp1078
+F5470.0
+aF2110.0
+asg17
+(itiddlywiki
+Tiddler
+p1079
+(dp1080
+g21
+V<<display "StatusBar">>\u000a<p>\u000aYou follow the half, down long twisted tunnels, across caverns until you reach a small enclave. Several more hobbits lie aimlesslessly around a fire, smoking damn fine weed. A few humans sit amongst them including Rose, a leader of the resistance (or one of them).</p>\u000a<p>"Welcome, Consultant", Rose beckons.</p>\u000a<p>"You know who... what I am".</p>\u000a<p>"You're not the first grey I've met. Besides, we've been expecting you".</p>\u000a<p>"You have?"</p>\u000a<p>"Yes. It would seem we have a mutual friend".</p>\u000a<p>You look puzzled for a bit, but it dawns on you: Not <i>exactly</i> a friend.</p>\u000a<p>"Ah, the Doctor", you confirm.</p>\u000a<div class="nav">\u000a[[Next|Rose2]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1081
+sg23
+VRose
+p1082
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I19
+I31
+I5
+I157
+I1
+tp1083
+(dp1084
+tp1085
+Rp1086
+sg31
+(lp1087
+Vnobr
+p1088
+asg33
+g26
+((I2015
+I6
+I1
+I18
+I13
+I48
+I0
+I152
+I1
+tp1089
+(dp1090
+tp1091
+Rp1092
+sbsa(dp1093
+g14
+I00
+sg15
+(lp1094
+F5470.0
+aF2390.0
+asg17
+(itiddlywiki
+Tiddler
+p1095
+(dp1096
+g21
+V<<display "StatusBar">>\u000a<p>One of the hobbits put a briefcase in your office. It contains an akumanation device. Directly underneath the centre of this building is an alter used by the Pentagon Order to Sacrifice Virgins to Satan. On occasion, Satan himself will appear and give favours to politicans, popstars etc. in return for their loyalty. That location is an unholy spot and it needs to be cleansed. The akumanator will do what we need.</p>\u000a<p>Is it dangerous?</p>\u000a<p>If you're born of the spawn of beezabulb, well, yeah. The positive tronic vibes will send you straight to hell. But it's harmless to humans... and greys in human bodies... and greys in general.</p>\u000a<div class="nav">\u000a[[Next|Rose3]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1097
+sg23
+VRose2
+p1098
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I19
+I37
+I5
+I157
+I1
+tp1099
+(dp1100
+tp1101
+Rp1102
+sg31
+(lp1103
+Vnobr
+p1104
+asg33
+g26
+((I2015
+I6
+I1
+I18
+I24
+I30
+I0
+I152
+I1
+tp1105
+(dp1106
+tp1107
+Rp1108
+sbsa(dp1109
+g14
+I00
+sg15
+(lp1110
+F5050.0
+aF2390.0
+asg17
+(itiddlywiki
+Tiddler
+p1111
+(dp1112
+g21
+V<<display "StatusBar">>\u000a<p>Once you set the bomb... the Akumanator, you should make it back through the tunnels to the transporter. When we see that the device has been triggered we will creat a diversion so you can enterthe transporter room. Go straigh to the transporter. It will be set for Puna Punku. Once you get there, put this stone key into the fourth navigation stone. You'll recognise it when you see it. It will triggar a signal back to Sirius. You'll be home within a day. :-)</p>\u000a<p> Bilbo will guide you back to the air-vent</p>\u000a<p> Oh, and one more thing... Skip every second letter.</p>\u000a<div class="nav">\u000a[[Next|Vent6]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1113
+sg23
+VRose3
+p1114
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I19
+I41
+I5
+I157
+I1
+tp1115
+(dp1116
+tp1117
+Rp1118
+sg31
+(lp1119
+Vnobr
+p1120
+asg33
+g26
+((I2015
+I6
+I1
+I18
+I38
+I17
+I0
+I152
+I1
+tp1121
+(dp1122
+tp1123
+Rp1124
+sbsa(dp1125
+g14
+I00
+sg15
+(lp1126
+F4770.0
+aF2390.0
+asg17
+(itiddlywiki
+Tiddler
+p1127
+(dp1128
+g21
+V<<display "StatusBar">>\u000a<img src = teleporter.jpg>\u000a<p>\u000aYou stand in the transporter.</p>\u000a\u000a<div class="nav">\u000a<a href="http://eclecticmeme.com/components/com_battle/views/twine/tmpl/bolivia%20-%20Puma%20Punku/">Jump</a>\u000a</div>\u000a<<status>>\u000a\u000a\u000a\u000a
+p1129
+sg23
+Vhack the computer
+p1130
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I16
+I3
+I5
+I157
+I1
+tp1131
+(dp1132
+tp1133
+Rp1134
+sg31
+(lp1135
+Vnobr
+p1136
+asg33
+g26
+((I2015
+I6
+I1
+I19
+I39
+I56
+I0
+I152
+I1
+tp1137
+(dp1138
+tp1139
+Rp1140
+sbsa(dp1141
+g14
+I00
+sg15
+(lp1142
+F6310.0
+aF1970.0
+asg17
+(itiddlywiki
+Tiddler
+p1143
+(dp1144
+g21
+V<<display "StatusBar">>\u000a<p>You set the bomb.</p>\u000a<<set $bomb to 1>>\u000a<div class="nav">\u000a[[Leave|Vent6]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1145
+sg23
+VBomb
+p1146
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I18
+I48
+I5
+I157
+I1
+tp1147
+(dp1148
+tp1149
+Rp1150
+sg31
+(lp1151
+Vnobr
+p1152
+asg33
+g26
+((I2015
+I6
+I1
+I20
+I55
+I45
+I0
+I152
+I1
+tp1153
+(dp1154
+tp1155
+Rp1156
+sbsa(dp1157
+g14
+I00
+sg15
+(lp1158
+F2670.0
+aF2390.0
+asg17
+(itiddlywiki
+Tiddler
+p1159
+(dp1160
+g21
+V<<display "StatusBar">><<print $code>>\u000a<<if $code is "D629V">>\u000a<p>\u000aYes</p>\u000a<<timedgoto "victory2" .5s >> \u000a<<elseif $code is "DL62209TVX">>\u000a<p>\u000aNo, you need to understand the code.</p>\u000a<<timedgoto "Screenshot02" 5.5s >> \u000a<<else>>\u000a<p>\u000aNope.</p>\u000a<<timedgoto "Screenshot02" 5.5s >> \u000a<<endif>>\u000a<<status>>\u000a
+p1161
+sg23
+VInput
+p1162
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I10
+I26
+I5
+I157
+I1
+tp1163
+(dp1164
+tp1165
+Rp1166
+sg31
+(lp1167
+Vnobr
+p1168
+asg33
+g26
+((I2015
+I6
+I3
+I19
+I14
+I18
+I2
+I154
+I1
+tp1169
+(dp1170
+tp1171
+Rp1172
+sbsa(dp1173
+g14
+I00
+sg15
+(lp1174
+F2530.0
+aF2670.0
+asg17
+(itiddlywiki
+Tiddler
+p1175
+(dp1176
+g21
+V<<display "StatusBar">>\u000a<<set $cracked =1>><<set $mission +=10>>\u000a<div class="nav">\u000a[[Back|Command3]]\u000a</div>\u000a<<status>>\u000a
+p1177
+sg23
+Vvictory
+p1178
+sg25
+g26
+((I2015
+I6
+I6
+I21
+I17
+I52
+I5
+I157
+I1
+tp1179
+(dp1180
+tp1181
+Rp1182
+sg31
+(lp1183
+Vnobr
+p1184
+asg33
+g26
+((I2015
+I6
+I3
+I19
+I32
+I5
+I2
+I154
+I1
+tp1185
+(dp1186
+tp1187
+Rp1188
+sbsa(dp1189
+g14
+I00
+sg15
+(lp1190
+F2950.0
+aF1970.0
+asg17
+(itiddlywiki
+Tiddler
+p1191
+(dp1192
+g21
+V<<loadJS script5.js>>\u000a<<display "StatusBar">>\u000a<div id="world"></div>\u000a<div class="nav"><p>\u000aMission: Destroy the Ancient Ruins.</p><div class = "back">[[Back|Command]]</div>\u000a</div>\u000a<<status>>\u000a\u000a\u000a
+p1193
+sg23
+VWeapon Test
+p1194
+sg25
+g26
+((I2015
+I6
+I6
+I23
+I34
+I43
+I5
+I157
+I1
+tp1195
+(dp1196
+tp1197
+Rp1198
+sg31
+(lp1199
+Vnobr
+p1200
+asg33
+g26
+((I2015
+I6
+I3
+I20
+I2
+I19
+I2
+I154
+I1
+tp1201
+(dp1202
+tp1203
+Rp1204
+sbsa(dp1205
+g14
+I00
+sg15
+(lp1206
+F1690.0
+aF430.0
+asg17
+(itiddlywiki
+Tiddler
+p1207
+(dp1208
+g21
+V<<loadJS script6.js>>\u000a<<display "StatusBar">>\u000a<div id="world"></div>\u000a<p>\u000aUse cursor keys to look around room.</p>\u000a<div class="nav">\u000a[[South|corridor3]]\u000a</div>\u000a<<status>>\u000a\u000a
+p1209
+sg23
+VOffice5
+p1210
+sg25
+g26
+((I2015
+I6
+I6
+I22
+I6
+I57
+I5
+I157
+I1
+tp1211
+(dp1212
+tp1213
+Rp1214
+sg31
+(lp1215
+Vnobr
+p1216
+asg33
+g26
+((I2015
+I6
+I4
+I19
+I2
+I56
+I3
+I155
+I1
+tp1217
+(dp1218
+tp1219
+Rp1220
+sbsa(dp1221
+g14
+I00
+sg15
+(lp1222
+F570.0
+aF570.0
+asg17
+(itiddlywiki
+Tiddler
+p1223
+(dp1224
+g21
+V<<if $cyberguard1 is 0>>\u000a<<display Office 2a >>\u000a<<else>>\u000a<<display Office 2b>>\u000a<<endif>>\u000a
+p1225
+sg23
+VOffice2choice
+p1226
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I46
+I29
+I3
+I162
+I1
+tp1227
+(dp1228
+tp1229
+Rp1230
+sg31
+(lp1231
+sg33
+g26
+((I2015
+I6
+I11
+I21
+I39
+I11
+I3
+I162
+I1
+tp1232
+(dp1233
+tp1234
+Rp1235
+sbsa(dp1236
+g14
+I00
+sg15
+(lp1237
+F850.0
+aF290.0
+asg17
+(itiddlywiki
+Tiddler
+p1238
+(dp1239
+g21
+V<<display "StatusBar">>\u000a\u000a<p>You are in an office </p>\u000a[[East|corridor1]]\u000a</div>\u000a<<status>>
+p1240
+sg23
+VOffice 2b
+p1241
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I48
+I14
+I3
+I162
+I1
+tp1242
+(dp1243
+tp1244
+Rp1245
+sg31
+(lp1246
+sg33
+g26
+((I2015
+I6
+I11
+I21
+I41
+I1
+I3
+I162
+I1
+tp1247
+(dp1248
+tp1249
+Rp1250
+sbsa(dp1251
+g14
+I00
+sg15
+(lp1252
+F1130.0
+aF1270.0
+asg17
+(itiddlywiki
+Tiddler
+p1253
+(dp1254
+g21
+V<<if $cyberguard2 is 0>>\u000a<<display Office 3a >>\u000a<<else>>\u000a<<display Office 3b>>\u000a<<endif>>\u000a
+p1255
+sg23
+VOffice3choice
+p1256
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I46
+I21
+I3
+I162
+I1
+tp1257
+(dp1258
+tp1259
+Rp1260
+sg31
+(lp1261
+sg33
+g26
+((I2015
+I6
+I11
+I21
+I45
+I37
+I3
+I162
+I1
+tp1262
+(dp1263
+tp1264
+Rp1265
+sbsa(dp1266
+g14
+I00
+sg15
+(lp1267
+F1270.0
+aF990.0
+asg17
+(itiddlywiki
+Tiddler
+p1268
+(dp1269
+g21
+V<<display "StatusBar">>\u000a\u000a<p>You are in an office </p>\u000a[[North|corridor3]]\u000a</div>\u000a<<status>>
+p1270
+sg23
+VOffice 3b
+p1271
+sg25
+g26
+((I2015
+I6
+I11
+I21
+I48
+I51
+I3
+I162
+I1
+tp1272
+(dp1273
+tp1274
+Rp1275
+sg31
+(lp1276
+sg33
+g26
+((I2015
+I6
+I11
+I21
+I47
+I49
+I3
+I162
+I1
+tp1277
+(dp1278
+tp1279
+Rp1280
+sbsa(dp1281
+g14
+I00
+sg15
+(lp1282
+F10.0
+aF10.0
+asg17
+(itiddlywiki
+Tiddler
+p1283
+(dp1284
+g21
+V<<init>>\u000a<<display "RealStart">>
+p1285
+sg23
+Vreset game
+p1286
+sg25
+g26
+((I2015
+I6
+I16
+I22
+I4
+I5
+I1
+I167
+I1
+tp1287
+(dp1288
+tp1289
+Rp1290
+sg31
+(lp1291
+sg33
+g26
+((I2015
+I6
+I16
+I21
+I52
+I21
+I1
+I167
+I1
+tp1292
+(dp1293
+tp1294
+Rp1295
+sbsa(dp1296
+g14
+I00
+sg15
+(lp1297
+F3230.0
+aF10.0
+asg17
+(itiddlywiki
+Tiddler
+p1298
+(dp1299
+g21
+V
+p1300
+sg23
+VUnlock the door.
+p1301
+sg25
+g26
+((I2015
+I6
+I19
+I19
+I46
+I50
+I4
+I170
+I1
+tp1302
+(dp1303
+tp1304
+Rp1305
+sg31
+(lp1306
+sg33
+g1305
+sbsasS'scale'
+p1307
+F0.4000000000000001
+sS'snapping'
+p1308
+I01
+ss.
