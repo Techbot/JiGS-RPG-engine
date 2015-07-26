@@ -848,8 +848,8 @@ y3[26] = 480;
 
 boundsX1[26] = 0;
 boundsY1[26] = 0;
-boundsX2[26] = 1600;
-boundsY2[26] = 1600;
+boundsX2[26] = 1152;
+boundsY2[26] = 960;
 
 
 portal_dest_1[26] = 15;
