@@ -4,11 +4,11 @@ JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
 if ($this->row->id)
 {
-    JToolBarHelper::title( JText::_( 'Edit Page Profile' ), 'addedit.png' );
+    JToolBarHelper::title( JText::_( 'Edit Plate Profile' ), 'addedit.png' );
 }
 else
 {
-    JToolBarHelper::title( JText::_( 'Add Page Profile' ), 'addedit.png' );
+    JToolBarHelper::title( JText::_( 'Add Plate Profile' ), 'addedit.png' );
 }
 JToolBarHelper::save();
 JToolBarHelper::apply();

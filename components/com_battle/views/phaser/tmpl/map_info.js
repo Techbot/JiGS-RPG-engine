@@ -193,8 +193,8 @@ portal_dest_2[6] = 14;
 portal_dest_3[6] = 2;
 
 
-portal_sourceX1[6] = 825;
-portal_sourceY1[6] = 855;
+portal_sourceX1[6] = 889;
+portal_sourceY1[6] = 32;
 
 portal_sourceX2[6] = 64;
 portal_sourceY2[6] = 64;
@@ -408,7 +408,7 @@ portal_sourceY3[12] = 96;
 tile_names[13] = ['RoyalTileset-TileB','TileA5','sprite'];
 
 x1[13] = 832;
-y1[13] = 1500;
+y1[13] = 1480;
 
 x2[13] = 128;
 y2[13] = 288;
@@ -734,1173 +734,1138 @@ portal_sourceY3[22] = 224;
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[23] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[23] = ['001-Grassland01','sprite'];
 
-x1[23] = 889;
-y1[23] = 0;
+x1[23] = 960;
+y1[23] = 256;
 
-x2[23] = 1623;
-y2[23] = 610;
+x2[23] = 1120;
+y2[23] = 1152;
 
-x3[23] = 640;
-y3[23] = 580;
+x3[23] = 352;
+y3[23] = 928;
 
 boundsX1[23] = 0;
 boundsY1[23] = 0;
-boundsX2[23] = 1600;
-boundsY2[23] = 1600;
+boundsX2[23] = 1440;
+boundsY2[23] = 1440;
 
 
 portal_dest_1[23] = 36;
 portal_dest_2[23] = 37;
-portal_dest_3[23] = 3;
+portal_dest_3[23] = 13;
 
 
-portal_sourceX1[23] = 825;
-portal_sourceY1[23] = 855;
+portal_sourceX1[23] = 960;
+portal_sourceY1[23] = 256;
 
-portal_sourceX2[23] = 825;
-portal_sourceY2[23] = 855;
+portal_sourceX2[23] = 1120;
+portal_sourceY2[23] = 1152;
 
-portal_sourceX3[23] = 825;
-portal_sourceY3[23] = 855;
+portal_sourceX3[23] = 352;
+portal_sourceY3[23] = 928;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[24] = ['TileA5','TileA4','TileC','Zombie_A4_016b'];
+tile_names[24] = ['007-Swamp01','sprite'];
 
-x1[24] = 889;
-y1[24] = 0;
+x1[24] = 640;
+y1[24] = 32;
 
-x2[24] = 1623;
-y2[24] = 610;
+x2[24] = 1024;
+y2[24] = 384;
 
-x3[24] = 640;
-y3[24] = 580;
+x3[24] = 256;
+y3[24] = 448;
 
 boundsX1[24] = 0;
 boundsY1[24] = 0;
-boundsX2[24] = 1600;
-boundsY2[24] = 1600;
+boundsX2[24] = 1188;
+boundsY2[24] = 736;
 
 
-portal_dest_1[24] = 4;
-portal_dest_2[24] = 17;
-portal_dest_3[24] = 18;
+portal_dest_1[24] = 37;
+portal_dest_2[24] = 38;
+portal_dest_3[24] = 14;
 
 
-portal_sourceX1[24] = 825;
-portal_sourceY1[24] = 855;
+portal_sourceX1[24] = 640;
+portal_sourceY1[24] = 64;
 
-portal_sourceX2[24] = 825;
-portal_sourceY2[24] = 855;
+portal_sourceX2[24] = 1024;
+portal_sourceY2[24] = 352;
 
-portal_sourceX3[24] = 825;
-portal_sourceY3[24] = 855;
+portal_sourceX3[24] = 256;
+portal_sourceY3[24] = 416;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[25] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileA4','TileB','Zombie_A4_EDIT','Tile_A2_003b'];
+tile_names[25] = ['TileA5','TileC','TileA4','TileB','Inside_A1','Tile_A2_003b','sprite'];
 
-x1[25] = 889;
-y1[25] = 0;
+x1[25] = 1056;
+y1[25] = 96;
 
-x2[25] = 1623;
-y2[25] = 610;
+x2[25] = 1600;
+y2[25] = 1600;
 
-x3[25] = 640;
-y3[25] = 580;
+x3[25] = 256;
+y3[25] = 1120;
 
 boundsX1[25] = 0;
 boundsY1[25] = 0;
-boundsX2[25] = 1600;
-boundsY2[25] = 1800;
+boundsX2[25] = 1792;
+boundsY2[25] = 1792;
 
 
-portal_dest_1[25] = 4;
-portal_dest_2[25] = 17;
-portal_dest_3[25] = 18;
+portal_dest_1[25] = 38;
+portal_dest_2[25] = 39;
+portal_dest_3[25] = 15;
 
 
-portal_sourceX1[25] = 825;
-portal_sourceY1[25] = 855;
+portal_sourceX1[25] = 1056;
+portal_sourceY1[25] = 96;
 
-portal_sourceX2[25] = 825;
-portal_sourceY2[25] = 855;
+portal_sourceX2[25] = 1600;
+portal_sourceY2[25] = 1600;
 
-portal_sourceX3[25] = 825;
-portal_sourceY3[25] = 855;
+portal_sourceX3[25] = 256;
+portal_sourceY3[25] = 1120;
 
 /////////////////////////////////////////////
 
 
 // /////////////////////////////////////////////////////////////////////
-tile_names[26] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[26] = ['trees_plants_rocks_0','A2_HF1R_Outdoors','World_A1','sprite'];
 
-x1[26] = 889;
+x1[26] = 736;
 y1[26] = 0;
 
-x2[26] = 1623;
-y2[26] = 610;
+x2[26] = 1024;
+y2[26] = 672;
 
-x3[26] = 640;
-y3[26] = 580;
+x3[26] = 32;
+y3[26] = 480;
 
 boundsX1[26] = 0;
 boundsY1[26] = 0;
-boundsX2[26] = 1600;
-boundsY2[26] = 1600;
+boundsX2[26] = 1152;
+boundsY2[26] = 960;
 
 
-portal_dest_1[26] = 4;
-portal_dest_2[26] = 17;
-portal_dest_3[26] = 18;
+portal_dest_1[26] = 15;
+portal_dest_2[26] = 40;
+portal_dest_3[26] = 16;
 
 
-portal_sourceX1[26] = 825;
-portal_sourceY1[26] = 855;
+portal_sourceX1[26] = 736;
+portal_sourceY1[26] = 0;
 
-portal_sourceX2[26] = 825;
-portal_sourceY2[26] = 855;
+portal_sourceX2[26] = 1024;
+portal_sourceY2[26] = 672;
 
-portal_sourceX3[26] = 825;
-portal_sourceY3[26] = 855;
+portal_sourceX3[26] = 32;
+portal_sourceY3[26] = 480;
 
 /////////////////////////////////////////////
 
 
 
 // /////////////////////////////////////////////////////////////////////
-tile_names[27] = ['DungeonCrawl_ProjectUtumnoTileset'];
+tile_names[27] = ['DungeonCrawl_ProjectUtumnoTileset','sprite'];
 
-x1[27] = 889;
+x1[27] = 544;
 y1[27] = 0;
 
-x2[27] = 1623;
-y2[27] = 610;
+x2[27] = 1056;
+y2[27] = 834;
 
-x3[27] = 640;
-y3[27] = 580;
+x3[27] = 32;
+y3[27] = 384;
 
 boundsX1[27] = 0;
 boundsY1[27] = 0;
-boundsX2[27] = 1600;
-boundsY2[27] = 1600;
+boundsX2[27] = 1152;
+boundsY2[27] = 480;
 
 
-portal_dest_1[27] = 4;
-portal_dest_2[27] = 17;
-portal_dest_3[27] = 18;
+portal_dest_1[27] = 16;
+portal_dest_2[27] = 41;
+portal_dest_3[27] = 42;
 
 
-portal_sourceX1[27] = 825;
-portal_sourceY1[27] = 855;
+portal_sourceX1[27] = 544;
+portal_sourceY1[27] = 0;
 
-portal_sourceX2[27] = 825;
-portal_sourceY2[27] = 855;
+portal_sourceX2[27] = 1056;
+portal_sourceY2[27] = 834;
 
-portal_sourceX3[27] = 825;
-portal_sourceY3[27] = 855;
+portal_sourceX3[27] = 32;
+portal_sourceY3[27] = 384;
 
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[28] = ['TileA5','TileD','Zombie_A4','Zombie_TileB','TileE','TileA3','TileB','Zombie_A4_EDIT','sprite'];
+tile_names[28] = ['DungeonCrawl_ProjectUtumnoTileset','trees_plants_0','sprite'];
 
-x1[28] = 889;
+x1[28] = 544;
 y1[28] = 0;
 
-x2[28] = 1623;
-y2[28] = 610;
+x2[28] = 1056;
+y2[28] = 834;
 
-x3[28] = 640;
-y3[28] = 580;
+x3[28] = 32;
+y3[28] = 384;
 
 boundsX1[28] = 0;
 boundsY1[28] = 0;
-boundsX2[28] = 1600;
-boundsY2[28] = 1600;
+boundsX2[28] = 1152;
+boundsY2[28] = 480;
 
 
-portal_dest_1[28] = 4;
-portal_dest_2[28] = 17;
-portal_dest_3[28] = 18;
+portal_dest_1[28] = 17;
+portal_dest_2[28] = 42;
+portal_dest_3[28] = 43;
 
 
-portal_sourceX1[28] = 825;
-portal_sourceY1[28] = 855;
+portal_sourceX1[28] = 544;
+portal_sourceY1[28] = 0;
 
-portal_sourceX2[28] = 825;
-portal_sourceY2[28] = 855;
+portal_sourceX2[28] = 1056;
+portal_sourceY2[28] = 834;
 
-portal_sourceX3[28] = 825;
-portal_sourceY3[28] = 855;
+portal_sourceX3[28] = 32;
+portal_sourceY3[28] = 384;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[29] = ['DungeonCrawl_ProjectUtumnoTileset','sprite'];
+tile_names[29] = ['TileB_exterior_1_spring','034-Bridge01','sprite'];
 
-x1[29] = 889;
+x1[29] = 800;
 y1[29] = 0;
 
-x2[29] = 1623;
-y2[28] = 610;
+x2[29] = 960;
+y2[29] = 736;
 
-x3[29] = 640;
-y3[29] = 580;
+x3[29] = 32;
+y3[29] = 832;
 
 boundsX1[29] = 0;
 boundsY1[29] = 0;
-boundsX2[29] = 1150;
-boundsY2[29] = 950;
+boundsX2[29] = 1152;
+boundsY2[29] = 1080;
 
 
 portal_dest_1[29] = 18;
-portal_dest_2[29] = 44;
+portal_dest_2[29] = 43;
 portal_dest_3[29] = 44;
 
 
-portal_sourceX1[29] = 825;
-portal_sourceY1[29] = 855;
+portal_sourceX1[29] = 800;
+portal_sourceY1[29] = 0;
 
-portal_sourceX2[29] = 825;
-portal_sourceY2[29] = 855;
+portal_sourceX2[29] = 960;
+portal_sourceY2[29] = 736;
 
-portal_sourceX3[29] = 825;
-portal_sourceY3[29] = 855;
+portal_sourceX3[29] = 32;
+portal_sourceY3[29] = 832;
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////
-tile_names[30] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[30] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[30] = 1024;
+y1[30] = 128;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[30] = 928;
+y2[30] = 832;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[30] = 96;
+y3[30] = 288;
 
 boundsX1[30] = 0;
 boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+boundsX2[30] = 1152;
+boundsY2[30] = 960;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_dest_1[30] = 19;
+portal_dest_2[30] = 18;
+portal_dest_3[30] = 45;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
+portal_sourceX1[30] = 1024;
+portal_sourceY1[30] = 128;
 
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
+portal_sourceX2[30] = 928;
+portal_sourceY2[30] = 832;
 
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[30] = 96;
+portal_sourceY3[30] = 288;
 
 /////////////////////////////////////////////
-
 // /////////////////////////////////////////////////////////////////////
-tile_names[31] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[31] = ['DungeonCrawl_ProjectUtumnoTileset','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
 
-x1[31] = 889;
-y1[31] = 0;
+x1[31] = 576;
+y1[31] = 96;
 
-x2[31] = 1123;
-y2[31] = 610;
+x2[31] = 1056;
+y2[31] = 864;
 
-x3[31] = 640;
-y3[31] = 580;
+x3[31] = 32;
+y3[31] = 864;
 
 boundsX1[31] = 0;
 boundsY1[31] = 0;
-boundsX2[31] = 1100;
-boundsY2[31] = 1100;
+boundsX2[31] = 1152;
+boundsY2[31] = 960;
 
 
-portal_dest_1[31] = 4;
-portal_dest_2[31] = 17;
-portal_dest_3[31] = 18;
+portal_dest_1[31] = 32;
+portal_dest_2[31] = 19;
+portal_dest_3[31] = 46;
 
 
-portal_sourceX1[31] = 889;
-portal_sourceY1[31] = 50;
+portal_sourceX1[31] = 576;
+portal_sourceY1[31] = 96;
 
-portal_sourceX2[31] = 1213;
-portal_sourceY2[31] = 580;
+portal_sourceX2[31] = 1056;
+portal_sourceY2[31] = 864;
 
-portal_sourceX3[31] = 640;
-portal_sourceY3[31] = 540;
+portal_sourceX3[31] = 32;
+portal_sourceY3[31] = 864;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[32] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[32] = ['Outside_A1','Dungeon_A2_d_expanded','sprite'];
 
-x1[32] = 889;
-y1[32] = 0;
+x1[32] = 544;
+y1[32] = 32;
 
-x2[32] = 1123;
-y2[32] = 610;
+x2[32] = 608;
+y2[32] = 324;
 
-x3[32] = 640;
-y3[32] = 580;
+x3[32] = 128;
+y3[32] = 416;
 
 boundsX1[32] = 0;
 boundsY1[32] = 0;
-boundsX2[32] = 1100;
-boundsY2[32] = 1100;
+boundsX2[32] = 768;
+boundsY2[32] = 768;
 
 
-portal_dest_1[32] = 4;
-portal_dest_2[32] = 17;
-portal_dest_3[32] = 18;
+portal_dest_1[32] = 31;
+portal_dest_2[32] = 47;
+portal_dest_3[32] = 20;
 
 
-portal_sourceX1[32] = 889;
-portal_sourceY1[32] = 50;
+portal_sourceX1[32] = 544;
+portal_sourceY1[32] = 32;
 
-portal_sourceX2[32] = 1213;
-portal_sourceY2[32] = 580;
+portal_sourceX2[32] = 608;
+portal_sourceY2[32] = 324;
 
-portal_sourceX3[32] = 640;
-portal_sourceY3[32] = 540;
+portal_sourceX3[32] = 128;
+portal_sourceY3[32] = 416;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[33] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[33] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','Dungeon_A2_e_expanded','sprite'];
 
-x1[33] = 889;
-y1[33] = 0;
+x1[33] = 416;
+y1[33] = 512;
 
-x2[33] = 1123;
-y2[33] = 610;
+x2[33] = 64;
+y2[33] = 32;
 
-x3[33] = 640;
-y3[33] = 580;
+x3[33] = 512;
+y3[33] = 224;
 
 boundsX1[33] = 0;
 boundsY1[33] = 0;
-boundsX2[33] = 1100;
-boundsY2[33] = 1100;
+boundsX2[33] = 640;
+boundsY2[33] = 640;
 
 
-portal_dest_1[33] = 4;
-portal_dest_2[33] = 17;
-portal_dest_3[33] = 18;
+portal_dest_1[33] = 20;
+portal_dest_2[33] = 48;
+portal_dest_3[33] = 21;
 
 
-portal_sourceX1[33] = 889;
-portal_sourceY1[33] = 50;
+portal_sourceX1[33] = 416;
+portal_sourceY1[33] = 512;
 
-portal_sourceX2[33] = 1213;
-portal_sourceY2[33] = 580;
+portal_sourceX2[33] = 64;
+portal_sourceY2[33] = 32;
 
-portal_sourceX3[33] = 640;
-portal_sourceY3[33] = 540;
+portal_sourceX3[33] = 512;
+portal_sourceY3[33] = 224;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[34] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3',
-    'Zombie_A5','Zombie_TileB','Zombie_TileC','006-Desert01','019-DesertTown01'
-   ]
-;
+tile_names[34] = ['Zombie_A5','006-Desert01','019-DesertTown01','sprite'];
+x1[34] = 1664;
+y1[34] = 1856;
 
-x1[34] = 889;
-y1[34] = 0;
+x2[34] = 640;
+y2[34] = 256;
 
-x2[34] = 1123;
-y2[34] = 610;
-
-x3[34] = 640;
-y3[34] = 580;
+x3[34] = 3072;
+y3[34] = 0;
 
 boundsX1[34] = 0;
 boundsY1[34] = 0;
-boundsX2[34] = 1100;
-boundsY2[34] = 1100;
+boundsX2[34] = 3200;
+boundsY2[34] = 2240;
 
 
-portal_dest_1[34] = 4;
-portal_dest_2[34] = 17;
-portal_dest_3[34] = 18;
+portal_dest_1[34] = 21;
+portal_dest_2[34] = 49;
+portal_dest_3[34] = 50;
 
 
-portal_sourceX1[34] = 889;
-portal_sourceY1[34] = 50;
+portal_sourceX1[34] = 1664;
+portal_sourceY1[34] = 1856;
 
-portal_sourceX2[34] = 1213;
-portal_sourceY2[34] = 580;
+portal_sourceX2[34] = 640;
+portal_sourceY2[34] = 256;
 
-portal_sourceX3[34] = 640;
-portal_sourceY3[34] = 540;
+portal_sourceX3[34] = 3072;
+portal_sourceY3[34] = 32;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[35] = ['TileA1','TileC_exterior_1','Outside_A5','Outside_B','Outside_C','Zombie_A3','Zombie_A4','Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD','sprite'];
+tile_names[35] = ['Outside_A5','Dungeon_A1','sprite'];
 
-x1[35] = 889;
-y1[35] = 0;
+x1[35] = 576;
+y1[35] = 672;
 
-x2[35] = 1123;
-y2[35] = 610;
+x2[35] = 96;
+y2[35] = 224;
 
-x3[35] = 640;
-y3[35] = 580;
+x3[35] = 736;
+y3[35] = 96;
 
 boundsX1[35] = 0;
 boundsY1[35] = 0;
-boundsX2[35] = 1100;
-boundsY2[35] = 1100;
+boundsX2[35] = 800;
+boundsY2[35] = 800;
 
 
-portal_dest_1[35] = 4;
-portal_dest_2[35] = 17;
-portal_dest_3[35] = 18;
+portal_dest_1[35] = 22;
+portal_dest_2[35] = 50;
+portal_dest_3[35] = 51;
 
 
-portal_sourceX1[35] = 889;
-portal_sourceY1[35] = 50;
+portal_sourceX1[35] = 576;
+portal_sourceY1[35] = 672;
 
-portal_sourceX2[35] = 1213;
-portal_sourceY2[35] = 580;
+portal_sourceX2[35] = 96;
+portal_sourceY2[35] = 224;
 
-portal_sourceX3[35] = 640;
-portal_sourceY3[35] = 540;
+portal_sourceX3[35] = 736;
+portal_sourceY3[35] = 96;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[36] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3','Zombie_A5','Zombie_TileB',
-    'Zombie_TileC',
-    'sprite'];
+tile_names[36] = ['Outside_A5','Outside_B','sprite'];
 
-x1[36] = 889;
-y1[36] = 0;
+x1[36] = 800;
+y1[36] = 1312;
 
-x2[36] = 1123;
-y2[36] = 610;
+x2[36] = 288;
+y2[36] = 288;
 
-x3[36] = 640;
-y3[36] = 580;
+x3[36] = 1216;
+y3[36] = 320;
 
 boundsX1[36] = 0;
 boundsY1[36] = 0;
-boundsX2[36] = 1100;
-boundsY2[36] = 1100;
+boundsX2[36] = 1600;
+boundsY2[36] = 1600;
 
 
-portal_dest_1[36] = 4;
-portal_dest_2[36] = 17;
-portal_dest_3[36] = 18;
+portal_dest_1[36] = 23;
+portal_dest_2[36] = 51;
+portal_dest_3[36] = 52;
 
 
-portal_sourceX1[36] = 889;
-portal_sourceY1[36] = 50;
+portal_sourceX1[36] = 800;
+portal_sourceY1[36] = 1312;
 
-portal_sourceX2[36] = 1213;
-portal_sourceY2[36] = 580;
+portal_sourceX2[36] = 288;
+portal_sourceY2[36] = 288;
 
-portal_sourceX3[36] = 640;
-portal_sourceY3[36] = 540;
+portal_sourceX3[36] = 1216;
+portal_sourceY3[36] = 320;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[37] = ['TileA1','TileC_exterior_1','Outside_A5',
-    'Outside_B','Outside_C','Zombie_A3',
-    ,'Zombie_A4','Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD',
-    'sprite'];
+tile_names[37] = ['Outside_A5','World_A1','TileA1_2_a_expanded','Zombie_A5','007-Swamp01','sprite'];
 
-x1[37] = 889;
-y1[37] = 0;
+x1[37] = 224;
+y1[37] = 832;
 
-x2[37] = 1123;
-y2[37] = 610;
+x2[37] = 352;
+y2[37] = 64;
 
-x3[37] = 640;
-y3[37] = 580;
+x3[37] = 768;
+y3[37] = 448;
 
 boundsX1[37] = 0;
 boundsY1[37] = 0;
-boundsX2[37] = 1100;
-boundsY2[37] = 1100;
+boundsX2[37] = 960;
+boundsY2[37] = 960;
 
 
-portal_dest_1[37] = 4;
-portal_dest_2[37] = 17;
-portal_dest_3[37] = 18;
+portal_dest_1[37] = 24;
+portal_dest_2[37] = 23;
+portal_dest_3[37] = 53;
 
 
-portal_sourceX1[37] = 889;
-portal_sourceY1[37] = 50;
+portal_sourceX1[37] = 224;
+portal_sourceY1[37] = 832;
 
-portal_sourceX2[37] = 1213;
-portal_sourceY2[37] = 580;
+portal_sourceX2[37] = 352;
+portal_sourceY2[37] = 64;
 
-portal_sourceX3[37] = 640;
-portal_sourceY3[37] = 540;
+portal_sourceX3[37] = 768;
+portal_sourceY3[37] = 448;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[38] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3',
+tile_names[38] = ['TileC_exterior_1','Outside_A5','sprite'];
 
-    ,'Zombie_A5','Zombie_TileB','Zombie_TileC'];
+x1[38] = 64;
+y1[38] = 864;
 
-x1[38] = 889;
-y1[38] = 0;
+x2[38] = 288;
+y2[38] = 192;
 
-x2[38] = 1123;
-y2[38] = 610;
-
-x3[38] = 640;
-y3[38] = 580;
+x3[38] = 672;
+y3[38] = 576;
 
 boundsX1[38] = 0;
 boundsY1[38] = 0;
-boundsX2[38] = 1100;
-boundsY2[38] = 1100;
+boundsX2[38] = 960;
+boundsY2[38] = 960;
 
 
-portal_dest_1[38] = 4;
-portal_dest_2[38] = 17;
-portal_dest_3[38] = 18;
+portal_dest_1[38] = 25;
+portal_dest_2[38] = 24;
+portal_dest_3[38] = 54;
 
 
-portal_sourceX1[38] = 889;
-portal_sourceY1[38] = 50;
+portal_sourceX1[38] = 64;
+portal_sourceY1[38] = 864;
 
-portal_sourceX2[38] = 1213;
-portal_sourceY2[38] = 580;
+portal_sourceX2[38] = 288;
+portal_sourceY2[38] = 192;
 
-portal_sourceX3[38] = 640;
-portal_sourceY3[38] = 540;
+portal_sourceX3[38] = 672;
+portal_sourceY3[38] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[39] = ['TileA1','TileC_exterior_1','Outside_A5',
-    'Outside_B','Outside_C','Zombie_A3','Zombie_A4',
-    'Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD'
-];
+tile_names[39] = ['Outside_A5','Outside_C','sprite'];
 
-x1[39] = 889;
-y1[39] = 0;
+x1[39] = 448;
+y1[39] = 1440;
 
-x2[39] = 1123;
-y2[39] = 610;
+x2[39] = 160;
+y2[39] = 64;
 
-x3[39] = 640;
-y3[39] = 580;
+x3[39] = 1248;
+y3[39] = 576;
 
 boundsX1[39] = 0;
 boundsY1[39] = 0;
-boundsX2[39] = 1100;
-boundsY2[39] = 1100;
+boundsX2[39] = 1150;
+boundsY2[39] = 1888;
 
 
-portal_dest_1[39] = 4;
-portal_dest_2[39] = 17;
-portal_dest_3[39] = 18;
+portal_dest_1[39] = 56;
+portal_dest_2[39] = 25;
+portal_dest_3[39] = 55;
 
 
-portal_sourceX1[39] = 889;
-portal_sourceY1[39] = 50;
+portal_sourceX1[39] = 448;
+portal_sourceY1[39] = 1440;
 
-portal_sourceX2[39] = 1213;
-portal_sourceY2[39] = 580;
+portal_sourceX2[39] = 160;
+portal_sourceY2[39] = 64;
 
-portal_sourceX3[39] = 640;
-portal_sourceY3[39] = 540;
+portal_sourceX3[39] = 1248;
+portal_sourceY3[39] = 576;
+
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[40] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3','Zombie_A5','Zombie_TileB','Zombie_TileC'];
+tile_names[40] = ['Outside_A5','Outside_C','sprite'];
 
-x1[40] = 889;
-y1[40] = 0;
+x1[40] = 448;
+y1[40] = 1440;
 
-x2[40] = 1123;
-y2[40] = 610;
+x2[40] = 160;
+y2[40] = 64;
 
-x3[40] = 640;
-y3[40] = 580;
+x3[40] = 1248;
+y3[40] = 576;
 
 boundsX1[40] = 0;
 boundsY1[40] = 0;
-boundsX2[40] = 1100;
-boundsY2[40] = 1100;
+boundsX2[40] = 1150;
+boundsY2[40] = 1888;
 
 
-portal_dest_1[40] = 4;
-portal_dest_2[40] = 17;
-portal_dest_3[40] = 18;
+portal_dest_1[40] = 57;
+portal_dest_2[40] = 26;
+portal_dest_3[40] = 56;
 
 
-portal_sourceX1[40] = 889;
-portal_sourceY1[40] = 50;
+portal_sourceX1[40] = 448;
+portal_sourceY1[40] = 1440;
 
-portal_sourceX2[40] = 1213;
-portal_sourceY2[40] = 580;
+portal_sourceX2[40] = 160;
+portal_sourceY2[40] = 64;
 
-portal_sourceX3[40] = 640;
-portal_sourceY3[40] = 540;
+portal_sourceX3[40] = 1248;
+portal_sourceY3[40] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[41] = ['TileA1','TileC_exterior_1','Outside_A5','Outside_B','Outside_C','Zombie_A3',
-    'Zombie_A4','Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD','sprite'];
+tile_names[41] = ['Outside_A5','Outside_C','sprite'];
 
-x1[41] = 889;
-y1[41] = 0;
+x1[41] = 448;
+y1[41] = 1440;
 
-x2[41] = 1123;
-y2[41] = 610;
+x2[41] = 160;
+y2[41] = 64;
 
-x3[41] = 640;
-y3[41] = 580;
+x3[41] = 1248;
+y3[41] = 576;
 
 boundsX1[41] = 0;
 boundsY1[41] = 0;
-boundsX2[41] = 1100;
-boundsY2[41] = 1100;
+boundsX2[41] = 1150;
+boundsY2[41] = 1888;
 
 
-portal_dest_1[41] = 4;
-portal_dest_2[41] = 17;
-portal_dest_3[41] = 18;
+portal_dest_1[41] = 58;
+portal_dest_2[41] = 27;
+portal_dest_3[41] = 57;
 
 
-portal_sourceX1[41] = 889;
-portal_sourceY1[41] = 50;
+portal_sourceX1[41] = 448;
+portal_sourceY1[41] = 1440;
 
-portal_sourceX2[41] = 1213;
-portal_sourceY2[41] = 580;
+portal_sourceX2[41] = 160;
+portal_sourceY2[41] = 64;
 
-portal_sourceX3[41] = 640;
-portal_sourceY3[41] = 540;
+portal_sourceX3[41] = 1248;
+portal_sourceY3[41] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[42] = ['Zombie_TileB','A5_HF1R_Outdoors','E_HF1R_Exterior_1','A2_HF1R_Outdoors','A3_HF1R_1',
-    'B-E_HF1R_Guard_1','B-E_HF1R_Guard_2','B-E_HF1R_Market_1','Zombie_TileB','Zombie_TileC',
-    'sprite'];
+tile_names[42] = ['Outside_A5','Outside_C','sprite'];
 
-x1[42] = 889;
-y1[42] = 0;
+x1[42] = 448;
+y1[42] = 1440;
 
-x2[42] = 1123;
-y2[42] = 610;
+x2[42] = 160;
+y2[42] = 64;
 
-x3[42] = 640;
-y3[42] = 580;
+x3[42] = 1248;
+y3[42] = 576;
 
 boundsX1[42] = 0;
 boundsY1[42] = 0;
-boundsX2[42] = 1100;
-boundsY2[42] = 1100;
+boundsX2[42] = 1150;
+boundsY2[42] = 1888;
 
 
-portal_dest_1[42] = 4;
-portal_dest_2[42] = 17;
-portal_dest_3[42] = 18;
+portal_dest_1[42] = 59;
+portal_dest_2[42] = 28;
+portal_dest_3[42] = 27;
 
 
-portal_sourceX1[42] = 889;
-portal_sourceY1[42] = 50;
+portal_sourceX1[42] = 448;
+portal_sourceY1[42] = 1440;
 
-portal_sourceX2[42] = 1213;
-portal_sourceY2[42] = 580;
+portal_sourceX2[42] = 160;
+portal_sourceY2[42] = 64;
 
-portal_sourceX3[42] = 640;
-portal_sourceY3[42] = 540;
+portal_sourceX3[42] = 1248;
+portal_sourceY3[42] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[43] = ['Outside_A5','A5_HF1R_Outdoors','B-E_HF1R_Outdoors_1','B-E_HF1R_Outdoors_6','tiles\/B-E_HF1R_Market_2','sprite'];
-2
-x1[43] = 889;
-y1[43] = 0;
+tile_names[43] = ['Outside_A5','Outside_C','sprite'];
 
-x2[43] = 1123;
-y2[43] = 610;
+x1[43] = 448;
+y1[43] = 1440;
 
-x3[43] = 640;
-y3[43] = 580;
+x2[43] = 160;
+y2[43] = 64;
+
+x3[43] = 1248;
+y3[43] = 576;
 
 boundsX1[43] = 0;
 boundsY1[43] = 0;
-boundsX2[43] = 1100;
-boundsY2[43] = 1100;
+boundsX2[43] = 1150;
+boundsY2[43] = 1888;
 
 
-portal_dest_1[43] = 4;
-portal_dest_2[43] = 17;
-portal_dest_3[43] = 18;
+portal_dest_1[43] = 60;
+portal_dest_2[43] = 29;
+portal_dest_3[43] = 28;
 
 
-portal_sourceX1[43] = 889;
-portal_sourceY1[43] = 50;
+portal_sourceX1[43] = 448;
+portal_sourceY1[43] = 1440;
 
-portal_sourceX2[43] = 1213;
-portal_sourceY2[43] = 580;
+portal_sourceX2[43] = 160;
+portal_sourceY2[43] = 64;
 
-portal_sourceX3[43] = 640;
-portal_sourceY3[43] = 540;
+portal_sourceX3[43] = 1248;
+portal_sourceY3[43] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[44] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3','Zombie_A5','Zombie_TileB','Zombie_TileC','sprite'];
+tile_names[44] = ['Outside_A5','Outside_C','sprite'];
 
-x1[44] = 889;
-y1[44] = 0;
+x1[44] = 448;
+y1[44] = 1440;
 
-x2[44] = 1123;
-y2[30] = 610;
+x2[44] = 160;
+y2[44] = 64;
 
-x3[44] = 640;
-y3[44] = 580;
+x3[44] = 1248;
+y3[44] = 576;
 
 boundsX1[44] = 0;
 boundsY1[44] = 0;
-boundsX2[44] = 1100;
-boundsY2[44] = 1100;
+boundsX2[44] = 1150;
+boundsY2[44] = 1888;
 
 
-portal_dest_1[44] = 4;
-portal_dest_2[44] = 17;
-portal_dest_3[44] = 18;
+portal_dest_1[44] = 61;
+portal_dest_2[44] = 62;
+portal_dest_3[44] = 29;
 
 
-portal_sourceX1[44] = 889;
-portal_sourceY1[44] = 50;
+portal_sourceX1[44] = 448;
+portal_sourceY1[44] = 1440;
 
-portal_sourceX2[44] = 1213;
-portal_sourceY2[44] = 580;
+portal_sourceX2[44] = 160;
+portal_sourceY2[44] = 64;
 
-portal_sourceX3[44] = 640;
-portal_sourceY3[44] = 540;
-
-/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[45] = ['TileA1','TileC_exterior_1','Outside_A5','Outside_B','Outside_C','Zombie_A3','Zombie_A4',
-    'Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD','space-blks-1.034'
-
-];
-
-x1[30] = 889;
-y1[30] = 0;
-
-x2[30] = 1123;
-y2[30] = 610;
-
-x3[30] = 640;
-y3[30] = 580;
-
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
-
-
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
-
-
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[44] = 1248;
+portal_sourceY3[44] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[46] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3','Zombie_A5','Zombie_TileB',
-    'Zombie_TileC','043-Cave01','044-Cave02','045-Cave03',
-    'sprite'];
+tile_names[45] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[45] = 448;
+y1[45] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[45] = 160;
+y2[45] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[45] = 1248;
+y3[45] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+boundsX1[45] = 0;
+boundsY1[45] = 0;
+boundsX2[45] = 1150;
+boundsY2[45] = 1888;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_dest_1[45] = 62;
+portal_dest_2[45] = 63;
+portal_dest_3[45] = 30;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
+portal_sourceX1[45] = 448;
+portal_sourceY1[45] = 1440;
 
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
+portal_sourceX2[45] = 160;
+portal_sourceY2[45] = 64;
 
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[45] = 1248;
+portal_sourceY3[45] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[47] = ['TileA1','TileC_exterior_1','Outside_A5','Outside_B','Outside_C','Zombie_A3',
-   'Zombie_A4','Zombie_A5','Zombie_TileB','Zombie_TileC','Zombie_TileD',
-    'sprite'];
+tile_names[46] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[46] = 448;
+y1[46] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[46] = 160;
+y2[46] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[46] = 1248;
+y3[46] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+boundsX1[46] = 0;
+boundsY1[46] = 0;
+boundsX2[46] = 1150;
+boundsY2[46] = 1888;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_dest_1[46] = 63;
+portal_dest_2[46] = 64;
+portal_dest_3[46] = 31;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
+portal_sourceX1[46] = 448;
+portal_sourceY1[46] = 1440;
 
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
+portal_sourceX2[46] = 160;
+portal_sourceY2[46] = 64;
 
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[46] = 1248;
+portal_sourceY3[46] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[48] = ['TileC_exterior_1','Outside_A5','Outside_B','Zombie_A3','Zombie_A5','Zombie_TileB',
-    'Zombie_TileC','023-FarmVillage01','024-FarmVillage02','043-Cave01',
-    'sprite'];
+tile_names[47] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[47] = 448;
+y1[47] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[47] = 160;
+y2[47] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[47] = 1248;
+y3[47] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+boundsX1[47] = 0;
+boundsY1[47] = 0;
+boundsX2[47] = 1150;
+boundsY2[47] = 1888;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_dest_1[47] = 67;
+portal_dest_2[47] = 32;
+portal_dest_3[47] = 66;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
+portal_sourceX1[47] = 448;
+portal_sourceY1[47] = 1440;
 
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
+portal_sourceX2[47] = 160;
+portal_sourceY2[47] = 64;
 
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[47] = 1248;
+portal_sourceY3[47] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[49] = ['TileA1','Outside_A5','Outside_B','Outside_C','Zombie_A3','Zombie_A4','Zombie_A5',
-    'Zombie_TileB','Zombie_TileC','Zombie_TileD','019-DesertTown01','020-DesertTown02','017-MineTown01'];
+tile_names[48] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[48] = 448;
+y1[48] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[48] = 160;
+y2[48] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[48] = 1248;
+y3[48] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
-
-
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+boundsX1[48] = 0;
+boundsY1[48] = 0;
+boundsX2[48] = 1150;
+boundsY2[48] = 1888;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
-
-/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[50] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
-
-x1[30] = 889;
-y1[30] = 0;
-
-x2[30] = 1123;
-y2[30] = 610;
-
-x3[30] = 640;
-y3[30] = 580;
-
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+portal_dest_1[48] = 68;
+portal_dest_2[48] = 33;
+portal_dest_3[48] = 67;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_sourceX1[48] = 448;
+portal_sourceY1[48] = 1440;
 
+portal_sourceX2[48] = 160;
+portal_sourceY2[48] = 64;
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[48] = 1248;
+portal_sourceY3[48] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[51] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[49] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[49] = 448;
+y1[49] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[49] = 160;
+y2[49] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[49] = 1248;
+y3[49] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
-
-
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+boundsX1[49] = 0;
+boundsY1[49] = 0;
+boundsX2[49] = 1150;
+boundsY2[49] = 1888;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
-
-/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[52] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
-
-x1[30] = 889;
-y1[30] = 0;
-
-x2[30] = 1123;
-y2[30] = 610;
-
-x3[30] = 640;
-y3[30] = 580;
-
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+portal_dest_1[49] = 69;
+portal_dest_2[49] = 34;
+portal_dest_3[49] = 68;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_sourceX1[49] = 448;
+portal_sourceY1[49] = 1440;
 
+portal_sourceX2[49] = 160;
+portal_sourceY2[49] = 64;
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[49] = 1248;
+portal_sourceY3[49] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[53] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[50] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[50] = 448;
+y1[50] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[50] = 160;
+y2[50] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[50] = 1248;
+y3[50] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
-
-
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+boundsX1[50] = 0;
+boundsY1[50] = 0;
+boundsX2[50] = 1150;
+boundsY2[50] = 1888;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
-
-/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[54] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
-
-x1[30] = 889;
-y1[30] = 0;
-
-x2[30] = 1123;
-y2[30] = 610;
-
-x3[30] = 640;
-y3[30] = 580;
-
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+portal_dest_1[50] = 70;
+portal_dest_2[50] = 35;
+portal_dest_3[50] = 34;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_sourceX1[50] = 448;
+portal_sourceY1[50] = 1440;
 
+portal_sourceX2[50] = 160;
+portal_sourceY2[50] = 64;
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[50] = 1248;
+portal_sourceY3[50] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[55] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[51] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[51] = 448;
+y1[51] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[51] = 160;
+y2[51] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[51] = 1248;
+y3[51] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
-
-
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+boundsX1[51] = 0;
+boundsY1[51] = 0;
+boundsX2[51] = 1150;
+boundsY2[51] = 1888;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
-
-/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[56] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
-
-x1[30] = 889;
-y1[30] = 0;
-
-x2[30] = 1123;
-y2[30] = 610;
-
-x3[30] = 640;
-y3[30] = 580;
-
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
+portal_dest_1[51] = 71;
+portal_dest_2[51] = 36;
+portal_dest_3[51] = 35;
 
 
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+portal_sourceX1[51] = 448;
+portal_sourceY1[51] = 1440;
 
+portal_sourceX2[51] = 160;
+portal_sourceY2[51] = 64;
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
-
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
-
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX3[51] = 1248;
+portal_sourceY3[51] = 576;
 
 /////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-tile_names[57] = ['DungeonCrawl_ProjectUtumnoTileset','World_A2','trees_plants_rocks_0','A2_HF1R_Outdoors','Outside_A1','Castle2','sprite'];
+tile_names[52] = ['Outside_A5','Outside_C','sprite'];
 
-x1[30] = 889;
-y1[30] = 0;
+x1[52] = 448;
+y1[52] = 1440;
 
-x2[30] = 1123;
-y2[30] = 610;
+x2[52] = 160;
+y2[52] = 64;
 
-x3[30] = 640;
-y3[30] = 580;
+x3[52] = 1248;
+y3[52] = 576;
 
-boundsX1[30] = 0;
-boundsY1[30] = 0;
-boundsX2[30] = 1100;
-boundsY2[30] = 1100;
-
-
-portal_dest_1[30] = 4;
-portal_dest_2[30] = 17;
-portal_dest_3[30] = 18;
+boundsX1[52] = 0;
+boundsY1[52] = 0;
+boundsX2[52] = 1150;
+boundsY2[52] = 1888;
 
 
-portal_sourceX1[30] = 889;
-portal_sourceY1[30] = 50;
+portal_dest_1[52] = 72;
+portal_dest_2[52] = 73;
+portal_dest_3[52] = 36;
 
-portal_sourceX2[30] = 1213;
-portal_sourceY2[30] = 580;
 
-portal_sourceX3[30] = 640;
-portal_sourceY3[30] = 540;
+portal_sourceX1[52] = 448;
+portal_sourceY1[52] = 1440;
+
+portal_sourceX2[52] = 160;
+portal_sourceY2[52] = 64;
+
+portal_sourceX3[52] = 1248;
+portal_sourceY3[52] = 576;
+
+/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
+tile_names[53] = ['Outside_A5','Outside_C','sprite'];
+
+x1[53] = 448;
+y1[53] = 1440;
+
+x2[53] = 160;
+y2[53] = 64;
+
+x3[53] = 1248;
+y3[53] = 576;
+
+boundsX1[53] = 0;
+boundsY1[53] = 0;
+boundsX2[53] = 1150;
+boundsY2[53] = 1888;
+
+
+portal_dest_1[53] = 73;
+portal_dest_2[53] = 74;
+portal_dest_3[53] = 37;
+
+
+portal_sourceX1[53] = 448;
+portal_sourceY1[53] = 1440;
+
+portal_sourceX2[53] = 160;
+portal_sourceY2[53] = 64;
+
+portal_sourceX3[53] = 1248;
+portal_sourceY3[53] = 576;
+
+/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
+tile_names[54] = ['Outside_A5','Outside_C','sprite'];
+
+x1[54] = 448;
+y1[54] = 1440;
+
+x2[54] = 160;
+y2[54] = 64;
+
+x3[54] = 1248;
+y3[54] = 576;
+
+boundsX1[54] = 0;
+boundsY1[54] = 0;
+boundsX2[54] = 1150;
+boundsY2[54] = 1888;
+
+
+portal_dest_1[54] = 74;
+portal_dest_2[54] = 75;
+portal_dest_3[54] = 38;
+
+
+portal_sourceX1[54] = 448;
+portal_sourceY1[54] = 1440;
+
+portal_sourceX2[54] = 160;
+portal_sourceY2[54] = 64;
+
+portal_sourceX3[54] = 1248;
+portal_sourceY3[54] = 576;
+
+/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
+tile_names[55] = ['Outside_A5','Outside_C','sprite'];
+
+x1[55] = 448;
+y1[55] = 1440;
+
+x2[55] = 160;
+y2[55] = 64;
+
+x3[55] = 1248;
+y3[55] = 576;
+
+boundsX1[55] = 0;
+boundsY1[55] = 0;
+boundsX2[55] = 1150;
+boundsY2[55] = 1888;
+
+
+portal_dest_1[55] = 76;
+portal_dest_2[55] = 39;
+portal_dest_3[55] = 75;
+
+
+portal_sourceX1[55] = 448;
+portal_sourceY1[55] = 1440;
+
+portal_sourceX2[55] = 160;
+portal_sourceY2[55] = 64;
+
+portal_sourceX3[55] = 1248;
+portal_sourceY3[55] = 576;
+
+/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
+tile_names[56] = ['Outside_A5','Outside_C','sprite'];
+
+x1[56] = 448;
+y1[56] = 1440;
+
+x2[56] = 160;
+y2[56] = 64;
+
+x3[56] = 1248;
+y3[56] = 576;
+
+boundsX1[56] = 0;
+boundsY1[56] = 0;
+boundsX2[56] = 1150;
+boundsY2[56] = 1888;
+
+
+portal_dest_1[56] = 39;
+portal_dest_2[56] = 77;
+portal_dest_3[56] = 40;
+
+
+portal_sourceX1[56] = 448;
+portal_sourceY1[56] = 1440;
+
+portal_sourceX2[56] = 160;
+portal_sourceY2[56] = 64;
+
+portal_sourceX3[56] = 1248;
+portal_sourceY3[56] = 576;
+
+/////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
+tile_names[57] = ['Outside_A5','Outside_C','sprite'];
+
+x1[57] = 448;
+y1[57] = 1440;
+
+x2[57] = 160;
+y2[57] = 64;
+
+x3[57] = 1248;
+y3[57] = 576;
+
+boundsX1[57] = 0;
+boundsY1[57] = 0;
+boundsX2[57] = 1150;
+boundsY2[57] = 1888;
+
+
+portal_dest_1[57] = 59;
+portal_dest_2[57] = 28;
+portal_dest_3[57] = 27;
+
+
+portal_sourceX1[57] = 448;
+portal_sourceY1[57] = 1440;
+
+portal_sourceX2[57] = 160;
+portal_sourceY2[57] = 64;
+
+portal_sourceX3[57] = 1248;
+portal_sourceY3[57] = 576;
 
 /////////////////////////////////////////////
-
-
-
-
-
-
-
-

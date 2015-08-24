@@ -1,9 +1,11 @@
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 <hr>
 <h1>JiGS</h1>
 
 <hr>
 JiGS Interactive Game System is an open source Online RPG engine built in php. The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
+
+[Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
 
 Featurelist:
 <ul>
@@ -22,11 +24,12 @@ Featurelist:
     <li> Cut n’ Paste, Collage, 50’s -70’s Pulp Art,Dada/Surrealism, Punk and Glitch aesthetic. Monty Python style cutscenes</li>
     <li> Based on the Works of Robert Anton Wilson, William Burroughs, Timothy Leary, Pynchon, James Joyce and Umberto Eco and the worlds of plunderphonics and fanfiction</li>
     <li> Secret Societies, Conspiracies and Guild politics </li>
+</ul>
+
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
+
+
 <ul>
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
-
-
-
    <li> Main Gameplay Screens</li>
 
    <li> Character Creation</li>
@@ -48,6 +51,7 @@ Featurelist:
    <li> Depreciation, Taxation, Quality Reduction, Depletion and Balance.</li>
 
    <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
+</ul>
 
     Point & Click (Sierra Arts/ Lucasfilm style) Plugin
     Puzzles Plugin
@@ -63,7 +67,7 @@ Featurelist:
 <hr>
 <h2> Main Gameplay Screen</h2>
 
-gui.png
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/portal.gif)
 
 <h3>Default Modules:</h3>
 ![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
@@ -157,15 +161,27 @@ for example a farm may have 1- 8 fields each growing different crops.
 Or a factory may have 1-8 conveyor belts each building different objects,
 Each additional primary system is accessed via tabs and is identical in layout.
 
+
+
+
+<h3>Banks, Terminals, Banks and hacking</h3>
+Players and NPCs can hack and be hacked, causing grief, stealing bank account percentages and spreading viruses. There are three global banks each with their own interest rates ,security packages and insurance deals.
+
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/terminal.gif)
+
+
 <h3>Factories</h3>
 Screenshot from 2014-10-19 14:27:09.png
 
-Factories require blueprints, energy, workforce(hobbits), materials to create objects - can be hacked/attacked
+Factories require blueprints, energy, workforce(hobbits) & materials to create objects - can be hacked/attacked. 
+Objects vary in quality time and cost to produce.
+![Factories ](https://github.com/EMC23/JiGS/blob/master/images/image16.png)
+
 
 <h3>Farms</h3>
 
 ![Farms ](https://github.com/EMC23/JiGS/blob/master/images/image03.png)
-Screenshot from 2014-10-19 14:26:04.png
+
 
 Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
 
@@ -205,6 +221,7 @@ Screenshot from 2014-10-19 14:27:48.png
     Reprocessing
     Navigation
     Trade
+![Skills ](https://github.com/EMC23/JiGS/blob/master/images/image12.png)
 
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
@@ -214,7 +231,7 @@ You can change groups, but only to a group of the same faction.
 
 <h3>Exploration</h3>
 
-Exploration (via character development) is the primary chore of the virtual world. New Maps, Scenarios including time travel to familiar places will be added to the system on a monthly basis. ALternate realities, drug induced trips etc will play a part in the exploration narrative.
+Exploration (via character development) is the primary core loop of the virtual world. New Maps, Scenarios including time travel to familiar places will be added to the system on a monthly basis. ALternate realities, drug induced trips etc will play a part in the exploration narrative.
 Maps are creating using the open source Tiled Mapeditor.org. and imported to the systom using json files.
 Portals are a heavily used device in both the game mechanics and the overarching metastory.
 Portals need to be discovered in the real before they can be accessed via the portal network.
@@ -259,9 +276,9 @@ Create scripts to give your npcs unique proclivities.
 Extending JiGS: create your own universe with 3rd Party plugins and templates: Examples
 
     Point & Click (Sierra Arts/ Lucasfilm style) Plugin
-
+![Point and Click ](https://github.com/EMC23/JiGS/blob/master/images/image05.png)
     Puzzles Plugin (Javascript Libraries)
-
+![Puzzle Plugin ](https://github.com/EMC23/JiGS/blob/master/images/image07.png)
     Extended Tile Map system Plugin
 
     Extended Character Creation Plugin
@@ -273,4 +290,4 @@ Extending JiGS: create your own universe with 3rd Party plugins and templates: E
     Other Non Games related Joomla plugins see here http://extensions.joomla.org/
     Forums Plugin (Joomla/Kunena)
 
-[![Join the chat at https://gitter.im/EMC23/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/EMC23/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

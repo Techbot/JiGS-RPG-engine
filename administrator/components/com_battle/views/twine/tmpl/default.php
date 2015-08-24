@@ -4,11 +4,11 @@ JHTML::_('behavior.calendar');
 $editor =& JFactory::getEditor();
 if ($this->row->id)
 {
-	JToolBarHelper::title( JText::_( 'Edit Page Profile' ), 'addedit.png' );
+	JToolBarHelper::title( JText::_( 'Edit Twine Profile' ), 'addedit.png' );
 }
 else
 {
-	JToolBarHelper::title( JText::_( 'Add Page Profile' ), 'addedit.png' );
+	JToolBarHelper::title( JText::_( 'Add Twine Profile' ), 'addedit.png' );
 }
 JToolBarHelper::save();
 JToolBarHelper::apply();
@@ -161,7 +161,7 @@ else
   </fieldset>
   <input type="hidden" name="id" value="<?php echo $this->row->id; ?>" />
   <input type="hidden" name="option" value="com_battle" />
-      <input type="hidden" name="controller" value="pages" />
+      <input type="hidden" name="controller" value="twines" />
   <input type="hidden" name="task" value="" />
   <?php echo JHTML::_( 'form.token' ); ?>
 </form>
