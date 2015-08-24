@@ -132,6 +132,12 @@ h3.nav-header {
 .nav > li > a:focus {
   background-color: transparent;
 }
+.mod_login:after {
+  content: "View Profile";
+  clear: both;
+  color: #fff;
+  padding: 5px;
+}
 @media all and (max-height: 700px) and (min-width: 900px) {
   #mainbody {
     min-height: 500px;
@@ -912,7 +918,7 @@ input[type=text].homepage {
   margin: 0 2px;
 }
 .chatForm {
-  padding-left: 10px;
+  padding: 0 5px;
 }
 .lastMessage {
   color: #999999;
