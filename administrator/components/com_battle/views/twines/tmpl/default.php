@@ -28,7 +28,6 @@ JToolBarHelper::addNew();
         </tr>
         </thead>
         <?php
-    //print_r($this->rows);
     jimport('joomla.filter.output');
         $k = 0;
         for ($i=0, $n=count( $this->rows ); $i < $n; $i++){
@@ -45,7 +44,7 @@ JToolBarHelper::addNew();
                     <?php echo $row->id; ?>
                 </td>
                 <td>
-                    <a href = "<?php echo $link; ?>"> <img src="/components/com_battle/images/pages/miniatures/<?php echo $row->image ?>" height = '50px' width='50px' >
+                    <a href = "<?php echo $link; ?>"> <img src="/components/com_battle/images/twines/miniatures/<?php echo $row->image ?>" height = '50px' width='50px' >
                     </a>
                 </td>
                 <td><a href = "<?php echo $link; ?>"><?php echo $row->name; ?></a></td>
