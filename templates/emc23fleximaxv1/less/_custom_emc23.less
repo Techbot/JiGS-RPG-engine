@@ -73,12 +73,17 @@ h3.nav-header {margin:0;}
 
 
 
+
+
+
 .container-fluid, .navbar-static-top .container-fluid, .navbar-fixed-top .container-fluid, .navbar-fixed-bottom .container-fluid {
-  max-width: 1170px;
+  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
 
 }
+
+
 
 
 // font awesome fullscreen toggles
@@ -156,150 +161,242 @@ h3.nav-header {margin:0;}
 }
 
 
+// append View Profile link
+#mod_login_logoutform {
 
-.mod_login:after {
-  content: "View Profile";
-  clear: both;
-  color: #fff;
-  padding: 5px;
-}
+  .mod_login:after {
+    content: "View Profile";
+    text-transform: uppercase;
+    background: #333;
+    font-size: 85%;
+    display: block;
+    clear: both;
+    color: #fff;
+    padding: 0 5px;
+    margin: -5px auto 5px;
+    width: 70%;
+  }
 
-
-@media (min-width:900px) {
-	#mainbody {
-		//min-height:560px;
-		}
-}
-
-
-@media all and (max-height: 700px) and (min-width:900px){
-	#mainbody {
-		min-height:500px;
-	}
-}
-
-
-
-@media (max-width:899px) {
-	#mainbody {}
-}
-
-
-
-
-
-
-@media (min-width:660px) and (max-width:899px) {
-
-	.navbar {
-		left: 0;
-		right: 0;
-		z-index: 1030;
-		position: static;
-		margin-left: -20px;
-		margin-right: -20px;
-		margin-bottom: 20px;
-		top: 0;
-	}
-
-
-	#LoadFirst.span9{
-	width:100% !important;
-	}
-
-	#sidebar.span3{
-	width:30% !important;
-	}
-	#MiddleCol.span9{
-	width:65% !important;
-	}
-
-	#sidebar-2.span3{
-	float:none !important;
-	width:100% !important;
-	clear:both !important;
-	margin:0 !important;
-	}
-
-	#sidebar-2.span3 .moduletable_menu,
-	#sidebar-2.span3 .moduletable {
-	width:50%;
-	float:left;
-	}
+  .mod_login:hover {
+    text-decoration: none;
+  }
 
 }
 
 
+  // guest (not logged in) user specific rules
+  .guest {
+
+    // hide module and menu titles
+    #sidebar .moduletable:first-child h3,
+    .jwts_title {
+      display:none;
+    }
+    .moduletable.shoutbox h3 {
+      display:block;
+    }
 
 
-@media (min-width:480px) and (max-width:659px) {
+    // login form styles
+    .userdata {
+      padding-top: 15px;
+    }
+    .userdata #form-login-username input,
+    .userdata #form-login-password input {
+      width: 100%;
+    }
 
-	#sidebar.span3,
-	#sidebar-2.span3{
-	float:none !important;
-	width:100% !important;
-	clear:both !important;
-	margin:0 !important;
-	}
+    .cbLoginButtonSpan {
 
-	#sidebar.span3 .module-wrapper,
-	#sidebar-2.span3 .moduletable_menu,
-	#sidebar-2.span3 .moduletable {
-	width:50%;
-	float:left;
-	}
+      .button {
+        background: #003535;
+        border: 1px solid #009999;
+        color: white;
+        font-size: 125%;
+        font-weight: bold;
+        text-align: center;
+        margin: 2px;
+        padding: 5px 25px;
+        width: 100%;
+      }
 
+    }
 
-
-	.moduletable.shoutbox {
-	float:right !important;
-	width:50%;
-	}
-
-
-}
-
-
-
-
-
-
-
-@media (max-width: 481px){
-
-}
-
-
-
-
-
-
-/* Lisa's Additions */
+  }
 
 
 
 
 
 
+  @media (min-width:900px) {
+
+
+    #LoadFirst.col-md-9 {
+      width: 70%;
+    }
+
+    #MiddleCol.col-md-9 {
+      width: 75%;
+      max-width: 640px;
+    }
+
+    #sidebar.col-md-3 {
+      width: 25%;
+    }
+
+    #sidebar-2.col-md-3 {
+      width: 30%;
+
+      .moduletable_menu {
+        width: 40%;
+        float: left;
+      }
+
+      .moduletable:nth-child(2) {
+        width: 55%;
+        float: right;
+      }
+
+      .moduletable:nth-child(3) {
+        clear: both;
+      }
+
+    }
+
+
+  }
+
+
+  @media all and (max-height: 700px) and (min-width:900px){
+    #mainbody {
+      min-height:500px;
+    }
+  }
+
+
+
+  @media (max-width:899px) {
+    #mainbody {}
+  }
 
 
 
 
 
-@media all and (max-width:659px) {
 
-.compass {
-	float:none;
-	}
+  @media (min-width:660px) and (max-width:899px) {
 
-}
+    .navbar {
+      left: 0;
+      right: 0;
+      z-index: 1030;
+      position: static;
+      margin-left: -20px;
+      margin-right: -20px;
+      margin-bottom: 20px;
+      top: 0;
+    }
+
+
+    #LoadFirst.span9{
+      width:100% !important;
+    }
+
+    #sidebar.span3{
+      width:30% !important;
+    }
+    #MiddleCol.span9{
+      width:65% !important;
+    }
+
+    #sidebar-2.span3{
+      float:none !important;
+      width:100% !important;
+      clear:both !important;
+      margin:0 !important;
+    }
+
+    #sidebar-2.span3 .moduletable_menu,
+    #sidebar-2.span3 .moduletable {
+      width:50%;
+      float:left;
+    }
+
+  }
 
 
 
 
-.btn-xs, .btn-group-xs > .btn {
-  border-radius: 3px;
-  font-size: 12px;
-  line-height: 1.5;
-  padding: 1px 5px;
-}
+  @media (min-width:480px) and (max-width:659px) {
+
+    #sidebar.span3,
+    #sidebar-2.span3{
+      float:none !important;
+      width:100% !important;
+      clear:both !important;
+      margin:0 !important;
+    }
+
+    #sidebar.span3 .module-wrapper,
+    #sidebar-2.span3 .moduletable_menu,
+    #sidebar-2.span3 .moduletable {
+      width:50%;
+      float:left;
+    }
+
+
+
+    .moduletable.shoutbox {
+      float:right !important;
+      width:50%;
+    }
+
+
+  }
+
+
+
+
+
+
+
+  @media (max-width: 481px){
+
+  }
+
+
+
+
+
+
+  /* Lisa's Additions */
+
+
+
+
+
+
+
+
+
+
+
+  @media all and (max-width:659px) {
+
+    .compass {
+      float:none;
+    }
+
+  }
+
+
+
+
+  .btn-xs, .btn-group-xs > .btn {
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 1px 5px;
+  }
+

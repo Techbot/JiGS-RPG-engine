@@ -130,7 +130,10 @@ $templateparams	= $app->getTemplate(true)->params;
 
 </head>
 
-<body id="<?php echo $style ;?>">
+<!-- If user is not logged in -->
+
+  <body id="<?php echo $style ;?>" class="<?php if($user->id==0): ?>guest<?php endif; ?>">
+
 
 <i onclick="launchFullscreen(document.documentElement);" class="fa fa-arrows-alt" title="Enable Fullscreen"></i>
 <i onclick="exitFullscreen();" class="fa fa-compress" title="Exit Fullscreen"></i>
@@ -400,8 +403,8 @@ $templateparams	= $app->getTemplate(true)->params;
 				<?php if ($this->countModules('emc23-left')) : ?>
 					<jdoc:include type="modules" name="emc23-left" style="xhtml" />
 				<?php endif; ?>
-				<?php if ($this->countModules('emc23-syndicate')) : ?>
-					<jdoc:include type="modules" name="emc23-syndicate" style="xhtml" />
+				<?php if ($this->countModules('emc23-left-wide')) : ?>
+					<jdoc:include type="modules" name="emc23-left-wide" style="xhtml" />
 				<?php endif; ?>
 				<?php if ($this->countModules('emc23-rounded')) : ?>
 					<jdoc:include type="modules" name="emc23-rounded" style="rounded" />
@@ -520,7 +523,8 @@ $templateparams	= $app->getTemplate(true)->params;
 				});
 				$("#jwts_ac1").css("top",0);
 			}
-        });
+
+    });
 	</script>
 
 

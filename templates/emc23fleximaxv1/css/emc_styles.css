@@ -69,7 +69,7 @@ h3.nav-header {
 .navbar-static-top .container-fluid,
 .navbar-fixed-top .container-fluid,
 .navbar-fixed-bottom .container-fluid {
-  max-width: 1170px;
+  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -132,11 +132,71 @@ h3.nav-header {
 .nav > li > a:focus {
   background-color: transparent;
 }
-.mod_login:after {
+#mod_login_logoutform .mod_login:after {
   content: "View Profile";
+  text-transform: uppercase;
+  background: #333;
+  font-size: 85%;
+  display: block;
   clear: both;
   color: #fff;
-  padding: 5px;
+  padding: 0 5px;
+  margin: -5px auto 5px;
+  width: 70%;
+}
+#mod_login_logoutform .mod_login:hover {
+  text-decoration: none;
+}
+.guest #sidebar .moduletable:first-child h3,
+.guest .jwts_title {
+  display: none;
+}
+.guest .moduletable.shoutbox h3 {
+  display: block;
+}
+.guest .userdata {
+  padding-top: 15px;
+}
+.guest .userdata #form-login-username input,
+.guest .userdata #form-login-password input {
+  width: 100%;
+}
+.guest .cbLoginButtonSpan .button {
+  background: #003535;
+  border: 1px solid #009999;
+  color: white;
+  font-size: 125%;
+  font-weight: bold;
+  text-align: center;
+  margin: 2px;
+  padding: 5px 25px;
+  width: 100%;
+}
+@media (min-width: 900px) {
+  #LoadFirst.col-md-9 {
+    width: 70%;
+  }
+  #MiddleCol.col-md-9 {
+    width: 75%;
+    max-width: 640px;
+  }
+  #sidebar.col-md-3 {
+    width: 25%;
+  }
+  #sidebar-2.col-md-3 {
+    width: 30%;
+  }
+  #sidebar-2.col-md-3 .moduletable_menu {
+    width: 40%;
+    float: left;
+  }
+  #sidebar-2.col-md-3 .moduletable:nth-child(2) {
+    width: 55%;
+    float: right;
+  }
+  #sidebar-2.col-md-3 .moduletable:nth-child(3) {
+    clear: both;
+  }
 }
 @media all and (max-height: 700px) and (min-width: 900px) {
   #mainbody {
