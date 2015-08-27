@@ -148,7 +148,7 @@ h3.nav-header {
   text-decoration: none;
 }
 .guest #sidebar .moduletable:first-child h3,
-.guest .jwts_title {
+.guest #sidebar .moduletable:first-child .jwts_title {
   display: none;
 }
 .guest .moduletable.shoutbox h3 {
