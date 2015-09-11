@@ -424,7 +424,7 @@ div#bottom-modules div.inside {
   margin: 0;
 }
 div#footer-modules {
-  margin: 0;
+  margin: 20px 0 0;
 }
 /*---------------------------------------
 Note: To work out the widths of the teaser modules we are going to have to know how many are published in a row 

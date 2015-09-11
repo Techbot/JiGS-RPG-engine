@@ -52,6 +52,7 @@ Featurelist:
 
    <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
 </ul>
+<hr>
 
     Point & Click (Sierra Arts/ Lucasfilm style) Plugin
     Puzzles Plugin
