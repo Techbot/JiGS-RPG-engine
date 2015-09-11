@@ -7,6 +7,7 @@ JiGS Interactive Game System is an open source Online RPG engine built in php. T
 
 [![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
+
 Featurelist:
 <ul>
    <li> Online Browser based Multiplayer RPG.</li>
