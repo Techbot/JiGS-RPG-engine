@@ -9,3 +9,5 @@ define('ROOT_ADMIN', ROOT . DS . 'admin' . DS);
 define('SECURE', ROOT . DS . 'secure' . DS);
 define('SECURE_FILES', SECURE . DS . 'files' . DS);
 define('CACHE', SECURE . DS . 'cache' . DS);
+
+
