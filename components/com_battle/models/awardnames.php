@@ -1,38 +1,48 @@
 <?php
-defined( '_JEXEC' ) or die( 'Restricted access' );
+
+namespace \emc23\models;
+
+defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.model');
 
+/**
+ * Class BattleModelAwardNames
+ */
 class BattleModelAwardNames extends JModel
 {
-	function getAwardName($id)
-	{
-		$db	= JFactory::getDBO();
-		$query	= "
-			SELECT name, published
-			FROM   #__jigs_award_names
-			WHERE  id = $id
-			";
+    /**
+     * @param $idAwardNames
+     * @return mixed
+     */
 
-		$db->setQuery($query);
-		$result	= $db->loadAssoc();
+    public function getAwardName($idAwardNames)
+    {
+        $dba = JFactory::getDBO();
+        $query = " SELECT name, published
+            FROM   #__jigs_award_names
+            WHERE  id = $idAwardNames
+            ";
 
-		return $result;
-	}
+        $dba->setQuery($query);
+        $result = $dba->loadAssoc();
 
-	function removeAwardName($id)
-	{
-		$db	= JFactory::getDBO();
+        return $result;
+    }
 
-		$query	= "
-			DELETE FROM #__jigs_award_names
-			WHERE id = $id
-			AND NOT EXISTS (
-				SELECT *
-				FROM #__jigs_awards
-				WHERE  name_id = $id
-			)";
+    public function removeAwardName($idAwardNames)
+    {
+        $dba = JFactory::getDBO();
 
-		$db->setQuery($query);
-		$db->query();
-	}
+        $query = "
+            DELETE FROM #__jigs_award_names
+            WHERE id = $idAwardNames
+            AND NOT EXISTS (
+                SELECT *
+                FROM #__jigs_awards
+                WHERE  name_id = $idAwardNames
+            )";
+
+        $dba->setQuery($query);
+        $dba->query();
+    }
 }
