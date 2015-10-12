@@ -9,7 +9,8 @@ require_once JPATH_COMPONENT.'/helpers/messages.php';
 require_once JPATH_COMPONENT.'/helpers/energy.php';
 //require_once JPATH_COMPONENT.'/helpers/jigs.php';
 
-class BattleModelJigs extends JModellist{
+class BattleModelJigs extends JModellegacy
+{
 
     function get_cells(){
 
@@ -615,7 +616,7 @@ class BattleModelJigs extends JModellist{
     {
         $batteries= $this->get_all_energy($id);
 
-        //$batteries= $EnergyHelper::get_all_energy_new($id);
+        //$batteries= $EnergyHelper::getAllEnergyNew($id);
 
         $total= 0;
         foreach ($batteries as $battery)
@@ -1386,9 +1387,9 @@ class BattleModelJigs extends JModellist{
         $db->setQuery($query);
         $npc                = $db->loadObject();
         $npc->dice          = rand(0, 5);
-        $attack_type        = JRequest::getCmd('type');
+        $attack_type2        = JRequest::getCmd('type');
 
-        switch ($attack_type)
+        switch ($attack_type2)
         {
             ///// If Player shoots test shooting skills + dexterity against NPCs speed //////////////
             case 'shoot':
