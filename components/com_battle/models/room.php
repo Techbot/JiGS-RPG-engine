@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
-class BattleModelRoom extends JModel
+class BattleModelRoom extends JModelLegacy
 {
 	
 	function enter_room()

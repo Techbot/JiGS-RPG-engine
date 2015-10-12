@@ -49,11 +49,12 @@
     {
 
     },
+ "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"images\/assets\/tiles\/Zombie_TileB.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -68,7 +69,7 @@
         }, 
         {
          "firstgid":257,
-         "image":"images\/assets\/tiles\/A5_HF1R_Outdoors.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/A5_HF1R_Outdoors.png",
          "imageheight":512,
          "imagewidth":256,
          "margin":0,
@@ -83,7 +84,7 @@
         }, 
         {
          "firstgid":385,
-         "image":"images\/assets\/tiles\/B-E_HF1R_Exterior_1.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Exterior_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -98,7 +99,7 @@
         }, 
         {
          "firstgid":641,
-         "image":"images\/assets\/tiles\/A2_HF1R_Outdoors.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/A2_HF1R_Outdoors.png",
          "imageheight":384,
          "imagewidth":512,
          "margin":0,
@@ -113,7 +114,7 @@
         }, 
         {
          "firstgid":833,
-         "image":"images\/assets\/tiles\/A3_HF1R_1.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/A3_HF1R_1.png",
          "imageheight":256,
          "imagewidth":512,
          "margin":0,
@@ -128,7 +129,7 @@
         }, 
         {
          "firstgid":961,
-         "image":"images\/assets\/tiles\/B-E_HF1R_Guard_1.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Guard_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -143,7 +144,7 @@
         }, 
         {
          "firstgid":1217,
-         "image":"images\/assets\/tiles\/B-E_HF1R_Guard_2.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Guard_2.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -158,7 +159,7 @@
         }, 
         {
          "firstgid":1473,
-         "image":"images\/assets\/tiles\/B-E_HF1R_Market_1.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/B-E_HF1R_Market_1.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -173,7 +174,7 @@
         }, 
         {
          "firstgid":1729,
-         "image":"images\/assets\/tiles\/Zombie_TileB.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileB.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -188,7 +189,7 @@
         }, 
         {
          "firstgid":1985,
-         "image":"images\/assets\/tiles\/Zombie_TileC.png",
+         "image":"/components\/com_battle\/images\/assets\/tiles\/Zombie_TileC.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,

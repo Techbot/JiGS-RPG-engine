@@ -27,7 +27,7 @@ App.PostRoute = Ember.Route.extend({
 App.PostsRoute = Ember.Route.extend({
     model: function() {
 
-        return $.getJSON('/index.php?option=com_battle&format=json&task=bank_action&action=get_account_list&bank_id=11059').then(function(data) {
+        return $.getJSON('/index.php?option=com_battle&format=json&task=bankAction&action=get_account_list&bank_id=11059').then(function(data) {
 
             return data;
             //return data.posts.map(function (post){
@@ -59,7 +59,7 @@ var posts = [{
 function get_data() {
     $.ajax({
         type: "POST",
-        url: "/index.php?option=com_battle&format=json&task=bank_action&action=get_account_list&bank_id=" + 11059
+        url: "/index.php?option=com_battle&format=json&task=bankAction&action=get_account_list&bank_id=" + 11059
 
     })
         .done(function (data) {

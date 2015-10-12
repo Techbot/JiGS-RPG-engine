@@ -467,7 +467,7 @@ function work_reprocessor()
 
 function get_account_list(){
     jQuery.ajax({
-        url: "/index.php?option=com_battle&format=json&task=bank_action&action=get_account_list&bank_id=" +building_id,
+        url: "/index.php?option=com_battle&format=json&task=bankAction&action=get_account_list&bank_id=" +building_id,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
@@ -493,7 +493,7 @@ function add_hack_links(){
        var itemId= jQuery(this).attr('id');
 
         jQuery.ajax({
-            url: "/index.php?option=com_battle&format=json&task=bank_action&action=hack_player_account&bank_id=" + building_id + "&playerid=" + itemId,
+            url: "/index.php?option=com_battle&format=json&task=bankAction&action=hack_player_account&bank_id=" + building_id + "&playerid=" + itemId,
             context: document.body,
             dataType: "json"
         }).done(function(result) {
@@ -519,7 +519,7 @@ function add_assist_links(){
         var itemId= jQuery(this).attr('id');
 
         jQuery.ajax({
-            url: "/index.php?option=com_battle&format=json&task=bank_action&action=assist_player_account&bank_id=" + building_id + "&playerid=" + itemId,
+            url: "/index.php?option=com_battle&format=json&task=bankAction&action=assist_player_account&bank_id=" + building_id + "&playerid=" + itemId,
             context: document.body,
             dataType: "json"
         }).done(function(result) {
@@ -542,7 +542,7 @@ function add_assist_links(){
 function reprocess(){
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=work_reprocessor&quantity="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=work_reprocessor&quantity="
         + document.adminForm.time.value
         + "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
         onSuccess: function(result)
@@ -566,7 +566,7 @@ function check_reprocessor()
 {
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=check_reprocessor&line=1&building="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=check_reprocessor&line=1&building="
         + building_id ,
         onSuccess: function(result)
         {
@@ -735,7 +735,7 @@ function collectEmpties()
        
        var a = new Request.JSON(
         {
-            url: "index.php?option=com_battle&format=raw&task=building_action&action=collect_empties&building_id=" 
+            url: "index.php?option=com_battle&format=raw&task=buildingAction&action=collect_empties&building_id="
             + building_id , 
             onSuccess: function(result)
             {
@@ -1025,7 +1025,7 @@ function request_battery_slots()
     //	var details = this.details;
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery_slots&building_id=" 
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_battery_slots&building_id="
         + building_id , 
         onSuccess: function(result)
         {
@@ -1051,7 +1051,7 @@ function request_battery_slots()
 
 function get_battery(itemID){
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_battery&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_battery&building_id="
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
     
@@ -1066,7 +1066,7 @@ function get_battery(itemID){
 function put_battery(itemID){
  
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=put_battery&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=put_battery&building_id="
     + building_id + "&item=" + itemID, 
     onSuccess: function(result){
    
@@ -1098,7 +1098,7 @@ function setup_hobbits(){
 
 function get_hobbit(itemID){
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_hobbit&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_hobbit&building_id="
     + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
 
@@ -1121,7 +1121,7 @@ function get_hobbit(itemID){
 function put_hobbit(itemID){
  
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=put_hobbit&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=put_hobbit&building_id="
     + building_id + "&itemid=" + itemID, 
     onSuccess: function(result){
 
@@ -1139,7 +1139,7 @@ function get_shop_papers(){
     var details = this.details;
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=get_shop_papers&building_id="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_shop_papers&building_id="
         + building_id,
         onSuccess: function(result)
         {
@@ -1172,7 +1172,7 @@ function get_papers(){
     var details  = this.details;
     var a        = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=get_papers",
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_papers",
         onSuccess: function(result)
         {
             for (i = 0; i < result.length; ++ i)
@@ -1244,7 +1244,7 @@ function work_field(itemID)
     
     //alert (hobbits_index);
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=work_field&building_id=" 
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=work_field&building_id="
     + building_id + "&crop=" + Crop_index + "&field=" + itemID +"&wf=" + hobbits_index ,
     onSuccess: function(result){
         //new tmp element that contains the new div
@@ -1265,7 +1265,7 @@ function work_field(itemID)
  
 function check_farm(){
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=check_farm&field=1&building="
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=check_farm&field=1&building="
     + building_id ,
     onSuccess: function(result){
      
@@ -1317,7 +1317,7 @@ function check_farm(){
 
 function work_flat(itemID){	 	
     var a = new Request.JSON({
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=work_flat&building_id="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=work_flat&building_id="
         + building_id + "&flat=" + itemID  ,
         onSuccess: function(result){
     
@@ -1376,7 +1376,7 @@ function get_my_blueprints(){
     var all = '<table class="shade-table"><tbody>';
     //var details = this.details;
     var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=building_action&action=get_my_blueprints_list",
+    url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_my_blueprints_list",
     onSuccess: function(result){
         for (i = 0; i < result.length; ++ i)
         {
@@ -1413,7 +1413,7 @@ function get_blueprints()
 
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=get_blueprints&blueprints="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_blueprints&blueprints="
         + document.adminForm.id1.value,
         onSuccess: function(result)
         {
@@ -1459,7 +1459,7 @@ function changeCrops()
 
         var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=get_crop_index&crop="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=get_crop_index&crop="
         + index,
         onSuccess: function(result)
         {
@@ -1509,7 +1509,7 @@ function test_rob()
 function work(){
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=work_conveyer&quantity="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=work_conveyer&quantity="
         + document.adminForm.time.value
         + "&building_id=" + building_id + "&line=1&type=" + document.adminForm.id1.value  ,
         onSuccess: function(result){
@@ -1524,7 +1524,7 @@ function work(){
 function check_factory()
 {
         var a = new Request.JSON({
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=check_factory&line=1&building="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=check_factory&line=1&building="
         + building_id ,
         onSuccess: function(result)
         {
@@ -1620,7 +1620,7 @@ function check_inventory(){
 function check_mine(){
     var a = new Request.JSON(
     {
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=check_mine&building_id="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=check_mine&building_id="
         + building_id ,
     onSuccess: function(result)
         {
@@ -1651,7 +1651,7 @@ function dig() {
 function mine(type)
 {
     var a = new Request.JSON({
-        url: "index.php?option=com_battle&format=raw&task=building_action&action=work_mine&building_id="
+        url: "index.php?option=com_battle&format=raw&task=buildingAction&action=work_mine&building_id="
         + building_id + "&type=" + type,
     onSuccess: function(result){
 

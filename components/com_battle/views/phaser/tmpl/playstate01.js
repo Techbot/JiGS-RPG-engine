@@ -60,7 +60,6 @@ playState[1] = {
             }
         }
 
-
         ///////////////////// load twines
         if(twines_list.length != 0) {
 
@@ -72,15 +71,14 @@ playState[1] = {
             }
         }
 
-
         ///////////////////// load plate
         if(plates_list.length != 0) {
 
             for (var index = 0; index < plates_list.length; index++) {
-                var filename = plates_list[index].image;
+                var filename2 = plates_list[index].image;
                 var key = plates_list[index].id;
                 //  console.log("filename : " + filename);
-                game.load.image( key, '/components/com_battle/images/plate/' + filename);
+                game.load.image( key, '/components/com_battle/images/plates/' + filename2);
             }
         }
 
@@ -89,12 +87,11 @@ playState[1] = {
 
             for (var index = 0; index < terminals_list.length; index++) {
                 var filename = terminals_list[index].image;
-                var key = terminals_list[index].id;
+                var key = terminals_list[index].image;
                 //  console.log("filename : " + filename);
                 game.load.image( key, '/components/com_battle/images/buildings/' + filename);
             }
         }
-
 
         ///////////////////// load chars
         if(npc_list.length != 0) {
@@ -107,13 +104,16 @@ playState[1] = {
             }
         }
 
-
-       ////////////////// load player
-        if (avatar.substring(0,7)!='gallery') {
-            game.load.image('arrow', '/images/comprofiler/tn' + avatar);
-        }else
-        {
-            game.load.image('arrow', '/images/comprofiler/' + avatar);
+        if (avatar ==null) {
+            game.load.image('arrow', '/images/comprofiler/gallery/frog.gif');
+        }
+        else {
+            ////////////////// load player
+            if (avatar.substring(0, 7) != 'gallery') {
+                game.load.image('arrow', '/images/comprofiler/tn' + avatar);
+            } else {
+                game.load.image('arrow', '/images/comprofiler/' + avatar);
+            }
         }
 
         ////////////////// load portals
@@ -167,26 +167,26 @@ playState[1] = {
 
         //////////////////// cache buildings
         for (var index = 0; index < buildings.length; index++) {
-            //var filename = buildings[index].image;
+            var filename = buildings[index].image;
             var key = buildings[index].id;
             game.load.image(cacheKey("_" + key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
         //////////////////// cache twines_list
         for (var index = 0; index < twines_list.length; index++) {
-            //var filename = twines_list[index].image;
+            var filename = twines_list[index].image;
             var key = twines_list[index].id;
             game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/twines/' + filename );
         }
         //////////////////// cache plates_list
         for (var index = 0; index < plates_list.length; index++) {
-            //var filename = twines_list[index].image;
+            var filename = plates_list[index].image;
             var key = plates_list[index].id;
-            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/plate/' + filename );
+            game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/plates/' + filename );
         }
         //////////////////// cache terminals_list
         for (var index = 0; index < terminals_list.length; index++) {
-            //var filename = twines_list[index].image;
-            var key = terminals_list[index].id;
+            var filename = terminals_list[index].image;
+            var key = terminals_list[index].image;
             game.load.image(cacheKey(key, 'tileset', "_" + key), '/components/com_battle/images/buildings/' + filename );
         }
         //////////////////// cache chars
@@ -247,7 +247,7 @@ playState[1] = {
                 //add_pages[index].body.velocity = 0;
             }
         }
-        ///////////////////////place plate//////
+        ///////////////////////place plates//////
         if(plates_list.length != 0) {
             for (var index = 0; index < plates_list.length; index++) {
                 var key = plates_list[index].id;
@@ -262,7 +262,7 @@ playState[1] = {
         if(terminals_list.length != 0) {
             for (var index = 0; index < terminals_list.length; index++) {
 
-                var key = terminals_list[index].id;
+                var key = terminals_list[index].image;
                 //console.log("_" + key);
                 add_terminals[index] = game.add.sprite(terminals_list[index].posx * 1, terminals_list[index].posy * 1, key);
                 add_terminals[index].id = key;

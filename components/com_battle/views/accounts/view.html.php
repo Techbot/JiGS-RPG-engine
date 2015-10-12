@@ -14,7 +14,7 @@ class BattleViewAccounts extends JView
 		$buildings->load($id);
 		$model2 = JModel::getInstance('jigs','BattleModel');					
 
-		$buildings->energy			= $model2->get_total_energy($id);
+		$buildings->energy			= $model2->getTotalEnergy($id);
 		$owner						= $buildings->owner;
 		$players					= JTable::getInstance('players', 'Table');
 		$players->load($owner);	

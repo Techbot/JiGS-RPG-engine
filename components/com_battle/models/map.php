@@ -5,7 +5,7 @@ jimport('joomla.application.component.model');
 jimport( 'joomla.filesystem.folder' );
 require_once JPATH_COMPONENT.'/helpers/messages.php';
 
-class BattleModelMap extends JModel{
+class BattleModelMap extends JModelLegacy{
 
     function save_coord()
     {
@@ -67,22 +67,7 @@ class BattleModelMap extends JModel{
     }
 
 
-    /*old
 
-    function get_grid()
-    {
-
-        $db         = JFactory::getDBO();
-        $user       = JFactory::getUser();
-        $db->setQuery("SELECT grid FROM #__jigs_players WHERE id =" . $user->id);
-        $gridnumber = $db->loadResult();
-        // echo $gridnumber;
-        //$query      = "SELECT grid_index FROM #__jigs_maps WHERE grid = ".$gridnumber;
-       // $db->setQuery($query);
-        //$result     = $db->loadResult();
-        return $gridnumber;
-    }
-    */
 
     function get_grid()
     {
@@ -111,6 +96,12 @@ class BattleModelMap extends JModel{
         $query  = "SELECT grid FROM #__jigs_players WHERE id =" . $user->id;
         $db->setQuery($query);
         $grid   = $db->loadResult();
+        if ($grid<1){
+            $grid=1;
+        }
+
+
+
         $db->setQuery("SELECT * FROM #__jigs_characters WHERE grid = $grid AND active = 1 ");
         $result = $db->loadObjectlist();
         return $result;
@@ -121,7 +112,14 @@ class BattleModelMap extends JModel{
         $db     = JFactory::getDBO();
         $user   = JFactory::getUser();
         $db->setQuery("SELECT grid FROM #__jigs_players WHERE id = " . $user->id);
+
         $grid   = $db->loadResult();
+
+        if ($grid<1){
+            $grid=1;
+        }
+
+
         $db->setQuery("SELECT * FROM #__jigs_buildings WHERE grid = $grid");
         $result = $db->loadObjectlist();
 
@@ -143,6 +141,9 @@ class BattleModelMap extends JModel{
         $result     = $db->loadRow();
         $map        = $result[0];
         $grid       = $result[1];
+        if ($grid<1){
+            $grid=1;
+        }
         $db->setQuery("SELECT * FROM #__jigs_twines WHERE grid ='".$grid."' AND published ='1'");
         $result     = $db->loadObjectlist();
         return $result;
@@ -156,6 +157,9 @@ class BattleModelMap extends JModel{
         $result     = $db->loadRow();
         $map        = $result[0];
         $grid       = $result[1];
+        if ($grid<1){
+            $grid=1;
+        }
         $db->setQuery("SELECT * FROM #__jigs_plates WHERE grid ='$grid' AND published ='1'");
         $result     = $db->loadObjectlist();
         return $result;
@@ -169,6 +173,9 @@ class BattleModelMap extends JModel{
         $result     = $db->loadRow();
         $map        = $result[0];
         $grid       = $result[1];
+        if ($grid<1){
+            $grid=1;
+        }
         $db->setQuery("SELECT * FROM #__jigs_terminals WHERE grid ='".$grid."' AND published ='1'");
         $result     = $db->loadObjectlist();
         return $result;
@@ -180,20 +187,45 @@ class BattleModelMap extends JModel{
         $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
         $result = $db->loadRow();
         $map	= $result[0];
-        $grid	= $result[1];		
-        $db->setQuery("SELECT #__jigs_players.id,
-
-        #__jigs_players.name,
+        $grid	= $result[1];
+        if ($grid<1){
+            $grid=1;
+        }
+        $db->setQuery("SELECT #__jigs_players.id, #__jigs_players.name,
                 #__jigs_players.posx,
                 #__jigs_players.posy,
                 #__comprofiler.avatar
                 FROM #__jigs_players
                 LEFT JOIN #__comprofiler ON #__jigs_players.id = #__comprofiler.user_id
-                WHERE #__jigs_players.active = 1 AND #__jigs_players.grid ='".$grid."' AND #__jigs_players.map='".$map."' AND #__jigs_players.id !='".$user->id."'
-
-                        ");
+                WHERE #__jigs_players.active = 1
+                AND #__jigs_players.grid ='$grid'
+                AND #__jigs_players.map='$map'
+                AND #__jigs_players.id !='$user->id'
+                ");
         $result = $db->loadObjectlist();
         return $result;
     }
+
+
+
+
+
+
+
+
+    function sing_song(){
+
+        echo 'test';
+
+
+    }
+
+
+
+
+
+
+
+
 
 }

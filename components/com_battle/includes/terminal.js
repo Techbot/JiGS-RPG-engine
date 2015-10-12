@@ -14,7 +14,7 @@ jQuery(function() {
         var command = document.getElementById('commandLine').value;
         var command_post = jQuery.trim(command.replace(command_pre, ''));
         jQuery.ajax({
-            url: "/index.php?option=com_battle&format=raw&task=terminal_action&action=" + command_pre + "&id=" + command_post,
+            url: "/index.php?option=com_battle&format=raw&task=terminalAction&action=" + command_pre + "&id=" + command_post,
             context: document.body,
             dataType: "json"
         }).done(function(result) {

@@ -10,7 +10,7 @@ class BattleModelPage extends JModel
 	function get_page($id)
 	{
 		if (empty($this->_data)) {
-			$query = "SELECT * FROM #__jigs_pages WHERE id = $id ";
+			$query = "SELECT * FROM #__jigs_plate WHERE id = $id ";
 			$this->_data = $this->_getList($query);
 		}
 		

@@ -26,7 +26,7 @@ try {
 		handler: function(place, macroName, params, parser) 
 		{
 			$.ajax({
-			url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twine_action&action=get_status",
+			url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twineAction&action=get_status",
 			datatype : 'application/json',
 			success:function(result)
 			{
@@ -45,7 +45,7 @@ try {
 		handler: function(place, macroName, params, parser) 
 		{
 			$.ajax({
-				url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twine_action&action=remove_slack",
+				url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twineAction&action=remove_slack",
 				datatype : 'application/json',
 				success:function(result)
 				{
@@ -62,7 +62,7 @@ try {
 		handler: function(place, macroName, params, parser) 
 		{
 			$.ajax({
-				url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twine_action&action=add_slack",
+				url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twineAction&action=add_slack",
 				datatype : 'application/json',
 				success:function(result)
 				{
@@ -80,7 +80,7 @@ try {
 			var stuff= this.m;
 		//this.flag   = this.m;
 			  	$.ajax({
-			url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twine_action&action=check_flag&flag=" + this.m,
+			url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twineAction&action=check_flag&flag=" + this.m,
 			datatype : 'application/json',
 			success:function(result)
 			{
@@ -98,7 +98,7 @@ try {
 			this.m = params[0];
 			this.flag   = this.m;
 			$.ajax({
-				url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twine_action&action=tick_flag&flag=" + this.m,
+				url:"http://eclecticmeme.com/index.php?option=com_battle&format=raw&task=twineAction&action=tick_flag&flag=" + this.m,
 				datatype : 'application/json',
 					success:function(result)
 				{

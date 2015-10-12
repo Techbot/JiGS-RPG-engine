@@ -23,25 +23,24 @@ var cursors;
 var players_list=0;
 var avatar;
 
-jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_grid&format=raw', function(result)
+jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
     if (result != null) {
         grid = parseInt(result[0]);
         new_x = parseFloat(result[1]);
         new_y = parseFloat(result[2]);
         avatar = result[3];
-        //console.log("buildings : " + buildings.length);
-        // console.log("buildings2 : " + buildings.length);
-        // load buildings
-        //game.state.add('play', playState[1]);
-        //game.state.start('play');
         get_everything(grid);
 
     }else{
 
+ //       game.state.start('login');
+        grid = 1;
+        new_x =100;
+        new_y = 100;
+        avatar = null;
+        get_everything(grid);
 
-
-        game.state.start('login');
 
 
     }
@@ -122,27 +121,27 @@ function jump(one,two) {
 
 function get_everything(dest){
 
-    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function(result)
+    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function(result)
     {
         buildings = result;
 
-        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_chars&format=raw', function(result)
+        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_chars&format=raw', function(result)
         {
             npc_list = result;
 
-            jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_players&format=raw', function(result)
+            jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_players&format=raw', function(result)
             {
                 players_list = result;
 
-                jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_twines&format=raw', function(result)
+                jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_twines&format=raw', function(result)
                 {
                     twines_list = result;
 
-                    jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_terminals&format=raw', function(result)
+                    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_terminals&format=raw', function(result)
                     {
                         terminals_list = result;
 
-                        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=get_plates&format=raw', function(result)
+                        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_plates&format=raw', function(result)
                         {
                             plates_list = result;
 
@@ -449,7 +448,7 @@ function doSomething() {
     if (x != undefined)
     {
         //console.log('x : ' + x + " y : " + y);
-        jQuery.getJSON('index.php?options=com_battle&task=map_action&action=update_pos&format=raw&posx=' + sprite.body.x + '&posy=' + sprite.body.y, function (result)
+        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=update_pos&format=raw&posx=' + sprite.body.x + '&posy=' + sprite.body.y, function (result)
         {
 
         //grid = result;
