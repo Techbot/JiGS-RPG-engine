@@ -26,12 +26,13 @@ var avatar;
 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
     if (result != null) {
+
+        console.log('buildings');
         grid = parseInt(result[0]);
         new_x = parseFloat(result[1]);
         new_y = parseFloat(result[2]);
         avatar = result[3];
         get_everything(grid);
-
     }else{
 
  //       game.state.start('login');
@@ -40,15 +41,7 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
         new_y = 100;
         avatar = null;
         get_everything(grid);
-
-
-
     }
-
-
-
-
-
 });
 
 /*
@@ -64,8 +57,6 @@ blip.sampleLoader()
     .done(loaded)
     .load();
 */
-
-
 function moveBall(pointer)
 {
     //  sprite.reset(pointer.x, pointer.y, 100)
@@ -123,6 +114,8 @@ function get_everything(dest){
 
     jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function(result)
     {
+
+        console.log('buildings');
         buildings = result;
 
         jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_chars&format=raw', function(result)
@@ -317,7 +310,6 @@ function twine(one,two) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function terminal(one,two) {
     one.body.enable = false;
-
     one.body.immovable = true;
     two.body.immovable = true;
 
@@ -334,17 +326,10 @@ function terminal(one,two) {
    //     loadUp();
         var url = "/components/com_battle/includes/terminal.js";
         jQuery.getScript( url, function() {
-
-
-
         });
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
@@ -360,7 +345,6 @@ function player(one,two) {
         loadUp();
         var url = "/components/com_battle/includes/player.js";
         jQuery.getScript( url, function() {
-
         });
     });
 }
@@ -382,10 +366,8 @@ function addMap() {
 }
 
 function loaded() {
-
     // set base tempo var
     var TEMPO = 125;
-
     // create clips
     var uke1 = blip.clip().sample('bass_note');
     var uke2 = blip.clip().sample('uke');
@@ -402,7 +384,6 @@ function loaded() {
                 gain: 0.5 / Math.sqrt(d)
             });
         });
-
 
     rhythmic = blip.loop()
         .tempo(TEMPO)
@@ -438,19 +419,14 @@ function loaded() {
         melody.stop();
     });
 */
-
-
 }
 
 function doSomething() {
-
-
     if (x != undefined)
     {
         //console.log('x : ' + x + " y : " + y);
         jQuery.getJSON('index.php?option=com_battle&task=map_action&action=update_pos&format=raw&posx=' + sprite.body.x + '&posy=' + sprite.body.y, function (result)
         {
-
         //grid = result;
         //console.log("buildings : " + buildings.length);
         // console.log("buildings2 : " + buildings.length);
@@ -459,14 +435,11 @@ function doSomething() {
         //game.state.add('next', playState[1]);
         //game.state.add('play', playState[1]);
         //game.state.start('play');
-
         //game.state.start('next');
-
         });
     }
 }
 function updateLine() {
-
     if (line.length < content[index].length)
     {
         line = content[index].substr(0, line.length + 1);
@@ -478,13 +451,10 @@ function updateLine() {
         //  Wait 2 seconds then start a new line
         game.time.events.add(Phaser.Timer.SECOND * 2, nextLine, this);
     }
-
 }
 
 function nextLine() {
-
     index++;
-
     if (index < content.length)
     {
         line = '';

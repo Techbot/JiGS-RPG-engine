@@ -7,7 +7,7 @@ jimport( 'joomla.filesystem.folder' );
 
 require_once JPATH_COMPONENT.'/helpers/messages.php';
 
-class BattleModelBuilding extends JModel
+class BattleModelBuilding extends JModelLegacy
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,6 @@ class BattleModelBuilding extends JModel
 
     function work_conveyer()
     {
-
         $energy_unit			= 1;
         $building_id			= JRequest::getvar('building_id');
         $line				= JRequest::getvar('line');

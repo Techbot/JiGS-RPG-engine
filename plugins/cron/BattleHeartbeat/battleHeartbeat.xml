@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="cron">
-<name>PLG_BATTLEHeartbeat</name>
+<name>BattleHeartbeat</name>
 <author>Techbot</author>
 <creationDate>Dec 2011</creationDate>
 <copyright> :) </copyright>
@@ -26,10 +26,5 @@
 <option value="1">JYES</option>
 </field></fieldset></fields>
 </config>
-
-
-
-
-
 </extension>
 

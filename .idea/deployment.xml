@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="eclecticmeme" uploadOnCheckin="18c207f4-cf8f-4860-b982-7ba1d8af007a">
+  <component name="PublishConfigData" autoUpload="Always" serverName="46">
     <serverData>
+      <paths name="46">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="eclecticmeme">
         <serverdata>
           <mappings>
@@ -10,7 +17,6 @@
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="eclecticmeme" />
     <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

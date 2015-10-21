@@ -11,7 +11,6 @@ require_once JPATH_COMPONENT.'/helpers/energy.php';
 
 class BattleModelJigs extends JModellegacy
 {
-
     function get_cells(){
 
         $map= JRequest::getvar('map');
@@ -34,8 +33,8 @@ class BattleModelJigs extends JModellegacy
 }
 
 
-    function get_messages(){
-
+    function get_messages()
+    {
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
         $db->setQuery("SELECT message FROM #__jigs_logs WHERE user_id = $user->id  ORDER BY timestamp DESC LIMIT 6");
@@ -70,7 +69,6 @@ class BattleModelJigs extends JModellegacy
 
     function set_final_stats()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
         $db->setQuery("Select attack, defence FROM  #__jigs_players WHERE id =".$user->id);
@@ -105,7 +103,6 @@ class BattleModelJigs extends JModellegacy
 
     function get_shop_blueprints()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
@@ -120,7 +117,6 @@ class BattleModelJigs extends JModellegacy
 
     function get_shop_clothing()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
@@ -134,8 +130,7 @@ class BattleModelJigs extends JModellegacy
 
     function get_shop_spells()
     {
-
-        $db	= JFactory::getDBO();
+        $db = JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
         $db->setQuery("SELECT #__jigs_spells.item_id, #__jigs_spells.sell_price, #__jigs_spell_names.name
@@ -147,7 +142,6 @@ class BattleModelJigs extends JModellegacy
 
     function get_shop_weapons()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
@@ -160,7 +154,6 @@ class BattleModelJigs extends JModellegacy
 
     function get_inventory_to_sell()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
@@ -177,7 +170,6 @@ class BattleModelJigs extends JModellegacy
 
     function get_metals_to_sell()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
@@ -192,7 +184,6 @@ class BattleModelJigs extends JModellegacy
             ON #__jigs_metals.item_id = #__jigs_shop_metal_prices.item_id
             WHERE #__jigs_metals.player_id =  $user->id
             AND #__jigs_shop_metal_prices.shop_id = " . $building_id ;
-
         $db->setQuery($query);
         $result = $db->loadAssocList();
         return $result;
@@ -200,11 +191,9 @@ class BattleModelJigs extends JModellegacy
 
     function get_metals_for_sale()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id=  JRequest::getvar('building_id');
-
         $db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name, #__jigs_shop_prices.buy_price
         FROM #__jigs_inventory LEFT JOIN #__jigs_objects
         ON #__jigs_inventory.item_id = #__jigs_objects.id
@@ -214,15 +203,11 @@ class BattleModelJigs extends JModellegacy
         return $result;
     }
 
-
-
     function get_crystals()
     {
-
         $db = JFactory::getDBO();
         $user = JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
-
         $db->setQuery(
             "SELECT #__jigs_crystals.item_id, #__jigs_crystal_names.name, #__jigs_crystal_prices.buy_price
             FROM #__jigs_crystals LEFT JOIN #__jigs_crystal_names
@@ -236,7 +221,6 @@ class BattleModelJigs extends JModellegacy
 
     function get_backpack()
     {
-
         $db= JFactory::getDBO();
         $user   = JFactory::getUser();
         $db->setQuery("SELECT #__jigs_inventory.id, #__jigs_inventory.item_id, #__jigs_objects.name
@@ -250,14 +234,15 @@ class BattleModelJigs extends JModellegacy
 
     function get_inventory2()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
 
-        $db->setQuery("SELECT DISTINCT
-            #__jigs_inventory.item_id, #__jigs_objects.name FROM #__jigs_inventory
-            LEFT JOIN #__jigs_objects ON #__jigs_inventory.item_id = #__jigs_objects.id WHERE #__jigs_inventory.player_id = ". $user->id);
+        $db->setQuery("SELECT DISTINCT #__jigs_inventory.item_id, #__jigs_objects.name
+            FROM #__jigs_inventory
+            LEFT JOIN #__jigs_objects
+            ON #__jigs_inventory.item_id = #__jigs_objects.id
+            WHERE #__jigs_inventory.player_id = ". $user->id);
         $result		= $db->loadObjectList();
         foreach ($result as $row)
         {
@@ -271,10 +256,8 @@ class BattleModelJigs extends JModellegacy
 
     function get_metals2()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
-
         $db->setQuery("SELECT #__jigs_metals.item_id, " .
             "#__jigs_metals.quantity, #__jigs_metal_names.name FROM #__jigs_metals LEFT JOIN  #__jigs_metal_names ON #__jigs_metals.item_id = #__jigs_metal_names.id  WHERE #__jigs_metals.player_id =" . $user->id);
 
@@ -284,10 +267,8 @@ class BattleModelJigs extends JModellegacy
 
     function get_crystals2()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
-
         $db->setQuery("SELECT #__jigs_crystals.item_id, #__jigs_crystal_names.name, #__jigs_crystals.quantity
         FROM #__jigs_crystals LEFT JOIN  #__jigs_crystal_names
         ON #__jigs_crystals.item_id = #__jigs_crystal_names.id
@@ -299,10 +280,8 @@ class BattleModelJigs extends JModellegacy
 
     function get_skills()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
-
         $db->setQuery("SELECT * FROM #__jigs_skills WHERE #__jigs_skills.id =".$user->id);
         $result1 = $db->loadObject();
 
@@ -316,10 +295,8 @@ class BattleModelJigs extends JModellegacy
 
     function get_clothing()
     {
-
-        $db		= JFactory::getDBO();
-        $user	= JFactory::getUser();
-
+        $db  = JFactory::getDBO();
+        $user = JFactory::getUser();
         $db->setQuery("SELECT #__jigs_clothing.item_id, #__jigs_clothing_names.name " .
             "FROM #__jigs_clothing " .
             "LEFT JOIN #__jigs_clothing_names ON #__jigs_clothing.item_id =  #__jigs_clothing_names.id " .
@@ -410,9 +387,7 @@ class BattleModelJigs extends JModellegacy
 
         $db     = JFactory::getDBO();
         $user   = JFactory::getUser();
-        $db->setQuery("SELECT
-
-            #__jigs_weapon_names.* ,
+        $db->setQuery("SELECT #__jigs_weapon_names.* ,
 
             #__jigs_weapons.magazine,
             #__jigs_players.ammunition
@@ -483,10 +458,8 @@ class BattleModelJigs extends JModellegacy
 
     function get_spells()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
-
         $db->setQuery("SELECT #__jigs_spells.item_id, #__jigs_spell_names.name
                 FROM #__jigs_spells LEFT JOIN #__jigs_spell_names
                 ON #__jigs_spells.item_id =#__jigs_spell_names.id
@@ -498,23 +471,18 @@ class BattleModelJigs extends JModellegacy
 
     function get_software()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
-
         $db->setQuery("SELECT * FROM #__jigs_software WHERE #__jigs_software.id =".$user->id);
-
         $result= $db->loadRow();
         return $result;
     }
 
     function get_shop_software()
     {
-
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar(building_id);
-
         $db->setQuery("SELECT  " .
             "quantity_1 ,	price_1 ,	quantity_2 ,price_2 ,	quantity_3 	,price_3, " .
             "quantity_4 ,	price_4 ,	quantity_5 ,price_5 ,	quantity_6 ,	price_6 , " .
@@ -527,12 +495,9 @@ class BattleModelJigs extends JModellegacy
     }
     function get_property()
     {
-
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
-
         $db->setQuery("SELECT image FROM #__jigs_buildings WHERE #__jigs_buildings.proprio  =".$user->id);
-
         $result= $db->loadAssocList();
         return $result;
     }
@@ -615,9 +580,7 @@ class BattleModelJigs extends JModellegacy
     function get_total_energy($id)
     {
         $batteries= $this->get_all_energy($id);
-
         //$batteries= $EnergyHelper::getAllEnergyNew($id);
-
         $total= 0;
         foreach ($batteries as $battery)
         {
@@ -667,9 +630,6 @@ class BattleModelJigs extends JModellegacy
         return false;
     }
 */
-
-
-
     ///// TAKE ENERGY FROM USER'S BATTERIES UNTIL $energy_units_required IS REACHED /////
     function use_battery($id, $energy_units_required)
     {
@@ -689,7 +649,6 @@ class BattleModelJigs extends JModellegacy
             MessagesHelper::sendFeedback($user->id,$message);
             return false;
         }
-
         $i=1;
         foreach ($batteries as $battery)
         {
@@ -1548,21 +1507,6 @@ class BattleModelJigs extends JModellegacy
         $text = 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
         $db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
         $db->query() ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
   
     function increment_xp($xp_type,$user_id)
@@ -1779,3 +1723,4 @@ class BattleModelJigs extends JModellegacy
         return ($sql);
     }
 }
+

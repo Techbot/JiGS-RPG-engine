@@ -5,7 +5,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.categories');
 
 // Include the syndicate functions only once
-require_once( dirname(__FILE__).DS.'helper.php' );
+require_once( dirname(__FILE__).'/helper.php' );
 $mainframe = JFactory::getApplication();
 
 $sbid = JRequest::getVar( 'sbid',			'',			'get' ); 
@@ -104,7 +104,7 @@ if(!$ipaccess) {
 
 
 
-JHTML::_('behavior.mootools');
+//JHTML::_('behavior.mootools');
 $module_base     = JURI::base() . 'modules/mod_shoutbox/';
 $doc =& JFactory::getDocument();
 $doc->addStyleSheet($module_base . 'css/mod_shoutbox.css');

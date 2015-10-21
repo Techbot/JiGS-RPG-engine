@@ -37,10 +37,10 @@ class plgUserjNewssyncuser extends JPlugin {
 			$adminPath = JPATH_ROOT;
 		}
 
-		if ( !@include_once( $adminPath . DS.'components'.DS.'com_jnews'.DS.'defines.php') ) return;
+		if ( !@include_once( $adminPath . DS.'components/com_jnews/defines.php') ) return;
 		include_once( JNEWSPATH_CLASSN . 'class.jnews.php');
-		require_once(JNEWS_JPATH_ROOT_NO_ADMIN . DS.'administrator'.DS.'components'.DS.JNEWS_OPTION.DS.'classes'.DS.'class.subscribers.php');
-		require_once(JNEWS_JPATH_ROOT_NO_ADMIN . DS.'administrator'.DS.'components'.DS.JNEWS_OPTION.DS.'classes'.DS.'class.listssubscribers.php');
+		require_once(JNEWS_JPATH_ROOT_NO_ADMIN . DS.'administrator/components'.DS.JNEWS_OPTION.DS.'classes/class.subscribers.php');
+		require_once(JNEWS_JPATH_ROOT_NO_ADMIN . DS.'administrator/components'.DS.JNEWS_OPTION.DS.'classes/class.listssubscribers.php');
 		
 		jimport( 'joomla.html.parameter' );
 		$plugin =& JPluginHelper::getPlugin('user', 'jnewssyncuser');
@@ -191,8 +191,8 @@ class plgUserjNewssyncuser extends JPlugin {
 			$adminPath = JPATH_ROOT;
 		}
 
-		if ( !@include_once( $adminPath . DS.'components'.DS.'com_jnews'.DS.'defines.php') ) return;
-		require_once(JNEWS_JPATH_ROOT_NO_ADMIN . DS.'administrator'.DS.'components'.DS.JNEWS_OPTION.DS.'classes'.DS.'class.subscribers.php');
+		if ( !@include_once( $adminPath . DS.'components/com_jnews/defines.php') ) return;
+		require_once(JNEWS_JPATH_ROOT_NO_ADMIN . DS.'administrator/components'.DS.JNEWS_OPTION.DS.'classes/class.subscribers.php');
 		include_once( JNEWSPATH_CLASSN . 'class.jnews.php');
 
 		$d['email'] = $user['email'];

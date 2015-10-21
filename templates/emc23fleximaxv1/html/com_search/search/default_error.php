@@ -10,5 +10,5 @@
 defined('_JEXEC') or die;
 ?>
 <?php if($this->error): ?>
-<div class="alert fade in"> <a class="close" data-dismiss="alert" href="#">×</a> <?php echo $this->escape($this->error); ?> </div>
+<div class="alert fade in"> <a class="close" data-dismiss="alert" href="#">�</a> <?php echo $this->escape($this->error); ?> </div>
 <?php endif; ?>

@@ -9,26 +9,25 @@ playState[1] = {
     preload: function() {
 
         var number = paddy(grid,3);
-        game.load.tilemap('world', '/components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('world', 'components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
 
      //   game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
 
         //load tiles
         for	(var index = 0; index < tile_names[grid].length; index++) {
             var filename = tile_names[grid][index];
+            console.log(filename);
             game.load.image(filename, '/components/com_battle/images/assets/tiles/' + filename +'.png');
         }
-
         //////////////////////// monsters
         if (typeof assets_name[grid] != 'undefined') {
 
             //load assets
             for (var index = 0; index < assets_name[grid].length; index++) {
                 var filename = assets_name[grid][index];
-                game.load.spritesheet(filename, '/components/com_battle/images/assets/' + filename + '.png', 70, 60, 8);
+          //    game.load.spritesheet(filename, '/components/com_battle/images/assets/' + filename + '.png', 70, 60, 8);
             }
         }
-
         ///////////////////// load players
         if(players_list.length != 0) {
 
@@ -40,6 +39,7 @@ playState[1] = {
                 }
                 var key = players_list[index].id;
                 console.log("filename : " + filename);
+
                 if (filename.substring(0,7)!= 'gallery') {
                     game.load.image(key, '/images/comprofiler/tn' + filename);
                 }else
@@ -48,6 +48,7 @@ playState[1] = {
                 }
             }
         }
+
 
         ///////////////////// load buildings
         if(buildings.length != 0) {

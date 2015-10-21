@@ -153,7 +153,7 @@ class modShoutboxHelper {
 		if($user->get('id') == 0) {
 			$avatar = (!empty($default_avatar)) ? $default_avatar : 0;
 		} elseif($extension == 1) {
-			require_once(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_rokbridge'.DS.'helper.php' );
+			require_once(JPATH_ADMINISTRATOR.'/components/com_rokbridge/helper.php' );
 			$rokbridge = new RokBridgeHelper();
 			$phpbb_db   = $rokbridge->phpbb_db;
 			$query = "SELECT user_id, user_type, username, user_unread_privmsg, user_new_privmsg, user_avatar, user_avatar_type, user_avatar_width, user_avatar_height, user_lastvisit, FROM_UNIXTIME(user_lastvisit,'%a %b %D %x %h:%i %p') AS LastVisit FROM #__users WHERE ". $rokbridge->getWhereClause($user->username)
@@ -165,13 +165,13 @@ class modShoutboxHelper {
 			$avatar = substr($avatar, strpos($avatar, '"')+1);
 			$avatar = substr($avatar, 0, strpos($avatar, '"'));
 		} elseif($extension == 2) {
-			$jspath = JPATH_BASE.DS.'components'.DS.'com_community';
-			include_once($jspath.DS.'libraries'.DS.'core.php');
+			$jspath = JPATH_BASE.DS.'components/com_community';
+			include_once($jspath.DS.'libraries/core.php');
 			
 			$user =& CFactory::getUser($user->get('id'));
 			$avatar = $user->getThumbAvatar();
 		} elseif($extension == 3) {
-			$jspath = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_comprofiler';
+			$jspath = JPATH_ADMINISTRATOR.'/components/com_comprofiler';
 			include_once($jspath.DS.'plugin.foundation.php');
 			cbimport( 'cb.database' );
 			
@@ -181,7 +181,7 @@ class modShoutboxHelper {
 				$avatar = $default_avatar;
 			}
 		} elseif($extension == 4) {
-			$ini = JFile::read(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_juser'.DS.'config.ini');
+			$ini = JFile::read(JPATH_ADMINISTRATOR.'/components/com_juser/config.ini');
 			$juserparams = new JParameter($ini);
 			$avatar_save_path =  $juserparams->get('general::avatars_dir');
 			
@@ -191,7 +191,7 @@ class modShoutboxHelper {
 				$avatar = JURI::root().'/components/com_juser/images/default_avatar.png';
 			}
 		} elseif($extension == 5) {
-			require_once(JPATH_BASE.DS.'components'.DS.'com_kunena'.DS.'class.kunena.php');
+			require_once(JPATH_BASE.DS.'components/com_kunena/class.kunena.php');
 			$kunena_user = KunenaFactory::getUser($user->get('id'));
 			$username = $kunena_user->getName();
 			$avatar = $kunena_user->getAvatarURL();

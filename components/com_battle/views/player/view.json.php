@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.application.component.view');
 
-JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_battle/tables');
 
 class BattleViewPlayer extends JView
 {	

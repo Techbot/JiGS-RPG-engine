@@ -29,7 +29,7 @@ class KodalyModelPlugins extends JModelDatabase
 	/**
 	 * Loads the plugins from the CMS location.
 	 *
-	 * @return	void
+
 	 */
 	public function load($cmsPath, $group = 'cron')
 	{

@@ -206,13 +206,6 @@ class BattleModelMap extends JModelLegacy{
         return $result;
     }
 
-
-
-
-
-
-
-
     function sing_song(){
 
         echo 'test';

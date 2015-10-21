@@ -7,9 +7,9 @@ jimport( 'joomla.html.parameter' );
 
 
 
-JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_battle/tables');
 
-class battleViewSingle extends JView
+class battleViewSingle extends JViewLegacy
 {	
     function display($tpl = "")
     {

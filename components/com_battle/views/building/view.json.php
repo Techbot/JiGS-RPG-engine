@@ -1,10 +1,10 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.application.component.view');
-JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_battle'.DS.'tables');
+JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_battle/tables');
 
-class BattleViewBuilding extends JView
-{	
+class BattleViewBuilding extends JViewLegacy
+{
     function display($tpl = "json")
     {
         $id                         = (int) JRequest::getVar('id', 0);
@@ -26,7 +26,6 @@ class BattleViewBuilding extends JView
         //$player                   = JTable::getInstance('players', 'Table');
         //$player->load($user->id);
         //$this->assignRef('player', $player);
-
         $cropper->load($user->id);
         $this->assignRef('cropper', $cropper);
         $this->assignRef('buildings', $buildings);

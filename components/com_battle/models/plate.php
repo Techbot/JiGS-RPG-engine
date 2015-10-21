@@ -1,5 +1,5 @@
 <?php
-namespace emc23;
+
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
@@ -11,7 +11,7 @@ jimport('joomla.application.component.model');
  * @subpackage	com_battle
  * @since		1.6
  */
-class BattleModelPlate extends JModel
+class BattleModelPlate extends JModelLegacy
 {
     public $data = null;
 
