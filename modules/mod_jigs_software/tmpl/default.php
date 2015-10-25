@@ -17,15 +17,19 @@ $rows =$db->loadAssoc();
 
 
 
-jimport('joomla.html.pane');
-//1st Parameter: Specify 'tabs' as appearance 
-//2nd Parameter: Starting with third tab as the default (zero based index)
-//open one!
+$options = array(
+    'onActive' => 'function(title, description){
+        description.setStyle("display", "block");
+        title.addClass("open").removeClass("closed");
+    }',
+    'onBackground' => 'function(title, description){
+        description.setStyle("display", "none");
+        title.addClass("closed").removeClass("open");
+    }',
+    'startOffset' => 0,  // 0 starts on the first tab, 1 starts the second, etc...
+    'useCookie' => true, // this must not be a string. Don't use quotes.
+);
 
-
-
-$pane =& JPane::getInstance('tabs', array('startOffset'=>0)); 
-echo $pane->startPane( 'pane' );
 
 $name = Array(8);
 
@@ -50,7 +54,7 @@ for ($i = 1; $i <= 8; $i++ )
 {
 
 
-echo $pane->startPanel($i, 'panel' );
+// echo $pane->startPanel($i, 'panel' );
 // if (($row->iduser)==($user->id)){
 	  
 echo '
@@ -82,7 +86,7 @@ echo '
 	
  	' ;
 	// }
-echo $pane->endPanel();
+
 
 	
 	

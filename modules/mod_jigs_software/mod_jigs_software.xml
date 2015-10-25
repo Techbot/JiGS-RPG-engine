@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="module" version="1.5">
-  <name>Restaurant Reviews</name>
-  <author>Sumptuous Software</author>
+  <name>Software</name>
+  <author>emc23 Software</author>
   <creationDate>January 2008</creationDate>
   <copyright>(C) 2008</copyright>
   <license>MIT</license>
-  <authorEmail>support@packtpub.com</authorEmail>
-  <authorUrl>www.packtpub.com</authorUrl>
+  <authorEmail>info@emc23.com</authorEmail>
+  <authorUrl>www.emc23.com</authorUrl>
   <version>1.0</version>
-  <description>A module for promoting restaurant reviews.</description>
+  <description>A module for displaying player's software</description>
   <params>
     <param name="random" type="radio" default="0" label="Randomize" description="Show random items">
       <option value="0">No</option>

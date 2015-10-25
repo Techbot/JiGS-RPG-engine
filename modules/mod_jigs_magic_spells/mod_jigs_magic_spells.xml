@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install type="module" version="1.5">
+<install type="module" version="2.5">
   <name>Magic Spells</name>
   <author>EMC23.com</author>
   <creationDate>January 2008</creationDate>
@@ -20,25 +20,17 @@
       <option value="default">Flat</option>
       <option value="bulleted">Bulleted</option>
     </param>
-	
-	
-	 <param name="table" type="list" default="#__wub_ennemis" label="table" description="The table to use for displaying the items.">
+
+
+     <param name="table" type="list" default="#__wub_ennemis" label="table" description="The table to use for displaying the items.">
       <option value="#__wub_ennemis">People</option>
       <option value="#__wub_batiments">Buildings</option>
     </param>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
   </params>
 </install>
