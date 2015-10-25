@@ -14,6 +14,7 @@ class BattleControllerbuildings extends JControllerLegacy
         JRequest::setVar('view', 'building');
         $this->display();
     }
+
     function add()
     {
         JRequest::setVar('view', 'building');
