@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.application.component.view');
 
-class BattleViewHobbits extends JView
+class BattleViewHobbits extends JViewLegacy
 {	
 	function display($tpl = null)
 	{

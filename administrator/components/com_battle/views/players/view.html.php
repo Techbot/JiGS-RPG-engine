@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.application.component.view');
 
-class BattleViewPlayers extends JView
+class BattleViewPlayers extends JViewLegacy
 {	
 	protected $items;
 	protected $pagination;

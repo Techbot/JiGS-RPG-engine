@@ -5,7 +5,7 @@ jimport( 'joomla.application.component.view');
 
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_battle/tables');
 
-class BattleViewHobbit extends JView
+class BattleViewHobbit extends JViewLegacy
 {	
 	function display($tpl = null)
 	{

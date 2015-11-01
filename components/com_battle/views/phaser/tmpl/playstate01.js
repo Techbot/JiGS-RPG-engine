@@ -9,17 +9,11 @@ playState[1] = {
     preload: function() {
 
         var number = paddy(grid,3);
-        game.load.tilemap('world', 'components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
+        // game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
 
-     //   game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
 
-        //load tiles
-        for	(var index = 0; index < tile_names[grid].length; index++) {
-            var filename = tile_names[grid][index];
-            console.log(filename);
-            game.load.image(filename, '/components/com_battle/images/assets/tiles/' + filename +'.png');
-        }
-        //////////////////////// monsters
+        //
+        // //////////// monsters
         if (typeof assets_name[grid] != 'undefined') {
 
             //load assets
@@ -121,6 +115,28 @@ playState[1] = {
         game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portals_1.png', 64, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/portals_2.png', 64, 64, 1);
         game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/portals_3.png', 64, 64, 1);
+
+
+
+        //load tiles
+        for	(var index = 0; index < tile_names[grid].length; index++) {
+            var filename = tile_names[grid][index];
+            console.log(filename);
+            game.load.image(filename, '/components/com_battle/images/assets/tiles/' + filename +'.png');
+        }
+        ////////
+
+
+
+
+
+
+        game.load.tilemap('world', 'components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
+
+
+
+
+
 
     },
     create: function() {
