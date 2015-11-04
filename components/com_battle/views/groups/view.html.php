@@ -5,7 +5,7 @@ jimport( 'joomla.application.component.view');
 
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_battle/tables');
 
-class BattleViewgroups extends JView
+class BattleViewgroups extends JViewLegacy
 {	
 	function display($tpl = null)
 	{

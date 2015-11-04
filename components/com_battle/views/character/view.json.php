@@ -5,7 +5,7 @@ jimport( 'joomla.application.component.view');
 
 JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_battle/tables');
 
-class BattleViewcharacter extends JView
+class BattleViewcharacter extends JViewLegacy
 {	
 	function display($tpl = 'json')
 	{
@@ -13,11 +13,11 @@ class BattleViewcharacter extends JView
 		
 		//$people = JTable::getTable('people');
 		$people         = JTable::getInstance('people', 'Table');
-        $people->load($id);  
-        $people->id = $id;    
-        $model          = &$this->getModel();
-		$this->assignRef('inv',$model->get_character_inventory($id));
-		
+     //   $people->load($id);
+     //   $people->id = $id;
+     //   $model          = $this->getModel();
+	//	$this->assignRef('inv',$model->get_character_inventory($id));
+	//
 		
 		
 		//$id= JRequest::getvar('id');
@@ -33,12 +33,12 @@ class BattleViewcharacter extends JView
 	//	echo '</pre>';
 		
 				
-		$backlink = JRoute::_('index.php?option=com_battle');
+		//$backlink = JRoute::_('index.php?option=com_battle');
 		
-		$user =& JFactory::getUser();
+	//	$user =& JFactory::getUser();
 		
-		$this->assignRef('people', $people);		
-		$this->assignRef('backlink', $backlink);
+//		$this->assignRef('people', $people);
+//		$this->assignRef('backlink', $backlink);
 		
 		
 		

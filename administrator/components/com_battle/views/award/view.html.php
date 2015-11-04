@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.application.component.view');
 
-class BattleViewAward extends JView
+class BattleViewAward extends JViewLegacy
 {
 	function getUsersList($selected)
 	{

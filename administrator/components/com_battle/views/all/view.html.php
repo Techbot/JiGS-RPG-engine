@@ -1,7 +1,7 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport( 'joomla.application.component.view');
-class BattleViewAll extends JView
+class BattleViewAll extends JViewLegacy
 {	
 	function display($tpl = null)
 	{
