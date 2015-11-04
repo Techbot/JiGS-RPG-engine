@@ -8,5 +8,3 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.html.pane');
-
