@@ -30,28 +30,25 @@ function request_property(){
      var all = '';
     //	var details = this.details;
 
-    var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=get_property", 
-    onSuccess: function(result){
+    $.ajax({
+      url:"index.php?option=com_battle&format=raw&task=action&action=get_property",
+      success:function(result) {
 
-   for (i = 0; i < result.length; ++ i){
-  var row = "<br>Item " + (i+1) + ":" + result[i].name ;
-  all= all + row;  
+        var obj = JSON.parse(result);
+
+          for (i = 0; i < obj.length; ++ i){
+            var row = obj[i].image;
+            all= all + row;
+          }
+          jQuery('#property').html(all);
         }
-        $('property').innerHTML = all;
-    }
 
-    }).get();
-
-}
+      });
+    };
 
 
 
-request_property.periodical(200000);	
+request_property();
 
 
 </script>
-
-
-
-
