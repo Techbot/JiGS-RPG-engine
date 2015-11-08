@@ -497,7 +497,7 @@ class BattleModelJigs extends JModellegacy
     {
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
-        $db->setQuery("SELECT image FROM #__jigs_buildings WHERE #__jigs_buildings.proprio  =".$user->id);
+        $db->setQuery("SELECT image, name, grid, id FROM #__jigs_buildings WHERE #__jigs_buildings.proprio  =".$user->id);
         $result= $db->loadAssocList();
         return $result;
     }
