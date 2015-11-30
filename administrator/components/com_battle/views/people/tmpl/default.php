@@ -34,7 +34,6 @@ $this->grid = JRequest::getVar('filter_grid', 1, '', 'int');
             <button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
         </div>
         GRID:<?php echo $this->grid; ?>
-
         <div class="filter-select fltrt"><br/>
             <select name="filter_grid" class="inputbox"  onchange="this.form.submit()">
                 <option value=""  <?php if($this->grid ==""){echo "selected ='TRUE'";}?>>SELECT GRID</option>
@@ -67,8 +66,6 @@ $this->grid = JRequest::getVar('filter_grid', 1, '', 'int');
                 <?php echo JHtml::_('select.options', JHtml::_('contentlanguage.existing', true, true), 'value', 'text', $this->state->get('filter.language'));?>
             </select>
         </div>
-
-
 
     <div class="clr"></div>
     <br/>
@@ -141,4 +138,3 @@ $this->grid = JRequest::getVar('filter_grid', 1, '', 'int');
     <input type="hidden" name="task" value="" />
     <input type="hidden" name="boxchecked" value="0" />
 </form>
-
