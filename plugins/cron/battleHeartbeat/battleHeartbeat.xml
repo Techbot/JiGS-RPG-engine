@@ -11,7 +11,7 @@
 <description>PLG_CONTENT_BATTLE_XML_DESCRIPTION</description>
 
 <files>
-<filename plugin="battle_sync_health">battleHeartbeat.php</filename>
+<filename plugin="battleHeartbeat">battleHeartbeat.php</filename>
 <filename>index.html</filename>
 </files>
 

@@ -149,7 +149,7 @@ class plgBattleHeartbeat extends JPlugin
                     $db->setQuery($query);
                     $userlist = $db->loadObjectList();
                     $captain = $userlist[0]->id;
-                    $total = stdclass();
+                    //$total = stdclass();
                     $total->$group->members = 0;
 					foreach ($userlist as $user)
 					{
