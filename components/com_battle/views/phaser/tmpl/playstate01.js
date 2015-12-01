@@ -4,30 +4,29 @@
 playState[1] = {
     init: function() {
         //Called as soon as we enter this state
-
+        console.log('hi');
     },
     preload: function() {
 
         var number = paddy(grid,3);
         // game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
-
-
         //
-        // //////////// monsters
-        if (typeof assets_name[grid] != 'undefined') {
+        // //////////// load monsters
+        if (typeof monsters_list != 'undefined') {
 
             //load assets
-            for (var index = 0; index < assets_name[grid].length; index++) {
-                var filename = assets_name[grid][index];
-          //    game.load.spritesheet(filename, '/components/com_battle/images/assets/' + filename + '.png', 70, 60, 8);
+            for (var index = 0; index < monsters_list.length; index++) {
+                var filename = monsters_list[index].spritesheet;
+      //        game.load.spritesheet(filename, '/components/com_battle/images/assets/chars/monsters/' + filename + '/'+ filename + '.png', monsters_list[index].cellwidth, monsters_list[index].cellheight, 16);
+                console.log ('cellwidth:' + monsters_list[index].cellwidth);
+                game.load.spritesheet(filename, '/components/com_battle/images/assets/chars/monsters/' + filename + '/'+ filename + '.png', parseInt(monsters_list[index].cellwidth),  parseInt(monsters_list[index].cellheight), 16);
             }
         }
+
         ///////////////////// load players
         if(players_list.length != 0) {
-
             for (var index = 0; index < players_list.length; index++) {
                 var filename = players_list[index].avatar;
-
                 if (filename==null){
                     filename= 'gallery/skater.gif';
                 }
@@ -42,7 +41,6 @@ playState[1] = {
                 }
             }
         }
-
 
         ///////////////////// load buildings
         if(buildings.length != 0) {
@@ -98,8 +96,8 @@ playState[1] = {
                 game.load.image(key, '/components/com_battle/images/ennemis/miniatures/' + filename);
             }
         }
-
         if (avatar ==null) {
+            ////////////////// load guest
             game.load.image('arrow', '/images/comprofiler/gallery/frog.gif');
         }
         else {
@@ -110,13 +108,10 @@ playState[1] = {
                 game.load.image('arrow', '/images/comprofiler/' + avatar);
             }
         }
-
         ////////////////// load portals
         game.load.spritesheet('portal00001', '/components/com_battle/images/assets/tiles/portals_1.png', 64, 64, 1);
         game.load.spritesheet('portal00002', '/components/com_battle/images/assets/tiles/portals_2.png', 64, 64, 1);
         game.load.spritesheet('portal00003', '/components/com_battle/images/assets/tiles/portals_3.png', 64, 64, 1);
-
-
 
         //load tiles
         for	(var index = 0; index < tile_names[grid].length; index++) {
@@ -126,17 +121,7 @@ playState[1] = {
         }
         ////////
 
-
-
-
-
-
         game.load.tilemap('world', 'components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
-
-
-
-
-
 
     },
     create: function() {
@@ -158,14 +143,14 @@ playState[1] = {
         }
 
         /////////////////// cache monsters
-        if (typeof assets_name[grid] != 'undefined') {
+        if (typeof monsters_list != 'undefined') {
             ///////////////////// cache assets
-            for (var index = 0; index < assets_name[grid].length; index++) {
-                var filename = assets_name[grid][index];
-                game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/' + filename + '.png', 70, 120, 8);
+            for (var index = 0; index < monsters_list.length; index++) {
+                var filename = monsters_list[index].spritesheet;
+                console.log('filename:' + filename);
+                game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/char/monsters/' + filename + '/'+ filename + '.png');
             }
         }
-
         //////////////////// cache players
         for (var index = 0; index < players_list.length; index++) {
             var filename =players_list[index].avatar;
@@ -181,7 +166,6 @@ playState[1] = {
                 game.load.image(cacheKey(key, 'tileset', key), '/images/comprofiler/' + filename );
             }
         }
-
         //////////////////// cache buildings
         for (var index = 0; index < buildings.length; index++) {
             var filename = buildings[index].image;
@@ -233,7 +217,7 @@ playState[1] = {
         }
         /////////////////////////////////////////
         map.setCollisionBetween(0, 9000,true,'obstacles');
-        /////////////////////////Place Player ///////////
+        /////////////////////////place player ///////////
         sprite = game.add.sprite(parseInt(new_x),parseInt(new_y), 'arrow');
         game.physics.enable(sprite, Phaser.Physics.ARCADE);
         sprite.body.enable =true;
@@ -242,7 +226,6 @@ playState[1] = {
         y = sprite.body.y;
         this.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
         ///////////////////////place buildings//////
-
         if(buildings.length != 0) {
             for (var index = 0; index < buildings.length; index++) {
                 var key = buildings[index].id;
@@ -282,20 +265,28 @@ playState[1] = {
                 var key = terminals_list[index].image;
                 //console.log("_" + key);
                 add_terminals[index] = game.add.sprite(terminals_list[index].posx * 1, terminals_list[index].posy * 1, key);
-                add_terminals[index].id = key;
+                add_terminals[index].id = terminals_list[index].id;
                 game.physics.enable(add_terminals[index], Phaser.Physics.ARCADE);
                 //add_pages[index].body.velocity = 0;
             }
         }
-        ////////////////////////place assets//////
-        if (typeof assets_name[grid] != 'undefined') {
-            for (var index = 0; index < assets_name[grid].length; index++)
+        ////////////////////////place monsters//////
+        if (typeof monsters_list != 'undefined') {
+            for (var index = 0; index < monsters_list.length; index++)
             {
-                var key = assets_name[grid][index];
-                add_assets[index] = game.add.sprite(assets_name_x[grid][index], assets_name_y[grid][index], key);
-                add_assets[index].animations.add('walk');
-                add_assets[index].animations.play('walk',8,true);
-                add_assets[index].id = key;
+                var key = monsters_list[index].spritesheet;
+                //console.log('key:' + key );
+                monsters[index] = game.add.sprite(monsters_list[index].x, monsters_list[index].y, key);
+                monsters[index].animations.add('stop',[0]);
+                monsters[index].animations.add('walk_down',[0,1,2,3]);
+                monsters[index].animations.add('walk_left',[4,5,6,7]);
+                monsters[index].animations.add('walk_right',[8,9,10,11]);
+                monsters[index].animations.add('walk_up',[12,13,14,15]);
+
+                monsters[index].animations.play('walk_stop',1,true);
+                monsters[index].id = key;
+                //       monster[index].body.enable =true;
+               game.physics.arcade.enable(monsters[index]);
             }
         }
         ////////////////////////place players//////
@@ -311,7 +302,6 @@ playState[1] = {
         }
         ////////////////////place chars//////
         if(npc_list.length !=0 ) {
-
             for (var index = 0; index < npc_list.length; index++) {
                 var key = npc_list[index].name;
                 var key_id = npc_list[index].id;
@@ -334,7 +324,9 @@ playState[1] = {
         portal[3] = game.add.sprite(x3[grid], y3[grid], 'portal00003');
         game.physics.enable(portal[3], Phaser.Physics.ARCADE);
         portal[3]['dest']=portal_dest_3[grid];
-        // game.add.tween(monster1).to({ x: 10 }, 10000, Phaser.Easing.Linear.None, true);
+        game.add.tween(monsters[1]).to({ x: 100,y:101 }, 10000, Phaser.Easing.Linear.None, true);
+        game.add.tween(monsters[0]).to({ x: 100,y:201 }, 10000, Phaser.Easing.Linear.None, true);
+
         ///////////////////////////////////////////
     },
     update: function() {
@@ -346,11 +338,27 @@ playState[1] = {
         this.physics.arcade.collide(sprite, portal[3],jump);
         ////////////////////////move player
         game.physics.arcade.moveToXY(sprite, x, y, 100);
+
         ////////////////////////move players
         if (typeof add_players != 'undefined' && players_list !='undefined') {
             for (var index = 0; index < add_players.length; index++) {
                 if (typeof add_players[index] != 'undefined' && typeof players_list[index] !='undefined') {
                     game.physics.arcade.moveToXY(add_players[index], parseInt(players_list[index].posx), parseInt(players_list[index].posy), 100);
+                }
+            }
+        }
+        ////////////////////////move monsters
+        if (typeof monsters != 'undefined') {
+            for (var index = 0; index < monsters.length; index++) {
+                if (typeof monsters[index] != 'undefined') {
+
+                    if (monsters[index].to_x != monsters[index].body.x) {
+                        monsters[index].body.velocity.x = 1;
+                        monsters[index].body.velocity.y = 1;
+                        game.physics.arcade.moveToXY(monsters[index], parseInt(monsters[index].to_x), parseInt(monsters[index].to_y), 100);
+
+                    }
+
                 }
             }
         }
@@ -363,6 +371,23 @@ playState[1] = {
                     }
                     if ((add_players[index].body.posy >=players_list[index].posy-20) ||(add_players[index].body.posy <=players_list[index].posy+20)){
                         add_players[index].body.velocity.y = 0;
+                    }
+                }
+            }
+        }
+        ////////////////////////stop monsters
+        if (typeof monsters != 'undefined') {
+            for (var index = 0; index < monsters.length +1; index++) {
+                if (typeof monsters[index] != 'undefined') {
+
+                    //console.log(monsters[index].body.x + ':' + monsters_list[index].x )
+
+
+                    if ((parseInt(monsters[index].body.x) == parseInt(monsters_list[index].x) )) {
+                        monsters[index].body.velocity.x = 0;
+                    }
+                    if ((monsters[index].body.y >=monsters[index].y-20) ||(monsters[index].body.y < monsters[index].y + 20)){
+                        monsters[index].body.velocity.y = 0;
                     }
                 }
             }
@@ -409,7 +434,6 @@ playState[1] = {
             sprite.body.velocity.y = 0;
         }
         if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
-
             if (send == 1) {
                 doSomething();
                 send = 0;

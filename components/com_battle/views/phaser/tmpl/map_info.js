@@ -239,10 +239,6 @@ portal_sourceY3[7] = 384;
 //////////////////////////////////////////////////////////////////////////////////////////
 tile_names[8] = ['TileA4','TileA5','TileC','sprite'];
 
-assets_name[8] = ['\/Monsters\/Dryad\/$Monster_Dryad_FullFrame'];
-assets_name_x[8] = [400];
-assets_name_y[8] = [400];
-
 x1[8] = 416;
 y1[8] = 0;
 
@@ -535,10 +531,7 @@ portal_sourceY3[16] = 406;
 // /////////////////////////////////////////////////////////////////////
 //// /////////////////////////////////////////////////////////////////////
 tile_names[17] = ['TileA5','Zombie_A4','Zombie_TileB','Zombie_A4_015b','015b','TileE','TileA3','TileB','sprite'];
-assets_name[17] = ['\/Monsters\/Dryad\/$Monster_Dryad'];
 
-assets_name_x[17] = [791];
-assets_name_y[17] = [815];
 
 x1[17] = 96;
 y1[17] = 1408;

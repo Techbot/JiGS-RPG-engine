@@ -23,6 +23,42 @@ var cursors;
 var players_list=0;
 var avatar;
 
+
+var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
+    function() {
+        conn.subscribe('kittensCategory', function(topic, data) {
+            // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+            //console.log('New article published to category "' + topic + '" : ' + data.title);
+
+
+            console.log(data.article);
+
+            for (var iterate=0;iterate< data.article.length-1;iterate++){
+
+
+                monsters[iterate].to_x = (data.article[iterate].x) ;
+                monsters[iterate].to_y = (data.article[iterate].y) ;
+                //monsters[iterate].to_x = 300;
+                //monsters[iterate].to_y = 300;
+
+                console.log(data.article[iterate]);
+
+
+            }
+
+
+        });
+    },
+    function() {
+        console.warn('WebSocket connection closed');
+    },
+    {'skipSubprotocolCheck': true}
+);
+
+console.log(conn);
+
+
+
 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
     if (result != null) {
@@ -35,7 +71,7 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
         get_everything(grid);
     }else{
 
- //       game.state.start('login');
+        //       game.state.start('login');
         grid = 1;
         new_x =100;
         new_y = 100;
@@ -43,7 +79,6 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
         get_everything(grid);
     }
 });
-
 /*
 blip.sampleLoader()
     .samples({
@@ -138,7 +173,11 @@ function get_everything(dest){
                         {
                             plates_list = result;
 
-                            game.state.start('next');
+                            jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_monsters&format=raw', function(result) {
+
+                                monsters_list = result;
+                                game.state.start('next');
+                            });
                         });
                     });
                 });
@@ -205,8 +244,8 @@ function enter_building(one,two) {
 function shop() {
   //  monster1.destroy(true);
   //  monster2.destroy(true);
-    monster3.body.velocity.x = 0;
-    monster3.body.velocity.y = 0;
+    //monster3.body.velocity.x = 0;
+    //monster3.body.velocity.y = 0;
     sprite.destroy(true);
 
     jQuery.ajax({
@@ -227,8 +266,8 @@ function shop() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function church() {
-    monster3.destroy(true);
-    monster4.destroy(true);
+   // monster3.destroy(true);
+   // monster4.destroy(true);
     window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -311,16 +350,18 @@ function twine(one,two) {
 function terminal(one,two) {
     one.body.enable = false;
     one.body.immovable = true;
-    two.body.immovable = true;
+    two.body.static = true;
+
+    console.log(two);
 
     jQuery.ajax({
-        url: "/index.php?option=com_battle&format=json&view=terminal&id="+ two.key,
+        url: "/index.php?option=com_battle&format=json&view=terminal&id="+ two.id,
         context: document.body,
         dataType: "json"
     }).done(function(result) {
         //   two.body.enable = true;
         game.state.start('terminal');
-        //   document.getElementById("world").hide();
+        document.getElementById("world").hide();
         document.getElementById("terminal").innerHTML=result;
         document.getElementById("terminal").show();
    //     loadUp();

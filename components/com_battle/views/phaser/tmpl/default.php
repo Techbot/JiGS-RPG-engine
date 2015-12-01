@@ -1,15 +1,16 @@
-        <!--link href="/components/com_battle/views/phaser/tmpl/_site/css/phaser-examples.css" media="screen" rel="stylesheet" type="text/css"-->
+   <?php ?>
+   <!--link href="/components/com_battle/views/phaser/tmpl/_site/css/phaser-examples.css" media="screen" rel="stylesheet" type="text/css"-->
         <!-- Phaser -->
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
-        <script src="/components/com_battle/includes/blip.min.js"></script>
+        <!--script src="/components/com_battle/includes/blip.min.js"></script>
         <!-- Main Game File -->
         <script>
             var playState = new Array();
             var grid;
             var number;
             var tile_names = new Array();
-            var assets_name = new Array();
+            var monsters = new Array();
             var assets_name_x = new Array();
             var assets_name_y = new Array();
             var building = new Array();
@@ -50,9 +51,10 @@
             var twines_list = [];
             var plates_list = [];
             var content =[];
-
             var send = 1;
+
         </script>
+        <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate00.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate01.js"></script>
