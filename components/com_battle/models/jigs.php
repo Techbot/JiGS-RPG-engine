@@ -11,16 +11,59 @@ require_once JPATH_COMPONENT.'/helpers/energy.php';
 
 class BattleModelJigs extends JModellegacy
 {
-    function get_cells(){
+    function getDirectoryContent()
+    {
+        $dir = '/var/www/meme/images/sito/';
+        $files = scandir($dir);
 
-        $map= JRequest::getvar('map');
+        $random = rand(1,1000);
+
+        return $files[$random];
+    }
+    function get_cells()
+    {
+
+        $map = JRequest::getvar('map');
         $db = JFactory::getDBO();
         $user = JFactory::getUser();
-        $db->setQuery("SELECT row0,row1,row2,row3,row4,row5,row6,row7 FROM #__jigs_maps WHERE id = ".$map);
-        $result= $db->loadAssocList();
+        $db->setQuery("SELECT row0,row1,row2,row3,row4,row5,row6,row7 FROM #__jigs_maps WHERE id = " . $map);
+        $result = $db->loadAssocList();
         return $result;
 
-}
+    }
+
+    function get_free_seed(){
+        $db             = JFactory::getDBO();
+        $user           = JFactory::getUser();
+        $query          = "SELECT seed_list FROM #__jigs_crop_seeds WHERE #__jigs_crop_seeds.owner = $user->id ";
+        $db->setQuery($query);
+        $result         = $db->loadResult();
+        $result_array   = explode(',',$result);
+        if (in_array(1,$result_array)) {
+
+            $message = "You already received your yearly supply of Bonsantotm Basic Seeds level 1";
+            $message .= "Your attempt to defraud the people of Pryamid City has been recorded";
+        }else{
+            $result_array[] = 1;
+            $string         = implode($result_array,',');
+            $sql            = "INSERT INTO #__jigs_crop_seeds (seed_list,owner)
+                              VALUES ('$string', $user->id) ON DUPLICATE KEY
+                              UPDATE seed_list = '$string'";
+            $db->setQuery($sql);
+            $db->query();
+
+            $message= "You receive your yearly supply of Bonsanto Basic Seeds level 1";
+
+        }
+
+
+        MessagesHelper::sendFeedback($user->id,$message);
+        return ($message);
+
+
+
+
+    }
 
     function get_portals(){
 
@@ -237,7 +280,6 @@ class BattleModelJigs extends JModellegacy
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
         $building_id= JRequest::getvar('building_id');
-
         $db->setQuery("SELECT DISTINCT #__jigs_inventory.item_id, #__jigs_objects.name
             FROM #__jigs_inventory
             LEFT JOIN #__jigs_objects
@@ -260,7 +302,6 @@ class BattleModelJigs extends JModellegacy
         $user= JFactory::getUser();
         $db->setQuery("SELECT #__jigs_metals.item_id, " .
             "#__jigs_metals.quantity, #__jigs_metal_names.name FROM #__jigs_metals LEFT JOIN  #__jigs_metal_names ON #__jigs_metals.item_id = #__jigs_metal_names.id  WHERE #__jigs_metals.player_id =" . $user->id);
-
         $result		= $db->loadAssocList();
         return $result;
     }
@@ -273,7 +314,6 @@ class BattleModelJigs extends JModellegacy
         FROM #__jigs_crystals LEFT JOIN  #__jigs_crystal_names
         ON #__jigs_crystals.item_id = #__jigs_crystal_names.id
         WHERE #__jigs_crystals.player_id =" . $user->id);
-
         $result= $db->loadAssocList();
         return $result;
     }
@@ -282,14 +322,12 @@ class BattleModelJigs extends JModellegacy
     {
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
-        $db->setQuery("SELECT * FROM #__jigs_skills WHERE #__jigs_skills.id =".$user->id);
-        $result1 = $db->loadObject();
-
-        for ($i= 1;$i< 9;$i++){
-            $db->setQuery("SELECT name FROM #__jigs_skill_names WHERE #__jigs_skill_names.id = '". $result1->skill_ . $i ."'" );
-            $result	= $db->loadresult();
-            $all[$i]= $result;
-        }
+        $db->setQuery("SELECT #__jigs_skills.level, #__jigs_skills.active, #__jigs_skill_names.name
+                        FROM #__jigs_skills
+                        LEFT join #__jigs_skill_names
+                        ON #__jigs_skills.skill_id =  #__jigs_skill_names.id
+                        WHERE #__jigs_skills.player_id =" . $user->id);
+        $all= $db->loadAssocList();
         return $all ;
     }
 
@@ -297,11 +335,11 @@ class BattleModelJigs extends JModellegacy
     {
         $db  = JFactory::getDBO();
         $user = JFactory::getUser();
-        $db->setQuery("SELECT #__jigs_clothing.item_id, #__jigs_clothing_names.name " .
-            "FROM #__jigs_clothing " .
-            "LEFT JOIN #__jigs_clothing_names ON #__jigs_clothing.item_id =  #__jigs_clothing_names.id " .
-            "WHERE #__jigs_clothing.player_id =".$user->id);
-
+        $db->setQuery(" SELECT #__jigs_clothing.item_id, #__jigs_clothing_names.name
+                        FROM #__jigs_clothing
+                        LEFT JOIN #__jigs_clothing_names
+                        ON #__jigs_clothing.item_id =  #__jigs_clothing_names.id
+                        WHERE #__jigs_clothing.player_id =".$user->id);
         $result		= $db->loadAssocList();
         return $result;
     }
@@ -404,7 +442,6 @@ class BattleModelJigs extends JModellegacy
         $result = $db->loadAssocList();
 
 
-
         $image = '<a rel="{handler: \'iframe\', size: {x: 640, y: 480}}" href="index.php?option=com_battle&view=weapons&id=' .  $user->id . ' "> ' .
             '<img src="components/com_battle/images/weapons/' . $result[0]['image'] . '"></a>' .
             '<span class="label">Id: </span>' . $result[0][0] .'<br>
@@ -497,10 +534,41 @@ class BattleModelJigs extends JModellegacy
     {
         $db	= JFactory::getDBO();
         $user= JFactory::getUser();
-        $db->setQuery("SELECT image, name, grid, id FROM #__jigs_buildings WHERE #__jigs_buildings.proprio  =".$user->id);
+        $db->setQuery("SELECT image, `name`, grid, id FROM #__jigs_buildings WHERE #__jigs_buildings.owner  =".$user->id);
         $result= $db->loadAssocList();
         return $result;
     }
+
+
+    function jump()
+    {
+        $db	= JFactory::getDBO();
+        $user= JFactory::getUser();
+        $building_id= JRequest::getvar(buildingid);
+        $properties = $this->get_property();
+        foreach ($properties as $property){
+            if ($building_id == $property['id']){
+                $grid=$property['grid'];
+                $query = "UPDATE #__jigs_players SET grid =$grid WHERE id=$user->id";
+                $db->setQuery($query);
+                $db->query();
+
+            }
+        }
+        return $result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     function retrieve()
     {
@@ -1252,15 +1320,12 @@ class BattleModelJigs extends JModellegacy
                     else{
                         $attack_message	= "You have no bullets in your gun clip";
                     }
-
+                break ;
                 case 'kick':
-                if ($player->dice > $player2->dice)
-                {
+                if ($player->dice > $player2->dice) {
                     $npc->health= intval($npc->health - 30);
                     $attack_message	= "You kick " . $player2->name . "and inflict 30 damage points to his health.You: $player->health ,Opponent: $npc->health ";
-                }
-                else
-                {
+                } else {
                     $player->health	=intval($player->health - 10);
                     $attack_message	="You kick " . $player2->name . "and miss and incur 10 damage points to your health.You: $player->health ,Opponent: $npc->health ";
                 }
@@ -1326,10 +1391,6 @@ class BattleModelJigs extends JModellegacy
 
         return $results;
     }
-
-
-
-
 
     function attack_character()
     {
@@ -1417,7 +1478,6 @@ class BattleModelJigs extends JModellegacy
             $npc->health = 0;
             $this->dead_npc($npc);
         }
-
         ////////////////////////////////////////// If Player is dead ////////////////////////////////////
 
         if ($player->health <= 0)
