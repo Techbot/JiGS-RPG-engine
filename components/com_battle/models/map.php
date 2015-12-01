@@ -38,11 +38,36 @@ class BattleModelMap extends JModelLegacy{
         //$grid =	JRequest::getVar('grid');
         //$query = "UPDATE #__jigs_players SET map = '".$map_id."', grid = '".$grid."', posx = '".$posx."',posy = '".$posy."' WHERE id ='".$user->id."'" ;
         $query = "UPDATE #__jigs_players SET posx = '$posx',posy = '$posy'  WHERE id ='$user->id'";
+
+
+        $monsters = $this->get_monsters( $this->get_coord()['grid']);
+
+        $entryData = array(
+            'category' => 'kittensCategory', 'title'    => 'title', 'article'  => $monsters, 'when'     => time()  );
+
+        $context = new ZMQContext();
+        $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+
+        if($socket->connect("tcp://localhost:5555")){
+         //   echo 'connected';
+        };
+
+        if(
+        $socket->send(json_encode($entryData))) {
+
+            echo 'sent';
+        };
+
         $db->setQuery($query);
         $db->query();
         return $query ;
         //}
     }
+
+
+
+
+
 
 
 
@@ -99,10 +124,38 @@ class BattleModelMap extends JModelLegacy{
         if ($grid<1){
             $grid=1;
         }
-
-
-
         $db->setQuery("SELECT * FROM #__jigs_characters WHERE grid = $grid AND active = 1 ");
+        $result = $db->loadObjectlist();
+        return $result;
+    }
+
+    function get_monsters()
+    {
+        $db     = JFactory::getDBO();
+        $user   = JFactory::getUser();
+        $query  = "SELECT grid FROM #__jigs_players WHERE id =" . $user->id;
+        $db->setQuery($query);
+        $grid   = $db->loadResult();
+        if ($grid<1){
+            $grid=1;
+        }
+        $db->setQuery("SELECT #__jigs_monsters.id,
+                                #__jigs_monsters.type,
+                                #__jigs_monsters.grid,
+                                #__jigs_monsters.x,
+                                #__jigs_monsters.y,
+                                #__jigs_monsters.health,
+                                #__jigs_monster_types.name,
+                                #__jigs_monster_types.level,
+                                #__jigs_monster_types.spritesheet,
+                                #__jigs_monster_types.cellwidth,
+                                #__jigs_monster_types.cellheight,
+                                #__jigs_monster_types.numberofcells
+
+                                FROM #__jigs_monsters
+                                LEFT JOIN #__jigs_monster_types
+                                ON  #__jigs_monsters.type = #__jigs_monster_types.id
+                                WHERE grid = 99 AND active = 1 ");
         $result = $db->loadObjectlist();
         return $result;
     }
@@ -112,13 +165,10 @@ class BattleModelMap extends JModelLegacy{
         $db     = JFactory::getDBO();
         $user   = JFactory::getUser();
         $db->setQuery("SELECT grid FROM #__jigs_players WHERE id = " . $user->id);
-
         $grid   = $db->loadResult();
-
         if ($grid<1){
             $grid=1;
         }
-
 
         $db->setQuery("SELECT * FROM #__jigs_buildings WHERE grid = $grid");
         $result = $db->loadObjectlist();
@@ -205,20 +255,7 @@ class BattleModelMap extends JModelLegacy{
         $result = $db->loadObjectlist();
         return $result;
     }
-
     function sing_song(){
-
         echo 'test';
-
-
     }
-
-
-
-
-
-
-
-
-
 }
