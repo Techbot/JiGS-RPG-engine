@@ -834,12 +834,9 @@ class BattleModelBuilding extends JModelLegacy
         return $result2;
     }
 
-
-
-
     function get_crop_index(){
         $db		= JFactory::getDBO();
-        $user		= JFactory::getUser();
+        $user	= JFactory::getUser();
         $id		= JRequest::getvar('crop');
         $building_id	= JRequest::getvar(building_id);
         $section	= JRequest::getvar(section);
@@ -849,8 +846,6 @@ class BattleModelBuilding extends JModelLegacy
         return $result;
 
     }
-
-
 
     function get_subsection_hobbit_names($building_id, $section)
     {
@@ -869,6 +864,7 @@ class BattleModelBuilding extends JModelLegacy
 
     function get_blueprints()
     {
+        return;
         $user		= JFactory::getUser();
         $db			= JFactory::getDBO();
 
@@ -946,10 +942,7 @@ class BattleModelBuilding extends JModelLegacy
         $user   = JFactory::getUser();
         $now    = time();
         $factor = 10;
-        $query	= "SELECT *
-            FROM    #__jigs_generators
-            WHERE   building = $building
-            ";
+        $query	= "SELECT * FROM    #__jigs_generators WHERE   building = $building";
 
         $db->setQuery($query);
         $result = $db->loadAssoc();
@@ -961,33 +954,28 @@ class BattleModelBuilding extends JModelLegacy
     function get_board_messages($id,$type)
     {
 
-        $db			= JFactory::getDBO();
-        $query		= "SELECT messages FROM #__jigs_buildings WHERE id =" . $id;
+        $db = JFactory::getDBO();
+        $query = "SELECT messages FROM #__jigs_buildings WHERE id =" . $id;
         $db->setQuery($query);
-        $string		= $db->loadResult();
-        $result		= array();
-        $numbers	= array();
-        $numbers	= explode( ',' ,  $string );
+        $string = $db->loadResult();
+        $result = array();
+        $numbers = array();
+        $numbers = explode(',', $string);
 
-        foreach ($numbers as $message_id)
-        {
-            $db	= JFactory::getDBO();
-            $query	= "SELECT string FROM #__jigs_messages
-                WHERE id = $message_id ";
+        if (count($numbers)>2){
+        foreach ($numbers as $message_id) {
+            $db = JFactory::getDBO();
+            $query = "SELECT string FROM #__jigs_messages WHERE id = $message_id ";
             $db->setQuery($query);
-            if($db->loadResult())
-            {
+            if ($db->loadResult()) {
                 $result[] = $db->loadResult();
             }
         }
+    }
         //	print_r($result);
         //	exit();
         return $result;
     }
-
-
-
-
 
     function get_battery_slots()
     {
@@ -1003,7 +991,6 @@ class BattleModelBuilding extends JModelLegacy
         return $batteries;
     }
 
-
     function get_battery()
     {
         $db		= JFactory::getDBO();
@@ -1015,7 +1002,6 @@ class BattleModelBuilding extends JModelLegacy
         $db->query();
         return $battery_id;
     }
-
 
     function collect_empties()
     {
@@ -1029,8 +1015,6 @@ class BattleModelBuilding extends JModelLegacy
         return $query;
     }
 
-
-
     function put_battery()
     {
         $db		= JFactory::getDBO();
@@ -1041,7 +1025,6 @@ class BattleModelBuilding extends JModelLegacy
         $db->query();
         return $battery_id;
     }
-
 
     function get_hobbit()
     {
