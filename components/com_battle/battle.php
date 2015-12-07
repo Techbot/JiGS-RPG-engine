@@ -1,11 +1,10 @@
 <?php
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 //ini_set('display_errors', 1);
-defined( '_JEXEC' ) or die( 'Restricted access' );
+//defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
 class BattleController extends JControllerLegacy
 {
-
     function action()
     {
         $model          = $this->getModel('jigs');
@@ -13,6 +12,16 @@ class BattleController extends JControllerLegacy
         $result         = $model->$action();
         //$heartbeat        = $model->heartbeat();
         echo json_encode($result);
+    }
+
+    function specialaction()
+    {
+        $model          = $this->getModel('jigs');
+        $action         = JRequest::getVar('action');
+        $result         = $model->$action();
+        //$heartbeat        = $model->heartbeat();
+        JRequest::setVar('view', 'phaser');
+        parent::display();
     }
 
     function computer_action()
@@ -70,8 +79,6 @@ class BattleController extends JControllerLegacy
     function map_action()
     {
 
-
-
         $model          = $this->getModel('map');
         $action         = JRequest::getVar('action');
         $result         = $model->$action();
@@ -100,25 +107,15 @@ class BattleController extends JControllerLegacy
         $db         = JFactory::getDBO();
         $user       = JFactory::getUser();
         $view       = JRequest::getVar('view');
-
-     //   $this->defaultViews($view, $user);
-
         if (!$view)
         {
-   //         JRequest::setVar('view', 'phaser');
-    //        $view = $this->getView('phaser', 'html') ;
-      //      $view->setModel( $this->getModel( 'jigs' )) ;
-      ///      $view->setModel( $this->getModel( 'computer'),true ) ;
-      //      $view->display();
+
         }
 
         if ($user->id!=0)
         {
          //   $this->getActive($db, $user);
         }
-
-
-
 
         parent::display();
     }
@@ -173,12 +170,9 @@ class BattleController extends JControllerLegacy
 // Set view
 //JRequest::setVar('view', 'Abc');
 
-
-
 // Get an instance of the controller prefixed by
 $controller = JControllerLegacy::getInstance('Battle');
 // Perform the Request task
 $controller->execute(JRequest::getCmd('task'));
 // Redirect if set by the controller
 $controller->redirect();
-
