@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
-class BattleModelCharacter extends JModel
+class BattleModelCharacter extends JModelLegacy
 {
     var $_data = null;
 
@@ -23,9 +23,8 @@ class BattleModelCharacter extends JModel
         FROM #__jigs_inventory
         LEFT JOIN #__jigs_objects
         ON #__jigs_inventory.item_id = #__jigs_objects.id
-        WHERE #__jigs_inventory.player_id =".$id);
+        WHERE #__jigs_inventory.player_id =" . $id);
         $result = $dba->loadAssocList();
         return $result;
     }
-
 }
