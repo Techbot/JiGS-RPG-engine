@@ -446,53 +446,45 @@ function move_halflings(){
     if (typeof halflings != 'undefined') {
         for (var index = 0; index < halflings.length-1; index++) {
             if (typeof halflings[index] != 'undefined') {
-                halflings[index].body.acceleration.set(0);
+
+              //  halflings[index].body.acceleration.set(0);
+
                 if (halfling_list[index].to_x < halflings[index].body.x) {
 
                  //   halflings[index].body.velocity.x = 1000;
                  //   halflings[index].body.velocity.y = 1000;
-                    halflings[index].animations.play('walk_left', 1, true);
+                    halflings[index].animations.play('walk_left', 3);
                     game.physics.arcade.moveToXY(halflings[index], halfling_list[index].to_x, halfling_list[index].to_y, 100);
                     halflings[index].body.acceleration.set(0);
                 }
                 else if (halfling_list[index].to_x > halflings[index].body.x) {
                   //  halflings[index].body.velocity.x = 1000;
                   //  halflings[index].body.velocity.y = 1000;
-                    halflings[index].animations.play('walk_right', 1, true);
+                    halflings[index].animations.play('walk_right', 3);
                     game.physics.arcade.moveToXY(halflings[index],halfling_list[index].to_x, halfling_list[index].to_y,60);
                     halflings[index].body.acceleration.set(0);
                 }
                 else if (halfling_list[index].to_y < halflings[index].body.y) {
                    // halflings[index].body.velocity.x = 1000;
                    // halflings[index].body.velocity.y = 1000;
-                    halflings[index].animations.play('walk_up', 1, true);
+                    halflings[index].animations.play('walk_up', 3);
                     game.physics.arcade.moveToXY(halflings[index], halfling_list[index].to_x, halfling_list[index].to_y, 60);
                     halflings[index].body.acceleration.set(0);
                 }
                 else if (halfling_list[index].to_y > halflings[index].body.y) {
                  //   halflings[index].body.velocity.x = 1000;
                   //  halflings[index].body.velocity.y = 1000;
-                    halflings[index].animations.play('walk_down', 1, true);
+                    halflings[index].animations.play('walk_down', 3);
                     game.physics.arcade.moveToXY(halflings[index], halfling_list[index].to_x, halfling_list[index].to_y, 60);
                     halflings[index].body.acceleration.set(0);
                 }else
                 {
-                    halflings[index].body.acceleration.set(0);
+                   // halflings[index].body.acceleration.set(0);
                     stop_halflings();
-                 //   halflings[index].body.velocity.x = 0;
-                 //   halflings[index].body.velocity.y = 0;
+                    halflings[index].body.velocity.x = 0;
+                    halflings[index].body.velocity.y = 0;
                  //   halflings[index].body.velocity = 0;
                 }
-
-
-
-
-
-
-
-
-
-
             }
         }
     }
@@ -502,10 +494,10 @@ function stop_players(){
     if (typeof add_players != 'undefined' && typeof players_list !='undefined') {
         for (var index = 0; index < add_players.length; index++) {
             if (typeof players_list[index] != 'undefined') {
-                if ((add_players[index].body.x >= players_list[index].posx - 20) || (add_players[index].body.x <= players_list[index].posx + 20)) {
+                if ((add_players[index].body.x >= players_list[index].posx - 10) || (add_players[index].body.x <= players_list[index].posx + 10)) {
                     add_players[index].body.velocity.x = 0;
                 }
-                if ((add_players[index].body.posy >=players_list[index].posy-20) ||(add_players[index].body.posy <=players_list[index].posy+20)){
+                if ((add_players[index].body.posy >=players_list[index].posy-10) ||(add_players[index].body.posy <=players_list[index].posy + 10)){
                     add_players[index].body.velocity.y = 0;
                 }
             }
