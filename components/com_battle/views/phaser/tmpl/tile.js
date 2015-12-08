@@ -22,40 +22,56 @@ var grid;
 var cursors;
 var players_list=0;
 var avatar;
-
+var cacheKey;
+var group;
 
 var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
     function() {
+
         conn.subscribe('kittensCategory', function(topic, data) {
             // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
             //console.log('New article published to category "' + topic + '" : ' + data.title);
-
-
-            console.log(data.article);
-
-            for (var iterate=0;iterate< data.article.length-1;iterate++){
-
-
-                monsters[iterate].to_x = (data.article[iterate].x) ;
-                monsters[iterate].to_y = (data.article[iterate].y) ;
+            for (var iterate=0;iterate <= data.article.length-1;iterate++){
+                monsters_list[iterate].to_x = data.article[iterate].x ;
+                monsters_list[iterate].to_y = data.article[iterate].y ;
+                //monsters[index].body.velocity.x = 100;
+                //monsters[index].body.velocity.y = 100;
                 //monsters[iterate].to_x = 300;
                 //monsters[iterate].to_y = 300;
-
-                console.log(data.article[iterate]);
-
+                //console.log(data.article[iterate]);
 
             }
 
 
         });
+        conn.subscribe('halflingsCategory', function(topic, data) {
+            // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
+            //console.log('New article published to category "' + topic + '" : ' + data.title);
+            for (var iterate=0;iterate <= data.article.length-1;iterate++){
+                halfling_list[iterate].to_x = data.article[iterate].x ;
+                halfling_list[iterate].to_y = data.article[iterate].y ;
+                halflings[index].body.acceleration.set(0);
+                halflings[index].body.velocity.x = 0;
+                halflings[index].body.velocity.y = 0;
+                //halflings[index].body.velocity = 1000;
+                //monsters[iterate].to_x = 300;
+                //monsters[iterate].to_y = 300;
+                //console.log(iterate);
+            }
+        });
+
+
+
+
     },
     function() {
         console.warn('WebSocket connection closed');
     },
     {'skipSubprotocolCheck': true}
 );
-
-console.log(conn);
+jQuery('#world').focus().blur(function(){
+    jQuery('#world').focus();
+})
 
 
 
@@ -70,8 +86,6 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
         avatar = result[3];
         get_everything(grid);
     }else{
-
-        //       game.state.start('login');
         grid = 1;
         new_x =100;
         new_y = 100;
@@ -79,42 +93,17 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
         get_everything(grid);
     }
 });
-/*
-blip.sampleLoader()
-    .samples({
-        'uke': 'http://www.eclecticmeme.com/components/com_battle/includes/ukeC.wav'
-        ,
-        'drumloop': 'http://www.eclecticmeme.com/components/com_battle/includes/513_cook.wav'
-        ,
-        'bass_note': 'http://www.eclecticmeme.com/components/com_battle/includes/C.wav'
 
-    })
-    .done(loaded)
-    .load();
-*/
 function moveBall(pointer)
 {
-    //  sprite.reset(pointer.x, pointer.y, 100)
-    //  phaser.rotation = game.physics.arcade.accelerateToPointer(phaser, 60, game.input.activePointer, 1000);
-    //  phaser.x = pointer.x;
-    //  phaser.y = pointer.y;
     send = 1;
     x = pointer.worldX;
     y = pointer.worldY;
 }
-/*
-function onDragStop () {
-    sprite.body.moves = true;
-}
-function onDragStart(){
-    sprite.body.moves = false;
-}
-*/
 
 function jump(one,two) {
 
     var source = grid;
-
     console.log('source:' + source);
     grid = two.dest;
     console.log('grid:' + grid);
@@ -139,44 +128,37 @@ function jump(one,two) {
     two.body.enable = false;
 
     get_everything(two.dest);
-    //game.state.add('next', playState[1]);
-    //
-    // game.state.add('next', playState[two.dest]);
-
 }
 
-function get_everything(dest){
+function get_everything(dest) {
 
-    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function(result)
-    {
-
-        console.log('buildings');
+    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_buildings&format=raw&grid=' + dest, function (result) {
         buildings = result;
 
-        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_chars&format=raw', function(result)
-        {
+        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_chars&format=raw', function (result) {
             npc_list = result;
 
-            jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_players&format=raw', function(result)
-            {
+            jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_players&format=raw', function (result) {
                 players_list = result;
 
-                jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_twines&format=raw', function(result)
-                {
+                jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_twines&format=raw', function (result) {
                     twines_list = result;
 
-                    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_terminals&format=raw', function(result)
-                    {
+                    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_terminals&format=raw', function (result) {
                         terminals_list = result;
 
-                        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_plates&format=raw', function(result)
-                        {
+                        jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_plates&format=raw', function (result) {
                             plates_list = result;
 
-                            jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_monsters&format=raw', function(result) {
+                            jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_monsters&format=raw', function (result) {
 
                                 monsters_list = result;
-                                game.state.start('next');
+                                jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_halflings&format=raw', function (result) {
+
+                                    halfling_list = result;
+                                    game.state.start('next');
+
+                                });
                             });
                         });
                     });
@@ -185,7 +167,6 @@ function get_everything(dest){
         });
     });
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function battle(one,two) {
@@ -207,15 +188,8 @@ function battle2(one,two) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function enter_building(one,two) {
 
-    //one.body.velocity.x = 0;
-    //one.body.velocity.y = 0;
-    //two.body.velocity.x = 0;
-    //two.body.velocity.y = 0;
     one.body.immovable = true;
     two.body.immovable = true;
-
-    //one.destroy(true);
-    //two.destroy(true);
 
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=building&id=" + two.id,
@@ -242,10 +216,6 @@ function enter_building(one,two) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function shop() {
-  //  monster1.destroy(true);
-  //  monster2.destroy(true);
-    //monster3.body.velocity.x = 0;
-    //monster3.body.velocity.y = 0;
     sprite.destroy(true);
 
     jQuery.ajax({
@@ -266,8 +236,6 @@ function shop() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function church() {
-   // monster3.destroy(true);
-   // monster4.destroy(true);
     window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -308,8 +276,6 @@ function page(one,two) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function plate(one,two) {
     // two.body.enable =false;
     jQuery.ajax({
@@ -326,9 +292,6 @@ function plate(one,two) {
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function twine(one,two) {
     // two.body.enable =false;
     jQuery.ajax({
@@ -342,17 +305,12 @@ function twine(one,two) {
 
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function terminal(one,two) {
     one.body.enable = false;
     one.body.immovable = true;
     two.body.static = true;
-
-    console.log(two);
 
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=terminal&id="+ two.id,
@@ -407,59 +365,7 @@ function addMap() {
 }
 
 function loaded() {
-    // set base tempo var
-    var TEMPO = 125;
-    // create clips
-    var uke1 = blip.clip().sample('bass_note');
-    var uke2 = blip.clip().sample('uke');
-    var bassDrum = blip.clip().sample('drumloop');
 
-    /* ====================== LOOPS ====================== */
-
-    bass = blip.loop()
-        .tempo(TEMPO)
-        .data([1, 1/2])
-        .tick(function (t, d) {
-            if (blip.chance(1)) uke1.play(t, {
-                rate: d,
-                gain: 0.5 / Math.sqrt(d)
-            });
-        });
-
-    rhythmic = blip.loop()
-        .tempo(TEMPO)
-        .data([1,0,0,0])
-        .tick(function(t,d) {
-            if (d) {
-                bassDrum.play(t)
-            }
-        });
-
-    melody = blip.loop()
-        .tempo(TEMPO * 2)
-        .data([3 / 2, 2, 3, 5 / 4, 5 / 2, 5 / 8])
-        .tick(function (t, d) {
-            if (blip.chance(1 / 3)) uke2.play(t, {
-                rate: d,
-                gain: 0.4
-            })
-            if (blip.chance(1 / 6)) uke2.play(t, {
-                rate: d * 3 / 2,
-                gain: 0.4
-            })
-        });
-
-    /* click events */
-  //  document.getElementById('play').addEventListener('click', function () {
-    //    bass.start();
-   //     melody.start();
- //   rhythmic.start();
-  //  });
-/*     document.getElementById('pause').addEventListener('click', function () {
-        bass.stop();
-        melody.stop();
-    });
-*/
 }
 
 function doSomething() {
@@ -468,15 +374,7 @@ function doSomething() {
         //console.log('x : ' + x + " y : " + y);
         jQuery.getJSON('index.php?option=com_battle&task=map_action&action=update_pos&format=raw&posx=' + sprite.body.x + '&posy=' + sprite.body.y, function (result)
         {
-        //grid = result;
-        //console.log("buildings : " + buildings.length);
-        // console.log("buildings2 : " + buildings.length);
-        // load buildings
 
-        //game.state.add('next', playState[1]);
-        //game.state.add('play', playState[1]);
-        //game.state.start('play');
-        //game.state.start('next');
         });
     }
 }

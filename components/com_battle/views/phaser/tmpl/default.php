@@ -11,6 +11,9 @@
             var number;
             var tile_names = new Array();
             var monsters = new Array();
+            var monsters_list = new Array();
+            var halflings = new Array();
+            var halfling_list = new Array();
             var assets_name_x = new Array();
             var assets_name_y = new Array();
             var building = new Array();
