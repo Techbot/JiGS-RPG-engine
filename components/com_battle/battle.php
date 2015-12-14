@@ -109,14 +109,11 @@ class BattleController extends JControllerLegacy
         $view       = JRequest::getVar('view');
         if (!$view)
         {
-
         }
-
         if ($user->id!=0)
         {
          //   $this->getActive($db, $user);
         }
-
         parent::display();
     }
 
@@ -138,7 +135,6 @@ class BattleController extends JControllerLegacy
        //     $this->setRedirect($url);
         }
     }
-
     /**
      * @param $db
      * @param $user
@@ -154,14 +150,11 @@ class BattleController extends JControllerLegacy
         if ($player_status == 3) {
             JRequest::setVar('view', 'ward');
         }
-
         if ($player_status == 4) {
             $view = $this->getView('canvas', 'html');
             // $test=  $this->getModel( 'ascii_art',true);
-
             //      $test=  $this->getModel( 'ascii_art');
             //  $view->setModel( $test ) ;
-
             JRequest::setVar('view', 'canvas');
         }
     }
@@ -176,3 +169,4 @@ $controller = JControllerLegacy::getInstance('Battle');
 $controller->execute(JRequest::getCmd('task'));
 // Redirect if set by the controller
 $controller->redirect();
+
