@@ -36,7 +36,30 @@ class plgBattleHeartbeat extends JPlugin
 		return ;
 		
 	}
-	
+
+	function heartbeat()
+	{
+		$now		= time();
+		$this->sendMessage($now,'heartbeat begun');
+		$result_1	= $this->check_factories();
+		$result_2	= $this->check_reprocessors();
+		$result_3	= $this->check_mines();
+		$result_4	= $this->check_farms();
+		$result_5	= $this->respawn();
+		$result_6	= $this->check_apartments();
+		//$result	= $this->get_players();
+		$result_7	= $this->events();
+		$result_8	= $this->check_generators();
+		$result_9   = $this->update_groups();
+		$result_10  = $this->check_rents();
+		$result_11	= $this->move_monsters();
+		$result_12	= $this->update_pos();
+
+		$now		= time();
+		$this->sendMessage($now,'heartbeat complete');
+		return ;
+	}
+
 	public function run_min_15()
 	{
 		$now			= time();
@@ -45,12 +68,8 @@ class plgBattleHeartbeat extends JPlugin
 		$this->sendMessage($now,$message);
 		$this->min_15();
 		return ;
-		
 	}
-	
-	
-	
-	
+
 	public function run_daily()
 	{
 		$now			= time();
@@ -59,7 +78,6 @@ class plgBattleHeartbeat extends JPlugin
 		$this->sendMessage($now,$message);
 		$this->daily();
 		return;
-		
 	}
 	
 	public function daily()
@@ -72,15 +90,12 @@ class plgBattleHeartbeat extends JPlugin
 		$this->add_daily_battery();				
 		return;		
 	}
-	
-	
-	
+
 	public function add_daily_battery()
 	{	
 		$db         	= JFactory::getDBO();
 		$now			= time();
 		$time_string	= gmdate("Y-m-d \T H:i:s ", $now);    
-		
 		$query			= "SELECT id, name FROM #__jigs_players";
 		$db->setQuery($query);
 		$playerlist		= $db->loadObjectList(); 
@@ -141,7 +156,7 @@ class plgBattleHeartbeat extends JPlugin
 	            {
                     $query          = "SELECT * FROM #__user_usergroup_map 
                         LEFT JOIN #__jigs_players 
-                        
+
                         ON #__user_usergroup_map.user_id = #__jigs_players.id
                         
                         WHERE group_id = $group ORDER BY #__jigs_players.xp DESC";
@@ -151,8 +166,7 @@ class plgBattleHeartbeat extends JPlugin
                     $captain = $userlist[0]->id;
                     //$total = stdclass();
                     $total->$group->members = 0;
-					foreach ($userlist as $user)
-					{
+                    foreach ($userlist as $user){
 		             
 		                $total->$group->members     = $total->$group->members + 1; 
 		                $total->$group->xp          += $user->xp;
@@ -208,27 +222,21 @@ class plgBattleHeartbeat extends JPlugin
 		        return $db->loadObject();
 	}    
 	
-	function heartbeat()
-	{
-		$now		= time();
-		$this->sendMessage($now,'heartbeat begun');
-		
-		$result_1	= $this->check_factories();
-		$result_2	= $this->check_reprocessors();
-		$result_3	= $this->check_mines();
-		$result_4	= $this->check_farms();
-		$result_5	= $this->respawn();
-		$result_6	= $this->check_apartments();
-		//$result	= $this->get_players();
-		$result_7	= $this->events();
- 		$result_8	= $this->check_generators();
- 		$result_9   = $this->update_groups();
- 		$result_10   = $this->check_rents();		
-		
-		
-		$now		= time();
-		$this->sendMessage($now,'heartbeat complete');
-		return ;
+
+
+	function move_monsters(){$db 	= JFactory::getDBO();
+
+        $db 	        = JFactory::getDBO();
+		$query	        = "SELECT id from #__jigs_monsters";
+		$db->setQuery($query);
+        $result		    = $db->loadAssoclist();
+
+        $random_index   = rand(1,count($result));
+
+        $query          = "UPDATE #__jigs_monsters SET x =x+100 WHERE id = $random_index";
+        $db->setQuery($query);
+        $db->query();
+		return $query;
 	}
 
 	function events(){
@@ -392,7 +400,36 @@ class plgBattleHeartbeat extends JPlugin
 		}
 	}
 
+    function get_monsters()
+    {
+        $db     = JFactory::getDBO();
 
+        $query  = "SELECT grid FROM #__jigs_players WHERE id =63";
+        $db->setQuery($query);
+        $grid   = $db->loadResult();
+        if ($grid<1){
+            $grid = 1;
+        }
+        $db->setQuery("SELECT #__jigs_monsters.id,
+                                #__jigs_monsters.type,
+                                #__jigs_monsters.grid,
+                                #__jigs_monsters.x,
+                                #__jigs_monsters.y,
+                                #__jigs_monsters.health,
+                                #__jigs_monster_types.name,
+                                #__jigs_monster_types.level,
+                                #__jigs_monster_types.spritesheet,
+                                #__jigs_monster_types.cellwidth,
+                                #__jigs_monster_types.cellheight,
+                                #__jigs_monster_types.numberofcells
+
+                                FROM #__jigs_monsters
+                                LEFT JOIN #__jigs_monster_types
+                                ON  #__jigs_monsters.type = #__jigs_monster_types.id
+                                WHERE grid = 99 AND active = 1 ");
+        $result = $db->loadObjectlist();
+        return $result;
+    }
 
 	function check_reprocessors()
 	{
@@ -541,8 +578,7 @@ class plgBattleHeartbeat extends JPlugin
 					$type_metal = 1;
 				}
 
-				$query	=
-					"INSERT INTO #__jigs_metals (player_id , item_id, quantity )
+				$query	="INSERT INTO #__jigs_metals (player_id , item_id, quantity )
 					VALUES( $row->owner ,$type_metal, 1) 
 					ON DUPLICATE KEY 
 					UPDATE quantity = quantity + 1";
@@ -582,8 +618,7 @@ class plgBattleHeartbeat extends JPlugin
 		$now	= time();
 		$db	= JFactory::getDBO();
 	// Find all fields where finished(unix time) has passed 
-		$query ="SELECT 
-			#__jigs_farms.finished,
+		$query ="SELECT #__jigs_farms.finished,
 			#__jigs_farms.field,
 			#__jigs_farms.status,
 			#__jigs_farms.crop,			
@@ -663,8 +698,7 @@ class plgBattleHeartbeat extends JPlugin
 
 		$db 		    = JFactory::getDBO();
 		// Find all factories where finished(unix time) has passed 
-		$query="SELECT 
-			#__jigs_factories.finished,
+		$query="SELECT #__jigs_factories.finished,
 			#__jigs_factories.quantity,
 			#__jigs_factories.type,
 			#__jigs_buildings.owner, 
@@ -695,21 +729,17 @@ class plgBattleHeartbeat extends JPlugin
 				$this->sendMessage($now, "quantity is " . $quantity);
 
 				for ($i=1;$i <= $quantity ;$i++){
-
 					$query1		= "INSERT INTO #__jigs_inventory (player_id , item_id) VALUES ($row->owner ,$row->type)";
 					$db->setQuery($query1);
 					$db->query();
 					$xp_type	= 'nbr_objs';
 					// $increment	= $this->increment_xp($xp_type ,0,$row->owner);
-
 					// send wavy lines
-
 					$playa		= JFactory::getUser($row->owner);
 					$playa_name	= $playa->username;
 					$this->sendMessage($now,'owner is ' . $playa_name);
 					$playa_id	= $playa->id;
 					$text		= 'Citizen ' . $playa_name  . ' has created 1 ' . $row->name ;
-
 					$this->sendWavyLines($text);
 					//$this->sendFeedback($playa_id ,$text);
 					$this->sendMessage($now,$text);
@@ -731,14 +761,11 @@ class plgBattleHeartbeat extends JPlugin
 	{    
 		$db     = JFactory::getDBO();
 		$user   = JFactory::getUser();
-
 		$now    = time();
-
 		$query  = "SELECT * FROM #__jigs_generators ";
 		$db->setQuery($query);
 		$result = $db->loadObjectList();
-
-		foreach($result as $row) 
+		foreach($result as $row)
 		{    
 			$query ="Update #__jigs_batteries SET  units = units + 1, timestamp =  $now WHERE user = $row->building AND units < 100";
 			$db->setQuery($query);
@@ -781,14 +808,11 @@ class plgBattleHeartbeat extends JPlugin
 						WHERE building = $row->building AND flat = $row->flat";
 					$db->setQuery($query);
 					$db->query();
-
 					// send wavy lines & feedback
 					$txt = "You were evicted";
 					$this->sendFeedback($user->id ,$txt);
-
 					$text = "Citizen  $playa_name  was evicted";
 					$this->sendWavyLines($text);
-
 					// end wavy lines
 				}
 				else
@@ -799,10 +823,8 @@ class plgBattleHeartbeat extends JPlugin
 					$query	= "UPDATE #__jigs_flats SET timestamp = $now WHERE building = $row->building AND flat = $row->flat";
 					$db->setQuery($query);
 					$db->query();
-
 					// send wavy lines & feedback
 					$txt = "Your lease was renewed at apartment number $row->flat Building: $row->building @ ". gmdate("Y-m-d \TH:i:s\Z", $now);
-
 					$this->sendFeedback($user->id ,$txt);
 					$text	= "Citizen " .  $playa_name . " renewed a lease";
 					$this->sendWavyLines($text);
@@ -843,8 +865,6 @@ class plgBattleHeartbeat extends JPlugin
 		
 				if ($result2->bank >=100){
 					$result2->bank = $result2->bank-100;
-					
-		
 					$query   	= "UPDATE #__jigs_players SET bank = $result2->bank WHERE #__jigs_players.id = $row->owner";
 					$db->setQuery($query);
 					$db->query();
@@ -868,18 +888,10 @@ class plgBattleHeartbeat extends JPlugin
 	function evict($id)
 	{
 			$db		= JFactory::getDBO();
-			$query   	= "UPDATE #__jigs_buildings SET owner= 0 WHERE #__jigs_buildings.id = $id";
+			$query  = "UPDATE #__jigs_buildings SET owner= 0 WHERE #__jigs_buildings.id = $id";
 			$db->setQuery($query);
 			$db->query();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	function sendWavyLines($text)
@@ -887,7 +899,7 @@ class plgBattleHeartbeat extends JPlugin
 		$sbid	= 24;
 		$db	= JFactory::getDBO();
 		$now	= time();
-		$sql	= "INSERT INTO #__shoutbox (name, time,sbid, text) VALUES ('Wavy Lines:', $now,$sbid, '$text' )";
+		$sql	= "INSERT INTO #__shoutbox (name, time,sbid, text) VALUES ('Wavy Lines:', $now,$sbid, \"$text\" )";
 		$db->setQuery($sql);
 		$db->query();
 		return $sql;
@@ -912,8 +924,6 @@ class plgBattleHeartbeat extends JPlugin
 		return ;
 	}
 
-
-	
 	function get_spiritual($id){
 		$db			= JFactory::getDBO();
 		$query		= "SELECT name FROM #__jigs_spiritual where id = $id";
@@ -936,11 +946,9 @@ class plgBattleHeartbeat extends JPlugin
 		$name		= $db->loadResult();
 		return $name;
 	}
-	
 
 	function is_afraid_of(){
-		
-		$player		= $this->get_player();	
+		$player		= $this->get_player();
 		$id			= rand(1,30);
 		$name		=$this->get_phobia($id);
 		$text 		= $player->username . " is afraid of " . $name ;
@@ -948,8 +956,7 @@ class plgBattleHeartbeat extends JPlugin
 	}
 	
 	function is_feeling(){
-		
-		$player		= $this->get_player();	
+		$player		= $this->get_player();
 		$id			= rand(1,30);
 		$name		= $this->get_mood($id);
 		$text 		= $player->username . " is " . $name ;
@@ -957,8 +964,7 @@ class plgBattleHeartbeat extends JPlugin
 	}
 	
 	function converted_to(){
-		
-		$player		= $this->get_player();	
+		$player		= $this->get_player();
 		$id			= rand(1,30);
 		$name 		= $this->get_spiritual($id);
 		$text 		= $player->username . " converted to " . $name ;
@@ -966,7 +972,6 @@ class plgBattleHeartbeat extends JPlugin
 	}
 
 	function get_player(){
-
 		$db					= JFactory::getDBO();
 		$id					= rand(3000,3100);
         $player	= JFactory::getUser($id);
@@ -981,8 +986,7 @@ class plgBattleHeartbeat extends JPlugin
 		return $player;
 	}
 
-	function npc_v_npc()
-	{
+	function npc_v_npc(){
 		$player		= $this->get_player();		
 		$player2	= $this->get_player();
 
@@ -1002,5 +1006,40 @@ class plgBattleHeartbeat extends JPlugin
 		}
 
 		return ($text);
+	}
+
+	function update_pos(){
+		$db         = JFactory::getDBO();
+		$monsters   = $this->get_monsters( $this->get_coord()['grid']);
+		$entryData  = array('category' => 'kittensCategory', 'title' => 'title', 'article'  => $monsters, 'when' => time()  );
+		$context    = new ZMQContext();
+		$socket     = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+		if($socket->connect("tcp://localhost:5555")){
+			//   echo 'connected';
+		};
+		if($socket->send(json_encode($entryData))) {
+			echo 'sent';
+		};
+
+		return;
+		//}
+	}
+
+	function get_coord()
+	{
+		$db     = JFactory::getDBO();
+		$user   = JFactory::getUser();
+		$db->setQuery("SELECT #__jigs_players.posx,
+                #__jigs_players.posy,
+                #__jigs_players.map,
+                #__jigs_players.grid,
+                #__comprofiler.avatar,
+                #__jigs_players.active
+                FROM #__jigs_players
+                LEFT JOIN #__comprofiler
+                ON #__comprofiler.user_id = #__jigs_players.id
+                WHERE #__jigs_players.id =63");
+		$result = $db->loadRow();
+		return $result;
 	}
 }
