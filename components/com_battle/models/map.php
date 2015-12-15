@@ -1,21 +1,14 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
 jimport('joomla.application.component.model');
 jimport( 'joomla.filesystem.folder' );
 require_once JPATH_COMPONENT.'/helpers/messages.php';
-
-class BattleModelMap extends JModelLegacy{
-
+class BattleModelMap extends JModelLegacy
+{
     function save_coord()
     {
         $db = JFactory::getDBO();
         $user = JFactory::getUser();
-        //$update = JRequest::getVar('update');
-        //if ($update==1){
-        //$posx = JRequest::getVar('posx');
-        //$posy = JRequest::getVar('posy');
-        //$map_id = JRequest::getVar('id');
         $grid =	JRequest::getVar('grid');
         //$query = "UPDATE #__jigs_players SET map = '".$map_id."', grid = '".$grid."', posx = '".$posx."',posy = '".$posy."' WHERE id ='".$user->id."'" ;
         $query = "UPDATE #__jigs_players SET grid = '$grid' WHERE id ='$user->id'";
@@ -25,53 +18,40 @@ class BattleModelMap extends JModelLegacy{
         //}
     }
 
-
     function update_pos()
     {
-        $db = JFactory::getDBO();
-        $user = JFactory::getUser();
-        //$update = JRequest::getVar('update');
-        //if ($update==1){
-        $posx = JRequest::getVar('posx');
-        $posy = JRequest::getVar('posy');
-        //$map_id = JRequest::getVar('id');
-        //$grid =	JRequest::getVar('grid');
-        //$query = "UPDATE #__jigs_players SET map = '".$map_id."', grid = '".$grid."', posx = '".$posx."',posy = '".$posy."' WHERE id ='".$user->id."'" ;
-        $query = "UPDATE #__jigs_players SET posx = '$posx',posy = '$posy'  WHERE id ='$user->id'";
-
-
-        $monsters = $this->get_monsters( $this->get_coord()['grid']);
-
+        $db         = JFactory::getDBO();
+        $user       = JFactory::getUser();
+        $posx       = JRequest::getVar('posx');
+        $posy       = JRequest::getVar('posy');
+        $query      = "UPDATE #__jigs_players SET posx = '$posx',posy = '$posy'  WHERE id ='$user->id'";
+       // $monsters   = $this->get_monsters( $this->get_coord()['grid']);
+        $players   = $this->get_playersPos( $this->get_coord()['grid']);
+       /*
         $entryData = array(
-            'category' => 'kittensCategory', 'title'    => 'title', 'article'  => $monsters, 'when'     => time()  );
-
-        $context = new ZMQContext();
-        $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
-
+            'category' => 'kittensCategory',
+            'title'    => 'title',
+            'article'  => $monsters,
+            'when' => time()  );
+*/
+        $entryData = array(
+            'category' => 'playersCategory',
+            'title'    => 'title',
+            'article'  => $players,
+            'when' => time()  );
+        $context    = new ZMQContext();
+        $socket     = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
         if($socket->connect("tcp://localhost:5555")){
          //   echo 'connected';
         };
-
-        if(
-        $socket->send(json_encode($entryData))) {
-
+        if($socket->send(json_encode($entryData))) {
             echo 'sent';
         };
-
         $db->setQuery($query);
         $db->query();
         return $query ;
         //}
     }
-
-
-
-
-
-
-
-
-
 
     function get_coord()
     {
@@ -91,12 +71,8 @@ class BattleModelMap extends JModelLegacy{
         return $result;
     }
 
-
-
-
     function get_grid()
     {
-
         $db         = JFactory::getDBO();
         $user       = JFactory::getUser();
         $db->setQuery("SELECT  #__jigs_players.grid,
@@ -112,7 +88,6 @@ class BattleModelMap extends JModelLegacy{
         $result = $db->loadRow();
         return $result;
     }
-
 
     function get_chars()
     {
@@ -160,6 +135,56 @@ class BattleModelMap extends JModelLegacy{
         return $result;
     }
 
+    function get_playersPos($grid=1)
+    {
+        $db     = JFactory::getDBO();
+        $user   = JFactory::getUser();
+        $query  = "SELECT grid FROM #__jigs_players WHERE id =" . $user->id;
+        $db->setQuery($query);
+        $grid   = $db->loadResult();
+        if ($grid<1){
+            $grid=1;
+        }
+        $db->setQuery("SELECT #__jigs_players.id,
+                      #__jigs_players.grid,
+                      #__jigs_players.posx,
+                      #__jigs_players.posy,
+                      #__jigs_players.health
+                      FROM #__jigs_players
+                      WHERE grid = $grid
+                      AND active = 1 ");
+        $result = $db->loadObjectlist();
+        return $result;
+    }
+
+    function get_halflings()
+    {
+        $db     = JFactory::getDBO();
+        $user   = JFactory::getUser();
+        $query  = "SELECT grid FROM #__jigs_players WHERE id =" . $user->id;
+        $db->setQuery($query);
+        $grid   = $db->loadResult();
+        if ($grid<1){
+            $grid=1;
+        }
+        $db->setQuery("SELECT #__jigs_hobbits.id,
+                                #__jigs_hobbits.grid,
+                                #__jigs_hobbits.x,
+                                #__jigs_hobbits.y,
+                                #__jigs_hobbits.health,
+                                #__jigs_hobbit_types.type,
+                                #__jigs_hobbit_types.cellwidth,
+                                #__jigs_hobbit_types.cellheight,
+                                #__jigs_hobbit_types.numberofcells
+
+                                FROM #__jigs_hobbits
+                                LEFT JOIN #__jigs_hobbit_types
+                                ON  #__jigs_hobbits.type = #__jigs_hobbit_types.id
+                                WHERE grid = 1 ");
+        $result = $db->loadObjectlist();
+        return $result;
+    }
+
     function get_buildings()
     {
         $db     = JFactory::getDBO();
@@ -169,13 +194,12 @@ class BattleModelMap extends JModelLegacy{
         if ($grid<1){
             $grid=1;
         }
-
         $db->setQuery("SELECT * FROM #__jigs_buildings WHERE grid = $grid");
         $result = $db->loadObjectlist();
 
         //add owner name to the result array
         foreach ($result as $building){
-            $query=  "SELECT name FROM #__jigs_players WHERE id = $building->owner";
+            $query = "SELECT name FROM #__jigs_players WHERE id = $building->owner";
             $db->setQuery($query);
             $building->ownername = $db->loadResult();
         }
@@ -232,29 +256,31 @@ class BattleModelMap extends JModelLegacy{
     }
     function get_players()
     {
-        $db		= JFactory::getDBO();
-        $user	= JFactory::getUser();
+        $db     = JFactory::getDBO();
+        $user   = JFactory::getUser();
         $db->setQuery("SELECT map,grid FROM #__jigs_players WHERE id =".$user->id);
         $result = $db->loadRow();
-        $map	= $result[0];
-        $grid	= $result[1];
+        $map    = $result[0];
+        $grid   = $result[1];
         if ($grid<1){
             $grid=1;
         }
-        $db->setQuery("SELECT #__jigs_players.id, #__jigs_players.name,
+        $db->setQuery("SELECT #__jigs_players.id,
+                #__jigs_players.name,
                 #__jigs_players.posx,
                 #__jigs_players.posy,
                 #__comprofiler.avatar
                 FROM #__jigs_players
                 LEFT JOIN #__comprofiler ON #__jigs_players.id = #__comprofiler.user_id
                 WHERE #__jigs_players.active = 1
-                AND #__jigs_players.grid ='$grid'
-                AND #__jigs_players.map='$map'
-                AND #__jigs_players.id !='$user->id'
+                AND #__jigs_players.grid = $grid
+                AND #__jigs_players.map = $map
+
                 ");
         $result = $db->loadObjectlist();
         return $result;
     }
+
     function sing_song(){
         echo 'test';
     }

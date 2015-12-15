@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
-class BattleModelPlayer extends JModel
+class BattleModelPlayer extends JModelLegacy
 {
 	var $_data = null;
 	
@@ -21,7 +21,6 @@ class BattleModelPlayer extends JModel
     {
         $db = JFactory::getDBO();
         //$user = JFactory::getUser();
-
         $query = "SELECT * FROM #__jigs_players WHERE id = $id";
         $db->setQuery($query);
         $result = $db->loadObjectList();
@@ -42,15 +41,12 @@ class BattleModelPlayer extends JModel
 			return $result;
 }
 
-
-
 	function get_avatar($id){
 		$db =JFactory::getDBO();
 		$db->setQuery("SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =".$id);
     	$result = $db->loadresult();
-	
+
 	return $result;
-	
 }
 
 }

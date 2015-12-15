@@ -16,7 +16,7 @@ jimport('joomla.application.component.model');
  * @subpackage	com_contact
  * @since		1.6
  */
-class BattleModelTerminal extends JModel
+class BattleModelTerminal extends JModelLegacy
 {
     /**
      * Model context string.

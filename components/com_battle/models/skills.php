@@ -3,7 +3,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.application.component.model');
 
-class BattleModelskills extends JModel
+class BattleModelskills extends JModelLegacy
 {
     function get_skills($user)
     {
