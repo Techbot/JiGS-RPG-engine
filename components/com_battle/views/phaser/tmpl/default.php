@@ -24,8 +24,9 @@
             var portal = new Array();
             var add_building = new Array();
             var add_assets = new Array();
-            var add_npc = new Array();
-            var add_players = new Array();
+
+            var players = new Array();
+            var players_list = new Array();
             var add_plates = new Array();
             var add_pages = new Array();
             var add_terminals = new Array();
@@ -48,13 +49,33 @@
             var portal_dest_1 = [];
             var portal_dest_2 = [];
             var portal_dest_3 = [];
-
+            var npc = [];
             var npc_list = [];
             var terminals_list = [];
             var twines_list = [];
             var plates_list = [];
             var content =[];
             var send = 1;
+            var map;
+            var layer;
+            var layer3;
+            var layer4;
+            var layer2;
+            var x;
+            var y;
+            var rhythmic;
+            var melody;
+            var bass;
+            var phaser;
+            var sprite;
+            var sprite2;
+            var grid;
+            var cursors;
+
+            var avatar;
+            var cacheKey;
+            var group;
+
 
         </script>
         <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
