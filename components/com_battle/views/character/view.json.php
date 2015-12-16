@@ -13,17 +13,17 @@ class BattleViewcharacter extends JViewLegacy
 		
 		//$people = JTable::getTable('people');
 		$people         = JTable::getInstance('people', 'Table');
-     //   $people->load($id);
-     //   $people->id = $id;
-     //   $model          = $this->getModel();
-	//	$this->assignRef('inv',$model->get_character_inventory($id));
+        $people->load($id);
+        $people->id = $id;
+        $model          = $this->getModel();
+		$this->assignRef('inv',$model->get_character_inventory($id));
 	//
 		
 		
-		//$id= JRequest::getvar('id');
-		//$people = JTable::getInstance('people', 'Table');
-		//$people->load($id);
-		//$inv = $this->get_character_inventory($id);
+		$id= JRequest::getvar('id');
+		$people = JTable::getInstance('people', 'Table');
+		$people->load($id);
+	//	$inv = $this->get_character_inventory($id);
 		
 		
 		
@@ -37,7 +37,7 @@ class BattleViewcharacter extends JViewLegacy
 		
 	//	$user =& JFactory::getUser();
 		
-//		$this->assignRef('people', $people);
+		$this->assignRef('people', $people);
 //		$this->assignRef('backlink', $backlink);
 		
 		

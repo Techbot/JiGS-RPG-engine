@@ -5,14 +5,7 @@
       <paths name="46">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="eclecticmeme">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/var/www/meme" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

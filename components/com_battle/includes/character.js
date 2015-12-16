@@ -91,30 +91,48 @@ function kick_character(character_id){
 		
 }
 
-function punch_character(character_id){
-    
+function punch_character(character_id) {
 	var d = document.getElementById('punch');
 	var a = new Request.JSON({
-			url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=punch&character=" + character_id,
-			onSuccess: function(result){
+		url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=punch&character=" + character_id,
+		onSuccess: function (result) {
 
 			text_message = (result[2]);
-			var new_message = new Element('p',{
-			'display':'table-row',
-			'html': text_message });
-			
-			new_message.inject('message_table','top');
+			var new_message = new Element('p', {
+				'display': 'table-row',
+				'html': text_message
+			});
 
-				 npc_health = result[1];
+			new_message.inject('message_table', 'top');
 
-				if (result[0] <= 0 )  {
-					close();
-					jump();			
-					}
-				if (result[1] <= 0 ) {
-					close();
-					jump();
-					}		
-				}
-			}).get();
+			npc_health = result[1];
+
+			if (result[0] <= 0) {
+				close();
+				jump();
+			}
+			if (result[1] <= 0) {
+				close();
+				jump();
+			}
+		}
+	}).get();
+}
+
+function talk_character(character_id) {
+	var d = document.getElementById('talk');
+	jQuery.ajax({
+		url: "/index.php?option=com_battle&format=json&view=twine&id=" + 11103,
+		context: document.body,
+		dataType: "json"
+	}).done(function (result) {
+
+		document.getElementById("world").hide();
+		document.getElementById("npc").hide();
+		document.getElementById("twines").innerHTML = result;
+		document.getElementById("twines").show();
+	});
+
+
+
 }

@@ -1,9 +1,26 @@
+   <?php
 
-        <!--link href="/components/com_battle/views/phaser/tmpl/_site/css/phaser-examples.css" media="screen" rel="stylesheet" type="text/css"-->
+    $context = new ZMQContext();
+    $socket = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+
+    if($socket->connect("tcp://localhost:5555")){
+      //  echo 'connected';
+    };
+
+
+    if(
+        $socket->send(json_encode($entryData))) {
+
+       // echo 'sent';
+    };
+?>
+
+
+   <!--link href="/components/com_battle/views/phaser/tmpl/_site/css/phaser-examples.css" media="screen" rel="stylesheet" type="text/css"-->
         <!-- Phaser -->
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
-        <script src="/components/com_battle/includes/blip.min.js"></script>
+        <!--script src="/components/com_battle/includes/blip.min.js"></script>
         <!-- Main Game File -->
         <script>
             var playState = new Array();
@@ -23,7 +40,10 @@
             var add_assets = new Array();
             var add_npc = new Array();
             var add_players = new Array();
+            var add_plates = new Array();
             var add_pages = new Array();
+            var add_terminals = new Array();
+            var add_twines = new Array();
 
             var boundsX1 = new Array();
             var boundsY1 = new Array();
@@ -34,19 +54,27 @@
             var portal_sourceX1 = new Array();
             var portal_sourceY1 = new Array();
 
-            var portal_sourceX2 = new Array();
-            var portal_sourceY2 = new Array();
+            var portal_sourceX2 = [];
+            var portal_sourceY2 = [];
 
-            var portal_sourceX3 = new Array();
-            var portal_sourceY3 = new Array();
-            var portal_dest_1 = new Array();
-            var portal_dest_2 = new Array();
-            var portal_dest_3 = new Array();
-            var npc_list = new Array();
+            var portal_sourceX3 = [];
+            var portal_sourceY3 =[];
+            var portal_dest_1 = [];
+            var portal_dest_2 = [];
+            var portal_dest_3 = [];
+
+            var npc_list = [];
+            var terminals_list = [];
+            var twines_list = [];
+            var plates_list = [];
+            var content =[];
+
             var send = 1;
         </script>
         <script src="/components/com_battle/views/phaser/tmpl/phaser-tiled.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/playstate00.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate01.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/playstate02.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>
@@ -54,4 +82,8 @@
         <div id ="building"></div>
         <div id ="npc"></div>
         <div id ="player"></div>
-	<div id ="hacker_rig"></div>
+        <div id ="terminal" style = "margin: -194px 0 0 0; z-index:9999;    position: absolute;
+    left: 0px;
+    top: 540px;"></div>
+        <div id ="twines"></div>
+        <div id ="plates"></div>

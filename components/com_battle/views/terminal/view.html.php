@@ -7,7 +7,7 @@ class BattleViewTerminal extends JViewLegacy
 {	
 	function display($tpl = null)
 	{
-		$id							= (int) JRequest::getVar('id', 0);
+		$id	= (int) JRequest::getVar('id', 0);
 	
 		parent::display($tpl);
 	}

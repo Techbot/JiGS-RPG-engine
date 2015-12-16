@@ -9,10 +9,10 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
-          <root url="phar://$MODULE_DIR$/go-pear.phar" />
+          <root url="phar://$MODULE_DIR$/go-pear.phar/" />
         </CLASSES>
         <SOURCES>
-          <root url="phar://$MODULE_DIR$/go-pear.phar" />
+          <root url="phar://$MODULE_DIR$/go-pear.phar/" />
         </SOURCES>
       </library>
     </orderEntry>

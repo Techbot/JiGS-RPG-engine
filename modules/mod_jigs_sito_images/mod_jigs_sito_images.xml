@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="cron">
+  <name>Sito</name>
+  <author>Techbot</author>
+  <creationDate>January 2008</creationDate>
+  <copyright>(C) 2008</copyright>
+  <license>MIT</license>
+  <authorEmail>info@emc23.com</authorEmail>
+  <authorUrl>www.emc23.com</authorUrl>
+  <version>3.0</version>
+  <description>A module for displaying sito images</description>
+  <files>
+    <filename module="mod_jigs_sito_images">mod_jigs_sito_images</filename>
+    <folder>tmpl</folder>
+    <filename>helper.php</filename>
+    <filename>index.html</filename>
+    <filename>mod_jigs_sito_images.xml</filename>
+  </files>
+</extension>
