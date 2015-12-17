@@ -29,7 +29,7 @@
             var players_list = new Array();
             var add_plates = new Array();
             var add_pages = new Array();
-            var add_terminals = new Array();
+
             var add_twines = new Array();
 
             var boundsX1 = new Array();
@@ -51,6 +51,7 @@
             var portal_dest_3 = [];
             var npc = [];
             var npc_list = [];
+            var terminals = [];
             var terminals_list = [];
             var twines_list = [];
             var plates_list = [];

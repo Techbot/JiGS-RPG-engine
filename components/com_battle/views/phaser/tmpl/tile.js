@@ -7,15 +7,16 @@ game.state.add('terminal', playState[2]);
 //Remember that the game object inherits many properties and methods!
 
 var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
-    function() {
-
-        /*
+    function()
+    {
         conn.subscribe('kittensCategory', function(topic, data) {
             // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
             //console.log('New article published to category "' + topic + '" : ' + data.title);
             for (var iterate=0;iterate <= data.article.length-1;iterate++){
                 monsters_list[iterate].to_x = data.article[iterate].x ;
                 monsters_list[iterate].to_y = data.article[iterate].y ;
+
+                monsters_list[iterate].health = monsters[iterate].health = data.article[iterate].health ;
             }
         });
 
@@ -26,11 +27,9 @@ var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
                 halfling_list[iterate].to_y = parseInt(data.article[iterate].y) ;
             }
         });
-*/
 
-        /*
         conn.subscribe('playersCategory', function(topic, data) {
-            console.log(data.article);
+            //console.log(data.article);
             for (var iterate=0;iterate <= data.article.length-1;iterate++){
 
                 var incomingId =  data.article[iterate].id;
@@ -41,68 +40,33 @@ var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
             }
         });
 
-*/
         conn.subscribe('playersCategory', function(topic, data) {
-            console.log(data.article);
+            //console.log(data.article);
             for (var iterate = 0; iterate <= data.article.length - 1; iterate++) {
-
                 var incomingId = data.article[iterate].id;
-
-                players_list.forEach(function (player, index) {
-
-
-                    if (player.id == incomingId) {
-
-                        console.log(player.id + ':' + incomingId);
-
-                        console.log('before' + ':' + player.posx);
-
-
-                        player.posx = parseInt(data.article[iterate].posx);
-                        player.posy = parseInt(data.article[iterate].posy);
-
-
-                        console.log('after' + ':' + player.posx);
-
+                players_list.forEach(function (playerObj, index) {
+                    if (playerObj.id == incomingId) {
+                        //console.log(playerObj.id + ':' + incomingId);
+                        //console.log('before' + ':' + playerObj.posx);
+                        playerObj.posx = parseInt(data.article[iterate].posx);
+                        playerObj.posy = parseInt(data.article[iterate].posy);
+                        //console.log('after' + ':' + playerObj.posx);
+                        players[incomingId].body.velocity.x = 1000;
+                        players[incomingId].body.velocity.y = 1000;
+                     //   game.physics.arcade.velocityFromAngle(players[incomingId].angle, 300,players[incomingId].body.velocity);
+                        game.physics.arcade.moveToXY(players[incomingId], parseInt(playerObj.posx), parseInt(playerObj.posy), 100);
                     }
                 });
-
-            }
-            ;
-
+            };
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     },
+
     function() {
         console.warn('WebSocket connection closed');
     },
     {'skipSubprotocolCheck': true}
 );
+
 jQuery('#world').focus().blur(function(){
     jQuery('#world').focus();
 })
@@ -110,7 +74,6 @@ jQuery('#world').focus().blur(function(){
 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&format=raw', function(result)
 {
     if (result != null) {
-
         console.log('buildings');
         grid = parseInt(result[0]);
         new_x = parseFloat(result[1]);
@@ -129,8 +92,8 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
 function moveBall(pointer)
 {
     send = 1;
-    x = pointer.worldX;
-    y = pointer.worldY;
+    x = parseInt(pointer.worldX);
+    y = parseInt(pointer.worldY);
 }
 
 function jump(one,two) {
@@ -297,7 +260,40 @@ function collideNpc(one,two) {
 
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+function collideMonster(one,two) {
+    two.body.enable =false;
+
+    jQuery.ajax({
+        url: "/index.php?option=com_battle&format=json&task=action&action=attackMonster&id="+ two.id,
+        context: document.body,
+        dataType: "json"
+    }).done(function(result) {
+        two.body.enable =true;
+        console.log('attacked');
+        //document.getElementById("npc").innerHTML=result;
+        //document.getElementById("npc").show();
+        //document.getElementById("world").hide();
+        //document.getElementById("building").hide();
+        //document.getElementById("player").hide();
+
+        //loadUp();
+        //var url = "/components/com_battle/includes/character.js";
+       // jQuery.getScript( url, function() {
+//
+    //    });
+
+    });
+}
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
 function page(one,two) {
    // two.body.enable =false;
     jQuery.ajax({

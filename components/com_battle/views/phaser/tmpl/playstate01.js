@@ -5,6 +5,11 @@ playState[1] = {
     init: function() {
     },
     preload: function() {
+
+
+        this.load.script('HudManager', '/components/com_battle/includes/HUDManager.js');
+
+
         var number = paddy(grid,3);
         // game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
         load_monsters();
@@ -18,7 +23,7 @@ playState[1] = {
         load_portals();
         load_tiles();
         load_halflings();
-        game.load.tilemap('world', 'components/com_battle/views/phaser/tmpl/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.tilemap('world', 'components/com_battle/views/phaser/tmpl/json/grid' + number + '.json', null, Phaser.Tilemap.TILED_JSON);
     },
     create: function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -43,7 +48,6 @@ playState[1] = {
         /////////////////////////////////////////
         map.setCollisionBetween(0, 9000,true,'obstacles');
         /////////////////////////place player
-        this.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
         place_buildings();
         place_twines();
         place_plates();
@@ -56,6 +60,11 @@ playState[1] = {
         place_portals();
     },
     update: function() {
+
+
+
+
+
         floor_halflings();
         //////////////////////////////collide obstacle layer
         this.physics.arcade.collide(sprite, layer);
@@ -257,14 +266,14 @@ function place_portals(){
     portal[3]['dest']=portal_dest_3[grid];
 }
 
-function place_terminals(){
-    if(terminals_list.length != 0) {
-        for (var index = 0; index < terminals_list.length; index++) {
-            var key = terminals_list[index].image;
-            add_terminals[index] = game.add.sprite(terminals_list[index].posx * 1, terminals_list[index].posy * 1, key);
-            add_terminals[index].id = terminals_list[index].id;
-            game.physics.enable(add_terminals[index], Phaser.Physics.ARCADE);
-        }
+function place_terminals() {
+    if (terminals_list.length != 0) {
+        terminals_list.forEach(function (terminalsObj, index) {
+            var key = terminalsObj.image;
+            terminals[index] = game.add.sprite(terminalsObj.posx * 1, terminalsObj.posy * 1, key);
+            terminals[index].id = terminalsObj.id;
+            game.physics.enable(terminals[index], Phaser.Physics.ARCADE);
+        });
     }
 }
 
@@ -273,52 +282,68 @@ function place_player() {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.enable = true;
     sprite.body.allowRotation = false;
+    game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
 }
 
 function place_players(){
     players_group  = game.add.group();
     if (typeof players_list != 'undefined') {
-        for (var index = 0; index < players_list.length; index++) {
-            var key_id =players_list[index].id;
-            var key = players_list[index].id
-            players[key] = game.add.sprite(parseInt(players_list[index].posx),parseInt( players_list[index].posy), key);
-            players[key].key_id = key_id;
-            game.physics.enable(players[key], Phaser.Physics.ARCADE);
-        }
-    }
+            players_list.forEach(function (playersObj, index) {
+                var key_id = players_list[index].id;
+                var key = players_list[index].id
+                players[key] = game.add.sprite(parseInt(playersObj.posx), parseInt(playersObj.posy), key);
+                players[key].key_id = key_id;
+                game.physics.enable(players[key], Phaser.Physics.ARCADE);
+            })
+       }
 }
 
 function place_chars() {
     if (npc_list.length != 0) {
-        for (var index = 0; index < npc_list.length; index++) {
-            var key = npc_list[index].name;
-            var key_id = npc_list[index].id;
-            //console.log(key);
-            npc[index] = game.add.sprite(parseInt(npc_list[index].posx), parseInt(npc_list[index].posy), key);
-            npc[index].id = key;
-            npc[index].key_id = key_id;
-            game.physics.enable(npc[index], Phaser.Physics.ARCADE);
-            npc[index].body.velocity = 0;
-        }
+       npc_list.forEach(function (npcObj, index) {
+           var key = npcObj.name;
+           var key_id = npcObj.id;
+           npc[index] = game.add.sprite(parseInt(npcObj.posx), parseInt(npcObj.posy), key);
+           npc[index].id = key;
+           npc[index].key_id = key_id;
+           game.physics.enable(npc[index], Phaser.Physics.ARCADE);
+           npc[index].body.velocity = 0;
+       })
     }
 }
 
-function place_monsters(){
+function place_monsters() {
     if (typeof monsters_list != 'undefined') {
-        for (var index = 0; index < monsters_list.length; index++)
-        {
-            var key = monsters_list[index].spritesheet;
-            monsters[index] = game.add.sprite(monsters_list[index].x, monsters_list[index].y, key);
-            game.add.tween(monsters[index]).to({ x: monsters_list[index].x,y:monsters_list[index].y }, 1, Phaser.Easing.Linear.None, true);
-            monsters[index].animations.add('stop',[0]);
-            monsters[index].animations.add('walk_down',[0,1,2,3]);
-            monsters[index].animations.add('walk_left',[4,5,6,7]);
-            monsters[index].animations.add('walk_right',[8,9,10,11]);
-            monsters[index].animations.add('walk_up',[12,13,14,15]);
-            monsters[index].animations.play('walk_stop',1);
-            monsters[index].id = key;
-            game.physics.enable(monsters[index], Phaser.Physics.ARCADE);
-        }
+        monsters_list.forEach(function (monsterObj, index) {
+            {
+
+                var key = monsterObj.spritesheet;
+                monsters[index] = game.add.sprite(monsterObj.x, monsterObj.y, key);
+                game.add.tween(monsters[index]).to({
+                    x: monsterObj.x,
+                    y: monsterObj.y
+                }, 1, Phaser.Easing.Linear.None, true);
+                monsters[index].animations.add('stop', [0]);
+                monsters[index].animations.add('walk_down', [0, 1, 2, 3]);
+                monsters[index].animations.add('walk_left', [4, 5, 6, 7]);
+                monsters[index].animations.add('walk_right', [8, 9, 10, 11]);
+                monsters[index].animations.add('walk_up', [12, 13, 14, 15]);
+                monsters[index].animations.play('walk_stop', 1);
+                //monsters[index].id = key;
+                monsters[index].id = monsterObj.id;
+                //monsters[index].maxHealth=15;
+                //monsters[index].health=10;
+                monsters[index].maxHealth=monsterObj.maxHealth;
+                monsters[index].health=monsterObj.health;
+                monsters[index].anchor.setTo(0.5, 0.5);
+                game.physics.enable(monsters[index], Phaser.Physics.ARCADE);
+                monsters[index].hud = Phaser.Plugin.HUDManager.create( monsters[index].game,  monsters[index], 'enemyhud');
+                monsters[index].healthHUD =  monsters[index].hud.addBar(0,-20, 32, 2,  monsters[index].maxHealth, 'health',  monsters[index], Phaser.Plugin.HUDManager.HEALTHBAR, false);
+                monsters[index].healthHUD.bar.anchor.setTo(0.5, 0.5);
+                monsters[index].addChild(monsters[index].healthHUD.bar);
+                monsters[index].body.immovable = true;
+            }
+        })
     }
 }
 
@@ -338,6 +363,7 @@ function place_halflings(){
             halflings[index].id = key;
             game.physics.enable(halflings[index], Phaser.Physics.ARCADE);
             halflings[index].body.enable =true;
+
         }
         group.setAll('anchor.x', 0.5);
         group.setAll('anchor.y', 0.5);
@@ -345,9 +371,20 @@ function place_halflings(){
 }
 
 function move_monsters(){
+
+
     if (typeof monsters != 'undefined') {
         for (var index = 0; index < monsters.length-1; index++) {
+
+
+
+
+
             if (typeof monsters[index] != 'undefined') {
+
+                monsters[index].health=monsters_list[index].health;
+
+
 
                 if (monsters_list[index].to_x < monsters[index].body.x) {
                     monsters[index].animations.play('walk_left', 3);
@@ -411,9 +448,11 @@ function move_halflings(){
 function stop_player(){
     if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
         sprite.body.velocity.x = 0;
+
     }
     if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
         sprite.body.velocity.y = 0;
+
     }
     if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
         if (send == 1) {
@@ -423,19 +462,31 @@ function stop_player(){
     }
 }
 
-function stop_players(){
-    if (typeof players != 'undefined' && typeof players_list !='undefined') {
+function stop_players() {
+    if (typeof players != 'undefined' && typeof players_list != 'undefined') {
         players_list.forEach(function (playerObj, index) {
-                var incoming_id = playerObj.id;
-                if (typeof (players[incoming_id]) != 'undefined') {
-                    if ((players[incoming_id].body.x >= playerObj.posx - 20) || (players[incoming_id].body.x <= playerObj.posx + 20)) {
-                        players[incoming_id].body.velocity.x = 0;
-                    }
-                    if ((players[incoming_id].body.posy >= playerObj.posy - 20) || (players[incoming_id].body.posy <= playerObj.posy + 20)) {
-                        players[incoming_id].body.velocity.y = 0;
-                    }
+            var incoming_id = playerObj.id;
+            if (typeof (players[incoming_id]) != 'undefined') {
+                $x1 = parseInt(players[incoming_id].body.x);
+                $y1 = parseInt(players[incoming_id].body.y);
+                $x2 = parseInt(playerObj.posx);
+                $y2 = parseInt(playerObj.posy);
+                $part1 = ($x2 - $x1) * ($x2 - $x1);
+                $part2 = ($y2 - $y1) * ($y2 - $y1);
+                $distance = Math.sqrt(($part1) + ($part2));
+                if ($distance < 3) {
+                 //   console.log($distance);
+                    players[incoming_id].body.velocity.x = 0;
+                    players[incoming_id].body.velocity.y = 0;
+                    players[incoming_id].body.immobile = true;
                 }
-
+                else{
+                    players[incoming_id].body.enabled = true;
+                //    players[incoming_id].body.velocity = 100;
+                //    players[incoming_id].body.velocity = 1;
+                //    console.log($distance);
+                }
+            }
         })
     }
 }
@@ -446,7 +497,8 @@ function move_players(){
             var incoming_id =playerObj.id;
             // console.log(incoming_id);
             if( typeof players[incoming_id] !='undefined') {
-                game.physics.arcade.moveToXY(players[incoming_id], parseInt(playerObj.posx), parseInt(playerObj.posy), 100);
+             //   console.log('moving' + incoming_id);
+                game.physics.arcade.moveToXY(players[incoming_id], playerObj.posx, playerObj.posy, 100);
             }
         });
     }
@@ -486,7 +538,15 @@ function stop_halflings(){
         }
     }
 }
+
 function check_for_collisions(){
+
+    ///////////////////////collide monster list
+    for (var index = 0; index < monsters_list.length; index++)
+    {
+        game.physics.arcade.collide(sprite, monsters[index], collideMonster);
+    }
+
     ///////////////////////collide npc list
     for (var index = 0; index < npc_list.length; index++)
     {
@@ -505,7 +565,7 @@ function check_for_collisions(){
     ///////////////////////collide terminals_list
     for (var index = 0; index < terminals_list.length; index++)
     {
-        game.physics.arcade.collide(sprite, add_terminals[index], terminal);
+        game.physics.arcade.collide(sprite, terminals[index], terminal);
     }
     /////////////////////collide players
     for (var index = 0; index < players_list.length; index++)
