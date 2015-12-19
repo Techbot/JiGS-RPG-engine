@@ -5,11 +5,7 @@ playState[1] = {
     init: function() {
     },
     preload: function() {
-
-
         this.load.script('HudManager', '/components/com_battle/includes/HUDManager.js');
-
-
         var number = paddy(grid,3);
         // game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
         load_monsters();
@@ -195,7 +191,6 @@ function load_player() {
         game.load.image('arrow', '/images/comprofiler/gallery/frog.gif');
     }
     else {
-
         if (avatar.substring(0, 7) != 'gallery') {
             game.load.image('arrow', '/images/comprofiler/tn' + avatar);
         } else {
@@ -316,7 +311,6 @@ function place_monsters() {
     if (typeof monsters_list != 'undefined') {
         monsters_list.forEach(function (monsterObj, index) {
             {
-
                 var key = monsterObj.spritesheet;
                 monsters[index] = game.add.sprite(monsterObj.x, monsterObj.y, key);
                 game.add.tween(monsters[index]).to({
@@ -372,20 +366,11 @@ function place_halflings(){
 
 function move_monsters(){
 
-
     if (typeof monsters != 'undefined') {
         for (var index = 0; index < monsters.length-1; index++) {
 
-
-
-
-
             if (typeof monsters[index] != 'undefined') {
-
                 monsters[index].health=monsters_list[index].health;
-
-
-
                 if (monsters_list[index].to_x < monsters[index].body.x) {
                     monsters[index].animations.play('walk_left', 3);
                 }
