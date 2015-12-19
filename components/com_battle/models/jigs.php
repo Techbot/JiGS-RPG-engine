@@ -1362,7 +1362,7 @@ class BattleModelJigs extends JModellegacy
             if ($player->dice >= $npc->dice)
             {
                 $npc->health=intval($npc->health - 20);
-                $attack_message	= "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
+                $attack_message = "You punch " . $npc->name . "and inflict 20 damage points to his health.You: $player->health ,Opponent: $npc->health";
             }
             else
             {
@@ -1394,34 +1394,33 @@ class BattleModelJigs extends JModellegacy
         $sql = "UPDATE #__jigs_weapons SET magazine = $magazine  WHERE id = $player->id_weapon";
         $db->setQuery($sql);
         $db->query();
-        /////////////////////////////////////////////////////////////////////////////////////////////////
         MessagesHelper::sendFeedback($player->id,$attack_message);
-        $result[0]	= $player->health;
-        $result[1]	= $npc->health;
-        $result[2]	= $attack_message;
+        $result[0]  = $player->health;
+        $result[1]  = $npc->health;
+        $result[2]  = $attack_message;
         $result[3]  = $player->weapon['magazine'];
         return $result;
     }
     function dead_npc($npc)
     {
         $db	 = JFactory::getDBO();
-        $user= JFactory::getUser();
-        $now= time();
-        $sql= "UPDATE #__jigs_characters SET active = 0, empty = 1 , time_killed = $now WHERE id  = $npc->id";
+        $user = JFactory::getUser();
+        $now = time();
+        $sql = "UPDATE #__jigs_characters SET active = 0, empty = 1 , time_killed = $now WHERE id  = $npc->id";
         $db->setQuery($sql);
         $db->query();
-        $sql= "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $user->id WHERE #__jigs_inventory.player_id = $npc->id";
+        $sql = "UPDATE #__jigs_inventory SET #__jigs_inventory.player_id = $user->id WHERE #__jigs_inventory.player_id = $npc->id";
         $db->setQuery($sql);
         $db->query();
         //// Update specific and General stats and payout when applicable
         $xp_type= 'nbr_kills';
         $this->increment_xp($xp_type,$user->id);
-        $player_money= $this->get_player_money($db,$user);
-        $player_money= $player_money + $npc->money;
+        $player_money = $this->get_player_money($db,$user);
+        $player_money = $player_money + $npc->money;
         $this->update_player_money($db,$player_money,$user);
         $text= 'Citizen ' . $npc->name . ' was hospitalised by citizen ' . $user->username . '<br/>' ;
         $this->sendWavyLines($text);
-        $text= "You hospitalised citizen $npc->name <br/>";
+        $text = "You hospitalised citizen $npc->name <br/>";
         $text.= "You took $npc->money credits <br/>";
         $text.= "You picked up some items<br/>";
         MessagesHelper::sendFeedback($user->id, $text);
@@ -1430,9 +1429,9 @@ class BattleModelJigs extends JModellegacy
 
     function dead_player($winner)
     {
-        $user= JFactory::getUser();
-        $db	= JFactory::getDBO();
-        $now= time();
+        $user   = JFactory::getUser();
+        $db     = JFactory::getDBO();
+        $now    = time();
         $db->setQuery("UPDATE #__jigs_players SET active = 3,  grid=1, map= 3, posx = 4, posy=5, empty= 1 , time_killed = " . $now . "
                 WHERE id ='".$user->id."'");
         $db->query();
@@ -1443,15 +1442,15 @@ class BattleModelJigs extends JModellegacy
         //	$text= 'Citizen ' . $character_id  . ' was killed by citizen ' . $user->username ;
         //	$db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
         //	$db->query() ;
-        $text = 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
+        $text   = 'Citizen ' .  $user->username  . ' was put in hospital by ' . $winner ;
         $db->setQuery("INSERT INTO #__shoutbox (name, time, text) VALUES ('Wavy Lines:', " . $now .", '" . $text ."' )" ) ;
         $db->query() ;
     }
   
     function increment_xp($xp_type,$user_id)
     {
-        $db = JFactory::getDBO();
-        $query= "UPDATE #__jigs_players SET $xp_type  = $xp_type + 1, xp = xp+1, WHERE #__jigs_players.id = " .  $user_id;
+        $db    = JFactory::getDBO();
+        $query = "UPDATE #__jigs_players SET $xp_type  = $xp_type + 1, xp = xp+1, WHERE #__jigs_players.id = " .  $user_id;
         $db->setQuery($query);
         $db->query();
         $this->test_level($user_id);
@@ -1460,13 +1459,13 @@ class BattleModelJigs extends JModellegacy
 
     function test_level($user_id)
     {
-        $user= JFactory::getUser();
-        $db	    = JFactory::getDBO();
-        $now= time();
-        $query= "SELECT xp FROM #__jigs_players where id = $user_id";
+        $user       = JFactory::getUser();
+        $db         = JFactory::getDBO();
+        $now        = time();
+        $query      = "SELECT xp FROM #__jigs_players where id = $user_id";
         $db->setQuery($query);
-        $xp	    = $db->loadResult();
-        $milestones	= array(100,200,400,800,1600,2000,4000,8000);
+        $xp	        = $db->loadResult();
+        $milestones = array(100,200,400,800,1600,2000,4000,8000);
         foreach ($milestones as $check)
         {
             if ($xp == $check)
@@ -1483,9 +1482,9 @@ class BattleModelJigs extends JModellegacy
 
     function swap()
     {
-        $db	        = JFactory::getDBO();
-        $user    = JFactory::getUser();
-        $weapon_id    = JRequest::getvar('weapon_id');
+        $db         = JFactory::getDBO();
+        $user       = JFactory::getUser();
+        $weapon_id  = JRequest::getvar('weapon_id');
         //todo does player own this weapon type?
         $db->setQuery("UPDATE #__jigs_players SET id_weapon = '" . $weapon_id . "' WHERE id =".$user->id);
         $db->query();
@@ -1506,9 +1505,9 @@ class BattleModelJigs extends JModellegacy
         $bank           = $result[1];
         if ($qty <= $money)
         {
-            $money	= $money - $qty;
-            $ban	= $bank + $qty;
-            $query	= "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE id = " . $user->id;
+            $money = $money - $qty;
+            $ban   = $bank + $qty;
+            $query = "UPDATE #__jigs_players SET money = $money, bank = $bank  WHERE id = " . $user->id;
             $db->setQuery($query);
             $db->query();
         }
@@ -1655,4 +1654,17 @@ class BattleModelJigs extends JModellegacy
         }
         return ($sql);
     }
+
+    function attackMonster(){
+        $db             = JFactory::getDBO();
+        $user           = JFactory::getUser();
+        $id            = JRequest::getvar('id');
+        $query          = "UPDATE #__jigs_monsters SET health = health -10 WHERE id= $id";
+        $db->setQuery($query);
+        $db->query();
+        return ($sql);
+    }
 }
+
+
+
