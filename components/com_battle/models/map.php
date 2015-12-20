@@ -25,6 +25,8 @@ class BattleModelMap extends JModelLegacy
         $posx       = JRequest::getVar('posx');
         $posy       = JRequest::getVar('posy');
         $query      = "UPDATE #__jigs_players SET posx = '$posx',posy = '$posy'  WHERE id ='$user->id'";
+        $db->setQuery($query);
+        $db->query();
        // $monsters   = $this->get_monsters( $this->get_coord()['grid']);
         $players   = $this->get_playersPos( $this->get_coord()['grid']);
        /*
@@ -120,6 +122,8 @@ class BattleModelMap extends JModelLegacy
                                 #__jigs_monsters.x,
                                 #__jigs_monsters.y,
                                 #__jigs_monsters.health,
+                                #__jigs_monster_types.maxhealth,
+                                #__jigs_monster_types.level,
                                 #__jigs_monster_types.name,
                                 #__jigs_monster_types.level,
                                 #__jigs_monster_types.spritesheet,
@@ -265,6 +269,10 @@ class BattleModelMap extends JModelLegacy
         if ($grid<1){
             $grid=1;
         }
+        if ($map<1){
+            $map=1;
+        }
+
         $db->setQuery("SELECT #__jigs_players.id,
                 #__jigs_players.name,
                 #__jigs_players.posx,
@@ -275,7 +283,7 @@ class BattleModelMap extends JModelLegacy
                 WHERE #__jigs_players.active = 1
                 AND #__jigs_players.grid = $grid
                 AND #__jigs_players.map = $map
-
+                AND #__jigs_players.id !=  $user->id
                 ");
         $result = $db->loadObjectlist();
         return $result;
