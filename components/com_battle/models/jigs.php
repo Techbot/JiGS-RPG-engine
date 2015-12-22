@@ -111,7 +111,7 @@ class BattleModelJigs extends JModellegacy
         $db->setQuery("	Select #__jigs_weapon_names.attack, #__jigs_weapon_names.defence FROM #__jigs_players
             LEFT JOIN #__jigs_weapon_names
             ON #__jigs_players.id_weapon = #__jigs_weapon_names.id
-            WHERE id =".$user->id);
+            WHERE #__jigs_players.id =".$user->id);
         $db->query();
         $result= $db->loadRow();
         $weapon_attack= $result[0];
