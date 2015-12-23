@@ -52,7 +52,7 @@ class plgBattleHeartbeat extends JPlugin
         $result_8	= $this->check_generators();
         $result_9   = $this->update_groups();
         $result_10  = $this->check_rents();
-        $result_11	= $this->move_monsters();
+        //$result_11	= $this->move_monsters();// moved to SiGS
         $result_12	= $this->update_pos();
 
         $now		= time();
@@ -221,6 +221,7 @@ class plgBattleHeartbeat extends JPlugin
                 return $db->loadObject();
     }
 
+    /*
     function move_monsters(){$db 	= JFactory::getDBO();
 
         $db 	        = JFactory::getDBO();
@@ -235,7 +236,7 @@ class plgBattleHeartbeat extends JPlugin
         $db->query();
         return $query;
     }
-
+*/
     function events(){
 
         $choice = rand (0,2);
