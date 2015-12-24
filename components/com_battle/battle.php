@@ -59,6 +59,20 @@ class BattleController extends JControllerLegacy
         echo json_encode($result);
     }
 
+    function glitch_action()
+    {
+        $model          = $this->getModel('glitch');
+
+
+
+        $action         = JRequest::getVar('action');
+        $result         = $model->$action();
+        echo json_encode($result);
+
+
+
+    }
+
     function twine_action()
     {
         $model          = $this->getModel('twine');

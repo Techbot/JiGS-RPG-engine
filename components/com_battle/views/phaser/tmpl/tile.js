@@ -1,4 +1,4 @@
-var game = new Phaser.Game(636, 500, Phaser.AUTO, "world");
+var game = new Phaser.Game(800, 500, Phaser.AUTO, "world");
 
 game.state.add('login', playState[0]);
 game.state.add('next', playState[1]);
@@ -6,28 +6,54 @@ game.state.add('terminal', playState[2]);
 //All parameters are optional but you usually want to set width and height
 //Remember that the game object inherits many properties and methods!
 
-var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
-    function()
-    {
-        conn.subscribe('kittensCategory', function(topic, data) {
-            // This is where you would add the new article to the DOM (beyond the scope of this tutorial)
-            //console.log('New article published to category "' + topic + '" : ' + data.title);
-            for (var iterate=0;iterate <= data.article.length-1;iterate++){
-                monsters_list[iterate].to_x = data.article[iterate].x ;
-                monsters_list[iterate].to_y = data.article[iterate].y ;
+var conn = new ab.Session('ws://www.eclecticmeme.com:8080', function() {
 
-                monsters_list[iterate].health = monsters[iterate].health = data.article[iterate].health ;
-            }
+    conn.subscribe('monstersCategory', function(topic, data) {
+            data.article.forEach(function (articleObj) {
+                var incomingId = articleObj.id;
+                monsters_list.forEach(function (monsterObj, index) {
+                    if (monsterObj.id == incomingId) {
+                        monsterObj.x = parseInt(data.article[index].x);
+                        monsterObj.y = parseInt(data.article[index].y);
+                        //monsters[incomingId].body.velocity.x = 1000;
+                        //monsters[incomingId].body.velocity.y = 1000;
+                        game.physics.arcade.moveToXY(monsters[incomingId], parseInt(monsterObj.x), parseInt(monsterObj.y), 100);
+                    }
+                });
+            });
         });
 
         conn.subscribe('halflingsCategory', function(topic, data) {
+            //console.log(data.article);
+            data.article.forEach(function(articleObj) {
+                var incomingId = articleObj.id;
 
-            for (var iterate=0;iterate <= data.article.length-1;iterate++){
-                halfling_list[iterate].to_x = parseInt(data.article[iterate].x) ;
-                halfling_list[iterate].to_y = parseInt(data.article[iterate].y) ;
-            }
+                halfling_list.forEach(function (halflingObj, index) {
+                    if (halflingObj.id == incomingId) {
+                        //console.log(playerObj.id + ':' + incomingId);
+                        //console.log('before' + ':' + playerObj.posx);
+                        halflingObj.x = parseInt(articleObj.x);
+                        halflingObj.y = parseInt(articleObj.y);
+                        // console.log('after' + ':' + playerObj.posx);
+                        // halflings[incomingId].body.velocity.x = 1000;
+                        // halflings[incomingId].body.velocity.y = 1000;
+                        // game.physics.arcade.velocityFromAngle(players[incomingId].angle, 300,players[incomingId].body.velocity);
+
+                        //console.log(incomingId);
+
+                        if  (halflings[incomingId]!==undefined) {
+                            game.physics.arcade.moveToXY(halflings[incomingId], parseInt(halflingObj.x), parseInt(halflingObj.y), 100);
+                        }
+
+
+                    }
+                });
+
+
+            });
         });
 
+        /*
         conn.subscribe('playersCategory', function(topic, data) {
             //console.log(data.article);
             for (var iterate=0;iterate <= data.article.length-1;iterate++){
@@ -39,7 +65,7 @@ var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
                 players_list[incomingId].posy = parseInt(data.article[iterate].posy) ;
             }
         });
-
+*/
         conn.subscribe('playersCategory', function(topic, data) {
             //console.log(data.article);
             for (var iterate = 0; iterate <= data.article.length - 1; iterate++) {
@@ -59,6 +85,7 @@ var conn = new ab.Session('ws://www.eclecticmeme.com:8080',
                 });
             };
         });
+
     },
 
     function() {
@@ -95,6 +122,9 @@ function moveBall(pointer)
     x = parseInt(pointer.worldX);
     y = parseInt(pointer.worldY);
 }
+
+
+
 
 function jump(one,two) {
 
@@ -136,10 +166,6 @@ function get_everything(dest) {
             jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_players&format=raw', function (result) {
                 players_list = result;
 
-
-                console.log(players_list);
-
-
                 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_twines&format=raw', function (result) {
                     twines_list = result;
 
@@ -150,11 +176,11 @@ function get_everything(dest) {
                             plates_list = result;
 
                             jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_monsters&format=raw', function (result) {
-
                                 monsters_list = result;
-                                jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_halflings&format=raw', function (result) {
 
+                                jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_halflings&format=raw', function (result) {
                                     halfling_list = result;
+
                                     game.state.start('next');
 
                                 });
@@ -166,7 +192,6 @@ function get_everything(dest) {
         });
     });
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function battle(one,two) {
     game.state.add('next', loadState);
@@ -178,13 +203,13 @@ function battle1(one,two) {
     game.state.add('next', playState[7]);
     game.state.start('next');
 }
+
 function battle2(one,two) {
     grid = 8;
     game.state.add('next', playState[8]);
     game.state.start('next');
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function enter_building(one,two) {
 
     one.body.immovable = true;
@@ -197,7 +222,6 @@ function enter_building(one,two) {
     }).done(function(result) {
 
         document.getElementById("building").innerHTML=result;
-
         document.getElementById("building").show();
         document.getElementById("world").hide();
         document.getElementById("npc").hide();
@@ -213,7 +237,7 @@ function enter_building(one,two) {
     });
 //http://eclecticmeme.com/index.php?option=com_battle&format=json&view=building&id=11059
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function shop() {
     sprite.destroy(true);
 
@@ -232,12 +256,11 @@ function shop() {
         //	mything.replaces(document.id('world'));
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function church() {
     window.location.assign("/index.php?option=com_wrapper&view=wrapper&Itemid=404")
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function collideNpc(one,two) {
     two.body.enable =false;
 
@@ -261,8 +284,6 @@ function collideNpc(one,two) {
     });
 }
 
-
-
 function collideMonster(one,two) {
     two.body.enable =false;
 
@@ -278,7 +299,6 @@ function collideMonster(one,two) {
         //document.getElementById("world").hide();
         //document.getElementById("building").hide();
         //document.getElementById("player").hide();
-
         //loadUp();
         //var url = "/components/com_battle/includes/character.js";
        // jQuery.getScript( url, function() {
@@ -288,12 +308,7 @@ function collideMonster(one,two) {
     });
 }
 
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 function page(one,two) {
    // two.body.enable =false;
     jQuery.ajax({
@@ -307,7 +322,7 @@ function page(one,two) {
 
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 function plate(one,two) {
     // two.body.enable =false;
     jQuery.ajax({
@@ -323,7 +338,7 @@ function plate(one,two) {
 
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 function twine(one,two) {
     // two.body.enable =false;
     jQuery.ajax({
@@ -338,7 +353,7 @@ function twine(one,two) {
     });
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 function terminal(one,two) {
     one.body.enable = false;
     one.body.immovable = true;
@@ -360,9 +375,9 @@ function terminal(one,two) {
         });
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 function player(one,two) {
     two.body.enable = false;
 
@@ -379,7 +394,7 @@ function player(one,two) {
         });
     });
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
 function paddy(n, p, c) {
     var pad_char = typeof c !== 'undefined' ? c : '0';
@@ -410,6 +425,7 @@ function doSomething() {
         });
     }
 }
+
 function updateLine() {
     if (line.length < content[index].length)
     {
@@ -431,5 +447,4 @@ function nextLine() {
         line = '';
         game.time.events.repeat(80, content[index].length + 1, updateLine, this);
     }
-
 }

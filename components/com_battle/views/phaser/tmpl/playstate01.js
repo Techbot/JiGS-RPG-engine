@@ -9,7 +9,7 @@ playState[1] = {
         var number = paddy(grid,3);
         // game.load.spritesheet('ms', '/components/com_battle/images/assets/metalslug_mummy37x45.png', 37, 45, 18);
         load_monsters();
-        load_player()
+        load_player();
         load_players();
         load_buildings();
         load_twines();
@@ -29,7 +29,7 @@ playState[1] = {
         //game.stage.backgroundColor = '#000000';
         group = game.add.group();
         cache();
-       // if you have image layers, be sure to load those too! Again,
+        // if you have image layers, be sure to load those too! Again,
         // make sure the last param is the name of your layer in the map.
         game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
         cursors = game.input.keyboard.createCursorKeys();
@@ -56,10 +56,6 @@ playState[1] = {
         place_portals();
     },
     update: function() {
-
-
-
-
 
         floor_halflings();
         //////////////////////////////collide obstacle layer
@@ -93,18 +89,19 @@ function load_monsters() {
 
         for (var index = 0; index < monsters_list.length; index++) {
             var filename = monsters_list[index].spritesheet;
-            game.load.spritesheet(filename, '/components/com_battle/images/assets/chars/monsters/' + filename + '/' + filename + '.png', parseInt(monsters_list[index].cellwidth), parseInt(monsters_list[index].cellheight), 16);
+            var dirname = monsters_list[index].name;
+            game.load.spritesheet(filename, '/components/com_battle/images/assets/chars/monsters/' + dirname + '/' + filename , parseInt(monsters_list[index].cellwidth), parseInt(monsters_list[index].cellheight), 16);
         }
     }
 }
 
 function floor_halflings() {
-    if (typeof halfling_list != 'undefined') {
-        for (var index = 0; index < halfling_list.length; index++) {
-            halflings[index].body.x = parseInt(halflings[index].body.x);
-            halflings[index].body.y = parseInt(halflings[index].body.y);
-        }
-    }
+
+    halflings.forEach(function (halflingsObj, index) {
+        halflingsObj.body.x = parseInt(halflingsObj.body.x);
+        halflingsObj.body.y = parseInt(halflingsObj.body.y);
+
+    })
 }
 
 function load_halflings() {
@@ -343,18 +340,23 @@ function place_monsters() {
 
 function place_halflings(){
     if (typeof halfling_list != 'undefined') {
-        for (var index = 0; index < halfling_list.length; index++)
+        for (var loop = 0; loop < halfling_list.length-1; loop++)
         {
-            var key = halfling_list[index].type;
-            halflings[index] = game.add.sprite(halfling_list[index].x, halfling_list[index].y, key);
-            game.add.tween(halflings[index]).to({ x:parseInt(halfling_list[index].x),y:parseInt(halfling_list[index].y) }, 1, Phaser.Easing.Linear.None, true);
+            var key = halfling_list[loop].type;
+            var index = halfling_list[loop].id;
+
+            console.log(index);
+
+
+            halflings[index] = game.add.sprite(halfling_list[loop].x, halfling_list[loop].y, key);
+            game.add.tween(halflings[index]).to({ x:parseInt(halfling_list[loop].x),y:parseInt(halfling_list[loop].y) }, 1, Phaser.Easing.Linear.None, true);
             halflings[index].animations.add('walk_stop',[0]);
             halflings[index].animations.add('walk_down',[0,1,2,3]);
             halflings[index].animations.add('walk_left',[4,5,6,7]);
             halflings[index].animations.add('walk_right',[8,9,10,11]);
             halflings[index].animations.add('walk_up',[12,13,14,15]);
             halflings[index].animations.play('walk_stop',1);
-            halflings[index].id = key;
+            halflings[index].id = halfling_list[loop].id;
             game.physics.enable(halflings[index], Phaser.Physics.ARCADE);
             halflings[index].body.enable =true;
 
@@ -391,9 +393,57 @@ function move_monsters(){
 
 function move_halflings(){
     ////////////////////////move halflings
+
+    halfling_list.forEach(function (halflingObj) {
+     //   console.log('match:' + halflingObj.id + '1: ' + halflingObj.x );
+
+      halflings.forEach(function(halfling){
+          if (halflingObj.id == halfling.id){
+
+           //   console.log('match:' + halflingObj.id + '1: ' + halflingObj.x  + ' 2: '  +  halfling.body.x);
+
+                  if (halflingObj.x < halfling.body.x) {
+                      halfling.body.velocity.x = 1;
+                      halfling.body.velocity.y = 1;
+                      halfling.animations.play('walk_left', 3);
+                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 100);
+                      console.log('left');
+                  }
+                  else if (halflingObj.x > halfling.body.x) {
+                      halfling.body.velocity.x = 1;
+                      halfling.body.velocity.y = 1;
+                      halfling.animations.play('walk_right', 3);
+                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+                      console.log('right');
+                  }
+                  else if (halflingObj.y < halfling.body.y) {
+                      halfling.body.velocity.x = 1;
+                      halfling.body.velocity.y = 1;
+                      halfling.animations.play('walk_up', 3);
+                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+                      // halflings[index].body.acceleration.set(0);
+                  }
+                  else if (halflingObj.y > halfling.body.y) {
+                      halfling.body.velocity.x = 1;
+                      halfling.body.velocity.y = 1;
+                      halfling.animations.play('walk_down', 3);
+                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+
+                  } else {
+                      halfling.body.velocity.x = 0;
+                      halfling.body.velocity.y = 0;
+                      halfling.animations.play('walk_stop', 1);
+                  }
+          }
+      })
+    });
+    /*
+
     if (typeof halflings != 'undefined') {
         for (var index = 0; index < halflings.length-1; index++) {
             if (typeof halflings[index] != 'undefined') {
+
+
                 if (halfling_list[index].to_x < halflings[index].body.x) {
                     halflings[index].body.velocity.x = 1;
                     halflings[index].body.velocity.y = 1;
@@ -428,6 +478,11 @@ function move_halflings(){
             }
         }
     }
+    */
+
+
+
+
 }
 
 function stop_player(){
@@ -509,18 +564,21 @@ function stop_monsters(){
 
 function stop_halflings(){
     if (typeof halflings != 'undefined') {
-        for (var index = 0; index < halflings.length-1; index++) {
-            if (typeof halflings[index] != 'undefined') {
-                if (parseInt(halflings[index].body.x) == halfling_list[index].x  ){
-                   // halflings[index].body.velocity.x = 0;
-                    halflings[index].animations.play('walk_stop',1);
-                }
-                if (parseInt(halflings[index].body.y) ==halflings[index].y ){
-                 //   halflings[index].body.velocity.y = 0;
-                    halflings[index].animations.play('walk_stop',1);
-                }
-            }
-        }
+        halflings.forEach(function(halflingObj,loop){
+            //console.log(halfling_list);
+                halfling_list.forEach(function(listObj){
+                    if (listObj.id == halflings.id){
+                        if (parseInt(halflingObj.body.x) == listObj.x  ){
+                            // halflings[index].body.velocity.x = 0;
+                            halflingsObj.animations.play('walk_stop',1);
+                        }
+                        if (parseInt(halflingObj.body.y) ==listObj.y ){
+                            //   halflings[index].body.velocity.y = 0;
+                            halflingObj.animations.play('walk_stop',1);
+                        }
+                    }
+                })
+        });
     }
 }
 
