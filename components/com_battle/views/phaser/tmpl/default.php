@@ -20,18 +20,14 @@
             var buildings = new Array();
             var posx = new Array();
             var posy = new Array();
-
             var portal = new Array();
             var add_building = new Array();
             var add_assets = new Array();
-
             var players = new Array();
             var players_list = new Array();
             var add_plates = new Array();
             var add_pages = new Array();
-
             var add_twines = new Array();
-
             var boundsX1 = new Array();
             var boundsY1 = new Array();
             var boundsX2 = new Array();
@@ -40,10 +36,8 @@
             var new_y;
             var portal_sourceX1 = new Array();
             var portal_sourceY1 = new Array();
-
             var portal_sourceX2 = [];
             var portal_sourceY2 = [];
-
             var portal_sourceX3 = [];
             var portal_sourceY3 =[];
             var portal_dest_1 = [];
@@ -72,11 +66,9 @@
             var sprite2;
             var grid;
             var cursors;
-
             var avatar;
             var cacheKey;
             var group;
-
 
         </script>
         <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
@@ -86,7 +78,7 @@
         <script src="/components/com_battle/views/phaser/tmpl/playstate02.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/tile.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/script.js"></script>
         <div id ="world"></div>
         <div id ="building"></div>
         <div id ="npc"></div>
