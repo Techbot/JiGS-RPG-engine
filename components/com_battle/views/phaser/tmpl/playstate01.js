@@ -345,9 +345,6 @@ function place_halflings(){
             var key = halfling_list[loop].type;
             var index = halfling_list[loop].id;
 
-            console.log(index);
-
-
             halflings[index] = game.add.sprite(halfling_list[loop].x, halfling_list[loop].y, key);
             game.add.tween(halflings[index]).to({ x:parseInt(halfling_list[loop].x),y:parseInt(halfling_list[loop].y) }, 1, Phaser.Easing.Linear.None, true);
             halflings[index].animations.add('walk_stop',[0]);
@@ -385,57 +382,54 @@ function move_monsters(){
                 if (monsters_list[index].to_y > monsters[index].body.y) {
                     monsters[index].animations.play('walk_down', 3);
                 }
-                game.physics.arcade.moveToXY(monsters[index], parseInt(monsters_list[index].to_x), parseInt(monsters_list[index].to_y), 100);
+             //   game.physics.arcade.moveToXY(monsters[index], parseInt(monsters_list[index].to_x), parseInt(monsters_list[index].to_y), 100);
+                game.physics.arcade.moveToXY(monsters[index], monsters_list[index].to_x, monsters_list[index].to_y, 100);
             }
         }
     }
 }
 
 function move_halflings(){
-    ////////////////////////move halflings
 
     halfling_list.forEach(function (halflingObj) {
-     //   console.log('match:' + halflingObj.id + '1: ' + halflingObj.x );
 
-      halflings.forEach(function(halfling){
-          if (halflingObj.id == halfling.id){
+        halflings.forEach(function (halfling) {
+            if (halflingObj.id == halfling.id) {
 
-           //   console.log('match:' + halflingObj.id + '1: ' + halflingObj.x  + ' 2: '  +  halfling.body.x);
+                if (halflingObj.x < halfling.body.x) {
+                    //halfling.body.velocity.x = 1;
+                    //halfling.body.velocity.y = 1;
+                    halfling.animations.play('walk_left', 3);
+                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 100);
 
-                  if (halflingObj.x < halfling.body.x) {
-                      halfling.body.velocity.x = 1;
-                      halfling.body.velocity.y = 1;
-                      halfling.animations.play('walk_left', 3);
-                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 100);
-                      console.log('left');
-                  }
-                  else if (halflingObj.x > halfling.body.x) {
-                      halfling.body.velocity.x = 1;
-                      halfling.body.velocity.y = 1;
-                      halfling.animations.play('walk_right', 3);
-                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
-                      console.log('right');
-                  }
-                  else if (halflingObj.y < halfling.body.y) {
-                      halfling.body.velocity.x = 1;
-                      halfling.body.velocity.y = 1;
-                      halfling.animations.play('walk_up', 3);
-                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
-                      // halflings[index].body.acceleration.set(0);
-                  }
-                  else if (halflingObj.y > halfling.body.y) {
-                      halfling.body.velocity.x = 1;
-                      halfling.body.velocity.y = 1;
-                      halfling.animations.play('walk_down', 3);
-                      game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+                }
+                else if (halflingObj.x > halfling.body.x) {
+                    //halfling.body.velocity.x = 1;
+                    //halfling.body.velocity.y = 1;
+                    halfling.animations.play('walk_right', 3);
+                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
 
-                  } else {
-                      halfling.body.velocity.x = 0;
-                      halfling.body.velocity.y = 0;
-                      halfling.animations.play('walk_stop', 1);
-                  }
-          }
-      })
+                }
+                else if (halflingObj.y < halfling.body.y) {
+                    //halfling.body.velocity.x = 1;
+                    //halfling.body.velocity.y = 1;
+                    halfling.animations.play('walk_up', 3);
+                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+
+                }
+                else if (halflingObj.y > halfling.body.y) {
+                    //halfling.body.velocity.x = 1;
+                    //halfling.body.velocity.y = 1;
+                    halfling.animations.play('walk_down', 3);
+                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+
+                } else {
+                    halfling.body.velocity.x = 0;
+                    halfling.body.velocity.y = 0;
+                    halfling.animations.play('walk_stop', 1);
+                }
+            }
+        })
     });
     /*
 
