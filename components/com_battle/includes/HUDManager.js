@@ -162,7 +162,7 @@ Phaser.Plugin.HUDManager.prototype.addBar = function(x, y, width, height, max, w
       bmd.ctx.fill();
       bmd.ctx.closePath();
       bmd.render();
-
+      //bmd.refreshBuffer();
     } 
   });
 
