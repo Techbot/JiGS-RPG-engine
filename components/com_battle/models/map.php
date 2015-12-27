@@ -123,7 +123,6 @@ class BattleModelMap extends JModelLegacy
                                 #__jigs_monsters.y,
                                 #__jigs_monsters.health,
                                 #__jigs_monster_types.maxhealth,
-                                #__jigs_monster_types.level,
                                 #__jigs_monster_types.name,
                                 #__jigs_monster_types.level,
                                 #__jigs_monster_types.spritesheet,
@@ -134,7 +133,7 @@ class BattleModelMap extends JModelLegacy
                                 FROM #__jigs_monsters
                                 LEFT JOIN #__jigs_monster_types
                                 ON  #__jigs_monsters.type = #__jigs_monster_types.id
-                                WHERE grid = 99 AND active = 1 ");
+                                WHERE grid = 99 ");
         $result = $db->loadObjectlist();
         return $result;
     }
