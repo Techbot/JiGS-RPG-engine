@@ -193,6 +193,18 @@ module.exports = function (grunt) {
             },
             src: 'less/template.less',
             dest: 'css/template.css'
+        },
+        //emc23 Fixed
+        compileFixed: {
+            options: {
+                strictMath: true,
+                sourceMap: true,
+                outputSourceFiles: true,
+                sourceMapURL: 'emc_styles-fixed.css.map',
+                sourceMapFilename: 'css/emc_styles-fixed.css.map'
+            },
+            src: 'less/emc_styles-fixed.less',
+            dest: 'css/emc_styles-fixed.css'
         }
     },
 
@@ -453,7 +465,7 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-js', ['concat', 'uglify:core', 'commonjs']);
 
   // CSS distribution task.
-  grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme', 'less:compileStyles', 'less:compileTemplate']);
+  grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme', 'less:compileStyles', 'less:compileTemplate', 'less:compileFixed']);
   grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'usebanner', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
 
   // Full distribution task.
