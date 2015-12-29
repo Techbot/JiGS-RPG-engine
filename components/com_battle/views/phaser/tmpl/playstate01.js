@@ -72,18 +72,26 @@ playState[1] = {
         stop_player();
         move_monsters();
         stop_monsters();
-        move_halflings();
+
+
+
         stop_halflings();
+        move_halflings();
+
+
         check_for_collisions();
     },
     render: function() {
-        game.debug.spriteCoords(sprite, 32, 32);
-
-        // Sprite debug info
-        game.debug.spriteInfo(sprite, 32, 32);
+     //   game.debug.spriteCoords(sprite, 32, 32);
+    // Sprite debug info
+    // game.debug.spriteInfo(sprite, 32, 32);
     }
 };
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function load_monsters() {
     if (typeof monsters_list != 'undefined') {
 
@@ -96,19 +104,16 @@ function load_monsters() {
 }
 
 function floor_halflings() {
-
     halflings.forEach(function (halflingsObj, index) {
         halflingsObj.body.x = parseInt(halflingsObj.body.x);
         halflingsObj.body.y = parseInt(halflingsObj.body.y);
-
     })
 }
 
 function load_halflings() {
     if (typeof halfling_list != 'undefined') {
-
         for (var index = 0; index < halfling_list.length; index++) {
-            var filename = halfling_list[index].type;
+            var filename = halfling_list[index].typename;
             game.load.spritesheet(filename, '/components/com_battle/images/assets/chars/halflings/'
                 + filename
                 + '.png', parseInt(halfling_list[index].cellwidth), parseInt(halfling_list[index].cellheight), 16);
@@ -342,7 +347,7 @@ function place_halflings(){
     if (typeof halfling_list != 'undefined') {
         for (var loop = 0; loop < halfling_list.length-1; loop++)
         {
-            var key = halfling_list[loop].type;
+            var key = halfling_list[loop].typename;
             var index = halfling_list[loop].id;
 
             halflings[index] = game.add.sprite(halfling_list[loop].x, halfling_list[loop].y, key);
@@ -390,39 +395,24 @@ function move_monsters(){
 }
 
 function move_halflings(){
-
     halfling_list.forEach(function (halflingObj) {
-
         halflings.forEach(function (halfling) {
             if (halflingObj.id == halfling.id) {
-
                 if (halflingObj.x < halfling.body.x) {
-                    //halfling.body.velocity.x = 1;
-                    //halfling.body.velocity.y = 1;
                     halfling.animations.play('walk_left', 3);
                     game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 100);
-
                 }
-                else if (halflingObj.x > halfling.body.x) {
-                    //halfling.body.velocity.x = 1;
-                    //halfling.body.velocity.y = 1;
+                else if (parseInt(halflingObj.x) > parseInt(halfling.body.x)) {
                     halfling.animations.play('walk_right', 3);
                     game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
-
                 }
-                else if (halflingObj.y < halfling.body.y) {
-                    //halfling.body.velocity.x = 1;
-                    //halfling.body.velocity.y = 1;
+                else if (parseInt(halflingObj.y) < parseInt(halfling.body.y)) {
                     halfling.animations.play('walk_up', 3);
                     game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
-
                 }
-                else if (halflingObj.y > halfling.body.y) {
-                    //halfling.body.velocity.x = 1;
-                    //halfling.body.velocity.y = 1;
+                else if (parseInt(halflingObj.y) > parseInt(halfling.body.y)) {
                     halfling.animations.play('walk_down', 3);
                     game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
-
                 } else {
                     halfling.body.velocity.x = 0;
                     halfling.body.velocity.y = 0;
@@ -431,52 +421,6 @@ function move_halflings(){
             }
         })
     });
-    /*
-
-    if (typeof halflings != 'undefined') {
-        for (var index = 0; index < halflings.length-1; index++) {
-            if (typeof halflings[index] != 'undefined') {
-
-
-                if (halfling_list[index].to_x < halflings[index].body.x) {
-                    halflings[index].body.velocity.x = 1;
-                    halflings[index].body.velocity.y = 1;
-                    halflings[index].animations.play('walk_left', 3);
-                    game.physics.arcade.moveToXY(halflings[index], halfling_list[index].to_x, halfling_list[index].to_y, 100);
-                }
-                else if (halfling_list[index].to_x > halflings[index].body.x) {
-                    halflings[index].body.velocity.x = 1;
-                    halflings[index].body.velocity.y = 1;
-                    halflings[index].animations.play('walk_right', 3);
-                    game.physics.arcade.moveToXY(halflings[index],halfling_list[index].to_x, halfling_list[index].to_y,60);
-                }
-                else if (halfling_list[index].to_y < halflings[index].body.y) {
-                    halflings[index].body.velocity.x = 1;
-                    halflings[index].body.velocity.y = 1;
-                    halflings[index].animations.play('walk_up', 3);
-                    game.physics.arcade.moveToXY(halflings[index], halfling_list[index].to_x, halfling_list[index].to_y, 60);
-                   // halflings[index].body.acceleration.set(0);
-                }
-                else if (halfling_list[index].to_y > halflings[index].body.y) {
-                    halflings[index].body.velocity.x = 1;
-                    halflings[index].body.velocity.y = 1;
-                    halflings[index].animations.play('walk_down', 3);
-                    game.physics.arcade.moveToXY(halflings[index], halfling_list[index].to_x, halfling_list[index].to_y, 60);
-
-                }else
-                {
-                    halflings[index].body.velocity.x = 0;
-                    halflings[index].body.velocity.y = 0;
-                    halflings[index].animations.play('walk_stop',1);
-                }
-            }
-        }
-    }
-    */
-
-
-
-
 }
 
 function stop_player(){
@@ -644,7 +588,7 @@ function cache(){
     if (typeof halfling_list != 'undefined') {
 
         for (var index = 0; index < halfling_list.length; index++) {
-            var filename = halfling_list[index].type;
+            var filename = halfling_list[index].name;
             //console.log('filename:' + filename);
             game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/chars/halflings/'+ filename + '.png');
         }
