@@ -494,6 +494,9 @@ Note: this container holds the  content. We load this container before we load t
   margin: auto auto 20px auto;
   padding: 0 0 15px 0;
 }
+.custom {
+  padding: 0 0 15px 0;
+}
 .moduletable h3,
 .moduletable_menu h3,
 .moduletable_text h3 {
