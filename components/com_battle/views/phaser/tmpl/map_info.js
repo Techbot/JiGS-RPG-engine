@@ -2319,8 +2319,8 @@ y3[70] = 476;
 
 boundsX1[70] = 0;
 boundsY1[70] = 0;
-boundsX2[70] = 850;
-boundsY2[70] = 888;
+boundsX2[70] = 1250;
+boundsY2[70] = 1288;
 
 
 portal_dest_1[70] = 65;
