@@ -8,7 +8,7 @@ var x3 = new Array();
 var y3 = new Array();
 
 /////////////////////////////////////////////////////////////////////////////////////////
-tile_names[1] = ['TileA4','TileA5','TileB','TileC','TileD','TileE','Zombie_TileC','Zombie_TileD','sprite'];
+tile_names[1] = ['TileA5','TileB','TileC','TileD','sprite','Zombie_A5','001plate','zombies_from_space-sprite-min','zombies_from_space-sprite-small','sprites','002plate-sprite','spritesheet-bar-objects','!$Casino-Elevator'];
 
 // portal placement
 x1[1] = 480;
@@ -23,8 +23,8 @@ y3[1] = 192;
 // map
 boundsX1[1] = 0;
 boundsY1[1] = 0;
-boundsX2[1] = 1152;
-boundsY2[1] = 576;
+boundsX2[1] = 2304;
+boundsY2[1] = 2560;
 
 // portal destination
 portal_dest_1[1] = 2;
