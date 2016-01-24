@@ -2,8 +2,8 @@
   width: 235px;
 }
 #MiddleCol.col-md-9 {
-  width: initial;
   max-width: 800px;
+  width: initial;
 }
 #LoadFirst.col-md-9 {
   width: auto;
@@ -18,8 +18,8 @@
   padding: 0 10px 0 0;
 }
 .row {
-  margin-right: 0;
   margin-left: 0;
+  margin-right: 0;
 }
 #LoadFirst.col-md-9 {
   padding: 0;
@@ -38,23 +38,23 @@ div#messages {
   margin: 0;
 }
 div#shelf.container-fluid {
-  padding-right: 25px;
-  padding-left: 25px;
   margin: 0 auto 20px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 .teaser-1.col-md-12 {
-  padding-right: 0;
   padding-left: 0;
+  padding-right: 0;
 }
 .teaser-1.col-md-12 h3 {
   float: left;
-  padding-right: 10px;
   margin: 0 0 20px;
+  padding-right: 10px;
 }
 ul.nav-inline {
+  margin: 0 0 20px;
   display: block;
   float: right;
-  margin: 0 0 20px;
 }
 ul.nav-inline li {
   display: inline-block;
@@ -65,15 +65,15 @@ ul.nav-inline li a {
   padding: 0 10px;
   margin: 0 10px 0 0;
   text-align: center;
-  background-color: rgba(34, 34, 34, .8);
+  background-color: rgba(34, 34, 34, 0.8);
   border-radius: 4px;
 }
 ul.nav-inline li a:hover {
+  background-color: #009999;
   text-decoration: none;
-  background-color: #099;
 }
 ul.nav-inline li.active a {
-  background-color: rgba(0, 153, 153, .6);
+  background-color: rgba(0, 153, 153, 0.6);
 }
 .moduletable_none {
   background-image: none;
@@ -87,10 +87,10 @@ div#header {
   margin: 0 0 2em;
 }
 ul.nav-inline li:first-child a {
-  padding-left: 35px;
-  background-image: url("../images/Pyramid_24.png");
+  padding-left: 30px;
+  background-image: url("../images/star.png");
   background-repeat: no-repeat;
-  background-position: 5px 0 !important;
+  background-position: 7px 2px !important;
 }
 #sidebar-2 {
   float: left !important;
