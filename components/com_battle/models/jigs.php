@@ -715,14 +715,14 @@ class BattleModelJigs extends JModellegacy
     /// GIVE BATTERY FROM USER TO BUILDING ///
     function swap_battery()
     {
-        $user    = JFactory::getUser();
+        $user           = JFactory::getUser();
         $db             = JFactory::getDBO();
-        $building_id= JRequest::getvar('building_id');
-        $id       = JRequest::getvar('id');
-        $sql    = "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
+        $building_id    = JRequest::getvar('building_id');
+        $id             = JRequest::getvar('id');
+        $sql            = "UPDATE #__jigs_batteries SET user = $building_id where id = $id";
         $db->setQuery($sql);
-        $result   = $db->query();
-         $energy_total   = $this->get_total_energy($building_id);
+        $result         = $db->query();
+        $energy_total   = $this->get_total_energy($building_id);
         MessagesHelper::sendFeedback($user->id, "transferred battery $id to building $building_id. Building now has $energy_total energy units");
         return $energy_total ;
     }
@@ -1662,7 +1662,31 @@ class BattleModelJigs extends JModellegacy
         $query          = "UPDATE #__jigs_monsters SET health = health -10 WHERE id= $id";
         $db->setQuery($query);
         $db->query();
-        return ($sql);
+
+
+
+        $query          = "SELECT health FROM  #__jigs_monsters WHERE id= $id";
+        $db->setQuery($query);
+        $result['id']    =  $id  ;
+        $result['health']     = $db->loadResult();
+
+
+
+        $entryData = array(
+            'category' => 'monsterHealthCategory',
+            'title'    => 'title',
+            'article'  => $result,
+            'when' => time()  );
+        $context    = new ZMQContext();
+        $socket     = $context->getSocket(ZMQ::SOCKET_PUSH, 'my pusher');
+        if($socket->connect("tcp://localhost:5555")){
+            //   echo 'connected';
+        };
+        if($socket->send(json_encode($entryData))) {
+          //  echo 'delivered';
+        };
+
+        return true;
     }
 }
 
