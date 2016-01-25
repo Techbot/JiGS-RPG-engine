@@ -97,8 +97,9 @@ function load_monsters() {
 
         for (var index = 0; index < monsters_list.length; index++) {
             var filename = monsters_list[index].spritesheet;
+            var key = monsters_list[index].name;
             var dirname = monsters_list[index].name;
-            game.load.spritesheet(filename, '/components/com_battle/images/assets/chars/monsters/' + dirname + '/' + filename , parseInt(monsters_list[index].cellwidth), parseInt(monsters_list[index].cellheight), 16);
+            game.load.spritesheet(key, '/components/com_battle/images/assets/chars/monsters/' + dirname + '/' + filename , parseInt(monsters_list[index].cellwidth), parseInt(monsters_list[index].cellheight), 16);
         }
     }
 }
@@ -219,7 +220,6 @@ function place_buildings(){
         if(buildings.length != 0) {
             for (var index = 0; index < buildings.length; index++) {
                 var key = buildings[index].id;
-                //console.log("_" + key);
                 add_building[index] = game.add.sprite(buildings[index].posx * 1, buildings[index].posy * 1, "_" + key);
                 add_building[index].id = key;
                 game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
@@ -232,7 +232,6 @@ function place_twines(){
     if(twines_list.length != 0) {
         for (var index = 0; index < twines_list.length; index++) {
             var key = twines_list[index].id;
-            //console.log("_" + key);
             add_twines[index] = game.add.sprite(twines_list[index].posx * 1, twines_list[index].posy * 1, key);
             add_twines[index].id = key;
             game.physics.enable(add_twines[index], Phaser.Physics.ARCADE);
@@ -311,38 +310,37 @@ function place_chars() {
 
 function place_monsters() {
     if (typeof monsters_list != 'undefined') {
-        monsters_list.forEach(function (monsterObj, index) {
-            {
-                var key = monsterObj.spritesheet;
-                monsters[index] = game.add.sprite(monsterObj.x, monsterObj.y, key);
+
+            for (var loop = 0; loop < monsters_list.length - 1; loop++) {
+                var key = monsters_list[loop].name;
+
+                var index = monsters_list[loop].id;
+
+                monsters[index]                     = game.add.sprite( monsters_list[loop].x,  monsters_list[loop].y, key);
                 game.add.tween(monsters[index]).to({
-                    x: monsterObj.x,
-                    y: monsterObj.y
+                    x: monsters_list[loop].x,
+                    y: monsters_list[loop].y
                 }, 1, Phaser.Easing.Linear.None, true);
                 monsters[index].animations.add('stop', [0]);
                 monsters[index].animations.add('walk_down', [0, 1, 2, 3]);
                 monsters[index].animations.add('walk_left', [4, 5, 6, 7]);
                 monsters[index].animations.add('walk_right', [8, 9, 10, 11]);
                 monsters[index].animations.add('walk_up', [12, 13, 14, 15]);
-                monsters[index].animations.play('walk_stop', 1);
-                //monsters[index].id = key;
-                monsters[index].id = monsterObj.id;
-                //monsters[index].maxHealth=15;
-                //monsters[index].health=10;
-                monsters[index].maxHealth=monsterObj.maxHealth;
-                monsters[index].health=monsterObj.health;
+                monsters[index].animations.play('walk_stop', [1]);
+                monsters[index].id                  = monsters_list[loop].id;
+                monsters[index].maxHealth           = monsters_list[loop].maxHealth;
+                monsters[index].health              = monsters_list[loop].health;
                 monsters[index].anchor.setTo(0.5, 0.5);
                 game.physics.enable(monsters[index], Phaser.Physics.ARCADE);
-                monsters[index].hud = Phaser.Plugin.HUDManager.create( monsters[index].game,  monsters[index], 'enemyhud');
-                monsters[index].healthHUD =  monsters[index].hud.addBar(0,-20, 32, 2,  monsters[index].maxHealth, 'health',  monsters[index], Phaser.Plugin.HUDManager.HEALTHBAR, false);
+                monsters[index].hud                 = Phaser.Plugin.HUDManager.create(monsters[index].game, monsters[index], 'enemyhud');
+                monsters[index].healthHUD           = monsters[index].hud.addBar(0, -20, 32, 2, monsters[index].maxHealth, 'health', monsters[index], Phaser.Plugin.HUDManager.HEALTHBAR, false);
                 monsters[index].healthHUD.bar.anchor.setTo(0.5, 0.5);
                 monsters[index].addChild(monsters[index].healthHUD.bar);
-                monsters[index].body.immovable = true;
+                monsters[index].body.immovable      = true;
             }
-        })
-    }
-}
+        }
 
+}
 function place_halflings(){
     if (typeof halfling_list != 'undefined') {
         for (var loop = 0; loop < halfling_list.length-1; loop++)
@@ -370,49 +368,56 @@ function place_halflings(){
 
 function move_monsters(){
 
-    if (typeof monsters != 'undefined') {
-        for (var index = 0; index < monsters.length-1; index++) {
+    monsters_list.forEach(function (monsterObj) {
+        monsters.forEach(function (monster) {
+            if (monsterObj.id == monster.id) {
 
-            if (typeof monsters[index] != 'undefined') {
-                monsters[index].health=monsters_list[index].health;
-                if (monsters_list[index].to_x < monsters[index].body.x) {
-                    monsters[index].animations.play('walk_left', 3);
+                if (monsterObj.to_x < monster.body.x) {
+                    monster.animations.play('walk_left', 3);
+                    game.physics.arcade.moveToXY(monster, monsterObj.to_x,monsterObj.to_y, 100);
                 }
-                if (monsters_list[index].to_x > monsters[index].body.x) {
-                    monsters[index].animations.play('walk_right',3 );
+                else if (monsterObj.to_x > monster.body.x) {
+                    monster.animations.play('walk_right',3 );
+                    game.physics.arcade.moveToXY(monster, monsterObj.to_x, monsterObj.to_y, 100);
                 }
-                if (monsters_list[index].to_y < monsters[index].body.y) {
-                    monsters[index].animations.play('walk_up', 3);
+                else  if (monsterObj.to_y < monster.body.y) {
+                    monster.animations.play('walk_up', 3);
+                    game.physics.arcade.moveToXY(monster, monsterObj.to_x, monsterObj.to_y, 100);
                 }
-                if (monsters_list[index].to_y > monsters[index].body.y) {
-                    monsters[index].animations.play('walk_down', 3);
+                else  if (monsterObj.to_y > monster.body.y) {
+                    monster.animations.play('walk_down', 3);
+                    game.physics.arcade.moveToXY(monster, monsterObj.to_x, monsterObj.to_y, 100);
+                } else {
+                    monster.body.velocity.x = 0;
+                    monster.body.velocity.y = 0;
+                    monster.animations.play('walk_stop', 1);
                 }
-             //   game.physics.arcade.moveToXY(monsters[index], parseInt(monsters_list[index].to_x), parseInt(monsters_list[index].to_y), 100);
-                game.physics.arcade.moveToXY(monsters[index], monsters_list[index].to_x, monsters_list[index].to_y, 100);
+
             }
-        }
-    }
+        })
+    })
 }
 
 function move_halflings(){
     halfling_list.forEach(function (halflingObj) {
         halflings.forEach(function (halfling) {
             if (halflingObj.id == halfling.id) {
-                if (halflingObj.x < halfling.body.x) {
+
+                if (halflingObj.x < halfling.body.x-20) {
                     halfling.animations.play('walk_left', 3);
-                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 100);
+                    game.physics.arcade.moveToXY(halfling, parseInt(halflingObj.x), parseInt(halflingObj.y), 100);
                 }
-                else if (parseInt(halflingObj.x) > parseInt(halfling.body.x)) {
+                else if ((halflingObj.x) > (halfling.body.x+20)) {
                     halfling.animations.play('walk_right', 3);
-                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+                    game.physics.arcade.moveToXY(halfling, parseInt(halflingObj.x), parseInt(halflingObj.y), 100);
                 }
-                else if (parseInt(halflingObj.y) < parseInt(halfling.body.y)) {
+                else if ((halflingObj.y) < (halfling.body.y-20)) {
                     halfling.animations.play('walk_up', 3);
-                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+                    game.physics.arcade.moveToXY(halfling, parseInt(halflingObj.x), parseInt(halflingObj.y), 100);
                 }
-                else if (parseInt(halflingObj.y) > parseInt(halfling.body.y)) {
+                else if ((halflingObj.y) > (halfling.body.y+20)) {
                     halfling.animations.play('walk_down', 3);
-                    game.physics.arcade.moveToXY(halfling, halflingObj.x, halflingObj.y, 60);
+                    game.physics.arcade.moveToXY(halfling, parseInt(halflingObj.x), parseInt(halflingObj.y), 100);
                 } else {
                     halfling.body.velocity.x = 0;
                     halfling.body.velocity.y = 0;
@@ -426,11 +431,9 @@ function move_halflings(){
 function stop_player(){
     if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
         sprite.body.velocity.x = 0;
-
     }
     if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
         sprite.body.velocity.y = 0;
-
     }
     if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
         if (send == 1) {
@@ -445,24 +448,20 @@ function stop_players() {
         players_list.forEach(function (playerObj, index) {
             var incoming_id = playerObj.id;
             if (typeof (players[incoming_id]) != 'undefined') {
-                $x1 = parseInt(players[incoming_id].body.x);
-                $y1 = parseInt(players[incoming_id].body.y);
-                $x2 = parseInt(playerObj.posx);
-                $y2 = parseInt(playerObj.posy);
-                $part1 = ($x2 - $x1) * ($x2 - $x1);
-                $part2 = ($y2 - $y1) * ($y2 - $y1);
+                $x1     = parseInt(players[incoming_id].body.x);
+                $y1     = parseInt(players[incoming_id].body.y);
+                $x2     = parseInt(playerObj.posx);
+                $y2     = parseInt(playerObj.posy);
+                $part1  = ($x2 - $x1) * ($x2 - $x1);
+                $part2  = ($y2 - $y1) * ($y2 - $y1);
                 $distance = Math.sqrt(($part1) + ($part2));
                 if ($distance < 3) {
-                 //   console.log($distance);
-                    players[incoming_id].body.velocity.x = 0;
-                    players[incoming_id].body.velocity.y = 0;
-                    players[incoming_id].body.immobile = true;
+                    players[incoming_id].body.velocity.x    = 0;
+                    players[incoming_id].body.velocity.y    = 0;
+                    players[incoming_id].body.immobile      = true;
                 }
                 else{
                     players[incoming_id].body.enabled = true;
-                //    players[incoming_id].body.velocity = 100;
-                //    players[incoming_id].body.velocity = 1;
-                //    console.log($distance);
                 }
             }
         })
@@ -473,9 +472,9 @@ function move_players(){
     if (typeof players != 'undefined' && players_list !='undefined') {
         players_list.forEach(function (playerObj, index) {
             var incoming_id =playerObj.id;
-            // console.log(incoming_id);
+
             if( typeof players[incoming_id] !='undefined') {
-             //   console.log('moving' + incoming_id);
+
                 game.physics.arcade.moveToXY(players[incoming_id], playerObj.posx, playerObj.posy, 100);
             }
         });
@@ -484,19 +483,19 @@ function move_players(){
 
 function stop_monsters(){
     if (typeof monsters != 'undefined') {
-        for (var index = 0; index < monsters.length-1; index++) {
-            if (typeof monsters[index] != 'undefined') {
-
-                if ((parseInt(monsters[index].body.x) == parseInt(monsters_list[index].x) )) {
-              //      monsters[index].body.velocity.x = 0;
-                    monsters[index].animations.play('walk_stop',1);
+        monsters.forEach(function(monsterObj,loop){
+            //console.log(halfling_list);
+            monsters_list.forEach(function(listObj){
+                if (listObj.id == monsters.id){
+                    if (parseInt(monsterObj.body.x) == listObj.x  ){
+                        monstersObj.animations.play('walk_stop',1);
+                    }
+                    if (parseInt(monsterObj.body.y) ==listObj.y ){
+                        monsterObj.animations.play('walk_stop',1);
+                    }
                 }
-                if ((monsters[index].body.y >=monsters[index].y-20) ||(monsters[index].body.y < monsters[index].y + 20)){
-            //        monsters[index].body.velocity.y = 0;
-                    monsters[index].animations.play('walk_stop',1);
-                }
-            }
-        }
+            })
+        });
     }
 }
 
@@ -507,11 +506,9 @@ function stop_halflings(){
                 halfling_list.forEach(function(listObj){
                     if (listObj.id == halflings.id){
                         if (parseInt(halflingObj.body.x) == listObj.x  ){
-                            // halflings[index].body.velocity.x = 0;
                             halflingsObj.animations.play('walk_stop',1);
                         }
                         if (parseInt(halflingObj.body.y) ==listObj.y ){
-                            //   halflings[index].body.velocity.y = 0;
                             halflingObj.animations.play('walk_stop',1);
                         }
                     }
@@ -523,10 +520,21 @@ function stop_halflings(){
 function check_for_collisions(){
 
     ///////////////////////collide monster list
-    for (var index = 0; index < monsters_list.length; index++)
-    {
+//    for (var index = 0; index < monsters_list.length; index++)
+//    {
+//        game.physics.arcade.collide(sprite, monsters_list[index], collideMonster);
+//    }
+
+    monsters.forEach(function (monster, index) {
         game.physics.arcade.collide(sprite, monsters[index], collideMonster);
-    }
+    });
+
+
+
+
+
+
+
 
     ///////////////////////collide npc list
     for (var index = 0; index < npc_list.length; index++)
