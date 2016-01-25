@@ -26,6 +26,16 @@ var conn = new ab.Session('ws://www.eclecticmeme.com:8080', function() {
             });
         });
     });
+
+    conn.subscribe('monsterHealthCategory', function(topic, data) {
+
+        console.log(data);
+
+
+           //    monsters[parseInt(data.article.id)].health = parseInt(data.article.health);
+
+     });
+
     conn.subscribe('halflingsCategory', function(topic, data) {
         data.article.forEach(function(articleObj) {
 
@@ -250,24 +260,25 @@ function collideNpc(one,two) {
 }
 
 function collideMonster(one,two) {
-    two.body.enable =false;
-    console.log('attacked!');
+    console.log(monsters[two.id].health);
+    monsters[two.id].body.enable = false;
+    //console.log('attacked!');
     jQuery.ajax({
-        url: "/index.php?option=com_battle&format=json&task=action&action=attackMonster&id="+ two.id,
+        url: "/index.php?option=com_battle&format=json&task=action&action=attackMonster&id=" + two.id,
         context: document.body,
         dataType: "json"
-    }).done(function(result) {
+    }).done(function (result) {
+       // sprite.destroy(true);
+        console.log('attacked!');
+        monsters[two.id].health = monsters[two.id].health-50;
 
-       console.log('attacked!');
-
-        two.body.enable =true;
-
-
-
-
-
+        //console.log(two.health);
+        monsters[two.id].body.enable = true;
     });
+    monsters[two.id].health = monsters[two.id].health-50;
 
+    console.log(monsters[two.id].health);
+    return monsters[two.id];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
