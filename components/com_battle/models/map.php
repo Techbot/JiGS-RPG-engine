@@ -7,11 +7,10 @@ class BattleModelMap extends JModelLegacy
 {
     function save_coord()
     {
-        $db = JFactory::getDBO();
-        $user = JFactory::getUser();
-        $grid =	JRequest::getVar('grid');
-        //$query = "UPDATE #__jigs_players SET map = '".$map_id."', grid = '".$grid."', posx = '".$posx."',posy = '".$posy."' WHERE id ='".$user->id."'" ;
-        $query = "UPDATE #__jigs_players SET grid = '$grid' WHERE id ='$user->id'";
+        $db     = JFactory::getDBO();
+        $user   = JFactory::getUser();
+        $grid   = JRequest::getVar('grid');
+        $query  = "UPDATE #__jigs_players SET grid = '$grid' WHERE id ='$user->id'";
         $db->setQuery($query);
         $db->query();
         return;
@@ -35,7 +34,7 @@ class BattleModelMap extends JModelLegacy
             'title'    => 'title',
             'article'  => $monsters,
             'when' => time()  );
-*/
+        */
         $entryData = array(
             'category' => 'playersCategory',
             'title'    => 'title',
@@ -133,7 +132,7 @@ class BattleModelMap extends JModelLegacy
                                 FROM #__jigs_monsters
                                 LEFT JOIN #__jigs_monster_types
                                 ON  #__jigs_monsters.type = #__jigs_monster_types.id
-                                WHERE grid = 99 ");
+                                WHERE grid = $grid ");
         $result = $db->loadObjectlist();
         return $result;
     }
@@ -175,7 +174,7 @@ class BattleModelMap extends JModelLegacy
                                 #__jigs_hobbits.x,
                                 #__jigs_hobbits.y,
                                 #__jigs_hobbits.health,
-                                #__jigs_hobbit_types.type,
+                                #__jigs_hobbit_types.typename,
                                 #__jigs_hobbit_types.cellwidth,
                                 #__jigs_hobbit_types.cellheight,
                                 #__jigs_hobbit_types.numberofcells
@@ -183,7 +182,7 @@ class BattleModelMap extends JModelLegacy
                                 FROM #__jigs_hobbits
                                 LEFT JOIN #__jigs_hobbit_types
                                 ON  #__jigs_hobbits.type = #__jigs_hobbit_types.id
-                                WHERE grid = 1 ");
+                                WHERE grid = $grid ");
         $result = $db->loadObjectlist();
         return $result;
     }
