@@ -18,11 +18,10 @@ class BattleModelfactions extends JModelLegacy
         $db = JFactory::getDBO();
         foreach ($factions as $faction_name=>$faction_id)
         {
-            $faction_list->$faction_name->name      = $faction_name;
-
-            $faction_list->$faction_name->groups    = $this->get_group_ids($faction_id);
-            $faction_list->$faction_name->groupnames= $this->get_group_names($faction_list->$faction_name->groups);
-            $faction_list->$faction_name->groupstats= $this->get_group_stats($faction_list->$faction_name->groups);
+            $faction_list->$faction_name->name          = $faction_name;
+            $faction_list->$faction_name->groups        = $this->get_group_ids($faction_id);
+            $faction_list->$faction_name->groupnames    = $this->get_group_names($faction_list->$faction_name->groups);
+            $faction_list->$faction_name->groupstats    = $this->get_group_stats($faction_list->$faction_name->groups);
         }
         $faction_list	= $this->get_group_members($faction_list);
         return $faction_list;
@@ -47,43 +46,37 @@ class BattleModelfactions extends JModelLegacy
 
     function get_group_stats()
     {
-        $db         = JFactory::getDBO();
-        $query				        = "SELECT * FROM #__jigs_groups Order by total_xp DESC";
+        $db                     = JFactory::getDBO();
+        $query                  = "SELECT * FROM #__jigs_groups Order by total_xp DESC";
         $db->setQuery($query);
-        $groupstats		        =  $db->loadObjectList();
+        $groupstats              =  $db->loadObjectList();
         foreach ($groupstats as $group)
         {
-
-
             $group->name    = $this->get_group_name($group->gid);
-            $group->avatar	= $this->get_avatar($group->captain);
+            $group->avatar  = $this->get_avatar($group->captain);
         }
     return $groupstats;
     }
 
     function get_avatar($id)
     {
-
         $db         = JFactory::getDBO();
-        $query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
+        $query      = "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
         $db->setQuery($query);
         return $db->loadResult();
-
-
     }
 
     function get_group_members()
     {
-        $db                         = JFactory::getDBO();
-        $gid                        = JRequest::getVar('gid');
-        $query				        = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = $gid" ;
+        $db                             = JFactory::getDBO();
+        $gid                            = JRequest::getVar('gid');
+        $query                          = "SELECT user_id FROM #__user_usergroup_map WHERE group_id = $gid" ;
         $db->setQuery($query);
-        $ids = $db->loadcolumn();
+        $ids                            = $db->loadcolumn();
         $this->total['faction_members'] = $this->get_character_names($gid);
         $this->get_player_names($ids);
-        $sorted = $this->sortArrayofObjectByProperty($this->total['faction_members'] ,'xp',$order="DESC")   ;
+        $sorted                         = $this->sortArrayofObjectByProperty($this->total['faction_members'] ,'xp',$order="DESC")   ;
         return  $sorted ;
-
     }
 
     function sortArrayofObjectByProperty($array,$property,$order="ASC")
@@ -91,7 +84,6 @@ class BattleModelfactions extends JModelLegacy
         $cur = 1;
         $stack[1]['l'] = 0;
         $stack[1]['r'] = count($array)-1;
-         
         do
         {
             $l = $stack[$cur]['l'];
@@ -115,10 +107,9 @@ class BattleModelfactions extends JModelLegacy
                     // Swap elements of two parts if necesary
                     if( $i <= $j)
                     {
-                        $w = $array[$i];
-                        $array[$i] = $array[$j];
-                        $array[$j] = $w;
-                         
+                        $w          = $array[$i];
+                        $array[$i]  = $array[$j];
+                        $array[$j]  = $w;
                         $i++;
                         $j--;
                     }
@@ -140,32 +131,34 @@ class BattleModelfactions extends JModelLegacy
         return $array;
     }
 
-    function compare_weights($a, $b) {
-               echo'<pre>';
-               print_r( $a);
-              echo'</pre>'; 
-
-    if($a->money == $b->money) {
-        return 0 ;
-    } 
-    return ($a->money < $b->money) ? -1 : 1;
-} 
+    function compare_weights($a, $b)
+    {
+       echo'<pre>';
+       print_r( $a);
+       echo'</pre>';
+       if($a->money == $b->money) {
+            return 0 ;
+        }
+        return ($a->money < $b->money) ? -1 : 1;
+    }
 
     function get_player_names($group_ids)
     {
-        $db = JFactory::getDBO();
-       $names = array();
+        $db     = JFactory::getDBO();
+        $names  = array();
 
         foreach ($group_ids as $id)
             {
-                $query = "SELECT id, name,    xp,  health, bank, type, money,level FROM #__jigs_players WHERE id = $id ORDER BY xp DESC";
+                $query                              = "SELECT  id, name, xp,  health, bank, type, money, level
+                                                            FROM #__jigs_players
+                                                            WHERE id = $id ORDER BY xp DESC";
                 $db->setQuery($query);
-                $x = $db->loadObject();
+                $x                                  = $db->loadObject();
                 $x->id2 = $id;
-                $query		= "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
+                $query                              = "SELECT #__comprofiler.avatar FROM #__comprofiler WHERE #__comprofiler.id =" . $id;
                 $db->setQuery($query);
-                $x->avatar	= $db->loadResult();
-                $this->total['faction_members'][] =  $x;
+                $x->avatar                          = $db->loadResult();
+                $this->total['faction_members'][]   =  $x;
             }
         return;
     }
