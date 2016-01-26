@@ -1659,7 +1659,17 @@ class BattleModelJigs extends JModellegacy
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
         $id            = JRequest::getvar('id');
+
+        $query          = "SELECT * FROM #__jigs_monsters WHERE id= $id";
+        $db->setQuery($query);
+        $result     = $db->loadResultArray();
+
+
         $query          = "UPDATE #__jigs_monsters SET health = health -10 WHERE id= $id";
+
+
+
+
         $db->setQuery($query);
         $db->query();
 
