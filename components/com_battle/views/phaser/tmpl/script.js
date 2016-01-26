@@ -260,24 +260,25 @@ function collideNpc(one,two) {
 }
 
 function collideMonster(one,two) {
-    console.log(monsters[two.id].health);
+
     monsters[two.id].body.enable = false;
     //console.log('attacked!');
     jQuery.ajax({
-        url: "/index.php?option=com_battle&format=json&task=action&action=attackMonster&id=" + two.id,
+        url: "/index.php?option=com_battle&format=json&task=monster_action&action=attack&id=" + two.id,
         context: document.body,
         dataType: "json"
     }).done(function (result) {
-       // sprite.destroy(true);
         console.log('attacked!');
-        monsters[two.id].health = monsters[two.id].health-50;
-
-        //console.log(two.health);
-        monsters[two.id].body.enable = true;
+        monsters[two.id].health = monsters[two.id].health-10;
+        if  (monsters[two.id].health<0){
+            monsters[two.id].alpha = 0;
+           // monsters[two.id].destroy(true);
+        }
+        else {
+            //console.log(two.health);
+            monsters[two.id].body.enable = true;
+        }
     });
-    monsters[two.id].health = monsters[two.id].health-50;
-
-    console.log(monsters[two.id].health);
     return monsters[two.id];
 }
 
