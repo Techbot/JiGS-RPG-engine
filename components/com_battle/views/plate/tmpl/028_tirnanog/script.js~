@@ -1,0 +1,77 @@
+var game = new Phaser.Game(640, 480, Phaser.CANVAS, 'world', { preload: preload, create: create });
+var videotape = document.getElementById("myVideo");
+var ctx = game.context;
+
+function preload () {
+
+    //  You can fill the preloader with as many assets as your game requires
+
+    //  Here we are loading an image. The first parameter is the unique
+    //  string by which we'll identify the image later in our code.
+
+    //  The second parameter is the URL of the image (relative)
+    game.load.image('plate', 'bonsanto.jpg');
+    game.load.image('clickMe', 'clickMe.png');
+    game.load.video('chrome', 'DNA.mp4');
+    game.load.video('Monsanto', 'DNA.mp4');
+}
+
+function create() {
+
+    //  This creates a simple sprite that is using our loaded image and
+    //  displays it on-screen and assign it to a variable
+    var image = game.add.sprite(game.world.centerX, game.world.centerY, 'plate');
+
+    //  Moves the image anchor to the middle, so it centers inside the game properly
+    image.anchor.set(0.5);
+
+    obj001 = game.add.sprite(28, 170, 'clickMe');
+
+    cursors = game.input.keyboard.createCursorKeys();
+
+    // Control Panel image click
+    obj001.inputEnabled = true;
+    obj001.events.onInputDown.add(listener, this);
+    video = game.add.video('chrome');
+
+    //  See the docs for the full parameters
+    //  But it goes x, y, anchor x, anchor y, scale x, scale y
+    sprite = video.addToWorld(game.world.centerX- 180 , game.world.centerY, 0.5, 0.5,.20,.10);
+
+    //  true = loop
+    video.play(true);
+
+    game.input.onDown.add(pause, this);
+
+
+
+}
+
+function listener() {
+
+    jQuery.getJSON('/index.php?option=com_battle&task=action&action=get_free_seed&format=raw', function (result) {
+        //
+        console.log(result);
+    });
+}
+
+function update() {
+
+    drawFrame(context, videotape);
+
+}
+
+function drawFrame(context, videotape){
+    context.drawImage(videotape, 0, 0);
+
+}
+
+function render() {
+
+    game.debug.text("Video Time: " + video.currentTime, 32, 20);
+    game.debug.text("Video Duration: " + video.duration, 550, 20);
+
+    game.debug.text("Video Progress: " + Math.round(video.progress * 100) + "%", 32, 590);
+    game.debug.text("Video Playing: " + video.playing, 550, 590);
+
+}
