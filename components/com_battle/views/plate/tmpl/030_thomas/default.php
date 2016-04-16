@@ -16,6 +16,7 @@
 		<div id="world">
 		</div>
 
+	<script src='/components/com_battle/views/plate/tmpl/030_thomas/state01.js'></script>
 	<script src='/components/com_battle/views/plate/tmpl/030_thomas/script.js'></script>
 
 	</body>
