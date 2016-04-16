@@ -1,26 +1,12 @@
-var game = new Phaser.Game(640, 480, Phaser.CANVAS, 'world', { preload: preload, create: create });
-var ctx = game.context;
+// we create the global game object, an instance of Phaser.Game
 
-function preload () {
-    game.load.image('plate', 'get-your-halfling.jpg');
-}
+var game = new Phaser.Game(640, 480, Phaser.AUTO, 'world');
 
-function create() {
+// the first parameter is the key you use to jump between stated
+// the key must be unique within the state manager
+// the second parameter is the object that contains the state code
+// these come from the js files we included in the head tag in the html file
+game.state.add('State001', hobbits.State001);
 
-    //  This creates a simple sprite that is using our loaded image and
-    //  displays it on-screen and assign it to a variable
-    var image = game.add.sprite(game.world.centerX, game.world.centerY, 'plate');
-
-    //  Moves the image anchor to the middle, so it centers inside the game properly
-    image.anchor.set(0.5);
-	
-}
-
-function listener() {
-	
-}
-
-function update() {
-
-}
+game.state.start('State001');
 
