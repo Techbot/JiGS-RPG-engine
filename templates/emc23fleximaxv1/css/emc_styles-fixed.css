@@ -25,12 +25,12 @@
   padding: 0;
 }
 #sidebar-2.col-md-3 {
-  min-width: 255px;
-  padding: 0;
+  width: 210px;
+  padding: 0 0 0 10px;
 }
-#sidebar-2.col-md-3 {
+/*#sidebar-2.col-md-3 {
   width: initial;
-}
+}*/
 .hacker_rig {
   width: 255px;
 }
@@ -94,5 +94,14 @@ ul.nav-inline li:first-child a {
 }
 #sidebar-2 {
   float: left !important;
+}
+#wrapper.container-fluid {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.moduletable,
+.moduletable_menu,
+.moduletable_text {
+  overflow: hidden;
 }
 /*# sourceMappingURL=emc_styles-fixed.css.map */
