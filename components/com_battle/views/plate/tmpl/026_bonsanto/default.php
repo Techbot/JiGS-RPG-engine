@@ -4,7 +4,7 @@
 		<!-- Phaser -->
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
 		
-		<style>	
+		<style>
 			body {
 				margin: 0;
 			}
