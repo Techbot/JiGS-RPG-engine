@@ -65,13 +65,13 @@ thead,
 tr,
 th,
 td {
-  margin: 0;
   padding: 0;
-  border: 0;
-  outline: 0;
+  margin: 0;
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
+  border: 0;
+  outline: 0;
 }
 body {
   line-height: 1;
@@ -94,12 +94,12 @@ del {
 }
 /* tables still need 'cellspacing="0"' in the markup */
 table {
-  border-collapse: collapse;
   border-spacing: 0;
+  border-collapse: collapse;
 }
 img,
 a img {
-  border: 0px;
+  border: 0;
 }
 /* 
 	-- End INITIAL --
@@ -123,34 +123,34 @@ a:hover {
 }
 /* Headings */
 h1 {
+  margin-top: 0;
+  margin-bottom: 0;
   font-size: 2.0em;
   font-weight: normal;
-  margin-top: 0em;
-  margin-bottom: 0em;
 }
 h2 {
-  font-size: 1.7em;
   margin: 1.5em 0;
+  font-size: 1.7em;
   font-weight: normal;
 }
 h3 {
-  font-size: 1.4em;
   margin: 1.5em 0;
+  font-size: 1.4em;
   font-weight: normal;
 }
 h4 {
-  font-size: 1.2em;
   margin: 1.5em 0;
+  font-size: 1.2em;
   font-weight: bold;
 }
 h5 {
-  font-size: 1.0em;
   margin: 1.5em 0;
+  font-size: 1.0em;
   font-weight: bold;
 }
 h6 {
-  font-size: 0.8em;
   margin: 1.5em 0;
+  font-size: .8em;
   font-weight: bold;
 }
 /* Text styles */
@@ -168,32 +168,32 @@ i {
 /* class attributes are added to these HTML elements so they appear in the "Styles" drop-down WYSIWYG editor - see editor.css for details */
 .blockquote,
 blockquote {
-  margin: 10px;
   padding: 1em 2em;
+  margin: 10px;
   font-family: "Courier New", Courier, monospace;
 }
 .blog-featured blockquote {
-  margin: 0 auto;
   width: 70%;
   padding: 1em;
+  margin: 0 auto;
   font-family: Arial, sans-serif;
 }
 .pre,
 pre {
+  display: block;
+  padding: 1em 2em;
+  margin: 10px;
   font-family: monospace;
   font-size: 1.2em;
-  margin: 10px;
-  padding: 1em 2em;
-  display: block;
 }
 .code,
 code {
   display: block;
+  padding: 0 5px;
+  margin: 10px;
   font-family: "Courier New", Courier, monospace;
   font-size: 1em;
   white-space: pre;
-  margin: 10px;
-  padding: 0 5px;
 }
 .small {
   font-size: 85%;
@@ -203,22 +203,22 @@ code {
 ol,
 ul,
 li {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: .5em;
+  margin-bottom: .5em;
 }
 li > p {
-  margin-top: 0.5em;
+  margin-top: .5em;
 }
 /* Tables */
 table {
-  font-size: 1em;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  font-size: 1em;
 }
 table caption {
-  font-weight: bold;
-  margin: 0 0 0 0;
   padding: 0 0 1.5em 0;
+  margin: 0 0 0 0;
+  font-weight: bold;
 }
 th {
   font-weight: bold;
@@ -242,17 +242,17 @@ form table {
  * http://www.positioniseverything.net/easyclearing.html
  */
 .clearfix:after {
-  content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility: hidden;
+  content: ".";
 }
 .clearfix {
-  min-width: 0;
   display: inline-block;
   /* \*/
   display: block;
+  min-width: 0;
 }
 /* trigger hasLayout for IE7. Hide from IE Mac */
 * html .clearfix {
@@ -268,8 +268,8 @@ form table {
 /*---------------------------------------*/
 /* General site layout */
 body {
-  margin: 0;
   padding: 0;
+  margin: 0;
   text-align: center;
 }
 .left {
@@ -311,8 +311,8 @@ div#header {
 /*---------------------------------------*/
 div#logo {
   float: right;
-  margin: 20px 40px 0 0;
   padding: 0;
+  margin: 20px 40px 0 0;
   text-align: left;
 }
 @media (max-width: 899px) {
@@ -328,14 +328,14 @@ div#logo {
 }
 /* logo.png linked in index.php*/
 #logo a img {
-  display: block;
-  float: left;
   position: relative;
   z-index: 100;
+  display: block;
+  float: left;
 }
 #logo div#sitetitle {
   display: block;
-  margin: 0px 0 2px 60px !important;
+  margin: 0 0 2px 60px !important;
   /* margin indents Site Title and Description*/
 }
 #logo div#sitedescription {
@@ -352,15 +352,15 @@ margin-bottom: 0px;
 /* -- Search container -- */
 div#search {
   float: right;
-  margin: 0 0 0 0;
   padding: 0;
+  margin: 0 0 0 0;
 }
 /* -- Top horizontal nav container -- */
 #nav {
   position: relative;
-  margin: 0 auto;
   z-index: 900;
   float: left;
+  margin: 0 auto;
 }
 /* MAIN */
 /*---------------------------------------
@@ -395,8 +395,8 @@ We set the width of this container based upon the content layout logic. (see tem
   float: left;
 }
 #mainbody {
-  overflow: hidden;
   margin-bottom: 85px /*height of messages module*/;
+  overflow: hidden;
 }
 /* -- User Modules -- */
 div#header-modules {
@@ -431,20 +431,20 @@ Note: To work out the widths of the teaser modules we are going to have to know 
 (up to four modules per row). See includes/template_config.php
 ---------------------------------------*/
 div.count1 {
-  width: 100%;
   float: left;
+  width: 100%;
 }
 div.count2 {
-  width: 50%;
   float: left;
+  width: 50%;
 }
 div.count3 {
-  width: 33.3%;
   float: left;
+  width: 33.3%;
 }
 div.count4 {
-  width: 25%;
   float: left;
+  width: 25%;
 }
 /* LEFT COLUMN = sidebar */
 /*---------------------------------------
@@ -471,11 +471,11 @@ Note: this container holds the  content. We load this container before we load t
 }
 /* FOOTER */
 #footer_nav {
+  position: relative;
   float: left;
   width: 100%;
-  overflow: hidden;
-  position: relative;
   margin-bottom: 10px;
+  overflow: hidden;
 }
 /* BANNER */
 #banner {
@@ -491,8 +491,8 @@ Note: this container holds the  content. We load this container before we load t
 .moduletable,
 .moduletable_menu,
 .moduletable_text {
-  margin: auto auto 20px auto;
   padding: 0 0 15px 0;
+  margin: auto auto 20px auto;
 }
 .custom {
   padding: 0 0 15px 0;
@@ -500,9 +500,9 @@ Note: this container holds the  content. We load this container before we load t
 .moduletable h3,
 .moduletable_menu h3,
 .moduletable_text h3 {
-  margin: 0;
   /* negative margins will compensate for padding on .moduletable or div.inside */
   padding: 5px 10px;
+  margin: 0;
 }
 /*---------------------------------------*/
 /*** MODULES with Style 'rounded' - output as div.module div div div ***/
@@ -510,30 +510,30 @@ Note: this container holds the  content. We load this container before we load t
 /*---------------------------------------*/
 .module,
 .module_menu {
-  margin: auto auto 10px auto;
   padding: 0;
+  margin: auto auto 10px auto;
 }
 .module div,
 .module_menu div {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 .module div div,
 .module_menu div div {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 .module div div div,
 .module_menu div div div {
+  padding: 0 0 15px 0;
   margin: 0;
-  padding: 0px 0px 15px 0px;
   /* the inner-most div gives padding to all content within, and aids in proper collapse of h3 if Module Title is turned off */
 }
 .module h3,
 .module_menu h3 {
-  margin: 0px;
   /* negative margins will compensate for padding on surrounding div */
   padding: 5px 10px;
+  margin: 0;
 }
 .module div div div p:first-child {
   padding-top: 15px;
@@ -548,26 +548,26 @@ Note: Top Menu should be in Module Position 'emc23-shelf-nav'
 For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in the Menu Module Parameters.
 ---------------------------------------*/
 #shelf-nav ul {
+  height: 12px;
   padding: 0;
   margin: 0;
   list-style-type: none;
-  height: 12px;
 }
 #shelf-nav ul li {
-  float: left;
-  margin: 0px;
   position: relative;
+  float: left;
+  margin: 0;
   text-align: right;
 }
 #shelf-nav ul li a,
 #shelf-nav ul li a:visited {
   display: block;
-  text-decoration: none;
-  overflow: hidden;
+  height: 12px;
   padding: 0 0 2px 10px;
   margin: 0 0 0 10px;
-  height: 12px;
+  overflow: hidden;
   line-height: 12px;
+  text-decoration: none;
 }
 /* Top Horizontal Menu */
 /*---------------------------------------
@@ -580,18 +580,18 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
   list-style-type: none;
 }
 #nav ul li {
-  float: left;
-  margin: 0px;
   position: relative;
+  float: left;
+  margin: 0;
 }
 #nav ul li a,
 #nav ul li a:visited {
   display: block;
-  text-decoration: none;
-  overflow: hidden;
-  padding: 0 10px;
   height: 30px;
+  padding: 0 10px;
+  overflow: hidden;
   line-height: 30px;
+  text-decoration: none;
 }
 /* top level parent */
 /* first sub-level list (tier 2 links) */
@@ -600,12 +600,12 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 }
 #nav ul li:hover ul,
 #nav ul li.iehover ul {
-  /* This rule tells our submenu to appear on hover over parent */
-  display: block;
   position: absolute;
   top: 30px;
   /* equal to li a height */
   left: -1px;
+  /* This rule tells our submenu to appear on hover over parent */
+  display: block;
   width: 200px;
 }
 #nav ul li:hover ul li ul,
@@ -616,18 +616,18 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 #nav ul li.iehover ul li a {
   display: block;
   width: 200px;
-  padding: 0px;
+  padding: 0;
   text-indent: 10px;
 }
 /* first sub-level parent */
 /* Second sub-level list (tier 3 links)*/
 #nav ul li:hover ul li:hover ul,
 #nav ul li.iehover ul li.iehover ul {
+  position: absolute;
+  top: -1px;
+  left: 201px;
   /* This rule tells our sub submenu to appear on hover over parent*/
   display: block;
-  position: absolute;
-  left: 201px;
-  top: -1px;
 }
 /* second sub-level parent */
 /* Footer Horizontal Centered Menu */
@@ -635,29 +635,29 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 Note: Footer Menu should be in Module Position 'emc23-footer-nav'
 ---------------------------------------*/
 #footer_nav ul {
-  clear: left;
-  float: left;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   position: relative;
   left: 50%;
+  float: left;
+  padding: 0;
+  margin: 0;
+  clear: left;
   text-align: center;
+  list-style: none;
 }
 #footer_nav ul li {
-  display: block;
-  float: left;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   position: relative;
   right: 50%;
+  display: block;
+  float: left;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 #footer_nav ul li a,
 #footer_nav ul li a:visited {
   display: block;
-  margin: 0;
   padding: 0 10px;
+  margin: 0;
 }
 /*-----------------------------------*/
 /*** navS/NAVIGATION ***/
@@ -673,9 +673,9 @@ Output code is ul.menu etc.
 /* 1st Level */
 #footer-modules .moduletable > ul.nav,
 #sidebar-2 ul.nav {
-  border: 0;
-  border-bottom: solid 0px #F3F3F3;
   list-style-type: none !important;
+  border: 0;
+  border-bottom: solid 0 #f3f3f3;
 }
 #footer-modules .moduletable > ul.nav > li,
 #sidebar-2 ul.nav li {
@@ -685,18 +685,18 @@ Output code is ul.menu etc.
 #footer-modules .moduletable > ul.nav > li > a:visited,
 #sidebar-2 ul.nav li a:link,
 #sidebar-2 ul.nav li a:visited {
-  border-left: 10px solid #333;
-  border-right: 10px solid #000;
   color: #ccc;
   background: url(../images/trans.png) transparent center top repeat;
+  border-right: 10px solid #000;
+  border-left: 10px solid #333;
 }
 #footer-modules .moduletable > ul.nav > li.active > a:link,
 #footer-modules .moduletable > ul.nav > li.active > a:visited,
 #sidebar-2 ul.nav li.active a:link,
 #sidebar-2 ul.nav li.active a:visited {
-  border-left: 10px solid #009999;
-  border-right: 10px solid #00ffff;
-  color: #00ffff;
+  color: #0ff;
+  border-right: 10px solid #0ff;
+  border-left: 10px solid #099;
 }
 #footer-modules .moduletable > ul.nav > li a:hover,
 #footer-modules .moduletable > ul.nav > li a:active,
@@ -710,13 +710,13 @@ Output code is ul.menu etc.
 #sidebar-2 ul.nav li.active a:hover,
 #sidebar-2 ul.nav li.active a:active,
 #sidebar-2 ul.nav li.active a:focus {
-  border-left: 10px solid #666;
+  color: #0ff;
   border-right: 10px solid #333;
-  color: #00ffff;
+  border-left: 10px solid #666;
 }
 .separator {
-  background: #000;
   color: white;
+  background: #000;
 }
 #footer-modules .jwts_slider li {
   border-bottom: 1px dotted #666;
@@ -729,34 +729,34 @@ Output code is ul.menu etc.
 }
 /* 2nd Level */
 #sidebar ul.menu li ul {
-  border: solid 0px #F3F3F3;
-  border-top: solid 1px #F3F3F3;
+  border: solid 0 #f3f3f3;
+  border-top: solid 1px #f3f3f3;
 }
 #sidebar ul.menu li ul li {
-  border-bottom: solid 1px #DFDFDF;
   background: none;
+  border-bottom: solid 1px #dfdfdf;
 }
 #sidebar ul.menu li ul li:last-child {
-  border-bottom: solid 0px #DFDFDF;
+  border-bottom: solid 0 #dfdfdf;
 }
 #sidebar ul.menu li.active ul li a:link,
 #sidebar ul.menu li.active ul li a:visited {
-  border: 0;
-  border-bottom: solid 0px #F3F3F3;
-  background: #e8e8e8;
   font-weight: normal;
+  background: #e8e8e8;
+  border: 0;
+  border-bottom: solid 0 #f3f3f3;
 }
 #sidebar ul.menu li.active ul li.active a:link,
 #sidebar ul.menu li.active ul li.active a:visited {
-  border: 0;
   color: #333;
-  border-bottom: solid 1px #F3F3F3;
+  border: 0;
+  border-bottom: solid 1px #f3f3f3;
 }
 #sidebar ul.menu li.active ul li a:hover,
 #sidebar ul.menu li.active ul li a:active,
 #sidebar ul.menu li.active ul li a:focus {
-  background: #666 !important;
   color: #fff !important;
+  background: #666 !important;
 }
 #sidebar ul li.active ul li.active a:link,
 #sidebar ul li.active ul li.active a:visited {
@@ -764,14 +764,14 @@ Output code is ul.menu etc.
 }
 /* 3rd Level */
 #sidebar ul.menu li ul li ul {
-  border: 0 !important;
   background: #f5f5f5 !important;
+  border: 0 !important;
 }
 #sidebar ul.menu li.active ul li.active ul li a:link,
 #sidebar ul.menu li.active ul li.active ul li a:visited {
-  background: #f5f5f5;
-  border-bottom: solid 1px #F3F3F3;
   font-weight: normal;
+  background: #f5f5f5;
+  border-bottom: solid 1px #f3f3f3;
 }
 #sidebar ul.menu li.active ul li.active ul li.active a:link,
 #sidebar ul.menu li.active ul li.active ul li.active a:visited {
@@ -779,15 +779,15 @@ Output code is ul.menu etc.
 }
 /* 4th Level */
 #sidebar ul.menu li ul li ul li ul {
-  border-top: 1px solid #DFDFDF !important;
+  border-top: 1px solid #dfdfdf !important;
 }
 #sidebar ul.menu li.active ul li.active ul li.active ul li a:link,
 #sidebar ul.menu li.active ul li.active ul li.active ul li a:visited {
+  font-size: .9em;
   font-weight: normal;
-  border-bottom: 0px solid #DFDFDF;
-  font-size: 0.9em;
-  background: #ffffff url(../images/arrow.png) no-repeat 27px 7px;
-  color: #444444;
+  color: #444;
+  background: #fff url(../images/arrow.png) no-repeat 27px 7px;
+  border-bottom: 0 solid #dfdfdf;
 }
 #sidebar ul.menu li.active ul li.active ul li.active ul li.active a:link,
 #sidebar ul.menu li.active ul li.active ul li.active ul li.active a:visited {
@@ -796,15 +796,15 @@ Output code is ul.menu etc.
 }
 /* 5th Level */
 #sidebar ul.menu li ul li ul li ul li ul {
-  border: solid 0px #eee !important;
   background: #fff !important;
+  border: solid 0 #eee !important;
 }
 #sidebar ul.menu li.active ul li.active ul li.active ul li.active ul li a:link,
 #sidebar ul.menu li.active ul li.active ul li.active ul li.active ul li a:visited {
+  font-size: .9em;
   font-weight: normal;
-  font-size: 0.9em;
   background: #fff;
-  border-bottom: solid 0px #DFDFDF;
+  border-bottom: solid 0 #dfdfdf;
 }
 #sidebar ul.menu li.active ul li.active ul li.active ul li.active ul li.active a:link,
 #sidebar ul.menu li.active ul li.active ul li.active ul li.active ul li.active a:visited {
@@ -818,9 +818,9 @@ Output code is ul.menu etc.
 ---------------------------------------*/
 /* 1st Level */
 #sidebar ul.nav {
-  border: 0;
-  border-bottom: solid 0px #F3F3F3;
   list-style-type: none !important;
+  border: 0;
+  border-bottom: solid 0 #f3f3f3;
 }
 #sidebar ul.nav li {
   border-bottom: dotted 1px #333;
@@ -833,8 +833,8 @@ Output code is ul.menu etc.
 #sidebar ul.nav li.active a:link,
 #sidebar ul.nav li.active a:visited {
   font-weight: bold;
-  background: #DFDFDF;
   color: #000;
+  background: #dfdfdf;
 }
 #sidebar ul.nav li a:hover,
 #sidebar ul.nav li a:active,
@@ -842,37 +842,37 @@ Output code is ul.menu etc.
 #sidebar ul.nav li.active a:hover,
 #sidebar ul.nav li.active a:active,
 #sidebar ul.nav li.active a:focus {
-  background: #DFDFDF;
   color: #000;
+  background: #dfdfdf;
 }
 /* 2nd Level */
 #sidebar-2 ul.menu li ul {
-  border: solid 0px #F3F3F3;
+  border: solid 0 #f3f3f3;
 }
 #sidebar-2 ul.menu li ul li {
-  border-bottom: solid 1px #DFDFDF;
+  border-bottom: solid 1px #dfdfdf;
 }
 #sidebar-2 ul.menu li ul li:last-child {
-  border-bottom: solid 0px #DFDFDF;
+  border-bottom: solid 0 #dfdfdf;
 }
 #sidebar-2 ul.menu li.active ul li a:link,
 #sidebar-2 ul.menu li.active ul li a:visited {
-  border: 0;
-  border-bottom: solid 0px #F3F3F3;
-  background: #e8e8e8;
   font-weight: normal;
+  background: #e8e8e8;
+  border: 0;
+  border-bottom: solid 0 #f3f3f3;
 }
 #sidebar-2 ul.menu li.active ul li.active a:link,
 #sidebar-2 ul.menu li.active ul li.active a:visited {
-  border: 0;
   color: #333;
-  border-bottom: solid 1px #F3F3F3;
+  border: 0;
+  border-bottom: solid 1px #f3f3f3;
 }
 #sidebar-2 ul.menu li.active ul li a:hover,
 #sidebar-2 ul.menu li.active ul li a:active,
 #sidebar-2 ul.menu li.active ul li a:focus {
-  background: #666 !important;
   color: #fff !important;
+  background: #666 !important;
 }
 #sidebar-2 ul li.active ul li.active a:link,
 #sidebar-2 ul li.active ul li.active a:visited {
@@ -880,14 +880,14 @@ Output code is ul.menu etc.
 }
 /* 3rd Level */
 #sidebar-2 ul.menu li ul li ul {
-  border: 0 !important;
   background: #f5f5f5 !important;
+  border: 0 !important;
 }
 #sidebar-2 ul.menu li.active ul li.active ul li a:link,
 #sidebar-2 ul.menu li.active ul li.active ul li a:visited {
-  background: #f5f5f5;
-  border-bottom: solid 1px #F3F3F3;
   font-weight: normal;
+  background: #f5f5f5;
+  border-bottom: solid 1px #f3f3f3;
 }
 #sidebar-2 ul.menu li.active ul li.active ul li.active a:link,
 #sidebar-2 ul.menu li.active ul li.active ul li.active a:visited {
@@ -895,15 +895,15 @@ Output code is ul.menu etc.
 }
 /* 4th Level */
 #sidebar-2 ul.menu li ul li ul li ul {
-  border-top: 1px solid #DFDFDF !important;
+  border-top: 1px solid #dfdfdf !important;
 }
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li a:link,
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li a:visited {
+  font-size: .9em;
   font-weight: normal;
-  border-bottom: 0px solid #DFDFDF;
-  font-size: 0.9em;
-  background: #ffffff url(../images/arrow.png) no-repeat 27px 7px;
-  color: #444444;
+  color: #444;
+  background: #fff url(../images/arrow.png) no-repeat 27px 7px;
+  border-bottom: 0 solid #dfdfdf;
 }
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active a:link,
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active a:visited {
@@ -912,15 +912,15 @@ Output code is ul.menu etc.
 }
 /* 5th Level */
 #sidebar-2 ul.menu li ul li ul li ul li ul {
-  border: solid 0px #eee !important;
   background: #fff !important;
+  border: solid 0 #eee !important;
 }
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active ul li a:link,
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active ul li a:visited {
+  font-size: .9em;
   font-weight: normal;
-  font-size: 0.9em;
   background: #fff;
-  border-bottom: solid 0px #DFDFDF;
+  border-bottom: solid 0 #dfdfdf;
 }
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active ul li.active a:link,
 #sidebar-2 ul.menu li.active ul li.active ul li.active ul li.active ul li.active a:visited {
@@ -935,8 +935,8 @@ Output code is ul.nav etc.
 /* 1st Level */
 #footer-modules ul.nav,
 #sidebar ul.nav {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #footer-modules ul.nav li,
 #sidebar ul.nav li {
@@ -951,12 +951,12 @@ Output code is ul.nav etc.
 }
 /* 2nd Level */
 #sidebar ul.nav li ul {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar ul.nav li ul li {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar ul.nav li.active ul li a:link,
 #sidebar ul.nav li.active ul li a:visited {
@@ -968,8 +968,8 @@ Output code is ul.nav etc.
 }
 /* 3rd Level */
 #sidebar ul.nav li ul li ul {
-  padding-bottom: 0;
   padding: 0;
+  padding-bottom: 0;
 }
 #sidebar ul.nav li.active ul li.active ul li a:link,
 #sidebar ul.nav li.active ul li.active ul li a:visited {
@@ -993,8 +993,8 @@ Output code is ul.nav etc.
 ---------------------------------------*/
 /* 1st Level */
 #sidebar-2 ul.nav {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar-2 ul.nav li {
   margin: 0;
@@ -1006,12 +1006,12 @@ Output code is ul.nav etc.
 }
 /* 2nd Level */
 #sidebar-2 ul.nav li ul {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar-2 ul.nav li ul li {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar-2 ul.nav li.active ul li a:link,
 #sidebar-2 ul.nav li.active ul li a:visited {
@@ -1023,8 +1023,8 @@ Output code is ul.nav etc.
 }
 /* 3rd Level */
 #sidebar-2 ul.nav li ul li ul {
-  padding-bottom: 0;
   padding: 0;
+  padding-bottom: 0;
 }
 #sidebar-2 ul.nav li.active ul li.active ul li a:link,
 #sidebar-2 ul.nav li.active ul li.active ul li a:visited {
@@ -1055,7 +1055,7 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 ---------------------------------------*/
 #sidebar ul.menu li a:link,
 #sidebar ul.menu li a:visited {
-  border-bottom: 1px solid #F3F3F3;
+  border-bottom: 1px solid #f3f3f3;
 }
 #sidebar ul.menu li.current a {
   font-weight: bold;
@@ -1068,7 +1068,7 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 /* top level parent */
 #sidebar ul.menu li.parent:hover,
 #sidebar ul.menu li.parent.iehover {
-  background-color: #DFDFDF;
+  background-color: #dfdfdf;
 }
 #sidebar ul.menu li.parent a:after {
   content: " +";
@@ -1078,12 +1078,12 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 }
 /* 2nd Menu */
 #sidebar ul.menu ul {
-  border-top: 1px solid #F3F3F3;
+  border-top: 1px solid #f3f3f3;
 }
 #sidebar ul.menu li:hover li {
-  background: #EBEBEB;
-  border: 1px solid #F3F3F3;
-  border-top: 0px;
+  background: #ebebeb;
+  border: 1px solid #f3f3f3;
+  border-top: 0;
 }
 /* 2nd Menu Hover Persistence */
 /* first sub-level parent */
@@ -1125,7 +1125,7 @@ Output code is ul.menu etc.
 For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in the Menu Module Parameters.
 ---------------------------------------*/
 #sidebar-2 ul.menu li {
-  border-bottom: 1px solid #F3F3F3;
+  border-bottom: 1px solid #f3f3f3;
 }
 #sidebar-2 ul.menu li.current a {
   font-weight: bold;
@@ -1138,7 +1138,7 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 /* Root Menu Hover Persistence */
 /* top level parent */
 #sidebar-2 ul.menu li.parent:hover {
-  background-color: #DFDFDF;
+  background-color: #dfdfdf;
 }
 #sidebar-2 ul.menu li.parent a:before {
   content: "+ ";
@@ -1148,12 +1148,12 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 }
 /* 2nd Menu */
 #sidebar-2 ul.menu ul {
-  border-top: 1px solid #F3F3F3;
+  border-top: 1px solid #f3f3f3;
 }
 #sidebar-2 ul.menu li:hover li {
-  background: #EBEBEB;
-  border: 1px solid #F3F3F3;
-  border-top: 0px;
+  background: #ebebeb;
+  border: 1px solid #f3f3f3;
+  border-top: 0;
 }
 /* 2nd Menu Hover Persistence */
 /* first sub-level parent */
@@ -1185,8 +1185,8 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 #sidebar ul.menu li a:link,
 #sidebar ul.menu li a:visited {
   display: block;
-  font-weight: 400;
   padding: 0 0 6px 10px;
+  font-weight: 400;
   text-decoration: none;
 }
 #sidebar ul.menu li a:hover {
@@ -1209,26 +1209,26 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 }
 #sidebar ul#mainlevel:after,
 #sidebar ul.menu:after {
-  clear: both;
   display: block;
-  font: 1px/0px serif;
-  content: ".";
   height: 0;
+  clear: both;
+  font: 1px/0 serif;
   visibility: hidden;
+  content: ".";
 }
 #sidebar ul#mainlevel li,
 #sidebar ul.menu li {
-  float: left;
+  /*For IE*/
+  position: relative;
   /*For IE 7 lack of compliance*/
   display: block !important;
   /*For GOOD browsers*/
   display: inline;
-  /*For IE*/
-  position: relative;
-  list-style: none;
+  float: left;
   padding: 0;
   margin: 0;
-  text-indent: 0px;
+  text-indent: 0;
+  list-style: none;
 }
 /* Root Menu */
 #sidebar ul#mainlevel a,
@@ -1242,12 +1242,12 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 #sidebar ul.menu ul,
 #sidebar ul.menu ul ul,
 #sidebar ul.menu ul ul ul {
-  display: none;
   position: absolute;
-  z-index: 900;
-  list-style: none;
   top: 10px;
   left: 75%;
+  z-index: 900;
+  display: none;
+  list-style: none;
 }
 /* Do Not Move - Must Come Before display:block for Gecko */
 /* Hide sub submneus on twine load */
@@ -1269,16 +1269,16 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 /* 2nd Menu */
 #sidebar ul.menu ul {
   width: 150px;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar ul.menu li:hover li {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 #sidebar ul.menu li:hover li a,
 #sidebar ul.menu li.iehover li a {
-  margin: 0.25em 0.5em 0;
+  margin: .25em .5em 0;
 }
 /* Right Column Vertical fly-out suckerfish menu */
 /*---------------------------------------
@@ -1288,19 +1288,19 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 ---------------------------------------*/
 #sidebar-2 ul#mainlevel li,
 #sidebar-2 ul.menu li {
-  list-style: none;
   padding: 0;
   margin: 0;
   text-align: left;
   text-indent: 0;
+  list-style: none;
 }
 #sidebar-2 ul#mainlevel li a:link,
 #sidebar-2 ul#mainlevel li a:visited,
 #sidebar-2 ul.menu li a:link,
 #sidebar-2 ul.menu li a:visited {
   display: block;
-  font-weight: 400;
   padding: 0 0 6px 10px;
+  font-weight: 400;
   text-decoration: none;
 }
 #sidebar-2 ul#mainlevel li a:hover,
@@ -1322,22 +1322,22 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 }
 #sidebar-2 ul#mainlevel:after,
 #sidebar-2 ul.menu:after {
-  clear: both;
   display: block;
-  font: 1px/0px serif;
-  content: ".";
   height: 0;
+  clear: both;
+  font: 1px/0 serif;
   visibility: hidden;
+  content: ".";
 }
 #sidebar-2 ul#mainlevel li,
 #sidebar-2 ul.menu li {
-  float: left;
+  /*For IE*/
+  position: relative;
   /*For IE 7 lack of compliance*/
   display: block !important;
   /*For GOOD browsers*/
   display: inline;
-  /*For IE*/
-  position: relative;
+  float: left;
 }
 /* Root Menu */
 #sidebar-2 ul#mainlevel a,
@@ -1351,11 +1351,11 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 #sidebar-2 ul.menu ul,
 #sidebar-2 ul.menu ul ul,
 #sidebar-2 ul.menu ul ul ul {
-  display: none;
   position: absolute;
-  z-index: 900;
   top: 10px;
   left: -75%;
+  z-index: 900;
+  display: none;
 }
 /* Do Not Move - Must Come Before display:block for Gecko */
 /* Hide sub submenus on twine load */
@@ -1377,17 +1377,17 @@ For drop-down menu to work as intended "Show Sub-menu Items" must be enabled in 
 /* 2nd Menu */
 #sidebar-2 ul.menu ul {
   width: 150px;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 #sidebar-2 ul.menu li:hover li {
-  padding: 0px;
+  padding: 0;
   padding-right: 1em;
   text-align: right;
 }
 #sidebar-2 ul.menu li:hover li a,
 #sidebar-2 ul.menu li.iehover li a {
-  margin: 0.25em 0.5em 0 0;
+  margin: .25em .5em 0 0;
 }
 /*---------------------------------------*/
 /*** Joomla Core COMPONENTS ***/
@@ -1400,11 +1400,11 @@ div.error h2 {
   margin: 0;
 }
 dl#system-message {
+  padding: 5px 20px;
   clear: both;
   text-align: left;
-  padding: 5px 20px;
-  border-top: 2px solid #FEABB9;
-  border-bottom: 2px solid #FEABB9;
+  border-top: 2px solid #feabb9;
+  border-bottom: 2px solid #feabb9;
 }
 dt.error {
   font-weight: bold;
@@ -1429,21 +1429,21 @@ span.jicons-text {
   margin-right: 10px;
   font-size: 85%;
   font-weight: bold;
+  color: #4b4b4b;
   text-transform: uppercase;
-  color: #4B4B4B;
 }
 div.contact-address address {
-  margin: 0 20px;
   padding: 10px;
+  margin: 0 20px;
   font-style: normal;
-  background: #F3F3F3;
-  border: 1px solid #EBEBEB;
+  background: #f3f3f3;
+  border: 1px solid #ebebeb;
 }
 address span {
   display: block;
 }
 div.contact-contactinfo p {
-  margin: 0.5em 0;
+  margin: .5em 0;
 }
 dt label#jform_contact_email_copy-lbl {
   display: inline;
@@ -1461,16 +1461,16 @@ div.pane-slider.content {
   padding: 0 10px;
 }
 h3.pane-toggler {
-  border: 1px solid #EBEBEB;
   background: url(../images/arrow_right.png) no-repeat 5px 4px #f3f3f3;
+  border: 1px solid #ebebeb;
 }
 h3.pane-toggler-down {
-  border: 1px solid #EBEBEB;
   background: url(../images/arrow_down.png) no-repeat 5px 4px #f3f3f3;
+  border: 1px solid #ebebeb;
 }
 .panel h3 {
-  margin: 0.5em 0;
   padding: 0 35px;
+  margin: .5em 0;
 }
 .panel h3 a {
   text-decoration: none;
@@ -1486,13 +1486,13 @@ dt.tabs {
 }
 dt.tabs.open {
   padding: 0 10px 0 25px;
-  border: 1px solid #EBEBEB;
-  background: url(../images/arrow_right_sm.png) no-repeat 5px 3px #ffffff;
+  background: url(../images/arrow_right_sm.png) no-repeat 5px 3px #fff;
+  border: 1px solid #ebebeb;
 }
 dt.tabs.closed {
   padding: 0 10px 0 25px;
-  border: 1px solid #EBEBEB;
   background: url(../images/arrow_down_sm.png) no-repeat 5px 3px #ebebeb;
+  border: 1px solid #ebebeb;
 }
 .tabs h3 {
   margin: 0;
@@ -1503,8 +1503,8 @@ dt.tabs.closed {
   text-decoration: none;
 }
 div.current {
-  background: #FFF;
   margin: 60px 0 0;
+  background: #fff;
 }
 /*---------------------------------------*/
 /*** Joomla Core MODULES ***/
@@ -1519,8 +1519,8 @@ form#login-form ul li {
   margin: 0;
 }
 form#login-form ul li a {
-  background-image: none;
   padding: 0 5px;
+  background-image: none;
 }
 /* Search */
 form.search {
@@ -1604,12 +1604,12 @@ li.email-icon {
 /* -- Joomla Login Form Override -- */
 /******FORM******/
 form#login-form {
-  margin: 0;
   padding: 0 10px;
+  margin: 0;
 }
 form#login-form p {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 /* Additional Style sheets
 @import url('initial.css');
@@ -1622,12 +1622,12 @@ form#login-form p {
 */
 /* Forms */
 form {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 textarea {
-  font-size: 100%;
   font-family: arial, serif;
+  font-size: 100%;
 }
 input.button,
 .button {
@@ -1685,14 +1685,14 @@ div.item-page {
 }
 /* Print & Email links & icons */
 ul.actions {
+  margin: 0 !important;
   list-style-type: none;
-  margin: 0px !important;
 }
 ul.actions li.print-icon,
 ul.actions li.email-icon {
   display: inline;
-  background: none;
   padding: 0;
+  background: none;
 }
 /*removes main content's list styles*/
 /* User Rating */
@@ -1761,15 +1761,15 @@ padding:0px 0 0 10px;
 span.row_separator,
 div.item-separator {
   display: block;
-  clear: both;
   height: 10px;
   margin: 0;
+  clear: both;
 }
 /* Read More */
 p.readmore a {
   display: block;
-  margin: 0;
   padding: 0 5px;
+  margin: 0;
 }
 /* More Articles (Links) */
 div.items-more {
@@ -1815,43 +1815,43 @@ div.pagination {
 }
 /* centered list */
 div.pagination ul {
-  display: block;
-  clear: left;
-  float: left;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
   position: relative;
   left: 50%;
+  display: block;
+  float: left;
+  padding: 0;
+  margin: 0;
+  clear: left;
   text-align: center;
+  list-style-type: none;
 }
 div.pagination ul li {
-  background-image: none !important;
-  display: block;
   position: relative;
   right: 50%;
-  list-style-type: none;
+  display: block;
   float: left;
   padding: 2px 5px;
   margin: 0 2px;
+  list-style-type: none;
+  background-image: none !important;
 }
 /* current twine */
 /* linked twines */
 /*** TOC ***/
 /* Article Index Container*/
 #article-index {
-  width: 25%;
   float: right;
+  width: 25%;
   padding: 10px 10px 10px 20px;
-  margin: 10px 0px 20px 30px;
+  margin: 10px 0 20px 30px;
 }
 /* Article Index Header*/
 #article-index ul {
   list-style-type: disc;
 }
 #article-index ul li {
-  background: none;
   padding: 0;
+  background: none;
 }
 /*removes main content's list styles*/
 /* Article Index Linked Items*/
@@ -1859,13 +1859,13 @@ div.pagination ul li {
 /*** PAGE NAVIGATION ***/
 /** TOC Nav  <<Prev - Next>>  **/
 div.pagenavbar {
-  margin: 0;
   padding: 5px 0 0;
+  margin: 0;
 }
 /** Article Page Nav  <Prev  Next>  **/
 ul.pagenav {
-  text-align: center;
   clear: both;
+  text-align: center;
 }
 ul.pagenav li {
   display: inline;
@@ -1875,8 +1875,8 @@ ul.pagenav li {
 ul.pagenav li.pagenav-prev,
 ul.pagenav li.pagenav-next {
   display: inline;
-  background: none;
   padding: 0;
+  background: none;
 }
 /*removes main content's list styles*/
 /* Next */
@@ -1885,16 +1885,16 @@ ul.pagenav li.pagenav-next {
 /* Category Description */
 div.category-desc,
 div.contentdescription {
-  margin: 10px 0;
   padding: 10px;
+  margin: 10px 0;
 }
 div.category-desc img {
   float: left;
   margin: 0 10px 10px 0;
 }
 .cat-children {
-  clear: both;
   display: block;
+  clear: both;
 }
 .cat-children h3 {
   margin: 0;
@@ -1939,12 +1939,12 @@ div.categories-list dl dd {
 }
 /* Article Count Number */
 ul#archive-items {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 ul#archive-items li {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 /* WYSIWYG Editor styles for image margins */
 img.right {
