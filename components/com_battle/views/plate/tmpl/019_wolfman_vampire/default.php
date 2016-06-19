@@ -1,7 +1,8 @@
 <html>
 	<head>
-		<!-- Phaser -->
-        <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
+    <script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
+    <!-- Phaser -->
+    <script src="/components/com_battle/includes/phaser.js"></script>
 		<style>
 			body {
 				margin: 0;
@@ -42,8 +43,8 @@
     <body>
 
 		<a href="http://eclecticmeme.com/index.php?option=com_content&view=article&id=4:chapter-two&catid=9:2007&Itemid=348" title="The Chronicles">
-			<div id="world">
-			</div>
+      <div id="world">
+      </div>
 		</a>
 		
 		<div class="toolbar">
@@ -51,8 +52,9 @@
 			<a class="chronicles"></a>
 		</div>
 
-		<script src='http://eclecticmeme.com/components/com_battle/views/plate/tmpl/019_wolfman_vampire/script.js'></script>
-		
+    <script src='state001.js'></script>
+    <script src='script.js'></script>
+
 		<script>
 		$(document).ready(function() {
 			$( ".pyramidCity" ).click(function() {
@@ -65,5 +67,4 @@
 
     </body>
 </html>
-
 
