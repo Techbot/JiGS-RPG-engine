@@ -1,6 +1,6 @@
 // we create the global game object, an instance of Phaser.Game
 
-var game = new Phaser.Game(800, 480, Phaser.AUTO, 'world');
+var game = new Phaser.Game(800, 500, Phaser.AUTO, 'world');
 
 // the first parameter is the key you use to jump between stated
 // the key must be unique within the state manager
