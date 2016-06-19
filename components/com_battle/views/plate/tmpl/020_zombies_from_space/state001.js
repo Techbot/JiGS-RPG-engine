@@ -1,6 +1,7 @@
-// defining a single global object (zombies_from_outer_space) and adding some functions in to its prototype (eg preload, create functions)
+// defining a single global object (zombies_from_space) and adding some functions in to its prototype (eg preload, create functions)
 
-var zombies_from_outer_space = {};
+var zombies_from_space = {};
+
 var cursors;
 var player;
 var fire;
@@ -15,12 +16,11 @@ var result = 'Click a body';
 var title;
 var arm;
 
-zombies_from_outer_space.State001 = function (game) {
-
+zombies_from_space.State001 = function (game) {
 
 };
 
-zombies_from_outer_space.State001.prototype = {
+zombies_from_space.State001.prototype = {
 
     preload: function () {
         //  The second parameter is the URL of the image (relative)
@@ -147,11 +147,6 @@ zombies_from_outer_space.State001.prototype = {
         player.animations.stop();
     }
 }
-/*
- var game = new Phaser.Game(640, 480, Phaser.CANVAS, 'world', {
- preload: preload, create: create , update:update, render:render
- });
- */
 
 function listener () {
 
@@ -174,26 +169,22 @@ function click(pointer) {
     //	You can hitTest against an array of Sprites, an array of Phaser.Physics.P2.Body objects, or don't give anything
     //	in which case it will check every Body in the whole world.
 
-    var bodies = game.physics.p2.hitTest(pointer.position, [ bobhead, bobbody, player ]);
+    var bodies = game.physics.p2.hitTest(pointer.position, [bobhead, bobbody, player]);
 
-    if (bodies.length === 0)
-    {
+    if (bodies.length === 0) {
         result = "You didn't click a Body";
     }
-    else
-    {
+    else {
         result = "You clicked: ";
 
-        for (var i = 0; i < bodies.length; i++)
-        {
+        for (var i = 0; i < bodies.length; i++) {
             //	The bodies that come back are p2.Body objects.
             //	The parent property is a Phaser.Physics.P2.Body which has a property called 'sprite'
             //	This relates to the sprites we created earlier.
             //	The 'key' property is just the texture name, which works well for this demo but you probably need something more robust for an actual game.
             result = result + bodies[i].parent.sprite.key;
 
-            if (i < bodies.length - 1)
-            {
+            if (i < bodies.length - 1) {
                 result = result + ', ';
             }
         }
