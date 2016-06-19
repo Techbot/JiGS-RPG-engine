@@ -1,14 +1,14 @@
-// defining a single global object (are_you_insane) and adding some functions in to its prototype (eg preload, create functions)
+// defining a single global object (highjacking_hotspot) and adding some functions in to its prototype (eg preload, create functions)
 
-var wolfman_vampire = {};
+var highjacking_hotspot = {};
 
 
-wolfman_vampire.State001 = function (game) {
+highjacking_hotspot.State001 = function (game) {
 
 
 };
 
-wolfman_vampire.State001.prototype = {
+highjacking_hotspot.State001.prototype = {
 
     preload: function () {
 
@@ -18,7 +18,7 @@ wolfman_vampire.State001.prototype = {
         //  string by which we'll identify the image later in our code.
 
         //  The second parameter is the URL of the image (relative)
-        this.load.image('plate', '019_wolfman_vampire.jpg');
+        this.load.image('plate', 'highjacking_hotspot.jpg');
 
     },
     create: function () {
