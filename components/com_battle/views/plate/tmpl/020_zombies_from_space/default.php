@@ -1,6 +1,5 @@
 <html>
 	<head>
-		<script src="/components/com_battle/includes/jquery-2.0.3.min.js"></script>
 		<!-- Phaser -->
 		<script src="/components/com_battle/includes/phaser.js"></script>
 		<style>	
