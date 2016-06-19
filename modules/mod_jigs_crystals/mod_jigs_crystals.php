@@ -44,8 +44,8 @@ function request_crystals(){
     }).get();
 
 }
-    request_crystals();
-	request_crystals.periodical(95085);
+ //   request_crystals();
+//	request_crystals.periodical(95085);
 
 </script>
 

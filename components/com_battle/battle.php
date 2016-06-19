@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+////ini_set('display_errors', 1);
 //defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
 class BattleController extends JControllerLegacy
@@ -87,7 +87,7 @@ class BattleController extends JControllerLegacy
         $action         = JRequest::getVar('action');
         $result         = $model->$action();
         echo json_encode($result);
-        exit();
+
     }
 
     function map_action()

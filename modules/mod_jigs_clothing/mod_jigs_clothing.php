@@ -25,41 +25,22 @@ if (file_exists($path))
 	
 	
 	?>
-
-
-
 <script type='text/javascript'>
-
 function request_clothing(){
-	
-	 var all = '';
-//		var details = this.details;
-	
+    var all = '';
+//	var details = this.details;
 	var a = new Request.JSON({
-    url: "index.php?option=com_battle&format=raw&task=get_clothing", 
-    onSuccess: function(result){
-       	    	
-   for (i = 0; i < result.length; ++ i){
-  var row = "<br>Item " + (i+1) + ":" + result[i].name ;
-  all= all + row;  
-    	}
-    	$('clothing').innerHTML = all;	
-    }	
-    	
+        url: "index.php?option=com_battle&format=raw&task=get_clothing",
+        onSuccess: function(result){
+            for (i = 0; i < result.length; ++ i){
+                var row = "<br>Item " + (i+1) + ":" + result[i].name ;
+                all= all + row;
+            }
+            $('clothing').innerHTML = all;
+        }
+        all = all + "<input type='button' value='Update' onclick= 'request_clothing();'></button>"
     }).get();
-
 }
-
-
-
-request_clothing.periodical(15000);	
-
-
-
-
-
+request_clothing();
 </script>
 
-	
-
-	
