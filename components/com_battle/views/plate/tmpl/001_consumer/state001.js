@@ -105,3 +105,14 @@ function killTooltip(thing) {
     //bar.destroy();
 
 }
+
+
+// defining a single global object (are_you_insane) and adding some functions in to its prototype (eg preload, create functions)
+
+var are_you_insane = {};
+
+
+are_you_insane.State001 = function (game) {
+
+
+};
