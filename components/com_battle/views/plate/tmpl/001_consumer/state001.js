@@ -57,6 +57,10 @@ consumer.State001.prototype = {
 
         // the Text is positioned at 0, 100
         //text = game.add.text(0, 0, "phaser 2.4 text bounds", style);
+
+
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
     }
 }
 
