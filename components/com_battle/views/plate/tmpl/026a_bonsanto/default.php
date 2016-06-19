@@ -1,8 +1,8 @@
 <html>
 	<head>
-		<script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
+		<script src="/components/com_battle/includes/jquery-2.0.3.min.js"></script>
 		<!-- Phaser -->
-        <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
+        <script src="/components/com_battle/includes/phaser.js"></script>
         <script src="custom.js"></script>
 
     <style>
@@ -48,10 +48,10 @@
     <div id="ui-overlay">
     </div>
 
-    <script src='state01.js'></script>
-    <script src='state02.js'></script>
-    <script src='state03.js'></script>
-    <script src='/components/com_battle/views/plate/tmpl/026a_bonsanto/script.js'></script>
+    <script src='state001.js'></script>
+    <script src='state002.js'></script>
+    <script src='state003.js'></script>
+    <script src='script.js'></script>
 
 
 
