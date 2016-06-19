@@ -2,7 +2,9 @@
 
 var bonsanto = {};
 
-    bonsanto.State001 = function (game) {
+var messageToPrint;
+
+bonsanto.State001 = function (game) {
 
 };
 
