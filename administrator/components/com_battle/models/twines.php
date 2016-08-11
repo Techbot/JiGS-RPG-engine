@@ -1,7 +1,7 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.model');
-class battleModelTwines extends JModel
+class battleModelTwines extends JModelLegacy
 {
     var $_data = null;
     function &getData()

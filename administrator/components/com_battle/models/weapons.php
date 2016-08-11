@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.model');
 
-class battleModelWeapons extends JModel
+class battleModelWeapons extends JModelLegacy
 {
 	var $_data = null;
 	function &getData()

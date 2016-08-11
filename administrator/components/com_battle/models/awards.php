@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.model');
 
-class BattleModelAwards extends JModel
+class BattleModelAwards extends JModelLegacy
 {
 	function getAwards()
 	{

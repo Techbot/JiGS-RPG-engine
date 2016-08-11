@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
 
-class BattleControllerAwards extends JController
+class BattleControllerAwards extends JControllerLegacy
 {
     function __construct ($config = array())
     {
