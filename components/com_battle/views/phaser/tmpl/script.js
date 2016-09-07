@@ -1,8 +1,21 @@
 var game = new Phaser.Game(800, 500, Phaser.AUTO, "world");
+var upKey;
+var downKey;
+var leftKey;
+var rightKey;
+var x = 100;
+var y = 100;
+var fireButton;
+var weapon;
+var cursors;
+var sprite;
+var sprite2;
+var circle_core;
 
 game.state.add('login', playState[0]);
-game.state.add('next', playState[1]);
+game.state.add('next', playState[3]);
 game.state.add('terminal', playState[2]);
+
 //All parameters are optional but you usually want to set width and height
 //Remember that the game object inherits many properties and methods!
 
@@ -100,6 +113,8 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
 
 function moveBall(pointer)
 {
+
+    console.log(pointer.worldX);
     send = 1;
     x = parseInt(pointer.worldX);
     y = parseInt(pointer.worldY);
@@ -298,7 +313,12 @@ function page(one,two) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 function plate(one,two) {
+
+     two.body.enable =false;
+
     jQuery.ajax({
+      //  url: "/index.php?option=com_battle&format=json&task=plate_action$action=getplate&id="+ two.key,
+
         url: "/index.php?option=com_battle&format=json&view=plate&id="+ two.key,
         context: document.body,
         dataType: "json"

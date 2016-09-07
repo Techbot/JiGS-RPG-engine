@@ -1,6 +1,3 @@
-/**
- * Created by techbot on 17/11/14.
- */
 
 /*
 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=sing_song', function (result)

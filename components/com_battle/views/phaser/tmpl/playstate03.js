@@ -1,4 +1,4 @@
-playState[1] = {
+playState[3] = {
     init: function() {
     },
     preload: function() {
@@ -25,7 +25,9 @@ playState[1] = {
         //  Modify the world and camera bounds
         game.world.setBounds(boundsX1[grid], boundsY1[grid], boundsX2[grid], boundsY2[grid]);
         //game.stage.backgroundColor = '#000000';
+
         fireButton = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+
         group = game.add.group();
         cache();
         // if you have image layers, be sure to load those too! Again,
@@ -37,10 +39,10 @@ playState[1] = {
 
         //  In this example we'll create 4 specific keys (up, down, left, right) and monitor them in our update function
 
-        //upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-        //downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-        //leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-        //rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+        upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+        downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+        leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
         fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         ///////////////////////////////////////////
         addMap();
@@ -82,6 +84,8 @@ playState[1] = {
     update: function() {
         if (game.input.activePointer.isDown)
         {
+
+
             weapon.fire();
         }
 
@@ -92,8 +96,38 @@ playState[1] = {
         this.physics.arcade.collide(sprite, portal[1],jump);
         this.physics.arcade.collide(sprite, portal[2],jump);
         this.physics.arcade.collide(sprite, portal[3],jump);
+
         ////////////////////////move player
         game.physics.arcade.moveToXY(sprite, x, y, 100);
+
+
+        if (parseInt(sprite.x) > parseInt(x)){
+
+
+            sprite.animations.play('walkLeft', 6);
+
+        }else{
+
+            sprite.animations.play('walkStop', 6);
+
+
+        }
+
+        if (parseInt(sprite.x) < parseInt(x)){
+
+
+            sprite.animations.play('walkRight', 6);
+
+        }else{
+
+            sprite.animations.play('walkStop', 6);
+
+
+        }
+
+
+
+
 
         move_players();
         stop_players();
@@ -103,74 +137,54 @@ playState[1] = {
         stop_halflings();
         move_halflings();
 
+
+        /*
         if (upKey.isDown)
         {
-        //    sprite.loadTexture('hero');
             y--;
-            //sprite.animations.add('walk_up',[9,10,11]);
             sprite.animations.play('walkUp', 6);
             sprite.y =y;
             circle_core.y =y;
             circle_core.angle = -90;
-
         }
         else if (downKey.isDown)
         {
-        //    sprite.loadTexture('hero');
-            //sprite.animations.add('walk_down',[0,1,2]);
             y++;
-            sprite.animations.play('walkDown', 6);
+            sprite.animations.play('walkDown');
             sprite.y =y;
             circle_core.y =y;
             circle_core.angle = 90;
-
         }
-
-        if (upKey.isDown && game.input.activePointer.isDown)
+        if (upKey.isDown &&  fireButton.isDown)
         {
             console.log('fire_up');
-         //   sprite.loadTexture('axe_1');
-
-            sprite.animations.add('attack_up',[48,49,50,51,52,53,54]);
-
-            sprite.animations.play('attack_up', 12);
-
-           // y--;
-           // sprite.animations.play('walk_up', 6);
-          //  sprite.y =y;
-         //   circle_core.y =y;
-         //   circle_core.angle = -90;
-
+            sprite.animations.play('hoeUp');
+            // y--;
+            // sprite.animations.play('walk_up', 6);
+            //  sprite.y =y;
+            //   circle_core.y =y;
+            //   circle_core.angle = -90;
         }
         else if (downKey.isDown && game.input.activePointer.isDown)
         {
-
             console.log('fire_down');
-          //  sprite.loadTexture('axe_1');
             //y++;
-
             //sprite.y =y;
-           // circle_core.y =y;
-           // circle_core.angle = 90;
-            sprite.animations.add('attack_down1');
-
-            sprite.animations.play('attack_down1', 60);
+            // circle_core.y =y;
+            // circle_core.angle = 90;
+            sprite.animations.play('hoeDown', 30);
         }
-
 
         if (cursors.left.isDown  )
         {
-           // sprite.loadTexture('hero');
             x--;
             sprite.animations.play('walkLeft', 6);
             sprite.x =x;
             circle_core.x=x;
             circle_core.angle = 180;
-
         }
         else if (rightKey.isDown)
         {
-        //    sprite.loadTexture('hero');
             x++;
             sprite.animations.play('walkRight', 6);
             sprite.x =x;
@@ -182,13 +196,51 @@ playState[1] = {
             console.log('fire');
             weapon.fire();
         }
+
+        */
+
+        /*
+        sprite.body.velocity.x = sprite.body.velocity.y = 0;
+        var SPEED = 150;
+
+        // if in hoe animation wait
+        if (sprite.animations.currentAnim.name.lastIndexOf('hoe', 0) === 0 && sprite.animations.currentAnim.isPlaying) {
+            // wait for animation to finish
+        } else {
+            // use hoe on CTRL
+            sprite.direction = 'Down';
+
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.CONTROL)) {
+                sprite.animations.play('hoe' + sprite.direction);
+            } else if (cursors.left.isDown) {
+                sprite.direction = 'Left';
+            //    sprite.body.velocity.x = -SPEED;
+                sprite.animations.play('walkLeft');
+            } else if (cursors.right.isDown) {
+                sprite.direction = 'Right';
+         //       sprite.body.velocity.x = SPEED;
+                sprite.animations.play('walkRight');
+            } else if (cursors.up.isDown) {
+                sprite.direction = 'Up';
+           //     sprite.body.velocity.y = -SPEED;
+                sprite.animations.play('walkUp');
+            } else if (cursors.down.isDown) {
+                sprite.direction = 'Down';
+          //      sprite.body.velocity.y = SPEED;
+                sprite.animations.play('walkDown');
+            } else {
+                sprite.animations.stop();
+                sprite.frameName = 'walk' + sprite.direction + '2';
+            }
+        }
+*/
         check_for_collisions();
     },
     render: function() {
-     //   game.debug.spriteCoords(sprite, 32, 32);
-    // Sprite debug info
-    // game.debug.spriteInfo(sprite, 32, 32);
-            weapon.debug();
+        //   game.debug.spriteCoords(sprite, 32, 32);
+        // Sprite debug info
+        // game.debug.spriteInfo(sprite, 32, 32);
+      //  weapon.debug();
     }
 };
 
@@ -304,14 +356,15 @@ function load_player_old() {
 
 
 function load_player() {
+    //game.load.spritesheet('hero', '/components/com_battle/images/assets/chars/hero/hero.png', 32, 45);
+  //  game.load.atlas('player', 'assets/atlases/hero.png', 'assets/atlases/hero.json');
+   // game.load.atlasJSONHash('hero', '/components/com_battle/images/assets/chars/hero/hero.png', '/components/com_battle/images/assets/chars/hero/hero.json');
+    game.load.atlasJSONHash('highhero',
+        '/components/com_battle/images/assets/chars/highhero/hero.png',
+        '/components/com_battle/views/phaser/tmpl/highhero.json');
 
-    game.load.atlasJSONHash('highhero', '/components/com_battle/images/assets/chars/highhero/Example_1_Diag.png', '/components/com_battle/images/assets/chars/hero/highhero.json');
-    
-    
-    
-    
-    game.load.spritesheet('axe_1', '/components/com_battle/images/assets/chars/hero/hero_axe_1.png', 64, 60);
-    game.load.spritesheet('axe_2', '/components/com_battle/images/assets/chars/hero/hero_axe_2.png', 64, 60);
+    // game.load.spritesheet('axe_1', '/components/com_battle/images/assets/chars/hero/hero_axe_1.png', 64, 60);
+  //  game.load.spritesheet('axe_2', '/components/com_battle/images/assets/chars/hero/hero_axe_2.png', 64, 60);
     //game.load.spritesheet('ship', 'assets/sprites/thrust_ship.png', 32, 45, 72);
     game.load.image('ship', 'images/pixel.gif');
 
@@ -332,16 +385,16 @@ function load_tiles() {
 }
 
 function place_buildings(){
-        if(buildings.length != 0) {
-            for (var index = 0; index < buildings.length; index++) {
-                var key = buildings[index].id;
-                add_building[index] = game.add.sprite(buildings[index].posx * 1, buildings[index].posy * 1, "_" + key);
-                add_building[index].id = key;
-                game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
-                add_building[index].body.velocity = 0;
-            }
+    if(buildings.length != 0) {
+        for (var index = 0; index < buildings.length; index++) {
+            var key = buildings[index].id;
+            add_building[index] = game.add.sprite(buildings[index].posx * 1, buildings[index].posy * 1, "_" + key);
+            add_building[index].id = key;
+            game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
+            add_building[index].body.velocity = 0;
         }
     }
+}
 
 function place_twines(){
     if(twines_list.length != 0) {
@@ -361,7 +414,7 @@ function place_plates(){
             add_plates[index] = game.add.sprite(plates_list[index].posx * 1, plates_list[index].posy * 1, key);
             add_plates[index].id = key;
             game.physics.enable(add_plates[index], Phaser.Physics.ARCADE);
-            
+
         }
     }
 }
@@ -400,7 +453,7 @@ function place_player_old() {
 
 function place_player() {
     sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
-  //  sprite2                     = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
+    //  sprite2                     = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.enable          = true;
@@ -413,71 +466,94 @@ function place_player() {
 
     game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
 
-    sprite.animations.add('walkStop',[1]);
-    this.sprite.animations.add('walkDown', Phaser.Animation.generateFrameNames('walkDown', 1, 3), 5, true);
-    this.sprite.animations.add('walkLeft', Phaser.Animation.generateFrameNames('walkLeft', 1, 3), 5, true);
-    this.sprite.animations.add('walkRight', Phaser.Animation.generateFrameNames('walkRoght', 1, 3), 5, true);
-    this.sprite.animations.add('walkDown', Phaser.Animation.generateFrameNames('walkDown', 1, 3), 5, true);
 
-    sprite.animations.play('walk_stop',1,true);
+
+    // animations
+
+    this.sprite.animations.add('walkUp', Phaser.Animation.generateFrameNames('walkUp', 1, 8), 5, true);
+    this.sprite.animations.add('walkLeft', Phaser.Animation.generateFrameNames('walkLeft', 1, 8), 5, true);
+    this.sprite.animations.add('walkRight', Phaser.Animation.generateFrameNames('walkRight', 1, 8), 5, true);
+    this.sprite.animations.add('walkDown', Phaser.Animation.generateFrameNames('walkDown', 1, 8), 5, true);
+
+    /*
+    sprite.animations.add('walkDown', ['walkDown1', 'walkDown2', 'walkDown3'], 5, true);
+    sprite.animations.add('walkLeft', ['walkLeft1', 'walkLeft2', 'walkLeft3'], 5, true);
+    sprite.animations.add('walkRight', ['walkRight1', 'walkRight2', 'walkRight3'], 5, true);
+    sprite.animations.add('walkUp', ['walkUp1', 'walkUp2', 'walkUp3'], 5, true);
+
+    */
+
+    //sprite.animations.add('hoeDown', ['hoeDown1', 'hoeDown2', 'hoeDown3', 'hoeDown4'], 4, false);
+    //sprite.animations.add('hoeLeft', ['hoeLeft1', 'hoeLeft2', 'hoeLeft3', 'hoeLeft4'], 4, false);
+    //sprite.animations.add('hoeRight', ['hoeRight1', 'hoeRight2', 'hoeRight3', 'hoeRight4'], 4, false);
+    //sprite.animations.add('hoeUp', ['hoeUp1', 'hoeUp2', 'hoeUp3', 'hoeUp4'], 4, false);
+
+
+    //sprite.animations.add('walk_stop',[1]);
+    //sprite.animations.add('walk_down',[0,1,2]);
+    //sprite.animations.add('walk_left',[12,13,14]);
+    //sprite.animations.add('walk_right',[24,25,26]);
+    //sprite.animations.add('walk_up',[36,37,38]);
+
+    //sprite.animations.play('walk_stop',1,true);
 }
 
 function place_players(){
     players_group  = game.add.group();
     if (typeof players_list != 'undefined') {
-            players_list.forEach(function (playersObj, index) {
-                var key_id = players_list[index].id;
-                var key = players_list[index].id
-                players[key] = game.add.sprite(parseInt(playersObj.posx), parseInt(playersObj.posy), key);
-                players[key].key_id = key_id;
-                game.physics.enable(players[key], Phaser.Physics.ARCADE);
-            })
-       }
+        players_list.forEach(function (playersObj, index) {
+            var key_id = players_list[index].id;
+            var key = players_list[index].id
+            players[key] = game.add.sprite(parseInt(playersObj.posx), parseInt(playersObj.posy), key);
+            players[key].key_id = key_id;
+            game.physics.enable(players[key], Phaser.Physics.ARCADE);
+        })
+    }
 }
 
 function place_chars() {
     if (npc_list.length != 0) {
-       npc_list.forEach(function (npcObj, index) {
-           var key = npcObj.name;
-           var key_id = npcObj.id;
-           npc[index] = game.add.sprite(parseInt(npcObj.posx), parseInt(npcObj.posy), key);
-           npc[index].id = key;
-           npc[index].key_id = key_id;
-           game.physics.enable(npc[index], Phaser.Physics.ARCADE);
-           npc[index].body.velocity = 0;
-       })
+        npc_list.forEach(function (npcObj, index) {
+            var key = npcObj.name;
+            var key_id = npcObj.id;
+            npc[index] = game.add.sprite(parseInt(npcObj.posx), parseInt(npcObj.posy), key);
+            npc[index].id = key;
+            npc[index].key_id = key_id;
+            game.physics.enable(npc[index], Phaser.Physics.ARCADE);
+            npc[index].body.velocity = 0;
+        })
     }
 }
 
 function place_monsters() {
     if (typeof monsters_list != 'undefined') {
 
-            for (var loop = 0; loop < monsters_list.length - 1; loop++) {
-                var key = monsters_list[loop].name;
-                var index = monsters_list[loop].id;
-                monsters[index]                     = game.add.sprite( monsters_list[loop].x,  monsters_list[loop].y, key);
-                game.add.tween(monsters[index]).to({
-                    x: monsters_list[loop].x,
-                    y: monsters_list[loop].y
-                }, 1, Phaser.Easing.Linear.None, true);
-                monsters[index].animations.add('stop', [0]);
-                monsters[index].animations.add('walk_down', [0, 1, 2, 3]);
-                monsters[index].animations.add('walk_left', [4, 5, 6, 7]);
-                monsters[index].animations.add('walk_right', [8, 9, 10, 11]);
-                monsters[index].animations.add('walk_up', [12, 13, 14, 15]);
-                monsters[index].animations.play('walk_stop', [1]);
-                monsters[index].id                  = monsters_list[loop].id;
-                monsters[index].maxHealth           = monsters_list[loop].maxHealth;
-                monsters[index].health              = monsters_list[loop].health;
-                monsters[index].anchor.setTo(0.5, 0.5);
-                game.physics.enable(monsters[index], Phaser.Physics.ARCADE);
-                monsters[index].hud                 = Phaser.Plugin.HUDManager.create(monsters[index].game, monsters[index], 'enemyhud');
-                monsters[index].healthHUD           = monsters[index].hud.addBar(0, -20, 32, 2, monsters[index].maxHealth, 'health', monsters[index], Phaser.Plugin.HUDManager.HEALTHBAR, false);
-                monsters[index].healthHUD.bar.anchor.setTo(0.5, 0.5);
-                monsters[index].addChild(monsters[index].healthHUD.bar);
-                monsters[index].body.immovable      = true;
-            }
+        for (var loop = 0; loop < monsters_list.length - 1; loop++) {
+            var key = monsters_list[loop].name;
+            var index = monsters_list[loop].id;
+            monsters[index]                     = game.add.sprite( monsters_list[loop].x,  monsters_list[loop].y, key);
+            game.add.tween(monsters[index]).to({
+                x: monsters_list[loop].x,
+                y: monsters_list[loop].y
+            }, 1, Phaser.Easing.Linear.None, true);
+            monsters[index].animations.add('stop', [0]);
+            monsters[index].animations.add('walk_down', [0, 1, 2, 3]);
+            monsters[index].animations.add('walk_left', [4, 5, 6, 7]);
+            monsters[index].animations.add('walk_right', [8, 9, 10, 11]);
+            monsters[index].animations.add('walk_up', [12, 13, 14, 15]);
+            monsters[index].animations.play('walk_stop', [1]);
+            monsters[index].id                  = monsters_list[loop].id;
+            monsters[index].maxHealth           = monsters_list[loop].maxHealth;
+            monsters[index].health              = monsters_list[loop].health;
+            monsters[index].anchor.setTo(0.5, 0.5);
+            game.physics.enable(monsters[index], Phaser.Physics.ARCADE);
+            monsters[index].hud                 = Phaser.Plugin.HUDManager.create(monsters[index].game, monsters[index], 'enemyhud');
+            monsters[index].healthHUD           = monsters[index].hud.addBar(0, -20, 32, 2, monsters[index].maxHealth, 'health', monsters[index], Phaser.Plugin.HUDManager.HEALTHBAR, false);
+            monsters[index].healthHUD.bar.anchor.setTo(0.5, 0.5);
+            monsters[index].addChild(monsters[index].healthHUD.bar);
+            monsters[index].body.immovable      = true;
         }
+    }
 
 }
 function place_halflings(){
@@ -644,16 +720,16 @@ function stop_halflings(){
     if (typeof halflings != 'undefined') {
         halflings.forEach(function(halflingObj,loop){
             //console.log(halfling_list);
-                halfling_list.forEach(function(listObj){
-                    if (listObj.id == halflings.id){
-                        if (parseInt(halflingObj.body.x) == listObj.x  ){
-                            halflingsObj.animations.play('walk_stop',1);
-                        }
-                        if (parseInt(halflingObj.body.y) ==listObj.y ){
-                            halflingObj.animations.play('walk_stop',1);
-                        }
+            halfling_list.forEach(function(listObj){
+                if (listObj.id == halflings.id){
+                    if (parseInt(halflingObj.body.x) == listObj.x  ){
+                        halflingsObj.animations.play('walk_stop',1);
                     }
-                })
+                    if (parseInt(halflingObj.body.y) ==listObj.y ){
+                        halflingObj.animations.play('walk_stop',1);
+                    }
+                }
+            })
         });
     }
 }

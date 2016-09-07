@@ -2,7 +2,7 @@
    <!--link href="/components/com_battle/views/phaser/tmpl/_site/css/phaser-examples.css" media="screen" rel="stylesheet" type="text/css"-->
         <!-- Phaser -->
         <script src="/components/com_battle/views/phaser/tmpl/_site/js/jquery-2.0.3.min.js"></script>
-        <script src="/components/com_battle/views/phaser/tmpl/_site/js/phaser.js"></script>
+        <script src="/components/com_battle/includes/phaser.js"></script>
         <!--script src="/components/com_battle/includes/blip.min.js"></script>
         <!-- Main Game File -->
         <script>
@@ -64,7 +64,8 @@
             var phaser;
             var sprite;
             var sprite2;
-            var grid;
+            var circle_core;
+
             var cursors;
             var avatar;
             var cacheKey;
@@ -76,6 +77,8 @@
         <script src="/components/com_battle/views/phaser/tmpl/playstate00.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate01.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/playstate02.js"></script>
+        <script src="/components/com_battle/views/phaser/tmpl/playstate03.js"></script>
+
         <script src="/components/com_battle/views/phaser/tmpl/loadstate.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/map_info.js"></script>
         <script src="/components/com_battle/views/phaser/tmpl/script.js"></script>

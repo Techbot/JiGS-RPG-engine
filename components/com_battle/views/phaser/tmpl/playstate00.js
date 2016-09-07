@@ -1,10 +1,3 @@
-
-
-
-
-/**
- * Created by techbot on 17/11/14.
- */
 content = [
     " ",
     "Everything you read on the 'Net is true",
