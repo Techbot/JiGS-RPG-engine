@@ -30,13 +30,13 @@ class BattleModelweapons extends JModel
 			$query = "SELECT 
 			    #__jigs_weapons.magazine, 
 			 	#__jigs_weapons.id,
-			 	#__jigs_weapon_names.image,
-			 	#__jigs_weapon_names.name, 
-			 	#__jigs_weapon_names.max_ammunition, 
-		     	#__jigs_weapon_names.attack				
+			 	#__jigs_weapon_types.image,
+			 	#__jigs_weapon_types.name, 
+			 	#__jigs_weapon_types.max_ammunition, 
+		     	#__jigs_weapon_types.attack				
 			    FROM #__jigs_weapons
-			    LEFT JOIN #__jigs_weapon_names
-			    ON #__jigs_weapons.item_id = #__jigs_weapon_names.id
+			    LEFT JOIN #__jigs_weapon_types
+			    ON #__jigs_weapons.item_id = #__jigs_weapon_types.id
 		        WHERE #__jigs_weapons.id  = $weapon";
         
 		        

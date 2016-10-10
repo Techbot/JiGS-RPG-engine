@@ -13,16 +13,17 @@ jimport('joomla.application.component.model');
  */
 class BattleModelPlate extends JModelLegacy
 {
-    public $data = null;
+    public $_data = null;
 
-    public function getPlate($idPlate)
+    public function getPlate()
     {
+        $idPlate= JRequest::getvar('id');
+
         if (empty($this->_data)) {
-            $query = "SELECT * FROM #__jigs_plate WHERE id = $idPlate ";
+            $query = "SELECT * FROM #__jigs_plates WHERE id = $idPlate";
             $this->_data = $this->_getList($query);
         }
-
-        return $this->data;
+        return $this->_data;
     }
 
     public function getMagicPlayers()
@@ -41,12 +42,5 @@ class BattleModelPlate extends JModelLegacy
         $result         = $dba->loadAssoc();
         return $result;
     }
-
-
-
-
-
-
-
 
 }

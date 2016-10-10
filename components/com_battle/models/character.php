@@ -19,11 +19,11 @@ class BattleModelCharacter extends JModelLegacy
     function get_character_inventory($id)
     {
         $dba = JFactory::getDBO();
-        $dba->setQuery("SELECT #__jigs_inventory.item_id,  #__jigs_objects.name
-        FROM #__jigs_inventory
-        LEFT JOIN #__jigs_objects
-        ON #__jigs_inventory.item_id = #__jigs_objects.id
-        WHERE #__jigs_inventory.player_id =" . $id);
+        $dba->setQuery("SELECT #__jigs_objects.item_id,  #__jigs_object_types.name
+        FROM #__jigs_objects
+        LEFT JOIN #__jigs_object_types
+        ON #__jigs_objects.item_id = #__jigs_object_types.id
+        WHERE #__jigs_objects.player_id =" . $id);
         $result = $dba->loadAssocList();
         return $result;
     }

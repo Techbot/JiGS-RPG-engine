@@ -21,9 +21,6 @@ require_once('/var/www/www.eclecticmeme.com/components/com_battle/includes/gd2im
  class BattleModelascii_art extends JModel
 {
 
-
-
-
     /**
      * Image to convert
      *
@@ -62,17 +59,6 @@ require_once('/var/www/www.eclecticmeme.com/components/com_battle/includes/gd2im
     public function __construct() {
 
     $fileName='/var/www/www.eclecticmeme.com/components/com_battle/images/sito/example.jpg';
-
-
-
-
-
-
-
-
-
-
-
 
         if(!ini_get('safe_mode') && strpos(ini_get('disabled_functions'), 'set_time_limit') === false) {
             set_time_limit(0);

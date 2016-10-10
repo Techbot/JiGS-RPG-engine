@@ -103,10 +103,10 @@ class BattleModelHobbits extends JModel
 		$user           = JFactory::getUser();
 		$character_id   = JRequest::getvar('character_id');
 		
-		$db->setQuery("SELECT #__jigs_inventory.item_id, #__jigs_objects.name 
-		FROM #__jigs_inventory 
-		LEFT JOIN #__jigs_objects ON #__jigs_inventory.item_id = #__jigs_objects.id 
-		WHERE #__jigs_inventory.player_id =".$character_id);
+		$db->setQuery("SELECT #__jigs_objects.item_id, #__jigs_object_types.name 
+		FROM #__jigs_objects 
+		LEFT JOIN #__jigs_object_types ON #__jigs_objects.item_id = #__jigs_object_types.id 
+		WHERE #__jigs_objects.player_id =".$character_id);
 		$result = $db->loadAssocList();
 		return $result;
 	}

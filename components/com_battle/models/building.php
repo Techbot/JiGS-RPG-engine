@@ -44,7 +44,7 @@ class BattleModelBuilding extends JModelLegacy
         $energy_units			= $energy_unit * $quantity;
         $now				= time();
         $db				= JFactory::getDBO();
-        $sql				= "SELECT * FROM #__jigs_objects WHERE id = " . $type;
+        $sql				= "SELECT * FROM #__jigs_object_types WHERE id = " . $type;
         $db->setQuery($sql);
         $product			= $db->loadObject();
         $user				= JFactory::getUser();
@@ -127,7 +127,7 @@ class BattleModelBuilding extends JModelLegacy
         $line                   = JRequest::getVar('line');
         $now                    = time();
         $db                     = JFactory::getDBO();
-        $sql                    = "SELECT * FROM #__jigs_objects WHERE id = " . $type;
+        $sql                    = "SELECT * FROM #__jigs_object_types WHERE id = " . $type;
         $db->setQuery($sql);
         $product                = $db->loadObject();
         $user                   = JFactory::getUser();
@@ -140,7 +140,7 @@ class BattleModelBuilding extends JModelLegacy
         $metal_2                = $product->metal_2;
         $quantity_2             = $quantity * $product->quantity_2;
 
-        $query                  = "SELECT id FROM #__jigs_inventory WHERE item_id = $type AND player_id = " . $user->id ;
+        $query                  = "SELECT id FROM #__jigs_objects WHERE item_id = $type AND player_id = " . $user->id ;
         $db->setQuery($query);
 
         $player_items           = $db->loadAssocList();
@@ -176,7 +176,7 @@ class BattleModelBuilding extends JModelLegacy
             $db->setQuery($sql);
             $db->query();
 
-            $sql2               = "DELETE FROM #__jigs_inventory
+            $sql2               = "DELETE FROM #__jigs_objects
                                 WHERE item_id = $type
                                 AND player_id = $user->id
                                 LIMIT $quantity";
@@ -648,7 +648,7 @@ class BattleModelBuilding extends JModelLegacy
         {
 
             $db			= JFactory::getDBO();
-            $query		= "SELECT amount,name FROM #__jigs_crops LEFT JOIN #__jigs_crop_names ON #__jigs_crops.type = #__jigs_crop_names.id WHERE #__jigs_crops.owner = $id";
+            $query		= "SELECT amount,name FROM #__jigs_crops LEFT JOIN #__jigs_crop_types ON #__jigs_crops.type = #__jigs_crop_types.id WHERE #__jigs_crops.owner = $id";
             $db->setQuery($query);
             $result		= $db->loadObjectList();
 
@@ -789,10 +789,10 @@ class BattleModelBuilding extends JModelLegacy
     function get_blueprint() {
         $db		= JFactory::getDBO();
         $user		= JFactory::getUser();
-        $db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name " .
+        $db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_object_types.name " .
             "FROM #__jigs_blueprints " .
-            "LEFT JOIN #__jigs_objects " .
-            "ON #__jigs_blueprints.object = #__jigs_objects.id " .
+            "LEFT JOIN #__jigs_object_types " .
+            "ON #__jigs_blueprints.object = #__jigs_object_types.id " .
             "WHERE #__jigs_blueprints.user_id =".$user->id);
         $result		= $db->loadAssocList();
         return $result;
@@ -822,7 +822,7 @@ class BattleModelBuilding extends JModelLegacy
 
         foreach ($seedlist as $seed)
         {
-            $query = "SELECT name FROM #__jigs_crop_names WHERE id =" . $seed;
+            $query = "SELECT name FROM #__jigs_crop_types WHERE id =" . $seed;
 
             $db->setQuery($query);
 
@@ -869,8 +869,8 @@ class BattleModelBuilding extends JModelLegacy
         $db			= JFactory::getDBO();
 
         $query		= "SELECT * FROM #__jigs_blueprints
-            LEFT JOIN #__jigs_objects
-            ON #__jigs_blueprints.object = #__jigs_objects.id
+            LEFT JOIN #__jigs_object_types
+            ON #__jigs_blueprints.object = #__jigs_object_types.id
             WHERE #__jigs_blueprints.user_id = $user->id ";
         $db->setQuery($query);
         $blueprints	= $db->loadObjectList();
@@ -878,10 +878,10 @@ class BattleModelBuilding extends JModelLegacy
         foreach($blueprints as $blueprint)
         {
             $user	= JFactory::getUser();
-            $query	= "SELECT name FROM #__jigs_metal_names WHERE #__jigs_metal_names.id = $blueprint->metal_1 ";
+            $query	= "SELECT name FROM #__jigs_metal_types WHERE #__jigs_metal_names.id = $blueprint->metal_1 ";
             $db->setQuery($query);
             $blueprint->metal_1_name = $db->loadResult();
-            $query 	= "SELECT name FROM #__jigs_metal_names WHERE #__jigs_metal_names.id = $blueprint->metal_2 ";
+            $query 	= "SELECT name FROM #__jigs_metal_types WHERE #__jigs_metal_names.id = $blueprint->metal_2 ";
             $db->setQuery($query);
             $blueprint->metal_2_name = $db->loadResult();
         }
@@ -902,7 +902,7 @@ class BattleModelBuilding extends JModelLegacy
         }
         foreach($blueprints as $blueprint)
         {
-            $query 	= "SELECT id FROM #__jigs_inventory WHERE player_id = $user->id AND item_id = $blueprint->id ";
+            $query 	= "SELECT id FROM #__jigs_objects WHERE player_id = $user->id AND item_id = $blueprint->id ";
 
             $db->setQuery($query);
             $array	= $db->loadAssocList();
@@ -922,9 +922,9 @@ class BattleModelBuilding extends JModelLegacy
         {
             foreach($blueprints as $blueprint)
             {
-                $query	= "SELECT id FROM #__jigs_inventory
-                    WHERE #__jigs_inventory.player_id = $user->id
-                    AND #__jigs_inventory.item_id = $blueprint->object ";
+                $query	= "SELECT id FROM #__jigs_objects
+                    WHERE #__jigs_objects.player_id = $user->id
+                    AND #__jigs_objects.item_id = $blueprint->object ";
                 $db->setQuery($query);
                 $blueprint->object_total = count($db->loadObjectlist());
             }
@@ -1107,10 +1107,10 @@ class BattleModelBuilding extends JModelLegacy
 
         $db		= JFactory::getDBO();
         $user		= JFactory::getUser();
-        $db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_paper_names.name, #__jigs_papers.buy_price " .
+        $db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_paper_types.name, #__jigs_papers.buy_price " .
             "FROM #__jigs_papers " .
-            "LEFT JOIN #__jigs_paper_names " .
-            "ON #__jigs_papers.item_id = #__jigs_paper_names.id " .
+            "LEFT JOIN #__jigs_paper_types " .
+            "ON #__jigs_papers.item_id = #__jigs_paper_types.id " .
             "WHERE #__jigs_papers.player_id =".$user->id);
         $result		= $db->loadAssocList();
         return $result;
@@ -1123,10 +1123,10 @@ class BattleModelBuilding extends JModelLegacy
         $db		= JFactory::getDBO();
         $user		= JFactory::getUser();
         $building_id	= JRequest::getvar('building_id');
-        $db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_papers.sell_price, #__jigs_paper_names.name
+        $db->setQuery("SELECT #__jigs_papers.item_id, #__jigs_papers.sell_price, #__jigs_paper_types.name
                 FROM #__jigs_papers
-                LEFT JOIN  #__jigs_paper_names
-                ON #__jigs_papers.item_id = #__jigs_paper_names.id
+                LEFT JOIN  #__jigs_paper_types
+                ON #__jigs_papers.item_id = #__jigs_paper_types.id
                 WHERE #__jigs_papers.player_id =" . $building_id);
         $result		= $db->loadAssocList();
         return $result;
@@ -1137,10 +1137,10 @@ class BattleModelBuilding extends JModelLegacy
         function get_my_blueprints_list() {
         $db		= JFactory::getDBO();
         $user		= JFactory::getUser();
-        $db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name
+        $db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_object_types.name
                 FROM #__jigs_blueprints
-                LEFT JOIN #__jigs_objects
-                ON #__jigs_blueprints.object = #__jigs_objects.id
+                LEFT JOIN #__jigs_object_types
+                ON #__jigs_blueprints.object = #__jigs_object_types.id
                 WHERE #__jigs_blueprints.user_id = ".$user->id);
         $result		= $db->loadAssocList();
         return $result;

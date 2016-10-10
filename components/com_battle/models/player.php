@@ -32,10 +32,10 @@ class BattleModelPlayer extends JModelLegacy
 		$db = JFactory::getDBO();
 		$user = JFactory::getUser();
 		$character_id= JRequest::getvar(id);
-		$db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_names.name, #__jigs_weapon_names.sell_price, #__jigs_weapon_names.image " .
+		$db->setQuery("SELECT #__jigs_weapons.item_id, #__jigs_weapon_types.name, #__jigs_weapon_types.sell_price, #__jigs_weapon_types.image " .
 				"FROM #__jigs_weapons " .
-				"LEFT JOIN #__jigs_weapon_names " .
-				"ON #__jigs_weapons.item_id = #__jigs_weapon_names.id " .
+				"LEFT JOIN #__jigs_weapon_types " .
+				"ON #__jigs_weapons.item_id = #__jigs_weapon_types.id " .
 				"WHERE #__jigs_weapons.player_id =".$id);
 		$result = $db->loadAssocList();
 			return $result;

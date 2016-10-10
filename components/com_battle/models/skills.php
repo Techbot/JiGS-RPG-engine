@@ -10,10 +10,10 @@ class BattleModelskills extends JModelLegacy
         $db		= JFactory::getDBO();
         $parent = JRequest::getvar('parent');
         $query	= "SELECT * FROM #__jigs_skills
-          LEFT JOIN #__jigs_skill_names
-          ON #__jigs_skills.skill_id = #__jigs_skill_names.id
-          WHERE #__jigs_skills.player_id = $user->id
-          AND #__jigs_skill_names.parent_id = '$parent'";
+          LEFT JOIN #__jigs_skill_types
+          ON #__jigs_skills.skill_id = #__jigs_skill_types.id
+          WHERE #__jigs_skills.player_id = 63
+          AND #__jigs_skill_types.parent_id = 1";
         $db->setQuery($query);
         $data	=  $db->loadAssocList();
         return $data;
@@ -24,8 +24,8 @@ class BattleModelskills extends JModelLegacy
         $db         = JFactory::getDBO();
         $parent     = JRequest::getvar('parent');
         $query      = "SELECT *
-            FROM #__jigs_skill_names
-            WHERE #__jigs_skill_names.parent_id = '$parent'";
+            FROM #__jigs_skill_types
+            WHERE #__jigs_skill_types.parent_id = '$parent'";
         $db->setQuery($query);
         return  $db->loadAssocList();
 
