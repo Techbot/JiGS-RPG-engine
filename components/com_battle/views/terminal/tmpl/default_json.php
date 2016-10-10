@@ -29,7 +29,7 @@ $body .="
     <tr>
         <td>id:</td><td>$id </td>
 <td>Level:</td><td>$level</td>
-<td>ip:</td><td>$ip</td>
+<td>ip:::::</td><td>$ip</td>
 </tr>
 <tr>
     <td>bandwidth:</td><td>$bandwidth</td>

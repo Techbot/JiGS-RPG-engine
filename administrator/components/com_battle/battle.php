@@ -5,8 +5,8 @@ require_once JPATH_COMPONENT.'/helpers/battle.php';
 JTable::addIncludePath(JPATH_COMPONENT.'/tables');
 $controller = JRequest::getCmd('controller','main');
 BattleHelper::addSubmenu(JRequest::getCmd('view', $controller));
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
 require_once( JPATH_COMPONENT.'/controllers/'.$controller.'.php' );
 

@@ -6,7 +6,7 @@ class BattleViewTerminals extends JViewLegacy
 {	
     function display($tpl = null)
     {
-        $rows =& $this->get('data');
+        $rows = $this->get('data');
         $this->assignRef('rows', $rows);
         parent::display($tpl);
     }

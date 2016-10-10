@@ -42,7 +42,7 @@ JToolBarHelper::addNew();
             </td>
             <td><?php echo $row->id; ?></td>
             <td>
-                <a href="<?php echo $link; ?>"> <img src="/components/com_battle/images/plates/miniatures/<?php echo $row->image ?>" height = '50px' width='50px' ></a>
+                <a href="<?php echo $link; ?>"> <img src="/components/com_battle/images/plates/<?php echo $row->image ?>" height = '50px' width='50px' ></a>
             </td>
             <td>
                 <a href="<?php echo $link; ?>"><?php echo $row->name; ?></a>

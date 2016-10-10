@@ -6,7 +6,7 @@ class BattleViewAwardNames extends JViewLegacy
 {
 	function display($tpl = null)
 	{
-		$model = JModel::getInstance('awards', 'BattleModel');
+		$model = JModellegacy::getInstance('awards', 'BattleModel');
 		$rows  = $model->getAwardNames();
 
 		$this->assignRef('rows', $rows);

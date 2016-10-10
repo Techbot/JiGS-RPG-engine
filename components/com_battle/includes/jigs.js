@@ -36,7 +36,7 @@ window.addEvent('domready',function()
 {
 
 
-
+/*
 
     var a = new Request.JSON({
         url : "index.php?option=com_battle&format=raw&task=action&action=get_player",
@@ -103,7 +103,7 @@ window.addEvent('domready',function()
     }).get();
 
 
-
+*/
 
 });
 // End of initialise process
@@ -134,6 +134,7 @@ function loadUp() {
 function check(e)
 {
 
+    /*
     if (active==1)
     {
 
@@ -161,7 +162,8 @@ function check(e)
             catch (Exception)
             {
             }
-    }	
+    }
+    	*/
 }
 
 // ////////////////////////////////////////////////////////
@@ -273,7 +275,7 @@ function MoveDown()
 
 function walls_alert()
 {
-    alert('You cant walk through walls...... Yet!');
+   // alert('You cant walk through walls...... Yet!');
 }
 
 function safety_check()
@@ -296,6 +298,7 @@ function jump()
 
 function Move_Player()
 {
+    /*
     safety_check();
     var a = new Request.JSON({
         url : "index.php?option=com_battle&format=raw&task=action&action=save_coordinate&posx=" +
@@ -312,10 +315,12 @@ function Move_Player()
             mover.start(); //moves to the new location
         }
     }).get();
+    */
 }
 
 function Portal_Check(direction)
 {
+    /*
 
     // alert (portal_array.length);
     for (i = 0; i < portal_array.length; i++)
@@ -330,6 +335,7 @@ function Portal_Check(direction)
             jump();
         }
     }
+    */
 }
 
 
@@ -337,6 +343,7 @@ function Portal_Check(direction)
 //var npc_health = 0;
 
 function shoot_player(character_id){
+    /*
     var d = document.getElementById('shoot');
         var a = new Request.JSON({
             url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=shoot&character=" + character_id,
@@ -363,6 +370,7 @@ function shoot_player(character_id){
                     }
                 }
             }).get();
+            */
     }
 
 function kick_player(character_id){
@@ -587,5 +595,4 @@ paper.circle(30, 30, npc_health).attr({ stroke: 'none', fill: '#193340' });
 function moo(){
     myElement.setStyle(property, value);
 }
-
 

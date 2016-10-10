@@ -22,6 +22,6 @@ class TableWeapon_names extends JTable
 
     function __construct(&$db)
     {
-        parent::__construct( '#__jigs_weapon_names', 'id', $db );
+        parent::__construct( '#__jigs_weapon_types', 'id', $db );
     }
 }

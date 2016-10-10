@@ -11,6 +11,7 @@ var cursors;
 var sprite;
 var sprite2;
 var circle_core;
+var anim= false;
 
 game.state.add('login', playState[0]);
 game.state.add('next', playState[3]);
@@ -121,7 +122,7 @@ function moveBall(pointer)
 }
 
 function jump(one,two) {
-
+    anim = false;
     var source = grid;
     console.log('source:' + source);
     grid = two.dest;
@@ -129,17 +130,26 @@ function jump(one,two) {
     if (source == portal_dest_1[grid]) {
         new_x = portal_sourceX1[grid];
         new_y = portal_sourceY1[grid];
+
+        x = portal_sourceX1[grid];
+        y = portal_sourceY1[grid];
     }
     if (source == portal_dest_2[grid]) {
 
         new_x = portal_sourceX2[grid];
         new_y = portal_sourceY2[grid];
+
+        x = portal_sourceX2[grid];
+        y = portal_sourceY2[grid];
     }
 
     if (source == portal_dest_3[grid]) {
 
         new_x = portal_sourceX3[grid];
         new_y = portal_sourceY3[grid];
+
+        x = portal_sourceX3[grid];
+        y = portal_sourceY3[grid];
     }
     one.body.velocity.x = 0;
     one.body.velocity.y = 0;

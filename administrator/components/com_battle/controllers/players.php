@@ -1,7 +1,8 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
-class BattleControllerPlayers extends JController
+
+class BattleControllerPlayers extends JControllerLegacy
 {
 	function __construct ($config = array())
 	{
@@ -9,16 +10,19 @@ class BattleControllerPlayers extends JController
 		$this->registerTask('unpublish','publish');
 		$this->registerTask('apply','save');
 	}
+
 	function edit()
 	{
 		JRequest::setVar('view', 'player');
 		$this->display();
 	}
+
 	function add()
 	{
 		JRequest::setVar('view', 'player');
 		$this->display();
 	}
+
 	function save()
 	{
 		JRequest::checkToken() or jexit( 'Invalid Token' );
@@ -40,8 +44,8 @@ class BattleControllerPlayers extends JController
 		else{
 			$this->setRedirect('index.php?option=' . $option . '&controller=players', 'Player Saved');
 		}
-
 	}
+
 	function display()
 	{
 		$view = JRequest::getVar('view');

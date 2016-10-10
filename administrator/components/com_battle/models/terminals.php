@@ -1,7 +1,7 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.modellist');
-class battleModelTerminals extends JModellist
+class battleModelTerminals extends JModellegacy
 {
 	var $_data = null;
 	public function __constuct($config = array())
@@ -31,13 +31,13 @@ class battleModelTerminals extends JModellist
 		// Initiilise variables
 		$app = Jfactory::getApplication ('administrator');
 		//load the filter state
-		$search			=		$this->getUserStateFromRequest($this->context. '.filter.search','filter_search');
+		//$search			=		$this->getUserStateFromRequest($this->context. '.filter.search','filter_search');
 		$this->setstate('filter.search',$search);
-		$accessId		=		$this->getUserStateFromRequest ($this->context.'.filter.access', 'filter_access', null, 'int');
+		//$accessId		=		$this->getUserStateFromRequest ($this->context.'.filter.access', 'filter_access', null, 'int');
 		$this->setstate('filter.access' , $accessId);
-		$published		=		$this->getUserStateFromRequest ($this->context.'.filter.state', 'filter_published','', 'string');
+		//$published		=		$this->getUserStateFromRequest ($this->context.'.filter.state', 'filter_published','', 'string');
 		$this->setstate('filter.state' , $published);
-		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
+		//$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
 		$params = JComponentHelper::getParams('com_battle');
@@ -225,9 +225,9 @@ class battleModelTerminals extends JModellist
 	{
 		$db		= JFactory::getDBO();
 		$user		= JFactory::getUser();
-		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_objects.name  
-		FROM #__jigs_blueprints  LEFT JOIN #__jigs_objects  
-		ON #__jigs_blueprints.object = #__jigs_objects.id  
+		$db->setQuery("SELECT #__jigs_blueprints.id, #__jigs_object_types.name  
+		FROM #__jigs_blueprints  LEFT JOIN #__jigs_object_types  
+		ON #__jigs_blueprints.object = #__jigs_object_types.id  
 		WHERE #__jigs_blueprints.user_id =".$user->id);
 		
 		$result		= $db->loadAssocList();

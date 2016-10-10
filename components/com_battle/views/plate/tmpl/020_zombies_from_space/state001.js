@@ -14,7 +14,13 @@ var bobhead;
 var bobbody;
 var result = 'Click a body';
 var title;
-var arm;
+var armSeparate;
+var armX = 46;
+var armY= 93;
+var pumpX = 62;
+var pumpY= 168;
+var robot_torso;
+var tower;
 
 zombies_from_space.State001 = function (game) {
 
@@ -23,8 +29,13 @@ zombies_from_space.State001 = function (game) {
 zombies_from_space.State001.prototype = {
 
     preload: function () {
+
+        game.load.image('tower', 'tower.png');
+        game.load.image('armSprite', 'assets/arm.png');
+        game.load.image('pump', 'assets/pump.png');
+        game.load.image('weight', 'assets/weight.png');
         //  The second parameter is the URL of the image (relative)
-        game.load.image('bg', 'zombies_from_space-bg.jpg');
+        game.load.image('bg', 'big-zombies_from_space_-background2.png');
         game.load.spritesheet('fighter01',
             '/components/com_battle/images/assets/chars/halflings/001-Fighter01-Noble.png', 32, 48, 16);
 
@@ -32,7 +43,9 @@ zombies_from_space.State001.prototype = {
             '/components/com_battle/images/assets/animations/Light7.png', 192, 160, 30);
 
         game.load.atlas('spritesheet', 'zombies_from_space-sprite-min.png', 'sprite.json');
+
         game.load.atlas('spritesheet2', 'cityand-arm.png', 'sprite2.json');
+        game.load.atlas('torso', 'Torso_2_Idle.png', 'torso.json','idle');
 
         game.load.atlas('hand', 'hand.png', 'hand.json');
         // this creates the sprite object  ('myObjectName','/path/to/file.png')
@@ -43,8 +56,8 @@ zombies_from_space.State001.prototype = {
         //game.load.physics('physicsData', 'bob-head.json');
     },
 
-
     create: function () {
+        game.world.setBounds(0, 0, 1850, 1060);
 
         cursors = game.input.keyboard.createCursorKeys();
         //  Enable p2 physics
@@ -53,19 +66,25 @@ zombies_from_space.State001.prototype = {
         //  This creates a simple sprite that is using our loaded image and
         //  displays it on-screen and assign it to a variable
         var image = game.add.sprite(0, 0, 'bg');
-        //game.add.sprite(14, 8, 'spritesheet', 'title');
+        game.add.sprite(14, 8, 'spritesheet', 'title');
 
         //title.scale.x = 40;
         //title.scale.y = 40;
 
-        game.add.sprite(440, 20, 'spritesheet', 'pyramid');
-        game.add.sprite(14, 164, 'spritesheet', 'couple');
-        game.add.sprite(314, 8, 'spritesheet', 'metropolis');
+        game.add.sprite(840, 20, 'spritesheet', 'pyramid');
+        game.add.sprite(14, 694, 'spritesheet', 'couple');
+        game.add.sprite(1600, 590, 'spritesheet', 'metropolis');
+
+        tower = game.add.sprite(1600, 1590, 'tower', 'tower');
+
         game.add.sprite(381, 11, 'spritesheet', 'hand');
-        game.add.sprite(160, 320, 'spritesheet', 'dave');
+        game.add.sprite(560, 620, 'spritesheet', 'dave');
 
-        arm = game.add.sprite(305, 240, 'spritesheet2', 'arm');
 
+        armSeparate = game.add.sprite(305, 240, 'spritesheet2', 'arm');
+        robot_torso = game.add.sprite(205, 240, 'torso');
+        robot_torso.animations.add('idle', Phaser.Animation.generateFrameNames('idle', 1, 6), 5, true);
+        robot_torso.animations.play('idle');
         bobbody = game.add.sprite(396, 285, 'spritesheet', 'bobbody');
         // this is using bob's head from the spritesheet (like all above)
 
@@ -78,8 +97,19 @@ zombies_from_space.State001.prototype = {
 
         player = game.add.sprite(x, y, 'fighter01');
         // this enables physics on the sprite objects
+        game.camera.follow(player, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
 
-        game.physics.p2.enable([player, bob], false);
+        game.physics.p2.enable([player, bob], false); // the fun bit
+
+
+        game.physics.p2.enable(tower);
+
+
+        player.body.collides(tower);
+        tower.body.collides(player);
+
+        tower.body.data.gravityScale = -0.25;
+
         var constraint = game.physics.p2.createRevoluteConstraint(bob, [200, 0], player, [0, 0]);
 
         // this relates the shape to the object ('jsonShapeObject','jsonObject')
@@ -98,9 +128,9 @@ zombies_from_space.State001.prototype = {
         //  Moves the image anchor to the middle, so it centers inside the game properly
         //image.anchor.set(0.5);
         //  Enables all kind of input actions on this image (click, etc)
-        arm.inputEnabled = true;
+        armSeparate.inputEnabled = true;
         text = game.add.text(250, 16, '', {fill: '#ffffff'});
-        arm.events.onInputDown.add(listener, this);
+        armSeparate.events.onInputDown.add(listener, this);
         fire = game.add.sprite(279, 11, 'light7');
 
         fire.animations.add('warm', [0, 1, 2, 3], 4, true);
@@ -113,16 +143,80 @@ zombies_from_space.State001.prototype = {
 
         //player.body.fixedRotation = true;
         //player.body.damping = 0.5;
+
+
+        // Enable Box2D physics
+        game.physics.startSystem(Phaser.Physics.BOX2D);
+
+        game.physics.box2d.gravity.y = 500;
+
+        game.physics.box2d.setBoundsToWorld();
+
+        //  Create a static rectangle body for the ground. This gives us something solid to attach our crank to
+        var ground = new Phaser.Physics.Box2D.Body(this.game, null, 1000, 470, 0);
+        //setRectangle(width, height, offsetX, offsetY, rotation)
+        ground.setRectangle(640, 20, 0, 0, 0);
+
+        weight = game.add.sprite(1000, 1010, 'weight');
+        weight.anchor.setTo(0.5, 0.5);
+
+        //  Tall skinny rectangle body for the crank
+        var crank = new Phaser.Physics.Box2D.Body(this.game, null, game.world.centerX, 450, 2);
+        crank.setRectangle(15, 75, 0, 0, 0);
+        //Revolute joint with motor enabled attaching the crank to the ground. This is where all the power for the slider crank comes from
+        game.physics.box2d.revoluteJoint(ground, crank, 0, -160, 0, 30, 250, 50, true)
+
+
+        //  Tall skinny rectangle body for the arm. Connects the crank to the piston
+        var arm = new Phaser.Physics.Box2D.Body(this.game, null, 400, 1160, 2);
+        arm.setRectangle(15, 140, 0, 0, 0);
+        //revolute joint to attach the crank to the arm
+        game.physics.box2d.revoluteJoint(crank, arm, 0, -30, 0, 60);
+
+        piston = game.add.sprite(game.world.centerX, 300, 'armSprite');
+        piston.anchor.setTo(0.5, 0.5);
+        game.physics.box2d.enable(piston);
+        //  Square body for the piston. This will be pushed up and down by the crank
+        //var piston = new Phaser.Physics.Box2D.Body(this.game, null, game.world.centerX, 300, 2);
+        //piston.setRectangle(40, 40, 0, 0, 0);
+        //revolute joint to join the arm and the piston
+        game.physics.box2d.revoluteJoint(arm, piston, 0, -60, 0, 0);
+        //prismatic joint between the piston and the ground, this joints purpose is just to restrict the piston from moving on the x axis
+        game.physics.box2d.prismaticJoint(ground, piston, 0, 1, 0, 0, 0, 0);
+
+
+        //  Just a dynamic box body that falls on top of the piston to make the example more interesting
+        //var box = new Phaser.Physics.Box2D.Body(this.game, null, game.world.centerX, 150, 2);
+        //box.setRectangle(40, 40, 0, 0, 0);
+
+        // Set up handlers for mouse events
+        game.input.onDown.add(mouseDragStart, this);
+        game.input.addMoveCallback(mouseDragMove, this);
+        game.input.onUp.add(mouseDragEnd, this);
+
+
+        // Set up handlers for mouse events
+        game.input.onDown.add(mouseDragStart, this);
+        game.input.addMoveCallback(mouseDragMove, this);
+        game.input.onUp.add(mouseDragEnd, this);
+
+
+        //var pump = game.add.sprite( pumpX, pumpY, 'pump');
+        //game.physics.box2d.enable(pump);
+        //arm = game.add.sprite( armX, armY, 'arm');
+        //arm.anchor.setTo(0, 0);
+        //game.physics.box2d.enable(arm);
+
     },
     render: function () {
         game.debug.text(result, 32, 32);
     },
     update: function () {
         if (game.input.activePointer.isDown) {
-            arm.angle += 1;
+            armSeparate.angle += 1;
         }
         if (cursors.left.isDown) {
-            arm.angle += 1;
+            armSeparate.angle += 1;
             player.animations.play('left', 4, true);
             player.body.moveLeft(300);
             x--;
@@ -145,7 +239,10 @@ zombies_from_space.State001.prototype = {
         //  player.body.velocity.x = 0;
         //  player.body.velocity.y = 0;
         player.animations.stop();
+        weight.angle++;
     }
+
+
 }
 
 function listener () {
@@ -163,6 +260,13 @@ function jump(){
 
     alert ('jump');
 }
+
+
+function mouseDragStart() { game.physics.box2d.mouseDragStart(game.input.mousePointer); }
+function mouseDragMove() {  game.physics.box2d.mouseDragMove(game.input.mousePointer); }
+function mouseDragEnd() {   game.physics.box2d.mouseDragEnd(); }
+
+
 
 function click(pointer) {
 

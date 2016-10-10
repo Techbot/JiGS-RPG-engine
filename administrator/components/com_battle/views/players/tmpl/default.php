@@ -16,10 +16,8 @@ JToolBarHelper::addNew();
 			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
-	
 		GRID:<?php echo $this->grid; ?><div class="filter-select fltrt">
- 
-			<select name="filter_grid" class="inputbox"  onchange="this.form.submit()">
+ 			<select name="filter_grid" class="inputbox"  onchange="this.form.submit()">
 		 		<option value=""  <?php if($this->grid ==""){echo "selected ='TRUE'";}?>>SELECT GRID</option>
 				<option value="1" <?php if($this->grid ==1){echo "selected ='TRUE'";}?>>1</option>
 				<option value="2" <?php if($this->grid ==2){echo "selected ='TRUE'";}?>>2</option>
@@ -27,10 +25,7 @@ JToolBarHelper::addNew();
 				<option value="4" <?php if($this->grid ==4){echo "selected ='TRUE'";}?>>4</option>
 				<option value="5" <?php if($this->grid ==5){echo "selected ='TRUE'";}?>>5</option>
 				<option value="6" <?php if($this->grid ==6){echo "selected ='TRUE'";}?>>6</option>
-			
 			</select>
-			
-			
 			<select name="filter_published" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
@@ -113,13 +108,6 @@ for ($i=0, $n=count( $this->rows ); $i < $n; $i++)
 	  <td>
 	<?php echo $row->health; ?>
       </td>
-    	
-    
-    
-    
-    
-    
-    
       <td>
 	<?php echo $row->money; ?>
       </td>

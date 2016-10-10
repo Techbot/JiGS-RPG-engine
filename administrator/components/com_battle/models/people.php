@@ -2,7 +2,7 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.modellist');
 
-class battleModelPeople extends JModellist
+class battleModelPeople extends JModellegacy
 {
 	var $_data = null;
 	public function __constuct($config = array())
@@ -32,13 +32,13 @@ class battleModelPeople extends JModellist
 		// Initialise variables
 		$app			= Jfactory::getApplication ('administrator');
 		//load the filter state
-		$search			=		$this->getUserStateFromRequest($this->context. '.filter.search','filter_search');
+		//$search			=		$this->getUserStateFromRequest($this->context. '.filter.search','filter_search');
 		$this->setstate('filter.search',$search);
-		$accessId		=		$this->getUserStateFromRequest ($this->context.'.filter.access', 'filter_access', null, 'int');
+		//$accessId		=		$this->getUserStateFromRequest ($this->context.'.filter.access', 'filter_access', null, 'int');
 		$this->setstate('filter.access' , $accessId);
-		$published		=		$this->getUserStateFromRequest ($this->context.'.filter.state', 'filter_published','', 'string');
+		//$published		=		$this->getUserStateFromRequest ($this->context.'.filter.state', 'filter_published','', 'string');
 		$this->setstate('filter.state' , $published);
-		$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
+		//$categoryId		=		$this->getUserStateFromRequest ($this->context.'.filter.category_id','filter_category_id','');
 		$this->setstate('filter.category_id' , $categoryId);
 		//Load the parameters
 		$params			= JComponentHelper::getParams('com_battle');

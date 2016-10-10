@@ -1,6 +1,6 @@
 // we create the global game object, an instance of Phaser.Game
 
-var game = new Phaser.Game(800, 500, Phaser.AUTO, 'world');
+var game = new Phaser.Game(800, 500, Phaser.AUTO, 'world',null,true,true,null);
 
 
 

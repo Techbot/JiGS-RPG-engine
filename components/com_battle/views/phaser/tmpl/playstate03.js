@@ -35,7 +35,7 @@ playState[3] = {
         //game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
         cursors = game.input.keyboard.createCursorKeys();
 
-        game.input.onDown.add(moveBall, this);
+
 
         //  In this example we'll create 4 specific keys (up, down, left, right) and monitor them in our update function
 
@@ -61,6 +61,7 @@ playState[3] = {
         place_monsters();
         place_halflings();
         place_player();
+        stop_player();
         place_players();
         place_chars();
         place_portals();
@@ -82,48 +83,54 @@ playState[3] = {
         weapon.trackSprite(circle_core, 0, 0, true);
     },
     update: function() {
-        if (game.input.activePointer.isDown)
-        {
+        if (game.input.activePointer.isDown) {
 
+            anim = true;
+            //weapon.fire();
+           // game.input.onDown.add(moveBall, this);
 
-            weapon.fire();
         }
 
+        game.input.onDown.add(moveBall, this);
         floor_halflings();
         //////////////////////////////collide obstacle layer
-        game.physics.arcade.collide(sprite, layer);
+        game.physics.arcade.collide(sprite, layer, stop);
         ////////////////////////////////////////////////
-        this.physics.arcade.collide(sprite, portal[1],jump);
-        this.physics.arcade.collide(sprite, portal[2],jump);
-        this.physics.arcade.collide(sprite, portal[3],jump);
-
+        this.physics.arcade.collide(sprite, portal[1], jump);
+        this.physics.arcade.collide(sprite, portal[2], jump);
+        this.physics.arcade.collide(sprite, portal[3], jump);
         ////////////////////////move player
-        game.physics.arcade.moveToXY(sprite, x, y, 100);
+        //sprite.body.velocity.x = 0;
+
+        //sprite.body.velocity.y = 0;
 
 
-        if (parseInt(sprite.x) > parseInt(x)){
+        sprite.body.x = parseInt(sprite.body.x);
 
+        if (anim == true) {
+            game.physics.arcade.moveToXY(sprite, parseInt(x), parseInt(y), 100);
 
-            sprite.animations.play('walkLeft', 6);
-
-        }else{
-
-            sprite.animations.play('walkStop', 6);
-
-
-        }
-
-        if (parseInt(sprite.x) < parseInt(x)){
-
-
+        if (parseInt(sprite.body.x) + 46 < (x)) {
             sprite.animations.play('walkRight', 6);
-
-        }else{
-
-            sprite.animations.play('walkStop', 6);
-
-
         }
+        else if (parseInt(sprite.body.x) + 40 > (x)) {
+            sprite.animations.play('walkLeft', 6);
+        }
+
+        else if (parseInt(sprite.body.y) + 45 <= (y)) {
+            sprite.animations.play('walkDown', 6);
+        }
+        else if (parseInt(sprite.body.y) + 40 >= (y)) {
+            sprite.animations.play('walkUp', 6);
+        }
+
+        else {
+            sprite.animations.play('walkStop', 1);
+            // sprite.animations.stopAll();
+            sprite.body.velocity.x = 0;
+            sprite.body.velocity.y = 0;
+        }
+    }
 
 
 
@@ -136,8 +143,6 @@ playState[3] = {
         stop_monsters();
         stop_halflings();
         move_halflings();
-
-
         /*
         if (upKey.isDown)
         {
@@ -237,12 +242,21 @@ playState[3] = {
         check_for_collisions();
     },
     render: function() {
-        //   game.debug.spriteCoords(sprite, 32, 32);
+           game.debug.spriteCoords(sprite, 32, 32);
         // Sprite debug info
-        // game.debug.spriteInfo(sprite, 32, 32);
+         //game.debug.spriteInfo(sprite, 32, 32);
       //  weapon.debug();
     }
 };
+
+
+
+function stop(){
+
+    sprite.animations.play('walkStop', 1);
+
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function load_monsters() {
@@ -354,7 +368,6 @@ function load_player_old() {
     }
 }
 
-
 function load_player() {
     //game.load.spritesheet('hero', '/components/com_battle/images/assets/chars/hero/hero.png', 32, 45);
   //  game.load.atlas('player', 'assets/atlases/hero.png', 'assets/atlases/hero.json');
@@ -453,11 +466,12 @@ function place_player_old() {
 
 function place_player() {
     sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
-    //  sprite2                     = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
+    //  sprite2                 = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.enable          = true;
     sprite.body.allowRotation   = false;
+    sprite.anchor.setTo(0.5, 0.5);
 
     game.physics.enable(circle_core, Phaser.Physics.ARCADE);
     circle_core.body.enable          = true;
@@ -474,7 +488,7 @@ function place_player() {
     this.sprite.animations.add('walkLeft', Phaser.Animation.generateFrameNames('walkLeft', 1, 8), 5, true);
     this.sprite.animations.add('walkRight', Phaser.Animation.generateFrameNames('walkRight', 1, 8), 5, true);
     this.sprite.animations.add('walkDown', Phaser.Animation.generateFrameNames('walkDown', 1, 8), 5, true);
-
+    this.sprite.animations.add('walkStop',  ['walkStop']);
     /*
     sprite.animations.add('walkDown', ['walkDown1', 'walkDown2', 'walkDown3'], 5, true);
     sprite.animations.add('walkLeft', ['walkLeft1', 'walkLeft2', 'walkLeft3'], 5, true);
@@ -644,15 +658,16 @@ function move_halflings(){
 }
 
 function stop_player(){
-    if ((sprite.body.x >=x-10) &&(sprite.body.x <=x+10)){
+    if ((sprite.body.x >x-50) &&(sprite.body.x < x-50)){
         sprite.body.velocity.x = 0;
         circle_core.body.velocity.x = 0;
     }
-    if ((sprite.body.y >=y-10) &&(sprite.body.y <=y+10)){
+    if ((sprite.body.y >y-45) &&(sprite.body.y <y-45)){
         sprite.body.velocity.y = 0;
         circle_core.body.velocity.y = 0;
     }
     if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
+      //  sprite.animations.play('walkStop', 1);
         if (send == 1) {
             doSomething();
             send = 0;

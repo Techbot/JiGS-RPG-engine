@@ -49,11 +49,11 @@ class battleModelBuildings extends JModelLegacy
 		$user =& JFactory::getUser();
 		
 		$db->setQuery("SELECT jos_jigs_shop_prices.item_id, " .
-					"jos_jigs_objects.name, " .
+					"jos_jigs_object_types.name, " .
 					"jos_jigs_shop_prices.sell_price " .
 					"FROM jos_jigs_shop_prices " .
-					"LEFT JOIN jos_jigs_objects " .
-					"ON jos_jigs_shop_prices.item_id = jos_jigs_objects.id " .
+					"LEFT JOIN jos_jigs_object_types " .
+					"ON jos_jigs_shop_prices.item_id = jos_jigs_object_types.id " .
 					"WHERE jos_jigs_shop_prices.shop_id =" . $building_id);
 		$result = $db->loadAssocList();
 		return $result;

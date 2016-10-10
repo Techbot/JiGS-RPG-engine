@@ -19,10 +19,10 @@ function request_skills() {
     var all = '';
     var details = this.details;
     var a = new Request.JSON({
-        url: "index.php?option=com_battle&format=raw&task=action&action=get_skills",
+        url: "index.php?option=com_battle&format=raw&task=skills_action&action=get_skills",
         onSuccess: function (result) {
-            for (i = 0; i < 8; ++i) {
-                var row = "<br>Skill " + (i + 1) + ":" + result[i + 1]['name'] + ' Lvl:' + result[i + 1]['level'];
+            for (var i = 0; i < 8; ++i) {
+                var row = "<br>Skill " + (i + 1) + " : " + result[i]['name'] + " Lvl:" + result[i]['level'];
                 all = all + row;
             }
             jQuery('#skills').html(all);

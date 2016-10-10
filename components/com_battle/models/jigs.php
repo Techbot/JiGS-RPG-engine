@@ -288,8 +288,12 @@ class BattleModelJigs extends JModellegacy
     {
         $db= JFactory::getDBO();
         $user= JFactory::getUser();
-        $db->setQuery("SELECT #__jigs_metals.item_id, " .
-            "#__jigs_metals.quantity, #__jigs_metal_types.name FROM #__jigs_metals LEFT JOIN  #__jigs_metal_names ON #__jigs_metals.item_id = #__jigs_metal_names.id  WHERE #__jigs_metals.player_id =" . $user->id);
+        $db->setQuery("
+SELECT #__jigs_metals.item_id, #__jigs_metals.quantity, #__jigs_metal_types.name 
+FROM #__jigs_metals 
+LEFT JOIN  #__jigs_metal_types 
+ON #__jigs_metals.item_id = #__jigs_metal_types.id  
+WHERE #__jigs_metals.player_id =" . $user->id);
         $result		= $db->loadAssocList();
         return $result;
     }

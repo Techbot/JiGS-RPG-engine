@@ -1,6 +1,6 @@
 <?php
-//error_reporting(E_ALL);
-////ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
 class BattleController extends JControllerLegacy
@@ -62,15 +62,9 @@ class BattleController extends JControllerLegacy
     function glitch_action()
     {
         $model          = $this->getModel('glitch');
-
-
-
         $action         = JRequest::getVar('action');
         $result         = $model->$action();
         echo json_encode($result);
-
-
-
     }
 
     function twine_action()
@@ -87,9 +81,15 @@ class BattleController extends JControllerLegacy
         $action         = JRequest::getVar('action');
         $result         = $model->$action();
         echo json_encode($result);
-
     }
-
+    
+    function spells_action()
+    {
+        $model          = $this->getModel('spells');
+        $action         = JRequest::getVar('action');
+        $result         = $model->$action();
+        echo json_encode($result);
+    }
     function map_action()
     {
 
@@ -111,6 +111,14 @@ class BattleController extends JControllerLegacy
     function terminal_action()
     {
         $model          = $this->getModel('terminal');
+        $action         = JRequest::getVar('action');
+        $result         = $model->$action();
+        echo json_encode($result);
+    }
+
+    function plate_action()
+    {
+        $model          = $this->getModel('plate');
         $action         = JRequest::getVar('action');
         $result         = $model->$action();
         echo json_encode($result);

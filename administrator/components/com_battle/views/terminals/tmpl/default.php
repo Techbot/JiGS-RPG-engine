@@ -1,9 +1,7 @@
 <?php
-
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.multiselect');
-
 /*
 $user		= JFactory::getUser();
 $userId		= $user->get('id');

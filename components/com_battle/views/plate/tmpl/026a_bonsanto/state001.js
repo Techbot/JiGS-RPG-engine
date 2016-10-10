@@ -10,7 +10,7 @@ bonsanto.State001.prototype = {
 
     preload: function () {
 
-        this.load.image('plateBgState001', 'bonsanto-state001.jpg');
+        this.load.image('plateBgState001', 'bonsanto-state001.png');
         this.load.image('plateBgState002', 'bonsanto-state002.jpg');
         this.load.image('bono', 'bono.png');
         this.load.image('bono60', 'bono-60.png');

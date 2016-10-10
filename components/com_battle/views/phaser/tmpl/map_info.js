@@ -14,8 +14,8 @@ tile_names[1] = ['TileA5','TileB','TileC','TileD','sprite','Zombie_A5','001plate
 x1[1] = 480;
 y1[1] = 0;
 
-x2[1] = 1088;
-y2[1] = 192;
+x2[1] = 1210;
+y2[1] = 400;
 
 x3[1] = 0;
 y3[1] = 192;
@@ -33,12 +33,12 @@ portal_dest_3[1] = 4;
 
 // where the players return to
 portal_sourceX1[1] = 480;
-portal_sourceY1[1] = 64;
+portal_sourceY1[1] = 120;
 
-portal_sourceX2[1] = 1056;
+portal_sourceX2[1] = 1256;
 portal_sourceY2[1] = 224;
 
-portal_sourceX3[1] = 64;
+portal_sourceX3[1] = 164;
 portal_sourceY3[1] = 192;
 
 
@@ -48,7 +48,7 @@ tile_names[2] = ['Zombie_A5','Zombie_A3','TileE','Inside_C','sprite','World_B','
 x1[2] = 992;
 y1[2] = 800;
 
-x2[2] = 160;
+x2[2] = 280;
 y2[2] = 128;
 
 x3[2] = 1152;
@@ -64,13 +64,13 @@ portal_dest_2[2] = 5;
 portal_dest_3[2] = 6;
 
 portal_sourceX1[2] = 992;
-portal_sourceY1[2] = 800;
+portal_sourceY1[2] = 740;
 
 portal_sourceX2[2] = 224;
 portal_sourceY2[2] = 160;
 
 portal_sourceX3[2] = 1120;
-portal_sourceY3[2] = 224;
+portal_sourceY3[2] = 424;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ portal_dest_3[3] = 7;
 portal_sourceX1[3] = 896;
 portal_sourceY1[3] = 1024;
 
-portal_sourceX2[3] = 64;
+portal_sourceX2[3] = 264;
 portal_sourceY2[3] = 224;
 
 portal_sourceX3[3] = 1152;
@@ -134,8 +134,8 @@ portal_sourceY1[4] = 768;
 portal_sourceX2[4] = 256;
 portal_sourceY2[4] = 96;
 
-portal_sourceX3[4] = 1120;
-portal_sourceY3[4] = 640;
+portal_sourceX3[4] = 1130;
+portal_sourceY3[4] = 720;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 tile_names[5] = ['TileA5','TileE','sprite'];

@@ -1,19 +1,14 @@
 <?php ?>
-
 <div id="stats_module">loading....</div>
-
 <script type='text/javascript'>
 
 function request_stats(){
-	
-		var details = this.details;
+
+	var details = this.details;
 	
 	var a = new Request.JSON({
     url: "index.php?option=com_battle&format=raw&task=action&action=get_stats", 
     onSuccess: function(result){
-    	
-    	
-    	
    // 	alert('health: ' + result[0].health + '   strenght: ' + result[0].strenght + '   Intelligence: ' + result[0].intelligence);
     
    document.id('stats_module').innerHTML = 
@@ -33,23 +28,11 @@ function request_stats(){
        "<br /><span class=\"label\">   Attacks:</span>       "    +    result[0].nbr_attacks  +   " <span class=\"label\" style=\"margin-left:10px;\">Kills:</span> " +  result[0].nbr_kills      +          
        "<input type='button' value='Update' onclick= 'request_stats();'></button>"
          ;
-     
-    	//	update: $('stats')
 
-    
-    
+    	//	update: $('stats')
     	}
     }).get();
 }
-
-
-
 request_stats();
-
-
-
-
-
-
 </script>
 

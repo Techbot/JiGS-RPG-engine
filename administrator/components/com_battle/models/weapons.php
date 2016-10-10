@@ -9,7 +9,7 @@ class battleModelWeapons extends JModelLegacy
 	{
 		if (empty($this->_data))
 		{
-			$query = "SELECT * FROM `#__jigs_weapon_names`";
+			$query = "SELECT * FROM `#__jigs_weapon_types`";
 			$this->_data = $this->_getList($query);
 		}
 		return $this->_data;

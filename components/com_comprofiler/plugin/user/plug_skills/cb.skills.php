@@ -61,7 +61,7 @@ class getBlogTab3 extends cbTabHandler {
 		for( $i=1 ; $i<=8 ; $i++ ){
 			$name = 'name_'. $i;
 			$nm= 'skill_' . $i;
-			$query2 ="SELECT name FROM #__jigs_skill_names WHERE #__jigs_skill_names.id = " . $this->_data->$nm;
+			$query2 ="SELECT name FROM #__jigs_skill_types WHERE #__jigs_skill_types.id = " . $this->_data->$nm;
 			//echo $query2;
 			$db->setQuery($query2);
 			$this->_data->$name = $db->loadresult();

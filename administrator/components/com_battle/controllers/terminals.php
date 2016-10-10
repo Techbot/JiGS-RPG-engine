@@ -1,6 +1,7 @@
 <?php
 defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
+
 class BattleControllerTerminals extends JControllerLegacy
 {
     function __construct ($config = array())
@@ -64,7 +65,6 @@ class BattleControllerTerminals extends JControllerLegacy
         $this->setRedirect('index.php?option=com_battle&view=terminals', $msg);
     }
 
-
     function publish()
     {
 //        global $option;
@@ -97,21 +97,6 @@ class BattleControllerTerminals extends JControllerLegacy
         // $this->setRedirect('index.php?option=' . $option, $msg);
         $this->setRedirect('index.php?option=com_battle&view=terminals', $msg);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     function display()
     {

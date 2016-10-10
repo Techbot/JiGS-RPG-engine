@@ -4,12 +4,8 @@ jimport('joomla.application.component.controller');
 
 class BattleControllerPlates extends JControllerLegacy
 {
-
     function __construct ($config = array())
     {
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-
         parent::__construct($config);
         $this->registerTask('unpublish','publish');
         $this->registerTask('apply','save');
@@ -52,13 +48,6 @@ class BattleControllerPlates extends JControllerLegacy
 
     }
 
-
-
-
-
-
-
-
     function remove()
     {
         $cid = JRequest::getVar( 'cid', array(0), '', 'array' );
@@ -75,7 +64,6 @@ class BattleControllerPlates extends JControllerLegacy
 
         $this->setRedirect('index.php?option=com_battle&view=plate', $msg);
     }
-
 
     function publish()
     {

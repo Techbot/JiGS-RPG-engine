@@ -1,12 +1,8 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-jimport('joomla.application.component.modellist');
+jimport('joomla.application.component.modellegacy');
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-class battleModelMain extends JModellist
+class battleModelMain extends JModellegacy
 {
     var $_data = null;
 
@@ -22,21 +18,22 @@ class battleModelMain extends JModellist
             parent::__constuct($config);
          */
     }
-
     /**
+     * @param null $ordering
+     * @param null $direction
      */
     protected function populateState($ordering = null, $direction = null)
     {
         // Initiilise variables
         $app = Jfactory::getApplication('administrator');
         //load the filter state
-        $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+        //$search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setstate('filter.search', $search);
-        $accessId = $this->getUserStateFromRequest($this->context . '.filter.access', 'filter_access', null, 'int');
+        //$accessId = $this->getUserStateFromRequest($this->context . '.filter.access', 'filter_access', null, 'int');
         $this->setstate('filter.access', $accessId);
-        $published = $this->getUserStateFromRequest($this->context . '.filter.state', 'filter_published', '', 'string');
+        //$published = $this->getUserStateFromRequest($this->context . '.filter.state', 'filter_published', '', 'string');
         $this->setstate('filter.state', $published);
-        $categoryId = $this->getUserStateFromRequest($this->context . '.filter.category_id', 'filter_category_id', '');
+        //$categoryId = $this->getUserStateFromRequest($this->context . '.filter.category_id', 'filter_category_id', '');
         $this->setstate('filter.category_id', $categoryId);
         //Load the parameters
         $params = JComponentHelper::getParams('com_Battle');
@@ -87,7 +84,6 @@ class battleModelMain extends JModellist
         }
         return;
     }
-
 
     function delete_players_orphaned()
     {

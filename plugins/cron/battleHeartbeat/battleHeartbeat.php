@@ -383,7 +383,7 @@ class plgBattleHeartbeat extends JPlugin
                 $number_of_items = rand(1,3);
                 for ($i=0 ;$i<$number_of_items;$i++){
                     $item_id		= rand(1, 15);
-                    $db->setQuery("INSERT INTO #__jigs_inventory (item_id, player_id ) VALUES (" . $item_id . " ,  " .  $row->id  . ")");
+                    $db->setQuery("INSERT INTO #__jigs_objects (item_id, player_id ) VALUES (" . $item_id . " ,  " .  $row->id  . ")");
                     $db->query();
                 }
                 $db->setQuery("UPDATE #__jigs_characters SET empty = 0 WHERE id = " .  $row->id );
@@ -700,12 +700,12 @@ class plgBattleHeartbeat extends JPlugin
             #__jigs_factories.quantity,
             #__jigs_factories.type,
             #__jigs_buildings.owner,
-            #__jigs_objects.name
+            #__jigs_object_types.name
             FROM #__jigs_factories
             LEFT JOIN #__jigs_buildings
             ON #__jigs_factories.building = #__jigs_buildings.id
-            LEFT JOIN #__jigs_objects
-            ON #__jigs_factories.type = #__jigs_objects.id
+            LEFT JOIN #__jigs_object_types
+            ON #__jigs_factories.type = #__jigs_object_types.id
             WHERE #__jigs_factories.finished !=0 AND  #__jigs_factories.finished < ". $now;
 
         $db->setQuery($query);
@@ -727,7 +727,7 @@ class plgBattleHeartbeat extends JPlugin
                 $this->sendMessage($now, "quantity is " . $quantity);
 
                 for ($i=1;$i <= $quantity ;$i++){
-                    $query1		= "INSERT INTO #__jigs_inventory (player_id , item_id) VALUES ($row->owner ,$row->type)";
+                    $query1		= "INSERT INTO #__jigs_objects (player_id , item_id) VALUES ($row->owner ,$row->type)";
                     $db->setQuery($query1);
                     $db->query();
                     $xp_type	= 'nbr_objs';

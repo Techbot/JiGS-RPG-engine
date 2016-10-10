@@ -2,6 +2,7 @@
 	<head>
 		<!-- Phaser -->
 		<script src="/components/com_battle/includes/phaser.js"></script>
+		<script type="text/javascript" src="plugins/box2d-plugin-full.min.js"></script>
 		<style>	
 			body {
 				margin: 0;
