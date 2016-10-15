@@ -825,9 +825,7 @@ class BattleModelBuilding extends JModelLegacy
             $query = "SELECT name FROM #__jigs_crop_types WHERE id =" . $seed;
 
             $db->setQuery($query);
-
             $name = $db->loadResult();
-
             $result2[$seed] = $name;
             $result2[7] = "tobbacco";
         }

@@ -34,11 +34,11 @@ echo "</pre>";
 
 				if (result[0].health <= 0 )  {
 					close();
-					jump();			
+					//jump();
 					}
 				if (result[1].health <= 0 ) {
 					close();
-					jump();
+					//jump();
 					}		
 				}
 			}).get();
@@ -55,11 +55,11 @@ function kick(character_id){
 
 				if (result[0].health <= 0 )  {
 					close();
-					jump();			
+				//	jump();
 					}
 				if (result[1].health <= 0 ) {
 					close();
-					jump();
+				//	jump();
 					}		
 				}
 			}).get();
@@ -77,11 +77,11 @@ function punch(character_id){
 
 				if (result[0].health <= 0 )  {
 					close();
-					jump();			
+					//jump();
 					}
 				if (result[1].health <= 0 ) {
 					close();
-					jump();
+					//jump();
 					}		
 				}
 			}).get();

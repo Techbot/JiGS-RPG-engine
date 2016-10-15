@@ -11,21 +11,15 @@ require_once JPATH_COMPONENT.'/helpers/energy.php';
 
 class BattleModelMonsters extends JModellegacy
 {
-
      function attack()
-
     {
-
         $db                 = JFactory::getDBO();
         $user               = JFactory::getUser();
         $id                 = JRequest::getvar('id');
-
         $monster            = $this->getMonster($id, $db);
         $player             = $this->getPlayer($user, $db);
-
         $attackRoundMonster = $monster->defence + rand(0,6);
         $attackRoundPlayer  = $monster->attack + rand(0,6);
-
         if ( $attackRoundPlayer >  $attackRoundMonster){
             $query          = "UPDATE #__jigs_monsters SET health = health -10 WHERE id= $id";
             $db->setQuery($query);
@@ -33,7 +27,6 @@ class BattleModelMonsters extends JModellegacy
             $message        = 'You caused 10 hit points of damage';
             MessagesHelper::sendFeedback($user->id,$message);
         }
-
         $query              = "SELECT health FROM  #__jigs_monsters WHERE id= $id";
         $db->setQuery($query);
         $result['id']       = $id;

@@ -8,14 +8,13 @@ class BattleModelPlayer extends JModelLegacy
 	var $_data = null;
 	
 	function getData()
-	{
-		if (empty($this->_data)) {
-			$query = "SELECT * FROM #__jigs_players";
-			$this->_data = $this->_getList($query);
-		}
-
-		return $this->_data;
-	}
+    {
+        if (empty($this->_data)) {
+            $query = "SELECT * FROM #__jigs_players";
+            $this->_data = $this->_getList($query);
+        }
+        return $this->_data;
+    }
 
     function getPlayer($id)
     {

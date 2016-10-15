@@ -96,9 +96,9 @@ playState[3] = {
         //////////////////////////////collide obstacle layer
         game.physics.arcade.collide(sprite, layer, stop);
         ////////////////////////////////////////////////
-        this.physics.arcade.collide(sprite, portal[1], jump);
-        this.physics.arcade.collide(sprite, portal[2], jump);
-        this.physics.arcade.collide(sprite, portal[3], jump);
+     //   this.physics.arcade.collide(sprite, portal[1], jump);
+    //    this.physics.arcade.collide(sprite, portal[2], jump);
+    //    this.physics.arcade.collide(sprite, portal[3], jump);
         ////////////////////////move player
         //sprite.body.velocity.x = 0;
 
@@ -131,11 +131,6 @@ playState[3] = {
             sprite.body.velocity.y = 0;
         }
     }
-
-
-
-
-
         move_players();
         stop_players();
         stop_player();
@@ -403,8 +398,14 @@ function place_buildings(){
             var key = buildings[index].id;
             add_building[index] = game.add.sprite(buildings[index].posx * 1, buildings[index].posy * 1, "_" + key);
             add_building[index].id = key;
+            add_building[index].name = buildings[index].name;
+            add_building[index].ownername = buildings[index].ownername;
+
             game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
             add_building[index].body.velocity = 0;
+
+            add_building[index].inputEnabled = true;
+
         }
     }
 }
@@ -469,7 +470,7 @@ function place_player() {
     //  sprite2                 = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
-    sprite.body.enable          = true;
+    //sprite.body.enable          = true;
     sprite.body.allowRotation   = false;
     sprite.anchor.setTo(0.5, 0.5);
 
@@ -768,16 +769,23 @@ function check_for_collisions(){
     ///////////////////////collide plate list
     for (var index = 0; index < plates_list.length; index++)
     {
+        add_plates[index].events.onInputOver.add(tooltip,this);
+        add_plates[index].events.onInputOut.add(killTooltip, this);
         game.physics.arcade.collide(sprite, add_plates[index], plate);
     }
     ///////////////////////collide twines_list
     for (var index = 0; index < twines_list.length; index++)
     {
         game.physics.arcade.collide(sprite, add_twines[index], twine);
+        add_twines[index].events.onInputOver.add(tooltip,this);
+        add_twines[index].events.onInputOut.add(killTooltip, this);
     }
+
     ///////////////////////collide terminals_list
     for (var index = 0; index < terminals_list.length; index++)
     {
+        terminals[index].events.onInputOver.add(tooltip,this);
+        terminals[index].events.onInputOut.add(killTooltip, this);
         game.physics.arcade.collide(sprite, terminals[index], terminal);
     }
     /////////////////////collide players
@@ -793,6 +801,9 @@ function check_for_collisions(){
     {
         //console.log(key);
         game.physics.arcade.collide(sprite, add_building[index], enter_building);
+        add_building[index].events.onInputOver.add(tooltip,this);
+        add_building[index].events.onInputOut.add(killTooltip, this);
+
     }
 
     ////////////////////////////

@@ -5,7 +5,6 @@ jimport('joomla.application.component.model');
 
 class BattleModelWard extends JModel
 {
-	
 	function enter_ward(){
 	$db =& JFactory::getDBO();
 	$user =& JFactory::getUser();
@@ -14,13 +13,4 @@ class BattleModelWard extends JModel
 	$db->query();
 	return ;
 	}
-
-
-	
 }
-
-
-
-
-
-

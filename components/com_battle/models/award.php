@@ -13,7 +13,7 @@ class BattleModelAward extends JModel
     function get_award($id)
     {
         $db	= JFactory::getDBO();
-        $query	= " SELECT a.id , a.id,
+        $query	= "SELECT a.id , a.id,
                    n.name as award_name,
                    u.name, u.username
             FROM   #__jigs_awards a,
@@ -137,4 +137,9 @@ class BattleModelAward extends JModel
         $db->setQuery($query);
         $db->query();
     }
+
+
+
+
+
 }

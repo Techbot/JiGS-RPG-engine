@@ -1,3 +1,5 @@
+
+
 var game = new Phaser.Game(800, 500, Phaser.AUTO, "world");
 var upKey;
 var downKey;
@@ -12,7 +14,7 @@ var sprite;
 var sprite2;
 var circle_core;
 var anim= false;
-
+var enableObstacleCollide;
 game.state.add('login', playState[0]);
 game.state.add('next', playState[3]);
 game.state.add('terminal', playState[2]);
@@ -112,6 +114,36 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
     }
 });
 
+function tooltip(thing) {
+
+    bar = game.add.graphics();
+    bar.beginFill(0x000000, 0.8);
+    bar.drawRect(thing.x, thing.y, thing.width, thing.height);
+   //console.log(thing.name, rectWidth, typeof bar);
+    console.log(thing.position.x);
+
+    var style = { font: '14px Arial', fill: 'white', align: 'left', wordWrap: true };
+    //var style = { font: '14px Arial', fill: 'white', align: 'left', backgroundColor: 'black', boundsAlignH: "center", boundsAlignV: "middle" };
+
+    //text = game.add.text(thing.position.x, thing.position.y, 'enter'+ ' ' + thing.ownername + ' ' + thing.name , style);
+    text = game.add.text(thing.position.x, thing.position.y, 'enter'+ thing.name , style);
+
+
+    text.padding.set(0, 0);
+    text.setShadow(3, 3, 'rgba(0,0,0,0.9)', 2);
+
+    text.setTextBounds(20,20,  thing.width-20, thing.height-20);
+
+}
+
+function killTooltip() {
+
+    text.destroy();
+    bar.destroy();
+
+}
+
+
 function moveBall(pointer)
 {
 
@@ -154,7 +186,7 @@ function jump(one,two) {
     one.body.velocity.x = 0;
     one.body.velocity.y = 0;
     two.body.enable = false;
-    get_everything(two.dest);
+    //get_everything(two.dest);
 }
 
 function get_everything(dest) {
@@ -213,15 +245,28 @@ function battle2(one,two) {
 }
 
 function enter_building(one,two) {
-
+  //  alert(one.body.enable);
+  //  alert('fck');
+    enableObstacleCollide = false;
     one.body.immovable = true;
+    one.body.enable =false;
     two.body.immovable = true;
+    two.body.enable =false;
+  //  alert(one.body.enable);
+
+
+
+
+
 
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=building&id=" + two.id,
         context: document.body,
+        obj: one.body.enable,
         dataType: "json"
-    }).done(function(result) {
+    }).done(function(result){
+
+   //     alert('n: ' + this.obj);
 
         document.getElementById("building").innerHTML=result;
         document.getElementById("building").show();
@@ -229,7 +274,7 @@ function enter_building(one,two) {
         document.getElementById("npc").hide();
         document.getElementById("player").hide();
         loadUp();
-
+        //alert('y: ' + this.obj);
         var url = "/components/com_battle/includes/building.js";
         jQuery.getScript( url, function() {
             // alert ('hi');
@@ -238,9 +283,10 @@ function enter_building(one,two) {
     });
 }
 
-function shop() {
-    sprite.destroy(true);
-
+function shop(one,two) {
+    one.destroy(true);
+    one.body.enable =false;
+    two.body.enable =false;
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=building&id=1739",
         context: document.body,
@@ -367,11 +413,11 @@ function terminal(one,two) {
         dataType: "json"
     }).done(function(result) {
         //   two.body.enable = true;
-        game.state.start('terminal');
-        document.getElementById("world").hide();
-        document.getElementById("terminal").innerHTML=result;
-        document.getElementById("terminal").show();
-   //     loadUp();
+       // game.state.start('terminal');
+       // document.getElementById("world").hide();
+       // document.getElementById("terminal").innerHTML=result;
+      //  document.getElementById("terminal").show();
+        loadUp();
         var url = "/components/com_battle/includes/terminal.js";
         jQuery.getScript( url, function() {
         });

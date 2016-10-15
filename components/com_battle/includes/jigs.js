@@ -112,6 +112,7 @@ window.addEvent('domready',function()
 
 
 function show_world(){
+    alert ('Show');
     document.getElementById("npc").hide();
     document.getElementById("player").hide();
     document.getElementById("building").hide();
@@ -177,7 +178,7 @@ function MoveRight()
     {
         PosX = 0;
         map++;
-        jump();
+        //jump();
         return;
     }
 
@@ -203,7 +204,7 @@ function MoveLeft()
     {
         PosX = 7;
         map--;
-        jump();
+    //    jump();
         return;
     }
     if (cell[left1][PosY] <= 0)
@@ -229,7 +230,7 @@ function MoveUp()
     {
         PosY = 7;
         map = map - grid_index;
-        jump();
+    //    jump();
         return;
     }
     if (cell[PosX][up] <= 0)
@@ -257,7 +258,7 @@ function MoveDown()
     {
         PosY = 0;
         map = parseInt(map) + parseInt(grid_index);
-        jump();
+    //    jump();
         return;
     }
     if (cell[PosX][down] <= 0)
@@ -292,8 +293,8 @@ function safety_check()
 
 function jump()
 {
-    safety_check();
-    location.href = 'index.php?option=com_battle&view=phaser';
+  //  safety_check();
+ //   location.href = 'index.php?option=com_battle&view=phaser';
 }
 
 function Move_Player()

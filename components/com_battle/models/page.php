@@ -13,7 +13,7 @@ class BattleModelPage extends JModelLegacy
 			$query = "SELECT * FROM #__jigs_plate WHERE id = $id ";
 			$this->_data = $this->_getList($query);
 		}
-		
+
 		return $this->_data;
 	}
 }

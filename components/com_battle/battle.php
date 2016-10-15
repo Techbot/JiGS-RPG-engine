@@ -1,7 +1,7 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-//defined( '_JEXEC' ) or die( 'Restricted access' );
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
 class BattleController extends JControllerLegacy
 {
@@ -92,19 +92,16 @@ class BattleController extends JControllerLegacy
     }
     function map_action()
     {
-
         $model          = $this->getModel('map');
         $action         = JRequest::getVar('action');
         $result         = $model->$action();
      //   echo new JResponseJson($result);
         // Set view
-
      //   exit();
     //    JRequest::setVar('view', 'Abc');
     //    parent::display();
-
         echo json_encode($result);
-        exit();
+     //   exit();
     //    exit();
     }
 

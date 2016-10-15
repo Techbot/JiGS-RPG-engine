@@ -5,8 +5,7 @@ jimport('joomla.application.component.model');
 
 class BattleModelRoom extends JModelLegacy
 {
-	
-	function enter_room()
+		function enter_room()
 	{
 		$db			= JFactory::getDBO();
 		$user		= JFactory::getUser();
@@ -16,12 +15,5 @@ class BattleModelRoom extends JModelLegacy
 		return true ; 
 	}
 
-
-	
 }
-
-
-
-
-
 

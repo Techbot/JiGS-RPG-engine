@@ -122,7 +122,7 @@ function attack_playa(player_id){
 			else {
 				alert(result[2] + 'me: ' + result[0] + '   Him: ' + result[1]);	
 		close();
-				jump();
+				//jump();
 				
 				}
 				}
@@ -145,7 +145,7 @@ function kick_playa(player_id){
 			else {
 				alert(result[2] + '  me: ' + result[0] + '   Him: ' + result[1]);	
 		close();
-				jump();
+			//	jump();
 				
 				}
 				}

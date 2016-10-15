@@ -18,7 +18,6 @@ class BattleModelPlate extends JModelLegacy
     public function getPlate()
     {
         $idPlate= JRequest::getvar('id');
-
         if (empty($this->_data)) {
             $query = "SELECT * FROM #__jigs_plates WHERE id = $idPlate";
             $this->_data = $this->_getList($query);

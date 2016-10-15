@@ -226,8 +226,6 @@ function set_type()
             check_reprocessor.periodical(5000);   // element is hidden
 
         }
-
-
         request_metals();
         //change();
     }
@@ -379,12 +377,9 @@ function control_panel_system()
 
 function prepare()
     {
-
-    var foo = document.id('quantity_box_button_up'); 
-
+    var foo = document.id('quantity_box_button_up');
     // if it returns an Element object, it will be truthy.
     if (foo) {
-
         document.id('quantity_box_button_up').addEvent('click', function(){
             increment();
             });

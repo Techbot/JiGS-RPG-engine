@@ -28,7 +28,6 @@ class BattleModelskills extends JModelLegacy
             WHERE #__jigs_skill_types.parent_id = '$parent'";
         $db->setQuery($query);
         return  $db->loadAssocList();
-
     }
 
     function get_available_skills(){
@@ -39,7 +38,6 @@ class BattleModelskills extends JModelLegacy
         foreach ($player_skills as $player_skill) {
             $player_skills_array[]  = $player_skill['skill_id'];
         }
-
         foreach ($available_skills as $skill)
         {
             if (!in_array($skill['id'], $player_skills_array)) {
@@ -51,5 +49,3 @@ class BattleModelskills extends JModelLegacy
         return $result;
     }
 }
-
-

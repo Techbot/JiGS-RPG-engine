@@ -86,12 +86,7 @@ playState[1] = {
         }
 
         floor_halflings();
-        //////////////////////////////collide obstacle layer
-        game.physics.arcade.collide(sprite, layer);
-        ////////////////////////////////////////////////
-        this.physics.arcade.collide(sprite, portal[1],jump);
-        this.physics.arcade.collide(sprite, portal[2],jump);
-        this.physics.arcade.collide(sprite, portal[3],jump);
+
         ////////////////////////move player
         game.physics.arcade.moveToXY(sprite, x, y, 100);
 
@@ -389,29 +384,20 @@ function place_terminals() {
     }
 }
 
-function place_player_old() {
-    sprite = game.add.sprite(parseInt(new_x), parseInt(new_y), 'hero');
-    game.physics.enable(sprite, Phaser.Physics.ARCADE);
-    sprite.body.enable = true;
-    sprite.body.allowRotation = false;
-    game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
-}
-
-
 function place_player() {
     sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
   //  sprite2                     = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
-    game.physics.enable(sprite, Phaser.Physics.ARCADE);
-    sprite.body.enable          = true;
+    //game.physics.enable(sprite, Phaser.Physics.ARCADE);
+    //sprite.body.enable          = true;
     sprite.body.allowRotation   = false;
 
-    game.physics.enable(circle_core, Phaser.Physics.ARCADE);
+  //  game.physics.enable(circle_core, Phaser.Physics.ARCADE);
     circle_core.body.enable          = true;
     circle_core.body.allowRotation   = true;
     circle_core.body.offset.setTo(40, -40);
 
-    game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
+ //   game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
 
     sprite.animations.add('walkStop',[1]);
     this.sprite.animations.add('walkDown', Phaser.Animation.generateFrameNames('walkDown', 1, 3), 5, true);
@@ -660,11 +646,26 @@ function stop_halflings(){
 
 function check_for_collisions(){
 
+
+
+    //////////////////////////////collide obstacle layer
+  //  game.physics.arcade.collide(sprite, layer);
+    ////////////////////////////////////////////////
+
+    /*
+    this.physics.arcade.collide(sprite, portal[1],jump);
+    this.physics.arcade.collide(sprite, portal[2],jump);
+    this.physics.arcade.collide(sprite, portal[3],jump);
+*/
+
     ///////////////////////collide monster list
 //    for (var index = 0; index < monsters_list.length; index++)
 //    {
 //        game.physics.arcade.collide(sprite, monsters_list[index], collideMonster);
 //    }
+
+
+    /*
 
     monsters.forEach(function (monster, index) {
         game.physics.arcade.collide(sprite, monsters[index], collideMonster);
@@ -697,14 +698,29 @@ function check_for_collisions(){
         //add_building[index].body.immovable = true;
     }
 
+    */
+
+
     ///////////////////////collide buildings/////////
     for (var index = 0; index < buildings.length; index++)
     {
         //console.log(key);
-        game.physics.arcade.collide(sprite, add_building[index], enter_building);
-    }
 
-    ////////////////////////////
+     /*
+        game.physics.arcade.collide(sprite, add_building[index], enter_building, function() {
+            if (enableObstacleCollide) {
+                alert ('truey');
+                return true;
+            }
+            alert ('falsey');
+
+            return false;
+        });
+
+*/
+
+    }
+   ////////////////////////////
 }
 
 function cache(){

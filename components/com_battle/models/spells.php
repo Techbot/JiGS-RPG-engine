@@ -29,18 +29,15 @@ class BattleModelspells extends JModelLegacy
             WHERE #__jigs_spell_types.parent_id = '$parent'";
         $db->setQuery($query);
         return  $db->loadAssocList();
-
     }
 
     function get_available_spells(){
         $user               = JFactory::getUser();
         $player_spells      = $this->get_skills($user);
         $available_spells   = $this->get_all_skills();
-
         foreach ($player_spells as $player_spell) {
             $player_spells_array[]  = $player_spell['spell_id'];
         }
-
         foreach ($available_skills as $skill)
         {
             if (!in_array($spell['id'], $player_spells_array)) {

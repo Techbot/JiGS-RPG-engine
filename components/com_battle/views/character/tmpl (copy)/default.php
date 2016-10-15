@@ -77,11 +77,11 @@ function shoot(character_id){
 			//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
 				if (result[0].health <= 0 )  {
 					close();
-					jump();			
+					//jump();
 					}
 				if (result[1].health <= 0 ) {
 					close();
-					jump();
+					//jump();
 					}		
 				}
 			}).get();
@@ -98,11 +98,11 @@ function kick(character_id){
 
 				if (result[0].health <= 0 )  {
 					close();
-					jump();			
+					//jump();
 					}
 				if (result[1].health <= 0 ) {
 					close();
-					jump();
+					//jump();
 					}		
 				}
 			}).get();
@@ -126,11 +126,11 @@ function punch(character_id){
 // Element.attr
 				if (result[0].health <= 0 )  {
 					close();
-					jump();			
+					//jump();
 					}
 				if (result[1].health <= 0 ) {
 					close();
-					jump();
+					//jump();
 					}		
 				}
 			}).get();

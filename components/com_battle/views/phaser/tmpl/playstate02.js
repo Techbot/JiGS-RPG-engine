@@ -1,8 +1,6 @@
-
 /*
 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=sing_song', function (result)
 {
-
     //grid = result;
     //console.log("buildings : " + buildings.length);
     // console.log("buildings2 : " + buildings.length);
@@ -11,21 +9,16 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=sing_song', f
     //game.state.add('next', playState[1]);
     //game.state.add('play', playState[1]);
     //game.state.start('play');
-
     //game.state.start('next');
-
-
 });
 */
 var index = 0;
 var line = '';
 
 playState[2] = {
-
-   preload: function() {
-            game.load.image('arrow', '/components/com_battle/images/hacker-map.jpg');
-
-       content = [
+    preload: function() {
+        game.load.image('arrow', '/components/com_battle/images/hacker-map.jpg');
+        content = [
            " ",
            "This terminal belongs to Elle Corp",
            "",
@@ -42,9 +35,6 @@ playState[2] = {
            "- You may proceed -",
            "- You're Welcome -",
        ];
-
-
-
     },
     create: function() {
         background = game.add.sprite(0,0, 'arrow');
@@ -54,8 +44,6 @@ playState[2] = {
         cursors = game.input.keyboard.createCursorKeys();
         text2 = game.add.text(32, 80, '', { font: "18pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 2 });
         nextLine();
-
-
     }
 };
 

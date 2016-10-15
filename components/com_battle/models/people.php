@@ -17,7 +17,6 @@ class BattleModelPeople extends JModel
         return $this->_data;
     }
 
-
     function get_charactor_inventory() {
 
         $db =& JFactory::getDBO();

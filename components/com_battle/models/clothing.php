@@ -7,7 +7,7 @@ class BattleModelclothing extends JModel
 {
 	var $_data = null;
 
-	function &getData()
+	function getData()
 	{
 		if (empty($this->_data)) {
 			$query = "SELECT * FROM #__jigs_players";
@@ -18,8 +18,7 @@ class BattleModelclothing extends JModel
 	}
 	function get_clothing($id)
 	{
-		$user =& JFactory::getUser();
-
+		$user = JFactory::getUser();
 
 		if (empty($this->_data)) {
 			$query = "SELECT * FROM #__jigs_clothing LEFT JOIN #__jigs_clothing_names ON #__jigs_clothing.item_id = #__jigs_clothing_names.id where player_id = ". $user->id;
@@ -28,7 +27,4 @@ class BattleModelclothing extends JModel
 
 		return $this->_data;
 	}
-
-
-
 }

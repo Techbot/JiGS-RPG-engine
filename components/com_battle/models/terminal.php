@@ -48,7 +48,6 @@ class BattleModelTerminal extends JModelLegacy
         return $result;
     }
 
-
     public function decrypt(){
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
@@ -61,7 +60,6 @@ class BattleModelTerminal extends JModelLegacy
         return $result;
     }
 
-
     public function hack(){
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
@@ -73,7 +71,6 @@ class BattleModelTerminal extends JModelLegacy
         $result         = $db->loadAssoc();
         return $result;
     }
-
 
     public function killtrace(){
         $db             = JFactory::getDBO();
@@ -99,7 +96,6 @@ class BattleModelTerminal extends JModelLegacy
         return $result;
     }
 
-
     public function login(){
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
@@ -111,7 +107,6 @@ class BattleModelTerminal extends JModelLegacy
         $result         = $db->loadAssoc();
         return $result;
     }
-
 
     public function execute(){
         $db             = JFactory::getDBO();
@@ -125,7 +120,6 @@ class BattleModelTerminal extends JModelLegacy
         return $result;
     }
 
-
     public function download(){
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
@@ -138,7 +132,6 @@ class BattleModelTerminal extends JModelLegacy
         return $result;
     }
 
-
     public function upload(){
         $db             = JFactory::getDBO();
         $user           = JFactory::getUser();
@@ -150,8 +143,5 @@ class BattleModelTerminal extends JModelLegacy
         $result         = $db->loadAssoc();
         return $result;
     }
-
-
-
 
 }
