@@ -22,6 +22,7 @@ playState[3] = {
     create: function() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.add.plugin(Phaser.Plugin.Tiled);
+
         //  Modify the world and camera bounds
         game.world.setBounds(boundsX1[grid], boundsY1[grid], boundsX2[grid], boundsY2[grid]);
         //game.stage.backgroundColor = '#000000';
@@ -34,9 +35,6 @@ playState[3] = {
         // make sure the last param is the name of your layer in the map.
         //game.load.image(cacheKey('grid001optimised', 'layer', 'grid001optimised'), 'grid001optimised.png');
         cursors = game.input.keyboard.createCursorKeys();
-
-
-
         //  In this example we'll create 4 specific keys (up, down, left, right) and monitor them in our update function
 
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -90,20 +88,11 @@ playState[3] = {
            // game.input.onDown.add(moveBall, this);
 
         }
-
         game.input.onDown.add(moveBall, this);
         floor_halflings();
         //////////////////////////////collide obstacle layer
         game.physics.arcade.collide(sprite, layer, stop);
         ////////////////////////////////////////////////
-     //   this.physics.arcade.collide(sprite, portal[1], jump);
-    //    this.physics.arcade.collide(sprite, portal[2], jump);
-    //    this.physics.arcade.collide(sprite, portal[3], jump);
-        ////////////////////////move player
-        //sprite.body.velocity.x = 0;
-
-        //sprite.body.velocity.y = 0;
-
 
         sprite.body.x = parseInt(sprite.body.x);
 
@@ -120,13 +109,13 @@ playState[3] = {
         else if (parseInt(sprite.body.y) + 45 <= (y)) {
             sprite.animations.play('walkDown', 6);
         }
+
         else if (parseInt(sprite.body.y) + 40 >= (y)) {
             sprite.animations.play('walkUp', 6);
         }
 
         else {
             sprite.animations.play('walkStop', 1);
-            // sprite.animations.stopAll();
             sprite.body.velocity.x = 0;
             sprite.body.velocity.y = 0;
         }
@@ -138,122 +127,17 @@ playState[3] = {
         stop_monsters();
         stop_halflings();
         move_halflings();
-        /*
-        if (upKey.isDown)
-        {
-            y--;
-            sprite.animations.play('walkUp', 6);
-            sprite.y =y;
-            circle_core.y =y;
-            circle_core.angle = -90;
-        }
-        else if (downKey.isDown)
-        {
-            y++;
-            sprite.animations.play('walkDown');
-            sprite.y =y;
-            circle_core.y =y;
-            circle_core.angle = 90;
-        }
-        if (upKey.isDown &&  fireButton.isDown)
-        {
-            console.log('fire_up');
-            sprite.animations.play('hoeUp');
-            // y--;
-            // sprite.animations.play('walk_up', 6);
-            //  sprite.y =y;
-            //   circle_core.y =y;
-            //   circle_core.angle = -90;
-        }
-        else if (downKey.isDown && game.input.activePointer.isDown)
-        {
-            console.log('fire_down');
-            //y++;
-            //sprite.y =y;
-            // circle_core.y =y;
-            // circle_core.angle = 90;
-            sprite.animations.play('hoeDown', 30);
-        }
-
-        if (cursors.left.isDown  )
-        {
-            x--;
-            sprite.animations.play('walkLeft', 6);
-            sprite.x =x;
-            circle_core.x=x;
-            circle_core.angle = 180;
-        }
-        else if (rightKey.isDown)
-        {
-            x++;
-            sprite.animations.play('walkRight', 6);
-            sprite.x =x;
-            circle_core.x =x;
-            circle_core.angle = 0;
-        }
-        if (fireButton.isDown)
-        {
-            console.log('fire');
-            weapon.fire();
-        }
-
-        */
-
-        /*
-        sprite.body.velocity.x = sprite.body.velocity.y = 0;
-        var SPEED = 150;
-
-        // if in hoe animation wait
-        if (sprite.animations.currentAnim.name.lastIndexOf('hoe', 0) === 0 && sprite.animations.currentAnim.isPlaying) {
-            // wait for animation to finish
-        } else {
-            // use hoe on CTRL
-            sprite.direction = 'Down';
-
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.CONTROL)) {
-                sprite.animations.play('hoe' + sprite.direction);
-            } else if (cursors.left.isDown) {
-                sprite.direction = 'Left';
-            //    sprite.body.velocity.x = -SPEED;
-                sprite.animations.play('walkLeft');
-            } else if (cursors.right.isDown) {
-                sprite.direction = 'Right';
-         //       sprite.body.velocity.x = SPEED;
-                sprite.animations.play('walkRight');
-            } else if (cursors.up.isDown) {
-                sprite.direction = 'Up';
-           //     sprite.body.velocity.y = -SPEED;
-                sprite.animations.play('walkUp');
-            } else if (cursors.down.isDown) {
-                sprite.direction = 'Down';
-          //      sprite.body.velocity.y = SPEED;
-                sprite.animations.play('walkDown');
-            } else {
-                sprite.animations.stop();
-                sprite.frameName = 'walk' + sprite.direction + '2';
-            }
-        }
-*/
         check_for_collisions();
     },
     render: function() {
            game.debug.spriteCoords(sprite, 32, 32);
-        // Sprite debug info
-         //game.debug.spriteInfo(sprite, 32, 32);
-      //  weapon.debug();
     }
 };
 
-
-
 function stop(){
-
     sprite.animations.play('walkStop', 1);
-
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function load_monsters() {
     if (typeof monsters_list != 'undefined') {
 
@@ -350,30 +234,11 @@ function load_chars() {
     }
 }
 
-function load_player_old() {
-    if (avatar ==null) {
-        game.load.image('hero', '/images/comprofiler/gallery/frog.gif');
-    }
-    else {
-        if (avatar.substring(0, 7) != 'gallery') {
-            game.load.image('hero', '/images/comprofiler/tn' + avatar);
-        } else {
-            game.load.image('hero', '/images/comprofiler/' + avatar);
-        }
-    }
-}
-
 function load_player() {
-    //game.load.spritesheet('hero', '/components/com_battle/images/assets/chars/hero/hero.png', 32, 45);
-  //  game.load.atlas('player', 'assets/atlases/hero.png', 'assets/atlases/hero.json');
-   // game.load.atlasJSONHash('hero', '/components/com_battle/images/assets/chars/hero/hero.png', '/components/com_battle/images/assets/chars/hero/hero.json');
     game.load.atlasJSONHash('highhero',
         '/components/com_battle/images/assets/chars/highhero/hero.png',
         '/components/com_battle/views/phaser/tmpl/highhero.json');
 
-    // game.load.spritesheet('axe_1', '/components/com_battle/images/assets/chars/hero/hero_axe_1.png', 64, 60);
-  //  game.load.spritesheet('axe_2', '/components/com_battle/images/assets/chars/hero/hero_axe_2.png', 64, 60);
-    //game.load.spritesheet('ship', 'assets/sprites/thrust_ship.png', 32, 45, 72);
     game.load.image('ship', 'images/pixel.gif');
 
 }
@@ -403,12 +268,54 @@ function place_buildings(){
 
             game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
             add_building[index].body.velocity = 0;
-
+            add_building[index].index=index;
             add_building[index].inputEnabled = true;
-
+            add_building[index].events.onInputOver.add(makeTooltip, this);
         }
     }
 }
+
+
+function makeTooltip(tileClicked) {
+  //  alert(buildings.length);
+    return function () {
+        if(!bar){
+
+            bar = game.add.graphics();
+            bar.beginFill(0x000000, 0.8);
+            bar.drawRect(tileClicked.x, tileClicked.y, tileClicked.width, tileClicked.height);
+            bar.inputEnabled = true;
+            bar.dest = tileClicked.index;
+            bar.events.onInputDown.add(collisionProperty, this);
+            bar.events.onInputOut.add(killTooltip, this);
+        }
+        if(!text) {
+
+            var style = {font: '14px Arial', fill: 'white', align: 'left', wordWrap: true};
+            text = game.add.text(tileClicked.position.x, tileClicked.position.y, 'enter ', style);
+            text.padding.set(0, 0);
+            text.setShadow(3, 3, 'rgba(0,0,0,0.9)', 2);
+            text.setTextBounds(20, 20, tileClicked.width - 20, tileClicked.height - 20);
+            text.inputEnabled = true;
+            text.dest = tileClicked.index;
+
+            text.events.onInputDown.add(collisionProperty, this);
+            text.events.onInputOut.add(killTooltip, this);
+            text.events.onInputOut.add(whatever, this);
+
+        }
+
+
+
+    }();
+}
+
+
+
+
+
+
+
 
 function place_twines(){
     if(twines_list.length != 0) {
@@ -416,7 +323,9 @@ function place_twines(){
             var key = twines_list[index].id;
             add_twines[index] = game.add.sprite(twines_list[index].posx * 1, twines_list[index].posy * 1, key);
             add_twines[index].id = key;
+            add_twines[index].inputEnabled = true;
             game.physics.enable(add_twines[index], Phaser.Physics.ARCADE);
+         //   add_twines[index].events.onInputOver.add(makeTooltip, this);
         }
     }
 }
@@ -427,8 +336,10 @@ function place_plates(){
             var key = plates_list[index].id;
             add_plates[index] = game.add.sprite(plates_list[index].posx * 1, plates_list[index].posy * 1, key);
             add_plates[index].id = key;
+            add_plates[index].inputEnabled = true;
+            add_plates[index].index=index;
             game.physics.enable(add_plates[index], Phaser.Physics.ARCADE);
-
+            add_plates[index].events.onInputOver.add(makeTooltip, this);
         }
     }
 }
@@ -443,6 +354,9 @@ function place_portals(){
     portal[3] = game.add.sprite(x3[grid], y3[grid], 'portal00003');
     game.physics.enable(portal[3], Phaser.Physics.ARCADE);
     portal[3]['dest']=portal_dest_3[grid];
+    portal[1].inputEnabled = true;
+    portal[2].inputEnabled = true;
+    portal[3].inputEnabled = true;
 }
 
 function place_terminals() {
@@ -456,61 +370,23 @@ function place_terminals() {
     }
 }
 
-function place_player_old() {
-    sprite = game.add.sprite(parseInt(new_x), parseInt(new_y), 'hero');
-    game.physics.enable(sprite, Phaser.Physics.ARCADE);
-    sprite.body.enable = true;
-    sprite.body.allowRotation = false;
-    game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
-}
-
-
 function place_player() {
     sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
-    //  sprite2                 = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
-    //sprite.body.enable          = true;
     sprite.body.allowRotation   = false;
     sprite.anchor.setTo(0.5, 0.5);
-
     game.physics.enable(circle_core, Phaser.Physics.ARCADE);
     circle_core.body.enable          = true;
     circle_core.body.allowRotation   = true;
     circle_core.body.offset.setTo(40, -40);
-
     game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
-
-
-
     // animations
-
     this.sprite.animations.add('walkUp', Phaser.Animation.generateFrameNames('walkUp', 1, 8), 5, true);
     this.sprite.animations.add('walkLeft', Phaser.Animation.generateFrameNames('walkLeft', 1, 8), 5, true);
     this.sprite.animations.add('walkRight', Phaser.Animation.generateFrameNames('walkRight', 1, 8), 5, true);
     this.sprite.animations.add('walkDown', Phaser.Animation.generateFrameNames('walkDown', 1, 8), 5, true);
     this.sprite.animations.add('walkStop',  ['walkStop']);
-    /*
-    sprite.animations.add('walkDown', ['walkDown1', 'walkDown2', 'walkDown3'], 5, true);
-    sprite.animations.add('walkLeft', ['walkLeft1', 'walkLeft2', 'walkLeft3'], 5, true);
-    sprite.animations.add('walkRight', ['walkRight1', 'walkRight2', 'walkRight3'], 5, true);
-    sprite.animations.add('walkUp', ['walkUp1', 'walkUp2', 'walkUp3'], 5, true);
-
-    */
-
-    //sprite.animations.add('hoeDown', ['hoeDown1', 'hoeDown2', 'hoeDown3', 'hoeDown4'], 4, false);
-    //sprite.animations.add('hoeLeft', ['hoeLeft1', 'hoeLeft2', 'hoeLeft3', 'hoeLeft4'], 4, false);
-    //sprite.animations.add('hoeRight', ['hoeRight1', 'hoeRight2', 'hoeRight3', 'hoeRight4'], 4, false);
-    //sprite.animations.add('hoeUp', ['hoeUp1', 'hoeUp2', 'hoeUp3', 'hoeUp4'], 4, false);
-
-
-    //sprite.animations.add('walk_stop',[1]);
-    //sprite.animations.add('walk_down',[0,1,2]);
-    //sprite.animations.add('walk_left',[12,13,14]);
-    //sprite.animations.add('walk_right',[24,25,26]);
-    //sprite.animations.add('walk_up',[36,37,38]);
-
-    //sprite.animations.play('walk_stop',1,true);
 }
 
 function place_players(){
@@ -569,15 +445,14 @@ function place_monsters() {
             monsters[index].body.immovable      = true;
         }
     }
-
 }
+
 function place_halflings(){
     if (typeof halfling_list != 'undefined') {
         for (var loop = 0; loop < halfling_list.length-1; loop++)
         {
             var key = halfling_list[loop].typename;
             var index = halfling_list[loop].id;
-
             halflings[index] = game.add.sprite(halfling_list[loop].x, halfling_list[loop].y, key);
             game.add.tween(halflings[index]).to({ x:parseInt(halfling_list[loop].x),y:parseInt(halfling_list[loop].y) }, 1, Phaser.Easing.Linear.None, true);
             halflings[index].animations.add('walk_stop',[0]);
@@ -589,7 +464,6 @@ function place_halflings(){
             halflings[index].id = halfling_list[loop].id;
             game.physics.enable(halflings[index], Phaser.Physics.ARCADE);
             halflings[index].body.enable =true;
-
         }
         group.setAll('anchor.x', 0.5);
         group.setAll('anchor.y', 0.5);
@@ -597,11 +471,9 @@ function place_halflings(){
 }
 
 function move_monsters(){
-
     monsters_list.forEach(function (monsterObj) {
         monsters.forEach(function (monster) {
             if (monsterObj.id == monster.id) {
-
                 if (monsterObj.to_x < monster.body.x) {
                     monster.animations.play('walk_left', 3);
                     game.physics.arcade.moveToXY(monster, monsterObj.to_x,monsterObj.to_y, 100);
@@ -622,7 +494,6 @@ function move_monsters(){
                     monster.body.velocity.y = 0;
                     monster.animations.play('walk_stop', 1);
                 }
-
             }
         })
     })
@@ -632,7 +503,6 @@ function move_halflings(){
     halfling_list.forEach(function (halflingObj) {
         halflings.forEach(function (halfling) {
             if (halflingObj.id == halfling.id) {
-
                 if (halflingObj.x < halfling.body.x-20) {
                     halfling.animations.play('walk_left', 3);
                     game.physics.arcade.moveToXY(halfling, parseInt(halflingObj.x), parseInt(halflingObj.y), 100);
@@ -668,7 +538,6 @@ function stop_player(){
         circle_core.body.velocity.y = 0;
     }
     if ((sprite.body.velocity.x == 0)&&(sprite.body.velocity.y == 0)) {
-      //  sprite.animations.play('walkStop', 1);
         if (send == 1) {
             doSomething();
             send = 0;
@@ -717,7 +586,6 @@ function move_players(){
 function stop_monsters(){
     if (typeof monsters != 'undefined') {
         monsters.forEach(function(monsterObj,loop){
-            //console.log(halfling_list);
             monsters_list.forEach(function(listObj){
                 if (listObj.id == monsters.id){
                     if (parseInt(monsterObj.body.x) == listObj.x  ){
@@ -735,7 +603,6 @@ function stop_monsters(){
 function stop_halflings(){
     if (typeof halflings != 'undefined') {
         halflings.forEach(function(halflingObj,loop){
-            //console.log(halfling_list);
             halfling_list.forEach(function(listObj){
                 if (listObj.id == halflings.id){
                     if (parseInt(halflingObj.body.x) == listObj.x  ){
@@ -750,14 +617,16 @@ function stop_halflings(){
     }
 }
 
+
 function check_for_collisions(){
+  //  portal[1].events.onInputOver.add(function(arg1) {  this.makeTooltip(arg1, jump(sprite, portal[1]));}, this);
+  //  portal[2].events.onInputOver.add(function(arg1) {  this.makeTooltip(arg1, jump(sprite, portal[2]));}, this);
+  //  portal[3].events.onInputOver.add(function(arg1) {  this.makeTooltip(arg1, jump(sprite, portal[3]));}, this);
+ //   portal[1].events.onInputOut.add(killTooltip, this);
+  //  portal[2].events.onInputOut.add(killTooltip, this);
+  //  portal[3].events.onInputOut.add(killTooltip, this);
 
     ///////////////////////collide monster list
-//    for (var index = 0; index < monsters_list.length; index++)
-//    {
-//        game.physics.arcade.collide(sprite, monsters_list[index], collideMonster);
-//    }
-
     monsters.forEach(function (monster, index) {
         game.physics.arcade.collide(sprite, monsters[index], collideMonster);
     });
@@ -769,43 +638,40 @@ function check_for_collisions(){
     ///////////////////////collide plate list
     for (var index = 0; index < plates_list.length; index++)
     {
-        add_plates[index].events.onInputOver.add(tooltip,this);
-        add_plates[index].events.onInputOut.add(killTooltip, this);
-        game.physics.arcade.collide(sprite, add_plates[index], plate);
+       // console.log(collidePlate[index]);
+        if (collidePlate[index]==true) {
+            game.physics.arcade.collide(sprite, add_plates[index], plate);
+      //      add_plates[index].events.onInputOut.add(killTooltip, this);
+        }
+
     }
     ///////////////////////collide twines_list
-    for (var index = 0; index < twines_list.length; index++)
+    for (var index = 0; index < twines_list.length; ++index)
     {
-        game.physics.arcade.collide(sprite, add_twines[index], twine);
-        add_twines[index].events.onInputOver.add(tooltip,this);
+  //      add_twines[index].events.onInputDown.add(function(arg1) {  this.makeTooltip(arg1,twine(sprite, add_twines[index]));}, this);
         add_twines[index].events.onInputOut.add(killTooltip, this);
     }
-
     ///////////////////////collide terminals_list
     for (var index = 0; index < terminals_list.length; index++)
     {
-        terminals[index].events.onInputOver.add(tooltip,this);
+  //      terminals[index].events.onInputDown.add(function(arg1) {  this.makeTooltip(arg1, terminal(sprite, terminals[index]));}, this);
         terminals[index].events.onInputOut.add(killTooltip, this);
-        game.physics.arcade.collide(sprite, terminals[index], terminal);
     }
     /////////////////////collide players
     for (var index = 0; index < players_list.length; index++)
     {
-        //console.log(key);
         game.physics.arcade.collide(sprite, players[index], player);
-        //add_building[index].body.immovable = true;
+        //add_players[index].body.immovable = true;
     }
 
     ///////////////////////collide buildings/////////
     for (var index = 0; index < buildings.length; index++)
     {
-        //console.log(key);
-        game.physics.arcade.collide(sprite, add_building[index], enter_building);
-        add_building[index].events.onInputOver.add(tooltip,this);
-        add_building[index].events.onInputOut.add(killTooltip, this);
-
+    //  console.log(collideBuilding[index]);
+        if (collideBuilding[index]==true) {
+            game.physics.arcade.collide(sprite, add_building[index], enter_building);
+        }
     }
-
     ////////////////////////////
 }
 
@@ -820,19 +686,15 @@ function cache(){
     }
     /////////////////// cache monsters
     if (typeof monsters_list != 'undefined') {
-
         for (var index = 0; index < monsters_list.length; index++) {
             var filename = monsters_list[index].spritesheet;
-            //console.log('filename:' + filename);
             game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/chars/monsters/' + filename + '/'+ filename + '.png');
         }
     }
     /////////////////// cache halflings
     if (typeof halfling_list != 'undefined') {
-
         for (var index = 0; index < halfling_list.length; index++) {
             var filename = halfling_list[index].name;
-            //console.log('filename:' + filename);
             game.load.spritesheet(cacheKey(filename, 'tileset', filename), '/components/com_battle/images/assets/chars/halflings/'+ filename + '.png');
         }
     }
