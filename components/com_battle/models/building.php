@@ -62,7 +62,7 @@ class BattleModelBuilding extends JModelLegacy
         $sql				= "SELECT quantity FROM #__jigs_metals WHERE item_id = " . $metal_2 . " AND player_id = " . $user->id ;
         $resource 			= $db->setQuery($sql);
         $player_qty_2			= $db->loadResult();
-        $model				= JModel::getInstance('jigs','BattleModel');
+        $model				= JModelLegacy::getInstance('jigs','BattleModel');
 
 
         $energy_required	= $quantity * 1;
@@ -146,7 +146,7 @@ class BattleModelBuilding extends JModelLegacy
         $player_items           = $db->loadAssocList();
         $player_items_count     = count($player_items);
 
-        $model                  = JModel::getInstance('jigs','BattleModel');
+        $model                  = JModelLegacy::getInstance('jigs','BattleModel');
 
         $energy_required        = $quantity * 1;
 
@@ -232,8 +232,8 @@ class BattleModelBuilding extends JModelLegacy
         $now                 = time();
 
 
-        $model2             = JModel::getInstance('jigs','BattleModel');
-        $model3             = JModel::getInstance('hobbits','BattleModel');
+        $model2             = JModelLegacy::getInstance('jigs','BattleModel');
+        $model3             = JModelLegacy::getInstance('hobbits','BattleModel');
         $building_hobbit_stats  = $model3->get_hobbit_stats($building_id,'B');
 
         $quantity           = 1;

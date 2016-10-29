@@ -15,6 +15,9 @@ class battleViewphaser extends JViewLegacy
 	{
 
 
+	  //  exit();
+
+
 	//	$model			= JModelLegacy::getInstance('single','BattleModel');
 	//	$backlink		= JRoute::_('index.php?option=com_battle');
 	//	$this->assignRef('backlink', $backlink);

@@ -1,4 +1,5 @@
 <?php
+/*
 if(isset($_GET['sblastid']) && is_numeric($_GET['sblastid']) && isset($_GET['sbid']) && is_numeric($_GET['sbid'])) {
 	header( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" ); 
 	header( "Last-Modified: ".gmdate( "D, d M Y H:i:s" )."GMT" ); 
@@ -45,5 +46,7 @@ if(isset($_GET['sblastid']) && is_numeric($_GET['sblastid']) && isset($_GET['sbi
 	}
 	mysql_free_result($result);
 	mysql_close($conn);
+
 }
+*/
 ?>

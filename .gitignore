@@ -547,3 +547,6 @@
 /*.txt
 /robots.txt.dist
 
+/components/com_battle/views/twine/tmpl/
+.idea
+/images/*

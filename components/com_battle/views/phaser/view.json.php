@@ -13,7 +13,7 @@ class battleViewSingle extends JViewLegacy
 {	
     function display($tpl = "")
     {
-        $model		= JModel::getInstance('single','BattleModel');
+        $model		= JModelLegacy::getInstance('single','BattleModel');
         $backlink	= JRoute::_('index.php?option=com_battle');
 
         $this->assignRef('backlink', $backlink);

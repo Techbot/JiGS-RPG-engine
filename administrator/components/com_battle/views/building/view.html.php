@@ -58,7 +58,7 @@ class BattleViewBuilding extends JViewLegacy
 	/////////////////////////////////////////	
 		if ($row->type=='apartment')
 		{
-			$model			= JModel::getInstance('buildings','BattleModel');
+			$model			= JModelLegacy::getInstance('buildings','BattleModel');
 			$flats			= $model->get_flats($id);
 			$this->assignRef('flats', $flats);
 		}
@@ -68,7 +68,7 @@ class BattleViewBuilding extends JViewLegacy
 		if($row->type=='mine')
 		{
 		
-		$model			= JModel::getInstance('buildings','BattleModel');
+		$model			= JModelLegacy::getInstance('buildings','BattleModel');
 		$this->mines		= $model->get_mines($id);
 
 		}		
@@ -76,7 +76,7 @@ class BattleViewBuilding extends JViewLegacy
 	////////////////////////////////////////
 		if($row->type=='farm')
 		{
-		    $model			= JModel::getInstance('buildings','BattleModel');
+		    $model			= JModelLegacy::getInstance('buildings','BattleModel');
 		    $this->fields	= $model->get_fields($id);
             
             //print_r ($this->fields);

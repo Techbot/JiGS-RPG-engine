@@ -23,7 +23,7 @@ abstract class modemc23_newsslideHelper
 		$db		= JFactory::getDbo();
 
 		// Get an instance of the generic articles model
-		$model = JModel::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
+		$model = JModelLegacy::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
 
 		// Set application parameters in model
 		$appParams = JFactory::getApplication()->getParams();

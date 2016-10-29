@@ -6,7 +6,7 @@ class BattleViewAward extends JViewLegacy
 {
 	function getUsersList($selected)
 	{
-		$model = JModel::getInstance('awards', 'BattleModel');
+		$model = JModelLegacy::getInstance('awards', 'BattleModel');
 		$users = $model->getAwardUsers();
 		$options = array();
 
@@ -22,7 +22,7 @@ class BattleViewAward extends JViewLegacy
 
 	function getAwardNamesList($selected)
 	{
-		$model      = JModel::getInstance('awards', 'BattleModel');
+		$model      = JModelLegacy::getInstance('awards', 'BattleModel');
 		$awardNames = $model->getAwardNames();
 		$options    = array();
 
@@ -38,7 +38,7 @@ class BattleViewAward extends JViewLegacy
 
 	function display($tpl = null)
 	{
-		$model  = JModel::getInstance('awards', 'BattleModel');
+		$model  = JModelLegacy::getInstance('awards', 'BattleModel');
 		$cid	= JRequest::getVar( 'cid', array(0), '', 'array' );
 		$id	= $cid[0];
 

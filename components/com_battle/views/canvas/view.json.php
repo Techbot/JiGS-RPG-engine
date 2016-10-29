@@ -15,7 +15,7 @@ class BattleViewCanvas extends JViewLegacy
 		
 		$tpl            = $model->enter_Canvas();
 		
-		//$this->model2         = JModel::getInstance('ascii_art','BattleModel');
+		//$this->model2         = JModelLegacy::getInstance('ascii_art','BattleModel');
 		
 		//Json_encode(print_r($this->model2->show(range("a", "z"), 0.25, true, true)));
 		

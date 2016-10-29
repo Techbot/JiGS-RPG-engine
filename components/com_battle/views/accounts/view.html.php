@@ -12,7 +12,7 @@ class BattleViewAccounts extends JViewLegacy
 		$model						= $this->getModel();
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
-		$model2 = JModel::getInstance('jigs','BattleModel');					
+		$model2 = JModelLegacy::getInstance('jigs','BattleModel');
 
 		$buildings->energy			= $model2->getTotalEnergy($id);
 		$owner						= $buildings->owner;
@@ -42,7 +42,7 @@ class BattleViewAccounts extends JViewLegacy
 
 		$this->assignRef('board_info_1',$board_info_1);
 
-		$model3                     = JModel::getInstance('hobbits','BattleModel');
+		$model3                     = JModelLegacy::getInstance('hobbits','BattleModel');
 
         $hobbit_stats                = $model->get_hobbit_stats();
         $this->assignRef('hobbits', $hobbit_stats);

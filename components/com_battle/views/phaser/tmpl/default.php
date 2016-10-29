@@ -45,7 +45,7 @@
             var portal_dest_3 = [];
             var npc = [];
             var npc_list = [];
-            var terminals = [];
+            var add_terminals = [];
             var terminals_list = [];
             var twines_list = [];
             var plates_list = [];

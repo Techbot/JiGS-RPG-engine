@@ -17,7 +17,6 @@ var from_y = new Array();
 var from_map = new Array();
 var from_grid = new Array();
 
-
 document.onkeydown = check;
 mycells = new Array(8);
 cell = new Array(8);
@@ -34,10 +33,7 @@ for ( var i = 0; i < 8; i++)
 // Beginning of initialise process via json calls
 window.addEvent('domready',function()
 {
-
-
 /*
-
     var a = new Request.JSON({
         url : "index.php?option=com_battle&format=raw&task=action&action=get_player",
         onSuccess : function(result){
@@ -76,7 +72,6 @@ window.addEvent('domready',function()
                     // Are there any portals?
                     // Loop through json object
                     // containing arrays.
-
                     var a = new Request.JSON({
                         url : "index.php?option=com_battle&format=raw&task=action&action=get_portals&map=" + map,
                         onSuccess : function(result)
@@ -101,18 +96,14 @@ window.addEvent('domready',function()
             }).get();
         }
     }).get();
-
-
 */
 
 });
 // End of initialise process
 
-
-
-
 function show_world(){
     alert ('Show');
+    collideBuilding[0]=false;
     document.getElementById("npc").hide();
     document.getElementById("player").hide();
     document.getElementById("building").hide();
@@ -128,17 +119,16 @@ function loadUp() {
     var x = document.getElementsByClassName('mid');
    for (i=0;i<x.length;i++) {
        x[i].addEventListener("click", show_world);
+
    }
 }
 
 // Standard Function to test for keypresses
 function check(e)
 {
-
     /*
     if (active==1)
     {
-
             if (!e)
                 var e = window.event;
             (e.keyCode) ? key = e.keyCode : key = e.which;
@@ -166,14 +156,12 @@ function check(e)
     }
     	*/
 }
-
 // ////////////////////////////////////////////////////////
 function MoveRight()
 {
     direction = 'R';
     Portal_Check(direction);
     var right1 = parseInt(PosX) + 1;
-
     if (PosX == 7)
     {
         PosX = 0;
@@ -181,7 +169,6 @@ function MoveRight()
         //jump();
         return;
     }
-
     if (cell[right1][PosY] <= 0)
     {
         PosX++;
@@ -219,8 +206,7 @@ function MoveLeft()
         walls_alert();
     }
 }
-
-// //////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 function MoveUp()
 {
     direction = 'U';
@@ -338,9 +324,6 @@ function Portal_Check(direction)
     }
     */
 }
-
-
-
 //var npc_health = 0;
 
 function shoot_player(character_id){
@@ -374,90 +357,73 @@ function shoot_player(character_id){
             */
     }
 
-function kick_player(character_id){
+function kick_player(character_id) {
     var d = document.getElementById('kick');
-
-        var a = new Request.JSON({
-            url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=kick&character=" + character_id,
-            onSuccess: function(result){
-
+    var a = new Request.JSON({
+        url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=kick&character=" + character_id,
+        onSuccess: function (result) {
             text_message = (result[2]);
-
             myElement = document.id('health');
-
-
             myElement.set('html', result[1]);
-            if(result[1]['health']<30){
-
+            if (result[1]['health'] < 30) {
             }
-            else{
-            myElement.setStyle('width', result[1]);
+            else {
+                myElement.setStyle('width', result[1]);
             }
+            var new_message = new Element('p', {
+                'display': 'table-row',
+                'html': text_message
+            });
+            new_message.inject('message_table', 'top');
+            if (result[0].health <= 0) {
+                close();
+                jump();
+            }
+            if (result[1].health <= 0) {
+                close();
+                jump();
+            }
+        }
+    }).get();
+}
+function reload() {
+    var a = new Request.JSON(
+        {
+            url: "index.php?option=com_battle&format=raw&task=action&action=reload",
+            onSuccess: function (result) {
+                //	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+                myElement = document.id('magazine');
 
-            var new_message = new Element('p',{
-            'display':'table-row',
-            'html': text_message});
-            new_message.inject('message_table','top');
-                if (result[0].health <= 0 )  {
-                    close();
-                    jump();
-                    }
-                if (result[1].health <= 0 ) {
-                    close();
-                    jump();
-                    }
-                }
-            }).get();
+                myElement.set('html', result);
+            }
+        }).get();
 }
 
-        function reload()
-        {
-
-                var a = new Request.JSON(
-                {
-                    url: "index.php?option=com_battle&format=raw&task=action&action=reload",
-                    onSuccess: function(result)
-                    {
-                    //	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
-                    myElement= document.id('magazine');
-
-                    myElement.set('html', result);
-                    }
-                }).get();
-            }
-
-
-
-
-
-
-        function punch_player(character_id)
-        {
-    
-                var d = document.getElementById('punch');
-                var a = new Request.JSON({
-            url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=punch&character=" + character_id,
-            onSuccess: function(result){
-
+function punch_player(character_id) {
+    var d = document.getElementById('punch');
+    var a = new Request.JSON({
+        url: "index.php?option=com_battle&format=raw&task=action&action=attack_player&type=punch&character=" + character_id,
+        onSuccess: function (result) {
             text_message = (result[2]);
-            var new_message = new Element('p',{
-            'display':'table-row',
-            'html': text_message });
+            var new_message = new Element('p', {
+                'display': 'table-row',
+                'html': text_message
+            });
 
-            new_message.inject('message_table','top');
+            new_message.inject('message_table', 'top');
 
-                 npc_health = result[1].health;
+            npc_health = result[1].health;
 
-                if (result[0].health <= 0 )  {
-                    close();
-                    jump();
-                    }
-                if (result[1].health <= 0 ) {
-                    close();
-                    jump();
-                    }
-                }
-            }).get();
+            if (result[0].health <= 0) {
+                close();
+                jump();
+            }
+            if (result[1].health <= 0) {
+                close();
+                jump();
+            }
+        }
+    }).get();
 }
 
 function shoot_character(character_id){
@@ -505,47 +471,28 @@ function shoot_character(character_id){
             }).get();
     }
 
-function kick_character(character_id){
+function kick_character(character_id) {
     var d = document.getElementById('kick');
-
-        var a = new Request.JSON({
-            url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=kick&character=" + character_id,
-            onSuccess: function(result){
-
-//	 alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
-//	alert(result[2] + ' me: ' + result[0].health + '   Him: ' + result[1].health);
+    var a = new Request.JSON({
+        url: "index.php?option=com_battle&format=raw&task=action&action=attack_character&type=kick&character=" + character_id,
+        onSuccess: function (result) {
             text_message = (result[2]);
-
-//myElement = $('health');
-
-    alert (text_message);
-
-//	alert(result[1]['health']);
-
-//myElement.setStyle('width', result[1][2]);
-//myElement.innerhtml(result[1][2]);
-
-
-            var new_message = new Element('p',{
-            'display':'table-row',
-            'html': text_message});
-
-
-            new_message.inject('message_table','top');
-
-
-
-                if (result[0] <= 0 )  {
-                    close();
-                    jump();
-                    }
-                if (result[1] <= 0 ) {
-                    close();
-                    jump();
-                    }
-                }
-            }).get();
-
+            alert(text_message);
+            var new_message = new Element('p', {
+                'display': 'table-row',
+                'html': text_message
+            });
+            new_message.inject('message_table', 'top');
+            if (result[0] <= 0) {
+                close();
+                jump();
+            }
+            if (result[1] <= 0) {
+                close();
+                jump();
+            }
+        }
+    }).get();
 }
 
 function punch_character(character_id){

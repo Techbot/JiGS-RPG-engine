@@ -17,42 +17,42 @@ And even more people
  
 ::StatusBar
 <html>  
-    	<div class="clearfix status-bar">
-		<div class="vitals div1">
-			<div class="label"></div>
-		</div>
-		<div class="vitals money">
-			<div class="label">Money</div>
-			<div class="gauge-wrapper">
-					<span class="money-value"></span>
-			</div>
-		</div>
-		<div class="vitals slack">
-			<div class="label">Slack</div>
-			<div class="gauge-wrapper">
-				<div class="gauge">
-					<div class="indicator"></div>
-				</div>
-					<span class="slack-value"></span>
-			</div>
-		</div>
-		<div class="vitals health">
-			<div class="label">Health</div>
-			<div class="gauge-wrapper">
-				<div class="gauge">
-					<div class="indicator"></div>
-				</div>
-					<span class="health-value"></span>
-			</div>
-		</div>
-		<div class="vitals mission">
-			<div class="label">Mission</div>
-			<div class="gauge-wrapper">
-				<div class="gauge">
-					<div class="indicator"></div>
-				</div>
-					<span class="mission-value"></span>
-			</div>
-		</div>
-	</div><!-- end status-bar -->
+    <div class="clearfix status-bar">
+        <div class="vitals">
+            <div class="div1 label"></div>
+        </div>
+        <div class="vitals">
+            <div class="label">Slack</div>
+            <div class="gauge-wrapper">
+                <div class="gauge">
+                    <div class="slack"></div>
+                </div>
+                    <span class="slack-value"></span>
+            </div>
+        </div>
+        <div class="vitals">
+            <div class="label">Health</div>
+            <div class="gauge-wrapper">
+                <div class="gauge">
+                    <div class="health"></div>
+                </div>
+                    <span class="health-value"></span>
+            </div>
+        </div>
+        <div class="vitals">
+            <div class="label">Money</div>
+            <div class="gauge-wrapper">
+<span class="money-value"></span>
+            </div>
+        </div>
+        <div class="vitals">
+            <div class="label">Mission</div>
+            <div class="gauge-wrapper">
+                <div class="gauge">
+                    <div class="mission"></div>
+                </div>
+                    <span class="mission-value">40</span>
+            </div>
+        </div>
+    </div><!-- end status-bar -->
 </html>

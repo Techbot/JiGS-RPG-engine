@@ -712,7 +712,7 @@ class BattleModelJigs extends JModellegacy
 
         if($numRows1 == 0)
         {
-            $model =& JModel::getInstance('award','BattleModel');
+            $model = JModelLegacy::getInstance('award','BattleModel');
 
             $awardNameId = $model->get_award_id($msg1);
             if(null == $awardNameId)

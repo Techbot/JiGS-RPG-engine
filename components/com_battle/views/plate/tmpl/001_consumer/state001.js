@@ -118,8 +118,10 @@ function changeFrame() {
     hand.frameName = 'Marilyn';
 }
 
-function tooltip(thing) {
+function tooltip(thing,destinationFunction) {
 
+    x= destinationFunction();
+    //alert(x);
     var rectWidth = tile.name.length + 40;
     var rectHeight = 80;
 
@@ -128,7 +130,7 @@ function tooltip(thing) {
     //bar.beginFill(0x000000, 0.2);
     //bar.drawRect(thing.x-20, thing.y-20, rectWidth, rectHeight);
 
-    console.log(thing.name, rectWidth, typeof bar);
+  //  console.log(thing.name, rectWidth, typeof bar);
 
     var style = { font: '14px Arial', fill: 'white', align: 'left', wordWrap: true };
     //var style = { font: '14px Arial', fill: 'white', align: 'left', backgroundColor: 'black', boundsAlignH: "center", boundsAlignV: "middle" };

@@ -18,7 +18,7 @@ var text;
 var enableObstacleCollide;
 var collideBuilding =[];
 var collidePlate =[];
-
+var collideTerminal=[]
 collideBuilding[0]=false;
 collideBuilding[1]=false;
 collidePlate[0]=false;
@@ -28,6 +28,12 @@ collidePlate[3]=false;
 collidePlate[4]=false;
 collidePlate[5]=false;
 
+collideTerminal[0]=false;
+collideTerminal[1]=false;
+collideTerminal[2]=false;
+collideTerminal[3]=false;
+collideTerminal[4]=false;
+collideTerminal[5]=false;
 
 game.state.add('login', playState[0]);
 game.state.add('next', playState[3]);
@@ -119,15 +125,22 @@ jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&form
 
 function collisionProperty(thingy){
 
-    console.log('dest: ' + thingy.dest);
+    console.log('type: ' + thingy.type);
 
-  //  if (thingy.type=='building') {
+    if (thingy.type=='buildings') {
 
 
-      //  collideBuilding[thingy.dest] = true;
- //   }else {
+        collideBuilding[thingy.dest] = true;
+    }
+    if (thingy.type=='terminals') {
+
+
+        collideTerminal[thingy.dest] = true;
+    }
+
+    else {
         collidePlate[thingy.dest] = true;
-  //  }
+    }
 
   //return  game.physics.arcade.collide(sprite, thingy , enter_building);
     killTooltip(thingy);
@@ -426,10 +439,10 @@ function terminal(one,two) {
         dataType: "json"
     }).done(function(result) {
         //   two.body.enable = true;
-       // game.state.start('terminal');
-       // document.getElementById("world").hide();
-       // document.getElementById("terminal").innerHTML=result;
-      //  document.getElementById("terminal").show();
+        game.state.start('terminal');
+        document.getElementById("world").hide();
+        document.getElementById("terminal").innerHTML=result;
+        document.getElementById("terminal").show();
         loadUp();
         var url = "/components/com_battle/includes/terminal.js";
         jQuery.getScript( url, function() {

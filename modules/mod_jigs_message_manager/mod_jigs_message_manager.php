@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-require_once (dirname(__FILE__).DS.'helper.php');
+require_once (dirname(__FILE__).'/helper.php');
 
 $layout		= $params->get('style','default'); 
 

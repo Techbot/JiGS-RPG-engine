@@ -10,7 +10,7 @@ class BattleViewComputer extends JViewLegacy
 	function display($tpl = null)
 	{
 		
-		$model = & JModel::getInstance('jigs','BattleModel');
+		$model = JModelLegacy::getInstance('jigs','BattleModel');
 		$player= $model->get_stats();
 		// print_r($player[0]);
 		$this->assignRef('player', $player);
@@ -31,7 +31,7 @@ class BattleViewComputer extends JViewLegacy
 			{
 				if (!in_array(3,$flags)){
 				//update flags to 3 so we never have to login again
-				$model		= & JModel::getInstance('jigs','BattleModel');
+				$model		= & JModelLegacy::getInstance('jigs','BattleModel');
 				$flags[]	=3;
 				$model->update_flags($flags);
 				$tpl="computer_page_1"; // first time view

@@ -24,7 +24,7 @@ class getBlogTab2 extends cbTabHandler {
 
 		JLoader::import('awards', JPATH_ROOT . '/components/com_battle/models');
 
-		$model  = JModel::getInstance('awards', 'BattleModel');
+		$model  = JModelLegacy::getInstance('awards', 'BattleModel');
 		$result = $model->getUserAwards();
 	
 		$return  =  '<div style="width:250px;float:left;">';

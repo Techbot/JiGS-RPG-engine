@@ -18,7 +18,16 @@ JHTML::_('behavior.tooltip');
 include_once("includes/template_config.php");
 $url = clone(JURI::getInstance());
 $user =& JFactory::getUser();
+
+
+
+
 $app = Jfactory::getApplication();
+
+
+
+
+
 $doc			= JFactory::getDocument();
 $menutype	= $this->params->get('menutype');
 $templateparams	= $app->getTemplate(true)->params;
@@ -155,11 +164,11 @@ $templateparams	= $app->getTemplate(true)->params;
 
       <div id="sitetitle">
         <a href="<?php echo $this->baseurl ?>/index.php" title="<?php echo $app->getCfg('sitename');?> Home">
-          <?php echo htmlspecialchars($templateparams->get('sitetitle'));?></a>
+          <?php // echo htmlspecialchars($templateparams->get('sitetitle'));?></a>
       </div>
 
       <div id="sitedescription">
-        <?php echo htmlspecialchars($templateparams->get('sitedescription'));?>
+        <?php // echo htmlspecialchars($templateparams->get('sitedescription'));?>
       </div>
 
     </div><!-- end logo -->

@@ -6,8 +6,9 @@ jimport('joomla.application.categories');
 
 // Include the syndicate functions only once
 require_once( dirname(__FILE__).'/helper.php' );
-$mainframe = JFactory::getApplication();
+//$mainframe = JFactory::getApplication();
 
+/*
 $sbid = JRequest::getVar( 'sbid',			'',			'get' ); 
 
 if($sbid == '') {
@@ -19,8 +20,8 @@ if($sbid == '') {
 if($sbid == 'root') {
 	echo "Create a category first!";
 } else {
-
-
+*/
+/*
 $shouts 	= intval($params->get( 'shouts', 10 ));
 $delshouts 	= intval($params->get( 'delshouts', 50 ));
 $post_guest = $params->get( 'post_guest' );
@@ -28,11 +29,13 @@ $tag	 	= $params->get( 'tag' );
 $soundopt	= $params->get( 'sound' );
 $loggedin 	= modShoutboxHelper::getType();
 $user 		=& JFactory::getUser();
+*/
 
+    /*
 //Make the urls to get the shouts
-$uri =& JURI::getInstance();
+//$uri =& JURI::getInstance();
 //addshouts
-$uri->delVar('mode');
+//$uri->delVar('mode');
 $param = $uri->getQuery(true);
 $query = array_merge($param, array('mode' => 'addshout', 'sbid' => $sbid));
 $uri->setQuery($query);
@@ -101,8 +104,9 @@ if(!$ipaccess) {
 	list($list, $lastid, $time) = modShoutboxHelper::getShouts($sbid, $shouts, $params);
 
 }
+    */
 
-
+/*
 
 //JHTML::_('behavior.mootools');
 $module_base     = JURI::base() . 'modules/mod_shoutbox/';
@@ -111,5 +115,9 @@ $doc->addStyleSheet($module_base . 'css/mod_shoutbox.css');
 $doc->addScript($module_base . 'js/shoutbox.js');
 
 require(JModuleHelper::getLayoutPath('mod_shoutbox'));
+
+
+
+
 }
-?>
+*/

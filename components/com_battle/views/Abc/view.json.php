@@ -12,7 +12,7 @@ class BattleViewAbc extends JViewLegacy
 		$model						= $this->getModel();
 		$buildings					= JTable::getInstance('buildings', 'Table');
 		$buildings->load($id);
-		$model2                     = JModel::getInstance('jigs','BattleModel');					
+		$model2                     = JModelLegacy::getInstance('jigs','BattleModel');
 
 		$buildings->energy			= $model2->get_total_energy($id);
 		$owner						= $buildings->owner;
@@ -48,7 +48,7 @@ class BattleViewAbc extends JViewLegacy
 		// This is where we get the hobbits stats
 		///////////////////////////////////////////////////////////////////////////////////////////////////		
 
-		$model3                     = JModel::getInstance('hobbits','BattleModel');
+		$model3                     = JModelLegacy::getInstance('hobbits','BattleModel');
        	$player_hobbit_stats        = $model3->get_hobbit_stats($user->id);
        	
        	$this->assignRef('player_hobbit_stats', $player_hobbit_stats);

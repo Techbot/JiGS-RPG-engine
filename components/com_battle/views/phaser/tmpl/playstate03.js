@@ -269,6 +269,7 @@ function place_buildings(){
             game.physics.enable(add_building[index], Phaser.Physics.ARCADE);
             add_building[index].body.velocity = 0;
             add_building[index].index=index;
+            add_building[index].type = 'buildings';
             add_building[index].inputEnabled = true;
             add_building[index].events.onInputOver.add(makeTooltip, this);
         }
@@ -286,6 +287,7 @@ function makeTooltip(tileClicked) {
             bar.drawRect(tileClicked.x, tileClicked.y, tileClicked.width, tileClicked.height);
             bar.inputEnabled = true;
             bar.dest = tileClicked.index;
+            bar.type = tileClicked.type;
             bar.events.onInputDown.add(collisionProperty, this);
             bar.events.onInputOut.add(killTooltip, this);
         }
@@ -298,7 +300,7 @@ function makeTooltip(tileClicked) {
             text.setTextBounds(20, 20, tileClicked.width - 20, tileClicked.height - 20);
             text.inputEnabled = true;
             text.dest = tileClicked.index;
-
+            text.type = tileClicked.type;
             text.events.onInputDown.add(collisionProperty, this);
             text.events.onInputOut.add(killTooltip, this);
             text.events.onInputOut.add(whatever, this);
@@ -324,11 +326,34 @@ function place_twines(){
             add_twines[index] = game.add.sprite(twines_list[index].posx * 1, twines_list[index].posy * 1, key);
             add_twines[index].id = key;
             add_twines[index].inputEnabled = true;
+            add_twines[index].index = index;
+            add_twines[index].type = 'twines';
             game.physics.enable(add_twines[index], Phaser.Physics.ARCADE);
          //   add_twines[index].events.onInputOver.add(makeTooltip, this);
         }
     }
 }
+
+
+function place_terminals() {
+    if (terminals_list.length != 0) {
+        terminals_list.forEach(function (terminalsObj, index) {
+            var key = terminalsObj.image;
+            add_terminals[index] = game.add.sprite(terminalsObj.posx * 1, terminalsObj.posy * 1, key);
+            add_terminals[index].id = terminalsObj.id;
+            //add_terminals[index].id = key;
+            add_terminals[index].inputEnabled = true;
+            add_terminals[index].index = index;
+            add_terminals[index].type = 'terminals';
+
+
+            game.physics.enable(add_terminals[index], Phaser.Physics.ARCADE);
+            add_terminals[index].events.onInputOver.add(makeTooltip, this);
+        });
+    }
+}
+
+
 
 function place_plates(){
     if (plates_list.length != 0) {
@@ -337,7 +362,8 @@ function place_plates(){
             add_plates[index] = game.add.sprite(plates_list[index].posx * 1, plates_list[index].posy * 1, key);
             add_plates[index].id = key;
             add_plates[index].inputEnabled = true;
-            add_plates[index].index=index;
+            add_plates[index].index = index;
+            add_plates[index].type = 'plates';
             game.physics.enable(add_plates[index], Phaser.Physics.ARCADE);
             add_plates[index].events.onInputOver.add(makeTooltip, this);
         }
@@ -359,16 +385,6 @@ function place_portals(){
     portal[3].inputEnabled = true;
 }
 
-function place_terminals() {
-    if (terminals_list.length != 0) {
-        terminals_list.forEach(function (terminalsObj, index) {
-            var key = terminalsObj.image;
-            terminals[index] = game.add.sprite(terminalsObj.posx * 1, terminalsObj.posy * 1, key);
-            terminals[index].id = terminalsObj.id;
-            game.physics.enable(terminals[index], Phaser.Physics.ARCADE);
-        });
-    }
-}
 
 function place_player() {
     sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
@@ -654,8 +670,14 @@ function check_for_collisions(){
     ///////////////////////collide terminals_list
     for (var index = 0; index < terminals_list.length; index++)
     {
-  //      terminals[index].events.onInputDown.add(function(arg1) {  this.makeTooltip(arg1, terminal(sprite, terminals[index]));}, this);
-        terminals[index].events.onInputOut.add(killTooltip, this);
+  //      add_terminals[index].events.onInputDown.add(function(arg1) {  this.makeTooltip(arg1, terminal(sprite, add_terminals[index]));}, this);
+      //  tadd_erminals[index].events.onInputOut.add(killTooltip, this);
+        //  console.log(collideBuilding[index]);
+        if (collideTerminal[index]==true) {
+            game.physics.arcade.collide(sprite, add_terminals[index], terminal);
+        }
+
+
     }
     /////////////////////collide players
     for (var index = 0; index < players_list.length; index++)

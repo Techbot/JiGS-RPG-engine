@@ -9,7 +9,7 @@ class BattleViewgroup extends JViewLegacy
 {	
 	function display($tpl = null)
 	{
-		$model      = JModel::getInstance('factions','BattleModel');
+		$model      = JModelLegacy::getInstance('factions','BattleModel');
 
 		$this->assignRef('groups',$model->get_group_members());
 	

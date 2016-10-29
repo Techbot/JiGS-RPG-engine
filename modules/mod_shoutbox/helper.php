@@ -3,6 +3,7 @@ defined('_JEXEC') or die('Restricted access');
 
 class modShoutboxHelper {
 
+    /*
 	function addShout($sbid, $name, $url, $text, $tag, $delshouts, $user_calc, $user_Control, &$params)
 	{		
 		header( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" ); 
@@ -267,8 +268,9 @@ class modShoutboxHelper {
 	        array(60 , JText::_( 'MINUTE') , JText::_( 'MINUTES')),
 	    );
 	    $original = $original - 10; // Shaves a second, eliminates a bug where $time and $original match.
-		$date =& JFactory::getDate(); 
-	    $today = $date->toUnix(); /* Current unix time  */
+		$date =& JFactory::getDate();
+	    $today = $date->toUnix();
+
 	    $since = $today - $original;
 
 	    // $j saves performing the count function each time around the loop
@@ -298,5 +300,6 @@ class modShoutboxHelper {
 	        }
 	    }
 	return $print;
-	}	
+	}
+	*/
 }

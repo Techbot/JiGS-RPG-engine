@@ -280,6 +280,9 @@ class BattleModelMap extends JModelLegacy
     {
         $db      = JFactory::getDBO();
         $user    = JFactory::getUser();
+        if($user->id == 0){
+            $user->id=0;
+        }
         $grid    = $this->select_grid($user->id);
         $query   = JFactory::getDbo()->getQuery(true);
         //$db->setQuery("SELECT * FROM #__jigs_buildings WHERE grid = $grid");

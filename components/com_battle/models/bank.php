@@ -7,7 +7,7 @@ jimport( 'joomla.filesystem.folder' );
 
 require_once JPATH_COMPONENT.'/helpers/messages.php';
 
-class BattleModelBank extends JModel
+class BattleModelBank extends JModelLegacy
 {
     function get_account_list()
     {

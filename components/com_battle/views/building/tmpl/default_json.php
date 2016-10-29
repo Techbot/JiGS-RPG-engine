@@ -9,12 +9,13 @@ if ($this->player->id == 0){
 //exit();
 
 
-
 $body ='
 <div class="building_left">
 
 
 <a href="#" class="mid"></a>
+
+
     <div id="info" class=" clearfix">
       <div class="name">'. $this->player->name  . ' owns ' . $this->buildings->name . '
         <span class="small">[Level 1]</span>
