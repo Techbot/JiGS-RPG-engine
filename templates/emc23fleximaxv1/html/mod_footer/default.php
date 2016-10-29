@@ -10,6 +10,6 @@
 defined('_JEXEC') or die;
 ?>
 <a class="fnord" href="http://www.emc23.com" title="EMC23 MultiMedia" target="_blank" >
-<img src="templates/emc23flexiv2.3/images/fnord.png" alt="Fnord - EMC23 logo" width="32px" height="32px" align="right" />
+<img src="http://www.eclecticmeme.com/templates/emc23fleximaxv1/fnord_128x128.png" alt="Fnord - EMC23 logo" width="32px" height="32px" align="right" />
 </a>
 
