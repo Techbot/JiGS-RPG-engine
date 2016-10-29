@@ -64,7 +64,7 @@ class plgContentSlimbox extends JPlugin
     	
        // global $mainframe;
 		$document = JFactory::getDocument();
-		JHTML::_( 'behavior.mootools' );
+	//	JHTML::_( 'behavior.mootools' );
  		
 		//	Add CSS		
 		$document->addStyleSheet( JURI::base() . 'plugins/content/slimbox/css/slimbox.css' );
