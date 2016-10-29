@@ -14,7 +14,6 @@
         position: relative;
       }
 
-
       #startScreen > *,
       #ui-overlay > * {
         position: absolute;
@@ -22,10 +21,10 @@
       }
 
       .message {
-        top: 316px;
+        top: 360px;
         left: 0;
-        width: 640px;
-        height:164px;
+        width: 100%;
+        height: 140px;
         background-color: #03442E;
         padding: 10px;
         font-family: Arial, sans-serif;
