@@ -19,8 +19,7 @@ if (file_exists($path))
     var all = '';
     var details = this.details;
 
-
-    name = [];
+    var name = [];
 
     name[1]='Sub Routine';
     name[2]='Method';
@@ -36,8 +35,8 @@ if (file_exists($path))
       onSuccess: function (result) {
         for (var i = 1; i < 8; ++i) {
 
-          row = "<h3>" + name[i] + "</h3>";
-          //row += "<br>Qty" + result.qty[i] + " | $:" + result.price[i];
+          var row = "<span class=\"label\">" + name[i] + "</span></br>";
+          //row = "Qty:" + result.qty[i] + " | $:" + result.price[i];
           all = all + row;
 
         }
