@@ -18,7 +18,8 @@ var text;
 var enableObstacleCollide;
 var collideBuilding =[];
 var collidePlate =[];
-var collideTerminal=[]
+var collideTerminal=[];
+var collidePortal=[];
 collideBuilding[0]=false;
 collideBuilding[1]=false;
 collidePlate[0]=false;
@@ -35,9 +36,14 @@ collideTerminal[3]=false;
 collideTerminal[4]=false;
 collideTerminal[5]=false;
 
+collidePortal[1]=false;
+collidePortal[2]=false;
+collidePortal[3]=false;
+
 game.state.add('login', playState[0]);
 game.state.add('next', playState[3]);
 game.state.add('terminal', playState[2]);
+
 
 //All parameters are optional but you usually want to set width and height
 //Remember that the game object inherits many properties and methods!
@@ -105,23 +111,36 @@ jQuery('#world').focus().blur(function() {
     jQuery('#world').focus();
 })
 
-jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&format=raw', function(result)
-{
-    if (result != null) {
-        console.log('buildings');
-        grid = parseInt(result[0]);
-        new_x = parseFloat(result[1]);
-        new_y = parseFloat(result[2]);
-        avatar = result[3];
-        get_everything(grid);
-    }else{
-        grid = 1;
-        new_x =100;
-        new_y = 100;
-        avatar = null;
-        get_everything(grid);
-    }
-});
+getGrid();
+
+
+
+function getGrid(){
+
+
+
+    jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_grid&format=raw', function(result)
+    {
+        if (result != null) {
+
+            grid = parseInt(result[0]);
+            new_x = parseFloat(result[1]);
+            new_y = parseFloat(result[2]);
+            avatar = result[3];
+            get_everything(grid);
+        }else{
+            grid = 1;
+            new_x =100;
+            new_y = 100;
+            avatar = null;
+            get_everything(grid);
+        }
+    });
+
+
+
+
+}
 
 function collisionProperty(thingy){
 
@@ -134,8 +153,12 @@ function collisionProperty(thingy){
     }
     if (thingy.type=='terminals') {
 
-
         collideTerminal[thingy.dest] = true;
+    }
+
+    if (thingy.type=='portals') {
+
+        collidePortal[thingy.dest] = true;
     }
 
     else {
@@ -165,7 +188,6 @@ function whatever(arg) {
 function moveBall(pointer)
 {
    collideBuilding[0]=false;
-  // console.log(pointer.worldX);
     send = 1;
     x = parseInt(pointer.worldX);
     y = parseInt(pointer.worldY);
@@ -180,9 +202,9 @@ function jump(one,two) {
 
     anim = false;
     var source = grid;
-   // console.log('source:' + source);
+
     grid = two.dest;
-   // console.log('grid:' + grid);
+
     if (source == portal_dest_1[grid]) {
         new_x = portal_sourceX1[grid];
         new_y = portal_sourceY1[grid];
@@ -204,7 +226,8 @@ function jump(one,two) {
     }
     one.body.velocity.x = 0;
     one.body.velocity.y = 0;
-    get_everything(two.dest);
+
+    get_everything(two.grid);
 }
 
 function get_everything(dest) {
@@ -235,7 +258,8 @@ function get_everything(dest) {
                                 jQuery.getJSON('index.php?option=com_battle&task=map_action&action=get_halflings&format=raw', function (result) {
                                     halfling_list = result;
 
-                                    game.state.start('next');
+                                    grid=dest;
+                                    game.state.start('login');
 
                                 });
                             });
@@ -272,8 +296,6 @@ function enter_building(one,two) {
     enableObstacleCollide = false;
     one.body.immovable = true;
     one.body.enable =false;
-  //  two.body.immovable = true;
-  //  two.body.enable =false;
     jQuery.ajax({
         url: "/index.php?option=com_battle&format=json&view=building&id=" + two.id,
         context: document.body,
@@ -440,7 +462,7 @@ function terminal(one,two) {
     }).done(function(result) {
         //   two.body.enable = true;
         game.state.start('terminal');
-        document.getElementById("world").hide();
+      //  document.getElementById("world").hide();
         document.getElementById("terminal").innerHTML=result;
         document.getElementById("terminal").show();
         loadUp();

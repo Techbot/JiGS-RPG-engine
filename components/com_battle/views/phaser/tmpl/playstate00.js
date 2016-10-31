@@ -29,15 +29,27 @@ var line = '';
 playState[0] = {
 
    preload: function() {
-            game.load.image('arrow', '/images/stories/thisway.png');
+            game.load.image('arrow', '/images/thisway.png');
     },
     create: function() {
         sprite = game.add.sprite(0,0, 'arrow');
+        sprite.inputEnabled = true;
+
+        sprite.events.onInputDown.add( function go(){
+
+            game.state.start('next');
+        }  );
         //  Modify the world and camera bounds
-        game.world.setBounds(0, 0, 600, 600);
+        game.world.setBounds(0, 0, 800, 600);
         //game.stage.backgroundColor = '#000000';
         cursors = game.input.keyboard.createCursorKeys();
         text2 = game.add.text(32, 80, '', { font: "18pt Courier", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 2 });
         nextLine();
+
     }
+
 };
+
+
+
+

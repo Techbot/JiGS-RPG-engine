@@ -45,6 +45,9 @@ playState[3] = {
         ///////////////////////////////////////////
         addMap();
         ///////////////////////////////////////////
+
+        console.log('grid:' + grid);
+
         for (var index = 0; index < tile_names[grid].length; index++) {
             var filename = tile_names[grid][index];
             map.addTilesetImage(filename, filename);
@@ -250,6 +253,9 @@ function load_portals() {
 }
 
 function load_tiles() {
+    console.log(grid);
+
+
     for (var index = 0; index < tile_names[grid].length; index++) {
         var filename = tile_names[grid][index];
         //console.log(filename);
@@ -276,7 +282,6 @@ function place_buildings(){
     }
 }
 
-
 function makeTooltip(tileClicked) {
   //  alert(buildings.length);
     return function () {
@@ -287,6 +292,7 @@ function makeTooltip(tileClicked) {
             bar.drawRect(tileClicked.x, tileClicked.y, tileClicked.width, tileClicked.height);
             bar.inputEnabled = true;
             bar.dest = tileClicked.index;
+            bar.grid = tileClicked.grid;
             bar.type = tileClicked.type;
             bar.events.onInputDown.add(collisionProperty, this);
             bar.events.onInputOut.add(killTooltip, this);
@@ -299,25 +305,19 @@ function makeTooltip(tileClicked) {
             text.setShadow(3, 3, 'rgba(0,0,0,0.9)', 2);
             text.setTextBounds(20, 20, tileClicked.width - 20, tileClicked.height - 20);
             text.inputEnabled = true;
-            text.dest = tileClicked.index;
-            text.type = tileClicked.type;
-            text.events.onInputDown.add(collisionProperty, this);
-            text.events.onInputOut.add(killTooltip, this);
-            text.events.onInputOut.add(whatever, this);
+
+               text.grid = tileClicked.grid;
+
+
+                text.dest = tileClicked.index;
+                text.type = tileClicked.type;
+                text.events.onInputDown.add(collisionProperty, this);
+                text.events.onInputOut.add(killTooltip, this);
+                text.events.onInputOut.add(whatever, this);
 
         }
-
-
-
     }();
 }
-
-
-
-
-
-
-
 
 function place_twines(){
     if(twines_list.length != 0) {
@@ -371,24 +371,33 @@ function place_plates(){
 }
 
 function place_portals(){
-    portal[1] = game.add.sprite(x1[grid],y1[grid], 'portal00001');
-    portal[1]['dest']=portal_dest_1[grid];
-    game.physics.enable(portal[1], Phaser.Physics.ARCADE);
-    portal[2] = game.add.sprite(x2[grid], y2[grid], 'portal00002');
-    game.physics.enable(portal[2], Phaser.Physics.ARCADE);
-    portal[2]['dest']=portal_dest_2[grid];
-    portal[3] = game.add.sprite(x3[grid], y3[grid], 'portal00003');
-    game.physics.enable(portal[3], Phaser.Physics.ARCADE);
-    portal[3]['dest']=portal_dest_3[grid];
-    portal[1].inputEnabled = true;
-    portal[2].inputEnabled = true;
-    portal[3].inputEnabled = true;
-}
+    for(var index= 1;index<=3; index++)
+    {
+        portal[index] = game.add.sprite(x3[grid], y3[grid], 'portal0000' + index);
+        // game.physics.enable(portal[3], Phaser.Physics.ARCADE);
+       //  portal[index]['dest'] = portal_dest_3[grid];
+        portal[index].inputEnabled = true;
+        portal[index].index = index;
+        portal[index].type = 'portals';
+        game.physics.enable(portal[index], Phaser.Physics.ARCADE);
+        portal[index].events.onInputOver.add(makeTooltip, this);
+    }
+    //  portal[1] = game.add.sprite(x1[grid],y1[grid], 'portal00001');
+    portal[1]['grid']=portal_dest_1[grid];
+    //  game.physics.enable(portal[1], Phaser.Physics.ARCADE);
+    //   portal[2] = game.add.sprite(x2[grid], y2[grid], 'portal00002');
+    //   game.physics.enable(portal[2], Phaser.Physics.ARCADE);
+    portal[2]['grid']=portal_dest_2[grid];
+    //   portal[3] = game.add.sprite(x3[grid], y3[grid], 'portal00003');
+    //   game.physics.enable(portal[3], Phaser.Physics.ARCADE);
+    portal[3]['grid']=portal_dest_3[grid];
 
+
+}
 
 function place_player() {
     sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
-    circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
+    circle_core                 = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.allowRotation   = false;
     sprite.anchor.setTo(0.5, 0.5);
@@ -635,12 +644,18 @@ function stop_halflings(){
 
 
 function check_for_collisions(){
-  //  portal[1].events.onInputOver.add(function(arg1) {  this.makeTooltip(arg1, jump(sprite, portal[1]));}, this);
-  //  portal[2].events.onInputOver.add(function(arg1) {  this.makeTooltip(arg1, jump(sprite, portal[2]));}, this);
-  //  portal[3].events.onInputOver.add(function(arg1) {  this.makeTooltip(arg1, jump(sprite, portal[3]));}, this);
- //   portal[1].events.onInputOut.add(killTooltip, this);
-  //  portal[2].events.onInputOut.add(killTooltip, this);
-  //  portal[3].events.onInputOut.add(killTooltip, this);
+
+    ///////////////////////collide portal list
+    for (var index = 1; index < portal.length  ; index++)
+    {
+         console.log(collidePortal[index]);
+        if (collidePortal[index]==true) {
+            game.physics.arcade.collide(sprite, portal[index], jump);
+            //      add_plates[index].events.onInputOut.add(killTooltip, this);
+        //    portal[index].events.onInputOut.add(killTooltip, this);
+        }
+
+    }
 
     ///////////////////////collide monster list
     monsters.forEach(function (monster, index) {
