@@ -2181,7 +2181,9 @@ justify-content: flex-start;*/
 #master_skills_table div,
 #primary_upgrade_table div,
 #skills_table div,
-#secondary_upgrade_table div{
+#secondary_upgrade_table div,
+div.software,
+div.skill {
 cursor: pointer;
     width:16.5%;
     float:left;
@@ -2196,6 +2198,12 @@ margin-right: 1px;
   flex-basis: 16.5%;*/
 }
 
+div.software,
+div.skill {
+    width: 25%;
+    margin-right: 0;
+}
+
 #master_skills_table div:hover,
 #primary_upgrade_table div:hover,
 #skills_table div:hover,
@@ -2203,7 +2211,9 @@ margin-right: 1px;
 #master_skills_table div.selected,
 #primary_upgrade_table div.selected,
 #skills_table div.selected,
-#secondary_upgrade_table div.selected{
+#secondary_upgrade_table div.selected,
+div.software:hover,
+div.skill:hover{
     border: 1px solid #fff;
     background:rgba(0,0,0,0.8);
 }
@@ -2212,7 +2222,9 @@ margin-right: 1px;
 #master_skills_table h3,
 #primary_upgrade_table h3,
 #skills_table h3,
-#secondary_upgrade_table h3{
+#secondary_upgrade_table h3,
+#footer-modules .moduletable div.software h3,
+#footer-modules .moduletable div.skill h3{
     font-size: 12px;
     font-weight: 400;
 margin: 0 0 6px;
@@ -2224,6 +2236,10 @@ background: #222;
   text-align: center;
   text-transform: uppercase;
 padding: 3px 0;
+}
+#footer-modules .moduletable div.software h3,
+#footer-modules .moduletable div.skill h3{
+   border-radius: 0;
 }
 
 #master_skills_table div:hover h3,
@@ -2251,8 +2267,12 @@ color: #fff;
 #master_skills_table span,
 #primary_upgrade_table span,
 #skills_table span,
-#secondary_upgrade_table span{
+#secondary_upgrade_table span {
     display:block;
+}
+div.software span,
+div.skill span {
+    display:inline-block;
 }
 #master_skills_table h3 span,
 #primary_upgrade_table h3 span,

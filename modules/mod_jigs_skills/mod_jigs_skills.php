@@ -22,7 +22,8 @@ function request_skills() {
         url: "index.php?option=com_battle&format=raw&task=skills_action&action=get_skills",
         onSuccess: function (result) {
             for (var i = 0; i < 8; ++i) {
-                var row = "<br>Skill " + (i + 1) + " : " + result[i]['name'] + " Lvl:" + result[i]['level'];
+
+                var row = "<div class=\"skill\"><h3>Skill" + (i + 1) + "</h3><span>" + result[i]['name'] + " | </span><span>Lvl:" + result[i]['level'] + "</span></div>";
                 all = all + row;
             }
             jQuery('#skills').html(all);

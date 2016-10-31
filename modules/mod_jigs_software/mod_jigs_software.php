@@ -35,7 +35,7 @@ if (file_exists($path))
       onSuccess: function (result) {
         for (var i = 1; i < 8; ++i) {
 
-          var row = "<span class=\"label\">" + name[i] + "</span></br>";
+          var row = "<div class=\"software\"><h3>" + name[i] + "</h3><span>Qty: 1 | </span><span>Cost: 100</span></div>";
           //row = "Qty:" + result.qty[i] + " | $:" + result.price[i];
           all = all + row;
 
