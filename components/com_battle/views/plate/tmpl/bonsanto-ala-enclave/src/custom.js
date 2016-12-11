@@ -36,16 +36,16 @@ function uiOverlay() {
 }
 
 
-
 /*function getData2() {
     jQuery.getJSON("exampleObj.json", function(messagesObj2) {
         messageToPrint2 = messagesObj2.messages[0];
         console.log(messageToPrint2);
     });
 }*/
+
 function getData2() {
     jQuery.ajax({
-        url: "/index.php?option=com_battle&task=action&action=get_free_seed&format=raw",
+        url: "/index.php?option=com_battle&task=seed_action&action=get_free_seed&format=raw",
         success: function (result) {
             // Lisa - using .replace method to remove double quotes from php message string
             console.log(result.replace(/\"/g, ""));
