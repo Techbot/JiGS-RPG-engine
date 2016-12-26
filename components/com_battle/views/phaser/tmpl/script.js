@@ -145,7 +145,7 @@ else {
 
     function collisionProperty(thingy) {
 
-        console.log('type: ' + thingy.type);
+   //     console.log('type: ' + thingy.type);
 
         if (thingy.type == 'buildings') {
 

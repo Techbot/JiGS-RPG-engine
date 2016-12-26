@@ -1,3 +1,7 @@
+var PI =3.14;
+var directions = ["W", "NW", "N", "NE", "E", "SE", "S", "SW"], playerDirection;
+
+
 playState[3] = {
     init: function() {
     },
@@ -45,9 +49,7 @@ playState[3] = {
         ///////////////////////////////////////////
         addMap();
         ///////////////////////////////////////////
-
-        console.log('grid:' + grid);
-
+       // console.log('grid:' + grid);
         for (var index = 0; index < tile_names[grid].length; index++) {
             var filename = tile_names[grid][index];
             map.addTilesetImage(filename, filename);
@@ -68,61 +70,105 @@ playState[3] = {
         place_portals();
         //  Creates 30 bullets, using the 'bullet' graphic
         weapon = game.add.weapon(30, 'bullet');
-
         //  The bullet will be automatically killed when it leaves the world bounds
         weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-
         //  The speed at which the bullet is fired
         weapon.bulletSpeed = 600;
-
         //  Speed-up the rate of fire, allowing them to shoot 1 bullet every 60ms
         weapon.fireRate = 100;
-
         //  Tell the Weapon to track the 'player' Sprite
         //  With no offsets from the position
         //  But the 'true' argument tells the weapon to track sprite rotation
         weapon.trackSprite(circle_core, 0, 0, true);
     },
-    update: function() {
-        if (game.input.activePointer.isDown) {
 
-            anim = true;
-            //weapon.fire();
-           // game.input.onDown.add(moveBall, this);
-
+    getCardinal: function(angle, diagonals) {
+        if (diagonals) {
+            angle = Math.round((angle + Math.PI) / (Math.PI * 2) * 8) % 8;
+            return (directions[angle]);
         }
+        else {
+            angle = Math.round((angle + Math.PI) / (Math.PI * 2) * 4) % 4;
+            return (directions[angle * 2]);
+        }
+    },
+    update: function() {
+
+        var angle = game.physics.arcade.moveToPointer(sprite, 20);
+
+        if (game.input.activePointer.isDown) {
+            anim = true;
+            playerDirection = this.getCardinal(angle, true);
+            // game.input.onDown.add(moveBall, this);
+        }
+        else {
+            sprite.body.velocity.set(0);
+            playerDirection = null;
+        }
+
+
         game.input.onDown.add(moveBall, this);
+
         floor_halflings();
         //////////////////////////////collide obstacle layer
         game.physics.arcade.collide(sprite, layer, stop);
         ////////////////////////////////////////////////
-
         sprite.body.x = parseInt(sprite.body.x);
 
         if (anim == true) {
             game.physics.arcade.moveToXY(sprite, parseInt(x), parseInt(y), 100);
 
-        if (parseInt(sprite.body.x) + 46 < (x)) {
-            sprite.animations.play('walkRight', 6);
-        }
-        else if (parseInt(sprite.body.x) + 40 > (x)) {
-            sprite.animations.play('walkLeft', 6);
-        }
 
-        else if (parseInt(sprite.body.y) + 45 <= (y)) {
-            sprite.animations.play('walkDown', 6);
-        }
+            if (playerDirection == 'SW') {
+                sprite.loadTexture('highhero_diagonal', 0);
+                sprite.animations.play('walkDownLeft', 6, true);
+            }
 
-        else if (parseInt(sprite.body.y) + 40 >= (y)) {
-            sprite.animations.play('walkUp', 6);
-        }
+            if (playerDirection == 'NW') {
+                sprite.loadTexture('highhero_diagonal', 0);
+                sprite.animations.play('walkUpLeft', 6, true);
+            }
 
+            if (playerDirection == 'SE') {
+                sprite.loadTexture('highhero_diagonal', 0);
+                sprite.animations.play('walkDownRight', 6, true);
+            }
+
+            if (playerDirection == 'NE') {
+                sprite.loadTexture('highhero_diagonal', 0);
+                sprite.animations.play('walkUpLeft', 6, true);
+            }
+
+            if (playerDirection == 'S') {
+                sprite.loadTexture('highhero', 0);
+                sprite.animations.play('walkDown', 6, true);
+            }
+
+            if (playerDirection == 'W') {
+                sprite.loadTexture('highhero', 0);
+                sprite.animations.play('walkLeft', 6, true);
+            }
+
+            if (playerDirection == 'E') {
+                sprite.loadTexture('highhero', 0);
+                sprite.animations.play('walkRight', 6, true);
+            }
+
+            if (playerDirection == 'N') {
+                sprite.loadTexture('highhero', 0);
+                sprite.animations.play('walkUp', 6, true);
+            }
+    }
         else {
+            sprite.loadTexture('highhero', 0);
             sprite.animations.play('walkStop', 1);
             sprite.body.velocity.x = 0;
             sprite.body.velocity.y = 0;
         }
-    }
+
+
+
+
         move_players();
         stop_players();
         stop_player();
@@ -242,6 +288,13 @@ function load_player() {
         '/components/com_battle/images/assets/chars/highhero/hero.png',
         '/components/com_battle/views/phaser/tmpl/highhero.json');
 
+    game.load.atlasJSONHash('highhero_diagonal',
+        '/components/com_battle/images/assets/chars/highhero/hero_diagonal.png',
+        '/components/com_battle/views/phaser/tmpl/highhero_diagonal.json');
+
+
+
+
     game.load.image('ship', 'images/pixel.gif');
 
 }
@@ -253,7 +306,7 @@ function load_portals() {
 }
 
 function load_tiles() {
-    console.log(grid);
+  //  console.log(grid);
 
 
     for (var index = 0; index < tile_names[grid].length; index++) {
@@ -648,7 +701,7 @@ function check_for_collisions(){
     ///////////////////////collide portal list
     for (var index = 1; index < portal.length  ; index++)
     {
-         console.log(collidePortal[index]);
+        // console.log(collidePortal[index]);
         if (collidePortal[index]==true) {
             game.physics.arcade.collide(sprite, portal[index], jump);
             //      add_plates[index].events.onInputOut.add(killTooltip, this);
