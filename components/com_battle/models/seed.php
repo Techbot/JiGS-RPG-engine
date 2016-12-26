@@ -20,8 +20,8 @@ class BattleModelSeed extends JModellegacy
         $result_array   = explode(',',$result);
         if (in_array(1,$result_array)) {
 
-            $message = "You already received your yearly supply of Bonsanto(tm) Basic Seeds level 1";
-            $message .= "Your attempt to defraud the people of Pryamid City has been recorded";
+            $message = "You already received your yearly supply of Bonsanto(tm) Basic Seeds level 1. ";
+            $message .= "Your attempt to defraud the people of Pyramid City has been recorded";
         }else{
             $result_array[] = 1;
             $string         = implode($result_array,',');

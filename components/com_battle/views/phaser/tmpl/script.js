@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 500, Phaser.AUTO, "world");
+var game = new Phaser.Game(800, 500, Phaser.AUTO, "world", null, true, true, null);
 var upKey;
 var downKey;
 var leftKey;

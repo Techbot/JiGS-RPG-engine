@@ -100,6 +100,15 @@ class BattleController extends JControllerLegacy
         $result         = $model->$action();
         echo json_encode($result);
     }
+
+    function seed_action()
+    {
+        $model          = $this->getModel('seed');
+        $action         = JRequest::getVar('action');
+        $result         = $model->$action();
+        echo json_encode($result);
+    }
+
     function map_action()
     {
         $model          = $this->getModel('map');
