@@ -1,7 +1,8 @@
 jQuery( document ).ready(function() {
     getData();
     getData2();
-    getChapter();
+    //getChapter();
+    getConspiracy();
 });
 
 
@@ -15,10 +16,27 @@ function getChapter() {
 }
 
 
-function chapterText() {
-    console.log("chapterText");
-    jQuery("#ui-chapter").html("<div class='chapter'>" +chapterToPrint+ "</div>");
-    console.log(chapterToPrint);
+function getConspiracy() {
+    // round down to nearest integer and range is 3, as we only have 3 paragraphs
+    //var x = Math.floor((Math.random() * 2));
+    //console.log(x);
+    jQuery.getJSON("http://emcradio.com/api/paragraph/conspiracy?_format=api_json", function (conspiracyObj) {
+        conspiracyToPrint = conspiracyObj.data[0].attributes.field_conspiracy[0].value;
+        //console.dir(conspiracyObj);
+    });
+}
+
+
+//function chapterText() {
+//    console.log("chapterText");
+//    jQuery("#ui-chapter").html("<div class='chapter'>" +chapterToPrint+ "</div>");
+//    console.log(chapterToPrint);
+//}
+
+function conspiracyText() {
+    console.log("conspiracyText");
+    jQuery("#ui-chapter").html("<div class='chapter'>" +conspiracyToPrint+ "</div>");
+    console.log(conspiracyToPrint);
 }
 
 

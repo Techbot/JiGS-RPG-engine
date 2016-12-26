@@ -10,7 +10,7 @@ EPT.Story.prototype = {
 		
 		this.add.tween(buttonContinue).to({x: this.world.width-20}, 500, Phaser.Easing.Exponential.Out, true);
 
-        chapterText();
+        conspiracyText();
 
 	},
 	clickContinue: function() {
