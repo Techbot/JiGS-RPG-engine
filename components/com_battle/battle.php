@@ -131,7 +131,7 @@ class BattleController extends JControllerLegacy
         echo json_encode($result);
     }
 
-    function display()
+    function display($cachable = false, $urlparams = false)
     {
         $db         = JFactory::getDBO();
         $user       = JFactory::getUser();

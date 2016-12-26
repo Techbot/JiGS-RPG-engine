@@ -15,7 +15,8 @@ $link= '/components/com_battle/images/hacker-map.jpg';
 
 //$table = file_get_contents( 'http://eclecticmeme.com/components/com_battle/views/terminal/tmpl/table.php');
 
-$body       = "<a href='#' class='mid'></a>";
+
+$body       .= "<a href='#' class='mid'></a>";
 //$body       .= $table;
 $body .="<table width ='100%' style = 'font-size:10px;' >
 

@@ -375,6 +375,7 @@ class BattleModelMap extends JModelLegacy
         $db     = JFactory::getDBO();
         $user   = JFactory::getUser();
         $grid   = $this->select_grid($user->id);
+        $map=0;
         if ($map<1){
             $map=1;
         }

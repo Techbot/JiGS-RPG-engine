@@ -47,4 +47,3 @@ playState[2] = {
         nextLine();
     }
 };
-

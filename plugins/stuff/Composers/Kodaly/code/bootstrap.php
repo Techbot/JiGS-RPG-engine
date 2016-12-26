@@ -15,8 +15,8 @@ define('_JEXEC', 1);
 ini_set('max_execution_time', 0);
 
 // Note, you would not use these settings in production.
-error_reporting(E_ALL);
-ini_set('display_errors', true);
+//error_reporting(E_ALL);
+//ini_set('display_errors', true);
 
 // Define the path for the Joomla Platform.
 if (!defined('JPATH_PLATFORM'))

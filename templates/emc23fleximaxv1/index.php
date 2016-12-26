@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
 JHTML::_('behavior.tooltip');
 include_once("includes/template_config.php");
 $url = clone(JURI::getInstance());
-$user =& JFactory::getUser();
+$user = JFactory::getUser();
 
 
 

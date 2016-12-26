@@ -5,7 +5,7 @@ jimport('joomla.application.component.model');
 
 class BattleModelskills extends JModelLegacy
 {
-    function get_skills($user)
+    function get_skills()
     {
         $db		= JFactory::getDBO();
         $parent = JRequest::getvar('parent');
