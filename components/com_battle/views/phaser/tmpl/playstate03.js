@@ -118,56 +118,60 @@ playState[3] = {
         if (anim == true) {
             game.physics.arcade.moveToXY(sprite, parseInt(x), parseInt(y), 100);
 
-
             if (playerDirection == 'SW') {
-                sprite.loadTexture('highhero_diagonal', 0);
-                sprite.animations.play('walkDownLeft', 6, true);
+                sprite.loadTexture('highhero_diagonal', 0, true);
+                sprite.animations.play('walkLeftDown', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'NW') {
-                sprite.loadTexture('highhero_diagonal', 0);
-                sprite.animations.play('walkUpLeft', 6, true);
+                sprite.loadTexture('highhero_diagonal', 0, true);
+                sprite.animations.play('walkLeftUp', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'SE') {
-                sprite.loadTexture('highhero_diagonal', 0);
-                sprite.animations.play('walkDownRight', 6, true);
+                sprite.loadTexture('highhero_diagonal', 0, true);
+                sprite.animations.play('walkRightDown', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'NE') {
-                sprite.loadTexture('highhero_diagonal', 0);
-                sprite.animations.play('walkUpLeft', 6, true);
+                sprite.loadTexture('highhero_diagonal', 0, true);
+                sprite.animations.play('walkUpRight', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'S') {
-                sprite.loadTexture('highhero', 0);
+                sprite.loadTexture('highhero', 0, true);
                 sprite.animations.play('walkDown', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'W') {
-                sprite.loadTexture('highhero', 0);
+                sprite.loadTexture('highhero', 0, true);
                 sprite.animations.play('walkLeft', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'E') {
-                sprite.loadTexture('highhero', 0);
+                sprite.loadTexture('highhero', 0, true);
                 sprite.animations.play('walkRight', 6, true);
+                console.log(playerDirection);
             }
 
             if (playerDirection == 'N') {
-                sprite.loadTexture('highhero', 0);
+                sprite.loadTexture('highhero', 0, true);
                 sprite.animations.play('walkUp', 6, true);
+                console.log(playerDirection);
             }
-    }
+        }
         else {
-            sprite.loadTexture('highhero', 0);
+            sprite.loadTexture('highhero', 0, true);
             sprite.animations.play('walkStop', 1);
             sprite.body.velocity.x = 0;
             sprite.body.velocity.y = 0;
         }
-
-
-
 
         move_players();
         stop_players();
@@ -291,9 +295,6 @@ function load_player() {
     game.load.atlasJSONHash('highhero_diagonal',
         '/components/com_battle/images/assets/chars/highhero/hero_diagonal.png',
         '/components/com_battle/views/phaser/tmpl/highhero_diagonal.json');
-
-
-
 
     game.load.image('ship', 'images/pixel.gif');
 
@@ -449,16 +450,18 @@ function place_portals(){
 }
 
 function place_player() {
-    sprite                      = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
-    circle_core                 = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
+    sprite = game.add.sprite(parseInt(new_x), parseInt(new_y), 'highhero');
+    circle_core = game.add.sprite(parseInt(new_x), parseInt(new_y), 'ship');
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.allowRotation   = false;
     sprite.anchor.setTo(0.5, 0.5);
+    sprite.scale.setTo(0.75, 0.75);
     game.physics.enable(circle_core, Phaser.Physics.ARCADE);
     circle_core.body.enable          = true;
     circle_core.body.allowRotation   = true;
     circle_core.body.offset.setTo(40, -40);
     game.camera.follow(sprite, Phaser.Camera.FOLLOW_TOPDOWN_TIGHT);
+
     // animations
     this.sprite.animations.add('walkUp', Phaser.Animation.generateFrameNames('walkUp', 1, 8), 5, true);
     this.sprite.animations.add('walkLeft', Phaser.Animation.generateFrameNames('walkLeft', 1, 8), 5, true);
