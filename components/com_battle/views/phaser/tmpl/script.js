@@ -521,11 +521,17 @@ else {
         }
     }
 
+
+
+
+
+
     function updateLine() {
-        if (line.length < content[index].length) {
-            line = content[index].substr(0, line.length + 1);
+        console.log(introDateTime);
+        if (line.length < introDateTime[index].length) {
+            line = introDateTime[index].substr(0, line.length + 1);
             // text.text = line;
-            text2.setText(line);
+            dateTime.setText(line);
         }
         else {
             //  Wait 2 seconds then start a new line
@@ -535,9 +541,70 @@ else {
 
     function nextLine() {
         index++;
-        if (index < content.length) {
+        if (index < introDateTime.length) {
             line = '';
-            game.time.events.repeat(80, content[index].length + 1, updateLine, this);
+            game.time.events.repeat(80, introDateTime[index].length + 1, updateLine, this);
         }
     }
+
+
+
+
+
+    function nextLine2() {
+        if (lineIndex === content.length) {
+            //  We're finished
+            return;
+        }
+        //  Split the current line on spaces, so one word per array element
+        line2 = content[lineIndex].split(' ');
+        //  Reset the word index to zero (the first word in the line)
+        wordIndex = 0;
+        //  Call the 'nextWord' function once for each word in the line (line.length)
+        game.time.events.repeat(wordDelay, line2.length, nextWord, this);
+        //  Advance to the next line
+        lineIndex++;
+    }
+
+    function nextWord() {
+        //  Add the next word onto the text string, followed by a space
+        introText.text = introText.text.concat(line2[wordIndex] + " ");
+        //  Advance the word index to the next word in the line
+        wordIndex++;
+        //  Last word?
+        if (wordIndex === line2.length) {
+            //  Add a carriage return
+            introText.text = introText.text.concat("\n");
+            //  Get the next line after the lineDelay amount of ms has elapsed
+            game.time.events.add(lineDelay, nextLine2, this);
+        }
+
+    }
+
+
+
+    function slowAlert() {
+        nextLine2();
+    }
+
+    function clearAlert() {
+        window.clearTimeout(timeoutID);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
