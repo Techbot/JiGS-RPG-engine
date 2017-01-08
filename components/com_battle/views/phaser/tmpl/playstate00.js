@@ -87,7 +87,9 @@ WebFontConfig = {
 playState[0] = {
 
     preload: function() {
-        game.load.image('arrow', '/images/thisway.png');//  Load the Google WebFont Loader script
+        game.load.image('arrow', '/images/thisway.png');
+
+        //  Load the Google WebFont Loader script
         game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     },
     create: function() {
@@ -131,9 +133,7 @@ playState[0] = {
         introText.setShadow(2, 2, 'rgba(0,0,0,0.3)', 2);
 
 
-        timeoutID = window.setTimeout(slowAlert, 10000);
-
-
+        timeoutID = window.setTimeout(slowIntroText, 10000);
 
 
     }

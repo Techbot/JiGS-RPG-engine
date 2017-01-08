@@ -445,8 +445,6 @@ function place_portals(){
     //   portal[3] = game.add.sprite(x3[grid], y3[grid], 'portal00003');
     //   game.physics.enable(portal[3], Phaser.Physics.ARCADE);
     portal[3]['grid']=portal_dest_3[grid];
-
-
 }
 
 function place_player() {

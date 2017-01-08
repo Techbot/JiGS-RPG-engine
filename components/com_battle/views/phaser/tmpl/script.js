@@ -583,7 +583,7 @@ else {
 
 
 
-    function slowAlert() {
+    function slowIntroText() {
         nextLine2();
     }
 
