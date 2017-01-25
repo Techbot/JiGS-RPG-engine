@@ -49,6 +49,7 @@ hobbits.State001.prototype = {
 
         var cabinetRows = rows[game.rnd.integerInRange(0, 3)];
 
+        hobbit1.animations.add('stop',[0]);
         hobbit1.animations.add('down',[0,1,2,3], 4, true);
         hobbit1.animations.add('left',[4,5,6,7], 4, true);
         hobbit1.animations.add('right',[8,9,10,11], 4, true);
@@ -84,20 +85,20 @@ hobbits.State001.prototype = {
 
     update: function() {
 
-        if (hobbit1.x <= cabinet.boundsX ) {
 
-            if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-                hobbit1.x -= 4;
-                var hobbit1X = hobbit1.x;
+            if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+
+                if (hobbit1.x >= cabinet.boundsX ) {
+                    hobbit1.animations.play('right', 4, true);
+                    hobbit1.x += 4;
+                }
+            }
+            else if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
                 hobbit1.animations.play('left', 4, true);
+                hobbit1.x -= 4;
             }
 
-            else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-                hobbit1.animations.play('right', 4, true);
-                hobbit1.x += 4;
-            }
-        }
-
+        /*
         if (hobbit1.x >= cabinet.x ) {
 
             if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -111,7 +112,6 @@ hobbits.State001.prototype = {
             }
 
         }
-        /*
         else if (this.input.keyboard.isDown(Phaser.Keyboard.UP)) {
             hobbit1.animations.play('up', 4, true);
         }
