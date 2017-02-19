@@ -135,6 +135,8 @@ if (file_exists($path))
       //  this.playing = !this.playing;
       if (this.playing) {
         document.getElementById('emcradioPlay').value = 'Stop';
+        var stopClass = document.getElementById('emcradioPlay');
+        stopClass.className += " stop";
       } else {
         document.getElementById('emcradioPlay').value = 'Play';
       }

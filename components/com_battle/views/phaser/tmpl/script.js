@@ -527,7 +527,7 @@ else {
 
 
     function updateLine() {
-        console.log(introDateTime);
+        //console.log(introDateTime);
         if (line.length < introDateTime[index].length) {
             line = introDateTime[index].substr(0, line.length + 1);
             // text.text = line;
