@@ -11,7 +11,24 @@ require_once JPATH_COMPONENT.'/helpers/energy.php';
 
 class BattleModelJigs extends JModellegacy
 {
-    function getDirectoryContent()
+
+
+  function get_radio_stats() {
+
+      $icecast_url = 'http://164.138.27.49:8001/status.xsl';
+    $song = file_get_contents($icecast_url);
+
+
+    $song = json_encode($song);
+
+
+    return $song;
+  }
+
+
+
+
+  function getDirectoryContent()
     {
         $dir = '/var/www/html/meme/components/com_battle/images/assets/sito';
         $files = scandir($dir);

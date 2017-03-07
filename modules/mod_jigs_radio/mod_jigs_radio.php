@@ -14,6 +14,11 @@ if (file_exists($path))
 	require ($path);
 	}
 ?>
+
+
+
+
+
 <script type='text/javascript'>
 	var source1;
 	var source2;
@@ -177,6 +182,45 @@ function finishedLoading(bufferList) {
 	//source2.start(0);
 }
 */
+		(function worker() {
+			$.ajax({
+				dataType:'text json',
+				url: 'index.php?option=com_battle&format=raw&task=action&action=get_radio_stats',
+				success: function(data) {
+
+
+					data = $.parseJSON(data);
+
+
+
+					$('.radio_stats').html(data);
+
+
+					console.log(data);
+
+
+				},
+				complete: function(data) {
+					console.log(data);
+
+
+					// Schedule the next request when the current one's complete
+					setTimeout(worker, 5000);
+				}
+			});
+		})();
+;
+	/*
+	 function finishedLoading(bufferList) {
+	 // Create two sources and play them both together.
+	 source1.buffer = bufferList[0];
+	 source2.buffer = bufferList[1];
+	 //source1.connect(context.destination);
+	 //source2.connect(context.destination);
+	 //source1.start(0);
+	 //source2.start(0);
+	 }
+	 */
 
 </script>
 
