@@ -7,6 +7,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
 class BattleController extends JControllerLegacy
 {
+
+  //
+
     function action()
     {
         $model          = $this->getModel('jigs');
