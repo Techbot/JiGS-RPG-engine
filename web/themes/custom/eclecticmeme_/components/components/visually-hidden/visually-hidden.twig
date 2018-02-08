@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Component for visually hidden content.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - content: [string] The component contents.
+ */
+#}
+<div class="visually-hidden {{modifier_class}}">
+  {% block content %}
+    {{content}}
+  {% endblock %}
+</div>

@@ -1,0 +1,6 @@
+{{ attach_library('eclecticmeme/inline-links') }}
+<ul class="inline-links {{modifier_class}}">
+  {% for link in links -%}
+    <li class="inline-links__item"><a href="{{ link.url }}">{{ link.text }}</a></li>
+  {%- endfor %}
+</ul>

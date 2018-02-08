@@ -1,0 +1,12 @@
+characters_entity_action_add:
+  route_name: entity.characters.add_page
+  title: 'Add Characters'
+  appears_on:
+    - entity.characters.collection
+
+characters_entity_type_action_add:
+  route_name: entity.characters_type.add_form
+  title: 'Add Characters type (bundle)'
+  appears_on:
+    - entity.characters_type.collection
+

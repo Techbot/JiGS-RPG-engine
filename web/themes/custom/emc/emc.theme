@@ -1,0 +1,5 @@
+<?php
+
+function emc_preprocess_html(&$variables, $hook) {
+  $variables['body_classes'][] = 'dusk';
+}

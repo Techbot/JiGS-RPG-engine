@@ -1,0 +1,47 @@
+header {
+  padding: 1rem;
+  max-width: 80vw;
+}
+
+.site-name {
+  padding: 2.5rem;
+  display: block;
+  float: right;
+}
+
+.site-name a {
+  color: #FFFFFF;
+}
+
+.site-name a:visited {
+  color: #FFFFFF;
+}
+
+.site-name a:hover {
+  color: #FFFFFF;
+}
+
+.site-name a:active {
+  color: #FFFFFF;
+}
+
+.site-name a {
+  text-decoration: none;
+  font-family: 'Neutron Demo', sans-serif;
+  text-transform: lowercase;
+  font-size: 2rem;
+  line-height: 0.9;
+  font-weight: 500;
+  text-align: right;
+  text-shadow: 3px 3px 3px #230007;
+  display: block;
+  max-width: 30rem;
+  padding: 1rem;
+  transition: text-shadow 1s ease-out;
+}
+
+.site-name a:hover {
+  text-shadow: 4px 4px 4px #230007;
+}
+
+/*# sourceMappingURL=header.css.map */

@@ -1,0 +1,10 @@
+@import "_settings";
+
+body {
+  @include link ($teal, $teal-light-alt, $teal-light, $white);
+}
+
+.toolbar-tray {
+  @include link ($teal, $teal-alt, $teal-dark, $teal-light);
+}
+

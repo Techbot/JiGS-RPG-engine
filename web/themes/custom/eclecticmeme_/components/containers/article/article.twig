@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Component for article.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - attributes: [string] HTML attributes for the wrapping element.
+ * - heading: [string] Heading of the content.
+ * - headingAttributes: [string] HTML attributes for the heading element.
+ * - url: [string] URL to optionally link the heading to.
+ * - footer: [string|boolean] Metadata for this article. Also controls whether
+ *   the footer block and its wrapping element are displayed.
+ * - content: [string] The component contents.
+ */
+#}
+<article class="{{ modifier_class }}" {{ attributes }}>
+  {% block heading %}
+    <h2 {{ headingAttributes }}>
+      {% if url %}
+        <a href="{{ url }}">{{ heading }}</a>
+      {% else %}
+        {{ heading }}
+      {% endif %}
+    </h2>
+  {% endblock heading %}
+
+  {% if footer %}
+    <footer>
+      {% block footer %}
+        {{ footer }}
+      {% endblock %}
+    </footer>
+  {% endif %}
+
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</article>

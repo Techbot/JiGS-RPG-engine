@@ -1,0 +1,23 @@
+uuid: 8c5c141f-f5fc-4107-821e-56b336bc0635
+langcode: en
+status: true
+dependencies:
+  config:
+    - buildings.buildings_type.farm
+    - field.storage.buildings.produce
+id: buildings.farm.produce
+field_name: produce
+entity_type: buildings
+bundle: farm
+label: Produce
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

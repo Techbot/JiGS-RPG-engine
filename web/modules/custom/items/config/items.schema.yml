@@ -1,0 +1,34 @@
+items.items_type.*:
+  type: config_entity
+  label: 'Practical Type settings'
+  mapping:
+    id:
+      type: string
+      label: 'Machine-readable name'
+    uuid:
+      type: stype
+      label: 'UUID'
+    label:
+      type: label
+      label: 'Label'
+    map:
+      type: string
+      label: 'Map'
+    grid:
+      type: string
+      label: 'Grid'
+    posx:
+      type: string
+      label: 'PosX'
+    posy:
+      type: string
+      label: 'PosY'
+    health:
+      type: string
+      label: 'Health'
+    attack:
+      type: string
+      label: 'Attack'
+    defence:
+      type: string
+      label: 'Defence'

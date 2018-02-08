@@ -1,0 +1,224 @@
+# These lines define the eclecticmeme/base library.
+base:
+  css:
+    # The SMACSS category, "base", is loaded before other categories. Drupal 8
+    # loads stylesheets based on the SMACSS ordering of:
+    # base, layout, component, state, theme
+    base:
+      # The {} brackets allow you to specify the additional options, weight and
+      # media. For example, you can specify this is a print media stylesheet by
+      # specifying: { media: print } Note: this isn't recommended since
+      # separate print stylesheets is bad for front-end performance.
+      components/asset-builds/css/base.css: {}
+  # If this library had JavaScript you could specify it like this:
+  # js:
+  #   js/script.js: {}
+  dependencies:
+    - eclecticmeme/clearfix
+    - eclecticmeme/visually-hidden
+
+layouts:
+  css:
+    # The SMACSS category, "layout", is loaded after "base" styles.
+    layout:
+      components/asset-builds/css/layouts.css: {}
+
+autocomplete:
+  css:
+    component:
+      components/asset-builds/css/autocomplete.css: {}
+
+breadcrumb:
+  css:
+    component:
+      components/asset-builds/css/breadcrumb.css: {}
+  dependencies:
+    - eclecticmeme/visually-hidden
+
+box:
+  css:
+    component:
+      components/asset-builds/css/box.css: {}
+
+clearfix:
+  css:
+    component:
+      components/asset-builds/css/clearfix.css: {}
+
+collapsible-fieldset:
+  css:
+    component:
+      components/asset-builds/css/collapsible-fieldset.css: {}
+
+comment:
+  css:
+    component:
+      components/asset-builds/css/comment.css: {}
+
+footer:
+  css:
+    component:
+      components/asset-builds/css/footer.css: {}
+
+form-item:
+  css:
+    component:
+      components/asset-builds/css/form-item.css: {}
+
+form-table:
+  css:
+    component:
+      components/asset-builds/css/form-table.css: {}
+
+header:
+  css:
+    component:
+      components/asset-builds/css/header.css: {}
+  dependencies:
+    - eclecticmeme/clearfix
+
+hidden:
+  css:
+    component:
+      components/asset-builds/css/hidden.css: {}
+
+highlight-mark:
+  css:
+    component:
+      components/asset-builds/css/highlight-mark.css: {}
+
+inline-links:
+  css:
+    component:
+      components/asset-builds/css/inline-links.css: {}
+
+inline-sibling:
+  css:
+    component:
+      components/asset-builds/css/inline-sibling.css: {}
+
+messages:
+  css:
+    component:
+      components/asset-builds/css/messages.css: {}
+
+more-link:
+  css:
+    component:
+      components/asset-builds/css/more-link.css: {}
+
+nav-menu:
+  css:
+    component:
+      components/asset-builds/css/nav-menu.css: {}
+
+navbar:
+  css:
+    component:
+      components/asset-builds/css/navbar.css: {}
+  dependencies:
+    - eclecticmeme/clearfix
+    - eclecticmeme/visually-hidden
+
+pager:
+  css:
+    component:
+      components/asset-builds/css/pager.css: {}
+
+print-none:
+  css:
+    component:
+      components/asset-builds/css/print-none.css: {}
+
+progress-bar:
+  css:
+    component:
+      components/asset-builds/css/progress-bar.css: {}
+
+progress-throbber:
+  css:
+    component:
+      components/asset-builds/css/progress-throbber.css: {}
+
+resizable-textarea:
+  css:
+    component:
+      components/asset-builds/css/resizable-textarea.css: {}
+
+responsive-video:
+  css:
+    component:
+      components/asset-builds/css/responsive-video.css: {}
+
+skip-link:
+  css:
+    component:
+      components/asset-builds/css/skip-link.css: {}
+
+table-drag:
+  css:
+    component:
+      components/asset-builds/css/table-drag.css: {}
+
+tabs:
+  css:
+    component:
+      components/asset-builds/css/tabs.css: {}
+  dependencies:
+    - eclecticmeme/clearfix
+    - eclecticmeme/visually-hidden
+
+visually-hidden:
+  css:
+    component:
+      components/asset-builds/css/visually-hidden.css: {}
+
+watermark:
+  css:
+    component:
+      components/asset-builds/css/watermark.css: {}
+
+wireframe:
+  css:
+    component:
+      components/asset-builds/css/wireframe.css: {}
+
+p5:
+  js:
+    js/p5/p5.min.js: {}
+    js/p5/lib/p5.dom.js: {}
+    js/p5/lib/p5.speech.js: {}
+    js/p5/lib/p5.gibber.min.js: {}
+    js/p5/lib/rita-full.min.js: {}
+
+sketch001:
+  js:
+    js/p5/sketch001.js: {}
+  dependencies:
+    - eclecticmeme/p5
+
+sketch002:
+  js:
+    js/p5/sketch002.js: {}
+  dependencies:
+    - eclecticmeme/p5
+
+phaser:
+  js:
+    js/phaser/phaser.js: {}
+    js/phaser/box2d-plugin-full.min.js: {}
+    js/phaser/plugins/HUDManager.js: {}
+
+phaser001:
+  js:
+    js/phaser/script001.js: {}
+  dependencies:
+    - eclecticmeme/phaser
+
+phaser030:
+  js:
+    js/phaser/030_thomas/state001.js: {}
+    js/phaser/030_thomas/start.js: {}
+
+  dependencies:
+    - eclecticmeme/phaser

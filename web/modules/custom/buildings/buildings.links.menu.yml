@@ -1,0 +1,11 @@
+buildings_entity_collection_menu:
+  title: 'Buildings list'
+  route_name: entity.buildings.collection
+  description: 'List of Buildings entities'
+  parent: system.admin_content
+
+buildings_type_entity_collection_menu:
+  title: 'Buildings Types'
+  route_name: entity.buildings_type.collection
+  description: 'List of Buildings entity types (bundles)'
+  parent: system.admin_structure

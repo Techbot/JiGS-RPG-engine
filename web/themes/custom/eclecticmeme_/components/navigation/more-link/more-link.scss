@@ -1,0 +1,18 @@
+@import 'init';
+
+// "More" link
+//
+// Styles the "Read more…" links common in Drupal.
+//
+// Markup: more-link.twig
+//
+// Style guide: navigation.more-link
+
+.more-link,
+%more-link {
+  text-align: right;
+
+  @include rtl() {
+    text-align: left;
+  }
+}

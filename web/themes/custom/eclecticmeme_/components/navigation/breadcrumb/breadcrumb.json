@@ -1,0 +1,19 @@
+{
+  "breadcrumb": [
+    {
+      "url": "#",
+      "text": "Home"
+    },
+    {
+      "url": "#",
+      "text": "Level 1"
+    },
+    {
+      "url": "#",
+      "text": "Level 2"
+    },
+    {
+      "text": "Current item"
+    }
+  ]
+}

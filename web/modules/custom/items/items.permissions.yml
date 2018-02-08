@@ -1,0 +1,6 @@
+administer items types:
+  title: 'Administer ItemsEntity types'
+  restrict access: true
+
+permission_callbacks:
+  - '\Drupal\items\ItemsPermissionsGenerator::itemsTypePermissions'

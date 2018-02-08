@@ -1,0 +1,33 @@
+body a {
+  color: #009999;
+}
+
+body a:visited {
+  color: #00B9AE;
+}
+
+body a:hover {
+  color: #00F2F2;
+}
+
+body a:active {
+  color: #FFFFFF;
+}
+
+.toolbar-tray a {
+  color: #009999;
+}
+
+.toolbar-tray a:visited {
+  color: #19535F;
+}
+
+.toolbar-tray a:hover {
+  color: #0B3C49;
+}
+
+.toolbar-tray a:active {
+  color: #00F2F2;
+}
+
+/*# sourceMappingURL=links.css.map */

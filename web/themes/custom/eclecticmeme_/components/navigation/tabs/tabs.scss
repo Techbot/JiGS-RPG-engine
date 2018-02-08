@@ -1,0 +1,142 @@
+@import 'init';
+
+// Tabs
+//
+// The primary and secondary tabs.
+//
+// Markup: tabs.twig
+//
+// .tabs--secondary - Secondary tabs
+//
+// Style guide: navigation.tabs
+
+// Tabs (stacked)
+//
+// When the secondary tabs appear directly after the primary tabs, the styling
+// is slightly different.
+//
+// Markup: tabs--stacked.twig
+//
+// Style guide: navigation.tabs.stacked
+
+.tabs,
+%tabs {
+  // The line height of a tab.
+  $tab-height: 1.25;
+
+  @include margin((2 - $tab-height) 0 0);
+  @include line-height($tab-height);
+  @if support-for(ie, 9) {
+    // IE 9 and earlier don't understand gradients.
+    border-bottom: 1px solid color(tabs-border) \0/ie;
+  }
+  background-image: linear-gradient(to top, color(tabs-border) 1px, transparent 1px);
+  padding: 0 2px;
+  list-style: none;
+  white-space: nowrap;
+
+  @media print {
+    display: none;
+  }
+
+  &__tab {
+    float: left;
+    margin: 0 3px;
+    border: 1px solid color(tabs-border);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    // Allow the tabs gradient to appear just below the tab.
+    border-bottom-color: transparent;
+    @if support-for(ie, 9) {
+      // IE 9 and earlier don't understand gradients.
+      border-bottom: 0 \0/ie;
+    }
+    // Clip the background colors on tab links.
+    overflow: hidden;
+    background: color(tab-bg);
+
+    @include rtl() {
+      float: right;
+    }
+
+    &.is-active {
+      // Cover the tabs gradient with the same color as the background.
+      border-bottom-color: color(tabs-bg);
+    }
+  }
+
+  &__tab-link {
+    @include padding(0 1);
+    display: block;
+    text-decoration: none;
+    transition: color .3s, background .3s, border .3s;
+    text-shadow: color(tab-text-shadow) 0 1px 0;
+
+    color: color(tab);
+    background: color(tab-bg);
+    letter-spacing: 1px;
+
+    &:focus,
+    &:hover {
+      background: lighten(color(tab-bg), 5%);
+    }
+
+    &:active,
+    &.is-active,
+    &--is-active {
+      background: color(tabs-bg);
+      text-shadow: none;
+    }
+  }
+
+  &--secondary {
+    @include margin-top(1);
+    @include font-size(s);
+    background-image: none;
+  }
+
+  // When secondary tabs appear directly after primary tabs.
+  & + &--secondary,
+  & + h2 + &--secondary {
+    @include margin-top(0);
+    background-image: linear-gradient(to top, color(tabs-border) 1px, transparent 1px);
+  }
+
+  &--secondary &__tab {
+    @include margin((2 - $tab-height)/2 3px);
+    border: 0;
+    background: transparent;
+
+    @include rtl() {
+      float: right;
+    }
+
+    &.is-active {
+      border-bottom-color: transparent;
+    }
+  }
+
+  &--secondary &__tab-link {
+    border: 1px solid color(tabs-border);
+    border-radius: $base-line-height;
+    color: color(tab-secondary);
+    background: lighten(color(tab-bg), 8%);
+    letter-spacing: normal;
+
+    &:focus,
+    &:hover {
+      color: darken(color(tab-secondary), 20%);
+      background: color(tab-bg);
+      border-color: darken(color(tab-bg), 26.5%);
+    }
+
+    &:active,
+    &.is-active,
+    &--is-active {
+      color: lighten(color(tab-bg), 15%);
+      text-shadow: darken(color(tab-secondary), 20%) 0 1px 0;
+      background: color(tab-secondary);
+      border-color: darken(color(tab-secondary), 40%);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+levels_entity_collection_menu:
+  title: 'Levels list'
+  route_name: entity.levels.collection
+  description: 'List of Levels entities'
+  parent: system.admin_content
+
+levels_type_entity_collection_menu:
+  title: 'Levels Types'
+  route_name: entity.levels_type.collection
+  description: 'List of Levels entity types (bundles)'
+  parent: system.admin_structure

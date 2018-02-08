@@ -1,0 +1,15 @@
+{#
+KSS will only give us the modifier_class variable and variables defined in a
+JSON file. Since we want to use different variable values, its easiest to set
+the variables in this wrapper twig file.
+#}
+{% set type = modifier_class|replace({'messages--': '', '[modifier class]': ''})|default('status') %}
+{% set heading = type|capitalize ~ ' message' %}
+{#
+Show 2 examples:
+  - one with a single messages
+  - one with multiple messages
+#}
+{% for messages in [["This is how a single message appears."], ["This is how multiple messages appear.", "And this is another message.", "Message received: Unknown input."]] %}
+  {% include "messages.twig" %}
+{% endfor %}

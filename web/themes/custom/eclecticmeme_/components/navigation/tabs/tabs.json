@@ -1,0 +1,20 @@
+{
+  "heading": "Primary tabs",
+  "tabs": [
+    {
+      "active": true,
+      "text": "View",
+      "url": "#"
+    },
+    {
+      "active": false,
+      "text": "Edit",
+      "url": "#"
+    },
+    {
+      "active": false,
+      "text": "Delete",
+      "url": "#"
+    }
+  ]
+}

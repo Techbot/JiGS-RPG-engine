@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override to display the footer region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{% if content %}
+  {%
+    include "@eclecticmeme/components/footer/footer.twig" with {
+      modifier_class: attributes.class|safe_join(' '),
+      attributes: attributes.removeAttribute('class'),
+      content: content
+    } only
+  %}
+{% endif %}

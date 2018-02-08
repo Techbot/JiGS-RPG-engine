@@ -1,0 +1,13 @@
+@import "_settings";
+
+.tabs a {
+  background-color: $black-rich;
+  color: $white;
+}
+
+.tabs a.is-active,
+.tabs a:focus,
+.tabs a:hover {
+  background-color: $dark;
+  color: $white;
+}

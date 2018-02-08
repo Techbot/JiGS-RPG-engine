@@ -1,0 +1,91 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'forms/collapsible-fieldset';
+
+// Collapsible fieldset
+//
+// Fieldsets with optional entry fields can be hidden with collapsed fieldsets.
+//
+// .is-collapsed - The collapsed fieldset.
+//
+// Markup: collapsible-fieldset.twig
+//
+// Style guide: forms.collapsible-fieldset
+
+.collapsible-fieldset,
+%collapsible-fieldset {
+  position: relative;
+
+  &__legend {
+    display: block;
+    padding-left: 15px;
+    background-image: image-url('expanded.svg');
+    background-position: 4px 50%;
+    background-repeat: no-repeat;
+
+    @include rtl() {
+      padding-left: 0;
+      padding-right: 15px;
+      background-position: right 4px top 50%;
+    }
+  }
+
+  &__summary {
+    color: color(fieldset-summary);
+    font-size: .9em;
+    margin-left: .5em;
+  }
+
+  &.is-collapsed,
+  &--is-collapsed {
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    height: 1em;
+  }
+
+  &.is-collapsed &__wrapper,
+  &--is-collapsed__wrapper {
+    display: none;
+  }
+
+  &.is-collapsed &__legend,
+  &--is-collapsed__legend {
+    background-image: image-url('collapsed.svg');
+    background-position: 4px 50%;
+
+    @include rtl() {
+      background-image: image-url('collapsed-rtl.svg');
+      background-position: right 4px top 50%;
+    }
+  }
+}
+
+//
+// Drupal selectors.
+//
+
+.collapsible {
+  @extend %collapsible-fieldset;
+
+  .fieldset-legend {
+    @extend %collapsible-fieldset__legend;
+
+    .summary {
+      @extend %collapsible-fieldset__summary;
+    }
+  }
+
+  &.collapsed {
+    @extend %collapsible-fieldset--is-collapsed;
+
+    .fieldset-legend {
+      @extend %collapsible-fieldset--is-collapsed__legend;
+    }
+
+    .fieldset-wrapper {
+      @extend %collapsible-fieldset--is-collapsed__wrapper;
+    }
+  }
+}

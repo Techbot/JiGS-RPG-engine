@@ -1,0 +1,16 @@
+buildings_entity_task_view:
+  route_name: entity.buildings.canonical
+  base_route: entity.buildings.canonical
+  title: 'View'
+
+buildings_entity_task_edit:
+  route_name: entity.buildings.edit_form
+  base_route: entity.buildings.canonical
+  title: 'Edit'
+
+buildings_entity_task_delete:
+  route_name:  entity.buildings.delete_form
+  base_route:  entity.buildings.canonical
+  title: Delete
+  weight: 10
+

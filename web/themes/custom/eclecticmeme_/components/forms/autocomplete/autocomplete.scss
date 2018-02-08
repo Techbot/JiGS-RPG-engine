@@ -1,0 +1,90 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'forms/autocomplete';
+
+// Autocomplete field
+//
+// As the user starts to type a value, a selection list appears below the form
+// item allowing them to choose an option.
+//
+// .is-throbbing - Waiting for search result.
+//
+// Markup: autocomplete.twig
+//
+// Style guide: forms.autocomplete
+
+
+// Animated throbber
+.autocomplete,
+%autocomplete {
+  background-image: image-url('throbber-inactive.png');
+  background-position: 100% center;
+  background-repeat: no-repeat;
+
+  @include rtl() {
+    background-position: 0% center;
+  }
+
+  // Suggestion list.
+  &__list-wrapper {
+    border: 1px solid;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+  }
+
+  &__list {
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__list-item {
+    background: color(autocomplete-bg);
+    color: color(autocomplete);
+    cursor: default;
+    white-space: pre;
+
+    &.is-selected,
+    &--is-selected {
+      background: color(autocomplete-select-bg);
+      color: color(autocomplete-select);
+    }
+  }
+
+  &.is-throbbing,
+  &--is-throbbing {
+    background-image: image-url('throbber-active.gif');
+  }
+}
+
+//
+// Drupal selectors.
+//
+
+.form-autocomplete {
+  @extend %autocomplete;
+
+  &.throbbing {
+    @extend %autocomplete--is-throbbing;
+  }
+}
+
+// sass-lint:disable no-ids
+#autocomplete {
+  @extend %autocomplete__list-wrapper;
+
+  ul {
+    @extend %autocomplete__list;
+  }
+
+  li {
+    @extend %autocomplete__list-item;
+  }
+
+  .selected {
+    @extend %autocomplete__list-item--is-selected;
+  }
+}

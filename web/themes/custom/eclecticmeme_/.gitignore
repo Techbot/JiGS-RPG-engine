@@ -1,0 +1,9 @@
+# Custom for Zen subtheme
+
+images
+images-source
+js
+node_modules
+styleguide
+components/asset-builds/*
+yarn.lock

@@ -1,0 +1,6 @@
+administer levels types:
+  title: 'Administer LevelsEntity types'
+  restrict access: true
+
+permission_callbacks:
+  - '\Drupal\levels\LevelsPermissionsGenerator::levelsTypePermissions'

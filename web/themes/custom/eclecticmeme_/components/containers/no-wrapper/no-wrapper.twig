@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Component for a small chunk of content with no wrapping element.
+ *
+ * Variables:
+ * - heading: [string] Heading of the content.
+ * - headingAttributes: [string] HTML attributes for the heading element.
+ * - content: [string] The component contents.
+ */
+#}
+{% block heading %}
+  <h2 {{ headingAttributes }}>
+    {{ heading }}
+  </h2>
+{% endblock %}
+
+{% block content %}
+  {{ content }}
+{% endblock %}

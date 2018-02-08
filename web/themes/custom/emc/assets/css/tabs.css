@@ -1,0 +1,13 @@
+.tabs a {
+  background-color: #04151F;
+  color: #FFFFFF;
+}
+
+.tabs a.is-active,
+.tabs a:focus,
+.tabs a:hover {
+  background-color: #230007;
+  color: #FFFFFF;
+}
+
+/*# sourceMappingURL=tabs.css.map */

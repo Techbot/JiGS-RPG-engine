@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Component for messages.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - heading: [string] Accessible heading.
+ * - attributes: [string] HTML attributes for the wrapping element.
+ * - type: [string] The type of message: error, warning or status (default).
+ * - messages: [array] The messages. Each item in the array is a string.
+ */
+#}
+{{ attach_library('eclecticmeme/messages') }}
+<div class="messages {{ modifier_class }}" role="contentinfo" {% if heading %}aria-label="{{ heading }}"{% endif %} {{ attributes }}>
+  {% if type == 'error' %}
+    <div role="alert">
+  {% endif %}
+
+  {% block heading %}
+    {% if heading %}
+      <h2 class="visually-hidden">{{ heading }}</h2>
+    {% endif %}
+  {% endblock heading %}
+
+  {% block icon %}
+    <div class="messages__icon">
+      {% if type == 'error' %}
+        {% include "@eclecticmeme/components/messages/messages-icon-error.svg" %}
+      {% elseif type == 'warning' %}
+        {% include "@eclecticmeme/components/messages/messages-icon-warning.svg" %}
+      {% else %}
+        {% include "@eclecticmeme/components/messages/messages-icon-status.svg" %}
+      {% endif %}
+    </div>
+  {% endblock icon %}
+
+  {% block content %}
+    {% if messages|length > 1 %}
+      <ul class="messages__list">
+        {% for message in messages %}
+          <li class="messages__item">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      {{ messages|first }}
+    {% endif %}
+  {% endblock content %}
+
+  {% if type == 'error' %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Component for a marker.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - content: [string] The component contents.
+ */
+#}
+{{ attach_library('eclecticmeme/highlight-mark') }}
+<mark class="highlight-mark {{ modifier_class }}">
+  {{ content }}
+</mark>

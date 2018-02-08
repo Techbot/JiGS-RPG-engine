@@ -1,0 +1,98 @@
+// sass-lint:disable no-vendor-prefixes
+
+// Root
+//
+// The HTML root component contains the doctype, HTML element, HEAD element and
+// BODY element. It also contains the CSS for those elements and the `*`
+// universal selector.
+//
+// markup: base-root.twig
+//
+// weight: 2
+//
+// Style guide: base.root
+
+// Use the saner border-box model for all elements.
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @include define-type-sizing();
+  // Change the default font family in all browsers (opinionated).
+  @include typeface(body);
+  // Prevent adjustments of font size after orientation changes in IE and iOS.
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  // On short pages, we want any background gradients to fill the entire height
+  // of the browser.
+  min-height: 100%;
+}
+
+body {
+  // Output a horizontal grid to help with debugging typography. The
+  // $typey-debug variable will toggle its output.
+  @include typey-debug-grid();
+  // Remove default margin and padding.
+  margin: 0;
+  padding: 0;
+  color: color(text);
+  background-color: color(text-bg);
+  //background-image: url(../../../images/pyramid-city-panorama.png);
+  background-size: contain;
+  //background-repeat: no-repeat;
+  //background-position: 50% 50%;
+  //background-attachment: fixed
+}
+
+body {
+  background-color: #000; /* black */
+  color: #ccc;
+}
+
+.dusk {
+  background: url(../../../images/city-top-dusk.jpg) #000 center top no-repeat;
+  background-size: 100% auto;
+}
+
+.night {
+  background: url(../../../images/city-top-night.jpg) #000 center top no-repeat;
+  background-size: 100% auto;
+}
+
+.dawn {
+  background: url(../../../images/city-top-dawn.jpg) #000 center top no-repeat;
+  background-size: 100% auto;
+}
+
+.day {
+  background: url(../images/city-top-day.jpg) #000 center top no-repeat;
+  background-size: 100% auto;
+}
+
+.site-name {
+  padding: 2.5rem;
+  display: block;
+  float: right;
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Neutron Demo', sans-serif;
+    //font-family: 'Roboto Mono', monospace;
+    text-transform: lowercase;
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 700;
+    text-align: right;
+    text-shadow: 1px 1px 1px #333;
+    display: block;
+    max-width: 30rem;
+    padding: 1rem;
+  }
+
+  a:hover {
+    color:white;
+  }
+
+}

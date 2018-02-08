@@ -1,0 +1,12 @@
+items_entity_action_add:
+  route_name: entity.items.add_page
+  title: 'Add Items'
+  appears_on:
+    - entity.items.collection
+
+items_entity_type_action_add:
+  route_name: entity.items_type.add_form
+  title: 'Add Items type (bundle)'
+  appears_on:
+    - entity.items_type.collection
+
