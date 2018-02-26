@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+## Perform a migration from T4.
+##
+## Usage: fin migrate
+##
+
+source ${DOCKSAL_PATH}/.docksal/command-settings
+
+set -e
+
+{
+  ensure_containers_up
+  cd ${DOCROOT_PATH}
+  fin db-import master
+  fin drush cim -y
+  fin drush en -y meath_migrate
+} &> /dev/null
+fin drush ms
+fin drush mi --all
+

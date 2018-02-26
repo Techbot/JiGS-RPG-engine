@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+## Run 'drush cr' for the project
+##
+## Usage: fin cr
+##
+
+source ${DOCKSAL_PATH}/.docksal/command-settings
+
+ensure_containers_up
+
+cd ${DOCROOT_PATH}
+fin drush cr

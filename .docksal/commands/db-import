@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+## Imports DB from specified environment. Downloads dump where required
+##
+## Usage: fin db-import
+##         --fetch Force download
+##
+
+source ${DOCKSAL_PATH}/.docksal/command-settings
+
+ensure_containers_up
+
+
+echo-green "Importing ${env} database"
+
+
+
+fin sqli ${PROJECT_ROOT}/db/emc.sql
+
+echo-green "Database imported"

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+## Run npm in the theme folder.
+##
+## Usage: fin npm [command]
+##
+
+source ${DOCKSAL_PATH}/.docksal/command-settings
+
+ensure_containers_up
+
+cd ${THEME_PATH}
+
+# Install npm
+fin npm install
+fin npm run gulp compile
+cd ${THEME_PATH}/pattern-lab
+fin npm install
+fin exec php core/console --generate
+fin cr

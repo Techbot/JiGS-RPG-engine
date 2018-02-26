@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+## Initialize stack and site (full reset)
+##
+## Usage: fin init
+
+# Abort if anything fails
+set -e
+
+#-------------------------- Helper functions --------------------------------
+
+# Console colors
+red='\033[0;31m'
+green='\033[0;32m'
+green_bg='\033[42m'
+yellow='\033[1;33m'
+NC='\033[0m'
+
+echo-red () { echo -e "${red}$1${NC}"; }
+echo-green () { echo -e "${green}$1${NC}"; }
+echo-green-bg () { echo -e "${green_bg}$1${NC}"; }
+echo-yellow () { echo -e "${yellow}$1${NC}"; }
+
+# Convert version string like 1.2.3 to integer for comparison
+# param $1 version string of 3 components max (e.g. 1.10.3)
+# TODO: remove this once minimal version compatibility checking for commands is implemented in fin
+ver_to_int ()
+{
+	local leading_zeros=$(printf "%03d%03d%03d" $(echo "$1" | tr -d '[:alpha:]' | tr -d '-' | tr '.' ' '))
+	# Remove leading zeroes because otherwise bash tried to handle the number as octal which leads to errors if version contains 9
+	echo "$leading_zeros" | sed "s/^0*//"
+}
+
+#-------------------------- Execution --------------------------------
+
+# Minimum Docksal/Fin version requirement
+# TODO: this should be eventually moved to fin and version requirement defined like `#: fin_minimal_version = 1.22.0`
+# in the file header
+fin_minimal_version="1.22.0"
+if [[ $(ver_to_int $(fin -v)) < $(ver_to_int "$fin_minimal_version") ]]; then
+	echo-red "Minimal fin version required is: $fin_minimal_version"
+	echo -e "Please run ${yellow}fin update${NC} and try again"
+	exit 1
+fi
+
+# Stack initialization
+echo -e "${green_bg} Step 1 ${NC}${green} Initializing stack...${NC}"
+if [[ $DOCKER_RUNNING == "true" ]]; then
+	fin reset -f
+else
+	fin up
+fi
+echo "Waiting 10s for MySQL to initialize...";
+sleep 10
+
+# Site initialization
+echo -e "${green_bg} Step 2 ${NC}${green} Initializing site...${NC}"
+# This runs inside cli using http://docs.docksal.io/en/v1.4.0/fin/custom-commands/#executing-commands-inside-cli
+fin init-site
+
+echo -en "${green_bg} DONE! ${NC} "
+echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
+
+#-------------------------- END: Execution --------------------------------

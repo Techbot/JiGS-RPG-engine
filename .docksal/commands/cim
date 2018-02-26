@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+## Run 'drush cim' for the project
+##
+## Usage: fin cim
+##
+
+source ${DOCKSAL_PATH}/.docksal/command-settings
+
+ensure_containers_up
+
+cd ${DOCROOT_PATH}
+fin drush cim
