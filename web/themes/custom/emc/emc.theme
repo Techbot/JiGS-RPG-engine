@@ -3,3 +3,9 @@
 function emc_preprocess_html(&$variables, $hook) {
   $variables['body_classes'][] = 'dusk';
 }
+
+function emc_preprocess_block(&$variables) {
+  $block_id = $variables['elements']['#id'];
+  $block = \Drupal\block\Entity\Block::load($block_id);
+  $variables['region'] = $block->getRegion();
+}

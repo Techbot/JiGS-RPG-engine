@@ -27,6 +27,7 @@ regions:
   content: Content
   sidebar_first: First sidebar
   sidebar_second : Second sidebar
+  footer_modules : Footer Modules
   footer: Footer
   bottom: Page bottom
   # The page_top and page_bottom regions are hidden, which means they will not

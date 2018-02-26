@@ -6,6 +6,16 @@ base:
       assets/css/links.css: {}
       assets/css/header.css: {}
 
+golden-grid:
+  css:
+    component:
+      assets/css/golden-grid.css: {}
+
+grid:
+  css:
+    component:
+      assets/css/grid.css: {}
+
 page:
   css:
     component:

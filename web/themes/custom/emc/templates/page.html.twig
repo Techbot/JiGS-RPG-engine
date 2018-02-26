@@ -45,64 +45,86 @@
  */
 #}
 
+{{ attach_library('emc/grid') }}
 {{ attach_library('emc/page') }}
 
-  <header class="header" role="banner">
-    {{ page.header }}
-    {{ page.secondary_menu }}
-  </header>
-
-  <div class="layout">
-
-    {# Decide on layout classes by checking if sidebars have content. #}
-    {% if page.sidebar_first and page.sidebar_second %}
-      {% set content_class        = 'layout-3col__right-content' %}
-      {% set sidebar_first_class  = 'layout-3col__first-left-sidebar' %}
-      {% set sidebar_second_class = 'layout-3col__second-left-sidebar' %}
-    {% elseif (page.sidebar_second) %}
-      {% set content_class        = 'layout-3col__left-content' %}
-      {% set sidebar_first_class  = '' %}
-      {% set sidebar_second_class = 'layout-3col__right-sidebar' %}
-    {% elseif (page.sidebar_first) %}
-      {% set content_class        = 'layout-3col__right-content' %}
-      {% set sidebar_first_class  = 'layout-3col__left-sidebar' %}
-      {% set sidebar_second_class = '' %}
-    {% else %}
-      {% set content_class        = 'layout-3col__full' %}
-      {% set sidebar_first_class  = '' %}
-      {% set sidebar_second_class = '' %}
-    {% endif %}
-
-    <div class="layout-3col__full">
+<div class="wrapper">
+  <div class="container">
+    <header class="header grid grid-100" role="banner">
+      {{ page.header }}
       {{ page.primary_menu }}
+      {{ page.secondary_menu }}
+    </header>
+  </div>
+</div>
+
+
+<div class="wrapper full">
+  <div class="container">
+
+      {# Decide on layout classes by checking if sidebars have content. #}
+      {% if page.sidebar_first and page.sidebar_second %}
+          {% set content_class        = 'grid grid-map' %}
+          {% set sidebar_first_class  = 'grid-item sidebar_first' %}
+          {% set sidebar_second_class = 'grid-item sidebar_second' %}
+      {% elseif (page.sidebar_second) %}
+          {% set content_class        = 'grid grid-map' %}
+          {% set sidebar_first_class  = '' %}
+          {% set sidebar_second_class = 'grid-item sidebar_second' %}
+      {% elseif (page.sidebar_first) %}
+          {% set content_class        = 'grid grid-map' %}
+          {% set sidebar_first_class  = 'grid-item siderbar_first' %}
+          {% set sidebar_second_class = '' %}
+      {% else %}
+          {% set content_class        = 'grid grid-map' %}
+          {% set sidebar_first_class  = '' %}
+          {% set sidebar_second_class = '' %}
+      {% endif %}
+
+    <div class="{{ content_class }}">
+
+      <main class="grid-item" role="main">
+
+          {{ page.highlighted }}
+          {{ page.breadcrumb }}
+        <a href="#skip-link" class="visually-hidden visually-hidden--focusable" id="main-content">Back to top</a>{# link target is in html.html.twig #}
+          {{ page.help }}
+          {{ page.content }}
+
+      </main>
+
+      {% if page.sidebar_first %}
+        <aside class="{{ sidebar_first_class }}" role="complementary">
+            {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
+
+      {% if page.sidebar_second %}
+        <aside class="{{ sidebar_second_class }}" role="complementary">
+            {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+
     </div>
 
-    <main class="{{ content_class }}" role="main">
-
-      {{ page.highlighted }}
-      {{ page.breadcrumb }}
-      <a href="#skip-link" class="visually-hidden visually-hidden--focusable" id="main-content">Back to top</a>{# link target is in html.html.twig #}
-      {{ page.help }}
-      {{ page.content }}
-
-    </main>
-
-    {% if page.sidebar_first %}
-      <aside class="{{ sidebar_first_class }}" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="{{ sidebar_second_class }}" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
   </div>
-
-  {{ page.footer }}
-
 </div>
+
+
+<div class="wrapper full">
+  <div class="container">
+      {{ page.footer_modules }}
+  </div>
+</div>
+
+
+<div class="wrapper">
+  <div class="container">
+    <div class="grid grid-100" role="banner">
+    {{ page.footer }}
+    </div>
+  </div>
+</div>
+
 
 {{ page.bottom }}

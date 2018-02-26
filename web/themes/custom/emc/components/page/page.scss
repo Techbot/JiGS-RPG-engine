@@ -1,0 +1,22 @@
+.grid > aside {
+  background: rgba(0,0,0,0.8);
+  padding: 1rem;
+  &.sidebar_first {
+    //order: 1;
+    grid-area: sidebar_first;
+  }
+  &.sidebar_second {
+    //order: 3;
+    grid-area: sidebar_second;
+  }
+}
+
+.grid > main {
+  //order: 2;
+  grid-area: main;
+}
+
+.grid > aside img {
+  max-width: 100%;
+  margin: 1rem auto;
+ }
