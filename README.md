@@ -3,14 +3,18 @@
 <h1>JiGS</h1>
 
 <hr>
-JiGS Interactive Game System is an open source Online RPG engine built in php. The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
+JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in php using Drupal to create Content and Phaser to present the game.
 
+ The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.
 
-[![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
 
-Symfony, Drupal, Joomla, Silex, Asychoronous zombies, Websockets, ReactPhp, ZeroMq, RabbitMq, PhaserJs
+ Drupal
+ NodeJs
+ VueJs
+ Axios
+ PhaserJs
 
 
 Featurelist:
@@ -151,7 +155,7 @@ Daz3d might be a good candidate for this.
 
 <h3>Profile Page</h3>
 
-Currently using Joomla Community Builder with customised plugins for game stats.This suits minimum requirements for both again and game at present. Basic plugins can be created with minimum coding skills via the CB gui.Screenshot from 2014-10-19 14:19:57.png
+Using Drupal's build in User Entities system.
 
 <h3>Buildings & Economics</h3>
 
