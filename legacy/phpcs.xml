@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Project">
-    <description>Object Calisthenics</description>
-    <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/ObjectCalisthenics/ruleset.xml"/>
-</ruleset>

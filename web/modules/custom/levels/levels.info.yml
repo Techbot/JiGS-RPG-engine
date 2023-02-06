@@ -1,5 +1,0 @@
-name: Levels
-type: module
-description: More levels entity with bundles, generated bundle permissions, custom access control, entity fields, & bundle descriptions
-core: 8.x
-package: Custom Entities

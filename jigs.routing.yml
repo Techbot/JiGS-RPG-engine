@@ -1,0 +1,16 @@
+jigs.my_page:
+  path: '/myform'
+  defaults:
+    _form: '\Drupal\jigs\Form\RForm'
+    _title: 'Satellite Of Love'
+  requirements:
+    _permission: 'access content'
+
+jigs.data:
+  path: '/mydata'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\ExampleController::myData'
+    _title: 'game data'
+  requirements:
+    _permission: 'access content'
+

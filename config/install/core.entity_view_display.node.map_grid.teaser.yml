@@ -1,0 +1,26 @@
+# core.entity_view_display.node.map_grid.teaser.yml
+langcode: en
+status: true
+dependencies:
+    config:
+        - core.entity_view_mode.node.teaser
+        - field.field.node.map_grid.body
+        - node.type.map_grid
+    module:
+        - text
+        - user
+id: node.map_grid.teaser
+targetEntityType: node
+bundle: map_grid
+mode: teaser
+content:
+    body:
+        label: hidden
+        type: text_summary_or_trimmed
+        weight: 101
+        settings:
+            trim_length: 600
+        third_party_settings: {  }
+    links:
+        weight: 100
+hidden: {  }

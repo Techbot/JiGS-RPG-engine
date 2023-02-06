@@ -1,0 +1,19 @@
+Feature: Move
+  in order to win a round
+  As an NPC
+  I can add attack a Mech
+
+Scenario: Attacking a Mech
+Given a Mech and an adjacent NPC
+When a NPC has a health value greater than zero and an energy value greater than zero
+Then the NPC will attack the Mech
+
+Scenario: winning an attack
+Given a Mech and an adjacent NPC
+When an attacker has an attack value greater than zero
+Then the attacker will win the attack
+
+Scenario: losing an attack
+Given a Mech and an adjacent NPC
+When an attacker has an attack value less than zero
+Then the attacker will lose the attack

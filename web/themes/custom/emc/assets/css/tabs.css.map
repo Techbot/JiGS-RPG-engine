@@ -1,1 +1,0 @@
-{"version":3,"sources":["tabs.css"],"names":[],"mappings":"AAAA;EACE,0BAA0B;EAC1B,eAAe;CAChB;;AAED;;;EAGE,0BAA0B;EAC1B,eAAe;CAChB","file":"tabs.css","sourcesContent":[".tabs a {\n  background-color: #04151F;\n  color: #FFFFFF;\n}\n\n.tabs a.is-active,\n.tabs a:focus,\n.tabs a:hover {\n  background-color: #230007;\n  color: #FFFFFF;\n}\n"]}

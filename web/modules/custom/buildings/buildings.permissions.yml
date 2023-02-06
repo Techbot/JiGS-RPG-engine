@@ -1,6 +1,0 @@
-administer buildings types:
-  title: 'Administer BuildingsEntity types'
-  restrict access: true
-
-permission_callbacks:
-  - '\Drupal\buildings\BuildingsPermissionsGenerator::buildingsTypePermissions'

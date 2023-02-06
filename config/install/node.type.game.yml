@@ -1,0 +1,14 @@
+# node.type.game.yml
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - jigs # This is the name of the module we're using for this example
+name: 'Game'
+type: game
+description: 'Content type that can be used to collate objects for <em>game</em>'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

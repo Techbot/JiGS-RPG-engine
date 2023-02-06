@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains hook implementations for the jigs module.
+ */
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\FieldDefinition;
+
+function jigs_page_attachments(array &$page) {
+
+  $computed_settings = [
+  // stuff from mysql and user objects.
+  'foo' => 'bar',
+  'baz' => 'qux',
+];
+
+//$uid = \Drupal::currentUser()->id();
+$node = \Drupal::request()->get('node');
+
+if (isset($node) && $node instanceof NodeInterface) {
+  $title = $node->getTitle();
+  $type = $node->getType();
+    if ($type == 'game' or $type == 'map_grid') {
+      $page['#attached']['library'][] = 'jigs/client';
+  //    $page['#attached']['library'][] = 'jigs/phaser';
+//       if (!\Drupal::currentUser()->hasPermission('access contextual links')) {
+//        return;
+//      }
+    }
+   }
+}

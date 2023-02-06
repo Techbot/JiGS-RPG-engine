@@ -1,6 +1,0 @@
-administer characters types:
-  title: 'Administer CharactersEntity types'
-  restrict access: true
-
-permission_callbacks:
-  - '\Drupal\characters\CharactersPermissionsGenerator::charactersTypePermissions'

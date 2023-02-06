@@ -1,0 +1,20 @@
+{
+    "name": "drupal/jigs",
+    "type": "plugin",
+    "autoload": {
+        "psr-4": {
+            "Drupal\\jigs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "techbot"
+        }
+    ],
+	"minimum-stability": "dev",
+    "require-dev": {
+        "behat/behat": "^3.12",
+        "phpunit/phpunit": "^9.5",
+        "phpspec/phpspec": "^7.3"
+    }
+}

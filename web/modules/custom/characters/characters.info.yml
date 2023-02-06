@@ -1,5 +1,0 @@
-name: Characters
-type: module
-description: More characters entity with bundles, generated bundle permissions, custom access control, entity fields, & bundle descriptions
-core: 8.x
-package: Custom Entities

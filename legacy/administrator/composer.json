@@ -1,9 +1,0 @@
-{
-    "require": {
-        "object-calisthenics/phpcs-calisthenics-rules": "~1.0",
-        "squizlabs/php_codesniffer": "~2.3",
-        "behat/mink-goutte-driver": "^1.1",
-        "behat/mink-selenium2-driver": "^1.2",
-        "fabpot/php-cs-fixer": "^1.10"
-    }
-}
