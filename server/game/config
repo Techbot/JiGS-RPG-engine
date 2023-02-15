@@ -1,0 +1,11 @@
+const config = {
+  db: {
+    /* don't expose password or any sensitive info, done only for demo */
+    host: "46.19.34.36",
+    user: "emc23",
+    password: "Francis23Bacon!!",
+    database: "meme23",
+  },
+  listPerPage: 10,
+};
+module.exports = config;

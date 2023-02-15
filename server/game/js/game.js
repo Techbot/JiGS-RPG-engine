@@ -1,9 +1,12 @@
+
+//const drupalBridge = require('./services/bridge.js');
+  console.log('-----------------------------------------');
 const players = {};
 
 const config = {
-  type: Phaser.HEADLESS,
+    type: Phaser.HEADLESS,
   parent: 'phaser-example',
-  width: 600,
+  width: 800,
   height: 400,
   physics: {
     default: 'arcade',
@@ -20,12 +23,20 @@ const config = {
   autoFocus: false
 };
 
-function preload() {
-  this.load.image('ship', '../../img/spaceShips_001.png');
-  this.load.image('star', '../../img/star_gold.png');
+  function preload() {
+  //   this.load.plugin('RandomNamePlugin', './js/RandomNamePlugin.js', true);
+   // let Result = await this.DrupalUsers.getMultiple()
+  //this.load.image('ship', 'assets/spaceShips_001.png');
+  //this.load.image('star', 'assets/star_gold.png');
 }
 
 function create() {
+ // let plugin = this.plugins.get('RandomNamePlugin');
+//  let names = plugin.getNames(10);
+ // console.log(names);
+window.exclaim("bollox");
+
+
   const self = this;
   this.players = this.physics.add.group();
 
@@ -43,6 +54,9 @@ function create() {
     } else {
       self.scores.blue += 10;
     }
+
+
+
     self.star.setPosition(randomPosition(400), randomPosition(400));
     io.emit('updateScore', self.scores);
     io.emit('starLocation', { x: self.star.x, y: self.star.y });
@@ -60,7 +74,8 @@ function create() {
       input: {
         left: false,
         right: false,
-        up: false
+        up: false,
+        down: false
       }
     };
     // add player to server
@@ -95,24 +110,40 @@ function update() {
   this.players.getChildren().forEach((player) => {
     const input = players[player.playerId].input;
     if (input.left) {
-      player.setAngularVelocity(-300);
-    } else if (input.right) {
-      player.setAngularVelocity(300);
+    //  player.setAngularVelocity(-300);
+    player.x = player.x - 10;
+    }
+    else if (input.right) {
+    //  player.setAngularVelocity(300);
+    player.x = player.x + 10;
     } else {
       player.setAngularVelocity(0);
     }
-
     if (input.up) {
-      this.physics.velocityFromRotation(player.rotation + 1.5, 200, player.body.acceleration);
-    } else {
-      player.setAcceleration(0);
+    player.y = player.y - 10;
     }
-
+    else if (input.down) {
+      player.y = player.y + 10;
+    }
+////////////////////////////////////////////////////
+   if (player.x > 1900){
+          player.x  = 1900;
+    }
+    if (player.x < 0 ){
+          player.x  = 0;
+    }
+   if (player.y > 1250){
+          player.y  = 1250;
+    }
+    if (player.y < 0 ){
+          player.y  = 0;
+    }
+////////////////////////////////////////////////////
     players[player.playerId].x = player.x;
     players[player.playerId].y = player.y;
     players[player.playerId].rotation = player.rotation;
   });
-  this.physics.world.wrap(this.players, 5);
+ // this.physics.world.wrap(this.players, 5);
   io.emit('playerUpdates', players);
 }
 
