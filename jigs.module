@@ -35,3 +35,23 @@ if (isset($node) && $node instanceof NodeInterface) {
     }
    }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function jigs_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  if ($form_id == 'node-map-grid-form' || $form_id == 'node-map-grid-edit-form') {
+    $form['field_ image']['#states'] = [
+      'visible' => [
+        ':input[name="field_image_or_video"]' => ['value' => 'Image'],
+      ],
+    ];
+
+    $form['field_ video']['#states'] = [
+      'visible' => [
+        ':input[name="field_image_or_video"]' => ['value' => 'Video'],
+      ],
+    ];
+  }
+}
