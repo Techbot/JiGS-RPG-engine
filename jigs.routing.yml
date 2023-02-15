@@ -9,8 +9,15 @@ jigs.my_page:
 jigs.data:
   path: '/mydata'
   defaults:
-    _controller: '\Drupal\jigs\Controller\ExampleController::myData'
+    _controller: '\Drupal\jigs\Controller\GameController::myData'
     _title: 'game data'
   requirements:
     _permission: 'access content'
 
+jigs.my_state:
+  path: '/mystate'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myState'
+    _title: 'game state'
+  requirements:
+    _permission: 'access content'
