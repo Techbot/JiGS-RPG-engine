@@ -5,7 +5,9 @@
 Somebackground on the new archetecture
 
 A modular Drupal RPG and Trading Game engine - Wk 1 of 4 https://groups.drupal.org/node/536823
+
 A modular Drupal RPG and Trading Game engine - Wk 2 of 4 https://groups.drupal.org/node/536830
+
 A modular Drupal RPG and Trading Game engine - Wk 3 of 4 https://groups.drupal.org/node/536835
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
