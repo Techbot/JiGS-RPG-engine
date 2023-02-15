@@ -2,6 +2,18 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia"
 import App from "./App.vue"
+/* import LogRocket from 'logrocket';
+LogRocket.init('dfigai/jigs');
+
+// This is an example script - don't forget to change it!
+LogRocket.identify('THE_USER_ID_IN_YOUR_APP', {
+  name: 'James Morrison',
+  email: 'jamesmorrison@example.com',
+
+  // Add your own custom user variables here, ie:
+  subscriptionType: 'pro'
+});
+ */
 
 
 const pinia = createPinia()

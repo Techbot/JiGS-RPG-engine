@@ -11,8 +11,8 @@ function launch(containerId) {
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 300 },
-        debug: false
+        gravity: { y: 0 },
+        debug: true
       }
     },
     scene: [BootScene, PlayScene]

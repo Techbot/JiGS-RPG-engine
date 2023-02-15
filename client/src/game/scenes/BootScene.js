@@ -8,8 +8,8 @@ export default class BootScene extends Scene {
   }
 
   preload () {
-    this.load.image('bomb', '../../img/bomb.png');
-    this.load.image('sky', '../../img/sky.png');
+    this.load.image('bomb', '../../images/bomb.png');
+    this.load.image('sky', '../../images/sky.png');
     this.load.audio('thud', [thudMp3, thudOgg])
   }
 

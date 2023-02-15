@@ -10,6 +10,10 @@ export const useCounterStore = defineStore('counter', {
     filter: 'all',
     // type will be automatically inferred to number
     nextId: 0,
+    /** @type {{ text: string }[]} */
+    gameState: 'Bank',
+    // type will be automatically inferred to number
+    userMapGrid: 1,
     Blobby: 10
   }),
   getters: {
@@ -40,7 +44,7 @@ export const useCounterStore = defineStore('counter', {
       this.todos.push({ text, id: this.nextId++, isFinished: false })
     },
     increment() {
-      this.Blobbly++
+      this.Blobby++
     },
   },
 })
