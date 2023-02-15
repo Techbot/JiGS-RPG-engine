@@ -44,4 +44,5 @@
 /my-module-app/node_modules
 /my-module-app/dist
 /server/node_modules
-
+/client/node_modules
+/client/dist
