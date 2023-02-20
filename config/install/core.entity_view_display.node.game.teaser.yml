@@ -1,26 +1,30 @@
-# core.entity_view_display.node.map_grid.teaser.yml
+uuid: 23bb3233-e70c-4e15-ad23-f3c66a29b468
 langcode: en
 status: true
 dependencies:
-    config:
-        - core.entity_view_mode.node.teaser
-        - field.field.node.game.body
-        - node.type.game
-    module:
-        - text
-        - user
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.game.body
+    - node.type.game
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: ZZ_aI5YSe-bQsf2TC-0NnJiuJkz9u4sjIuTA4pkVlQY
 id: node.game.teaser
 targetEntityType: node
 bundle: game
 mode: teaser
 content:
-    body:
-        label: hidden
-        type: text_summary_or_trimmed
-        weight: 101
-        settings:
-            trim_length: 600
-        third_party_settings: {  }
-    links:
-        weight: 100
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    weight: 100
+    region: content
 hidden: {  }

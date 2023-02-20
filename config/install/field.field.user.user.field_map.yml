@@ -1,3 +1,4 @@
+uuid: 9f48115d-177c-422f-8993-a818c2d05d96
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - field.storage.user.field_map
   module:
     - user
+_core:
+  default_config_hash: hD2NzrtvNEWfDrIAvtm8tG0uva_Yhlj7WlKaoUGUWLU
 id: user.user.field_map
 field_name: field_map
 entity_type: user

@@ -1,0 +1,22 @@
+uuid: 49823f44-3412-491a-b8ff-ad2a34203d02
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: fm9Mxje5i_4JhrjrmmU0ETr6mCmvktMkpH-orp-1Adc
+id: emc_claro_help
+theme: emc_claro
+region: help
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: d837f742-e884-4506-b705-b74fd99fe5d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_amount
+    - paragraphs.paragraphs_type.ammunition
+id: paragraph.ammunition.field_amount
+field_name: field_amount
+entity_type: paragraph
+bundle: ammunition
+label: Amount
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

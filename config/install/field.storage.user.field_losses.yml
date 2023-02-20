@@ -1,8 +1,11 @@
+uuid: 05d6c00f-79ca-4366-9f1d-550b902222d6
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: 7awIOhpVRrNOfn3ELLaZcmiOhDaOX6UD_u6rL8WAEYQ
 id: user.field_losses
 field_name: field_losses
 entity_type: user

@@ -1,8 +1,11 @@
+uuid: 6ac27004-f40f-47d6-9574-b7bb910552be
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: CQ1ZWDWDPvNfLLZhZvDwqUr6IPL--Y_cSJzZcG6UGZ0
 id: user.field_strength
 field_name: field_strength
 entity_type: user

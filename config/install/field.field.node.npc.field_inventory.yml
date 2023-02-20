@@ -1,0 +1,49 @@
+uuid: c7fce8d4-f152-4a64-a3af-362dc1d734b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_inventory
+    - node.type.npc
+    - paragraphs.paragraphs_type.ammunition
+    - paragraphs.paragraphs_type.materials
+    - paragraphs.paragraphs_type.potions
+    - paragraphs.paragraphs_type.weapons
+  module:
+    - entity_reference_revisions
+id: node.npc.field_inventory
+field_name: field_inventory
+entity_type: node
+bundle: npc
+label: Inventory
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ammunition: ammunition
+      materials: materials
+      potions: potions
+      weapons: weapons
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 6
+        enabled: true
+      buildings:
+        weight: 7
+        enabled: false
+      materials:
+        weight: 8
+        enabled: true
+      potions:
+        weight: 9
+        enabled: true
+      weapons:
+        weight: 10
+        enabled: true
+field_type: entity_reference_revisions

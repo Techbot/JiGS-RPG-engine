@@ -1,0 +1,21 @@
+uuid: cbe189d7-c4ff-4b16-956f-0695f014dadd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_concerns
+    - node.type.npc
+  module:
+    - options
+id: node.npc.field_concerns
+field_name: field_concerns
+entity_type: node
+bundle: npc
+label: Concerns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

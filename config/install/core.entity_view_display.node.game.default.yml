@@ -1,24 +1,28 @@
-# core.entity_view_display.node.game.default.yml
+uuid: 3ddd922b-02c9-4d5d-9061-61b43be47ca1
 langcode: en
 status: true
 dependencies:
-    config:
-        - field.field.node.game.body
-        - node.type.game
-    module:
-        - text
-        - user
+  config:
+    - field.field.node.game.body
+    - node.type.game
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: MgkAF1mNhfShhGjedxqUNrBbPBUrPFBBumSV-KWWikE
 id: node.game.default
 targetEntityType: node
 bundle: game
 mode: default
 content:
-    body:
-        label: hidden
-        type: text_default
-        weight: 101
-        settings: {  }
-        third_party_settings: {  }
-    links:
-        weight: 100
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    weight: 100
+    region: content
 hidden: {  }

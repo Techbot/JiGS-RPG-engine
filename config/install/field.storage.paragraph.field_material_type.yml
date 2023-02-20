@@ -1,0 +1,51 @@
+uuid: 0df2e1ef-85d6-4bb7-8577-1062cb664b92
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_material_type
+field_name: field_material_type
+entity_type: paragraph
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: Rock
+    -
+      value: 2
+      label: Iron
+    -
+      value: 3
+      label: Wood
+    -
+      value: 4
+      label: Copper
+    -
+      value: 5
+      label: Steel
+    -
+      value: 6
+      label: Gold
+    -
+      value: 7
+      label: Platinum
+    -
+      value: 8
+      label: Unobtanium
+    -
+      value: 9
+      label: Sodium
+    -
+      value: 10
+      label: Carbon
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

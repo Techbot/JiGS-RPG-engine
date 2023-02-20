@@ -1,0 +1,20 @@
+uuid: 9caa56d0-00f2-4717-95b6-365d5ca90a61
+langcode: en
+status: true
+dependencies:
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: Ki1Wqh3uW620tNGwd4zglICyDZaJZMda6c-aGVZ2PNg
+id: emc_claro_local_actions
+theme: emc_claro
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

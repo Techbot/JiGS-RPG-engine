@@ -1,0 +1,32 @@
+uuid: 58d2e5b2-10db-4296-9e5d-0551712ce940
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.materials.field_amount
+    - field.field.paragraph.materials.field_material_type
+    - paragraphs.paragraphs_type.materials
+  module:
+    - options
+id: paragraph.materials.default
+targetEntityType: paragraph
+bundle: materials
+mode: default
+content:
+  field_amount:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_material_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

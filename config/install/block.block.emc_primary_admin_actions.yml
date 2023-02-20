@@ -1,0 +1,20 @@
+uuid: 1b0be066-c0ab-4cf2-bd4b-545ba43e32b9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - emc
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: emc_primary_admin_actions
+theme: emc
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

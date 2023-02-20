@@ -1,0 +1,29 @@
+uuid: b8cb2d9d-eb5c-4610-ae95-da90ff623714
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.materials.field_amount
+    - field.field.paragraph.materials.field_material_type
+    - paragraphs.paragraphs_type.materials
+id: paragraph.materials.default
+targetEntityType: paragraph
+bundle: materials
+mode: default
+content:
+  field_amount:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_material_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

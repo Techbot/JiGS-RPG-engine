@@ -1,3 +1,4 @@
+uuid: 8e0556c2-a097-4a3e-b9cc-1fae6799ec0e
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - field.storage.user.field_wins
   module:
     - user
+_core:
+  default_config_hash: 6RO4LdkMabvo5t1COK8dEHEjQ1lIxm1QbG0WxSEbHqo
 id: user.user.field_wins
 field_name: field_wins
 entity_type: user

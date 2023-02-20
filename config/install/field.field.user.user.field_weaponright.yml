@@ -1,3 +1,4 @@
+uuid: 979d08b4-c65d-4c74-8782-19ca834bb24f
 langcode: en
 status: true
 dependencies:
@@ -5,11 +6,13 @@ dependencies:
     - field.storage.user.field_weaponright
   module:
     - user
+_core:
+  default_config_hash: LsnvmcLHNnvHFtNhFlVW1czb-rPU5kkiKul8vtZivHc
 id: user.user.field_weaponright
 field_name: field_weaponright
 entity_type: user
 bundle: user
-label: Right Weapon
+label: 'Right Weapon'
 description: ''
 required: false
 translatable: false

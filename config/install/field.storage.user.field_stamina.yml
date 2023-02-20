@@ -1,8 +1,11 @@
+uuid: 5962d1a7-4bf4-499c-b6e2-fb94fd2e9507
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: qXfUKF-vG3awF9QPJRYugst7BOqTk7MIIoAzd3WaogY
 id: user.field_stamina
 field_name: field_stamina
 entity_type: user

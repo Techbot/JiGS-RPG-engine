@@ -1,0 +1,22 @@
+uuid: 72c08c79-6dcb-46e7-8e72-698b56fab971
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: FBoP6hy7JN62mLuyzhT8HFc-fXZ0sqe-azswtklZqKI
+id: emc_claro_content
+theme: emc_claro
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

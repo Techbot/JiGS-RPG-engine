@@ -1,3 +1,4 @@
+uuid: 200fcb12-1937-4cb3-a91e-c3c691dbcabf
 langcode: en
 status: true
 dependencies:
@@ -5,11 +6,13 @@ dependencies:
     - field.storage.user.field_losses
   module:
     - user
+_core:
+  default_config_hash: JZUOQZDjWABeo3xGqaPxICXFhyrtSVybE-6vUMUfcVA
 id: user.user.field_losses
 field_name: field_losses
 entity_type: user
 bundle: user
-label: Y
+label: 'Y'
 description: ''
 required: false
 translatable: false

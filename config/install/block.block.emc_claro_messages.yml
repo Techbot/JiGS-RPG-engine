@@ -1,0 +1,22 @@
+uuid: d0b8e54d-21a0-4dbe-b46b-eb4fbe9922b1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: 51defRtaKwLUgJ8AbdqyIpeDQx-QWWOWWPvS6P9AQzU
+id: emc_claro_messages
+theme: emc_claro
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

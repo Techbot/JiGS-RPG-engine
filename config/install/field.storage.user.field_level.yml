@@ -1,8 +1,11 @@
+uuid: 1be24fbe-4d62-491e-91af-750e72627b39
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: rl1cbe-U-CphcsN5N7q_J-Lv6QbnWiVI_6Lmz76wUvY
 id: user.field_level
 field_name: field_level
 entity_type: user

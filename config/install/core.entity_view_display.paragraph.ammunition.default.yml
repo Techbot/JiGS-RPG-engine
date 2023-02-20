@@ -1,0 +1,43 @@
+uuid: 3654e776-2cf5-404c-b454-adb9d06c4d1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ammunition.field_ammo_type
+    - field.field.paragraph.ammunition.field_amount
+    - field.field.paragraph.ammunition.field_materials
+    - paragraphs.paragraphs_type.ammunition
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.ammunition.default
+targetEntityType: paragraph
+bundle: ammunition
+mode: default
+content:
+  field_ammo_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_amount:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_materials:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

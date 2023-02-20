@@ -1,0 +1,22 @@
+uuid: c8201c07-cf73-45a2-88bb-795fb1db209f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: O22ZJXPL39pz_UFxTU-Lvphg3t0QDNVrF5ga2D5Qjco
+id: emc_claro_breadcrumbs
+theme: emc_claro
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

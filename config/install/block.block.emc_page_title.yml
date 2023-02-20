@@ -1,0 +1,20 @@
+uuid: 284df6aa-5744-42c5-a83c-c5e8855991f7
+langcode: en
+status: true
+dependencies:
+  theme:
+    - emc
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: emc_page_title
+theme: emc
+region: content
+weight: -7
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

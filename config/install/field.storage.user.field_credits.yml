@@ -1,8 +1,11 @@
+uuid: 761a4ec0-3e61-4ce3-9ece-e231ca64ccb0
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: zKfAOgXPiP8D6L8oK9xduzKGIwkF3mUKtupG1CU_0tY
 id: user.field_credits
 field_name: field_credits
 entity_type: user

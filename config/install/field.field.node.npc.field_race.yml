@@ -1,0 +1,21 @@
+uuid: cd56ebab-e471-45c8-947f-64ed5e11d450
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_race
+    - node.type.npc
+  module:
+    - options
+id: node.npc.field_race
+field_name: field_race
+entity_type: node
+bundle: npc
+label: Race
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

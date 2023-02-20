@@ -1,0 +1,21 @@
+uuid: c39577a7-0c09-4447-b930-468802005d50
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ammo_type
+    - paragraphs.paragraphs_type.ammunition
+  module:
+    - options
+id: paragraph.ammunition.field_ammo_type
+field_name: field_ammo_type
+entity_type: paragraph
+bundle: ammunition
+label: 'Ammo type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

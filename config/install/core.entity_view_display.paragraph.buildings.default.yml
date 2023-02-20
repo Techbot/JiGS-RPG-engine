@@ -1,0 +1,31 @@
+uuid: bb6fe364-5ead-403c-b9c7-036aadc45fd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.buildings.field_building_name
+    - field.field.paragraph.buildings.field_building_type
+    - paragraphs.paragraphs_type.buildings
+  module:
+    - options
+id: paragraph.buildings.default
+targetEntityType: paragraph
+bundle: buildings
+mode: default
+content:
+  field_building_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_building_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

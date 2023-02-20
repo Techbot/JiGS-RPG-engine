@@ -1,0 +1,30 @@
+uuid: 2e4390c5-fd77-40df-8076-4ceab1e5f0d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_weapon_type
+field_name: field_weapon_type
+entity_type: paragraph
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Lazer Sword'
+    -
+      value: 2
+      label: Blaster
+    -
+      value: 3
+      label: Rifle
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

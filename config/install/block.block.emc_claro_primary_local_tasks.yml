@@ -1,0 +1,22 @@
+uuid: ed59b028-092d-4cb8-b26b-a7ef00d0a24f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: j8SfHss_hU6TJURjZg2R0IUvHn0jQJB_2JdpBXrSrE8
+id: emc_claro_primary_local_tasks
+theme: emc_claro
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

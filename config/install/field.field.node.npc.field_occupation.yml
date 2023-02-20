@@ -1,0 +1,21 @@
+uuid: 3b6edeb3-da3f-4fb3-935e-4fbe50401ce4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_occupation
+    - node.type.npc
+  module:
+    - options
+id: node.npc.field_occupation
+field_name: field_occupation
+entity_type: node
+bundle: npc
+label: Occupation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

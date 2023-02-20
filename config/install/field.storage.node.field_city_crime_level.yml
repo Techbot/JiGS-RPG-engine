@@ -1,0 +1,20 @@
+uuid: 74ae2560-f1a7-49f2-8fd1-e6294cef13cd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_city_crime_level
+field_name: field_city_crime_level
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

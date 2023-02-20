@@ -1,0 +1,63 @@
+uuid: 076a5a62-f086-418e-be2b-b24a239666c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.compact
+    - field.field.user.user.field_credits
+    - field.field.user.user.field_experience
+    - field.field.user.user.field_faction
+    - field.field.user.user.field_health
+    - field.field.user.user.field_level
+    - field.field.user.user.field_losses
+    - field.field.user.user.field_magic
+    - field.field.user.user.field_map
+    - field.field.user.user.field_player_game_state
+    - field.field.user.user.field_stamina
+    - field.field.user.user.field_strength
+    - field.field.user.user.field_weaponleft
+    - field.field.user.user.field_weaponright
+    - field.field.user.user.field_wins
+    - field.field.user.user.field_x
+    - field.field.user.user.field_y
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: 00zr_RBdTjPjBGITD3h4c1ESQZimjdVCcHGt1trLqIY
+id: user.user.compact
+targetEntityType: user
+bundle: user
+mode: compact
+content:
+  user_picture:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_credits: true
+  field_experience: true
+  field_faction: true
+  field_health: true
+  field_level: true
+  field_losses: true
+  field_magic: true
+  field_map: true
+  field_player_game_state: true
+  field_stamina: true
+  field_strength: true
+  field_weaponleft: true
+  field_weaponright: true
+  field_wins: true
+  field_x: true
+  field_y: true
+  member_for: true

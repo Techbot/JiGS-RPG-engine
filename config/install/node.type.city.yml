@@ -1,0 +1,18 @@
+uuid: 8ff334a2-a7e9-4e4d-9257-bf41de855c04
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: City
+type: city
+description: 'A collection of Map-Grids with additional stats'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

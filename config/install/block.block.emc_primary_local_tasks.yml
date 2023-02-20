@@ -1,0 +1,22 @@
+uuid: 34a868ad-0786-469c-a6d8-efdd9c31438e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - emc
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: emc_primary_local_tasks
+theme: emc
+region: content
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

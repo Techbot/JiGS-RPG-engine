@@ -1,0 +1,45 @@
+uuid: 4d7bcf9c-01c3-4da9-a197-b9c4d0111841
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_concerns
+field_name: field_concerns
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: Law
+    -
+      value: 2
+      label: Business
+    -
+      value: 3
+      label: Science
+    -
+      value: 4
+      label: Health
+    -
+      value: 5
+      label: Education
+    -
+      value: 6
+      label: Environment
+    -
+      value: 7
+      label: 'Sport and Entertainment'
+    -
+      value: 8
+      label: Agiculture
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

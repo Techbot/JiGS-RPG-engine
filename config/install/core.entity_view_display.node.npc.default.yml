@@ -1,0 +1,74 @@
+uuid: 83f3bb31-3add-40ed-95e2-9c326f99722d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.npc.body
+    - field.field.node.npc.field_concerns
+    - field.field.node.npc.field_home
+    - field.field.node.npc.field_inventory
+    - field.field.node.npc.field_occupation
+    - field.field.node.npc.field_race
+    - node.type.npc
+  module:
+    - entity_reference_revisions
+    - options
+    - text
+    - user
+id: node.npc.default
+targetEntityType: node
+bundle: npc
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_concerns:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_home:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_inventory:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_occupation:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_race:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

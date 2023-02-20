@@ -1,3 +1,4 @@
+uuid: 9adc21cc-f4af-4f8d-a267-9cc7887d3a53
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - field.storage.user.field_strength
   module:
     - user
+_core:
+  default_config_hash: 70KnRjhqlGhCNmiWEvBF-Om7kZHDd1htP7ayfBl_dlQ
 id: user.user.field_strength
 field_name: field_strength
 entity_type: user

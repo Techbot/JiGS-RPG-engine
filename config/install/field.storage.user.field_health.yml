@@ -1,8 +1,11 @@
+uuid: df58fb00-021f-4431-b162-8979f92588e2
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: 3EMxA2L5ZHRhHsNz-Pnzg9UkDI4UJGyyU5BJraiBukk
 id: user.field_health
 field_name: field_health
 entity_type: user

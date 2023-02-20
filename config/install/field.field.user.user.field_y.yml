@@ -1,3 +1,4 @@
+uuid: 4773cd1f-0ec8-4390-a9bf-dfb1b46c53a4
 langcode: en
 status: true
 dependencies:
@@ -5,11 +6,13 @@ dependencies:
     - field.storage.user.field_y
   module:
     - user
+_core:
+  default_config_hash: rjRCcVV92uZYHlbdLxLgxcOhQz7uCVNP3vvMv2uoYOU
 id: user.user.field_y
 field_name: field_y
 entity_type: user
 bundle: user
-label: Y
+label: 'Y'
 description: ''
 required: false
 translatable: false

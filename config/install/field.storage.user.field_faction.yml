@@ -1,8 +1,11 @@
+uuid: 37a46371-48c6-4ae5-a93a-038ae88852c4
 langcode: en
 status: true
 dependencies:
   module:
     - user
+_core:
+  default_config_hash: cT0wjHVSvJLTFLtdnUnRFVShYZUy4U2Lsz7J3RTU6rE
 id: user.field_faction
 field_name: field_faction
 entity_type: user

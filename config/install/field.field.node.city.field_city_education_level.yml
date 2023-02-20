@@ -1,0 +1,23 @@
+uuid: 71b9ce70-a719-4a02-9c90-3a631243667e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_education_level
+    - node.type.city
+id: node.city.field_city_education_level
+field_name: field_city_education_level
+entity_type: node
+bundle: city
+label: 'City Education Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,20 @@
+uuid: 0c9f5421-c08d-42df-b551-96d008c81409
+langcode: en
+status: true
+dependencies:
+  theme:
+    - emc_claro
+_core:
+  default_config_hash: hNsWqj73U56baY6KGqmcxJVtYpvv4BqQgBmEHh10If0
+id: emc_claro_page_title
+theme: emc_claro
+region: header
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }
