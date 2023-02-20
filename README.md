@@ -10,6 +10,10 @@ A modular Drupal RPG and Trading Game engine - Wk 2 of 4 https://groups.drupal.o
 
 A modular Drupal RPG and Trading Game engine - Wk 3 of 4 https://groups.drupal.org/node/536835
 
+A modular Drupal RPG and Trading Game engine - Wk 4 of 4 https://groups.drupal.org/node/536840
+
+---------------------------------------------
+
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 <hr>
 JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in php using Drupal to create Content and Phaser to present the game.
