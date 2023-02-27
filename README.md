@@ -22,24 +22,32 @@ Or make a trading game or a dungeon crawler.
 <h4>March 2023 </h4>
 
 <ul>
-<li>Add NSEW animation for Character</li>
-<li> Add portals to allow character move from Map-Grid to Map-Grid</li>
-<li> Add heartbeat for mining (as a test example)</li>
-<li> Add Universal Charater Creater</li>
-<li> Add PVE combat</li>
+<li>Add animations for Player Character.</li>
+<li>Add collision layer for players and world (local versus authorative server)</li>
+<li>Add portals to allow character move from Map-Grid to Map-Grid</li>
+<li>Add heartbeat for mining subscriber (as a test example)</li>
+<li>Add Universal Character Creater</li>
+<li>Add PVE combat</li>
 </ul>
 
 <h3>April 2023</h4>
 <ul>
 <li>Release Ver 1.00</li>
-<li>PVP</li>
+<li>Mine and Farm world subscribers</li>
+<li>NPC subscribers aka world simulator</li>
 <li>Sound and Audio</li>
 <li>World Animations</li>
 <li>NPC Animation</li>
 </ul>
 
 <h3>May 2023</h4>
-* Dialoque Engine (Drupal)
+<ul>
+<li>Dialoque Engine (Drupal)</li>
+<li>Pick up objects in world</li>
+<li>PVP</li>
+</ul>
+
+
 
 <h3>Somebackground on the new architecture:</h3>
 
