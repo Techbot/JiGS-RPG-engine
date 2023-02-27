@@ -20,19 +20,23 @@ Or make a trading game or a dungeon crawler.
 <hr>
 <h3>Roadmap:</h3>
 <h4>March 2023 </h4>
+
 <ul>
-<li>Add animation for NSEW for Character</li>
-<li> Add portals to allow charactor move from Map-Grid to Map-Grid</li>
+<li>Add NSEW animation for Character</li>
+<li> Add portals to allow character move from Map-Grid to Map-Grid</li>
 <li> Add heartbeat for mining (as a test example)</li>
-<li> Add Universal Charatewr Creater</li>
+<li> Add Universal Charater Creater</li>
 <li> Add PVE combat</li>
 </ul>
+
 <h3>April 2023</h4>
-- Release Ver 1.00
-- PVP
-- Sound and Audio
-- World Animations
-- NPC Animation
+<ul>
+<li>Release Ver 1.00</li>
+<li>PVP</li>
+<li>Sound and Audio</li>
+<li>World Animations</li>
+<li>NPC Animation</li>
+</ul>
 
 <h3>May 2023</h4>
 * Dialoque Engine (Drupal)
