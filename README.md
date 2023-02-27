@@ -18,18 +18,18 @@ A few years later... Drop the magic and introduce Psionics (whatever they are), 
 <hr>
 <h3>Roadmap:</h3>
 <h4>March 2023 </h4>
-* Add animation for NSEW for Character
-* Add portals to allow charactor move from Map-Grid to Map-Grid
-* Add heartbeat for mining (as a test example)
-* Add Universal Charatewr Creater
-* Add PVE combat
+- Add animation for NSEW for Character
+- Add portals to allow charactor move from Map-Grid to Map-Grid
+- Add heartbeat for mining (as a test example)
+- Add Universal Charatewr Creater
+- Add PVE combat
 
 <h3>April 2023</h4>
-* Release Ver 1.00
-* PVP
-* Sound and Audio
-* World Animations
-* NPC Animation
+- Release Ver 1.00
+- PVP
+- Sound and Audio
+- World Animations
+- NPC Animation
 
 <h3>May 2023</h4>
 * Dialoque Engine (Drupal)
