@@ -3,11 +3,11 @@ Vision: An Online RPG Trading game built to be adaptable and extendable by Drupa
 
 <h3>Steps to build a world from the engine.</h3>
 
-A) Design the content  (Drupal)
+*A) Design the content  (Drupal)
 
-B) Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka agendahs)
+*B) Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)
 
-These two steps while not trivial are all thats required by the Games master to create an entirely new gaeworld. 
+With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld. 
 
 Want magic? Create wands, magic stats, magical NPCs, bulidings and Cities in Drupal.
 
@@ -15,6 +15,7 @@ Then create the battles and interactions in Mysql files called subscribers. (The
 
 A few years later... Drop the magic and introduce Psionics (whatever they are), create new content in Drupal and new interactions in Mysql. Or make a trading game or a dungeon crawler.
 
+<hr>
 <h3>Roadmap:</h3>
 <h4>March 2023 </h4>
 * Add animation for NSEW for Character
