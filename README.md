@@ -1,8 +1,38 @@
-
-<hr>
 <h1>JiGS</h1>
+Vision: An Online RPG Trading game built to be adaptable and extendable by Drupal Admins/Game Masters. How much control the GM has depends on their drupal and Mysql knowledge.
+Steps to build a world from the engine.
 
-Somebackground on the new archetecture
+A) Design the content  (Drupal)
+B) Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka agendahs)
+
+These two steps while not trivial are all thats required by the Games master to create an entirely new gaeworld. 
+
+Want magic? Create wands, magic stats, magical NPCs, bulidings and Cities in Drupal.
+
+Then create the battles and interactions in Mysql files called subscribers. (The heartbeat of the city is the event). Simply drop these subscribers into a folder and add them to the subscription list.
+
+A few years later... Drop the magic and introduce Psionics (whatever they are), create new content in Drupal and new interactions in Mysql. Or make a trading game or a dungeon crawler.
+
+<h3>Roadmap:</h3>
+<h4>March 2023 </h4>
+* Add animation for NSEW for Character
+* Add portals to allow charactor move from Map-Grid to Map-Grid
+* Add heartbeat for mining (as a test example)
+* Add Universal Charatewr Creater
+* Add PVE combat
+
+<h3>April 2023</h4>
+* Release Ver 1.00
+* PVP
+* Sound and Audio
+* World Animations
+* NPC Animation
+
+<h3>May 2023</h4>
+* Dialoque Engine (Drupal)
+
+
+<h3>Somebackground on the new architecture:</h3>
 
 A modular Drupal RPG and Trading Game engine - Wk 1 of 4 https://groups.drupal.org/node/536823
 
