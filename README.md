@@ -2,10 +2,10 @@
 Vision: An Online RPG Trading game built to be adaptable and extendable by Drupal Admins/Game Masters. How much control the GM has depends on their drupal and Mysql knowledge.
 
 <h3>Steps to build a world from the engine.</h3>
-
-*A) Design the content  (Drupal)
-
-*B) Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)
+<ul>
+<li>Design the content  (Drupal)</li>
+<li>Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)</li>
+</ul>
 
 With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld. 
 
