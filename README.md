@@ -1,6 +1,13 @@
 <h1>JiGS</h1>
 Vision: An Online RPG Trading game built to be adaptable and extendable by Drupal Admins/Game Masters. How much control the GM has depends on their drupal and Mysql knowledge.
 
+
+<h2>DEMO</h2>
+<ul>
+ <li>The Eclectic Meme Conspiracy - Https://www.eclecticmeme.com</li>
+ <li>YOur server here</li>
+ </ul>
+
 <h3>Steps to build a world from the engine.</h3>
 <ul>
 <li>Design the content  (Drupal)</li>
