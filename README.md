@@ -13,7 +13,9 @@ Want magic? Create wands, magic stats, magical NPCs, bulidings and Cities in Dru
 
 Then create the battles and interactions in Mysql files called subscribers. (The heartbeat of the city is the event). Simply drop these subscribers into a folder and add them to the subscription list.
 
-A few years later... Drop the magic and introduce Psionics (whatever they are), create new content in Drupal and new interactions in Mysql. Or make a trading game or a dungeon crawler.
+A few years later... Drop the magic and introduce Psionics (whatever they are), create new content in Drupal and new interactions in Mysql. 
+
+Or make a trading game or a dungeon crawler.
 
 <hr>
 <h3>Roadmap:</h3>
@@ -34,7 +36,6 @@ A few years later... Drop the magic and introduce Psionics (whatever they are), 
 
 <h3>May 2023</h4>
 * Dialoque Engine (Drupal)
-
 
 <h3>Somebackground on the new architecture:</h3>
 
