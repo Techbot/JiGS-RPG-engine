@@ -28,8 +28,8 @@ Or make a trading game or a dungeon crawler.
 <li>Add portals to allow character move from Map-Grid to Map-Grid</li>
 <li>Add heartbeat for mining subscriber (as a test example)</li>
 <li>Add Universal Character Creater</li>
-<li>Crafting<li>
-<li>Trade<li>
+<li>Crafting</li>
+<li>Trade</li>
 <li>Add PVE combat</li>
 </ul>
 
@@ -38,7 +38,7 @@ Or make a trading game or a dungeon crawler.
 <li>Release Ver 1.00</li>
 <li>Mine and Farm world subscribers</li>
 <li>NPC subscribers aka world simulator</li>
-<li>Sound and Audio</li>
+<li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
 <li>World Animations</li>
 <li>NPC Animation</li>
 </ul>
