@@ -27,6 +27,8 @@ Or make a trading game or a dungeon crawler.
 <li>Add portals to allow character move from Map-Grid to Map-Grid</li>
 <li>Add heartbeat for mining subscriber (as a test example)</li>
 <li>Add Universal Character Creater</li>
+<li>Crafting<li>
+<li>Trade<li>
 <li>Add PVE combat</li>
 </ul>
 
@@ -43,10 +45,19 @@ Or make a trading game or a dungeon crawler.
 <h3>May 2023</h4>
 <ul>
 <li>Dialoque Engine (Drupal)</li>
-<li>Pick up objects in world</li>
+<li>Realtime World Objects</li>
+<li>Mission System</li>
 <li>PVP</li>
 </ul>
 
+
+<h3>June 2023</h4>
+<ul>
+<li>Politics subscribers</li>
+<li>Temple Subscribers</li>
+<li>Jail and reputation System</li>
+<li>PVP</li>
+</ul>
 
 
 <h3>Somebackground on the new architecture:</h3>
