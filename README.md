@@ -23,6 +23,7 @@ Or make a trading game or a dungeon crawler.
 
 <ul>
 <li>Add animations for Player Character.</li>
+<li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
 <li>Add collision layer for players and world (local versus authorative server)</li>
 <li>Add portals to allow character move from Map-Grid to Map-Grid</li>
 <li>Add heartbeat for mining subscriber (as a test example)</li>
