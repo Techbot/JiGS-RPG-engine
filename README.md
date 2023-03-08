@@ -30,6 +30,7 @@ Or make a trading game or a dungeon crawler.
 
 <ul>
 <li>Replace phaserjs in backend with Colyseus</li>
+<li>connect phaswrJs frontend with Colyseus Backend</li>
 <li>Add animations for Player Character.</li>
 <li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
 <li>Add collision layer for players and world (local versus authorative server)</li>
@@ -379,7 +380,7 @@ Extending JiGS: create your own universe with 3rd Party plugins and templates: E
     Templating system (Fantasy/Space/Cyberpunk) fonts- widget chromes- backgrounds
     Configurable NPC system
     Extended Chat system
-    Other Non Games related Joomla plugins see here http://extensions.joomla.org/
-    Forums Plugin (Joomla/Kunena)
 
-[![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+    
+
+
