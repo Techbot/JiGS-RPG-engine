@@ -5,7 +5,7 @@ Vision: An Online RPG Trading game built to be adaptable and extendable by Drupa
 <h2>DEMO</h2>
 <ul>
  <li>The Eclectic Meme Conspiracy - Https://www.eclecticmeme.com</li>
- <li>YOur server here</li>
+ <li>Your server here</li>
  </ul>
 
 <h3>Steps to build a world from the engine.</h3>
