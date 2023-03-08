@@ -29,6 +29,7 @@ Or make a trading game or a dungeon crawler.
 <h4>March 2023 </h4>
 
 <ul>
+<li>Replace phaserjs in backend with Colyseus</li>
 <li>Add animations for Player Character.</li>
 <li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
 <li>Add collision layer for players and world (local versus authorative server)</li>
@@ -88,13 +89,14 @@ JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in
 
 
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
-
- Drupal
- NodeJs
- VueJs
- Axios
- PhaserJs
-
+<ul>
+ <li>Drupal</li>
+  <li>NodeJs</li>
+  <li>VueJs</li>
+  <li>Axios</li>
+  <li>PhaserJs</li>
+  <li>ColyseusJs</li>
+</ul>
 
 Featurelist:
 <ul>
