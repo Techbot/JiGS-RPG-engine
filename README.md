@@ -1,8 +1,76 @@
+<h1>JiGS</h1>
+Vision: An Online RPG Trading game built to be adaptable and extendable by Drupal Admins/Game Masters. How much control the GM has depends on their drupal and Mysql knowledge.
+
+
+<h2>DEMO</h2>
+<ul>
+ <li>The Eclectic Meme Conspiracy - Https://www.eclecticmeme.com</li>
+ <li>Your server here</li>
+ </ul>
+
+<h3>Steps to build a world from the engine.</h3>
+<ul>
+<li>Design the content  (Drupal)</li>
+<li>Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)</li>
+</ul>
+
+With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld. 
+
+Want magic? Create wands, magic stats, magical NPCs, bulidings and Cities in Drupal.
+
+Then create the battles and interactions in Mysql files called subscribers. (The heartbeat of the city is the event). Simply drop these subscribers into a folder and add them to the subscription list.
+
+A few years later... Drop the magic and introduce Psionics (whatever they are), create new content in Drupal and new interactions in Mysql. 
+
+Or make a trading game or a dungeon crawler.
 
 <hr>
-<h1>JiGS</h1>
+<h3>Roadmap:</h3>
+<h4>March 2023 </h4>
 
-Somebackground on the new archetecture
+<ul>
+<li>Replace phaserjs in backend with Colyseus</li>
+<li>connect phaswrJs frontend with Colyseus Backend</li>
+<li>Add animations for Player Character.</li>
+<li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
+<li>Add collision layer for players and world (local versus authorative server)</li>
+<li>Add portals to allow character move from Map-Grid to Map-Grid</li>
+<li>Add heartbeat for mining subscriber (as a test example)</li>
+<li>Add Universal Character Creater</li>
+<li>Crafting</li>
+<li>Trade</li>
+<li>Add PVE combat</li>
+</ul>
+
+<h3>April 2023</h4>
+<ul>
+<li>Release Ver 1.00</li>
+<li>Mine and Farm world subscribers</li>
+<li>NPC subscribers aka world simulator</li>
+<li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
+<li>World Animations</li>
+<li>NPC Animation</li>
+</ul>
+
+<h3>May 2023</h4>
+<ul>
+<li>Dialoque Engine (Drupal)</li>
+<li>Realtime World Objects</li>
+<li>Mission System</li>
+<li>PVP</li>
+</ul>
+
+
+<h3>June 2023</h4>
+<ul>
+<li>Politics subscribers</li>
+<li>Temple Subscribers</li>
+<li>Jail and reputation System</li>
+<li>PVP</li>
+</ul>
+
+
+<h3>Somebackground on the new architecture:</h3>
 
 A modular Drupal RPG and Trading Game engine - Wk 1 of 4 https://groups.drupal.org/node/536823
 
@@ -22,13 +90,14 @@ JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in
 
 
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
-
- Drupal
- NodeJs
- VueJs
- Axios
- PhaserJs
-
+<ul>
+ <li>Drupal</li>
+  <li>NodeJs</li>
+  <li>VueJs</li>
+  <li>Axios</li>
+  <li>PhaserJs</li>
+  <li>ColyseusJs</li>
+</ul>
 
 Featurelist:
 <ul>
@@ -311,7 +380,7 @@ Extending JiGS: create your own universe with 3rd Party plugins and templates: E
     Templating system (Fantasy/Space/Cyberpunk) fonts- widget chromes- backgrounds
     Configurable NPC system
     Extended Chat system
-    Other Non Games related Joomla plugins see here http://extensions.joomla.org/
-    Forums Plugin (Joomla/Kunena)
 
-[![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+    
+
+
