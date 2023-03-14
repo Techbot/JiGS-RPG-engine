@@ -31,6 +31,7 @@ Or make a trading game or a dungeon crawler.
 <ul>
 <li>Replace phaserjs in backend with Colyseus</li>
 <li>connect phaswrJs frontend with Colyseus Backend</li>
+<li>Add p2 and tilemap loader to backend https://github.com/damian-pastorini/p2js-tiledmap-demo </li>
 <li>Add animations for Player Character.</li>
 <li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
 <li>Add collision layer for players and world (local versus authorative server)</li>
