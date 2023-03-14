@@ -105,7 +105,7 @@ Featurelist:
     <li> Primarily Tile based  Multiple Interfaces.</li>
     <li> No client plugins or downloads required.</li>
     <li> Game server plugin system allows mechanics of game to evolve over time</li>
-    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes. (see Joomla.org)</li>
+    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes.</li>
     <li> Post Peak Oil environment. Oil is rapidly declining. Riots, Tribalism and feudalism on the increase, genetic mutations etc.</li>
     <li> Genetics, alien technology and singularity create new game stats, mechanics and content.</li>
     <li> Soap Opera style monthly content revolving around numerous NPC arcs:  (think Lost tv show ).</li>
