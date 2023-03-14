@@ -91,12 +91,12 @@ JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in
 
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
 <ul>
- <li>Drupal</li>
-  <li>NodeJs</li>
-  <li>VueJs</li>
-  <li>Axios</li>
-  <li>PhaserJs</li>
-  <li>ColyseusJs</li>
+ <li>Drupal : https://www.drupal.org/</li>
+ <li>PhaserJs : https://phaser.io/</li>
+ <li>NodeJs : https://nodejs.org/</li>
+ <li>VueJs : https://vuejs.org/</li>
+ <li>ColyseusJs : https://github.com/colyseus/colyseus</li>
+ <li>Reldens : https://github.com/damian-pastorini/reldens</li>
 </ul>
 
 Featurelist:
