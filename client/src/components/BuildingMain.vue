@@ -26,7 +26,7 @@ export default {
 <template>
 <div>
   -----------------------
-  <component :is="msg" />
+  <component :is=msg />
 </div>
 
 </template>
