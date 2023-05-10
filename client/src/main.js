@@ -21,7 +21,7 @@ const pinia = createPinia()
 //App.config.ignoredElements = [/ion-\w*/];
 
  let wrapper = window.document.querySelector('#module-name-game')
-if (wrapper) {
+ if (wrapper) {
   let app = window.document.createElement('div')
 
   app.setAttribute('id', 'client')
