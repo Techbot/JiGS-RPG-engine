@@ -30,7 +30,8 @@ Or make a trading game or a dungeon crawler.
 
 <ul>
 <li>Replace phaserjs in backend with Colyseus</li>
-<li>connect phaswrJs frontend with Colyseus Backend</li>
+<li>connect phaserJs frontend with Colyseus Backend</li>
+<li>Add p2 and tilemap loader to backend https://github.com/damian-pastorini/p2js-tiledmap-demo </li>
 <li>Add animations for Player Character.</li>
 <li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
 <li>Add collision layer for players and world (local versus authorative server)</li>
@@ -91,12 +92,12 @@ JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in
 
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
 <ul>
- <li>Drupal</li>
-  <li>NodeJs</li>
-  <li>VueJs</li>
-  <li>Axios</li>
-  <li>PhaserJs</li>
-  <li>ColyseusJs</li>
+ <li>Drupal : https://www.drupal.org/</li>
+ <li>PhaserJs : https://phaser.io/</li>
+ <li>NodeJs : https://nodejs.org/</li>
+ <li>VueJs : https://vuejs.org/</li>
+ <li>ColyseusJs : https://github.com/colyseus/colyseus</li>
+ <li>Reldens : https://github.com/damian-pastorini/reldens</li>
 </ul>
 
 Featurelist:
@@ -105,7 +106,7 @@ Featurelist:
     <li> Primarily Tile based  Multiple Interfaces.</li>
     <li> No client plugins or downloads required.</li>
     <li> Game server plugin system allows mechanics of game to evolve over time</li>
-    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes. (see Joomla.org)</li>
+    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes.</li>
     <li> Post Peak Oil environment. Oil is rapidly declining. Riots, Tribalism and feudalism on the increase, genetic mutations etc.</li>
     <li> Genetics, alien technology and singularity create new game stats, mechanics and content.</li>
     <li> Soap Opera style monthly content revolving around numerous NPC arcs:  (think Lost tv show ).</li>
