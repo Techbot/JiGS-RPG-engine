@@ -6,7 +6,7 @@
   let gameInstance = null
   const containerId = 'game-container'
 
-  const game = await import(/* webpackChunkName: "game" */ '@/game/game')
+  const game = await import( '@/game/index.ts')
 
   onMounted(() => {
     gameInstance = game.launch(containerId)
