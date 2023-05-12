@@ -35,35 +35,35 @@ Or make a trading game or a dungeon crawler.
 <li>Add animations for Player Character.</li>
 <li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
 <li>Add collision layer for players and world (local versus authorative server)</li>
+</ul>
+
+<h3>April 2023</h4>
+<ul>
 <li>Add portals to allow character move from Map-Grid to Map-Grid</li>
+<li>Connect Drupal User with Colyseus player and Phaser player</li> 
+</ul>
+
+<h3>May 2023</h4>
+<ul>
 <li>Add heartbeat for mining subscriber (as a test example)</li>
 <li>Add Universal Character Creater</li>
 <li>Crafting</li>
 <li>Trade</li>
 <li>Add PVE combat</li>
+<li>Release Ver 1.00</li>
 </ul>
 
-<h3>April 2023</h4>
+<h3>June 2023</h4>
 <ul>
-<li>Release Ver 1.00</li>
 <li>Mine and Farm world subscribers</li>
 <li>NPC subscribers aka world simulator</li>
 <li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
 <li>World Animations</li>
 <li>NPC Animation</li>
-</ul>
-
-<h3>May 2023</h4>
-<ul>
 <li>Dialoque Engine (Drupal)</li>
 <li>Realtime World Objects</li>
 <li>Mission System</li>
 <li>PVP</li>
-</ul>
-
-
-<h3>June 2023</h4>
-<ul>
 <li>Politics subscribers</li>
 <li>Temple Subscribers</li>
 <li>Jail and reputation System</li>
@@ -146,8 +146,6 @@ Featurelist:
    <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
 </ul>
 <hr>
-
-    Point & Click (Sierra Arts/ Lucasfilm style) Plugin
     Puzzles Plugin
     Extended Tile Map system Plugin
     Extended Character Creation Plugin
@@ -254,9 +252,6 @@ The primary systems allows the player to control the buildings primary system, f
 for example a farm may have 1- 8 fields each growing different crops.
 Or a factory may have 1-8 conveyor belts each building different objects,
 Each additional primary system is accessed via tabs and is identical in layout.
-
-
-
 
 <h3>Banks, Terminals, Banks and hacking</h3>
 Players and NPCs can hack and be hacked, causing grief, stealing bank account percentages and spreading viruses. There are three global banks each with their own interest rates ,security packages and insurance deals.
