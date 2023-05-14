@@ -40,7 +40,7 @@ class RForm extends FormBase {
 
 public function buildForm(array $form, FormStateInterface $form_state) {
    $form['name'] = array(
-    '#type' => 'hidden',
+//    '#type' => 'hidden',
     '#title' => t('Enter Name:'),
 
     '#required' => TRUE,
@@ -51,7 +51,7 @@ public function buildForm(array $form, FormStateInterface $form_state) {
    $form['actions']['#type'] = 'actions';
 
   $form['actions']['submit'] = array(
-      '#type' => 'submit',
+   //   '#type' => 'submit',
       '#value' => $this->t('Fight2222'),
       '#button_type' => 'primary',
     );

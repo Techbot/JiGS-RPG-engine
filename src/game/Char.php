@@ -101,5 +101,4 @@ class Char
     {
         return  $this->dice2;
     }
-
 }
