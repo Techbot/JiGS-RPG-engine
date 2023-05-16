@@ -98,10 +98,9 @@ class GameController extends ControllerBase
    */
   public function myData()
   {
-
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-    $response = new AjaxResponse();
-    $loop = new Loop($this->round);
+    $response                 = new AjaxResponse();
+    $loop                     = new Loop($this->round);
     $this->round->update();
     $responseData = $loop->loop();
     $this->user->field_health = (int)$this->player->getHealth();
@@ -127,30 +126,21 @@ class GameController extends ControllerBase
   public function myState()
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-    $response = new AjaxResponse();
-
-    $playerName = $this->user->get("name")->value;
-    $playerId   = \Drupal::currentUser()->id();
-
+    $response       = new AjaxResponse();
+    $playerName     = $this->user->get("name")->value;
+    $playerId       = \Drupal::currentUser()->id();
     $userGamesState = $this->user->field_player_game_state->value;
-
-
-   // $userMG = (int)$this->user->field_map_grid->getValue()[0]['target_id'];
-
-
-    $database = \Drupal::database();
-    $query = $database->query("SELECT field_map_grid_target_id FROM user__field_map_grid WHERE entity_id=  1");
-    $userMG = $query->fetchAll();
-
-    //print_r($userMG[0]->field_map_grid_target_id);
-
-
-    $MapGrid =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG[0]->field_map_grid_target_id);
+    // $userMG = (int)$this->user->field_map_grid->getValue()[0]['target_id'];
+    $database       = \Drupal::database();
+    $query          = $database->query("SELECT field_map_grid_target_id FROM user__field_map_grid WHERE entity_id=  1");
+    $userMG         = $query->fetchAll();
+    $MapGrid        =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG[0]->field_map_grid_target_id);
 
     ////////////////////////////////////////////////////////////////////////////////
 
     $tiled        = $MapGrid->field_tiled->getValue()[0]['value'];
     $portalsArray = $MapGrid->field_portals->referencedEntities();
+    $rewardsArray  = $MapGrid->field_rewards->referencedEntities();
     $userCity     = (int)$MapGrid->field_city->getValue()[0]['target_id'];
     $City         =  \Drupal::entityTypeManager()->getStorage('node')->load($userCity);
     $cityName     =  $City->getTitle();
@@ -167,23 +157,13 @@ class GameController extends ControllerBase
       ];
     }
 
-    /*     $vid = 'tilemaps';
-
-    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
-    foreach ($terms as $term) {
-      $term_obj = Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term->tid);
-      $url = "";
-      if (isset($term_obj->get('field_hospital_image')->entity)) {
-        $url = file_create_url($term_obj->get('field_hospital_image')->entity->getFileUri());
-      }
-
-      $term_data[] = [
-        'tid' => $term->tid,
-        'tname' => $term->name,
-        'contact' => $term_obj->get('field_hospital_contact_no_')->value,
-        'image_url' => $url,
+    foreach ($rewardsArray as $reward) {
+      $rewards[] = [
+        'ref' => $reward->field_ref->getValue()[0]['value'],
+        'x' => (int)$reward->field_x->getValue()[0]['value'],
+        'y' => (int)$reward->field_y->getValue()[0]['value']
       ];
-    } */
+    }
     //////////////////////////////////////////////////////////////////////////////////
 
     foreach ($MapGrid->field_layer_1->referencedEntities() as $tileset) {
@@ -198,7 +178,6 @@ class GameController extends ControllerBase
       $tilesetArray_3[] = $tileset->name->value;
     }
 
-
     foreach ($MapGrid->field_layer_4->referencedEntities() as $tileset) {
       $tilesetArray_4[] = $tileset->name->value;
     }
@@ -210,15 +189,14 @@ class GameController extends ControllerBase
     ////////////////////////////////////////////////////////////////////////////////
 
     foreach ($MapGrid->field_npc->referencedEntities() as $NPC) {
-
       $NPCObject =  \Drupal::entityTypeManager()->getStorage('node')->load($NPC->field_name->getValue()[0]['target_id']);
       $NPCArray[] =
-       [$NPCObject->getTitle(),
-        $NPC->field_x->value,
-        $NPC->field_y->value,
-        $NPCObject-> field_sprite_sheet->getValue()[0]['value']
-        ]
-     ;
+        [
+          $NPCObject->getTitle(),
+          $NPC->field_x->value,
+          $NPC->field_y->value,
+          $NPCObject->field_sprite_sheet->getValue()[0]['value']
+        ];
     }
 
     $responseData['playerId']             = $playerId;
@@ -228,12 +206,18 @@ class GameController extends ControllerBase
     $responseData['Name']                 = $MapGrid->get('title')->value;
     $responseData['userGamesState']       = $userGamesState;
     $responseData['portalsArray']         = $portals;
-    $responseData['NpcArray']             = $NPCArray;
-    $responseData['Tiled']                = $tiled;
 
-    $responseData['tilesetArray_1'] = $tilesetArray_1;
-    $responseData['tilesetArray_2'] = $tilesetArray_2;
-    $responseData['tilesetArray_3'] = $tilesetArray_3;
+    if (isset($NPCArray)) {
+      $responseData['NpcArray']             = $NPCArray;
+    }
+
+    if (isset($rewards)) {
+      $responseData['rewardsArray']         = $rewards;
+    }
+    $responseData['Tiled']                = $tiled;
+    $responseData['tilesetArray_1']       = $tilesetArray_1;
+    $responseData['tilesetArray_2']       = $tilesetArray_2;
+    $responseData['tilesetArray_3']       = $tilesetArray_3;
 
     if (isset($tilesetArray_4)) {
       $responseData['tilesetArray_4'] = $tilesetArray_4;

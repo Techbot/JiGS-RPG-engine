@@ -7,6 +7,19 @@ export class HudScene extends Scene {
     score: number;
     x: string;
     y: string;
+    add: any;
+    scene: any;
+    hud2: any;
+    hud3: any;
+    hud4: any;
+    hud5: any;
+    hud11: any;
+    hud12: any;
+    hud6: any;
+    hud7: any;
+    hud8: any;
+    hud9: any;
+    hud10: any;
 
     constructor ()
     {
@@ -18,7 +31,7 @@ export class HudScene extends Scene {
     create ()
     {
         var r1 = this.add.rectangle(80, 60, 260, 100, 0x6666ff).setBlendMode(Phaser.BlendModes.MULTIPLY);
-        var r2 = this.add.rectangle(480, 60, 260, 100, 0x6666ff).setBlendMode(Phaser.BlendModes.MULTIPLY);
+        var r2 = this.add.rectangle(560, 60, 260, 100, 0x6666ff).setBlendMode(Phaser.BlendModes.MULTIPLY);
 
         //  Our Text object to display the Score
         let info = this.add.text(10, 10, 'Score: 0', { font: '12px Arial', fill: '#ffffff' });
@@ -42,6 +55,9 @@ export class HudScene extends Scene {
         this.hud3  = this.add.text(10, 46, '', { font: '12px Arial', fill: '#ffffff' });
         this.hud4  = this.add.text(10, 66, '', { font: '12px Arial', fill: '#ffffff' });
         this.hud5  = this.add.text(10, 86, '', { font: '12px Arial', fill: '#ffffff' });
+        this.hud11 = this.add.text(10, 106, '', { font: '12px Arial', fill: '#ffffff' });
+        this.hud12 = this.add.text(10, 126, '', { font: '12px Arial', fill: '#ffffff' });
+
 
         this.hud6  = this.add.text(460,  28, '', { font: '12px Arial', fill: '#ffffff' });
         this.hud7  = this.add.text(460,  46, '', { font: '12px Arial', fill: '#ffffff' });
@@ -71,6 +87,10 @@ export class HudScene extends Scene {
         }
 
         this.hud10.setText('City:' + this.counter.city);
+
+        this.hud11.setText('Name:' + this.counter.playerName);
+        this.hud12.setText('Id:' + this.counter.playerId);
+
 
     }
 }

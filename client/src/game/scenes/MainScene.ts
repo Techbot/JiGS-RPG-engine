@@ -14,9 +14,12 @@ import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
 import { useCounterStore } from '../../stores/counter';
 import Player from "../entities/player";
-import SpriteLoad from "../entities/sprite";
+import NPC from "../entities/npc";
+import Mob from "../entities/mob";
+import Reward from "../entities/reward";
+import Load from "../entities/loader";
 import Portals from "../entities/portals";
-import {createCharacterAnims} from "../entities/anim";
+import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
 
 export class MainScene extends Phaser.Scene {
@@ -55,58 +58,115 @@ export class MainScene extends Phaser.Scene {
     cameras: any;
     client: Client;
     localPlayer: Player;
-    SpriteLoader: SpriteLoad;
+    Loader: Load;
     scene: any;
+    game: any;
+    colliderMap: any;
+    npcs: any;
+    rewards: any;
+    rewardsArray: any;
+    rewardsGroup: any;
+    mobs: any;
 
     constructor() {
         super({ key: "main" });
         this.counter = useCounterStore();
         this.client = new Client(BACKEND_URL);
         this.localPlayer = new Player;
+        this.rewardsArray= new Array;
     }
-
     preload() {
-
     }
-
     async create() {
         var self = this;
-        // const portals = new Portals;
-        // portals.addPortals(self);
-        this.SpriteLoader = new SpriteLoad;
-        this.SpriteLoader.loadSprites(self);
-
+        this.Loader = new Load;
+        this.Loader.load(self);
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
         await this.connect(this.counter.city + "-" + padding(this.counter.tiled, 3, 0));
-
-        //await this.connect('Dublin-001');
-        /*  this.room.onStateChange((state) => {
-                    console.log("the room state has been updated:", state);
-        }); */
-
-        var self = this;
         this.room.onMessage("portal", (message) => {
-            console.log("message received from server");
+            console.log("portal message received from server");
             console.log(message);
-            const promise1 = Promise.resolve(this.increment());
+            const promise1 = Promise.resolve(this.jump());
             self.counter.tiled = message;
             //  hide(this.localPlayer);
+        });
+        this.room.onMessage("collide", (message) => {
+            console.log("collide message received from server");
+            self.currentPlayer.y = self.remoteRef.y;
+            self.currentPlayer.x = self.remoteRef.x;
+        });
+        this.room.onMessage("reward", (message) => {
+            self.currentPlayer.y = self.remoteRef.y;
+            self.currentPlayer.x = self.remoteRef.x;
+            console.log("reward message received from server");
+            console.log(message);
+            //   this.incrementReward();
+        });
+        this.room.onMessage("remove-reward", (message) => {
+            self.currentPlayer.y = self.remoteRef.y;
+            self.currentPlayer.x = self.remoteRef.x;
+            console.log("remove-reward message received from server");
+            console.log(message);
+            console.log(self.rewards);
+
+            //    this.incrementReward();
+             let i = 0;
+            while (i < self.rewardsArray.length) {
+                console.log('able baby');
+                if (self.rewardsArray[i].ref == message){
+                    console.log('disable baby');
+                    self.rewardsArray[i].disableBody(true, true);
+                }
+                i++;
+            }
+
 
         });
-        //const Anims = new Anim;
-        //Anims.addAnim(this);
-        createCharacterAnims(this.anims);
-
         this.room.state.players.onAdd((player, sessionId) => {
             var entity: any;
             // is current player
             if (sessionId === this.room.sessionId) {
-                this.localPlayer.addLocalPLayer(this, player, entity);
-                //  self.physics.add.overlap(player, this.portals, hidePortal, null, self);
+                this.localPlayer.addLocalPLayer(this, player, entity, this.colliderMap);
+
+
+
+                /*-------------------- Rewards ----------------------*/
+                this.rewardsGroup = self.physics.add.group({ allowGravity: false });
+                let a = 0;
+                if (typeof this.counter.rewardsArray !== 'undefined') {
+                    while (a < this.counter.rewardsArray.length) {
+                        console.log('Rewards :' + this.counter.rewardsArray[a]);
+                        this.rewardsArray[a] = new Reward(self, this.counter.rewardsArray[a]);
+                        this.rewardsGroup.add(this.rewardsArray[a], true);
+                        a++;
+                    }
+                }
+                /*-------------------- Npcs ----------------------*/
+                this.npcs = self.physics.add.group({ allowGravity: false });
+                if (typeof this.counter.npcArray !== 'undefined') {
+                    let i = 0;
+                    while (i < this.counter.npcArray.length) {
+                        console.log('Npc :' + this.counter.npcArray[i][3]);
+                        this.npcs.add(new NPC(self, this.counter.npcArray[i]), true);
+                        i++;
+                    }
+                }
+                /*-------------------- Mobs ----------------------*/
+                this.mobs = self.physics.add.group({ allowGravity: false });
+                if (typeof this.counter.mobArray !== 'undefined') {
+                    let i = 0;
+                    while (i < this.counter.mobArray.length) {
+                        console.log('Mob :' + this.counter.mobArray[i][3]);
+                        this.mobs.add(new Mob(self, this.counter.npcArray[i]), true);
+                        i++;
+                    }
+                }
+
+
             } else {
-                entity = this.physics.add.sprite(player.x, player.y, 'brawler2');
+                entity = this.physics.add.sprite(player.x, player.y, 'brawler2').setDepth(3);
                 // listening for server updates
                 player.onChange(() => {
                     //
@@ -118,7 +178,6 @@ export class MainScene extends Phaser.Scene {
             }
             this.playerEntities[sessionId] = entity;
         });
-
         // remove local reference when entity is removed from the server
         this.room.state.players.onRemove((player, sessionId) => {
             const entity = this.playerEntities[sessionId];
@@ -127,12 +186,15 @@ export class MainScene extends Phaser.Scene {
                 delete this.playerEntities[sessionId]
             }
         });
-        this.cameras.main.setZoom(1.25);
+        this.cameras.main.setZoom(1.5);
         //this.cameras.main.setBounds(0, 0, 4096, 4096);
     }
+    incrementReward() {
+        return;
+    }
 
-    increment() {
-        console.log("increment");
+    jump() {
+        console.log("jump");
         axios
             .get("https://www.eclecticmeme.com/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
@@ -140,17 +202,17 @@ export class MainScene extends Phaser.Scene {
                 this.counter.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
                 this.counter.tiled = parseInt(response.data[0].value["Tiled"]);
                 this.counter.portalsArray = response.data[0].value["portalsArray"];
-                this.counter.NPCArray = response.data[0].value["NPCArray"];
+                this.counter.npcArray = response.data[0].value["NpcArray"];
+                this.counter.rewardsArray = response.data[0].value["rewardsArray"];
                 this.counter.nodeTitle = response.data[0].value["Name"];
                 this.counter.city = response.data[0].value["City"];
-
                 this.counter.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
                 this.counter.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
                 this.counter.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
                 this.counter.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-                this.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
-                var SpriteLoader = new SpriteLoad;
-                SpriteLoader.loadSprites(this);
+                // this.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
+                var Loader = new Load;
+                Loader.load(this);
                 //portalJump(this);
                 this.room.leave(); // Backend
                 this.scene.start('main'); //Frontend
@@ -159,7 +221,6 @@ export class MainScene extends Phaser.Scene {
         return true;
     }
 
-
     async connect(room) {
         // add connection status text
         const connectionStatusText = this.add
@@ -167,7 +228,10 @@ export class MainScene extends Phaser.Scene {
             .setStyle({ color: "#ff0000" })
             .setPadding(4)
         try {
-            this.room = await this.client.joinOrCreate(room, {});
+            this.room = await this.client.joinOrCreate(room,
+                {
+                    playerId: this.counter.playerId
+                });
             // connection successful!
             connectionStatusText.destroy();
         } catch (e) {
@@ -189,9 +253,7 @@ export class MainScene extends Phaser.Scene {
 
     fixedTick(time, delta) {
         this.currentTick++;
-
         if (this.localPlayer !== undefined) {
-
             this.localPlayer.updatePlayer(this);
             // const currentPlayerRemote = this.room.state.players.get(this.room.sessionId);
             // const ticksBehind = this.currentTick - currentPlayerRemote.tick;
@@ -202,7 +264,6 @@ export class MainScene extends Phaser.Scene {
                 if (sessionId === this.room.sessionId) {
                     continue;
                 }
-
                 if (this.playerEntities[sessionId] !== undefined) {
                     const entity = this.playerEntities[sessionId];
                     if (entity.data) {
@@ -210,9 +271,7 @@ export class MainScene extends Phaser.Scene {
                         entity.x = Phaser.Math.Linear(entity.x, serverX, 0.2);
                         entity.y = Phaser.Math.Linear(entity.y, serverY, 0.2);
                     }
-
                 }
-
             }
         }
     }
