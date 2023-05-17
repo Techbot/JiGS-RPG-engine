@@ -1,4 +1,6 @@
-/vendor
+
+
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -40,9 +42,12 @@
 # Composer PHAR
 /composer.phar
 
-# Cmine
-/my-module-app/node_modules
-/my-module-app/dist
+# mine
+
+
 /server/node_modules
+/server/lib/
+/vendor
+/client/dist/
 /client/node_modules
-/client/dist
+

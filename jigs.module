@@ -39,9 +39,9 @@ if (isset($node) && $node instanceof NodeInterface) {
 /**
  * Implements hook_form_alter().
  */
-function jigs_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+/* function jigs_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
- // if ($form_id == 'node-map-grid-form' || $form_id == 'node-map-grid-edit-form') {
+//  if ($form_id == 'node-map-grid-form' || $form_id == 'node-map-grid-edit-form') {
     $form['field_ image']['#states'] = [
       'visible' => [
         ':input[name="field_image_or_video"]' => ['value' => 'Image'],
@@ -53,5 +53,65 @@ function jigs_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_stat
         ':input[name="field_image_or_video"]' => ['value' => 'Video'],
       ],
     ];
-  //}
+ // }
+} */
+
+/**
+ * Implements hook_field_create_definitions().
+ */
+/* function jigs_field_create_definitions_alter(array &$definitions)
+{
+  // Define your fields here by entity type.
+  $definitions['node'] = [
+    'demo_field' => [
+      'name'    => 'demo_field',
+      'label'   => 'This is my field',
+  //    'type'    => 'string',
+      'force'   => FALSE, // No update once field exists.
+      'bundles' => [
+        'map_grid' => [],
+        'article' => [],
+      ],
+    ],
+  ];
+} */
+
+/* function jigs_entity_bundle_field_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle, array $base_field_definitions)
+{
+  if ($entity_type->id() == "node" && $bundle == "concert") {
+    $concert_fields['laatste_uitvoering'] = \Drupal\Core\Field\BaseFieldDefinition::create('datetime')
+    ->setLabel('Laatste uitvoering')
+    ->setRequired(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayOptions('view', array(
+        'label' => 'inline',
+    //    'type' => 'datetime_plain',
+        'weight' => '999',
+      ));
+    $concert_fields['eerste_uitvoering'] = \Drupal\Core\Field\BaseFieldDefinition::create('datetime')
+    ->setLabel('Eerste uitvoering')
+    ->setRequired(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayOptions('view', array(
+        'label' => 'inline',
+    //    'type' => 'datetime_plain',
+        'weight' => '999',
+      ));
+
+    return $concert_fields;
+  }
+} */
+/*
+function jigs_entity_field_storage_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type)
+{
+  if ($entity_type->id() == 'node') {
+    $definitions['my_bundle_field'] = \Drupal\Core\Field\BaseFieldDefinition::create('string')
+    ->setName('my_bundle_field')
+    ->setLabel(t('My new bundle field'))
+      ->setTargetEntityTypeId($entity_type->id());
+    return $definitions;
+  }
 }
+ */
