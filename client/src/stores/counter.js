@@ -4,8 +4,18 @@ import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
   state: () => ({
-    /** @type {{ text: string, id: number, isFinished: boolean }[]} */
-    todos: [],
+    playerName: "Blank",
+
+    playerId: 0,
+
+    /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
+    npcArray: [],
+
+    /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
+    mobArray: [],
+
+    /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
+    rewardsArray: [],
 
     /** @type {'all' | 'finished' | 'unfinished'} */
     filter: "all",
@@ -65,6 +75,5 @@ export const useCounterStore = defineStore("counter", {
       // you can directly mutate the state
       this.todos.push({ text, id: this.nextId++, isFinished: false });
     },
-
   },
 });
