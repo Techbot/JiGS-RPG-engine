@@ -26,11 +26,14 @@ export default {
     axios
       .get("https://www.eclecticmeme.com/mystate?_wrapper_format=drupal_ajax")
       .then((response) => {
+        this.counter.playerName     = response.data[0].value["playerName"];
+        this.counter.playerId       = parseInt( response.data[0].value["playerId"]);
         this.counter.gameState      = response.data[0].value["userGamesState"];
         this.counter.userMapGrid    = parseInt( response.data[0].value["userMapGrid"]);
         this.counter.tiled          = parseInt(response.data[0].value["Tiled"]);
         this.counter.portalsArray   = response.data[0].value["portalsArray"];
-        this.counter.NPCArray       = response.data[0].value["NPCArray"];
+        this.counter.npcArray       = response.data[0].value["NpcArray"];
+        this.counter.rewardsArray   = response.data[0].value["rewardsArray"];
         this.counter.nodeTitle      = response.data[0].value["Name"];
         this.counter.city           = response.data[0].value["City"];
 
@@ -38,7 +41,7 @@ export default {
         this.counter.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
         this.counter.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
         this.counter.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-        this.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
+    //    this.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
 
         //this.gameState = response.data[0].value[0]
         //this.userMapGrid =  parseInt(response.data[0].value[1])
@@ -58,11 +61,14 @@ export default {
           }
         )
         .then(function (response) {
+          currentObj.counter.playerName   = response.data[0].value["playerName"];
+          currentObj.counter.playerId     = parseInt( response.data[0].value["playerId"]);
           currentObj.counter.gameState    = response.data[0].value["userGamesState"];
           currentObj.counter.userMapGrid  = parseInt( response.data[0].value["userMapGrid"]);
           currentObj.counter.tiled        = parseInt( response.data[0].value["Tiled"]);
           currentObj.counter.portalsArray = response.data[0].value["portalsArray"];
-          currentObj.counter.NPCArray     = response.data[0].value["NPCArray"];
+          currentObj.counter.npcArray     = response.data[0].value["NPCArray"];
+          currentObj.counter.rewardsArray = response.data[0].value["rewardsArray"];
           currentObj.counter.nodeTitle    = response.data[0].value["Name"];
           currentObj.counter.city         = response.data[0].value["City"];
 
@@ -70,7 +76,7 @@ export default {
         currentObj.counter.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
         currentObj.counter.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
         currentObj.counter.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-        currentObj.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
+     //   currentObj.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
 
         })
         .catch(function (error) {
