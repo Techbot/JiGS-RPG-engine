@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// 
+//
 //
 //////////////////////////////////////////////////////////////////////////////
 
 var p2 = require('p2');
 
-  export  function placeNpc( npc: any, share: any) {
+  export  function placeMob( npc: any, share: any) {
    // console.log('place');
     const circleShape = new p2.Circle({ radius: 10 });
     circleShape.collisionGroup = share.COL_ENEMY;

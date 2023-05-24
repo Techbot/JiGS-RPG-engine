@@ -64,7 +64,7 @@ export default Arena({
 
             [75, 'HyBrasil-001'],
             [76, 'HyBrasil-002'],
-
+            [143, 'NewWashington-001'],
 
 
 

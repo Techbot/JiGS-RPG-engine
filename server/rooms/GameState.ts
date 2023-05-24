@@ -22,6 +22,10 @@ export class Player extends Schema {
 }
 
 export class MyRoomState extends Schema {
+  NpcResult: any;
+  destroySomething() {
+   console.log('destroy all the things');
+  }
   @type("number") mapWidth: number;
   @type("number") mapHeight: number;
 

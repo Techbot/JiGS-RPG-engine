@@ -87,7 +87,7 @@ export class GameRoom extends Room<MyRoomState> {
     // Render page
     var self = this;
     Bridge.getNpcs(nodeNumber).then((result: any) => {
-      this.result = result;
+      this.state.NpcResult = result;
       return result;
     }).then((newResult: any) => {
       for (let i = 0; i < newResult.length; i++) {
@@ -115,7 +115,7 @@ export class GameRoom extends Room<MyRoomState> {
       for (let i = 0; i < newResult.length; i++) {
         self.world.addBody(reward.placeReward(newResult[i], this.share));
         console.log(
-          'added reward to '
+          'added reward ' + newResult[i].field_ref_value + ' to '
           + '@: '
           + newResult[i].field_x_value
           + ' x ; ' + newResult[i].field_y_value + 'y'
@@ -132,7 +132,6 @@ export class GameRoom extends Room<MyRoomState> {
     this.loadPortals(options.nodeNumber);
     this.loadRewards(options.nodeNumber);
     this.loadNpcs(options.nodeNumber);
-
     this.addLayers(options.nodeName);
 
     // set map dimensions
@@ -140,7 +139,6 @@ export class GameRoom extends Room<MyRoomState> {
     this.state.mapHeight = 1900;
 
     this.onMessage(0, (client, input) => {
-
       // handle player input
       const player = this.state.players.get(client.sessionId);
 
@@ -156,15 +154,18 @@ export class GameRoom extends Room<MyRoomState> {
         player.playerBody.collide = false;
         // player.inputQueue.push(input);
       }
+     else if (player.playerBody.reward) {
+        console.log(player.playerBody.reward);
+        client.send("reward", player.playerBody.reward);
+        player.playerBody.reward = false;
+        player.inputQueue.push(input);
+      }
       else {
         player.inputQueue.push(input);
       }
     });
 
     var self = this;
-
-
-
     let elapsedTime = 0;
     this.setSimulationInterval((deltaTime) => {
       elapsedTime += deltaTime;
@@ -354,9 +355,10 @@ export class GameRoom extends Room<MyRoomState> {
     //  console.log('yo4');
 
 
-    this.world.on('impact', function (evt: any) {
+    this.world.on('impact',  (evt: any) => {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
+
       if (bodyA.isPortal) {
         if (!bodyA.done) {
           console.log('Portal!!!!');
@@ -374,22 +376,16 @@ export class GameRoom extends Room<MyRoomState> {
         if (!bodyA.done) {
           console.log('Reward!!!!');
           console.log('playerId: ' + bodyB.playerId);
-/*           const promise1 = Promise.resolve(Bridge.updateMap(bodyB.playerId, bodyA.destination));
+          const promise1 = Promise.resolve(Bridge.updateScore(bodyB.playerId, 1));
           promise1.then(() => {
-            bodyB.portal = bodyA.tiled;
-          }); */
+          });
+          this.state.destroySomething();
+          this.broadcast("remove-reward", bodyA.ref);
+          bodyB.reward = bodyA.ref;
           bodyA.done = true;
         }
       }
-
-
-
-
-
-
     });
-
-
 
     this.world.on('beginContact', function (evt: any) {
       var bodyA = evt.bodyA;
