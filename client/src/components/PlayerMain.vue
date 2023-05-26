@@ -35,7 +35,7 @@ export default {
 <template>
   <div id="app">
     <div id="phaser-game"></div>
-    <form @submit="formSubmit">
+    <form @submit="formSubmit" id='fight'>
       <div class="action-name">name : {{ posts.name }}</div>
       <div id="player">
         <div>Player Level : {{ posts.player_level }}</div>

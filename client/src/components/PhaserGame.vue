@@ -1,6 +1,6 @@
 <script setup>
 
-import PhaserContainer from '@/components/PhaserContainer'
+import PhaserContainer from './PhaserContainer'
 
 </script>
 
