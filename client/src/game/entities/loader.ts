@@ -47,28 +47,45 @@ export default class Load {
         if (this.counter.npcArray) {
             this.counter.npcArray.forEach(function loader(Npc) {
                 console.log('loading NPC:' + Npc[3]);
-                self.load.spritesheet('npc' + Npc[3], '/assets/images/Sprites/' + Npc[3] + '.png', { frameWidth: 64, frameHeight: 64 });
+                self.load.spritesheet('npc' + Npc[3], '/assets/cities/' + this.counter.city + '/npc/' + Npc[3] + '.png', { frameWidth: 64, frameHeight: 64 });
             }, this);
         }
+
+        if (this.counter.mobArray) {
+            this.counter.mobArray.forEach(function loader(Mob) {
+                console.log('loading Mob:' + Mob[3]);
+                self.load.spritesheet('mob' + Mob[3], '/assets/cities/' + this.counter.city + '/mob/' + Mob[3] + '.png', { frameWidth: 64, frameHeight: 64 });
+            }, this);
+        }
+
         /*  if (this.counter.tilesetArray_5 !== undefined) {
              this.counter.tilesetArray_5.forEach(function loader(image) {
                  self.load.image(image, '/assets/images/System/' + image + '.png');
              }, this);
          } */
-        self.load.spritesheet('brawler', '/assets/images/Sprites/4351.png', { frameWidth: 64, frameHeight: 64 });
-        self.load.spritesheet('brawler2', '/assets/images/Sprites/4351.png', { frameWidth: 64, frameHeight: 64 });
-        self.load.spritesheet('lisa', '/assets/images/Sprites/4351.png', { frameWidth: 64, frameHeight: 64 });
+
+        self.load.spritesheet('FixerF', '/assets/images/Sprites/avatars/1000.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('FixerM', '/assets/images/Sprites/avatars/50607.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('CenobyteF', '/assets/images/Sprites/avatars/12134.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('CenobyteM', '/assets/images/Sprites/avatars/4351.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('AssassinF', '/assets/images/Sprites/avatars/86333.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('AssassinM', '/assets/images/Sprites/avatars/86333.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('XeonF', '/assets/images/Sprites/avatars/57231.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('XeonM', '/assets/images/Sprites/avatars/45682.png', { frameWidth: 64, frameHeight: 64 });
+        self.load.spritesheet('otherPlayer', '/assets/images/Sprites/avatars/47054.png', { frameWidth: 64, frameHeight: 64 });
+
         self.load.image('sky', '/assets/images/sky.png');
         self.load.image('ship', '/assets/images/spaceShips_001.png');
-        self.load.image('otherPlayer', '/assets/images/enemyBlack5.png');
+
         self.load.image('star', '/assets/images/star_gold.png');
         self.load.image('gun', "/assets/images/gun.png", 5, 5);
         self.load.image('bullet', "/assets/images/star_gold.png", 5, 5);
+        self.load.image('healthBar', "/assets/images/health_bar.png", 64, 15);
         self.load.image('portal00001', '/assets/images/enemyBlack5.png', 64, 64);
         self.load.image('portal00002', '/assets/images/enemyBlack5.png', 64, 64);
         self.load.image('portal00003', '/assets/images/enemyBlack5.png', 64, 64);
         self.load.image('reward', '/assets/images/various-32-greyout_69.png', 32, 32);
-        self.load.tilemapTiledJSON(this.counter.tiled, '/assets/cities/' + this.counter.city + '/' + this.padding(this.counter.tiled, 3, '0') + '.json');
+        self.load.tilemapTiledJSON(this.counter.tiled, '/assets/cities/' + this.counter.city + '/json/' + this.padding(this.counter.tiled, 3, '0') + '.json');
         self.load.once(Phaser.Loader.Events.COMPLETE, () => {
             // texture loaded so use instead of the placeholder
             console.log('once');
@@ -76,7 +93,16 @@ export default class Load {
             Layer.loadLayers(self);
             //const Anims = new Anim;
             //Anims.addAnim(this);
-            createCharacterAnims(self.anims, 'brawler');
+            createCharacterAnims(self.anims, 'FixerF');
+            createCharacterAnims(self.anims, 'FixerM');
+            createCharacterAnims(self.anims, 'CenobyteF');
+            createCharacterAnims(self.anims, 'CenobyteM');
+            createCharacterAnims(self.anims, 'AssassinF');
+            createCharacterAnims(self.anims, 'AssassinM');
+            createCharacterAnims(self.anims, 'XeonF');
+            createCharacterAnims(self.anims, 'XeonM');
+            createCharacterAnims(self.anims, 'otherPlayer');
+
             if (this.counter.npcArray) {
                 this.counter.npcArray.forEach(function loader(Npc) {
                     createCharacterAnims(self.anims, 'npc' + Npc[3]);

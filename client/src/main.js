@@ -22,10 +22,13 @@ const pinia = createPinia()
 
  let wrapper = window.document.querySelector('#module-name-game')
  if (wrapper) {
-  let app = window.document.createElement('div')
 
-  app.setAttribute('id', 'client')
+  let app = window.document.createElement('div');
+  app.setAttribute('id', 'client');
+  app.setAttribute("class", "client");
+
   wrapper.insertBefore(app, wrapper.childNodes[0])
+
 }
 //defineIonPhaser(window);
 createApp(App).use(pinia).mount('#client');

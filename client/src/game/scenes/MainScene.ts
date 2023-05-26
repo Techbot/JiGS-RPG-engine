@@ -62,11 +62,19 @@ export class MainScene extends Phaser.Scene {
     scene: any;
     game: any;
     colliderMap: any;
-    npcs: any;
+    npcArray: any;
     rewards: any;
     rewardsArray: any;
     rewardsGroup: any;
-    mobs: any;
+    NPCcontainer: any;
+    SceneNpcArray: any;
+    SceneNpcNameArray: any;
+    NpcContainerArray: any;
+    MobContainerArray: any;
+    SceneMobArray: any;
+    mobArray: any;
+    SceneMobHealthBarArray: any;
+    SceneMobNameArray: any[];
 
     constructor() {
         super({ key: "main" });
@@ -74,8 +82,17 @@ export class MainScene extends Phaser.Scene {
         this.client = new Client(BACKEND_URL);
         this.localPlayer = new Player;
         this.rewardsArray= new Array;
+        this.rewardsArray = new Array;
+        this.NpcContainerArray = new Array;
+        this.MobContainerArray = new Array;
+        this.SceneNpcArray = new Array;
+        this.SceneMobArray = new Array;
+        this.SceneNpcNameArray = new Array;
+        this.SceneMobHealthBarArray = new Array;
+        this.SceneMobNameArray = new Array;
     }
     preload() {
+         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     }
     async create() {
         var self = this;
@@ -102,6 +119,7 @@ export class MainScene extends Phaser.Scene {
             self.currentPlayer.x = self.remoteRef.x;
             console.log("reward message received from server");
             console.log(message);
+            this.counter.playerStats.credits++;
             //   this.incrementReward();
         });
         this.room.onMessage("remove-reward", (message) => {
@@ -121,16 +139,12 @@ export class MainScene extends Phaser.Scene {
                 }
                 i++;
             }
-
-
         });
         this.room.state.players.onAdd((player, sessionId) => {
             var entity: any;
             // is current player
             if (sessionId === this.room.sessionId) {
                 this.localPlayer.addLocalPLayer(this, player, entity, this.colliderMap);
-
-
 
                 /*-------------------- Rewards ----------------------*/
                 this.rewardsGroup = self.physics.add.group({ allowGravity: false });
@@ -144,29 +158,41 @@ export class MainScene extends Phaser.Scene {
                     }
                 }
                 /*-------------------- Npcs ----------------------*/
-                this.npcs = self.physics.add.group({ allowGravity: false });
+                this.npcArray = self.physics.add.group({ allowGravity: false });
                 if (typeof this.counter.npcArray !== 'undefined') {
                     let i = 0;
                     while (i < this.counter.npcArray.length) {
                         console.log('Npc :' + this.counter.npcArray[i][3]);
-                        this.npcs.add(new NPC(self, this.counter.npcArray[i]), true);
+                        this.NpcContainerArray[i] = this.add.container(parseInt(this.counter.npcArray[i][1]), parseInt(this.counter.npcArray[i][2]));
+                        this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.counter.npcArray[i][3]).setScale(.75);
+                        this.SceneNpcNameArray[i] = this.add.text(10,-10,this.counter.npcArray[i][0]);
+                        this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
+                        this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
+                        this.NpcContainerArray[i].setDepth(5);
+                        this.npcArray.add(this.NpcContainerArray[i], true);
                         i++;
                     }
                 }
                 /*-------------------- Mobs ----------------------*/
-                this.mobs = self.physics.add.group({ allowGravity: false });
+                this.mobArray = self.physics.add.group({ allowGravity: false });
                 if (typeof this.counter.mobArray !== 'undefined') {
                     let i = 0;
                     while (i < this.counter.mobArray.length) {
                         console.log('Mob :' + this.counter.mobArray[i][3]);
-                        this.mobs.add(new Mob(self, this.counter.npcArray[i]), true);
+                        this.MobContainerArray[i] = this.add.container(parseInt(this.counter.mobArray[i][1]), parseInt(this.counter.mobArray[i][2]));
+                        this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.counter.mobArray[i][3]).setScale(.75);
+                        this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
+                        this.SceneMobHealthBarArray[i].displayWidth=10;
+                        this.MobContainerArray[i].add(this.SceneMobArray[i]);
+                        this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
+                        this.MobContainerArray[i].setDepth(5);
+                        this.mobArray.add(this.MobContainerArray[i], true);
                         i++;
-                    }
+                   }
                 }
 
-
             } else {
-                entity = this.physics.add.sprite(player.x, player.y, 'brawler2').setDepth(3);
+                entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.75);
                 // listening for server updates
                 player.onChange(() => {
                     //
@@ -198,14 +224,16 @@ export class MainScene extends Phaser.Scene {
         axios
             .get("https://www.eclecticmeme.com/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
-                this.counter.gameState = response.data[0].value["userGamesState"];
-                this.counter.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
-                this.counter.tiled = parseInt(response.data[0].value["Tiled"]);
-                this.counter.portalsArray = response.data[0].value["portalsArray"];
-                this.counter.npcArray = response.data[0].value["NpcArray"];
-                this.counter.rewardsArray = response.data[0].value["rewardsArray"];
-                this.counter.nodeTitle = response.data[0].value["Name"];
-                this.counter.city = response.data[0].value["City"];
+                this.counter.gameState      = response.data[0].value["userGamesState"];
+                this.counter.playerStats    = response.data[0].value["playerStats"];
+                this.counter.userMapGrid    = parseInt(response.data[0].value["userMapGrid"]);
+                this.counter.tiled          = parseInt(response.data[0].value["Tiled"]);
+                this.counter.portalsArray   = response.data[0].value["portalsArray"];
+                this.counter.npcArray       = response.data[0].value["NpcArray"];
+                this.counter.mobArray       = response.data[0].value["MobArray"];
+                this.counter.rewardsArray   = response.data[0].value["rewardsArray"];
+                this.counter.nodeTitle      = response.data[0].value["Name"];
+                this.counter.city           = response.data[0].value["City"];
                 this.counter.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
                 this.counter.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
                 this.counter.tilesetArray_3 = response.data[0].value["tilesetArray_3"];

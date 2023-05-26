@@ -4,13 +4,25 @@
 import Phaser from "phaser";
 import FlyingStar from "../entities/flyingStar";
 import Bullet from "../entities/bullet";
+import { useCounterStore } from '../../stores/counter';
 export default class Player {
     colliderMap: any;
     light: any;
     drones: any;
+    counter: any;
+
+
+    constructor() {
+        this.counter = useCounterStore();
+    }
+
+
+
     addLocalPLayer(self, player, entity, colliderMap) {
         this.colliderMap = colliderMap
-        entity = self.physics.add.sprite(player.x, player.y, 'brawler').setDepth(3);
+
+        entity = self.physics.add.sprite(player.x, player.y, this.counter.playerStats.spite_sheet).setDepth(3);
+
         this.light = self.lights.addLight(player.x, player.y, 200);
         self.lights.enable().setAmbientColor(0x555555);
         //self.game.physics.enable(entity, Phaser.Physics.ARCADE);
@@ -74,7 +86,7 @@ export default class Player {
             !self.inputPayload.up &&
             !self.inputPayload.down &&
             self.currentPlayer.dir != 'stopped') {
-            self.currentPlayer.anims.play('stop_brawler');
+            self.currentPlayer.anims.play('stop_' + this.counter.playerStats.sprite_sheet);
             self.currentPlayer.dir = 'stopped';
         }
         if (self.inputPayload.left) {
@@ -88,7 +100,7 @@ export default class Player {
                 self.currentPlayer.x -= velocity;
             }
             if (self.currentPlayer.dir != 'left') {
-                self.currentPlayer.anims.play('walkLeft_brawler');
+                self.currentPlayer.anims.play('walkLeft_' + this.counter.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'left';
             }
         }
@@ -103,7 +115,7 @@ export default class Player {
                 self.currentPlayer.x += velocity;
             }
             if (self.currentPlayer.dir != 'right') {
-                self.currentPlayer.anims.play('walkRight_brawler');
+                self.currentPlayer.anims.play('walkRight_' + this.counter.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'right';
             }
         }
@@ -118,7 +130,7 @@ export default class Player {
                 self.currentPlayer.y -= velocity;
             }
             if (self.currentPlayer.dir != 'up') {
-                self.currentPlayer.anims.play('walkUp_brawler');
+                self.currentPlayer.anims.play('walkUp_' + this.counter.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'up';
             }
         }
@@ -134,7 +146,7 @@ export default class Player {
                 self.currentPlayer.y += velocity;
             }
             if (self.currentPlayer.dir != 'down') {
-                self.currentPlayer.anims.play('walkDown_brawler');
+                self.currentPlayer.anims.play('walkDown_' + this.counter.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'down';
             }
         }

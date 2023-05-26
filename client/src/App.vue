@@ -27,12 +27,14 @@ export default {
       .get("https://www.eclecticmeme.com/mystate?_wrapper_format=drupal_ajax")
       .then((response) => {
         this.counter.playerName     = response.data[0].value["playerName"];
+        this.counter.playerStats    = response.data[0].value["playerStats"];
         this.counter.playerId       = parseInt( response.data[0].value["playerId"]);
         this.counter.gameState      = response.data[0].value["userGamesState"];
         this.counter.userMapGrid    = parseInt( response.data[0].value["userMapGrid"]);
         this.counter.tiled          = parseInt(response.data[0].value["Tiled"]);
         this.counter.portalsArray   = response.data[0].value["portalsArray"];
         this.counter.npcArray       = response.data[0].value["NpcArray"];
+        this.counter.mobArray       = response.data[0].value["MobArray"];
         this.counter.rewardsArray   = response.data[0].value["rewardsArray"];
         this.counter.nodeTitle      = response.data[0].value["Name"];
         this.counter.city           = response.data[0].value["City"];
@@ -62,12 +64,14 @@ export default {
         )
         .then(function (response) {
           currentObj.counter.playerName   = response.data[0].value["playerName"];
+          currentObj.counter.playerStats  = response.data[0].value["playerStats"];
           currentObj.counter.playerId     = parseInt( response.data[0].value["playerId"]);
           currentObj.counter.gameState    = response.data[0].value["userGamesState"];
           currentObj.counter.userMapGrid  = parseInt( response.data[0].value["userMapGrid"]);
           currentObj.counter.tiled        = parseInt( response.data[0].value["Tiled"]);
           currentObj.counter.portalsArray = response.data[0].value["portalsArray"];
-          currentObj.counter.npcArray     = response.data[0].value["NPCArray"];
+          currentObj.counter.npcArray     = response.data[0].value["NpcArray"];
+          currentObj.counter.mobArray     = response.data[0].value["MobArray"];
           currentObj.counter.rewardsArray = response.data[0].value["rewardsArray"];
           currentObj.counter.nodeTitle    = response.data[0].value["Name"];
           currentObj.counter.city         = response.data[0].value["City"];
@@ -147,8 +151,7 @@ export default {
         <div id="Game">
           <button @click="bank">Bank</button>
           <button @click="outpost">Outpost</button>
-          <button @click="temple">Temple</button>
-          <button @click="shop">Shop</button>
+
           <button @click="hanger">Hanger</button>
           <button @click="armoury">Armoury</button>
           <button @click="fight">Fight</button>

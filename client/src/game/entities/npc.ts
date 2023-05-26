@@ -20,9 +20,9 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
         //const entity = scene.physics.add.sprite(parseInt(data[1]), parseInt(data[2]), 'npc' + data[3]).setDepth(5);
         this.setTexture('npc' + data[3]);
         this.setDepth(5)
-        this.setPosition(parseInt(data[1]), parseInt(data[2]));
+       // this.setPosition(parseInt(data[1]), parseInt(data[2]));
         this.setScale(.75);
-        this.anims.play('stop_npc' + data[3]);
+      //  this.anims.play('stop_npc' + data[3]);
       //  this.loadNPC();
         //entity.setScale(.75);
         //entity.anims.play('stop_npc' + data[3] );

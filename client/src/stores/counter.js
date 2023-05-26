@@ -8,6 +8,9 @@ export const useCounterStore = defineStore("counter", {
 
     playerId: 0,
 
+    /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number}[]} */
+    playerStats: [],
+
     /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
     npcArray: [],
 
