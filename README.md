@@ -1,5 +1,5 @@
 <h1>JiGS</h1>
-Vision: An Online RPG Trading game built to be adaptable and extendable by Drupal Admins/Game Masters. How much control the GM has depends on their drupal and Mysql knowledge.
+Vision: An Online RPG Trading game built to be adaptable and extendable by Admins/Game Masters. 
 
 
 <h2>DEMO</h2>
