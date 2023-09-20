@@ -13,5 +13,5 @@
   },
   "include": [
     "src"
-, "rooms", "arena.config.ts", "index.ts", "index.ts"  ]
+  ]
 }
