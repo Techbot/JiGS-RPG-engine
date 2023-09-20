@@ -1,16 +1,16 @@
 import Phaser from "phaser";
 
-export class SceneSelector extends Phaser.Scene {
+export class DeadScene extends Phaser.Scene {
 
     parts = {
-        '1': "Help",
-        '2': "Credits",
-        '3': "Options",
-        '4': "HEADQUARTERS",
+        '1': "You ",
+        '2': "Are ",
+        '3': "Dead",
+
     };
 
     constructor() {
-        super({ key: "selector", active: true });
+        super({ key: "DeadScene", active: true });
     }
 
     image;
@@ -18,7 +18,7 @@ export class SceneSelector extends Phaser.Scene {
     preload() {
         // update menu background color
         this.cameras.main.setBackgroundColor(0x000000);
-        this.load.image('einstein', '/assets/images/8b0f172a-80ed-4fbd-b357-c512127970ce.png');
+        this.load.image('tesla', '/assets/images/84a42d08-8165-4111-aec7-edd1d0d4900d.png');
         // preload demo assets
         // this.load.image('ship_0001', 'assets/ship_0001.png');
      //   this.load.image('ship_0001', 'https://cdn.glitch.global/3e033dcd-d5be-4db4-99e8-086ae90969ec/ship_0001.png?v=1649945243288');
@@ -26,7 +26,14 @@ export class SceneSelector extends Phaser.Scene {
 
     create() {
 
-        this.image = this.add.image(320, 240, 'einstein');
+        this.image = this.add.image(320, 240, 'tesla');
+
+
+        // automatically navigate to hash scene if provided
+        if (window.location.hash) {
+            this.runScene(window.location.hash.substring(1));
+            return;
+        }
 
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
             color: "#ff0000",
@@ -44,7 +51,7 @@ export class SceneSelector extends Phaser.Scene {
                 .setInteractive()
                 .setPadding(6)
                 .on("pointerdown", () => {
-                    this.game.scene.switch("selector","main");
+                    this.game.scene.switch("DeadScene", "main")
                 });
         }
     }

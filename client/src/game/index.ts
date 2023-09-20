@@ -4,8 +4,9 @@ import { SceneSelector }    from "./scenes/SceneSelector";
 import { MainScene }       from "./scenes/MainScene";
 import { HudScene }         from "./scenes/HudScene";
 import { BootScene }        from "./scenes/BootScene";
+import { DeadScene }        from "./scenes/DeadScene";
 import { BACKEND_HTTP_URL } from "./backend";
-
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.WEBGL,
     fps: {
@@ -21,8 +22,16 @@ const config: Phaser.Types.Core.GameConfig = {
     physics: {
         default: "arcade"
     },
+    plugins: {
+        scene: [{
+            key: 'rexUI',
+            plugin: RexUIPlugin,
+            mapping: 'rexUI'
+        },
+        ]
+    },
     pixelArt: true,
-    scene: [BootScene, SceneSelector, MainScene, HudScene],
+    scene: [BootScene, SceneSelector, MainScene, DeadScene, HudScene],
 };
 
 const game = new Phaser.Game(config);

@@ -4,25 +4,30 @@
 import Phaser from "phaser";
 import FlyingStar from "../entities/flyingStar";
 import Bullet from "../entities/bullet";
-import { useCounterStore } from '../../stores/counter';
+import { useJigsStore } from '../../stores/jigs';
+
 export default class Player {
+
     colliderMap: any;
     light: any;
     drones: any;
-    counter: any;
+    jigs: any;
+    room: any;
+    scene: any;
 
-
-    constructor() {
-        this.counter = useCounterStore();
+    constructor(room, scene) {
+        this.room = room;
+        this.scene = scene;
+        this.jigs = useJigsStore();
     }
-
-
 
     addLocalPLayer(self, player, entity, colliderMap) {
         this.colliderMap = colliderMap
 
-        entity = self.physics.add.sprite(player.x, player.y, this.counter.playerStats.spite_sheet).setDepth(3);
-
+        entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
+            .setDepth(7)
+            .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+            .on('pointerdown', this.onPlayerDown.bind(self));
         this.light = self.lights.addLight(player.x, player.y, 200);
         self.lights.enable().setAmbientColor(0x555555);
         //self.game.physics.enable(entity, Phaser.Physics.ARCADE);
@@ -49,45 +54,119 @@ export default class Player {
         this.drones.add(new FlyingStar(self, player.x, player.y, 100, 100, 0.005), true);
         this.drones.add(new FlyingStar(self, player.x, player.y, 40, 100, 0.005), true);
         this.drones.add(new FlyingStar(self, player.x, player.y, 40, 100, -0.005), true);
-        self.gun       = self.physics.add.image(player.x, player.y, 'gun');
-        self.key_left  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+
+        self.gun = self.physics.add.image(player.x, player.y, 'gun');
+        self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        self.key_up    = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        self.key_down  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        self.bullets   = self.physics.add.group({
+        self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        self.bullets = self.physics.add.group({
             classType: Bullet,
             maxSize: 10,
-            runChildUpdate: true
+            runChildUpdate: true,
+            bodyType: 'Bul'
         });
+
         self.input.on("pointerdown", (event) => {
-            let bullet = self.bullets.get();
-            if (bullet) {
-                let offset = new Phaser.Geom.Point(0, -self.gun.height / 2);
-                Phaser.Math.Rotate(offset, self.gun.rotation);
-                bullet.fire(self.gun);
+
+            if (this.jigs.playerState == "alive") {
+
+
+                if (self.currentPlayer.dir == 'left') {
+                    self.currentPlayer.play('thrustLeft_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                    if (self.currentPlayer.speed == 'go') {
+                        self.currentPlayer.playAfterRepeat('walkLeft_' + self.jigs.playerStats.sprite_sheet);
+                    }
+                }
+
+                else if (self.currentPlayer.dir == 'right') {
+                    self.currentPlayer.anims.play('thrustRight_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                    if (self.currentPlayer.speed == 'go') {
+                        self.currentPlayer.playAfterRepeat('walkRight_' + self.jigs.playerStats.sprite_sheet);
+                    }
+                }
+
+                else if (self.currentPlayer.dir == 'up') {
+                    self.currentPlayer.anims.play('thrustUp_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                    if (self.currentPlayer.speed == 'go') {
+                        self.currentPlayer.playAfterRepeat('walkUp_' + self.jigs.playerStats.sprite_sheet);
+                    }
+
+                }
+                else if (self.currentPlayer.dir == 'down') {
+
+                    self.currentPlayer.anims.play('thrustDown_' + self.jigs.playerStats.sprite_sheet + '_slash');
+
+                    if (self.currentPlayer.speed == 'go') {
+                        self.currentPlayer.playAfterRepeat('walkDown_' + self.jigs.playerStats.sprite_sheet);
+                    }
+                }
+
+                self.gun.angle = Math.atan2(parseInt(event.worldY) - self.gun.y, parseInt(event.worldX) - self.gun.x) * 180 / Math.PI;
+                //console.log(self.jigs.mobShoot);
+
+                if (self.jigs.mobShoot != 0) {
+                    let bullet = self.bullets.get();
+                    if (bullet) {
+                        let offset = new Phaser.Geom.Point(0, -self.gun.height / 2);
+                        //  Phaser.Math.Rotate(offset, self.gun.rotation);
+                        bullet.fire(self.gun);
+                    }
+                    //console.log('bang ' + parseInt(event.x) + ',' + parseInt(event.y));
+                    self.inputPayload.inputX = parseInt(event.worldX);
+                    self.inputPayload.inputY = parseInt(event.worldY);
+                    jigs                }
             }
         });
     }
+
+    leaveRoom(){
+        this.room.leave(); // Backend
+    }
+
+
+    onPlayerDown() {
+        this.jigs.playerState = "dormant";
+       // this.room.leave(); // Backend
+        this.leaveRoom();
+
+        this.scene.switch("main", "DeadScene");
+       // this.scene.start('DeadScene'); //Frontend)
+        //   this.incrementReward();
+    }
     updatePlayer(self) {
+
+
+        if (this.jigs.leave == 1){
+            this.jigs.leave = 0;
+    this.leaveRoom();
+}
+
         const velocity = 2;
         self.inputPayload.left = self.cursorKeys.left.isDown;
         self.inputPayload.right = self.cursorKeys.right.isDown;
         self.inputPayload.up = self.cursorKeys.up.isDown;
         self.inputPayload.down = self.cursorKeys.down.isDown;
         self.inputPayload.tick = self.currentTick;
+        self.inputPayload.mobClick = this.jigs.mobClick;
+
+        ////////////////////////// SEND /////////////////////////////////
         if (self.room.send && self.room.send !== undefined) {
-            self.room.send(0, self.inputPayload);
+            if (this.jigs.playerState == "alive") {
+                self.room.send(0, self.inputPayload);
+            }
         }
-        if (!self.currentPlayer.anims) {
+
+        if (!self.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
         if (!self.inputPayload.left &&
             !self.inputPayload.right &&
             !self.inputPayload.up &&
             !self.inputPayload.down &&
-            self.currentPlayer.dir != 'stopped') {
-            self.currentPlayer.anims.play('stop_' + this.counter.playerStats.sprite_sheet);
-            self.currentPlayer.dir = 'stopped';
+            self.currentPlayer.speed != 'stopped') {
+            self.currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
+            self.currentPlayer.speed = 'stopped';
         }
         if (self.inputPayload.left) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
@@ -100,8 +179,9 @@ export default class Player {
                 self.currentPlayer.x -= velocity;
             }
             if (self.currentPlayer.dir != 'left') {
-                self.currentPlayer.anims.play('walkLeft_' + this.counter.playerStats.sprite_sheet);
+                self.currentPlayer.anims.play('walkLeft_' + this.jigs.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'left';
+                self.currentPlayer.speed = 'go';
             }
         }
         else if (self.inputPayload.right) {
@@ -115,8 +195,9 @@ export default class Player {
                 self.currentPlayer.x += velocity;
             }
             if (self.currentPlayer.dir != 'right') {
-                self.currentPlayer.anims.play('walkRight_' + this.counter.playerStats.sprite_sheet);
+                self.currentPlayer.anims.play('walkRight_' + this.jigs.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'right';
+                self.currentPlayer.speed = 'go';
             }
         }
         else if (self.inputPayload.up) {
@@ -130,15 +211,15 @@ export default class Player {
                 self.currentPlayer.y -= velocity;
             }
             if (self.currentPlayer.dir != 'up') {
-                self.currentPlayer.anims.play('walkUp_' + this.counter.playerStats.sprite_sheet);
+                self.currentPlayer.anims.play('walkUp_' + this.jigs.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'up';
+                self.currentPlayer.speed = 'go';
             }
         }
         else if (self.inputPayload.down) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y + 16, true);
             if (tile.index > 0) {
                 self.currentPlayer.y -= 32;
-
                 self.currentPlayer.y = self.remoteRef.y;
                 self.currentPlayer.x = self.remoteRef.x;
             }
@@ -146,29 +227,27 @@ export default class Player {
                 self.currentPlayer.y += velocity;
             }
             if (self.currentPlayer.dir != 'down') {
-                self.currentPlayer.anims.play('walkDown_' + this.counter.playerStats.sprite_sheet);
+                self.currentPlayer.anims.play('walkDown_' + this.jigs.playerStats.sprite_sheet);
                 self.currentPlayer.dir = 'down';
+                self.currentPlayer.speed = 'go';
             }
         }
-        self.gun.x      = self.currentPlayer.x;
-        self.gun.y      = self.currentPlayer.y;
+        this.jigs.mobClick = 0;
+        self.gun.x = self.currentPlayer.x;
+        self.gun.y = self.currentPlayer.y;
         self.localRef.x = self.currentPlayer.x;
         self.localRef.y = self.currentPlayer.y;
-        this.light.x    = self.currentPlayer.x;
-        this.light.y    = self.currentPlayer.y;
-        this.drones.x   = self.currentPlayer.x;
-        this.drones.y   = self.currentPlayer.y;
+        this.light.x = self.currentPlayer.x;
+        this.light.y = self.currentPlayer.y;
+
+       this.drones.children.iterate(drone => {
+           drone.bilbob(self.currentPlayer.x, self.currentPlayer.y);
+
+        });
+
+
+        ////////////////////////////////////////////////////////////////////////////////
         //  Dispatch a Scene event
         self.events.emit('position', self.currentPlayer.x, self.currentPlayer.y);
-        if (self.key_left.isDown) {
-            self.gun.angle = 180;
-        } else if (self.key_right.isDown) {
-            self.gun.angle = 0;
-        }
-        if (self.key_up.isDown) {
-            self.gun.angle = 270;
-        } else if (self.key_down.isDown) {
-            self.gun.angle = 90;
-        }
     }
 }

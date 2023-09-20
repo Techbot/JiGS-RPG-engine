@@ -1,47 +1,45 @@
 /**
  * -------Layers ---------
  */
-import { useCounterStore } from '../../stores/counter';
+import { useJigsStore } from '../../stores/jigs';
 
 export default class Layers {
-    counter: any;
+    jigs: any;
     colliderMap: any;
 
     constructor() {
-        this.counter = useCounterStore();
+        this.jigs = useJigsStore();
     }
 
     loadLayers(self) {
-        var map = self.make.tilemap({ key: self.counter.tiled, tileWidth: 32, tileHeight: 32 });
+        var map = self.make.tilemap({ key: self.jigs.tiled, tileWidth: 32, tileHeight: 32 });
 
-        this.counter.tilesetArray_1.forEach(function loader(image: any) {
+        this.jigs.tilesetArray_1.forEach(function loader(image: any) {
             map.addTilesetImage(image);
         }, this);
 
-        this.counter.tilesetArray_2.forEach(function loader(image: any) {
+        this.jigs.tilesetArray_2.forEach(function loader(image: any) {
             map.addTilesetImage(image);
         }, this);
 
-        this.counter.tilesetArray_3.forEach(function loader(image: any) {
+        this.jigs.tilesetArray_3.forEach(function loader(image: any) {
             map.addTilesetImage(image);
         }, this);
 
-        this.counter.tilesetArray_4.forEach(function loader(image: any) {
+        this.jigs.tilesetArray_4.forEach(function loader(image: any) {
             map.addTilesetImage(image);
         }, this);
-
-
- /*        this.counter.tilesetArray_5.forEach(function loader(image: any) {
-            map.addTilesetImage(image);
-        }, this); */
 
         //layer.skipCull = true;
-        self.colliderMap = map.createLayer('Tile Layer 1', this.counter.tilesetArray_1).setDepth(1).setPipeline('Light2D');
-        map.createLayer('Tile Layer 2', this.counter.tilesetArray_2).setDepth(2);
-        map.createLayer('Tile Layer 3', this.counter.tilesetArray_3).setDepth(3);
+        self.colliderMap = map.createLayer('Tile Layer 1', this.jigs.tilesetArray_1).setDepth(1);
+        map.createLayer('Tile Layer 2', this.jigs.tilesetArray_2).setDepth(2).setPipeline('Light2D');
+        map.createLayer('Tile Layer 3', this.jigs.tilesetArray_3).setDepth(3).setPipeline('Light2D');
         //self.physics.world.enable([self.colliderMap]);
         //self.colliderMap.setCollisionBetween(1, 16, true, false); //(line 125)
-        map.createLayer('Tile Layer 4', this.counter.tilesetArray_4).setDepth(5);
-       // map.createLayer('Tile Layer 5', this.counter.tilesetArray_5).setDepth(6);
+        map.createLayer('Tile Layer 4', this.jigs.tilesetArray_4).setDepth(5);
+
+
+       self.animatedTiles.init(map);
+
     }
 }

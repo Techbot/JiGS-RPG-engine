@@ -5,28 +5,42 @@
 import Phaser from "phaser";
 
 export default class Bullet extends Phaser.Physics.Arcade.Image {
-    constructor(scene) {
-        super(scene);
-        Phaser.Physics.Arcade.Image.call(this, scene, 0, 0, "bullet");
+    speed: number;
+    lifespan: any;
 
-        this.speed = Phaser.Math.GetSpeed(400, 1);
-        this.speed = 200;
+    constructor(scene) {
+        super(scene, 0, 0,"bullet");
+        Phaser.Physics.Arcade.Image.call(this, scene, 0, 0, "bullet");
+        scene.physics.add.overlap(scene.MobContainerArray, this, this.killBullet, null, this);
+    //    this.speed = Phaser.Math.GetSpeed(400, 1);
+        this.speed = 400;
     }
 
     fire(gun) {
-        this.lifespan = 2000;
+        this.lifespan = 3000;
         this.setActive(true);
         this.setVisible(true);
+        this.setDepth(7);
         this.setRotation(gun.rotation); // angle is in degree, rotation is in radian
-        var offset = new Phaser.Geom.Point(40, 0);
+        //self.physics.add.overlap(self.MobContainerArray, self.bullets, this.killBullet, null, self);
+        var offset = new Phaser.Geom.Point(0, 0);
         Phaser.Math.Rotate(offset, gun.rotation); // you can only rotate with radian
         this.setPosition(gun.x + offset.x, gun.y + offset.y);
-        // this.body.reset(gun.x + offset.y, gun.y + offset.y);
+         this.body.reset(gun.x + offset.y, gun.y + offset.y);
 
         // var angle = Phaser.Math.DegToRad(gun.body.rotation);
         this.body.world.scene.physics.velocityFromRotation(gun.rotation, this.speed, this.body.velocity);
         this.body.velocity.x *= 2;
         this.body.velocity.y *= 2;
+    }
+
+    killBullet(mob, bullet) {
+
+        if (bullet.bodyType = "Bul") {
+            console.log('kill Bullets');
+          //  bullet.disableBody(false, false);
+            bullet.destroy();
+        }
     }
 
     update(time, delta) {
@@ -37,5 +51,6 @@ export default class Bullet extends Phaser.Physics.Arcade.Image {
             this.setVisible(false);
             this.body.stop();
         }
+
     }
 }

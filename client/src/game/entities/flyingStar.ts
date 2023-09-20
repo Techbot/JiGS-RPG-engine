@@ -9,7 +9,7 @@ export default class FlyingStar extends Phaser.Physics.Arcade.Sprite {
     this.pathIndex = 0;
     this.pathSpeed = speed;
     this.pathVector = new Phaser.Math.Vector2();
-
+    this.setDepth(7);
     this.path.getPoint(0, this.pathVector);
 
     this.setPosition(this.pathVector.x, this.pathVector.y);
@@ -24,4 +24,18 @@ export default class FlyingStar extends Phaser.Physics.Arcade.Sprite {
 
     this.pathIndex = Phaser.Math.Wrap(this.pathIndex + this.pathSpeed, 0, 1);
   }
+
+
+bilbob(newX,newY){
+
+  this.path.x = newX;
+  this.path.y = newY;
+
+}
+
+
+
+
+
+
 }

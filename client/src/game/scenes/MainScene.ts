@@ -12,8 +12,9 @@
 import Phaser from "phaser";
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
-import { useCounterStore } from '../../stores/counter';
+import { useJigsStore } from '../../stores/jigs';
 import Player from "../entities/player";
+import Messenger from "../entities/messenger";
 import NPC from "../entities/npc";
 import Mob from "../entities/mob";
 import Reward from "../entities/reward";
@@ -37,13 +38,14 @@ export class MainScene extends Phaser.Scene {
         up: false,
         down: false,
         tick: undefined,
+        mobClick: 0
     };
 
     elapsedTime = 0;
     fixedTimeStep = 1000 / 60;
     portal = [];
     currentTick: number = 0;
-    counter: any;
+    jigs: any;
     load: any;
     input: any;
     add: any;
@@ -75,13 +77,16 @@ export class MainScene extends Phaser.Scene {
     mobArray: any;
     SceneMobHealthBarArray: any;
     SceneMobNameArray: any[];
+    sys: any;
+    plugins: any;
+    messenger: Messenger;
 
     constructor() {
         super({ key: "main" });
-        this.counter = useCounterStore();
+        this.jigs = useJigsStore();
         this.client = new Client(BACKEND_URL);
-        this.localPlayer = new Player;
-        this.rewardsArray= new Array;
+        this.localPlayer = new Player(this.room, this.scene);
+        this.rewardsArray = new Array;
         this.rewardsArray = new Array;
         this.NpcContainerArray = new Array;
         this.MobContainerArray = new Array;
@@ -91,106 +96,88 @@ export class MainScene extends Phaser.Scene {
         this.SceneMobHealthBarArray = new Array;
         this.SceneMobNameArray = new Array;
     }
+
     preload() {
-         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-    }
-    async create() {
         var self = this;
         this.Loader = new Load;
+        this.messenger = new Messenger;
         this.Loader.load(self);
+        this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+        this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+        this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+    }
+
+    async create() {
+        var self = this;
         this.cursorKeys = this.input.keyboard.createCursorKeys();
+        this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
-        await this.connect(this.counter.city + "-" + padding(this.counter.tiled, 3, 0));
-        this.room.onMessage("portal", (message) => {
-            console.log("portal message received from server");
-            console.log(message);
-            const promise1 = Promise.resolve(this.jump());
-            self.counter.tiled = message;
-            //  hide(this.localPlayer);
-        });
-        this.room.onMessage("collide", (message) => {
-            console.log("collide message received from server");
-            self.currentPlayer.y = self.remoteRef.y;
-            self.currentPlayer.x = self.remoteRef.x;
-        });
-        this.room.onMessage("reward", (message) => {
-            self.currentPlayer.y = self.remoteRef.y;
-            self.currentPlayer.x = self.remoteRef.x;
-            console.log("reward message received from server");
-            console.log(message);
-            this.counter.playerStats.credits++;
-            //   this.incrementReward();
-        });
-        this.room.onMessage("remove-reward", (message) => {
-            self.currentPlayer.y = self.remoteRef.y;
-            self.currentPlayer.x = self.remoteRef.x;
-            console.log("remove-reward message received from server");
-            console.log(message);
-            console.log(self.rewards);
+        await this.connect(this.jigs.city + "-" + padding(this.jigs.tiled, 3, 0));
 
-            //    this.incrementReward();
-             let i = 0;
-            while (i < self.rewardsArray.length) {
-                console.log('able baby');
-                if (self.rewardsArray[i].ref == message){
-                    console.log('disable baby');
-                    self.rewardsArray[i].disableBody(true, true);
-                }
-                i++;
-            }
-        });
+        this.messenger.initMessages(self);
+
         this.room.state.players.onAdd((player, sessionId) => {
             var entity: any;
             // is current player
             if (sessionId === this.room.sessionId) {
+                self.jigs.playerState = "alive";
                 this.localPlayer.addLocalPLayer(this, player, entity, this.colliderMap);
+                this.jigs.content = "City:" + this.jigs.city;
+                self.events.emit('content');
 
                 /*-------------------- Rewards ----------------------*/
                 this.rewardsGroup = self.physics.add.group({ allowGravity: false });
                 let a = 0;
-                if (typeof this.counter.rewardsArray !== 'undefined') {
-                    while (a < this.counter.rewardsArray.length) {
-                        console.log('Rewards :' + this.counter.rewardsArray[a]);
-                        this.rewardsArray[a] = new Reward(self, this.counter.rewardsArray[a]);
+                if (typeof this.jigs.rewardsArray !== 'undefined') {
+                    while (a < this.jigs.rewardsArray.length) {
+                        this.rewardsArray[a] = new Reward(self, this.jigs.rewardsArray[a]);
                         this.rewardsGroup.add(this.rewardsArray[a], true);
                         a++;
                     }
                 }
-                /*-------------------- Npcs ----------------------*/
+                /*-------------------- Npcs ------------------------*/
                 this.npcArray = self.physics.add.group({ allowGravity: false });
-                if (typeof this.counter.npcArray !== 'undefined') {
+                if (typeof this.jigs.npcArray !== 'undefined') {
                     let i = 0;
-                    while (i < this.counter.npcArray.length) {
-                        console.log('Npc :' + this.counter.npcArray[i][3]);
-                        this.NpcContainerArray[i] = this.add.container(parseInt(this.counter.npcArray[i][1]), parseInt(this.counter.npcArray[i][2]));
-                        this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.counter.npcArray[i][3]).setScale(.75);
-                        this.SceneNpcNameArray[i] = this.add.text(10,-10,this.counter.npcArray[i][0]);
+                    while (i < this.jigs.npcArray.length) {
+                        this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
+                        this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
+                            .setScale(.75)
+                            .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+                            .setData("levelindex", this.jigs.npcArray[i][1])
+                            .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
+                        this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0]);
                         this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
                         this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
                         this.NpcContainerArray[i].setDepth(5);
+                        this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
                         this.npcArray.add(this.NpcContainerArray[i], true);
                         i++;
                     }
                 }
-                /*-------------------- Mobs ----------------------*/
+                /*-------------------- Mobs -----------------------*/
                 this.mobArray = self.physics.add.group({ allowGravity: false });
-                if (typeof this.counter.mobArray !== 'undefined') {
+                if (typeof this.jigs.mobArray !== 'undefined') {
                     let i = 0;
-                    while (i < this.counter.mobArray.length) {
-                        console.log('Mob :' + this.counter.mobArray[i][3]);
-                        this.MobContainerArray[i] = this.add.container(parseInt(this.counter.mobArray[i][1]), parseInt(this.counter.mobArray[i][2]));
-                        this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.counter.mobArray[i][3]).setScale(.75);
+                    while (i < this.jigs.mobArray.length) {
+                        this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][1]), parseInt(this.jigs.mobArray[i][2]));
+                        this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][3]));
+                        this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][3])
+                            .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+                            .setScale(.75)
+                            .setData("levelindex", this.jigs.mobArray[i][1])
+                            .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
+                        this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][3]);
                         this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
-                        this.SceneMobHealthBarArray[i].displayWidth=10;
+                        this.SceneMobHealthBarArray[i].displayWidth = 25;
                         this.MobContainerArray[i].add(this.SceneMobArray[i]);
                         this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
                         this.MobContainerArray[i].setDepth(5);
                         this.mobArray.add(this.MobContainerArray[i], true);
                         i++;
-                   }
+                    }
                 }
-
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.75);
                 // listening for server updates
@@ -204,6 +191,7 @@ export class MainScene extends Phaser.Scene {
             }
             this.playerEntities[sessionId] = entity;
         });
+
         // remove local reference when entity is removed from the server
         this.room.state.players.onRemove((player, sessionId) => {
             const entity = this.playerEntities[sessionId];
@@ -212,41 +200,74 @@ export class MainScene extends Phaser.Scene {
                 delete this.playerEntities[sessionId]
             }
         });
-        this.cameras.main.setZoom(1.5);
-        //this.cameras.main.setBounds(0, 0, 4096, 4096);
+        this.cameras.main.setZoom(1.0);
     }
-    incrementReward() {
-        return;
+
+    onNPCDown(npc, img) {
+        this.jigs.npc = 1;
+        this.jigs.content = npc[4];
+        this.events.emit('content');
     }
+
+    onMobDown(mob, img) {
+        this.jigs.mobClick = mob[0];
+        this.jigs.mobShoot = mob[0];
+        this.jigs.playerStats.credits++;
+    }
+
+    incrementReward() { return; }
 
     jump() {
         console.log("jump");
         axios
-            .get("https://www.eclecticmeme.com/mystate?_wrapper_format=drupal_ajax")
+            .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
-                this.counter.gameState      = response.data[0].value["userGamesState"];
-                this.counter.playerStats    = response.data[0].value["playerStats"];
-                this.counter.userMapGrid    = parseInt(response.data[0].value["userMapGrid"]);
-                this.counter.tiled          = parseInt(response.data[0].value["Tiled"]);
-                this.counter.portalsArray   = response.data[0].value["portalsArray"];
-                this.counter.npcArray       = response.data[0].value["NpcArray"];
-                this.counter.mobArray       = response.data[0].value["MobArray"];
-                this.counter.rewardsArray   = response.data[0].value["rewardsArray"];
-                this.counter.nodeTitle      = response.data[0].value["Name"];
-                this.counter.city           = response.data[0].value["City"];
-                this.counter.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
-                this.counter.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
-                this.counter.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
-                this.counter.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-                // this.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
+                this.jigs.gameState = response.data[0].value["userGamesState"];
+                this.jigs.playerStats = response.data[0].value["playerStats"];
+                this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
+                this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
+                this.jigs.portalsArray = response.data[0].value["portalsArray"];
+                this.jigs.npcArray = response.data[0].value["NpcArray"];
+                this.jigs.mobArray = response.data[0].value["MobArray"];
+                this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
+                this.jigs.nodeTitle = response.data[0].value["Name"];
+                this.jigs.city = response.data[0].value["City"];
+                this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
+                this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
+                this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
+                this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
+
+            })
+            .then(() => {
                 var Loader = new Load;
                 Loader.load(this);
                 //portalJump(this);
                 this.room.leave(); // Backend
-                this.scene.start('main'); //Frontend
+                this.scene.start('main'); //Frontend)
             });
-
         return true;
+    }
+
+    updateState() {
+        if (this.jigs.playerState == "alive") {
+            axios
+                .get("/mystate?_wrapper_format=drupal_ajax")
+                .then((response) => {
+                    this.jigs.gameState = response.data[0].value["userGamesState"];
+                    this.jigs.playerStats = response.data[0].value["playerStats"];
+                    this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
+                    this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
+                    this.jigs.portalsArray = response.data[0].value["portalsArray"];
+                    this.jigs.npcArray = response.data[0].value["NpcArray"];
+                    this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
+                    this.jigs.nodeTitle = response.data[0].value["Name"];
+                    this.jigs.city = response.data[0].value["City"];
+                    this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
+                    this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
+                    this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
+                    this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
+                })
+        }
     }
 
     async connect(room) {
@@ -257,9 +278,7 @@ export class MainScene extends Phaser.Scene {
             .setPadding(4)
         try {
             this.room = await this.client.joinOrCreate(room,
-                {
-                    playerId: this.counter.playerId
-                });
+                { playerId: this.jigs.playerId });
             // connection successful!
             connectionStatusText.destroy();
         } catch (e) {
@@ -283,9 +302,17 @@ export class MainScene extends Phaser.Scene {
         this.currentTick++;
         if (this.localPlayer !== undefined) {
             this.localPlayer.updatePlayer(this);
-            // const currentPlayerRemote = this.room.state.players.get(this.room.sessionId);
-            // const ticksBehind = this.currentTick - currentPlayerRemote.tick;
-            // console.log({ ticksBehind });
+
+            let i = 0;
+            while (i < this.MobContainerArray.length) {
+                if (this.jigs.mobArray[i] != undefined) {
+                    this.MobContainerArray[i].x = this.jigs.mobArray[i][1];
+                    this.MobContainerArray[i].y = this.jigs.mobArray[i][2];
+                    this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][5] / 4;
+                    i++;
+                }
+            };
+
             for (let sessionId in this.playerEntities) {
                 // interpolate all player entities
                 // (except the current player)

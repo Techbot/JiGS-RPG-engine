@@ -14,7 +14,7 @@ export default class Portals {
             destination_y: number
         }[] = []; */
 
-        const portalsArray = self.counter.portalsArray;
+        const portalsArray = self.jigs.portalsArray;
         const portals = self.physics.add.group({ allowGravity: false });
 
         for (var index = 0; index < portalsArray.length; index++) {
