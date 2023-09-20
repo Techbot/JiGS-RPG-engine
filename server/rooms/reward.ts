@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-//
+// https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -23,6 +23,7 @@ var p2 = require('p2');
       angularVelocity: 0
     });
     circleBody.ref = reward.field_ref_value;
+   // console.log(' position:', circleBody.position);
     circleBody.isReward = true;
     circleBody.sensor = true;
     circleBody.motionState = 2; //STATIC

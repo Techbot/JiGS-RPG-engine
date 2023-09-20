@@ -61,7 +61,7 @@ class Char
     }
     public function setHealth($health)
     {
-        $this->health = $health;
+      //  $this->health = $health;
     }
 
     public function getAttack()
@@ -101,4 +101,5 @@ class Char
     {
         return  $this->dice2;
     }
+
 }

@@ -1,112 +1,24 @@
+![JiGS](https://github.com/Techbot/JiGS/blob/master/images/image01.png)
+
+<hr>
 <h1>JiGS</h1>
-Vision: An Online RPG Trading game built to be adaptable and extendable by Admins/Game Masters. 
-
-
-<h2>DEMO</h2>
-<ul>
- <li>The Eclectic Meme Conspiracy - Https://www.eclecticmeme.com</li>
- <li>Your server here</li>
- </ul>
-
-<h3>Steps to build a world from the engine.</h3>
-<ul>
-<li>Design the content  (Drupal)</li>
-<li>Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)</li>
-</ul>
-
-With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld. 
-
-Want magic? Create wands, magic stats, magical NPCs, bulidings and Cities in Drupal.
-
-Then create the battles and interactions in Mysql files called subscribers. (The heartbeat of the city is the event). Simply drop these subscribers into a folder and add them to the subscription list.
-
-A few years later... Drop the magic and introduce Psionics (whatever they are), create new content in Drupal and new interactions in Mysql. 
-
-Or make a trading game or a dungeon crawler.
 
 <hr>
-<h3>Roadmap:</h3>
-<h4>March 2023 </h4>
-
-<ul>
-<li>Replace phaserjs in backend with Colyseus</li>
-<li>connect phaserJs frontend with Colyseus Backend</li>
-<li>Add p2 and tilemap loader to backend https://github.com/damian-pastorini/p2js-tiledmap-demo </li>
-<li>Add animations for Player Character.</li>
-<li>Nodejs authentication via Drupal https://www.passportjs.org/packages/passport-drupal/  may need to be updated (which i will do)</li>
-<li>Add collision layer for players and world (local versus authorative server)</li>
-</ul>
-
-<h3>April 2023</h4>
-<ul>
-<li>Add portals to allow character move from Map-Grid to Map-Grid</li>
-<li>Connect Drupal User with Colyseus player and Phaser player</li> 
-</ul>
-
-<h3>May 2023</h4>
-<ul>
-<li>Add heartbeat for mining subscriber (as a test example)</li>
-<li>Add Universal Character Creater</li>
-<li>Crafting</li>
-<li>Trade</li>
-<li>Add PVE combat</li>
-<li>Release Ver 1.00</li>
-</ul>
-
-<h3>June 2023</h4>
-<ul>
-<li>Mine and Farm world subscribers</li>
-<li>NPC subscribers aka world simulator</li>
-<li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
-<li>World Animations</li>
-<li>NPC Animation</li>
-<li>Dialoque Engine (Drupal)</li>
-<li>Realtime World Objects</li>
-<li>Mission System</li>
-<li>PVP</li>
-<li>Politics subscribers</li>
-<li>Temple Subscribers</li>
-<li>Jail and reputation System</li>
-<li>PVP</li>
-</ul>
-
-
-<h3>Somebackground on the new architecture:</h3>
-
-A modular Drupal RPG and Trading Game engine - Wk 1 of 4 https://groups.drupal.org/node/536823
-
-A modular Drupal RPG and Trading Game engine - Wk 2 of 4 https://groups.drupal.org/node/536830
-
-A modular Drupal RPG and Trading Game engine - Wk 3 of 4 https://groups.drupal.org/node/536835
-
-A modular Drupal RPG and Trading Game engine - Wk 4 of 4 https://groups.drupal.org/node/536840
-
----------------------------------------------
-
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
-<hr>
-JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in php using Drupal to create Content and Phaser to present the game.
-
- The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.
+JiGS Interactive Game System is an open source Online RPG engine built in php, using Drupal to create content and PhaserJs to present the game.  The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.  Build  your unique universe  with 3rd party Expansion packs
 
 
 [Installation: ](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
-<ul>
- <li>Drupal : https://www.drupal.org/</li>
- <li>PhaserJs : https://phaser.io/</li>
- <li>NodeJs : https://nodejs.org/</li>
- <li>VueJs : https://vuejs.org/</li>
- <li>ColyseusJs : https://github.com/colyseus/colyseus</li>
- <li>Reldens : https://github.com/damian-pastorini/reldens</li>
-</ul>
+
+Symfony, Drupal, VueJs, PhaserJs
 
 Featurelist:
+
 <ul>
    <li> Online Browser based Multiplayer RPG.</li>
     <li> Primarily Tile based  Multiple Interfaces.</li>
     <li> No client plugins or downloads required.</li>
     <li> Game server plugin system allows mechanics of game to evolve over time</li>
-    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes.</li>
+    <li> 3rd party plugin system(including graphic templates)  allows gamesmasters(sysadmins) to create unique universes. (see Joomla.org)</li>
     <li> Post Peak Oil environment. Oil is rapidly declining. Riots, Tribalism and feudalism on the increase, genetic mutations etc.</li>
     <li> Genetics, alien technology and singularity create new game stats, mechanics and content.</li>
     <li> Soap Opera style monthly content revolving around numerous NPC arcs:  (think Lost tv show ).</li>
@@ -121,31 +33,32 @@ Featurelist:
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image02.png)
 
-
 <ul>
    <li> Main Gameplay Screens</li>
 
-   <li> Character Creation</li>
+<li> Character Creation</li>
 
-   <li> Buildings & Economics</li>
+<li> Buildings & Economics</li>
 
-   <li> Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</li>
+<li> Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</li>
 
-   <li> Exploration</li>
+<li> Exploration</li>
 
-   <li> Raiding</li>
+<li> Raiding</li>
 
-   <li> NPCs, Mobs, Hobbits</li>
+<li> NPCs, Mobs, Hobbits</li>
 
-   <li> Inventory</li>
+<li> Inventory</li>
 
-   <li> Storyline  </li>
+<li> Storyline  </li>
 
-   <li> Depreciation, Taxation, Quality Reduction, Depletion and Balance.</li>
+<li> Depreciation, Taxation, Quality Reduction, Depletion and Balance.</li>
 
-   <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
+<li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
 </ul>
 <hr>
+
+    Point & Click (Sierra Arts/ Lucasfilm style) Plugin
     Puzzles Plugin
     Extended Tile Map system Plugin
     Extended Character Creation Plugin
@@ -217,7 +130,7 @@ Grid: User Defined
 
 <h3>Main View Option Two</h3>
 
-Uses cursor or button presses( see compass button) to move one tile at a time .  
+Uses cursor or button presses( see compass button) to move one tile at a time .
 Tiles 50 *50px
 
 Map 8*8 tiles
@@ -236,7 +149,7 @@ Daz3d might be a good candidate for this.
 
 <h3>Profile Page</h3>
 
-Using Drupal's build in User Entities system.
+Currently using Joomla Community Builder with customised plugins for game stats.This suits minimum requirements for both again and game at present. Basic plugins can be created with minimum coding skills via the CB gui.Screenshot from 2014-10-19 14:19:57.png
 
 <h3>Buildings & Economics</h3>
 
@@ -258,19 +171,16 @@ Players and NPCs can hack and be hacked, causing grief, stealing bank account pe
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/terminal.gif)
 
-
 <h3>Factories</h3>
 Screenshot from 2014-10-19 14:27:09.png
 
-Factories require blueprints, energy, workforce(hobbits) & materials to create objects - can be hacked/attacked. 
+Factories require blueprints, energy, workforce(hobbits) & materials to create objects - can be hacked/attacked.
 Objects vary in quality time and cost to produce.
 ![Factories ](https://github.com/EMC23/JiGS/blob/master/images/image16.png)
-
 
 <h3>Farms</h3>
 
 ![Farms ](https://github.com/EMC23/JiGS/blob/master/images/image03.png)
-
 
 Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
 
@@ -309,8 +219,7 @@ Screenshot from 2014-10-19 14:27:48.png
     Engineering
     Reprocessing
     Navigation
-    Trade
-![Skills ](https://github.com/EMC23/JiGS/blob/master/images/image12.png)
+    Trade![Skills ](https://github.com/EMC23/JiGS/blob/master/images/image12.png)
 
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
@@ -364,8 +273,7 @@ Connect with twitter or Facebook
 Create scripts to give your npcs unique proclivities.
 Extending JiGS: create your own universe with 3rd Party plugins and templates: Examples
 
-    Point & Click (Sierra Arts/ Lucasfilm style) Plugin
-![Point and Click ](https://github.com/EMC23/JiGS/blob/master/images/image05.png)
+    Point & Click (Sierra Arts/ Lucasfilm style) Plugin![Point and Click ](https://github.com/EMC23/JiGS/blob/master/images/image05.png)
     Puzzles Plugin (Javascript Libraries)
 ![Puzzle Plugin ](https://github.com/EMC23/JiGS/blob/master/images/image07.png)
     Extended Tile Map system Plugin
@@ -376,3 +284,7 @@ Extending JiGS: create your own universe with 3rd Party plugins and templates: E
     Templating system (Fantasy/Space/Cyberpunk) fonts- widget chromes- backgrounds
     Configurable NPC system
     Extended Chat system
+    Other Non Games related Joomla plugins see here http://extensions.joomla.org/
+    Forums Plugin (Joomla/Kunena)
+
+[![Join the chat at https://gitter.im/Techbot/JiGS-PHP-RPG-engine](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Techbot/JiGS-PHP-RPG-engine?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// 
+// https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -11,7 +11,6 @@ export function placePlayer(share: any, player: any) {
     const playerShape = new p2.Box({ width: 32, height: 32 });
     playerShape.collisionGroup = share.COL_PLAYER;
     playerShape.collisionMask = share.COL_ENEMY | share.COL_GROUND;
-
     const playerBody = new p2.Body({
       mass: 1,
       position: [player.x, player.y],

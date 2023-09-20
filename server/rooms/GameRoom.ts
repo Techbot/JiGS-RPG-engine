@@ -1,16 +1,12 @@
 import { Room, Client } from "colyseus";
 const db = require("../services/db");
 const helper = require("../helper");
-const config = require("../config");
-var mysql = require("mysql2");
-import { mapJson } from "./jsonMap";
-import { InputData, MyRoomState, Player } from "./GameState";
-var Bridge = require('../services/bridge.js');
+import { InputData, MyRoomState, Player, Zombie } from "./GameState";
+var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 const fs = require('fs');
 
 export class GameRoom extends Room<MyRoomState> {
-
   fixedTimeStep = 1000 / 60;
   speedMultiplier = 1; // 20;
   share = {
@@ -20,6 +16,7 @@ export class GameRoom extends Room<MyRoomState> {
     COL_ENEMY: Math.pow(2, 1),
     COL_GROUND: Math.pow(2, 2)
   };
+
   colors = { '6': 14153173, '7': 15153173, '8': 12153173, '9': 16701904 };
   result: any;
   world: any;
@@ -36,126 +33,48 @@ export class GameRoom extends Room<MyRoomState> {
   dH: number;
   mainLayer: number;
   mapJson: any;
-
+  indexNumber: any;
+  boxes: any;
+  pause: number;
   constructor() {
     super();
     this.world = new p2.World({ gravity: [0, 0] });
-
-  }
-
-  loadMaps(nodeName: string) {
-    try {
-      const data = require('../../../../../assets/cities/' + nodeName + '.json');
-      //   console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err);
-      console.log('ggggg');
-    }
-  }
-
-  async loadPortals(nodeNumber: number) {
-    const portal = await import("./portal");
-    // Render page
-    var self = this;
-
-    Bridge.getPortals(nodeNumber).then((result: any) => {
-      this.result = result;
-      return result;
-    }).then((newResult: any) => {
-      for (let i = 0; i < newResult.length; i++) {
-        self.world.addBody(portal.placePortal(newResult[i], this.share));
-        console.log(
-          'added portal to '
-          + newResult[i].field_destination_target_id
-          + "@: "
-          + newResult[i].field_destination_x_value
-          + " x ; " + newResult[i].field_destination_y_value + "y"
-
-          + 'to' + newResult[i].field_tiled_value
-
-        );
-      }
-    }).catch(function () {
-      console.log('shit');
-    });
-
-  }
-
-  async loadNpcs(nodeNumber: number) {
-    const Npc = await import("./npc");
-    // Render page
-    var self = this;
-    Bridge.getNpcs(nodeNumber).then((result: any) => {
-      this.state.NpcResult = result;
-      return result;
-    }).then((newResult: any) => {
-      for (let i = 0; i < newResult.length; i++) {
-        self.world.addBody(Npc.placeNpc(newResult[i], this.share));
-        console.log(
-          'added Npc to '
-          + newResult[i].field_x_value + " x ; "
-          + newResult[i].field_y_value + " y "
-        );
-      }
-    }).catch(function () {
-      console.log('shit');
-    });
-
-  }
-
-  async loadRewards(nodeNumber: number) {
-    const reward = await import("./reward");
-    // Render page
-    var self = this;
-    Bridge.getRewards(nodeNumber).then((result: any) => {
-      this.result = result;
-      return result;
-    }).then((newResult: any) => {
-      for (let i = 0; i < newResult.length; i++) {
-        self.world.addBody(reward.placeReward(newResult[i], this.share));
-        console.log(
-          'added reward ' + newResult[i].field_ref_value + ' to '
-          + '@: '
-          + newResult[i].field_x_value
-          + ' x ; ' + newResult[i].field_y_value + 'y'
-        );
-      }
-    }).catch(function () {
-      console.log('shit');
-    });
-
+    this.boxes = [];
+    this.pause = 0;
   }
 
   onCreate(options: any) {
+    this.indexNumber = 1;
     this.setState(new MyRoomState());
     this.loadPortals(options.nodeNumber);
     this.loadRewards(options.nodeNumber);
     this.loadNpcs(options.nodeNumber);
+    this.loadMobs(options.nodeNumber);
     this.addLayers(options.nodeName);
-
-    // set map dimensions
     this.state.mapWidth = 1900;
     this.state.mapHeight = 1900;
 
     this.onMessage(0, (client, input) => {
       // handle player input
-      const player = this.state.players.get(client.sessionId);
 
+      const player = this.state.players.get(client.sessionId);
       if (player.playerBody.portal) {
-        console.log(player.playerBody.portal);
         client.send("portal", player.playerBody.portal);
         player.playerBody.portal = false;
       }
-
       else if (player.playerBody.collide) {
-        console.log(player.playerBody.collide);
         client.send("collide", player.playerBody.collide);
         player.playerBody.collide = false;
-        // player.inputQueue.push(input);
       }
-     else if (player.playerBody.reward) {
-        console.log(player.playerBody.reward);
+      else if (player.playerBody.struck) {
+        client.send("struck", player.playerBody.health);
+        player.playerBody.struck = false;
+      }
+      else if (player.playerBody.dead) {
+        client.send("dead", player);
+        player.playerBody.dead = false;
+      }
+      else if (player.playerBody.reward) {
         client.send("reward", player.playerBody.reward);
         player.playerBody.reward = false;
         player.inputQueue.push(input);
@@ -164,7 +83,6 @@ export class GameRoom extends Room<MyRoomState> {
         player.inputQueue.push(input);
       }
     });
-
     var self = this;
     let elapsedTime = 0;
     this.setSimulationInterval((deltaTime) => {
@@ -179,14 +97,150 @@ export class GameRoom extends Room<MyRoomState> {
   fixedTick(timeStep: number) {
     const velocity = 2;
     var fixedTimeStep = 1 / 60;
+    ////////////////////////////////////////////////////////////////////////////////
     this.world.step(fixedTimeStep);
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
 
+    if (this.boxes.length > 0) {
+      // Update destination every 2 seconds for one of the mobs
+      if (this.pause == 0) {
+        this.pause = 1;
+        const myPromise = new Promise((resolve, reject) => {
+          resolve(Math.ceil(Math.random() * this.boxes.length - 1));
+        });
+        myPromise.then((mobNumber) => {
+          this.updateMobForce(mobNumber);
+        });
+      }
+      let i = 0;
+      while (i < this.boxes.length) {
+        this.boxes[i].setZeroForce();
+        this.boxes[i].force[0] = this.boxes[i].destinationX;
+        this.boxes[i].force[1] = this.boxes[i].destinationY;
+        ////////////////////////////////////////////////////////////////////////////
+        this.state.MobResult.forEach(mob => {
+
+          if (this.boxes[i].field_mob_name_value == mob.field_mob_name_value) {
+            console.log('follow ' + mob.following);
+            //if  not following someone do the test
+            if (mob.following==0) {
+
+               if (parseInt(this.boxes[i].position[0]) != parseInt(mob.field_x_value)
+                || parseInt(this.boxes[i].position[1]) != parseInt(mob.field_y_value)) {
+                const mobItem = new Zombie();
+                mobItem.following = 0;
+                mobItem.field_mobs_target_id = mob.field_mobs_target_id
+                mobItem.field_mob_name_value = mob.field_mob_name_value
+                mobItem.field_x_value = parseInt(this.boxes[i].position[0])
+                mobItem.field_y_value = parseInt(this.boxes[i].position[1])
+                mobItem.health = mob.health
+                this.state.MobResult.set(mob.field_mob_name_value, mobItem);
+              }
+
+
+              this.state.players.forEach(player => {
+                //var mobPlayerDist = Math.sqrt(Math.pow((player.x - parseInt(this.boxes[i].position[0])), 2) + Math.pow((player.y - parseInt(this.boxes[i].position[0])), 2));
+                var mobPlayerDist = Math.hypot(player.x - parseInt(this.boxes[i].position[0]), player.y - parseInt(this.boxes[i].position[0]));
+
+
+                console.log('player ' + player.playerId + ' dist: ' + mobPlayerDist + "from " + i);
+
+                if (mobPlayerDist < 800) {
+                  const mobItem = new Zombie();
+                  mobItem.following = player.playerId;
+                  mobItem.field_mobs_target_id = mob.field_mobs_target_id
+                  mobItem.field_mob_name_value = mob.field_mob_name_value
+                  mobItem.field_x_value = parseInt(this.boxes[i].position[0])
+                  mobItem.field_y_value = parseInt(this.boxes[i].position[1])
+                  mobItem.health = mob.health
+                  this.state.MobResult.set(mob.field_mob_name_value, mobItem);
+                }
+              })
+            }
+            if (mob.following > 0) {
+              console.log('almost following');
+               this.state.players.forEach(player => {
+                if (player.playerId == mob.following) {
+
+                  console.log('following');
+                  if (parseInt(this.boxes[i].position[0]) > player.playerBody.position[0]) {
+                    this.boxes[i].force[0] = -130;
+                  }
+                  else {
+                    this.boxes[i].force[0] =130;
+                  }
+                  if (parseInt(this.boxes[i].position[1]) > player.playerBody.position[1]) {
+                    this.boxes[i].force[1] = -130;
+                  }
+                  else {
+                    this.boxes[i].force[1] = 130;
+                  }
+                  const mobItem = new Zombie();
+                  mobItem.following = player.playerId;
+                  mobItem.field_mobs_target_id = mob.field_mobs_target_id
+                  mobItem.field_mob_name_value = mob.field_mob_name_value
+                  mobItem.field_x_value = parseInt(this.boxes[i].position[0])
+                  mobItem.field_y_value = parseInt(this.boxes[i].position[1])
+                  mobItem.health = mob.health
+                  this.state.MobResult.set(mob.field_mob_name_value, mobItem);
+                }
+              })
+            };
+          }
+        });
+        ////////////////////////////////////////////////////////////////////////////////
+        i++;
+      };
+    };
+
+    ////////////////////////////////////////////////////////////////////////////////
     this.state.players.forEach(player => {
       let input: InputData;
-
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
+        if (input.mobClick != '') {
+          this.state.MobResult.forEach(element => {
+            console.log(element.field_mob_name_value);
+          });
+          if (this.state.MobResult[input.mobClick] != undefined) {
+            if (this.state.MobResult[input.mobClick].health > 0) {
+              console.log(input.mobClick + " was attacked by " + player.playerId);
+              this.state.MobResult[input.mobClick].health -= 20;
+              if (this.state.MobResult[input.mobClick].health == 0) {
+                console.log('zombie dead');
+                this.broadcast("zombie dead", this.state.MobResult[input.mobClick].field_mob_name_value);
+                const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 10, 0));
+                promise1.then(() => {
+                });
+              }
+              if (this.state.MobResult[input.mobClick].health < 0) {
+                this.state.MobResult[input.mobClick].health = 0;
+              }
+              else {
+                const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 1, 0));
+                promise1.then(() => {
+                });
+              }
+              const mobItem = new Zombie();
+              mobItem.field_mobs_target_id = this.state.MobResult[input.mobClick].field_mobs_target_id;
+              mobItem.field_mob_name_value = this.state.MobResult[input.mobClick].field_mob_name_value;
+              mobItem.field_x_value = this.state.MobResult[input.mobClick].field_x_value;
+              mobItem.field_y_value = this.state.MobResult[input.mobClick].field_y_value;
+              mobItem.health = this.state.MobResult[input.mobClick].health;
+              mobItem.following = 0;
+              this.state.MobResult.set(this.state.MobResult[input.mobClick].field_mob_name_value, mobItem);
+            }
+          }
+        }
+        if (input.inputX !== player.lastX) {
+          console.log('x = ' + input.inputX);
+          player.lastX = input.inputX;
+
+        }
+        if (input.inputY !== player.lastY) {
+          console.log('y = ' + input.inputY);
+          player.lastY = input.inputY;
+        }
 
         if (input.left) {
           if (!player.playerBody.collide) {
@@ -220,10 +274,12 @@ export class GameRoom extends Room<MyRoomState> {
             player.y -= 32;
           }
         }
+        ////////////////////////////////////////////////////////////////////////////////
+        //
+        ////////////////////////////////////////////////////////////////////////////////
 
         player.playerBody.position[0] = player.x;
         player.playerBody.position[1] = player.y;
-
         if (this.last_step_x != player.playerBody.position[0] || this.last_step_y != player.playerBody.position[1]) {
           console.log(player.playerBody.position[0], player.playerBody.position[1])
           this.last_step_x = player.playerBody.position[0];
@@ -234,40 +290,70 @@ export class GameRoom extends Room<MyRoomState> {
     });
   }
 
+  async updateMobForce(i) {
+    await this.skip(2000);
+    var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
+    var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
+    this.boxes[i].destinationX = forceX;
+    this.boxes[i].destinationY = forceY;
+    this.pause = 0;
+  }
+
+  skip(val) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('resolved');
+      }, val);
+    });
+  }
+
+
   onJoin(client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     console.log(options.playerId, "joined!");
-
     const player = new Player();
+    var self = this;
     player.playerId = options.playerId;
+    Bridge.getPlayer(options.playerId).then((result: any) => {
+      this.result = result;
+      return result;
+    }).then((newResult: any) => {
 
-    player.x = 500;
-    player.y = 500;
-
-    const playerShape = new p2.Box({ width: 32, height: 48 });
-    playerShape.collisionGroup = this.share.COL_PLAYER;
-    playerShape.collisionMask = this.share.COL_ENEMY | this.share.COL_GROUND;
-
-    player.playerBody = new p2.Body({
-      mass: 1,
-      position: [player.x, player.y],
-      type: p2.Body.DYNAMIC,
-      collisionResponse: true,
-      fixedRotation: true
+      player.x = newResult[0].field_x_value;
+      player.y = newResult[0].field_y_value;
+      player.health = newResult[0].field_health_value;
+      const playerShape = new p2.Box({ width: 32, height: 48 });
+      playerShape.collisionGroup = this.share.COL_PLAYER;
+      playerShape.collisionMask = this.share.COL_ENEMY | this.share.COL_GROUND;
+      player.playerBody = new p2.Body({
+        mass: 1,
+        position: [player.x, player.y],
+        type: p2.Body.DYNAMIC,
+        collisionResponse: true,
+        fixedRotation: true
+      });
+      player.playerBody.health = player.health;
+      player.playerBody.playerId = player.playerId;
+      player.playerBody.isPlayer = true;
+      player.playerBody.motionState = 2; //STATIC
+      player.playerBody.collideWorldBounds = true;
+      player.playerBody.addShape(playerShape);
+      player.playerBody.clientID = client.sessionId;
+      this.state.players.set(client.sessionId, player);
+      console.log(player.playerBody.health, "health!");
+      this.world.addBody(player.playerBody);
+    }).catch(function () {
+      console.log('shit');
     });
-    player.playerBody.playerId = player.playerId;
-    player.playerBody.isPlayer = true;
-    player.playerBody.motionState = 2; //STATIC
-    player.playerBody.collideWorldBounds = true;
-    player.playerBody.addShape(playerShape);
-    player.playerBody.clientID = client.sessionId;
-    this.state.players.set(client.sessionId, player);
-    this.world.addBody(player.playerBody);
   }
 
   onLeave(client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.players.delete(client.sessionId);
+  }
+
+  onStateChange(state) {
+    console.log(this.roomId, "has new state:", state);
   }
 
   onDispose() {
@@ -280,20 +366,103 @@ export class GameRoom extends Room<MyRoomState> {
     return PBody;
   }
 
+  async loadPortals(nodeNumber: number) {
+    const portal = await import("./portal");
+    // Render page
+    var self = this;
+    Bridge.getPortals(nodeNumber).then((result: any) => {
+      this.result = result;
+      return result;
+    }).then((newResult: any) => {
+      for (let i = 0; i < newResult.length; i++) {
+        self.world.addBody(portal.placePortal(newResult[i], this.share));
+      }
+    }).catch(function () {
+      console.log('Portal shit');
+    });
+  }
+
+  async loadNpcs(nodeNumber: number) {
+    const Npc = await import("./npc");
+    var self = this;
+    Bridge.getNpcs(nodeNumber).then((result: any) => {
+      this.state.NpcResult = result;
+      return result;
+    }).then((newResult: any) => {
+      for (let i = 0; i < newResult.length; i++) {
+        self.world.addBody(Npc.placeNpc(newResult[i], this.share));
+      }
+    }).catch(function () {
+      console.log('NPC shit');
+    });
+  }
+
+  async loadMobs(nodeNumber: number) {
+    const Mob = await import("./mob");
+    var self = this;
+    Bridge.getMobs(nodeNumber).then((result: any) => {
+      result.forEach(mob => {
+        const mobItem = new Zombie();
+        mobItem.field_mobs_target_id = mob.field_mobs_target_id;
+        mobItem.field_mob_name_value = mob.field_mob_name_value;
+        mobItem.field_x_value = mob.field_x_value;
+        mobItem.field_y_value = mob.field_y_value;
+        mobItem.health = 100;
+        mobItem.following = 0;
+        this.state.MobResult.set(mob.field_mob_name_value, mobItem);
+      });
+      return result;
+    }).then((newResult: any) => {
+      for (let i = 0; i < newResult.length; i++) {
+        newResult[i].health = 100;
+        var thing = Mob.makeMob(newResult[i], this.share);
+        thing.destinationX = 0;
+        thing.destinationY = 0;
+        self.world.addBody(thing);
+        this.boxes.push(thing);
+      }
+    }).catch(function () {
+      console.log('Mob shit');
+    });
+  }
+
+  async loadRewards(nodeNumber: number) {
+    const reward = await import("./reward");
+    // Render page
+    var self = this;
+    Bridge.getRewards(nodeNumber).then((result: any) => {
+      this.result = result;
+      return result;
+    }).then((newResult: any) => {
+      for (let i = 0; i < newResult.length; i++) {
+        self.world.addBody(reward.placeReward(newResult[i], this.share));
+      }
+    }).catch(function () {
+      console.log('shit');
+    });
+  }
+
+  loadMaps(nodeName: string) {
+    var cityName = nodeName.split("-")[0];
+    var cityNumber = nodeName.split("-")[1];
+    try {
+      const data = require(`../../../../../assets/cities/` + cityName + `/json/` + cityNumber + `.json`);
+      return data;
+    } catch (err) {
+      console.log(err);
+      console.log('shit');
+    }
+  }
 
   checkHits() {
-
     //  To explain - the post broadphase event has collected together all potential collision pairs in the world
     //  It doesn't mean they WILL collide, just that they might do.
-
     //  This callback is sent each collision pair of bodies. It's up to you how you compare them.
     //  If you return true then the pair will carry on into the narrow phase, potentially colliding.
     //  If you return false they will be removed from the narrow phase check all together.
-
     //  In this simple example if one of the bodies is our space ship,
     //  and the other body is the green pepper sprite (frame ID 4) then we DON'T allow the collision to happen.
     //  Usually you would use a collision mask for something this simple, but it demonstates use.
-
     /*     if ((body1.sprite.name === 'ship' && body2.sprite.frame === 4) || (body2.sprite.name === 'ship' && body1.sprite.frame === 4)) {
           console.log('Bilbo Baggins')
           return false;
@@ -304,9 +473,7 @@ export class GameRoom extends Room<MyRoomState> {
 
   async addLayers(nodeName: any) {
     this.mapJson = this.loadMaps(nodeName);
-
     var layerData = this.mapJson.layers[0].data;
-
     console.log('activated');
     var self = this;
     // world collisions:
@@ -338,61 +505,82 @@ export class GameRoom extends Room<MyRoomState> {
           boxBody.tileIndex = tileIndex;
           boxBody.isWall = true;
           boxBody.addShape(boxShape);
-          //console.log(boxBody.tile);
-          //console.log("c:" + c);
-          self.world.addBody(boxBody);
         }
       }
     }
 
-    this.world.on("endcontact", function (evt: any) {
+    this.world.on('impact', (evt: any) => {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
-      console.log('-----------End Contact--- Pay Attention---');
-
-    });
-
-    //  console.log('yo4');
-
-
-    this.world.on('impact',  (evt: any) => {
-      var bodyA = evt.bodyA;
-      var bodyB = evt.bodyB;
-
       if (bodyA.isPortal) {
         if (!bodyA.done) {
           console.log('Portal!!!!');
           console.log('tiled: ' + bodyA.tiled);
           console.log('playerId: ' + bodyB.playerId);
           const promise1 = Promise.resolve(Bridge.updateMap(bodyB.playerId, bodyA.destination));
-          promise1.then(() => {
-            bodyB.portal = bodyA.tiled;
-          });
+          promise1
+            .then(() => { bodyB.portal = bodyA.tiled; })
+            .then(() => {
+              console.log(bodyA.destination_x);
+              Bridge.updatePlayer(bodyB.playerId, 'x', bodyA.destination_x, 1)
+            })
+            .then(() => {
+              console.log(bodyA.destination_y);
+              Bridge.updatePlayer(bodyB.playerId, 'y', bodyA.destination_y, 1)
+            });
           bodyA.done = true;
         }
       }
-
       if (bodyA.isReward) {
         if (!bodyA.done) {
-          console.log('Reward!!!!');
-          console.log('playerId: ' + bodyB.playerId);
-          const promise1 = Promise.resolve(Bridge.updateScore(bodyB.playerId, 1));
-          promise1.then(() => {
-          });
-          this.state.destroySomething();
+          const promise1 = Promise.resolve(Bridge.updatePlayer(bodyB.playerId, 'credits', 1, 0));
+          promise1.then(() => { });
+          const promise2 = Promise.resolve(Bridge.updatePlayer(bodyB.playerId, 'experience', 1, 0));
+          promise2.then(() => { });
           this.broadcast("remove-reward", bodyA.ref);
           bodyB.reward = bodyA.ref;
           bodyA.done = true;
         }
       }
-    });
+      if (bodyA.isMob) {
+        //  if (!bodyA.done) {
+        console.log('Mobstrike!!!!');
+        console.log('playerId: ' + bodyB.playerId);
+        console.log('health: ' + bodyB.health);
+        bodyB.struck = true;
+        const promise1 = Promise.resolve(Bridge.updatePlayer(bodyB.playerId, 'health', -10, false));
 
+        promise1.then(() => {
+          bodyB.health = bodyB.health - 10;
+
+          if (bodyB.health <= 0) {
+            //bodyB.health = 0;
+            const promise1 = Promise.resolve(Bridge.updatePlayer(bodyB.playerId, 'health', 80, true));
+            this.broadcast("dead", bodyB.playerId);
+          }
+        });
+
+        const mobItem = new Zombie();
+        mobItem.field_mobs_target_id = bodyA.field_mobs_target_id
+        mobItem.field_mob_name_value = bodyA.field_mob_name_value
+        mobItem.field_x_value = parseInt(bodyA.position[0])
+        mobItem.field_y_value = parseInt(bodyA.position[1])
+        mobItem.health = bodyA.health;
+        this.state.MobResult.set(bodyA.field_mob_name_value, mobItem);
+        this.broadcast("player hit", bodyA.field_mob_name_value); // TODO change to player name
+
+        bodyB.mobHit = bodyA.mob_name;
+        //bodyA.done = true;
+        //     }
+      }
+    })
+    ///////////////////////////////////////////////////////////////////////////
     this.world.on('beginContact', function (evt: any) {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
       console.log('Begin Contact');
       if (bodyA.isPlayer) {
-        /*           console.log('endContact! --------------------------------------------------------------');
+        /*        console.log('endContact! --------------------------------------------------------------');
                   console.log('BODY A is the player!', bodyA.isPlayer, bodyA.id);
                   console.log('BODY B is the wall!', bodyB.isWall, bodyB.id,  bodyB.position); */
         console.log('BODY B TILE / TILEINDEX: ', bodyB.tile, bodyB.tileIndex);
@@ -407,6 +595,12 @@ export class GameRoom extends Room<MyRoomState> {
         //  bodyB.velocity = [0, 0];
       }
       console.log('----- .');
+    });
+
+    this.world.on("endcontact", function (evt: any) {
+      var bodyA = evt.bodyA;
+      var bodyB = evt.bodyB;
+      console.log('-----------End Contact--- Pay Attention---');
     });
   }
 }

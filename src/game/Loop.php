@@ -29,7 +29,7 @@ class Loop
         if ($this->npc->getHealth() <= 0){
             $this->player->setWins($this->player->getWins() + 1);
             $this->text .=  "you won<br>";
-            $this->player->setHealth(200);
+          //  $this->player->setHealth(200);
         }
         elseif ($this->player->getHealth() <= 0){
             $this->player->setHealth(100);

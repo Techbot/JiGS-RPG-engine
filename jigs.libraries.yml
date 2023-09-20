@@ -55,7 +55,7 @@ socket:
 client:
   version: 1.0
   js:
-    client/dist/client.umd.min.js: { minified: true }
+    client/dist/index.ccb13aa6.js: { minified: true }
   css:
     theme:
       client/dist/client.css: { minified: true }

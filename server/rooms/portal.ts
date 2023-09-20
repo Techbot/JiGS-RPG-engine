@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// 
+// https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -15,17 +15,15 @@ var p2 = require('p2');
     const circleBody = new p2.Body({
       mass: 1,
       position: [portal.field_x_value, portal.field_y_value],
-      destination_x: portal.field_destination_x_value,
-      destination_y: portal.field_destination_y_value,
-
-
       angle: 0,
       type: p2.Body.DYNAMIC,
       collisionResponse: true,
       velocity: [0, 0],
       angularVelocity: 0
     });
-    circleBody.destination = portal.field_destination_target_id;
+    circleBody.destination_x = portal.field_destination_x_value;
+    circleBody.destination_y = portal.field_destination_y_value;
+    circleBody.destination   = portal.field_destination_target_id;
     circleBody.tiled = portal.field_tiled_value;
 
    // console.log(' position:', circleBody.position);

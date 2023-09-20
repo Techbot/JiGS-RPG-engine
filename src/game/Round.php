@@ -49,13 +49,13 @@ class Round
         if ((int)$this->player->getAttack() > (int)$this->npc->getAttack() ){
 
          //   $this->text .=  "Player stabs NPC <br>";
-            $this->npc->setHealth ((int)$this->npc->getHealth() - 10);
+        //    $this->npc->setHealth ((int)$this->npc->getHealth() - 10);
 
         }
 
         if ($this->player->getAttack() < (int)$this->npc->getAttack() ){
-            $this->text .=  "NPC stabs Player <br>";
-            $this->player->setHealth ((int)$this->player->getHealth() - 10);
+      //      $this->text .=  "NPC stabs Player <br>";
+          //  $this->player->setHealth ((int)$this->player->getHealth() - 10);
         }
 
       return  $this->text;
