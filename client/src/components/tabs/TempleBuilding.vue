@@ -1,0 +1,34 @@
+<script>
+
+</script>
+
+<template>
+<div class="building">
+  <img src = "/assets/images/System/player-top.png"/>
+<div><h2>Player Stats</h2></div>
+<img src = "/assets/images/System/player-inventory.png"/>
+</div>
+</template>
+
+<style >
+#app>form,
+.building {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: small;
+}
+
+.action-name {
+  flex: 1 0 100%;
+}
+
+#left,
+#right {
+  font-size:xx-small;
+  flex: 1 0 50%;
+  width: 200px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+</style>
+

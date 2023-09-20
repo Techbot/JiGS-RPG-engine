@@ -2,6 +2,7 @@
 
   import { onMounted, onUnmounted } from 'vue'
   import { reactive } from 'vue'
+  import Toolbar  from './Toolbar.vue';
 
   let gameInstance = null
   const containerId = 'game-container'
@@ -19,5 +20,7 @@
   <template>
   <div>
   <div :id="containerId" />
+
+  <Toolbar/>
 </div>
 </template>
