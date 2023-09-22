@@ -1,6 +1,4 @@
 
-
-
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -44,10 +42,14 @@
 
 # mine
 
-
+tiled
 /server/node_modules
-/server/lib/
+/server/lib
 /vendor
-/client/dist/
+/client/dist/*
 /client/node_modules
-
+/client/.parcel-cache
+config
+config/install
+server/services/db.ts
+client/src/game/backend.ts
