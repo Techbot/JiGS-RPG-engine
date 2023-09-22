@@ -1,6 +1,7 @@
 <h1>JiGS</h1>
-Vision: An Online RPG Trading game built to be adaptable and extendable by Admins/Game Masters. 
+<h2>An Online Realtime Multiplayer RPG Trading game engine.</h2>h2>
 
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 
 <h2>DEMO</h2>
 <ul>
@@ -53,13 +54,46 @@ Or make a trading game or a dungeon crawler.
 <li>Release Ver 1.00</li>
 </ul>
 
+
 <h3>June 2023</h4>
+<ul>
+<li>Add heartbeat for mining subscriber (as a test example)</li>
+
+</ul
+
+<h3>July 2023</h4>
+<ul>
+<li>Add Universal Character Creater</li>
+<li>Crafting</li>
+<li>Trade</li>
+<li>Add PVE combat</li>
+</ul
+
+<h3>Aug 2023</h4>
+<ul>
+<li>Add heartbeat for mining subscriber (as a test example)</li>
+<li>Add Universal Character Creater</li>
+<li>Crafting</li>
+<li>Trade</li>
+<li>Add PVE combat</li>
+<li>Release Ver 1.00</li>
+</ul
+ 
+<h3>Sept 2023</h4>
 <ul>
 <li>Mine and Farm world subscribers</li>
 <li>NPC subscribers aka world simulator</li>
 <li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
+</ul>
+
+<h3>Oct 2023</h4>
+<ul>
 <li>World Animations</li>
 <li>NPC Animation</li>
+</ul>
+
+<h3>Nov 2023</h4>
+<ul>
 <li>Dialoque Engine (Drupal)</li>
 <li>Realtime World Objects</li>
 <li>Mission System</li>
@@ -68,6 +102,11 @@ Or make a trading game or a dungeon crawler.
 <li>Temple Subscribers</li>
 <li>Jail and reputation System</li>
 <li>PVP</li>
+</ul>
+
+<h3>Dec 2023</h4>
+<ul>
+<li>Release Ver 1.00</li>
 </ul>
 
 
@@ -83,7 +122,6 @@ A modular Drupal RPG and Trading Game engine - Wk 4 of 4 https://groups.drupal.o
 
 ---------------------------------------------
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image01.png)
 <hr>
 JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in php using Drupal to create Content and Phaser to present the game.
 
@@ -145,16 +183,6 @@ Featurelist:
 
    <li> Extending JiGS: create your own universe with 3rd Party plugins and templates</li>
 </ul>
-<hr>
-    Puzzles Plugin
-    Extended Tile Map system Plugin
-    Extended Character Creation Plugin
-    Player owned Shop market replaces or augments gamemasters run market.
-    Extended PvP fight system
-    Templating system (Fantasy/Space/Cyberpunk fonts- templates -widget chromes- backgrounds
-    Extended configurable NPC & chat system
-    Add stats such as crime ratings, pollution
-    Social media plugins (Facebook Twitter)
 
 <hr>
 <h2> Main Gameplay Screen</h2>
@@ -180,19 +208,6 @@ Featurelist:
 <li> Players</li>
 </ul>
 
-<h3>Advanced Modules</h3>
-
-Terminal: ‘Command line’ style interface & Hollywood style computer interface.
-Character Creation and Management.
-
-Debug Module : Admin Only
-
-    Direct access to twine stories hidden inside various tiles in the main view.
-    Direct access to puzzles etc.
-    Direct Access to experimental Works in progress
-
-<h3>Communication Modules:</h3>
-
 Default Modules:
 ![Wavy Lines](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
 
@@ -212,7 +227,6 @@ This is a direct line between the player and the world. Typical messages would b
 Uses point and click with pathfinder to move your player to tile(on hold).
 Tiles 32 *32 px
 
-Maps 18 * 14 tiles
 Grid: User Defined
 
 <h3>Main View Option Two</h3>
@@ -220,8 +234,6 @@ Grid: User Defined
 Uses cursor or button presses( see compass button) to move one tile at a time .  
 Tiles 50 *50px
 
-Map 8*8 tiles
-Grid = 4*4 maps or 3*3 maps or 2*2 maps etc
 
 ![8X8 tiles](https://github.com/EMC23/JiGS/blob/master/images/image04.png)
 
@@ -231,8 +243,6 @@ Grid = 4*4 maps or 3*3 maps or 2*2 maps etc
 
 In the main views , players see themselves represented by webstyle  avatars as opposed to game style representations. This allows players to upload their own images. The conflict of styles creates part of the cut’paste aesthetic.
 Extended Character selection is on hold until third party plugin system is complete to allow for more varied character selection systems.
-
-Daz3d might be a good candidate for this.
 
 <h3>Profile Page</h3>
 
@@ -341,11 +351,11 @@ hobbits have a lifespan as defined by the gamemaster which can be altered via dy
 
 <h3>Inventory</h3>
 
-BackPack: Currently limited to 12 objects. Weight and Size are not taken in consideration as yet.
+BackPack: Weight and Size are not taken in consideration as yet.
 
 Warehouses:Crops, Mass quantities of objects for sale or transport. (On Hold)
 
-Apartment: Limited to 100 objects , cannot be lost, unless AWOL limit has be exceeded (if configured)
+Apartment: cannot be lost, unless AWOL limit has be exceeded (if configured)
 
 <h3>Storylines-Hypertext  </h3>
 
@@ -360,19 +370,5 @@ Not playing for a period of  three months should result in total non effect of p
 
 Install 3rd party plugins that introduce pollution, crime, magic.
 Use external data such as weather statistics or open data to create a virtual internet world of things.
-Connect with twitter or Facebook
 Create scripts to give your npcs unique proclivities.
-Extending JiGS: create your own universe with 3rd Party plugins and templates: Examples
 
-    Point & Click (Sierra Arts/ Lucasfilm style) Plugin
-![Point and Click ](https://github.com/EMC23/JiGS/blob/master/images/image05.png)
-    Puzzles Plugin (Javascript Libraries)
-![Puzzle Plugin ](https://github.com/EMC23/JiGS/blob/master/images/image07.png)
-    Extended Tile Map system Plugin
-
-    Extended Character Creation Plugin
-    Player owned Shop market replaces or augments gamemasters run market.
-    Multiple  PvP fight system
-    Templating system (Fantasy/Space/Cyberpunk) fonts- widget chromes- backgrounds
-    Configurable NPC system
-    Extended Chat system
