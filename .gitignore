@@ -52,4 +52,5 @@ tiled
 config
 config/install
 server/services/db.ts
+/client/src/game/backend.ts
 client/src/game/backend.ts
