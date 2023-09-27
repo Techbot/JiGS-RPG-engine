@@ -41,23 +41,18 @@ Or make a trading game or a dungeon crawler.
 <h3>April 2023</h4>
 <ul>
 <li>Add portals to allow character move from Map-Grid to Map-Grid</li>
-<li>Connect Drupal User with Colyseus player and Phaser player</li>
+
 </ul>
 
 <h3>May 2023</h4>
 <ul>
-<li>Add heartbeat for mining subscriber (as a test example)</li>
-<li>Add Universal Character Creater</li>
-<li>Crafting</li>
-<li>Trade</li>
-<li>Add PVE combat</li>
-<li>Release Ver 1.00</li>
+<li>Connect Drupal User with Colyseus player and Phaser player</li>
+ <li>Realtime World Objects</li>
 </ul>
 
 <h3>June 2023</h4>
 <ul>
 <li>Add heartbeat for mining subscriber (as a test example)</li>
-
 </ul
 
 <h3>July 2023</h4>
@@ -65,45 +60,38 @@ Or make a trading game or a dungeon crawler.
 <li>Add Universal Character Creater</li>
 <li>Crafting</li>
 <li>Trade</li>
-<li>Add PVE combat</li>
 </ul
 
 <h3>Aug 2023</h4>
 <ul>
-<li>Add heartbeat for mining subscriber (as a test example)</li>
-<li>Add Universal Character Creater</li>
-<li>Crafting</li>
-<li>Trade</li>
 <li>Add PVE combat</li>
 <li>Release Ver 1.00</li>
 </ul
 
-<h3>Sept 2023</h4>
+<h3>Oct 2023</h4>
 <ul>
+<li>Mission System</li>
 <li>Mine and Farm world subscribers</li>
 <li>NPC subscribers aka world simulator</li>
 <li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
 </ul>
 
-<h3>Oct 2023</h4>
+<h3>Nov 2023</h4>
 <ul>
 <li>World Animations</li>
 <li>NPC Animation</li>
 </ul>
 
-<h3>Nov 2023</h4>
+<h3>Dec 2023</h4>
 <ul>
 <li>Dialoque Engine (Drupal)</li>
-<li>Realtime World Objects</li>
-<li>Mission System</li>
-<li>PVP</li>
 <li>Politics subscribers</li>
 <li>Temple Subscribers</li>
 <li>Jail and reputation System</li>
 <li>PVP</li>
 </ul>
 
-<h3>Dec 2023</h4>
+<h3>Jan 2024</h4>
 <ul>
 <li>Release Ver 1.00</li>
 </ul>
