@@ -80,6 +80,7 @@ export class MainScene extends Phaser.Scene {
     sys: any;
     plugins: any;
     messenger: Messenger;
+    walkSound: Phaser.Sound.BaseSound;
 
     constructor() {
         super({ key: "main" });
@@ -102,9 +103,13 @@ export class MainScene extends Phaser.Scene {
         this.Loader = new Load;
         this.messenger = new Messenger;
         this.Loader.load(self);
+        this.load.setPath('/assets/audio/');
+        this.load.audio('walk', ['thud.ogg', 'thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+
+
     }
 
     async create() {
@@ -114,6 +119,13 @@ export class MainScene extends Phaser.Scene {
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
         await this.connect(this.jigs.city + "-" + padding(this.jigs.tiled, 3, 0));
+
+
+
+        this.walkSound = this.sound.add('walk', { volume: 0.1 });
+
+
+
 
         this.messenger.initMessages(self);
 
