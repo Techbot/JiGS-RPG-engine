@@ -1,16 +1,19 @@
 <script>
 import axios from "axios";
 import * as coreui from '@coreui/coreui'
+import { CButton } from '@coreui/vue'
 import { useJigsStore } from "./stores/jigs";
 import ViewTabs from "./components/ViewTabs";
 import ViewMain from "./components/ViewMain";
-import '@coreui/coreui/dist/css/coreui.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+
+//export = CButton;
 
 export default {
   components: {
     ViewTabs,
-    ViewMain
+    ViewMain,
+    coreui,
+    CButton
   },
   setup() {
     const jigs = useJigsStore();
