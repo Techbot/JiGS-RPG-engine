@@ -66,12 +66,17 @@ Or make a trading game or a dungeon crawler.
 <ul>
 <li>Add PVE combat</li>
 <li>Release Ver 1.00</li>
-</ul
+</ul>
 
-<h3>Oct 2023</h4>
+<h3>Sept 2023</h4>
 <ul>
 <li>Mission System</li>
 <li>Mine and Farm world subscribers</li>
+
+</ul>
+
+<h3>Oct 2023</h4>
+<ul>
 <li>NPC subscribers aka world simulator</li>
 <li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
 </ul>
