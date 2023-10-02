@@ -82,10 +82,9 @@ export default {
           currentObj.jigs.output = error;
         });
     },
-    fight(e) {
+    log(e) {
       e.preventDefault();
-      this.jigs.gameState = "PlayerMain";
-      console.log("PlayerMain");
+      this.jigs.gameState = "Log";
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
@@ -98,37 +97,24 @@ export default {
       console.log(this.jigs.tiled);
       console.log(this.jigs.gameState);
     },
-    outpost(e) {
+    inventory(e) {
       e.preventDefault();
-      this.jigs.gameState = "Outpost";
+      this.jigs.gameState = "Inventory";
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.tiled);
       console.log(this.jigs.gameState);
     },
-    temple(e) {
+
+    skills(e) {
       e.preventDefault();
-      this.jigs.gameState = "Temple";
-      console.log(this.jigs.userMapGrid);
-      console.log(this.jigs.tiled);
-      console.log(this.jigs.gameState);
-    },
-    shop(e) {
-      e.preventDefault();
-      this.jigs.gameState = "Shop";
-      console.log(this.jigs.userMapGrid);
-      console.log(this.jigs.tiled);
-      console.log(this.jigs.gameState);
-    },
-    hanger(e) {
-      e.preventDefault();
-      this.jigs.gameState = "Hanger";
+      this.jigs.gameState = "Skills";
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.userMapGrid);
     },
-    armoury(e) {
+    quests(e) {
       e.preventDefault();
-      this.jigs.gameState = "Armoury";
+      this.jigs.gameState = "Quests";
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.userMapGrid);
@@ -145,10 +131,10 @@ export default {
         <ViewTabs :msg="jigs.gameState" />
         <div class="tab-buttons">
           <CButton @click="char" component="button" color="primary" shape="rounded-pill" size="sm">Char </CButton>
-          <CButton @click="outpost" component="button" color="primary" shape="rounded-pill" size="sm">Inv </CButton>
-          <CButton @click="hanger" component="button" color="primary" shape="rounded-pill" size="sm">Skills </CButton>
-          <CButton @click="armoury" component="button" color="primary" shape="rounded-pill" size="sm">Quests </CButton>
-          <CButton @click="fight" component="button" color="primary" shape="rounded-pill" size="sm">Log </CButton>
+          <CButton @click="inventory" component="button" color="primary" shape="rounded-pill" size="sm">Inv </CButton>
+          <CButton @click="skills" component="button" color="primary" shape="rounded-pill" size="sm">Skills </CButton>
+          <CButton @click="quests" component="button" color="primary" shape="rounded-pill" size="sm">Quests </CButton>
+          <CButton @click="log" component="button" color="primary" shape="rounded-pill" size="sm">Log </CButton>
         </div>
       </form>
     </div>

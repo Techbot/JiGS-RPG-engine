@@ -1,21 +1,17 @@
 <script>
-import Armoury    from './tabs/ArmouryBuilding.vue';
+import Quests    from './tabs/Quests.vue';
 import Character  from './tabs/Character.vue';
-import Hanger     from './tabs/HangerBuilding.vue';
-import Outpost    from './tabs/OutpostBuilding.vue';
-import Shop       from './tabs/ShopBuilding.vue';
-import Temple     from './tabs/TempleBuilding.vue';
-import PlayerMain from './tabs/PlayerMain.vue';
+import Skills     from './tabs/Skills.vue';
+import Inventory  from './tabs/Inventory.vue';
+import Log        from './tabs/Log.vue';
 
 export default {
   components: {
-    Armoury,
+    Quests,
     Character,
-    Hanger,
-    Outpost,
-    Shop,
-    Temple,
-    PlayerMain
+    Skills,
+    Inventory,
+    Log
   },
   props: {
     msg: String
