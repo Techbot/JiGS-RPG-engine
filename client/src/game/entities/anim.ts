@@ -80,13 +80,13 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
             repeat: 0
         });
 
-        anims.create({
+/*         anims.create({
             key: 'kick_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [10, 11, 12, 13, 10] }),
             frameRate: 12,
             repeat: -1,
             repeatDelay: 2000
-        });
+        }); */
     }
 
     if (tag == 'slash_oversize') {
@@ -121,7 +121,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
             repeat: -1
         });
 
-        anims.create({
+         anims.create({
             key: 'stop_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [180, 180, 180, 180, 180, 180, 180, 180, 180] }),
             frameRate: 12,
@@ -177,20 +177,20 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
             repeat: -1
         }); */
 
-         anims.create({
+/*          anims.create({
             key: 'hurt_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [360, 361, 362, 363, 364, 365] }),
             frameRate: 12,
             repeat: 0
-        });
+        }); */
 
-        anims.create({
+/*         anims.create({
             key: 'kick_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [10, 11, 12, 13, 10] }),
             frameRate: 12,
             repeat: -1,
             repeatDelay: 2000
-        });
+        }); */
     }
 }
 
