@@ -1,6 +1,5 @@
 import { Room, Client } from "colyseus";
 const db = require("../services/db");
-const helper = require("../helper");
 import { InputData, MyRoomState, Player, Zombie } from "./GameState";
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
