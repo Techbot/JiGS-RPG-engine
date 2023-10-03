@@ -418,5 +418,33 @@ class GameController extends ControllerBase
     return $response;
 
   }
+  public function myMissions()
+  {
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response           = new AjaxResponse();
+    $playerName         = $this->user->get("name")->value;
+    $playerId           = \Drupal::currentUser()->id();
+    //Cached stuff
+    $userGamesState     = $this->user->field_game_state->value;
 
+    $database           = \Drupal::database();
+
+    ////////////////////////////////////////////////////////////////////////////////
+    $query              = $database->query("SELECT field_missions_target_id FROM user__field_missions WHERE entity_id= " . $playerId);
+    $player['missions'] = $query->fetchAll();
+
+    foreach ($player['missions'] as $record) {
+      $mission = $record->field_missions_target_id;
+      if ($mission) {
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $mission);
+        $name              = $query->fetchAll()[0]->title;
+        $player['quests'][] = array('id' => $mission, 'name' => $name);
+      }
+    }
+
+    $responseData['playerMissions']          = $player;
+
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+}
 }

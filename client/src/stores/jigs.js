@@ -18,6 +18,8 @@ export const useJigsStore = defineStore("jigs", {
 
     playerInventory: [],
 
+    playerQuests: [],
+
     /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
     npcArray: [],
 

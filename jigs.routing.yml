@@ -37,3 +37,11 @@ jigs.my_inventory:
     _title: 'game inventory'
   requirements:
     _permission: 'access content'
+
+jigs.my_missions:
+  path: '/mymissions'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myMissions'
+    _title: 'game missions'
+  requirements:
+    _permission: 'access content'
