@@ -73,17 +73,10 @@ export default class Load {
 
             //const Anims = new Anim;
             //Anims.addAnim(this);
-            createCharacterAnims(self.anims, 'FixerF','slash_oversize');
-            createCharacterAnims(self.anims, 'FixerF_slash', 'slash_oversize');
-            createCharacterAnims(self.anims, 'FixerM','default');
-            createCharacterAnims(self.anims, 'CenobyteF','slash_oversize');
-            createCharacterAnims(self.anims, 'CenobyteF_slash', 'slash_oversize');
-            createCharacterAnims(self.anims, 'CenobyteM', 'slash_oversize');
-            createCharacterAnims(self.anims, 'CenobyteM_slash','slash_oversize');
-            createCharacterAnims(self.anims, 'AssassinF','default');
-            createCharacterAnims(self.anims, 'AssassinM','default');
-            createCharacterAnims(self.anims, 'XeonF','default');
-            createCharacterAnims(self.anims, 'XeonM','default');
+            createCharacterAnims(self.anims, 'PsibotF','slash_oversize');
+            createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize');
+            createCharacterAnims(self.anims, 'PsibotM', 'slash_oversize');
+            createCharacterAnims(self.anims, 'PsibotM_slash','slash_oversize');
             createCharacterAnims(self.anims, 'otherPlayer','default');
 
             if (this.jigs.npcArray) {

@@ -115,20 +115,15 @@ export default class Player {
                     //console.log('bang ' + parseInt(event.x) + ',' + parseInt(event.y));
                     self.inputPayload.inputX = parseInt(event.worldX);
                     self.inputPayload.inputY = parseInt(event.worldY);
-                    jigs                }
+                                   }
             }
         });
     }
 
-    leaveRoom(){
-        this.room.leave(); // Backend
-    }
-
-
     onPlayerDown() {
         this.jigs.playerState = "dormant";
-       // this.room.leave(); // Backend
-        this.leaveRoom();
+        this.room.leave(); // Backend
+
 
         this.scene.switch("main", "DeadScene");
        // this.scene.start('DeadScene'); //Frontend)
@@ -139,9 +134,8 @@ export default class Player {
 
         if (this.jigs.leave == 1){
             this.jigs.leave = 0;
-    this.leaveRoom();
+            this.room.leave(); // Backend
 }
-
         const velocity = 2;
         self.inputPayload.left = self.cursorKeys.left.isDown;
         self.inputPayload.right = self.cursorKeys.right.isDown;
@@ -167,6 +161,7 @@ export default class Player {
             self.currentPlayer.speed != 'stopped') {
             self.currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
             self.currentPlayer.speed = 'stopped';
+            self.currentPlayer.dir = 'stopped';
         }
         if (self.inputPayload.left) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
