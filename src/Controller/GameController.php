@@ -121,7 +121,6 @@ class GameController extends ControllerBase
     $playerName     = $this->user->get("name")->value;
     $playerId       = \Drupal::currentUser()->id();
 
-
     //Cached stuff
     $userGamesState         = $this->user->field_game_state->value;
     $player['level']        = $this->user->field_level->value;
@@ -136,9 +135,6 @@ class GameController extends ControllerBase
     $player['xp']           = $this->user->field_experience->value;
     $player['sprite_sheet'] = $this->user->field_sprite_sheet->value;
 
-    //$player['credits']  = $this->user->field_credits->value;
-    //$player['health']       = $this->user->field_health->value;
-    // $userMG = (int)$this->user->field_map_grid->getValue()[0]['target_id'];
     $database       = \Drupal::database();
 
     //Non Cached Stuff
@@ -156,86 +152,9 @@ class GameController extends ControllerBase
     $player['energy']  = $query->fetchAll()[0]->field_energy_value;
 
     $MapGrid           =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG[0]->field_map_grid_target_id);
-    $query             = $database->query("SELECT field_inventory_target_id FROM user__field_inventory WHERE entity_id= " . $playerId);
-
-    $player['inventory']  = $query->fetchAll();
-
-    foreach ($player['inventory'] as $invItem) {
-      $inventoryItemNumber = $invItem->field_inventory_target_id;
 
 
-      $query = $database->query("SELECT field_potions_target_id FROM paragraph__field_potions  WHERE entity_id= " . $inventoryItemNumber);
-      foreach ($query as $record){
-//echo ($record);
-/*         $potion  = $query->fetchAll()[0]->field_potions_target_id;
-        $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $potion);
-        $amount = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $potion);
-        $name              = $query->fetchAll()[0]->title;
-        $player['items'][] = [$potion, $amount, $name]; */
-        continue;
-      }
-
-      $query = $database->query("SELECT field_items_target_id FROM paragraph__field_items  WHERE entity_id= " . $inventoryItemNumber);
-      foreach ($query as $record) {
-
-        //$item  = $query->fetchAll()[0]->field_items_target_id;
-
-/*         $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $item);
-        $amount            = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $item);
-        $name              = $query->fetchAll()[0]->title; */
-      //  $player['items'][] = [$item, $amount, $name];
-        continue;
-      }
-
-      $query = $database->query("SELECT field_ingredients_target_id FROM paragraph__field_ingredients  WHERE entity_id= " . $inventoryItemNumber);
-
-      foreach ($query as $record) {
-/*       $ingredient  = $query->fetchAll()[0]->field_ingredients_target_id;
-
-        $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $ingredient);
-        $amount            = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $ingredient);
-        $name              = $query->fetchAll()[0]->title;
-        $player['items'][] = [$ingredient, $amount, $name]; */
-        continue;
-      }
-
-      $query             = $database->query("SELECT field_elements_target_id FROM paragraph__field_elements  WHERE entity_id= " . $inventoryItemNumber);
-
-      foreach ($query as $record) {
-       // $element = $query->fetchAll()[0]->field_elements_target_id;
-/*         $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $element);
-        $amount            = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
-        $name              = $query->fetchAll()[0]->title;
-        $player['items'][] = [$element, $amount, $name]; */
-        continue;
-      }
-
-/*       $query             = $database->query("SELECT field_weapons_target_id FROM paragraph__field_weapons  WHERE entity_id= " . $inventoryItemNumber);
-      $element = $query->fetchAll()[0]->field_elements_target_id;
-      if ($element) {
-        $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $element);
-        $amount            = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
-        $name              = $query->fetchAll()[0]->title;
-        $player['items'][] = [$element, $amount, $name];
-        continue;
-      } */
-
-  //    $query             = $database->query("SELECT field_ammo_target_id FROM paragraph__field_ammo  WHERE entity_id= " . $inventoryItemNumber);
-  //    $element = $query->fetchAll()[0]->field_elements_target_id;
-  //    foreach ($query as $record) {
-/*         $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $element);
-        $amount            = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
-        $name              = $query->fetchAll()[0]->title;
-        $player['items'][] = [$element, $amount, $name]; */
-   //    continue;
-  //    }
-    }
+    ////////////////////////////////////////////////////////////////////////////////
 
     $tiled          = $MapGrid->field_tiled->getValue()[0]['value'];
     $portalsArray   = $MapGrid->field_portals->referencedEntities();
@@ -344,4 +263,160 @@ class GameController extends ControllerBase
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
+
+  public function myStorage()
+  {
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response       = new AjaxResponse();
+    $playerName     = $this->user->get("name")->value;
+    $playerId       = \Drupal::currentUser()->id();
+    //Cached stuff
+    $userGamesState         = $this->user->field_game_state->value;
+
+    //$player['credits']  = $this->user->field_credits->value;
+    //$player['health']       = $this->user->field_health->value;
+    // $userMG = (int)$this->user->field_map_grid->getValue()[0]['target_id'];
+    $database       = \Drupal::database();
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    $query             = $database->query("SELECT field_storage_target_id FROM user__field_storage WHERE entity_id= " . $playerId);
+    $player['storage'] = $query->fetchAll();
+
+    foreach ($player['storage'] as $strItem) {
+      $storageItemNumber = $strItem->field_storage_target_id;
+
+
+      $query = $database->query("SELECT field_potions_target_id FROM paragraph__field_potions  WHERE entity_id= " . $storageItemNumber);
+      foreach ($query as $record) {
+        $potion  = $record->field_potions_target_id;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $potion);
+        $name              = $query->fetchAll()[0]->title;
+        $player['storeItems'][] = array('id' => $potion, 'name' => $name);
+      }
+
+      $query = $database->query("SELECT field_items_target_id FROM paragraph__field_items  WHERE entity_id= " . $storageItemNumber);
+      foreach ($query as $record) {
+        $item  = $record->field_items_target_id;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $item);
+        $name              = $query->fetchAll()[0]->title;
+        $player['storeItems'][] = array('id' => $item, 'name' => $name);
+      }
+
+      $query = $database->query("SELECT field_ingredients_target_id FROM paragraph__field_ingredients  WHERE entity_id= " . $storageItemNumber);
+      foreach ($query as $record) {
+        $ingredient        = $record->field_ingredients_target_id;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $ingredient);
+        $name              = $query->fetchAll()[0]->title;
+        $player['storeItems'][] = array('id' => $ingredient, 'name' => $name);
+      }
+
+      $query             = $database->query("SELECT field_elements_target_id FROM paragraph__field_elements  WHERE entity_id= " . $storageItemNumber);
+      foreach ($query as $record) {
+        $element = $record->field_elements_target_id;
+        if ($element) {
+          $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
+          $name              = $query->fetchAll()[0]->title;
+          $player['storeItems'][] = array('id' => $element, 'name' => $name);
+        }
+      }
+
+      $query             = $database->query("SELECT field_weapon_target_id FROM paragraph__field_weapon  WHERE entity_id= " . $storageItemNumber);
+      foreach ($query as $record) {
+        $weapon = $record->field_weapon_target_id;
+        if ($weapon) {
+          $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $weapon);
+          $name              = $query->fetchAll()[0]->title;
+          $player['storeItems'][] = array('id' => $weapon, 'name' => $name);
+        }
+      }
+    }
+
+    $responseData['playerStorage']          = $player;
+
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  public function myInventory()
+  {
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response       = new AjaxResponse();
+    $playerName     = $this->user->get("name")->value;
+    $playerId       = \Drupal::currentUser()->id();
+    //Cached stuff
+    $userGamesState         = $this->user->field_game_state->value;
+
+    $database       = \Drupal::database();
+    $query             = $database->query("SELECT field_inventory_target_id FROM user__field_inventory WHERE entity_id= " . $playerId);
+
+    $player['inventory']  = $query->fetchAll();
+
+    foreach ($player['inventory'] as $invItem) {
+      $inventoryItemNumber = $invItem->field_inventory_target_id;
+
+      $query = $database->query("SELECT field_potions_target_id FROM paragraph__field_potions  WHERE entity_id= " . $inventoryItemNumber);
+      foreach ($query as $record) {
+        $potion  = $record->field_potions_target_id;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $potion);
+        $name              = $query->fetchAll()[0]->title;
+        $player['items'][] = array('id' => $potion, 'name' => $name);
+      }
+
+      $query = $database->query("SELECT field_items_target_id FROM paragraph__field_items  WHERE entity_id= " . $inventoryItemNumber);
+      foreach ($query as $record) {
+        $item  = $record->field_items_target_id;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $item);
+        $name              = $query->fetchAll()[0]->title;
+        $player['items'][] = array('id' => $item, 'name' => $name);
+      }
+
+      $query = $database->query("SELECT field_ingredients_target_id FROM paragraph__field_ingredients  WHERE entity_id= " . $inventoryItemNumber);
+
+      foreach ($query as $record) {
+        $ingredient        = $record->field_ingredients_target_id;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $ingredient);
+        $name              = $query->fetchAll()[0]->title;
+        $player['items'][] = array('id' => $ingredient, 'name' => $name);
+      }
+
+      $query             = $database->query("SELECT field_elements_target_id FROM paragraph__field_elements  WHERE entity_id= " . $inventoryItemNumber);
+      foreach ($query as $record) {
+        $element = $record->field_elements_target_id;
+        if ($element) {
+          $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
+          $name              = $query->fetchAll()[0]->title;
+          $player['items'][] = array('id' => $element, 'name' => $name);
+        }
+      }
+
+      $query             = $database->query("SELECT field_weapon_target_id FROM paragraph__field_weapon  WHERE entity_id= " . $inventoryItemNumber);
+      foreach ($query as $record) {
+        $weapon = $record->field_weapon_target_id;
+        if ($weapon) {
+          $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $weapon);
+          $name              = $query->fetchAll()[0]->title;
+          $player['items'][] = array('id' => $weapon, 'name' => $name);
+        }
+      }
+      //    $query             = $database->query("SELECT field_ammo_target_id FROM paragraph__field_ammo  WHERE entity_id= " . $inventoryItemNumber);
+      //    $element = $query->fetchAll()[0]->field_elements_target_id;
+      //    foreach ($query as $record) {
+      /*         $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $element);
+        $amount            = $query->fetchAll()[0]->field_amount_value;
+        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
+        $name              = $query->fetchAll()[0]->title;
+        $player['items'][] = [$element, $amount, $name]; */
+      //    continue;
+      //    }
+    }
+
+    $responseData['playerInventory']          = $player;
+
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+
+  }
+
 }
