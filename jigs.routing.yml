@@ -21,3 +21,19 @@ jigs.my_state:
     _title: 'game state'
   requirements:
     _permission: 'access content'
+
+jigs.my_storage:
+  path: '/mystorage'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myStorage'
+    _title: 'game storage'
+  requirements:
+    _permission: 'access content'
+
+jigs.my_inventory:
+  path: '/myinventory'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myInventory'
+    _title: 'game inventory'
+  requirements:
+    _permission: 'access content'
