@@ -58,26 +58,22 @@ Or make a trading game or a dungeon crawler.
 <h3>July 2023</h4>
 <ul>
 <li>Add Universal Character Creater</li>
-<li>Crafting</li>
-<li>Trade</li>
+
 </ul
 
 <h3>Aug 2023</h4>
 <ul>
 <li>Add PVE combat</li>
-<li>Release Ver 1.00</li>
 </ul>
 
 <h3>Sept 2023</h4>
 <ul>
 <li>Mission System</li>
 <li>Mine and Farm world subscribers</li>
-
 </ul>
 
 <h3>Oct 2023</h4>
 <ul>
-<li>NPC subscribers aka world simulator</li>
 <li>Sound and Audio - OST, sound FX, background music, drones YAHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!</li>
 </ul>
 
@@ -90,15 +86,43 @@ Or make a trading game or a dungeon crawler.
 <h3>Dec 2023</h4>
 <ul>
 <li>Dialoque Engine (Drupal)</li>
-<li>Politics subscribers</li>
-<li>Temple Subscribers</li>
-<li>Jail and reputation System</li>
-<li>PVP</li>
+
 </ul>
 
 <h3>Jan 2024</h4>
 <ul>
 <li>Release Ver 1.00</li>
+</ul>
+
+<h3>Feb 2024</h4>
+<ul>
+<li>Release Ver 1.0.1</li>
+<li>Crafting</li>
+<li>Trade</li>
+</ul>
+
+<h3>Mar 2024</h4>
+<ul>
+<li>NPC subscribers aka world simulator</li>
+</ul>
+
+
+<h3>Apr 2024</h4>
+<ul>
+<li>Politics subscribers</li>
+<li>Temple Subscribers</li>
+<li>Jail and reputation System</li>
+</ul>
+
+
+<h3>May 2024</h4>
+<ul>
+<li>PVP</li>
+</ul>
+
+<h3>Jun 2024</h4>
+<ul>
+<li>Release Ver 1.1</li>
 </ul>
 
 <h3>Somebackground on the new architecture:</h3>
