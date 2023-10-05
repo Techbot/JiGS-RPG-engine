@@ -10,7 +10,7 @@ export class SceneSelector extends Phaser.Scene {
     };
 
     constructor() {
-        super({ key: "selector", active: true });
+        super({ key: "selector"});
     }
 
     image;
@@ -18,6 +18,7 @@ export class SceneSelector extends Phaser.Scene {
     preload() {
         // update menu background color
         this.cameras.main.setBackgroundColor(0x000000);
+
         this.load.image('einstein', '/assets/images/8b0f172a-80ed-4fbd-b357-c512127970ce.png');
         // preload demo assets
         // this.load.image('ship_0001', 'assets/ship_0001.png');

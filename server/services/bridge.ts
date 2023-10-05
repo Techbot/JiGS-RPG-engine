@@ -1,5 +1,5 @@
 var mysql = require("mysql2");
-import config from './db.ts';
+import config from './db';
 
   var con = mysql.createConnection({
     host: config.host,
@@ -222,6 +222,21 @@ function updatePlayer(id, stat, value, replace) {
   return;
 }
 
+function updateBanks() {
+  con.connect(function (err) {
+    if (err) throw err;
+    con.query(
+      `UPDATE user__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1` ,
+      function (err, result, fields) {
+        if (err) throw err;
+        return true;
+      }
+    );
+  });
+  return;
+}
+
+
 module.exports = {
   getPlayer,
   getPortals,
@@ -230,4 +245,5 @@ module.exports = {
   getRewards,
   updateMap,
   updatePlayer,
+  updateBanks
 };

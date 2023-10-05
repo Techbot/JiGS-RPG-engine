@@ -25,9 +25,7 @@ export default class Load {
 
     load(self) {
 
-
         self.load.tilemapTiledJSON(this.jigs.tiled, '/assets/cities/' + this.jigs.city + '/json/' + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
-
 
         this.jigs.tilesetArray_1.forEach(function loader(image) {
             self.load.image(image, '/assets/images/System/' + image + '.png');
@@ -50,33 +48,29 @@ export default class Load {
 
         if (this.jigs.npcArray) {
             this.jigs.npcArray.forEach(function loader(Npc) {
-                //console.log('loading NPC:' + Npc[3]);
                 self.load.spritesheet('npc' + Npc[3], '/assets/images/sprites/' + Npc[3] + '.png', { frameWidth: 64, frameHeight: 64 });
             }, this);
         }
 
         if (this.jigs.mobArray) {
             this.jigs.mobArray.forEach(function loader(Mob) {
-                //console.log('loading Mob:' + Mob[3]);
                 self.load.spritesheet('mob' + Mob[3], '/assets/images/sprites/' + Mob[3] + '.png', { frameWidth: 64, frameHeight: 64 });
             }, this);
         }
 
         self.load.once(Phaser.Loader.Events.COMPLETE, () => {
             // texture loaded so use instead of the placeholder
-            //console.log('once');
+            console.log('once');
 
             const Layer = new Layers;
             Layer.loadLayers(self);
 
-
-
             //const Anims = new Anim;
             //Anims.addAnim(this);
             createCharacterAnims(self.anims, 'PsibotF','slash_oversize');
-            createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize');
+          //  createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize');
             createCharacterAnims(self.anims, 'PsibotM', 'slash_oversize');
-            createCharacterAnims(self.anims, 'PsibotM_slash','slash_oversize');
+          //  createCharacterAnims(self.anims, 'PsibotM_slash','slash_oversize');
             createCharacterAnims(self.anims, 'otherPlayer','default');
 
             if (this.jigs.npcArray) {

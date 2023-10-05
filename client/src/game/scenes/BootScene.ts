@@ -4,7 +4,7 @@ import thudOgg from '../assets/thud.ogg'
  */
 export class BootScene extends Scene {
   constructor () {
-    super({ key: 'BootScene' })
+    super({ key: 'BootScene', active: true })
   }
 
   preload () {

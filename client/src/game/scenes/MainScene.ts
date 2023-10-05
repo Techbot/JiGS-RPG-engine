@@ -28,8 +28,8 @@ export class MainScene extends Phaser.Scene {
     currentPlayer: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
     playerEntities: { [sessionId: string]: Phaser.Types.Physics.Arcade.ImageWithDynamicBody } = {};
     debugFPS: Phaser.GameObjects.Text;
-    localRef: Phaser.GameObjects.Rectangle;
-    remoteRef: Phaser.GameObjects.Rectangle;
+    //localRef: Phaser.GameObjects.Rectangle;
+   // remoteRef: Phaser.GameObjects.Rectangle;
     cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
     inputPayload = {
@@ -103,29 +103,23 @@ export class MainScene extends Phaser.Scene {
         this.Loader = new Load;
         this.messenger = new Messenger;
         this.Loader.load(self);
-        this.load.setPath('/assets/audio/');
-        this.load.audio('walk', ['thud.ogg', 'thud.mp3']);
+        this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
-
 
     }
 
     async create() {
         var self = this;
+        //this.cameras.main.zoom = 1.5;
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
         await this.connect(this.jigs.city + "-" + padding(this.jigs.tiled, 3, 0));
 
-
-
         this.walkSound = this.sound.add('walk', { volume: 0.1 });
-
-
-
 
         this.messenger.initMessages(self);
 
@@ -155,7 +149,7 @@ export class MainScene extends Phaser.Scene {
                     while (i < this.jigs.npcArray.length) {
                         this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
                         this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
-                            .setScale(.75)
+                            .setScale(.85)
                             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
                             .setData("levelindex", this.jigs.npcArray[i][1])
                             .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
@@ -177,7 +171,7 @@ export class MainScene extends Phaser.Scene {
                         this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][3]));
                         this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][3])
                             .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-                            .setScale(.75)
+                            .setScale(.85)
                             .setData("levelindex", this.jigs.mobArray[i][1])
                             .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
                         this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][3]);
@@ -191,7 +185,7 @@ export class MainScene extends Phaser.Scene {
                     }
                 }
             } else {
-                entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.75);
+                entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.85);
                 // listening for server updates
                 player.onChange(() => {
                     //
@@ -212,7 +206,7 @@ export class MainScene extends Phaser.Scene {
                 delete this.playerEntities[sessionId]
             }
         });
-        this.cameras.main.setZoom(1.0);
+        this.cameras.main.setZoom(1.5);
     }
 
     onNPCDown(npc, img) {
@@ -314,16 +308,18 @@ export class MainScene extends Phaser.Scene {
         this.currentTick++;
         if (this.localPlayer !== undefined) {
             this.localPlayer.updatePlayer(this);
-
+        }
+        if (this.jigs.mobArray != undefined) {
             let i = 0;
             while (i < this.MobContainerArray.length) {
                 if (this.jigs.mobArray[i] != undefined) {
                     this.MobContainerArray[i].x = this.jigs.mobArray[i][1];
                     this.MobContainerArray[i].y = this.jigs.mobArray[i][2];
                     this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][5] / 4;
-                    i++;
                 }
+                i++;
             };
+
 
             for (let sessionId in this.playerEntities) {
                 // interpolate all player entities

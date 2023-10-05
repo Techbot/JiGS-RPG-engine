@@ -10,12 +10,12 @@ import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.WEBGL,
     fps: {
-        target: 60,
+        target: 30,
         forceSetTimeOut: true,
         smoothStep: false,
     },
-    width: 640,
-    height: 480,
+    width: 960,
+    height: 640,
     // height: 200,
     backgroundColor: '#000000',
     parent: 'game-container',

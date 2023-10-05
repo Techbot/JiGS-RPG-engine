@@ -40,18 +40,7 @@ export default {
     }
     ,
     setup() {
-      d3.csv(
-        'https://raw.githubusercontent.com/bumbeishvili/sample-data/main/org.csv'
-      ).then((dataFlattened) => {
-        dataFlattened.forEach((d) => {
-          const val = Math.round(d.name.length / 2);
-          d.progress = [...new Array(val)].map((d) => Math.random() * 25 + 5);
-        });
-        new OrgChart()
-          .container('.skills')
-          .data(dataFlattened) //
-          .render();
-      });
+
       const jigs = useCounterStore();
       return {
         jigs,
@@ -81,7 +70,8 @@ export default {
         <button class="nav-link" id="nav-quests-tab" data-coreui-toggle="tab"
           data-coreui-target="#nav-quests" type="button" role="tab"
           aria-controls="nav-quests" aria-selected="false">Quests</button>
-        <button class="nav-link" id="nav-logs-tab" data-coreui-toggle="tab"
+  <!-- //
+          <button class="nav-link" id="nav-logs-tab" data-coreui-toggle="tab"
           data-coreui-target="#nav-logs" type="button" role="tab"
           aria-controls="nav-logs" aria-selected="false">Logs</button>
         <button class="nav-link" id="nav-crafting-tab" data-coreui-toggle="tab"
@@ -90,6 +80,8 @@ export default {
         <button class="nav-link" id="nav-maps-tab" data-coreui-toggle="tab"
           data-coreui-target="#nav-maps" type="button" role="tab"
           aria-controls="nav-maps" aria-selected="false">Maps</button>
+-->
+
       </div>
     </nav>
 
@@ -114,29 +106,27 @@ export default {
         <Quests />
       </div>
 
-      <!-- //  Tab  -->
+        <!-- //  Tab  -->
+        <div class="tab-pane fade" id="nav-skills" role="tabpanel"
+          aria-labelledby="nav-skills-tab" tabindex="0">
+          <Skills />
+        </div>
+
+<!-- //
       <div class="tab-pane fade" id="nav-logs" role="tabpanel"
         aria-labelledby="nav-logs-tab" tabindex="0">
         <Logs />
       </div>
-
-      <!-- //  Tab  -->
-      <div class="tab-pane fade" id="nav-skills" role="tabpanel"
-        aria-labelledby="nav-skills-tab" tabindex="0">
-        <Skills />
-      </div>
-
-      <!-- //  Tab  -->
       <div class="tab-pane fade" id="nav-maps" role="tabpanel"
         aria-labelledby="nav-maps-tab" tabindex="0">
         <Maps />
       </div>
-
-      <!-- //  Tab  -->
+    //  Tab
       <div class="tab-pane fade" id="nav-crafting" role="tabpanel"
         aria-labelledby="nav-crafting-tab" tabindex="0">
         <Crafting />
       </div>
+-->
     </div>
     <!-- //  Tab Holder -->
   </div>

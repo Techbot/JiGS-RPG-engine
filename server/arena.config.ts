@@ -5,6 +5,28 @@ import express from "express";
 import loaders from './loaders';
 import { createServer } from "http";
 import globalEmitter from './loaders/eventEmitter';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import run from "./cron/run"
+
+
 /**
  * Import your Room files
  */
@@ -161,6 +183,8 @@ export default Arena({
 
 		app.use(cors());
         app.get("/", deliver);
+        run();
+
 
         // these latency methods are for development purpose only.
         app.get("/latency", (req, res) => res.json(latencySimulationMs));
@@ -182,6 +206,7 @@ export default Arena({
 
     const app = express()
     app.use(cors());
+    //app.use(cron());
     app.use(express.json())
     app.use("/colyseus", monitor());
     // Prepare HTTPS server

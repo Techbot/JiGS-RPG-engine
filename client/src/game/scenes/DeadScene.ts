@@ -10,7 +10,7 @@ export class DeadScene extends Phaser.Scene {
     };
 
     constructor() {
-        super({ key: "DeadScene", active: true });
+        super({ key: "DeadScene" });
     }
 
     image;

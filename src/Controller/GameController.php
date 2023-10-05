@@ -436,9 +436,14 @@ class GameController extends ControllerBase
     foreach ($player['missions'] as $record) {
       $mission = $record->field_missions_target_id;
       if ($mission) {
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $mission);
-        $name              = $query->fetchAll()[0]->title;
-        $player['quests'][] = array('id' => $mission, 'name' => $name);
+        $result             = $database->query("
+        SELECT node_field_data.title,node__body.body_value
+         FROM node_field_data
+         LEFT JOIN node__body
+         ON  node_field_data.nid = node__body.entity_id
+         WHERE node_field_data.nid = ". $mission );
+        $row              = $result->fetchAssoc();
+        $player['quests'][] = array('id' => $mission, 'name' => $row['title'], 'body'=> $row['body_value']);
       }
     }
 
