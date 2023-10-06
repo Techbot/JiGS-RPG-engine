@@ -52,8 +52,9 @@ tiled
 config
 config/install
 server/services/db.ts
-/client/src/game/backend.ts
 
 node_modules
 LICENSE.md
+
+client/src/game/backend.ts
 
