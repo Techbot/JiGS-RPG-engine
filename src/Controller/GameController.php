@@ -216,15 +216,17 @@ class GameController extends ControllerBase
     //////////////////////////////////// MOB  //////////////////////////////////////
     foreach ($mobArray as $Mob) {
 
-      $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
-      $MobArray[] =
+     $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
+       $MobArray[] =
         [
+          $Mob->field_mobs->getValue()[0]['target_id'],
           $Mob->field_mob_name->value,
           $Mob->field_x->value,
           $Mob->field_y->value,
           $MobObject->field_mob_sprite_sheet->getValue()[0]['value'],
           $MobObject->getTitle()
         ];
+
     }
     ////////////////////////////////////////////////////////////////////////////////
     $responseData['playerId']             = $playerId;

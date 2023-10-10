@@ -54,7 +54,7 @@ export default class Load {
 
         if (this.jigs.mobArray) {
             this.jigs.mobArray.forEach(function loader(Mob) {
-                self.load.spritesheet('mob' + Mob[3], '/assets/images/sprites/' + Mob[3] + '.png', { frameWidth: 64, frameHeight: 64 });
+                self.load.spritesheet('mob' + Mob[4], '/assets/images/sprites/' + Mob[4] + '.png', { frameWidth: 64, frameHeight: 64 });
             }, this);
         }
 
@@ -81,7 +81,7 @@ export default class Load {
 
             if (this.jigs.mobArray) {
                 this.jigs.mobArray.forEach(function loader(mob) {
-                    createCharacterAnims(self.anims, 'mob' + mob[3],'default');
+                    createCharacterAnims(self.anims, 'mob' + mob[4],'default');
                 });
             }
             //console.log('twice');

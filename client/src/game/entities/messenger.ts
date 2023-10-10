@@ -11,14 +11,14 @@ export default class Messenger {
     });
 
     self.room.onMessage("collide", (message) => {
-      self.currentPlayer.y = self.remoteRef.y;
-      self.currentPlayer.x = self.remoteRef.x;
-/*       let i = 0;
+    //  self.currentPlayer.y = self.remoteRef.y;
+    //  self.currentPlayer.x = self.remoteRef.x;
+      let i = 0;
       while (i < self.jigs.mobArray.length) {
         self.MobContainerArray[i].x = self.jigs.mobArray[i][1];
         self.MobContainerArray[i].y = self.jigs.mobArray[i][2];
         i++;
-      } */
+      }
     });
 
     self.room.onMessage("dead", (message) => {
@@ -28,8 +28,8 @@ export default class Messenger {
     });
 
     self.room.onMessage("reward", (message) => {
-      self.currentPlayer.y = self.remoteRef.y;
-      self.currentPlayer.x = self.remoteRef.x;
+   //   self.currentPlayer.y = self.remoteRef.y;
+   //   self.currentPlayer.x = self.remoteRef.x;
       self.jigs.playerStats.credits++;
       //   this.incrementReward();
     });
@@ -56,8 +56,8 @@ export default class Messenger {
     });
 
     self.room.onMessage("remove-reward", (message) => {
-      self.currentPlayer.y = self.remoteRef.y;
-      self.currentPlayer.x = self.remoteRef.x;
+   //   self.currentPlayer.y = self.remoteRef.y;
+   //   self.currentPlayer.x = self.remoteRef.x;
       //    this.incrementReward();
       let i = 0;
       while (i < self.rewardsArray.length) {
@@ -82,12 +82,20 @@ export default class Messenger {
     });
 
     self.room.state.MobResult.onChange((value, key) => {
+
       let i = 0;
       while (i < self.jigs.mobArray.length) {
-        if (self.jigs.mobArray[i][0] == key) {
-          self.jigs.mobArray[i][1] = parseInt(value.field_x_value);
-          self.jigs.mobArray[i][2] = parseInt(value.field_y_value);
-          self.jigs.mobArray[i][5] = parseInt(value.health);
+
+        /* console.log(self.jigs.mobArray[i][0]);
+        console.log(self.jigs.mobArray[i][1]);
+        console.log(self.jigs.mobArray[i][2]);
+        console.log(self.jigs.mobArray[i][3]);
+        console.log(self.jigs.mobArray[i][4]); */
+
+        if (self.jigs.mobArray[i][1] == key) {
+          self.jigs.mobArray[i][2] = parseInt(value.field_x_value);
+          self.jigs.mobArray[i][3] = parseInt(value.field_y_value);
+          self.jigs.mobArray[i][6] = parseInt(value.health);
         }
         i++;
       }

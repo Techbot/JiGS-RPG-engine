@@ -27,7 +27,7 @@ export class SceneSelector extends Phaser.Scene {
 
     create() {
 
-        this.image = this.add.image(320, 240, 'einstein');
+        this.image = this.add.image(480, 320, 'einstein');
 
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
             color: "#ff0000",

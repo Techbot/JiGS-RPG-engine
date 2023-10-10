@@ -24,12 +24,12 @@ import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
 
 export class MainScene extends Phaser.Scene {
-    room: Room;
+   room: Room;
     currentPlayer: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
     playerEntities: { [sessionId: string]: Phaser.Types.Physics.Arcade.ImageWithDynamicBody } = {};
     debugFPS: Phaser.GameObjects.Text;
     //localRef: Phaser.GameObjects.Rectangle;
-   // remoteRef: Phaser.GameObjects.Rectangle;
+    // remoteRef: Phaser.GameObjects.Rectangle;
     cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
     inputPayload = {
@@ -118,9 +118,7 @@ export class MainScene extends Phaser.Scene {
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
         await this.connect(this.jigs.city + "-" + padding(this.jigs.tiled, 3, 0));
-
         this.walkSound = this.sound.add('walk', { volume: 0.1 });
-
         this.messenger.initMessages(self);
 
         this.room.state.players.onAdd((player, sessionId) => {
@@ -166,20 +164,40 @@ export class MainScene extends Phaser.Scene {
                 this.mobArray = self.physics.add.group({ allowGravity: false });
                 if (typeof this.jigs.mobArray !== 'undefined') {
                     let i = 0;
-                    while (i < this.jigs.mobArray.length) {
-                        this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][1]), parseInt(this.jigs.mobArray[i][2]));
-                        this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][3]));
-                        this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][3])
-                            .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+                     while (i < this.jigs.mobArray.length) {
+                        this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
+
+                        this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
+
+                        this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
+
+                        .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
                             .setScale(.85)
                             .setData("levelindex", this.jigs.mobArray[i][1])
                             .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
-                        this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][3]);
+
+                        this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
                         this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
                         this.SceneMobHealthBarArray[i].displayWidth = 25;
                         this.MobContainerArray[i].add(this.SceneMobArray[i]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
-                        this.MobContainerArray[i].setDepth(5);
+                        this.MobContainerArray[i].setDepth(7);
                         this.mobArray.add(this.MobContainerArray[i], true);
                         i++;
                     }
@@ -255,7 +273,7 @@ export class MainScene extends Phaser.Scene {
     }
 
     updateState() {
-        if (this.jigs.playerState == "alive") {
+    //    if (this.jigs.playerState == "alive") {
             axios
                 .get("/mystate?_wrapper_format=drupal_ajax")
                 .then((response) => {
@@ -273,7 +291,7 @@ export class MainScene extends Phaser.Scene {
                     this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
                     this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
                 })
-        }
+     //   }
     }
 
     async connect(room) {
@@ -309,36 +327,36 @@ export class MainScene extends Phaser.Scene {
         if (this.localPlayer !== undefined) {
             this.localPlayer.updatePlayer(this);
         }
-        if (this.jigs.mobArray != undefined) {
+    //    if (this.jigs.mobArray != undefined) {
             let i = 0;
             while (i < this.MobContainerArray.length) {
                 if (this.jigs.mobArray[i] != undefined) {
-                    this.MobContainerArray[i].x = this.jigs.mobArray[i][1];
-                    this.MobContainerArray[i].y = this.jigs.mobArray[i][2];
-                    this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][5] / 4;
+                    this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
+                    this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
+            //        this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][3] / 4;
                 }
                 i++;
             };
+    //    }
 
-
-            for (let sessionId in this.playerEntities) {
-                // interpolate all player entities
-                // (except the current player)
-                if (sessionId === this.room.sessionId) {
-                    continue;
-                }
-                if (this.playerEntities[sessionId] !== undefined) {
-                    const entity = this.playerEntities[sessionId];
-                    if (entity.data) {
-                        const { serverX, serverY } = entity.data.values;
-                        entity.x = Phaser.Math.Linear(entity.x, serverX, 0.2);
-                        entity.y = Phaser.Math.Linear(entity.y, serverY, 0.2);
-                    }
+        for (let sessionId in this.playerEntities) {
+            // interpolate all player entities
+            // (except the current player)
+            if (sessionId === this.room.sessionId) {
+                continue;
+            }
+            if (this.playerEntities[sessionId] !== undefined) {
+                const entity = this.playerEntities[sessionId];
+                if (entity.data) {
+                    const { serverX, serverY } = entity.data.values;
+                    entity.x = Phaser.Math.Linear(entity.x, serverX, 0.2);
+                    entity.y = Phaser.Math.Linear(entity.y, serverY, 0.2);
                 }
             }
         }
     }
 }
+
 
 function padding(n, p, c) {
     var pad_char = typeof c !== 'undefined' ? c : '0';

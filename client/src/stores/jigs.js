@@ -23,7 +23,7 @@ export const useJigsStore = defineStore("jigs", {
     /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
     npcArray: [],
 
-    /** @type {{ name: string, x: number, y: number, sprite: number, type: string, health:number }[]} */
+    /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health:number, following: number}[]} */
     mobArray: [],
 
     /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
@@ -33,7 +33,7 @@ export const useJigsStore = defineStore("jigs", {
     city: "Blank",
 
     /** @type {{ text: string }[]} */
-    gameState: "Character",
+    gameState: "GamePhaser",
 
     /** @type {{ text: string }[]} */
     playerGameState: "GamePhaser",

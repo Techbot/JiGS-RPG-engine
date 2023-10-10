@@ -177,12 +177,12 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
             repeat: -1
         }); */
 
-/*          anims.create({
+          anims.create({
             key: 'hurt_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [360, 361, 362, 363, 364, 365] }),
             frameRate: 12,
             repeat: 0
-        }); */
+        });
 
 /*         anims.create({
             key: 'kick_' + entity,

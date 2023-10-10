@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 
 import { SceneSelector }    from "./scenes/SceneSelector";
-import { MainScene }       from "./scenes/MainScene";
+import { MainScene }        from "./scenes/MainScene";
 import { HudScene }         from "./scenes/HudScene";
 import { BootScene }        from "./scenes/BootScene";
 import { DeadScene }        from "./scenes/DeadScene";
@@ -14,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig = {
         forceSetTimeOut: true,
         smoothStep: false,
     },
-    width: 960,
+    width: 900,
     height: 640,
     // height: 200,
     backgroundColor: '#000000',
