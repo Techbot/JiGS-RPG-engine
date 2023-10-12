@@ -22,14 +22,6 @@ jigs.my_state:
   requirements:
     _permission: 'access content'
 
-jigs.my_storage:
-  path: '/mystorage'
-  defaults:
-    _controller: '\Drupal\jigs\Controller\GameController::myStorage'
-    _title: 'game storage'
-  requirements:
-    _permission: 'access content'
-
 jigs.my_inventory:
   path: '/myinventory'
   defaults:
@@ -37,6 +29,30 @@ jigs.my_inventory:
     _title: 'game inventory'
   requirements:
     _permission: 'access content'
+
+jigs.to_backpack:
+  path: '/tobackpack'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::toBackpack'
+    _title: 'to Backpack'
+  requirements:
+    _permission: 'access content'
+
+jigs.to_storage:
+  path: '/tostorage'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::toStorage'
+    _title: 'to Storage'
+  requirements:
+    _permission: 'access content'
+
+
+
+
+
+
+
+
 
 jigs.my_missions:
   path: '/mymissions'

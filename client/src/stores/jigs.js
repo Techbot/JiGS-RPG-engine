@@ -18,7 +18,15 @@ export const useJigsStore = defineStore("jigs", {
 
     playerInventory: [],
 
+    listBackpack: [],
+
+    listStorage: [],
+
     playerQuests: [],
+
+    backpackItem: 0,
+
+    item: 0,
 
     /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
     npcArray: [],
@@ -92,9 +100,36 @@ export const useJigsStore = defineStore("jigs", {
   },
   actions: {
     // any amount of arguments, return a promise or not
-    addTodo(text) {
-      // you can directly mutate the state
-      this.todos.push({ text, id: this.nextId++, isFinished: false });
+    myInventory() {
+      axios
+        .get("/myinventory?_wrapper_format=drupal_ajax")
+        .then((response) => {
+          this.divideInventory(response);
+        });
     },
+
+    divideInventory(response) {
+      this.playerInventory = response.data[0].value["playerInventory"].items;
+      this.listBackpack=[];
+      this.listStorage=[];
+
+      let i = 0;
+      while (i < this.playerInventory.length) {
+        if (this.playerInventory[i].location == 'Backpack') {
+          this.listBackpack.push(this.playerInventory[i]);
+        }
+        if (this.playerInventory[i].location == 'Storage') {
+          this.listStorage.push(this.playerInventory[i]);
+        }
+        i++;
+      }
+    }
+
+
+
+
+
+
+
   },
 });
