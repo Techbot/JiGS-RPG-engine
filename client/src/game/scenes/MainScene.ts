@@ -15,8 +15,8 @@ import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
 import Player from "../entities/player";
 import Messenger from "../entities/messenger";
-import NPC from "../entities/npc";
-import Mob from "../entities/mob";
+//import NPC from "../entities/npc";
+//import Mob from "../entities/mob";
 import Reward from "../entities/reward";
 import Load from "../entities/loader";
 import Portals from "../entities/portals";
@@ -143,64 +143,57 @@ export class MainScene extends Phaser.Scene {
                 /*-------------------- Npcs ------------------------*/
                 this.npcArray = self.physics.add.group({ allowGravity: false });
                 if (typeof this.jigs.npcArray !== 'undefined') {
-                    let i = 0;
-                    while (i < this.jigs.npcArray.length) {
-                        this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
-                        this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
-                            .setScale(.85)
-                            .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-                            .setData("levelindex", this.jigs.npcArray[i][1])
-                            .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
-                        this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0]);
-                        this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
-                        this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
-                        this.NpcContainerArray[i].setDepth(5);
-                        this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
-                        this.npcArray.add(this.NpcContainerArray[i], true);
-                        i++;
-                    }
+                  let i = 0;
+                  while (i < this.jigs.npcArray.length) {
+                    this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
+                    this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
+                      .setScale(.85)
+                      .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+                      .setData("levelindex", this.jigs.npcArray[i][1])
+                      .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
+
+                    this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
+                      fontFamily:  "sans serif",
+                      fontWeight: 'bold',
+                      fontSize: '14px',
+                      fill: 'white',
+                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                      maxLines: 3,
+                    }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 });
+
+                    this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
+                    this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
+                    this.NpcContainerArray[i].setDepth(5);
+                    this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
+                    this.npcArray.add(this.NpcContainerArray[i], true);
+                    i++;
+                  }
                 }
                 /*-------------------- Mobs -----------------------*/
                 this.mobArray = self.physics.add.group({ allowGravity: false });
                 if (typeof this.jigs.mobArray !== 'undefined') {
-                    let i = 0;
-                     while (i < this.jigs.mobArray.length) {
-                        this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
+                  let i = 0;
+                    while (i < this.jigs.mobArray.length) {
+                      this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
 
-                        this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
+                      this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
 
-                        this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
+                      this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
 
-                        .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-                            .setScale(.85)
-                            .setData("levelindex", this.jigs.mobArray[i][1])
-                            .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
+                      .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+                          .setScale(.85)
+                          .setData("levelindex", this.jigs.mobArray[i][1])
+                          .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
 
-                        this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
-                        this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
-                        this.SceneMobHealthBarArray[i].displayWidth = 25;
-                        this.MobContainerArray[i].add(this.SceneMobArray[i]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
-                        this.MobContainerArray[i].setDepth(7);
-                        this.mobArray.add(this.MobContainerArray[i], true);
-                        i++;
-                    }
+                      this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
+                      this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
+                      this.SceneMobHealthBarArray[i].displayWidth = 25;
+                      this.MobContainerArray[i].add(this.SceneMobArray[i]);
+                      this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
+                      this.MobContainerArray[i].setDepth(7);
+                      this.mobArray.add(this.MobContainerArray[i], true);
+                      i++;
+                  }
                 }
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.85);
