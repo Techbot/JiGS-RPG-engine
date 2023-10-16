@@ -68,7 +68,7 @@ export default {
   <div>
     <img src="/assets/images/header.png" />
     <div class="row">
-      <div class="col-3">
+      <div class="col">
         <h3>Storage</h3>
         <draggable class="list-group" :list="jigs.listStorage" group="people"
           @change="log" @end="addToBackpack" :move="updateItem" itemKey="name">
@@ -77,7 +77,7 @@ export default {
           </template>
         </draggable>
       </div>
-      <div class="col-3">
+      <div class="col">
         <h3>Backpack</h3>
         <draggable class="list-group" :list="jigs.listBackpack" group="people"
           @change="log" itemKey="name" @end="addToStorage" :move="updateItem" >
