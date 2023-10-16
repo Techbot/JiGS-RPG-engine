@@ -236,11 +236,7 @@ class GameController extends ControllerBase
     $responseData['Name']                 = $MapGrid->get('title')->value;
     $responseData['userGamesState']       = $userGamesState;
     $responseData['portalsArray']         = $portals;
-    $responseData['content']              = "Welcome to The Eclectic Meme Conspiracy,
-    where everything you've read on the net is true.\n
-     Travel the globe as an international player in a game of magic, mystery and zombies.\n
-     Gather crystals and other resources and \n
-     create your own underground empire.";
+    $responseData['content']              = "Welcome to The Eclectic Meme Conspiracy, where everything you've read on the net is true.\nTravel the globe as an international player in a game of magic, mystery and zombies.\nGather crystals and other resources and create your own underground empire.";
 
     if (isset($NpcArray)) {
       $responseData['NpcArray']            = $NpcArray;
