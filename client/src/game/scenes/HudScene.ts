@@ -23,41 +23,43 @@ export class HudScene extends Scene {
     credits: any;
     content: string;
     thing: any;
+    timedEvent: any;
 
     constructor() {
-        super({ key: 'HudScene', active: true });
-        this.jigs = useJigsStore();
-        this.content = `Phaser is a fast, free, and fun open source HTML5 game framework that offers WebGL and Canvas rendering across desktop and mobile web browsers. Games can be compiled to iOS, Android and native apps by using 3rd party tools. You can use JavaScript or TypeScript for development.`;
+      super({ key: 'HudScene', active: true });
+      this.jigs = useJigsStore();
+      this.content = `Phaser is a fast, free, and fun open source HTML5 game framework that offers WebGL and Canvas rendering across desktop and mobile web browsers. Games can be compiled to iOS, Android and native apps by using 3rd party tools. You can use JavaScript or TypeScript for development.`;
 
-        this.credits = this.jigs.playerStats.credits;
-        const COLOR_PRIMARY = 0x4e342e;
-        const COLOR_LIGHT = 0x7b5e57;
-        const COLOR_DARK = 0x260e04;
+      this.credits = this.jigs.playerStats.credits;
+      const COLOR_PRIMARY = 0x4e342e;
+      const COLOR_LIGHT = 0x7b5e57;
+      const COLOR_DARK = 0x260e04;
     }
+
     preload() {
-        this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-        this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-        this.load.image('cursor', '/assets/images/cursors/blank.cur');
-        this.load.image('cursor2', '/assets/images/cursors/attack.cur');
-        this.load.image('cursor3', '/assets/images/cursors/speak.cur');
-        this.load.image('cursor4', '/assets/images/cursors/blank.cur');
-        this.load.image('cursor4', '/assets/images/cursors/point.cur');
+      this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+      // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+      this.load.image('cursor', '/assets/images/cursors/blank.cur');
+      this.load.image('cursor2', '/assets/images/cursors/attack.cur');
+      this.load.image('cursor3', '/assets/images/cursors/speak.cur');
+      this.load.image('cursor4', '/assets/images/cursors/blank.cur');
+      this.load.image('cursor4', '/assets/images/cursors/point.cur');
     }
     create() {
 
       // Dialogue.
         this.thing = this.createTextBox(this, 10, 380, {
             wrapWidth: 500,
-        }).start(this.jigs.content, 50).setDepth(7);
+        }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
 
         // HUD1 bg
         var r1 = this.add.rectangle(10, 10, 190, 120, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
         // HUD2 bg
         var r2 = this.add.rectangle(730, 10, 160, 90, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
 
-        //  Grab a reference to the Game Scene
+        // Grab a reference to the Game Scene
         let ourGame = this.scene.get('main');
-        //  Listen for events from it
+        // Listen for events from it
 
         ourGame.events.on('addScore', function () {
           this.score += 10;
@@ -65,8 +67,8 @@ export class HudScene extends Scene {
 
         ourGame.events.on('content', function () {
           this.thing.destroy();
-          this.thing = this.createTextBox(this, 10, 380, {
-              wrapWidth: 500,
+          this.thing = this.createTextBox(this, 10, 500, {
+            wrapWidth: 600,
           }).start(this.jigs.content, 50).setDepth(7)
         }, this);
 
@@ -128,38 +130,35 @@ export class HudScene extends Scene {
         var titleText = this.GetValue(config, 'title', undefined);
 
         var textBox = scene.rexUI.add.textBox({
-          x: x,
-          y: y,
+          x: 10,
+          y: 500,
+          //background: scene.rexsUI.add.roundRectangle({ radius: 20, color: this.COLOR_PRIMARY, strokeColor: this.COLOR_LIGHT, strokeWidth: 2, backgroundColor: '#000000' }),
 
-          background: scene.rexUI.add.roundRectangle({ radius: 20, color: this.COLOR_PRIMARY, strokeColor: this.COLOR_LIGHT, strokeWidth: 2 }),
-
-          icon: scene.rexUI.add.roundRectangle({ radius: 20, color: this.COLOR_DARK }),
+          // icon: scene.rexUI.add.roundRectangle({ radius: 20, color: this.COLOR_DARK }),
 
           // text: getBuiltInText(scene, wrapWidth, fixedWidth, fixedHeight),
           text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
 
-          action: scene.add.image(0, 0, 'nextPage').setTint(this.COLOR_LIGHT).setVisible(false),
+          action: scene.add.image(0, 0, 'nextPage').setVisible(false),
 
           title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Arial', fill: '#ffffff' }) : undefined,
 
-          separator: (titleText) ? scene.rexUI.add.roundRectangle({ height: 3, color: this.COLOR_DARK }) : undefined,
+          // separator: (titleText) ? scene.rexUI.add.roundRectangle({ height: 3, color: this.COLOR_DARK }) : undefined,
 
-          space: {
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            icon: 10,
-            text: 10,
-            separator: 6,
-          },
+          // space: {
+          //   left: 0,
+          //   right: 0,
+          //   top: 0,
+          //   bottom: 0,
+          //   icon: 10,
+          //   text: 10,
+          //   separator: 6,
+          // },
 
           align: {
-            title: 'center'
+            title: 'left'
           }
-        })
-          .setDisplayOrigin(0, 0)
-          .layout();
+        }).setDisplayOrigin(0, 0);
 
         textBox
             .setInteractive()
@@ -200,71 +199,65 @@ export class HudScene extends Scene {
         return textBox;
     }
 
-    getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
-      return scene.add.text(0, 0, '', {
-        font: ' bold 24px Arial',
-        fontWeight: 'bold',
-        fontSize: '24px',
-        fill: '#ffffff',
-        wordWrap: {
-            width: wrapWidth
-        },
-        maxLines: 3
-      }).setFixedSize(fixedWidth, fixedHeight);
-    }
+    // getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
+    //   return scene.add.text(0, 0, '', {
+    //     fontFamily: "sans serif",
+    //     fontWeight: 'bold',
+    //     fontSize: '24px',
+    //     fill: '#ffffff',
+    //     wordWrap: {
+    //         width: wrapWidth
+    //     },
+    //     maxLines: 3
+    //   }).setFixedSize(fixedWidth, fixedHeight);
+    // }
 
     getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
-        return scene.rexUI.add.BBCodeText(0, 0, '', {
-            fixedWidth: fixedWidth,
-            fixedHeight: fixedHeight,
-            font: 'bold 24px Arial',
-            fontWeight: 'bold',
-            fontSize: '24px',
-            fill: '#ffffff',
-            wrap: {
-                mode: 'word',
-                width: wrapWidth
-            },
-            maxLines: 3
-        })
+      return scene.rexUI.add.BBCodeText(0, 0, '', {
+        fontFamily:  "sans serif",
+        fontWeight: 'bold',
+        fontSize: '24px',
+        fill: 'white',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        wrap: {
+          mode: 'word',
+          width: 600
+        },
+        maxLines: 3,
+      }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 })
     }
 
     CreateDialog = function (scene, content) {
         return scene.rexUI.add.textArea({
-            x: 400,
-            y: 300,
-            width: 300,
+            x: 0,
+            y: 260,
+            width: 500,
             height: 400,
-
-            background: scene.rexUI.add.roundRectangle({
-              color: this.COLOR_PRIMARY,
-              radius: 20
-            }),
 
             // text: scene.add.text(),
             text: scene.rexUI.add.BBCodeText(),
             // textMask: true,
 
-            slider: {
-              track: scene.rexUI.add.roundRectangle(0, 0, 20, 10, 10, this.COLOR_DARK),
-              thumb: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 13, this.COLOR_LIGHT),
-            },
+            // slider: {
+            //   track: scene.rexUI.add.roundRectangle(0, 0, 20, 10, 10, this.COLOR_DARK),
+            //   thumb: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 13, this.COLOR_LIGHT),
+            // },
 
-            space: {
-              left: 20,
-              right: 20,
-              top: 20,
-              bottom: 20,
-              text: 10,
-              // text: {
-              //     top: 20,
-              //     bottom: 20,
-              //     left: 20,
-              //     right: 20,
-              // },
-              header: 20,
-              footer: 20,
-            },
+            // space: {
+            //   left: 10,
+            //   right: 10,
+            //   top: 10,
+            //   bottom: 10,
+            //   text: 10,
+            //   // text: {
+            //   //     top: 20,
+            //   //     bottom: 20,
+            //   //     left: 20,
+            //   //     right: 20,
+            //   // },
+            //   header: 20,
+            //   footer: 20,
+            // },
 
             scroller: {
                 // pointerOutRelease: false,
@@ -275,41 +268,51 @@ export class HudScene extends Scene {
               speed: 0.1
             },
 
-            header: scene.rexUI.add.label({
-              space: { left: 10, right: 10, top: 10, bottom: 10 },
+            // header: scene.rexUI.add.label({
+            //   space: {
+            //     left: 10,
+            //     right: 10,
+            //     top: 10,
+            //     bottom: 10
+            //   },
 
-              orientation: 0,
-              background: scene.rexUI.add.roundRectangle(0, 0, 20, 20, 0, this.COLOR_DARK),
-              text: scene.add.text(0, 0, 'Title'),
-            }),
+            //   orientation: 0,
+            //   background: scene.rexUI.add.roundRectangle(0, 0, 600, 50, 0, "#000000"),
+            //   text: scene.add.text(0, 0, 'Title'),
+            // }),
 
-            footer: scene.rexUI.add.label({
-              space: { left: 10, right: 10, top: 10, bottom: 10 },
+            // footer: scene.rexUI.add.label({
+            //   space: {
+            //     left: 10,
+            //     right: 10,
+            //     top: 10,
+            //     bottom: 10
+            //   },
 
-              orientation: 0,
-              background: scene.rexUI.add.roundRectangle({
-                  radius: 10,
-                  color: this.COLOR_DARK,
-                  strokeColor: this.COLOR_LIGHT
-              }),
-              text: scene.add.text(0, 0, 'Close'),
-            }).onClick(function (button, gameObject, pointer, event) {
-              gameObject.getTopmostSizer().modalClose();
-            }),
+            //   orientation: 0,
+            //   background: scene.rexUI.add.roundRectangle({
+            //       radius: 10,
+            //       color: this.COLOR_DARK,
+            //       strokeColor: this.COLOR_LIGHT
+            //   }),
+            //   text: scene.add.text(0, 0, 'Close'),
+            // }).onClick(function (button, gameObject, pointer, event) {
+            //   gameObject.getTopmostSizer().modalClose();
+            // }),
 
             content: this.jigs.content,
 
             expand: {
               footer: false
             }
-        })
+        }).setDisplayOrigin(0, 0)
     }
 
     CreateContent = function (linesCount) {
-        var numbers = [];
-        for (var i = 0; i < linesCount; i++) {
-          numbers.push('[color=' + ((i % 2) ? 'green' : 'yellow') + ']' + i.toString() + '[/color]');
-        }
-        return this.jigs.content + '\n' + numbers.join('\n');
+      var numbers = [];
+      for (var i = 0; i < linesCount; i++) {
+        numbers.push('[color=' + ((i % 2) ? 'green' : 'yellow') + ']' + i.toString() + '[/color]');
+      }
+      return this.jigs.content + '\n' + numbers.join('\n');
     }
 }
