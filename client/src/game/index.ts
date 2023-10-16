@@ -14,7 +14,7 @@ const config: Phaser.Types.Core.GameConfig = {
         forceSetTimeOut: true,
         smoothStep: false,
     },
-    width: 900,
+    width: 960,
     height: 640,
     // height: 200,
     backgroundColor: '#000000',
