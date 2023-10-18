@@ -24,7 +24,7 @@ import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
 
 export class MainScene extends Phaser.Scene {
-   room: Room;
+    room: Room;
     currentPlayer: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
     playerEntities: { [sessionId: string]: Phaser.Types.Physics.Arcade.ImageWithDynamicBody } = {};
     debugFPS: Phaser.GameObjects.Text;
@@ -117,7 +117,7 @@ export class MainScene extends Phaser.Scene {
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
-        await this.connect(this.jigs.city + "-" + padding(this.jigs.tiled, 3, 0));
+        await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
         this.walkSound = this.sound.add('walk', { volume: 0.1 });
         this.messenger.initMessages(self);
 
@@ -126,75 +126,13 @@ export class MainScene extends Phaser.Scene {
             // is current player
             if (sessionId === this.room.sessionId) {
                 self.jigs.playerState = "alive";
-                this.localPlayer.addLocalPLayer(this, player, entity, this.colliderMap);
+                this.localPlayer.addLocalPlayer(this, player, entity, this.colliderMap);
                 this.jigs.content = "City:" + this.jigs.city;
                 self.events.emit('content');
 
-                /*-------------------- Rewards ----------------------*/
-                this.rewardsGroup = self.physics.add.group({ allowGravity: false });
-                let a = 0;
-                if (typeof this.jigs.rewardsArray !== 'undefined') {
-                    while (a < this.jigs.rewardsArray.length) {
-                        this.rewardsArray[a] = new Reward(self, this.jigs.rewardsArray[a]);
-                        this.rewardsGroup.add(this.rewardsArray[a], true);
-                        a++;
-                    }
-                }
-                /*-------------------- Npcs ------------------------*/
-                this.npcArray = self.physics.add.group({ allowGravity: false });
-                if (typeof this.jigs.npcArray !== 'undefined') {
-                  let i = 0;
-                  while (i < this.jigs.npcArray.length) {
-                    this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
-                    this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
-                      .setScale(.85)
-                      .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-                      .setData("levelindex", this.jigs.npcArray[i][1])
-                      .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
-
-                    this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
-                      fontFamily:  "sans serif",
-                      fontWeight: 'bold',
-                      fontSize: '14px',
-                      fill: 'white',
-                      backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                      maxLines: 3,
-                    }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 });
-
-                    this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
-                    this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
-                    this.NpcContainerArray[i].setDepth(5);
-                    this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
-                    this.npcArray.add(this.NpcContainerArray[i], true);
-                    i++;
-                  }
-                }
-                /*-------------------- Mobs -----------------------*/
-                this.mobArray = self.physics.add.group({ allowGravity: false });
-                if (typeof this.jigs.mobArray !== 'undefined') {
-                  let i = 0;
-                    while (i < this.jigs.mobArray.length) {
-                      this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
-
-                      this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
-
-                      this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
-
-                      .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-                          .setScale(.85)
-                          .setData("levelindex", this.jigs.mobArray[i][1])
-                          .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
-
-                      this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
-                      this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
-                      this.SceneMobHealthBarArray[i].displayWidth = 25;
-                      this.MobContainerArray[i].add(this.SceneMobArray[i]);
-                      this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
-                      this.MobContainerArray[i].setDepth(7);
-                      this.mobArray.add(this.MobContainerArray[i], true);
-                      i++;
-                  }
-                }
+                this.addRewards();
+                this.addNpc();
+                this.addMobs();
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.85);
                 // listening for server updates
@@ -220,6 +158,73 @@ export class MainScene extends Phaser.Scene {
         this.cameras.main.setZoom(1.5);
     }
 
+    addRewards() {
+        this.rewardsGroup = this.physics.add.group({ allowGravity: false });
+        let a = 0;
+        if (typeof this.jigs.rewardsArray !== 'undefined') {
+            while (a < this.jigs.rewardsArray.length) {
+                this.rewardsArray[a] = new Reward(this, this.jigs.rewardsArray[a]);
+                this.rewardsGroup.add(this.rewardsArray[a], true);
+                a++;
+            }
+        }
+    }
+
+    addNpc() {
+        this.npcArray = this.physics.add.group({ allowGravity: false });
+        if (typeof this.jigs.npcArray !== 'undefined') {
+            let i = 0;
+            while (i < this.jigs.npcArray.length) {
+                this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
+                this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
+                    .setScale(.85)
+                    .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+                    .setData("levelindex", this.jigs.npcArray[i][1])
+                    .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
+
+                this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
+                    fontFamily: "sans serif",
+                    fontWeight: 'bold',
+                    fontSize: '12px',
+                    fill: 'white',
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    maxLines: 3,
+                }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 2, right: 2, top: 2, bottom: 2 });
+
+                this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
+                this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
+                this.NpcContainerArray[i].setDepth(5);
+                this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
+                this.npcArray.add(this.NpcContainerArray[i], true);
+                i++;
+            }
+        }
+    }
+
+    addMobs() {
+        this.mobArray = this.physics.add.group({ allowGravity: false });
+        if (typeof this.jigs.mobArray !== 'undefined') {
+            let i = 0;
+            while (i < this.jigs.mobArray.length) {
+                this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
+                this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
+                this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
+                    .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+                    .setScale(.85)
+                    .setData("levelindex", this.jigs.mobArray[i][1])
+                    .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
+                this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
+                this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
+                this.SceneMobHealthBarArray[i].displayWidth = 25;
+                this.MobContainerArray[i].add(this.SceneMobArray[i]);
+                this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
+                this.MobContainerArray[i].setDepth(7);
+                this.mobArray.add(this.MobContainerArray[i], true);
+                i++;
+            }
+        }
+    }
+
     onNPCDown(npc, img) {
         this.jigs.npc = 1;
         this.jigs.content = npc[4];
@@ -227,8 +232,8 @@ export class MainScene extends Phaser.Scene {
     }
 
     onMobDown(mob, img) {
-        this.jigs.mobClick = mob[0];
-        this.jigs.mobShoot = mob[0];
+        this.jigs.mobClick = mob[1];
+        this.jigs.mobShoot = mob[1];
         this.jigs.playerStats.credits++;
     }
 
@@ -239,21 +244,7 @@ export class MainScene extends Phaser.Scene {
         axios
             .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
-                this.jigs.gameState = response.data[0].value["userGamesState"];
-                this.jigs.playerStats = response.data[0].value["playerStats"];
-                this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
-                this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
-                this.jigs.portalsArray = response.data[0].value["portalsArray"];
-                this.jigs.npcArray = response.data[0].value["NpcArray"];
-                this.jigs.mobArray = response.data[0].value["MobArray"];
-                this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
-                this.jigs.nodeTitle = response.data[0].value["Name"];
-                this.jigs.city = response.data[0].value["City"];
-                this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
-                this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
-                this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
-                this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-
+                this.hydrate(response, true);
             })
             .then(() => {
                 var Loader = new Load;
@@ -266,25 +257,13 @@ export class MainScene extends Phaser.Scene {
     }
 
     updateState() {
-    //    if (this.jigs.playerState == "alive") {
-            axios
-                .get("/mystate?_wrapper_format=drupal_ajax")
-                .then((response) => {
-                    this.jigs.gameState = response.data[0].value["userGamesState"];
-                    this.jigs.playerStats = response.data[0].value["playerStats"];
-                    this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
-                    this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
-                    this.jigs.portalsArray = response.data[0].value["portalsArray"];
-                    this.jigs.npcArray = response.data[0].value["NpcArray"];
-                    this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
-                    this.jigs.nodeTitle = response.data[0].value["Name"];
-                    this.jigs.city = response.data[0].value["City"];
-                    this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
-                    this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
-                    this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
-                    this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-                })
-     //   }
+        //    if (this.jigs.playerState == "alive") {
+        axios
+            .get("/mystate?_wrapper_format=drupal_ajax")
+            .then((response) => {
+                this.hydrate(response, false);
+            })
+        //   }
     }
 
     async connect(room) {
@@ -320,21 +299,20 @@ export class MainScene extends Phaser.Scene {
         if (this.localPlayer !== undefined) {
             this.localPlayer.updatePlayer(this);
         }
-    //    if (this.jigs.mobArray != undefined) {
-            let i = 0;
-            while (i < this.MobContainerArray.length) {
-                if (this.jigs.mobArray[i] != undefined) {
-                    this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
-                    this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
-            //        this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][3] / 4;
-                }
-                i++;
-            };
-    //    }
+        //    if (this.jigs.mobArray != undefined) {
+        let i = 0;
+        while (i < this.MobContainerArray.length) {
+            if (this.jigs.mobArray[i] != undefined) {
+                this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
+                this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
+                //        this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][3] / 4;
+            }
+            i++;
+        };
+        //    }
 
         for (let sessionId in this.playerEntities) {
-            // interpolate all player entities
-            // (except the current player)
+
             if (sessionId === this.room.sessionId) {
                 continue;
             }
@@ -348,21 +326,39 @@ export class MainScene extends Phaser.Scene {
             }
         }
     }
-}
 
+    padding(n, p, c) {
+        var pad_char = typeof c !== 'undefined' ? c : '0';
+        var pad = new Array(1 + p).join(pad_char);
+        return (pad + n).slice(-pad.length);
+    }
 
-function padding(n, p, c) {
-    var pad_char = typeof c !== 'undefined' ? c : '0';
-    var pad = new Array(1 + p).join(pad_char);
-    return (pad + n).slice(-pad.length);
-}
+    async portalJump(self) {
+        await self.room.leave(); // Backend
+        await self.scene.start('main'); //Frontend
 
-async function portalJump(self) {
-    await self.room.leave(); // Backend
-    await self.scene.start('main'); //Frontend
+    }
 
-}
+    async hide(entity) {
+        entity.disableBody(true, true);
+    }
 
-async function hide(entity) {
-    entity.disableBody(true, true);
+    hydrate(response, incMob) {
+        this.jigs.gameState = response.data[0].value["userGamesState"];
+        this.jigs.playerStats = response.data[0].value["playerStats"];
+        this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
+        this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
+        this.jigs.portalsArray = response.data[0].value["portalsArray"];
+        this.jigs.npcArray = response.data[0].value["NpcArray"];
+        if (incMob) {
+            this.jigs.mobArray = response.data[0].value["MobArray"];
+        }
+        this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
+        this.jigs.nodeTitle = response.data[0].value["Name"];
+        this.jigs.city = response.data[0].value["City"];
+        this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
+        this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
+        this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
+        this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
+    }
 }

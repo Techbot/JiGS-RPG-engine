@@ -38,7 +38,7 @@ export class HudScene extends Scene {
 
     preload() {
       this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-      // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+      this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
       this.load.image('cursor', '/assets/images/cursors/blank.cur');
       this.load.image('cursor2', '/assets/images/cursors/attack.cur');
       this.load.image('cursor3', '/assets/images/cursors/speak.cur');

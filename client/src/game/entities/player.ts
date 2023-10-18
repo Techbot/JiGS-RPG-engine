@@ -21,7 +21,7 @@ export default class Player {
         this.jigs = useJigsStore();
     }
 
-    addLocalPLayer(self, player, entity, colliderMap) {
+    addLocalPlayer(self, player, entity, colliderMap) {
         this.colliderMap = colliderMap
 
         entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
@@ -64,7 +64,7 @@ export default class Player {
 
         self.input.on("pointerdown", (event) => {
 
-            if (this.jigs.playerState == "alive") {
+         //   if (this.jigs.playerState == "alive") {
 
                 if (self.currentPlayer.dir == 'left') {
                     self.currentPlayer.play('thrustLeft_' + self.jigs.playerStats.sprite_sheet + '_slash');
@@ -105,7 +105,7 @@ export default class Player {
                     self.inputPayload.inputX = parseInt(event.worldX);
                     self.inputPayload.inputY = parseInt(event.worldY);
                 }
-            }
+        //    }
         });
     }
 
