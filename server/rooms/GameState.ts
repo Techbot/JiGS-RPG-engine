@@ -37,6 +37,7 @@ export class Zombie extends Schema {
   @type("number") field_y_value: number;
   @type("number") health: number;
   @type("number") following: number;
+  @type("number") dead: number;
 }
 
 export class MyRoomState extends Schema {
