@@ -1,6 +1,10 @@
 import Phaser from "phaser";
 
 export default class FlyingStar extends Phaser.Physics.Arcade.Sprite {
+  path: Phaser.Curves.Ellipse;
+  pathIndex: number;
+  pathSpeed: any;
+  pathVector: Phaser.Math.Vector2;
   constructor(scene, x, y, width, height, speed) {
     super(scene, x, y, 'star');
 
