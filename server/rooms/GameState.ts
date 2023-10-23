@@ -30,7 +30,7 @@ export class Player extends Schema {
 
 }
 
-export class Zombie extends Schema {
+export class ZombieState extends Schema {
   @type("number") field_mobs_target_id: number;
   @type("string") field_mob_name_value: string;
   @type("number") field_x_value: number;
@@ -52,6 +52,6 @@ export class MyRoomState extends Schema {
   }
   @type("number") mapWidth: number;
   @type("number") mapHeight: number;
-  @type({map: Zombie}) MobResult      = new MapSchema<Zombie>();
+  @type({map: ZombieState}) MobResult      = new MapSchema<ZombieState>();
   @type({ map: Player }) players      = new MapSchema<Player>();
 }

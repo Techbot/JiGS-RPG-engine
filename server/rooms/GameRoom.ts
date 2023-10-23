@@ -1,6 +1,7 @@
 import { Room, Client } from "colyseus";
 const db = require("../services/db");
-import { InputData, MyRoomState, Player, Zombie } from "./GameState";
+const Mob = require("./mob");
+import { InputData, MyRoomState, Player } from "./GameState";
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 const fs = require('fs');
@@ -43,12 +44,13 @@ export class GameRoom extends Room<MyRoomState> {
   }
 
   onCreate(options: any) {
+    let self = this;
     this.indexNumber = 1;
     this.setState(new MyRoomState());
     this.loadPortals(options.nodeNumber);
     this.loadRewards(options.nodeNumber);
     this.loadNpcs(options.nodeNumber);
-    this.loadMobs(options.nodeNumber);
+    Mob.loadMobs(options.nodeNumber, self);
     this.addLayers(options.nodeName);
     this.state.mapWidth = 1900;
     this.state.mapHeight = 1900;
@@ -96,146 +98,32 @@ export class GameRoom extends Room<MyRoomState> {
   fixedTick(timeStep: number) {
     const velocity = 2;
     var fixedTimeStep = 1 / 60;
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     this.world.step(fixedTimeStep);
-    ////////////////////////////////////////////////////////////////////////////////
-
-    if (this.P2mobBodies.length > 0) {
-      // Update destination every 2 seconds for one of the mobs
-      if (this.pause == 0) {
-        this.pause = 1;
-        const myPromise = new Promise((resolve, reject) => {
-          resolve(Math.ceil(Math.random() * this.P2mobBodies.length - 1));
-        });
-        myPromise.then((mobNumber) => {
-          this.updateMobForce(mobNumber);
-        });
-      }
-      let i = 0;
-      while (i < this.P2mobBodies.length) {
-        this.P2mobBodies[i].setZeroForce();
-        //    this.P2mobBodies[i].force[0] = this.P2mobBodies[i].destinationX;
-        //    this.P2mobBodies[i].force[1] = this.P2mobBodies[i].destinationY;
-        ////////////////////////////////////////////////////////////////////////////
-        this.state.MobResult.forEach(mobState => {
-
-          if (this.P2mobBodies[i].field_mob_name_value == mobState.field_mob_name_value) {
-            //  console.log('follow ' + mob.following);
-            //if  not following someone, do the test
-            if (mobState.following == 0) {
-
-              if (parseInt(mobState.field_x_value) != parseInt(this.P2mobBodies[i].position[0])
-                || parseInt(mobState.field_y_value) != parseInt(this.P2mobBodies[i].position[1])) {
-                const mobItem = new Zombie();
-                mobItem.following = 0;
-                mobItem.field_mobs_target_id = mobState.field_mobs_target_id;
-                mobItem.field_mob_name_value = mobState.field_mob_name_value;
-                mobItem.field_x_value = parseInt(this.P2mobBodies[i].position[0]);
-                mobItem.field_y_value = parseInt(this.P2mobBodies[i].position[1]);
-                mobItem.health = mobState.health;
-                mobItem.dead = mobState.dead;
-                this.state.MobResult.set(mobState.field_mob_name_value, mobItem);
-              }
-
-
-              this.state.players.forEach(player => {
-                //var mobPlayerDist = Math.sqrt(Math.pow((player.x - parseInt(this.P2mobBodies[i].position[0])), 2) + Math.pow((player.y - parseInt(this.P2mobBodies[i].position[0])), 2));
-                var mobPlayerDist = Math.hypot(player.x - parseInt(this.P2mobBodies[i].position[0]), player.y - parseInt(this.P2mobBodies[i].position[0]));
-                //  console.log('player ' + player.playerId + ' dist: ' + mobPlayerDist + "from " + i);
-                if (mobPlayerDist < 800) {
-                  const mobItem = new Zombie();
-                  mobItem.following = player.playerId;
-                  mobItem.field_mobs_target_id = mobState.field_mobs_target_id;
-                  mobItem.field_mob_name_value = mobState.field_mob_name_value;
-                  mobItem.field_x_value = parseInt(this.P2mobBodies[i].position[0]);
-                  mobItem.field_y_value = parseInt(this.P2mobBodies[i].position[1]);
-                  mobItem.health = mobState.health;
-                  mobItem.dead = mobState.dead;
-                  this.state.MobResult.set(mobState.field_mob_name_value, mobItem);
-                  }
-
-              })
-            }
-            if (mobState.following > 0) {
-              //   console.log('almost following');
-              this.state.players.forEach(player => {
-                if (player.playerId == mobState.following && mobState.dead!=1) {
-
-
-                  if (mobState.dead == 0) {
-                  //        console.log('following');
-                  if (parseInt(this.P2mobBodies[i].position[0]) > player.playerBody.position[0]) {
-                    this.P2mobBodies[i].force[0] = -130;
-                  }
-                  else {
-                    this.P2mobBodies[i].force[0] = 130;
-                  }
-                  if (parseInt(this.P2mobBodies[i].position[1]) > player.playerBody.position[1]) {
-                    this.P2mobBodies[i].force[1] = -130;
-                  }
-                  else {
-                    this.P2mobBodies[i].force[1] = 130;
-                  }
-
-                }
-                  const mobItem = new Zombie();
-                  mobItem.following = player.playerId;
-                  mobItem.field_mobs_target_id = mobState.field_mobs_target_id;
-                  mobItem.field_mob_name_value = mobState.field_mob_name_value;
-                  mobItem.field_x_value = parseInt(this.P2mobBodies[i].position[0]);
-                  mobItem.field_y_value = parseInt(this.P2mobBodies[i].position[1]);
-                  mobItem.health = mobState.health;
-                  mobItem.dead = mobState.dead;
-                  this.state.MobResult.set(mobState.field_mob_name_value, mobItem);
-                }
-              })
-            };
-
-            if (mobState.dead > 0) {
-              this.P2mobBodies[i].destinationX = 0;
-              this.P2mobBodies[i].destinationY = 0;
-            }
-          }
-        });
-        ////////////////////////////////////////////////////////////////////////////////
-        i++;
-      };
-    };
-
-    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    var self = this;
+    Mob.updateMob(self);
+    ////////////////////////////////////////////////////////////////////////////
     this.state.players.forEach(player => {
       let input: InputData;
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
+
         if (input.mobClick != '') {
           this.state.MobResult.forEach(element => {
             console.log(element.field_mob_name_value);
           });
-
           if (this.state.MobResult[input.mobClick] != undefined) {
             if (this.state.MobResult[input.mobClick].health > 0) {
-
               this.state.MobResult[input.mobClick].health -= 20;
               this.state.MobResult[input.mobClick].mass = 0;
-
               console.log(input.mobClick + "with " + this.state.MobResult[input.mobClick].health + "health, was attacked by " + player.playerId);
-
               if (this.state.MobResult[input.mobClick].health == 0) {
                 console.log('zombie dead');
-                //this.state.MobResult[input.mobClick].dead = 1;
-                const mobItem = new Zombie();
-                mobItem.following = 0;
-                mobItem.field_mobs_target_id = this.state.MobResult[input.mobClick].field_mobs_target_id;
-                mobItem.field_mob_name_value = this.state.MobResult[input.mobClick].field_mob_name_value;
-                mobItem.field_x_value = this.state.MobResult[input.mobClick].field_x_value;
-                mobItem.field_y_value = this.state.MobResult[input.mobClick].field_y_value;
-          //      this.state.MobResult[input.mobClick].destinationX = 0;
-          //      this.state.MobResult[input.mobClick].destinationY = 0;
-
-                mobItem.health               = 0;
-                mobItem.dead                 = 1;
-                this.state.MobResult.set(this.state.MobResult[input.mobClick].field_mob_name_value, mobItem);
-
+                // if mob is dead update health and dead and following
+                Mob.updateZombieState(undefined, undefined, undefined,
+                  undefined, 0, 0, 1, this.state.MobResult[input.mobClick], undefined
+                )
                 this.broadcast("zombie dead", this.state.MobResult[input.mobClick].field_mob_name_value);
                 const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 10, 0));
                 promise1.then(() => {
@@ -249,28 +137,23 @@ export class GameRoom extends Room<MyRoomState> {
                 promise1.then(() => {
                 });
               }
-/*               const mobItem = new Zombie();
-              mobItem.field_mobs_target_id = this.state.MobResult[input.mobClick].field_mobs_target_id;
-              mobItem.field_mob_name_value = this.state.MobResult[input.mobClick].field_mob_name_value;
-              mobItem.field_x_value = this.state.MobResult[input.mobClick].field_x_value;
-              mobItem.field_y_value = this.state.MobResult[input.mobClick].field_y_value;
-              mobItem.health = this.state.MobResult[input.mobClick].health;
-              mobItem.dead = this.state.MobResult[input.mobClick].dead;
-              mobItem.following = 0;
-              this.state.MobResult.set(this.state.MobResult[input.mobClick].field_mob_name_value, mobItem); */
+              Mob.updateZombieState(
+                this.state.MobResult[input.mobClick].field_mobs_target_id, this.state.MobResult[input.mobClick].field_mob_name_value,
+                undefined, undefined, undefined, undefined, undefined, this.state.MobResult[input.mobClick], undefined
+              )
             }
           }
         }
+////////////////////////////////////////////////////////////////////////////////
+
         if (input.inputX !== player.lastX) {
           console.log('x = ' + input.inputX);
           player.lastX = input.inputX;
-
         }
         if (input.inputY !== player.lastY) {
           console.log('y = ' + input.inputY);
           player.lastY = input.inputY;
         }
-
         if (input.left) {
           if (!player.playerBody.collide) {
             player.x -= velocity;
@@ -323,10 +206,10 @@ export class GameRoom extends Room<MyRoomState> {
     await this.skip(2000);
     var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
     var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
-    if (this.P2mobBodies[i].dead !=1){
-    this.P2mobBodies[i].destinationX = forceX;
-    this.P2mobBodies[i].destinationY = forceY;
-  }
+    if (this.P2mobBodies[i].dead != 1) {
+      this.P2mobBodies[i].destinationX = forceX;
+      this.P2mobBodies[i].destinationY = forceY;
+    }
     this.pause = 0;
   }
 
@@ -337,7 +220,6 @@ export class GameRoom extends Room<MyRoomState> {
       }, val);
     });
   }
-
 
   onJoin(client: Client, options: any) {
     console.log(client.sessionId, "joined!");
@@ -428,35 +310,6 @@ export class GameRoom extends Room<MyRoomState> {
     });
   }
 
-  async loadMobs(nodeNumber: number) {
-    const Mob = await import("./mob");
-    var self = this;
-    Bridge.getMobs(nodeNumber).then((result: any) => {
-      result.forEach(mob => {
-        const mobItem = new Zombie();
-        mobItem.field_mobs_target_id = mob.field_mobs_target_id;
-        mobItem.field_mob_name_value = mob.field_mob_name_value;
-        mobItem.field_x_value = mob.field_x_value;
-        mobItem.field_y_value = mob.field_y_value;
-        mobItem.health = 100;
-        mobItem.dead = 0;
-        mobItem.following = 0;
-        this.state.MobResult.set(mob.field_mob_name_value, mobItem);
-      });
-      return result;
-    }).then((newResult: any) => {
-      for (let i = 0; i < newResult.length; i++) {
-        newResult[i].health = 100;
-        var p2Mob = Mob.makeMob(newResult[i], this.share);
-        p2Mob.destinationX = 0;
-        p2Mob.destinationY = 0;
-        self.world.addBody(p2Mob);
-        this.P2mobBodies.push(p2Mob);
-      }
-    }).catch(function () {
-      console.log('Mob shit');
-    });
-  }
 
   async loadRewards(nodeNumber: number) {
     const reward = await import("./reward");
@@ -574,7 +427,7 @@ export class GameRoom extends Room<MyRoomState> {
           bodyA.done = true;
         }
       }
-      if (bodyA.isMob && bodyA.dead==0) {
+      if (bodyA.isMob && bodyA.dead == 0) {
         //  if (!bodyA.done) {
         console.log('Mobstrike!!!!');
         console.log('playerId: ' + bodyB.playerId);
@@ -591,15 +444,11 @@ export class GameRoom extends Room<MyRoomState> {
             this.broadcast("dead", bodyB.playerId);
           }
         });
+        //When zombie is dead set dead health  and following
+        Mob.updateZombieState(
+          bodyA.field_mobs_target_id, bodyA.field_mob_name_value, parseInt(bodyA.position[0]), parseInt(bodyA.position[1]),
+          0, 0, 1, undefined, undefined)
 
-        const mobItem = new Zombie();
-        mobItem.field_mobs_target_id = bodyA.field_mobs_target_id;
-        mobItem.field_mob_name_value = bodyA.field_mob_name_value;
-        mobItem.dead = bodyA.dead;
-        mobItem.field_x_value = parseInt(bodyA.position[0]);
-        mobItem.field_y_value = parseInt(bodyA.position[1]);
-        mobItem.health = bodyA.health;
-        this.state.MobResult.set(bodyA.field_mob_name_value, mobItem);
         this.broadcast("player hit", bodyA.field_mob_name_value); // TODO change to player name
 
         bodyB.mobHit = bodyA.mob_name;
