@@ -3,7 +3,7 @@
 // https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
-
+var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 
   export  function placeNpc( npc: any, share: any) {
@@ -33,5 +33,15 @@ var p2 = require('p2');
     return circleBody
   }
 
-
-
+  export async function load(world,nodeNumber: number) {
+  Bridge.getNpcs(nodeNumber).then((result: any) => {
+    this.state.NpcResult = result;
+    return result;
+  }).then((newResult: any) => {
+    for (let i = 0; i < newResult.length; i++) {
+      world.addBody(this.placeNpc(newResult[i], this.share));
+    }
+  }).catch(function () {
+    console.log('NPC shit');
+  });
+}

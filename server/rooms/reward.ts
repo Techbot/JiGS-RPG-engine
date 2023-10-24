@@ -36,3 +36,18 @@ var p2 = require('p2');
 
 
 
+  export async function load(world, nodeNumber: number) {
+
+  // Render page
+  var self = this;
+  Bridge.getRewards(nodeNumber).then((result: any) => {
+    this.result = result;
+    return result;
+  }).then((newResult: any) => {
+    for (let i = 0; i < newResult.length; i++) {
+      self.world.addBody(reward.placeReward(newResult[i], this.share));
+    }
+  }).catch(function () {
+    console.log('shit');
+  });
+}

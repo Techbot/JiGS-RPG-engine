@@ -3,7 +3,7 @@
 // https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
-
+var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 
   export  function placePortal( portal: any, share: any) {
@@ -36,6 +36,21 @@ var p2 = require('p2');
     // Add the body to the world
     return circleBody
   }
+
+  export async function load(world,nodeNumber: number) {
+
+  // Render page
+  Bridge.getPortals(nodeNumber).then((result: any) => {
+    this.result = result;
+    return result;
+  }).then((newResult: any) => {
+    for (let i = 0; i < newResult.length; i++) {
+      world.addBody(this.placePortal(newResult[i], this.share));
+    }
+  }).catch(function () {
+    console.log('Portal shit');
+  });
+}
 
 
 

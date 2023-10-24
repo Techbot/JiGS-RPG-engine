@@ -37,7 +37,7 @@ export function makeMob(mob: any, share: any) {
   return circleBody
 }
 
-export function updateMob(self) {
+export function updateMob(self: { P2mobBodies: string | any[]; pause: number; updateMobForce: (arg0: unknown) => void; state: { MobResult: any[]; players: any[]; }; }) {
 
   if (self.P2mobBodies.length > 0) {
     // Update destination every 2 seconds for one of the mobs
@@ -146,7 +146,7 @@ export function updateZombieState(
   this.state.MobResult.set(mobState.field_mob_name_value, mobItem);
 }
 
- export  async function loadMobs(nodeNumber: number,self) {
+ export  async function load(nodeNumber: number, world: { addBody: (arg0: any) => void; }) {
 
   //var self = this;
   Bridge.getMobs(nodeNumber).then((result: any) => {
@@ -162,10 +162,50 @@ export function updateZombieState(
       var p2Mob = this.makeMob(newResult[i], this.share);
       p2Mob.destinationX = 0;
       p2Mob.destinationY = 0;
-      self.world.addBody(p2Mob);
+      world.addBody(p2Mob);
       this.P2mobBodies.push(p2Mob);
     }
   }).catch(function () {
     console.log('Mob shit');
   });
 }
+
+export function mobClicked(input, player) {
+  if (input.mobClick != '') {
+    this.state.MobResult.forEach(element => {
+      console.log(element.field_mob_name_value);
+    });
+    if (this.state.MobResult[input.mobClick] != undefined) {
+      this.updateZombieState(
+        this.state.MobResult[input.mobClick].field_mobs_target_id, this.state.MobResult[input.mobClick].field_mob_name_value,
+        undefined, undefined, undefined, undefined, undefined, this.state.MobResult[input.mobClick], undefined
+      )
+      if (this.state.MobResult[input.mobClick].health > 0) {
+        this.state.MobResult[input.mobClick].health -= 20;
+        this.state.MobResult[input.mobClick].mass = 0;
+        console.log(input.mobClick + "with " + this.state.MobResult[input.mobClick].health + "health, was attacked by " + player.playerId);
+
+        if (this.state.MobResult[input.mobClick].health == 0) {
+          console.log('zombie dead');
+          // if mob is dead update health and dead and following
+          this.updateZombieState(undefined, undefined, undefined,
+            undefined, 0, 0, 1, this.state.MobResult[input.mobClick], undefined
+          )
+          const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 10, 0));
+          promise1.then(() => {
+          });
+          return 1;
+        }
+        if (this.state.MobResult[input.mobClick].health < 0) {
+          this.state.MobResult[input.mobClick].health = 0;
+        }
+        else {
+          const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 1, 0));
+          promise1.then(() => {
+          });
+        }
+        return 0;
+      }
+    }
+  }
+};
