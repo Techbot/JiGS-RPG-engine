@@ -1,16 +1,10 @@
 import { Room, Client } from "colyseus";
 const db = require("../services/db");
-const Mob = require("./mob");
-const p2Player = await import("./P2player");
-import { InputData, MyRoomState, Player } from "./GameState";
+import { InputData, MyRoomState, Player, ZombieState } from "./GameState";
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 const fs = require('fs');
-const Npc = await import("./npc");
-const Portal = await import("./portal");
-const Reward = await import("./reward");
-const Collisions = await import("./collisions");
-const Layers = await import("./layers");
+import { P2player } from "./P2player";
 
 export class GameRoom extends Room<MyRoomState> {
   fixedTimeStep = 1000 / 60;
@@ -26,7 +20,7 @@ export class GameRoom extends Room<MyRoomState> {
   colors = { '6': 14153173, '7': 15153173, '8': 12153173, '9': 16701904 };
   result: any;
   world: any;
-  p2playa: any;
+  p2Player: any;
   playerShape: any;
   playerBody: any;
   last_step_x: any;
@@ -42,6 +36,14 @@ export class GameRoom extends Room<MyRoomState> {
   indexNumber: any;
   P2mobBodies: any;
   pause: number;
+  Npc: typeof import("z:/web/modules/custom/jigs/server/rooms/npc");
+  Portal: typeof import("z:/web/modules/custom/jigs/server/rooms/portal");
+  Reward: typeof import("z:/web/modules/custom/jigs/server/rooms/reward");
+  Collisions: typeof import("z:/web/modules/custom/jigs/server/rooms/collisions");
+  Layers: typeof import("z:/web/modules/custom/jigs/server/rooms/layers");
+ // p2Player: typeof import("z:/web/modules/custom/jigs/server/rooms/P2player");
+  Mob: typeof import("z:/web/modules/custom/jigs/server/rooms/mob");
+
   constructor() {
     super();
     this.world = new p2.World({ gravity: [0, 0] });
@@ -49,43 +51,46 @@ export class GameRoom extends Room<MyRoomState> {
     this.pause = 0;
   }
 
-  onCreate(options: any) {
+  async onCreate(options: any) {
+    this.Npc = await import("./npc");
+    this.Portal = await import("./portal");
+    this.Reward = await import("./reward");
+    this.Collisions = await import("./collisions");
+    this.Layers = await import("./layers");
+    this.Mob = await import("./mob");
     this.indexNumber = 1;
     this.setState(new MyRoomState());
-    Portal.load(this.world, options.nodeNumber);
-    Reward.load(this.world, options.nodeNumber);
-    Npc.load(this.world,options.nodeNumber);
-    Mob.load(this.world,options.nodeNumber );
-
-    Layers.addLayers(options.nodeName);
-
-    Collisions.addCollisions(this);
+    this.Portal.load(this.world, options.nodeNumber, this.share);
+    this.Reward.load(this.world, options.nodeNumber, this.share);
+    this.Npc.load(this.world, options.nodeNumber, this.share);
+    this.Mob.load(this, options.nodeNumber, this.share);
+    this.Layers.addLayers(options.nodeName, this.share);
+    this.Collisions.addCollisions(this);
     this.state.mapWidth = 1900;
     this.state.mapHeight = 1900;
-
     this.onMessage(0, (client, input) => {
       // handle player input
 
       const player = this.state.players.get(client.sessionId);
-      if (player.playerBody.portal) {
+      if (player.p2Player.playerBody.portal) {
         client.send("portal", player.playerBody.portal);
         player.playerBody.portal = false;
       }
-      else if (player.playerBody.collide) {
+      else if (player.p2Player.playerBody.collide) {
         client.send("collide", player.playerBody.collide);
         player.playerBody.collide = false;
       }
-      else if (player.playerBody.struck) {
+      else if (player.p2Player.playerBody.struck) {
         client.send("struck", player.playerBody.health);
         player.playerBody.struck = false;
       }
-      else if (player.playerBody.dead) {
+      else if (player.p2Player.playerBody.dead) {
         client.send("dead", player);
         player.playerBody.dead = false;
       }
-      else if (player.playerBody.reward) {
+      else if (player.p2Player.playerBody.reward) {
         client.send("reward", player.playerBody.reward);
-        player.playerBody.reward = false;
+        player.p2Player.playerBody.reward = false;
         player.inputQueue.push(input);
       }
       else {
@@ -106,22 +111,16 @@ export class GameRoom extends Room<MyRoomState> {
   fixedTick(timeStep: number) {
     const velocity = 2;
     var fixedTimeStep = 1 / 60;
-    ////////////////////////////////////////////////////////////////////////////
     this.world.step(fixedTimeStep);
-    ////////////////////////////////////////////////////////////////////////////
-    var self = this;
-    Mob.updateMob(self);
-    ////////////////////////////////////////////////////////////////////////////
+    this.Mob.updateMob(this);
     this.state.players.forEach(player => {
       let input: InputData;
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
-
-        if (Mob.mobClicked(input, player) == 1) {
-          this.broadcast("zombie dead", this.state.MobResult[input.mobClick].field_mob_name_value);
+        if (this.Mob.mobClicked(this, input, player) == 1) {
+          this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
         }
-        ////////////////////////////////////////////////////////////////////////////////
-        p2Player.updatePlayer(input, player, velocity);
+        player.p2Player.updatePlayer(input, player, velocity);
       }
     });
   }
@@ -146,14 +145,14 @@ export class GameRoom extends Room<MyRoomState> {
   }
 
   onJoin(client: Client, options: any) {
+    console.log(client.sessionId, "joined!");
+    console.log(options.playerId, "joined!");
     const player = new Player();
     player.playerId = options.playerId;
-    player.playerBody = p2Player.placePlayer(this.share, player);
+    player.p2Player = new P2player(player.playerId, this.share);
     this.state.players.set(client.sessionId, player);
-    this.world.addBody(player.playerBody);
-
+    this.world.addBody(player.p2Player.playerBody);
   }
-
   onLeave(client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.players.delete(client.sessionId);
@@ -165,6 +164,18 @@ export class GameRoom extends Room<MyRoomState> {
 
   onDispose() {
     console.log("room", this.roomId, "disposing...");
+  }
+
+  loadMaps(nodeName: string) {
+    var cityName = nodeName.split("-")[0];
+    var cityNumber = nodeName.split("-")[1];
+    try {
+      const data = require(`../../../../../assets/cities/` + cityName + `/json/` + cityNumber + `.json`);
+      return data;
+    } catch (err) {
+      console.log(err);
+      console.log('shit');
+    }
   }
 
   checkHits() {

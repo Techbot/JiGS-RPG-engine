@@ -37,7 +37,7 @@ var p2 = require('p2');
     return circleBody
   }
 
-  export async function load(world,nodeNumber: number) {
+  export function load(worldThing,nodeNumber: number,share) {
 
   // Render page
   Bridge.getPortals(nodeNumber).then((result: any) => {
@@ -45,7 +45,7 @@ var p2 = require('p2');
     return result;
   }).then((newResult: any) => {
     for (let i = 0; i < newResult.length; i++) {
-      world.addBody(this.placePortal(newResult[i], this.share));
+      worldThing.addBody(this.placePortal(newResult[i], share));
     }
   }).catch(function () {
     console.log('Portal shit');

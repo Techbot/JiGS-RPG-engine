@@ -6,7 +6,7 @@
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 
-  export  function placeNpc( npc: any, share: any) {
+  export function placeNpc( npc: any, share: any) {
    // console.log('place');
     const circleShape = new p2.Circle({ radius: 10 });
     circleShape.collisionGroup = share.COL_ENEMY;
@@ -33,13 +33,14 @@ var p2 = require('p2');
     return circleBody
   }
 
-  export async function load(world,nodeNumber: number) {
-  Bridge.getNpcs(nodeNumber).then((result: any) => {
-    this.state.NpcResult = result;
+  export async function load(worldThing, nodeNumber,share) {
+
+   Bridge.getNpcs(nodeNumber).then((result: any) => {
+   // state.NpcResult = result;
     return result;
   }).then((newResult: any) => {
     for (let i = 0; i < newResult.length; i++) {
-      world.addBody(this.placeNpc(newResult[i], this.share));
+    //  world.addBody(this.placeNpc(newResult[i], share));
     }
   }).catch(function () {
     console.log('NPC shit');

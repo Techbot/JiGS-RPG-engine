@@ -27,6 +27,7 @@ export class Player extends Schema {
   playerId: any;
   lastX: number;
   lastY: number;
+  p2Player: import("z:/web/modules/custom/jigs/server/rooms/P2player").P2player;
 
 }
 
@@ -41,17 +42,18 @@ export class ZombieState extends Schema {
 }
 
 export class MyRoomState extends Schema {
-  NpcResult: any;
   mapWidth: number;
   mapHeight: number;
-  MobResult: any;
+  mobResult: any;
+  npcResult: any;
   players: any;
+  NpcResult: any;
 
   destroySomething() {
    console.log('destroy all the things');
   }
   @type("number") mapWidth: number;
   @type("number") mapHeight: number;
-  @type({map: ZombieState}) MobResult      = new MapSchema<ZombieState>();
+  @type({map: ZombieState}) mobResult      = new MapSchema<ZombieState>();
   @type({ map: Player }) players      = new MapSchema<Player>();
 }

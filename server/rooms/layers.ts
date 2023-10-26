@@ -1,18 +1,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
-//
+// 
 //////////////////////////////////////////////////////////////////////////////
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 
-export  async function addLayers(nodeName: any) {
+export  function addLayers(nodeName: any, share) {
   this.mapJson = loadMaps(nodeName);
   var layerData = this.mapJson.layers[0].data;
-  console.log('activated');
+  //console.log('activated');
   var self = this;
   // world collisions:
-  console.log('----------');
+  //console.log('----------');
   for (var c = 0; c < this.mapJson.width; c++) {
     var positionX = c * 16;
     for (var r = 0; r < this.mapJson.height; r++) {
@@ -27,8 +26,8 @@ export  async function addLayers(nodeName: any) {
         // create a box to fill the space:
         var boxShape = new p2.Box({ width: 16, height: 16 });
         //boxShape.color = this.colors[colliderIndex];
-        boxShape.collisionGroup = this.share.COL_GROUND;
-        boxShape.collisionMask = this.share.COL_PLAYER | this.share.COL_ENEMY;
+        boxShape.collisionGroup = share.COL_GROUND;
+        boxShape.collisionMask = share.COL_PLAYER | share.COL_ENEMY;
         var bodyConfig = {
           position: [positionX, positionY],
           mass: 1,
@@ -52,7 +51,7 @@ function loadMaps(nodeName: string) {
     const data = require(`../../../../../assets/cities/` + cityName + `/json/` + cityNumber + `.json`);
     return data;
   } catch (err) {
-    console.log(err);
-    console.log('shit');
+  //  console.log(err);
+  //  console.log('shit');
   }
 }

@@ -1,13 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
+// 
 //
 //////////////////////////////////////////////////////////////////////////////
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 const Mob = require("./mob");
-
-
 
   export function addCollisions(self){
 
@@ -16,18 +14,15 @@ const Mob = require("./mob");
     var bodyB = evt.bodyB;
     if (bodyA.isPortal) {
       if (!bodyA.done) {
-        console.log('Portal!!!!');
-        console.log('tiled: ' + bodyA.tiled);
-        console.log('playerId: ' + bodyB.playerId);
         const promise1 = Promise.resolve(Bridge.updateMap(bodyB.playerId, bodyA.destination));
         promise1
           .then(() => { bodyB.portal = bodyA.tiled; })
           .then(() => {
-            console.log(bodyA.destination_x);
+    //        console.log(bodyA.destination_x);
             Bridge.updatePlayer(bodyB.playerId, 'x', bodyA.destination_x, 1)
           })
           .then(() => {
-            console.log(bodyA.destination_y);
+   //         console.log(bodyA.destination_y);
             Bridge.updatePlayer(bodyB.playerId, 'y', bodyA.destination_y, 1)
           });
         bodyA.done = true;
@@ -46,9 +41,9 @@ const Mob = require("./mob");
     }
     if (bodyA.isMob && bodyA.dead == 0) {
       //  if (!bodyA.done) {
-      console.log('Mobstrike!!!!');
-      console.log('playerId: ' + bodyB.playerId);
-      console.log('health: ' + bodyB.health);
+//      console.log('Mobstrike!!!!');
+ //     console.log('playerId: ' + bodyB.playerId);
+//      console.log('health: ' + bodyB.health);
       bodyB.struck = true;
       const promise1 = Promise.resolve(Bridge.updatePlayer(bodyB.playerId, 'health', -10, false));
       promise1.then(() => {
@@ -74,27 +69,27 @@ const Mob = require("./mob");
   self.world.on('beginContact', function (evt: any) {
     var bodyA = evt.bodyA;
     var bodyB = evt.bodyB;
-    console.log('Begin Contact');
+  //  console.log('Begin Contact');
     if (bodyA.isPlayer) {
       /*        console.log('endContact! --------------------------------------------------------------');
                 console.log('BODY A is the player!', bodyA.isPlayer, bodyA.id);
                 console.log('BODY B is the wall!', bodyB.isWall, bodyB.id,  bodyB.position); */
-      console.log('BODY B TILE / TILEINDEX: ', bodyB.tile, bodyB.tileIndex);
+    //  console.log('BODY B TILE / TILEINDEX: ', bodyB.tile, bodyB.tileIndex);
       bodyA.collide = true;
       //    bodyA.velocity = [0, 0];
     } else {
       /*   console.log('endContact! --------------------------------------------------------------');
         console.log('BODY A is the wall!', bodyA.isWall, bodyA.id, bodyA.position);
         console.log('BODY B is the player!', bodyB.isPlayer, bodyB.id); */
-      console.log('BODY A TILE / TILEINDEX: ', bodyA.tile, bodyA.tileIndex);
+    //  console.log('BODY A TILE / TILEINDEX: ', bodyA.tile, bodyA.tileIndex);
       bodyB.collide = true;
       //  bodyB.velocity = [0, 0];
     }
-    console.log('----- .');
+  //  console.log('----- .');
   });
   self.world.on("endcontact", function (evt: any) {
     var bodyA = evt.bodyA;
     var bodyB = evt.bodyB;
-    console.log('-----------End Contact--- Pay Attention---');
+ //   console.log('-----------End Contact--- Pay Attention---');
   });
 }
