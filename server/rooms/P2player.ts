@@ -20,13 +20,13 @@ export class P2player {
       fixedRotation: true
     });
     this.playerBody.playerId = id;
-    this.placePlayer(id, share);
     this.playerBody.isPlayer = true;
     this.playerBody.motionState = 2; //STATIC
     this.playerBody.collideWorldBounds = true;
+    this.placePlayer(id, share);
   }
 
-  placePlayer(id: any, share: any,) {
+  placePlayer(id: any, share: any) {
 
     Bridge.getPlayer(id).then((result: any) => {
       const playerShape = new p2.Box({ width: 32, height: 32 });
@@ -46,53 +46,63 @@ export class P2player {
   updatePlayer(input: InputData,
     player: { lastX: any; lastY: any; playerBody: { collide: any; position: any[]; }; x: number; y: number; tick: any; },
     velocity: number) {
+
+
+    console.log(player.y);
+
+    console.log(this.playerBody.position[0]);
+
     if (input.inputX !== player.lastX) {
-      //   console.log('x = ' + input.inputX);
+      console.log('x = ' + input.inputX);
       player.lastX = input.inputX;
     }
     if (input.inputY !== player.lastY) {
-      //   console.log('y = ' + input.inputY);
+      console.log('y = ' + input.inputY);
       player.lastY = input.inputY;
     }
     if (input.left) {
       if (!this.playerBody.collide) {
-        player.x -= velocity;
+        this.playerBody.position[0] -= velocity;
       }
       else {
-        player.x += 32;
+        this.playerBody.position[0] += 32;
       }
     }
     else if (input.right) {
       if (!this.playerBody.collide) {
-        player.x += velocity;
+        this.playerBody.position[0] += velocity;
       }
       else {
-        player.x -= 32;
+        this.playerBody.position[0] -= 32;
       }
     }
     else if (input.up) {
       if (!this.playerBody.collide) {
-        player.y -= velocity;
+        this.playerBody.position[1] -= velocity;
       }
       else {
-        player.y += 32;
+        this.playerBody.position[1] += 32;
       }
     }
     else if (input.down) {
       if (!this.playerBody.collide) {
-        player.y += velocity;
+        this.playerBody.position[1] += velocity;
       }
       else {
-        player.y -= 32;
+        this.playerBody.position[1] -= 32;
       }
     }
-    this.playerBody.position[0] = player.x;
-    this.playerBody.position[1] = player.y;
+    player.x = this.playerBody.position[0];
+    player.y = this.playerBody.position[1];
     /*   if (this.last_step_x != player.playerBody.position[0] || this.last_step_y != player.playerBody.position[1]) {
       //  console.log(player.playerBody.position[0], player.playerBody.position[1])
         this.last_step_x = player.playerBody.position[0];
         this.last_step_y = player.playerBody.position[1];
       } */
     player.tick = input.tick;
+
+    return player;
+
+
   }
 }

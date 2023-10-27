@@ -27,7 +27,7 @@ export class Player extends Schema {
   playerId: any;
   lastX: number;
   lastY: number;
-  p2Player: import("z:/web/modules/custom/jigs/server/rooms/P2player").P2player;
+  p2Player: any;
 
 }
 
@@ -54,6 +54,6 @@ export class MyRoomState extends Schema {
   }
   @type("number") mapWidth: number;
   @type("number") mapHeight: number;
-  @type({map: ZombieState}) mobResult      = new MapSchema<ZombieState>();
+  @type({map: ZombieState}) mobResult = new MapSchema<ZombieState>();
   @type({ map: Player }) players      = new MapSchema<Player>();
 }

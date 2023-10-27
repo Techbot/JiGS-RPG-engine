@@ -5,7 +5,7 @@ var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
 const fs = require('fs');
 import { P2player } from "./P2player";
-
+import { Mob } from "./Mobs";
 export class GameRoom extends Room<MyRoomState> {
   fixedTimeStep = 1000 / 60;
   speedMultiplier = 1; // 20;
@@ -20,7 +20,7 @@ export class GameRoom extends Room<MyRoomState> {
   colors = { '6': 14153173, '7': 15153173, '8': 12153173, '9': 16701904 };
   result: any;
   world: any;
-  p2Player: any;
+  p2player: P2player;
   playerShape: any;
   playerBody: any;
   last_step_x: any;
@@ -35,20 +35,19 @@ export class GameRoom extends Room<MyRoomState> {
   mapJson: any;
   indexNumber: any;
   P2mobBodies: any;
-  pause: number;
+
+  Mobs: Mob;
   Npc: typeof import("z:/web/modules/custom/jigs/server/rooms/npc");
   Portal: typeof import("z:/web/modules/custom/jigs/server/rooms/portal");
   Reward: typeof import("z:/web/modules/custom/jigs/server/rooms/reward");
   Collisions: typeof import("z:/web/modules/custom/jigs/server/rooms/collisions");
   Layers: typeof import("z:/web/modules/custom/jigs/server/rooms/layers");
- // p2Player: typeof import("z:/web/modules/custom/jigs/server/rooms/P2player");
-  Mob: typeof import("z:/web/modules/custom/jigs/server/rooms/mob");
 
   constructor() {
     super();
     this.world = new p2.World({ gravity: [0, 0] });
     this.P2mobBodies = [];
-    this.pause = 0;
+    this.Mobs = new Mob;
   }
 
   async onCreate(options: any) {
@@ -57,20 +56,16 @@ export class GameRoom extends Room<MyRoomState> {
     this.Reward = await import("./reward");
     this.Collisions = await import("./collisions");
     this.Layers = await import("./layers");
-    this.Mob = await import("./mob");
     this.indexNumber = 1;
     this.setState(new MyRoomState());
     this.Portal.load(this.world, options.nodeNumber, this.share);
     this.Reward.load(this.world, options.nodeNumber, this.share);
     this.Npc.load(this.world, options.nodeNumber, this.share);
-    this.Mob.load(this, options.nodeNumber, this.share);
     this.Layers.addLayers(options.nodeName, this.share);
-    this.Collisions.addCollisions(this);
+    this.Mobs.load(this, options.nodeNumber, this.share);
     this.state.mapWidth = 1900;
     this.state.mapHeight = 1900;
     this.onMessage(0, (client, input) => {
-      // handle player input
-
       const player = this.state.players.get(client.sessionId);
       if (player.p2Player.playerBody.portal) {
         client.send("portal", player.playerBody.portal);
@@ -90,14 +85,13 @@ export class GameRoom extends Room<MyRoomState> {
       }
       else if (player.p2Player.playerBody.reward) {
         client.send("reward", player.playerBody.reward);
-        player.p2Player.playerBody.reward = false;
+        player.playerBody.reward = false;
         player.inputQueue.push(input);
       }
       else {
         player.inputQueue.push(input);
       }
     });
-    // var self = this;
     let elapsedTime = 0;
     this.setSimulationInterval((deltaTime) => {
       elapsedTime += deltaTime;
@@ -112,28 +106,18 @@ export class GameRoom extends Room<MyRoomState> {
     const velocity = 2;
     var fixedTimeStep = 1 / 60;
     this.world.step(fixedTimeStep);
-    this.Mob.updateMob(this);
+    this.Mobs.updateMob(this);
     this.state.players.forEach(player => {
       let input: InputData;
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
-        if (this.Mob.mobClicked(this, input, player) == 1) {
+        if (this.Mobs.mobClicked(this, input, player) == 1) {
           this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
         }
         player.p2Player.updatePlayer(input, player, velocity);
+        player.tick = input.tick;
       }
     });
-  }
-
-  async updateMobForce(i) {
-    await this.skip(2000);
-    var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
-    var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
-    if (this.P2mobBodies[i].dead != 1) {
-      this.P2mobBodies[i].destinationX = forceX;
-      this.P2mobBodies[i].destinationY = forceY;
-    }
-    this.pause = 0;
   }
 
   skip(val) {
@@ -148,11 +132,15 @@ export class GameRoom extends Room<MyRoomState> {
     console.log(client.sessionId, "joined!");
     console.log(options.playerId, "joined!");
     const player = new Player();
+  //  var self = this;
     player.playerId = options.playerId;
     player.p2Player = new P2player(player.playerId, this.share);
+    player.x = player.p2Player.playerBody.position[0];
+    player.y = player.p2Player.playerBody.position[1];
     this.state.players.set(client.sessionId, player);
     this.world.addBody(player.p2Player.playerBody);
   }
+
   onLeave(client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.players.delete(client.sessionId);
@@ -194,5 +182,4 @@ export class GameRoom extends Room<MyRoomState> {
     console.log('Frodo Baggins')
     return true;
   }
-
 }

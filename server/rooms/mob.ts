@@ -179,7 +179,7 @@ export function mobClicked(self, input, player) {
 
 export function updateZombieState(worldThing,
   target_id: number | undefined, name: string | undefined, x: number | undefined, y: number | undefined,
-  following: number | undefined, health: number | undefined, dead: number | undefined, mobState, i: number | undefined
+   health: number | undefined, dead: number | undefined, following: number | undefined, mobState, i: number | undefined
 ) {
   const mobItem = new ZombieState();
   if (mobState != undefined) {

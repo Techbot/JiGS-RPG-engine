@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// 
+//
 //
 //////////////////////////////////////////////////////////////////////////////
 var Bridge = require('../services/bridge.ts');
 var p2 = require('p2');
-const Mob = require("./mob");
+import { Mob } from "./Mobs";
 
   export function addCollisions(self){
 
@@ -56,8 +56,11 @@ const Mob = require("./mob");
         }
       });
       //When zombie is dead set dead health  and following
-      Mob.updateZombieState(
-        bodyA.field_mobs_target_id, bodyA.field_mob_name_value, parseInt(bodyA.position[0]), parseInt(bodyA.position[1]),
+      Mob.updateZombieState(self,
+        bodyA.field_mobs_target_id,
+        bodyA.field_mob_name_value,
+        parseInt(bodyA.position[0]),
+        parseInt(bodyA.position[1]),
         0, 0, 1, undefined, undefined);
       self.broadcast("player hit", bodyA.field_mob_name_value); // TODO change to player name
       bodyB.mobHit = bodyA.mob_name;
