@@ -276,7 +276,7 @@ export class Mob {
 
 
 
-  updateZombieState(self,
+  static updateZombieState(self,
     target_id: number | undefined, name: string | undefined, x: number | undefined, y: number | undefined,
     health: number | undefined, dead: number | undefined, following: number | undefined, mobState, i: number | undefined
   ) {
