@@ -23,7 +23,7 @@ export class Player extends Schema {
   P2: Promise<void>;
   id: string;
   portal: number;
-  playerBody: any;
+  Body: any;
   playerId: any;
   lastX: number;
   lastY: number;

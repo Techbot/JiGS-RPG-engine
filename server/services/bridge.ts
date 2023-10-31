@@ -20,18 +20,13 @@ function getPlayer(player) {
       user__field_x.field_x_value,
       user__field_y.field_y_value,
       user__field_health.field_health_value
-
       FROM users_field_data
-
       INNER JOIN user__field_x
       ON  user__field_x.entity_id =  users_field_data.uid
-
       INNER JOIN user__field_y
       ON  user__field_y.entity_id =  users_field_data.uid
-
       INNER JOIN user__field_health
       ON  user__field_health.entity_id =  users_field_data.uid
-
       WHERE  users_field_data.uid = ` + player,
         function (err, result) {
           if (err) throw err;
@@ -56,6 +51,9 @@ function getPortals(NodeNumber) {
      paragraph__field_destination_x.field_destination_x_value,
      paragraph__field_destination_y.field_destination_y_value,
      paragraph__field_x.field_x_value,
+
+
+
      paragraph__field_y.field_y_value
      FROM node__field_portals Left
      Join paragraph__field_destination
@@ -104,15 +102,16 @@ function getNpcs(NodeNumber) {
      WHERE node__field_npc.entity_id = ` + NodeNumber,
         function (err, result) {
           if (err) throw err;
-          // console.log("NPCs:");
-          // console.log(result);
+     //      console.log("NPCs:");
+     //      console.log(result);
           resolve(result);
         }
       );
     });
   });
 }
-function getMobs(NodeNumber) {
+ function getMobs(NodeNumber) {
+
   return new Promise(function (resolve, reject) {
     con.connect(function (err) {
       if (err) throw err;
@@ -132,8 +131,8 @@ function getMobs(NodeNumber) {
         ` + NodeNumber,
         function (err, result) {
           if (err) throw err;
-          // console.log("mobs:");
-          // console.log(result);
+    //      console.log("mobs:");
+     //      console.log(result);
           resolve(result);
         }
       );
@@ -205,7 +204,7 @@ function updatePlayer(id, stat, value, replace) {
 
   } else {
     con.connect(function (err) {
-      console.log(value);
+ //     console.log(value);
       if (err) throw err;
       con.query(
         `UPDATE user__field_` + stat +
