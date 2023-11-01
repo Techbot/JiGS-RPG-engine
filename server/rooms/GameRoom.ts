@@ -141,6 +141,8 @@ export class GameRoom extends Room<MyRoomState> {
     player.playerId = options.playerId;
     player.p2Player = new P2player();
     await player.p2Player.load(player.playerId, this.share, player, client, this);
+    this.world.addBody(player.p2Player.Body);
+    this.state.players.set(client.sessionId, player);
   }
 
   onLeave(client: Client, consented: boolean) {

@@ -1,3 +1,4 @@
+.vscode
 
 # Cache and logs (Symfony2)
 /app/cache/*
@@ -57,4 +58,6 @@ node_modules
 LICENSE.md
 
 client/src/game/backend.ts
+server/reports
+
 

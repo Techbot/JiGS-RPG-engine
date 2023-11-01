@@ -117,7 +117,9 @@ export class MainScene extends Phaser.Scene {
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
+
         await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
+
         this.walkSound = this.sound.add('walk', { volume: 0.1 });
         this.messenger.initMessages(self);
 
@@ -134,7 +136,7 @@ export class MainScene extends Phaser.Scene {
                 this.addNpc();
                 this.addMobs();
             } else {
-                entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(3).setScale(.85);
+                entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
                 player.onChange(() => {
                     //
@@ -152,7 +154,7 @@ export class MainScene extends Phaser.Scene {
             const entity = this.playerEntities[sessionId];
             if (entity) {
                 entity.destroy();
-                delete this.playerEntities[sessionId]
+                delete this.playerEntities[sessionId];
             }
         });
         this.cameras.main.setZoom(1.5);
@@ -218,7 +220,7 @@ export class MainScene extends Phaser.Scene {
                 this.SceneMobHealthBarArray[i].displayWidth = 25;
                 this.MobContainerArray[i].add(this.SceneMobArray[i]);
                 this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
-                this.MobContainerArray[i].setDepth(7);
+                this.MobContainerArray[i].setDepth(6);
                 this.mobArray.add(this.MobContainerArray[i], true);
                 i++;
             }
@@ -257,13 +259,13 @@ export class MainScene extends Phaser.Scene {
     }
 
     updateState() {
-        //    if (this.jigs.playerState == "alive") {
+            if (this.jigs.playerState == "alive") {
         axios
             .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
                 this.hydrate(response, false);
             })
-        //   }
+           }
     }
 
     async connect(room) {
@@ -299,17 +301,17 @@ export class MainScene extends Phaser.Scene {
         if (this.localPlayer !== undefined) {
             this.localPlayer.updatePlayer(this);
         }
-        //    if (this.jigs.mobArray != undefined) {
+            if (this.jigs.mobArray != undefined) {
         let i = 0;
         while (i < this.MobContainerArray.length) {
             if (this.jigs.mobArray[i] != undefined) {
                 this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
                 this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
-                //        this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][3] / 4;
+                this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][6] / 4;
             }
             i++;
         };
-        //    }
+            }
 
         for (let sessionId in this.playerEntities) {
 

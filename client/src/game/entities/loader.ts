@@ -25,7 +25,7 @@ export default class Load {
 
     load(self) {
 
-        self.load.tilemapTiledJSON(this.jigs.tiled, '/assets/cities/' + this.jigs.city + '/json/' + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
+        self.load.tilemapTiledJSON(this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
 
         this.jigs.tilesetArray_1.forEach(function loader(image) {
             self.load.image(image, '/assets/images/System/' + image + '.png');

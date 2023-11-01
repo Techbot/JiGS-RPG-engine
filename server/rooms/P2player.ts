@@ -10,14 +10,15 @@ var Bridge = require('../services/bridge.ts');
 
 export class P2player {
   Body: any;
+
   constructor() {
   }
 
-  async load(id: any, share: any,player,client,self) {
-    Bridge.getPlayer(id).then((result: any) => {
+  async load(id: any, share: any, player) {
+  await Bridge.getPlayer(id).then((result: any) => {
       this.Body = new p2.Body({
         mass: 1,
-        position: [result.field_x_value, result.field_y_value],
+      //  position: [result[0].field_x_value, result[0].field_y_value],
         angle: 0,
         type: p2.Body.DYNAMIC,
         collisionResponse: true,
@@ -29,16 +30,14 @@ export class P2player {
       playerShape.collisionMask = share.COL_ENEMY | share.COL_GROUND;
 
       this.Body.playerId = id;
+      this.Body.isPlayer = true;
       this.Body.position[0] = result[0].field_x_value;
       this.Body.position[1] = result[0].field_y_value;
       this.Body.health = result[0].field_health_value;
       this.Body.addShape(playerShape);
-
       player.x = this.Body.position[0];
       player.y = this.Body.position[1];
-      self.state.players.set(client.sessionId, player);
-      self.world.addBody(player.p2Player.Body);
-      console.log('Player body:' + this.Body);
+
     }).catch(function () {
       console.log('---------------------Player Error---------------------');
     });

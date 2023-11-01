@@ -13,7 +13,6 @@ export const useJigsStore = defineStore("jigs", {
     /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array ,mission: array}[]} */
     playerStats: [],
 
-
     playerStorage: [],
 
     playerInventory: [],
@@ -124,12 +123,5 @@ export const useJigsStore = defineStore("jigs", {
         i++;
       }
     }
-
-
-
-
-
-
-
   },
 });
