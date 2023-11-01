@@ -59,5 +59,4 @@ LICENSE.md
 
 client/src/game/backend.ts
 server/reports
-
-
+server/arena.config.ts
