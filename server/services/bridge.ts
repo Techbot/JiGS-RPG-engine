@@ -1,13 +1,12 @@
 var mysql = require("mysql2");
 import config from './db';
 
-  var con = mysql.createConnection({
-    host: config.host,
-    user: config.user,
-    password: config.password,
-    database: config.database
-  });
-
+var con = mysql.createConnection({
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.database
+});
 
 function getPlayer(player) {
   return new Promise(function (resolve, reject) {
@@ -30,8 +29,6 @@ function getPlayer(player) {
       WHERE  users_field_data.uid = ` + player,
         function (err, result) {
           if (err) throw err;
-          // console.log("portalIDs:");
-          // console.log(result);
           resolve(result);
         }
       );
@@ -39,6 +36,26 @@ function getPlayer(player) {
   });
 }
 
+function getRoom(id) {
+  return new Promise(function (resolve, reject) {
+    con.connect(function (err) {
+      if (err) throw err;
+      con.query(
+        `SELECT
+        node__field_map_width.field_map_width_value,
+        node__field_map_height.field_map_height_value
+        FROM node__field_map_width
+        LEFT JOIN node__field_map_height
+        ON node__field_map_width.entity_id = node__field_map_height.entity_id
+        WHERE node__field_map_width.entity_id = ` + id,
+        function (err, result) {
+          if (err) throw err;
+          resolve(result);
+        }
+      );
+    });
+  });
+}
 
 function getPortals(NodeNumber) {
   return new Promise(function (resolve, reject) {
@@ -51,9 +68,6 @@ function getPortals(NodeNumber) {
      paragraph__field_destination_x.field_destination_x_value,
      paragraph__field_destination_y.field_destination_y_value,
      paragraph__field_x.field_x_value,
-
-
-
      paragraph__field_y.field_y_value
      FROM node__field_portals Left
      Join paragraph__field_destination
@@ -71,8 +85,6 @@ function getPortals(NodeNumber) {
       where node__field_portals.entity_id = ` + NodeNumber,
         function (err, result) {
           if (err) throw err;
-          // console.log("portalIDs:");
-          // console.log(result);
           resolve(result);
         }
       );
@@ -102,21 +114,19 @@ function getNpcs(NodeNumber) {
      WHERE node__field_npc.entity_id = ` + NodeNumber,
         function (err, result) {
           if (err) throw err;
-     //      console.log("NPCs:");
-     //      console.log(result);
           resolve(result);
         }
       );
     });
   });
 }
- function getMobs(NodeNumber) {
 
+function getMobs(NodeNumber) {
   return new Promise(function (resolve, reject) {
     con.connect(function (err) {
       if (err) throw err;
       con.query(
-       `SELECT node__field_mobs.field_mobs_target_id,
+        `SELECT node__field_mobs.field_mobs_target_id,
        paragraph__field_mob_name.field_mob_name_value,
        paragraph__field_x.field_x_value,
        paragraph__field_y.field_y_value
@@ -131,8 +141,6 @@ function getNpcs(NodeNumber) {
         ` + NodeNumber,
         function (err, result) {
           if (err) throw err;
-    //      console.log("mobs:");
-     //      console.log(result);
           resolve(result);
         }
       );
@@ -161,8 +169,6 @@ function getRewards(NodeNumber) {
      WHERE node__field_rewards.entity_id = ` + NodeNumber,
         function (err, result) {
           if (err) throw err;
-          // console.log("rewards:");
-          // console.log(result);
           resolve(result);
         }
       );
@@ -186,14 +192,12 @@ function updateMap(id, map) {
 }
 
 function updatePlayer(id, stat, value, replace) {
-
-
   if (replace) {
     con.connect(function (err) {
       if (err) throw err;
       con.query(
         `UPDATE user__field_` + stat +
-        ` SET field_` + stat + `_value = `+ value +
+        ` SET field_` + stat + `_value = ` + value +
         ` WHERE user__field_` + stat + `.entity_id = ` + id,
         function (err, result, fields) {
           if (err) throw err;
@@ -204,7 +208,7 @@ function updatePlayer(id, stat, value, replace) {
 
   } else {
     con.connect(function (err) {
- //     console.log(value);
+      //     console.log(value);
       if (err) throw err;
       con.query(
         `UPDATE user__field_` + stat +
@@ -217,7 +221,6 @@ function updatePlayer(id, stat, value, replace) {
       );
     });
   }
-
   return;
 }
 
@@ -225,7 +228,7 @@ function updateBanks() {
   con.connect(function (err) {
     if (err) throw err;
     con.query(
-      `UPDATE user__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1` ,
+      `UPDATE user__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1`,
       function (err, result, fields) {
         if (err) throw err;
         return true;
@@ -235,8 +238,8 @@ function updateBanks() {
   return;
 }
 
-
 module.exports = {
+  getRoom,
   getPlayer,
   getPortals,
   getNpcs,

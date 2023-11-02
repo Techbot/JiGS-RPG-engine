@@ -5,6 +5,7 @@ import { MainScene }        from "./scenes/MainScene";
 import { HudScene }         from "./scenes/HudScene";
 import { BootScene }        from "./scenes/BootScene";
 import { DeadScene }        from "./scenes/DeadScene";
+
 import { BACKEND_HTTP_URL } from "./backend";
 import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
 const config: Phaser.Types.Core.GameConfig = {

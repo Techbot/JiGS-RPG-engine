@@ -43,7 +43,13 @@ export default class Player {
         entity.setScale(.85);
         self.cameras.main.startFollow(entity);
         var cam = self.cameras.main;
-        cam.setBounds(0, 0, 1896, 1896);
+
+
+console.log("mapWidth" + this.jigs.mapWidth);
+
+        //cam.setBounds(0, 0, 1896, 1896);
+        cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
+
         this.drones = self.physics.add.group({ allowGravity: false });
 
         this.drones.add(new FlyingStar(self, player.x, player.y, 100, 100, 0.005), true);

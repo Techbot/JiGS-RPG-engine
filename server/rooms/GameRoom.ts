@@ -67,10 +67,18 @@ export class GameRoom extends Room<MyRoomState> {
     await this.Portals.load(this.world, options.nodeNumber, this.share);
     await this.Rewards.load(this.world, options.nodeNumber, this.share);
     await this.Npcs.load(this.world, options.nodeNumber, this.share);
-    await this.Layers.load(options.nodeName, this.share);
+    //await this.Layers.load(options.nodeName, this.share);
     await this.Collisions.add(this);
-    this.state.mapWidth = 1900;
-    this.state.mapHeight = 1900;
+    await Bridge.getRoom(options.nodeNumber).then((result: any) => {
+      this.state.mapWidth = result[0].field_map_width_value * 16;
+      this.state.mapHeight = result[0].field_map_height_value * 16;
+      console.log('--------------' + this.state.mapWidth);
+    }).catch(function (err) {
+      console.log('room error' + err)
+    });
+    //this.state.mapWidth = 1900;
+    //this.state.mapHeight = 1900;
+
     this.onMessage(0, (client, input) => {
       const player = this.state.players.get(client.sessionId);
       if (player.p2Player.Body.portal) {

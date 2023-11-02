@@ -350,6 +350,8 @@ export class MainScene extends Phaser.Scene {
         this.jigs.playerStats = response.data[0].value["playerStats"];
         this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
         this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
+        this.jigs.mapWidth = parseInt(response.data[0].value["MapWidth"]);
+        this.jigs.mapHeight = parseInt(response.data[0].value["MapHeight"]);
         this.jigs.portalsArray = response.data[0].value["portalsArray"];
         this.jigs.npcArray = response.data[0].value["NpcArray"];
         if (incMob) {

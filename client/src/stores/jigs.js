@@ -55,6 +55,10 @@ export const useJigsStore = defineStore("jigs", {
     // type will be automatically inferred to number
     userMapGrid: 1,
 
+    mapWidth: 120,
+    
+    mapHeight: 120,
+
     tiled: 0,
 
     /** @type {{ text: string }[]} */

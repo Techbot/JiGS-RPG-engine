@@ -45,6 +45,8 @@ export default {
         this.jigs.gameState = response.data[0].value["userGamesState"];
         this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
         this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
+        this.jigs.mapWidth = parseInt(response.data[0].value["MapWidth"]);
+        this.jigs.mapHeight = parseInt(response.data[0].value["MapHeight"]);
         this.jigs.portalsArray = response.data[0].value["portalsArray"];
         this.jigs.npcArray = response.data[0].value["NpcArray"];
         this.jigs.mobArray = response.data[0].value["MobArray"];
@@ -77,6 +79,8 @@ export default {
           currentObj.jigs.gameState = response.data[0].value["userGamesState"];
           currentObj.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
           currentObj.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
+          currentObj.jigs.mapWidth = parseInt(response.data[0].value["MapWidth"]);
+          currentObj.jigs.mapHeight = parseInt(response.data[0].value["MapHeight"]);
           currentObj.jigs.portalsArray = response.data[0].value["portalsArray"];
           currentObj.jigs.npcArray = response.data[0].value["NpcArray"];
           currentObj.jigs.mobArray = response.data[0].value["MobArray"];
