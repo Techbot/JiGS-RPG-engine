@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\jigs\game;
+namespace Drupal\jigs\Game;
 
-class Weapon{
+class Faction{
 
     public $strength;
 
-    public function __construct($strength=10)
+    public function __construct($strength = 10)
     {
         $this->strength   = $strength;
 
@@ -20,8 +20,7 @@ class Weapon{
 
     public function setStrength($strength)
     {
-        $this->strength   = $strength;
+        $this->strength = $strength;
     }
-
 
 }

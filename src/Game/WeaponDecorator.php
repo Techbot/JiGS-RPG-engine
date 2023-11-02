@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\jigs\game;
+namespace Drupal\jigs\Game;
 
 class WeaponDecorator extends PlayerDecorator {
     private $weapon;

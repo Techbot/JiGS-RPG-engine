@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\jigs\game;
+namespace Drupal\jigs\Game;
 
 /**
  * The base Decorator class follows the same interface as the other components.

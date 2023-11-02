@@ -4,15 +4,15 @@ namespace Drupal\jigs\Controller;
 
 use Drupal\node\Entity\Node;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\jigs\game\Loop;
-use Drupal\jigs\game\Dice;
-use Drupal\jigs\game\Npc;
-use Drupal\jigs\game\Player;
-use Drupal\jigs\game\Faction;
-use Drupal\jigs\game\Round;
-use Drupal\jigs\game\Weapon;
-use Drupal\jigs\game\FactionDecorator;
-use Drupal\jigs\game\WeaponDecorator;
+use Drupal\jigs\Game\Loop;
+use Drupal\jigs\Game\Dice;
+use Drupal\jigs\Game\Npc;
+use Drupal\jigs\Game\Player;
+use Drupal\jigs\Game\Faction;
+use Drupal\jigs\Game\Round;
+use Drupal\jigs\Game\Weapon;
+use Drupal\jigs\Game\FactionDecorator;
+use Drupal\jigs\Game\WeaponDecorator;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\InvokeCommand;
@@ -139,33 +139,56 @@ class GameController extends ControllerBase
 
     //Non Cached Stuff
 
-    $query             = $database->query("SELECT field_map_grid_target_id FROM user__field_map_grid WHERE entity_id= " . $playerId);
-    $userMG            = $query->fetchAll();
-
-    $query             = $database->query("SELECT field_credits_value FROM user__field_credits WHERE entity_id= " . $playerId);
-    $player['credits'] = $query->fetchAll()[0]->field_credits_value;
-
-    $query             = $database->query("SELECT field_health_value FROM user__field_health WHERE entity_id= " . $playerId);
-    $player['health']  = $query->fetchAll()[0]->field_health_value;
-
-    $query             = $database->query("SELECT field_energy_value FROM user__field_energy WHERE entity_id= " . $playerId);
-    $player['energy']  = $query->fetchAll()[0]->field_energy_value;
-
-    $MapGrid           =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG[0]->field_map_grid_target_id);
+    ////////////////////////////// User ////////////////////////////////////////
 
 
-    ////////////////////////////////////////////////////////////////////////////////
+    $query                 = $database->query("SELECT field_map_grid_target_id FROM user__field_map_grid WHERE entity_id= " . $playerId);
+    $userMG                = $query->fetchAll();
+
+    $query                 = $database->query("SELECT field_credits_value FROM user__field_credits WHERE entity_id= " . $playerId);
+    $player['credits']     = $query->fetchAll()[0]->field_credits_value;
+
+    $query                 = $database->query("SELECT field_health_value FROM user__field_health WHERE entity_id= " . $playerId);
+    $player['health']      = $query->fetchAll()[0]->field_health_value;
+
+    $query                 = $database->query("SELECT field_energy_value FROM user__field_energy WHERE entity_id= " . $playerId);
+    $player['energy']      = $query->fetchAll()[0]->field_energy_value;
+
+
+
+
+    ////////////////////////////// Game Node ///////////////////////////////////
+
+    $gameNode              =  \Drupal::entityTypeManager()->getStorage('node')->load(2);
+    $gameConfig['Debug']   = $gameNode->field_debug->getValue()[0]['value'];
+    //$GameConfig['Body']    = $GameNode->field_body->getValue()[0]['value'];
+    $gameConfig['Body']    = $gameNode->get('body')->value;
+    //$GameConfig['Summary']= $GameNode->field_body->getValue()[0]['value'];
+    $gameConfig['Summary'] = $gameNode->get('body')->summary;
+
+
+
+    ////////////////////////////// MapGrid /////////////////////////////////////
+
+    $MapGrid               =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG[0]->field_map_grid_target_id);
 
     $tiled          = $MapGrid->field_tiled->getValue()[0]['value'];
+    $mapWidth       = $MapGrid->field_map_width->getValue()[0]['value'];
+    $mapHeight      = $MapGrid->field_map_height->getValue()[0]['value'];
     $portalsArray   = $MapGrid->field_portals->referencedEntities();
     $rewardsArray   = $MapGrid->field_rewards->referencedEntities();
     $npcArray       = $MapGrid->field_npc->referencedEntities();
     $mobArray       = $MapGrid->field_mobs->referencedEntities();
     $userCity       = (int)$MapGrid->field_city->getValue()[0]['target_id'];
+
+    /////////////////////////////////City //////////////////////////////////////
+
     $City           =  \Drupal::entityTypeManager()->getStorage('node')->load($userCity);
     $cityName       =  $City->getTitle();
+
+
     $portals = [];
-    //////////////////////////  PORTALS  ///////////////////////////////////////////
+    //////////////////////////  PORTALS  ///////////////////////////////////////
     foreach ($portalsArray as $portal) {
       $portals[] = [
         'destination'   => (int)$portal->field_destination->getValue()[0]['target_id'],
@@ -176,7 +199,7 @@ class GameController extends ControllerBase
         'y' => (int)$portal->field_y->getValue()[0]['value']
       ];
     }
-    //////////////////////////  REWARDS  ///////////////////////////////////////////
+    //////////////////////////  REWARDS  ///////////////////////////////////////
     foreach ($rewardsArray as $reward) {
       $rewards[] = [
         'ref' => $reward->field_ref->getValue()[0]['value'],
@@ -184,7 +207,7 @@ class GameController extends ControllerBase
         'y' => (int)$reward->field_y->getValue()[0]['value']
       ];
     }
-    ////////////////////////////////// LAYERS //////////////////////////////////////
+    ////////////////////////////////// LAYERS //////////////////////////////////
     foreach ($MapGrid->field_layer_1->referencedEntities() as $tileset) {
       $tilesetArray_1[] = $tileset->name->value;
     }
@@ -201,7 +224,7 @@ class GameController extends ControllerBase
       $tilesetArray_5[] = $tileset->name->value;
     }
 
-    //////////////////////////////////// NPC  //////////////////////////////////////
+    //////////////////////////////////// NPC  //////////////////////////////////
     foreach ($npcArray as $Npc) {
       $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
       $NpcArray[] =
@@ -213,7 +236,7 @@ class GameController extends ControllerBase
           $NpcObject->field_bark->value,
         ];
     }
-    //////////////////////////////////// MOB  //////////////////////////////////////
+    //////////////////////////////////// MOB  //////////////////////////////////
     foreach ($mobArray as $Mob) {
 
       $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
@@ -227,7 +250,8 @@ class GameController extends ControllerBase
           $MobObject->getTitle()
         ];
     }
-    ////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////Payload //////////////////////////////////////////
+    $responseData['gameConfig']           = $gameConfig;
     $responseData['playerId']             = $playerId;
     $responseData['playerStats']          = $player;
     $responseData['playerName']           = $playerName;
@@ -248,6 +272,8 @@ class GameController extends ControllerBase
       $responseData['rewardsArray']       = $rewards;
     }
     $responseData['Tiled']                = $tiled;
+    $responseData['MapWidth']             = $mapWidth;
+    $responseData['MapHeight']            = $mapHeight;
     $responseData['tilesetArray_1']       = $tilesetArray_1;
     $responseData['tilesetArray_2']       = $tilesetArray_2;
     $responseData['tilesetArray_3']       = $tilesetArray_3;
@@ -261,7 +287,7 @@ class GameController extends ControllerBase
     return $response;
   }
 
-  ////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
   public function myInventory()
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
@@ -371,5 +397,4 @@ class GameController extends ControllerBase
     $query->execute();
     return $this->myInventory();
   }
-
 }
