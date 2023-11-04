@@ -39,25 +39,31 @@ export default {
     axios
       .get("/mystate?_wrapper_format=drupal_ajax")
       .then((response) => {
-        this.jigs.playerName = response.data[0].value["playerName"];
-        this.jigs.playerStats = response.data[0].value["playerStats"];
-        this.jigs.playerId = parseInt(response.data[0].value["playerId"]);
-        this.jigs.gameState = response.data[0].value["userGamesState"];
-        this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
-        this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
-        this.jigs.mapWidth = parseInt(response.data[0].value["MapWidth"]);
-        this.jigs.mapHeight = parseInt(response.data[0].value["MapHeight"]);
-        this.jigs.portalsArray = response.data[0].value["portalsArray"];
-        this.jigs.npcArray = response.data[0].value["NpcArray"];
-        this.jigs.mobArray = response.data[0].value["MobArray"];
-        this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
-        this.jigs.nodeTitle = response.data[0].value["Name"];
+
+        this.jigs.playerStats = response.data[0].value["player"];
+        this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
+        this.jigs.playerName = response.data[0].value["player"]["name"];
+
+        this.jigs.gameState = response.data[0].value["player"]["userState"];
+        this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
+
+        this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+        this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
+        this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
+        this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
+        this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
+        this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+        this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
+        this.jigs.nodeTitle = response.data[0].value["MapGrid"]["Name"];
+
+        this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
+        this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
+        this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
+        this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
+
         this.jigs.city = response.data[0].value["City"];
-        this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
-        this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
-        this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
-        this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
-        this.jigs.content = response.data[0].value["content"];
+
+        this.jigs.content = response.data[0].value["gameConfig"]["Body"];
         // this.jigs.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
         // this.gameState = response.data[0].value[0]
         // this.userMapGrid =  parseInt(response.data[0].value[1])
@@ -73,25 +79,30 @@ export default {
           name: this.name,
           description: this.description,
         }).then(function (response) {
-          currentObj.jigs.playerName = response.data[0].value["playerName"];
-          currentObj.jigs.playerStats = response.data[0].value["playerStats"];
-          currentObj.jigs.playerId = parseInt(response.data[0].value["playerId"]);
-          currentObj.jigs.gameState = response.data[0].value["userGamesState"];
-          currentObj.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
-          currentObj.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
-          currentObj.jigs.mapWidth = parseInt(response.data[0].value["MapWidth"]);
-          currentObj.jigs.mapHeight = parseInt(response.data[0].value["MapHeight"]);
-          currentObj.jigs.portalsArray = response.data[0].value["portalsArray"];
-          currentObj.jigs.npcArray = response.data[0].value["NpcArray"];
-          currentObj.jigs.mobArray = response.data[0].value["MobArray"];
-          currentObj.jigs.rewardsArray = response.data[0].value["rewardsArray"];
-          currentObj.jigs.nodeTitle = response.data[0].value["Name"];
+          currentObj.jigs.playerName = response.data[0].value["player"]["name"];
+          currentObj.jigs.playerStats = response.data[0].value["player"];
+          currentObj.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
+
+          currentObj.jigs.gameState = response.data[0].value["player"]["userState"];
+          currentObj.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
+
+          currentObj.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+          currentObj.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
+          currentObj.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
+          currentObj.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
+          currentObj.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
+          currentObj.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+          currentObj.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
+          currentObj.jigs.nodeTitle = response.data[0].value["MapGrid"]["Name"];
+
+          currentObj.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
+          currentObj.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
+          currentObj.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
+          currentObj.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
+
           currentObj.jigs.city = response.data[0].value["City"];
-          currentObj.jigs.content = response.data[0].value["content"];
-          currentObj.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
-          currentObj.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
-          currentObj.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
-          currentObj.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
+
+          currentObj.jigs.content = response.data[0].value["gameConfig"]["Body"];
           //   currentObj.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
         })
         .catch(function (error) {

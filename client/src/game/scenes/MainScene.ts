@@ -346,23 +346,28 @@ export class MainScene extends Phaser.Scene {
     }
 
     hydrate(response, incMob) {
-        this.jigs.gameState = response.data[0].value["userGamesState"];
-        this.jigs.playerStats = response.data[0].value["playerStats"];
-        this.jigs.userMapGrid = parseInt(response.data[0].value["userMapGrid"]);
-        this.jigs.tiled = parseInt(response.data[0].value["Tiled"]);
-        this.jigs.mapWidth = parseInt(response.data[0].value["MapWidth"]);
-        this.jigs.mapHeight = parseInt(response.data[0].value["MapHeight"]);
-        this.jigs.portalsArray = response.data[0].value["portalsArray"];
-        this.jigs.npcArray = response.data[0].value["NpcArray"];
+
+        this.jigs.playerStats = response.data[0].value["player"];
+
+        this.jigs.gameState = response.data[0].value["player"]["userState"];
+        this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
+
+        this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+        this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
+        this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
+        this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
+        this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
         if (incMob) {
-            this.jigs.mobArray = response.data[0].value["MobArray"];
+            this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
         }
-        this.jigs.rewardsArray = response.data[0].value["rewardsArray"];
-        this.jigs.nodeTitle = response.data[0].value["Name"];
+        this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
+        this.jigs.nodeTitle = response.data[0].value["MapGrid"]["Name"];
+
+        this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
+        this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
+        this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
+        this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
+
         this.jigs.city = response.data[0].value["City"];
-        this.jigs.tilesetArray_1 = response.data[0].value["tilesetArray_1"];
-        this.jigs.tilesetArray_2 = response.data[0].value["tilesetArray_2"];
-        this.jigs.tilesetArray_3 = response.data[0].value["tilesetArray_3"];
-        this.jigs.tilesetArray_4 = response.data[0].value["tilesetArray_4"];
     }
 }

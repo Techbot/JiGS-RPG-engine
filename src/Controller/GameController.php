@@ -7,10 +7,14 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\jigs\Game\Loop;
 use Drupal\jigs\Game\Dice;
 use Drupal\jigs\Game\Npc;
-use Drupal\jigs\Game\Player;
+use Drupal\jigs\Game\Player as old_player;
 use Drupal\jigs\Game\Faction;
 use Drupal\jigs\Game\Round;
 use Drupal\jigs\Game\Weapon;
+use Drupal\jigs\Entities\Player;
+use Drupal\jigs\Entities\MapGrid;
+use Drupal\jigs\Entities\Game;
+use Drupal\jigs\Entities\City;
 use Drupal\jigs\Game\FactionDecorator;
 use Drupal\jigs\Game\WeaponDecorator;
 use Drupal\Core\Form\FormStateInterface;
@@ -38,47 +42,6 @@ class GameController extends ControllerBase
 
   public function __construct()
   {
-    /*    $this->dice1   = new Dice();
-      $this->dice2   = new Dice();
-      $this->dice3   = new Dice();
-      $this->dice4   = new Dice(); */
-
-    $this->user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-
-    /**
-     *   Setup the Player
-     */
-    $this->simplePlayer  = new Player(
-      $this->user->field_level->value,
-      $this->user->field_health->value,
-      $this->user->field_strength->value,
-      $this->user->field_endurance->value,
-      1, //  $this->dice1->getDiceValue() + $this->user->field_strength->value, // attack
-      1, //  $this->dice2->getDiceValue() + $this->user->field_stamina->value,  // defense
-      1, //  $this->dice1->getDiceValue(),
-      1, //  $this->dice2->getDiceValue(),
-
-      $this->user->field_losses->value,
-      $this->user->field_wins->value,
-      199,
-    );
-
-    $this->faction = new Faction(7);
-    $this->weapon = new Weapon(6);
-
-    $this->player = new WeaponDecorator(new FactionDecorator($this->simplePlayer, $this->faction), $this->weapon);
-    $this->npc     = new Npc(
-      1,
-      100,
-      10,
-      10,
-      0,
-      0,
-      1, //  $this->dice3->getDiceValue(),
-      1, //  $this->dice4->getDiceValue()
-    );
-
-    $this->round   = new Round($this->player, $this->npc, $this->text);
   }
 
   /**
@@ -102,14 +65,12 @@ class GameController extends ControllerBase
     $loop                     = new Loop($this->round);
     $this->round->update();
     //$responseData = $loop->loop();
-
     $responseData = [];
     // $this->user->field_health = (int)$this->player->getHealth();
     $this->user->field_losses = (int)$this->player->getLosses();
     $this->user->field_wins   = (int)$this->player->getWins();
     $this->user->credits      = (int)$this->player->getCredits();
     $this->user->save();
-
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
@@ -117,284 +78,56 @@ class GameController extends ControllerBase
   public function myState()
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-    $response       = new AjaxResponse();
-    $playerName     = $this->user->get("name")->value;
-    $playerId       = \Drupal::currentUser()->id();
-
-    //Cached stuff
-    $userGamesState         = $this->user->field_game_state->value;
-    $player['level']        = $this->user->field_level->value;
-    $player['intelligence'] = $this->user->field_intelligence->value;
-    $player['strength']     = $this->user->field_strength->value;
-    $player['dexterity']    = $this->user->field_dexterity->value;
-    $player['endurance']    = $this->user->field_endurance->value;
-    $player['charisma']     = $this->user->field_charisma->value;
-    $player['psi']          = $this->user->field_psi->value;
-    $player['losses']       = $this->user->field_losses->value;
-    $player['wins']         = $this->user->field_wins->value;
-    $player['xp']           = $this->user->field_experience->value;
-    $player['sprite_sheet'] = $this->user->field_sprite_sheet->value;
-
-    $database       = \Drupal::database();
-
-    //Non Cached Stuff
-
-    ////////////////////////////// User ////////////////////////////////////////
-
-
-    $query                 = $database->query("SELECT field_map_grid_target_id FROM user__field_map_grid WHERE entity_id= " . $playerId);
-    $userMG                = $query->fetchAll();
-
-    $query                 = $database->query("SELECT field_credits_value FROM user__field_credits WHERE entity_id= " . $playerId);
-    $player['credits']     = $query->fetchAll()[0]->field_credits_value;
-
-    $query                 = $database->query("SELECT field_health_value FROM user__field_health WHERE entity_id= " . $playerId);
-    $player['health']      = $query->fetchAll()[0]->field_health_value;
-
-    $query                 = $database->query("SELECT field_energy_value FROM user__field_energy WHERE entity_id= " . $playerId);
-    $player['energy']      = $query->fetchAll()[0]->field_energy_value;
-
-
-
-
-    ////////////////////////////// Game Node ///////////////////////////////////
-
-    $gameNode              =  \Drupal::entityTypeManager()->getStorage('node')->load(2);
-    $gameConfig['Debug']   = $gameNode->field_debug->getValue()[0]['value'];
-    //$GameConfig['Body']    = $GameNode->field_body->getValue()[0]['value'];
-    $gameConfig['Body']    = $gameNode->get('body')->value;
-    //$GameConfig['Summary']= $GameNode->field_body->getValue()[0]['value'];
-    $gameConfig['Summary'] = $gameNode->get('body')->summary;
-
-
-
-    ////////////////////////////// MapGrid /////////////////////////////////////
-
-    $MapGrid               =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG[0]->field_map_grid_target_id);
-
-    $tiled          = $MapGrid->field_tiled->getValue()[0]['value'];
-    $mapWidth       = $MapGrid->field_map_width->getValue()[0]['value'];
-    $mapHeight      = $MapGrid->field_map_height->getValue()[0]['value'];
-    $portalsArray   = $MapGrid->field_portals->referencedEntities();
-    $rewardsArray   = $MapGrid->field_rewards->referencedEntities();
-    $npcArray       = $MapGrid->field_npc->referencedEntities();
-    $mobArray       = $MapGrid->field_mobs->referencedEntities();
-    $userCity       = (int)$MapGrid->field_city->getValue()[0]['target_id'];
-
-    /////////////////////////////////City //////////////////////////////////////
-
-    $City           =  \Drupal::entityTypeManager()->getStorage('node')->load($userCity);
-    $cityName       =  $City->getTitle();
-
-
-    $portals = [];
-    //////////////////////////  PORTALS  ///////////////////////////////////////
-    foreach ($portalsArray as $portal) {
-      $portals[] = [
-        'destination'   => (int)$portal->field_destination->getValue()[0]['target_id'],
-        'destination_x' => (int)$portal->field_destination_x->getValue()[0]['value'],
-        'destination_y' => (int)$portal->field_destination_y->getValue()[0]['value'],
-        'tiled' => (int)$portal->field_tiled->getValue()[0]['value'],
-        'x' => (int)$portal->field_x->getValue()[0]['value'],
-        'y' => (int)$portal->field_y->getValue()[0]['value']
-      ];
-    }
-    //////////////////////////  REWARDS  ///////////////////////////////////////
-    foreach ($rewardsArray as $reward) {
-      $rewards[] = [
-        'ref' => $reward->field_ref->getValue()[0]['value'],
-        'x' => (int)$reward->field_x->getValue()[0]['value'],
-        'y' => (int)$reward->field_y->getValue()[0]['value']
-      ];
-    }
-    ////////////////////////////////// LAYERS //////////////////////////////////
-    foreach ($MapGrid->field_layer_1->referencedEntities() as $tileset) {
-      $tilesetArray_1[] = $tileset->name->value;
-    }
-    foreach ($MapGrid->field_layer_2->referencedEntities() as $tileset) {
-      $tilesetArray_2[] = $tileset->name->value;
-    }
-    foreach ($MapGrid->field_layer_3->referencedEntities() as $tileset) {
-      $tilesetArray_3[] = $tileset->name->value;
-    }
-    foreach ($MapGrid->field_layer_4->referencedEntities() as $tileset) {
-      $tilesetArray_4[] = $tileset->name->value;
-    }
-    foreach ($MapGrid->field_layer_5->referencedEntities() as $tileset) {
-      $tilesetArray_5[] = $tileset->name->value;
-    }
-
-    //////////////////////////////////// NPC  //////////////////////////////////
-    foreach ($npcArray as $Npc) {
-      $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
-      $NpcArray[] =
-        [
-          $NpcObject->getTitle(),
-          $Npc->field_x->value,
-          $Npc->field_y->value,
-          $NpcObject->field_sprite_sheet->getValue()[0]['value'],
-          $NpcObject->field_bark->value,
-        ];
-    }
-    //////////////////////////////////// MOB  //////////////////////////////////
-    foreach ($mobArray as $Mob) {
-
-      $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
-      $MobArray[] =
-        [
-          $Mob->field_mobs->getValue()[0]['target_id'],
-          $Mob->field_mob_name->value,
-          $Mob->field_x->value,
-          $Mob->field_y->value,
-          $MobObject->field_mob_sprite_sheet->getValue()[0]['value'],
-          $MobObject->getTitle()
-        ];
-    }
-    //////////////////////////Payload //////////////////////////////////////////
-    $responseData['gameConfig']           = $gameConfig;
-    $responseData['playerId']             = $playerId;
-    $responseData['playerStats']          = $player;
-    $responseData['playerName']           = $playerName;
-    $responseData['userMapGrid']          = $userMG;
-    $responseData['City']                 = $cityName;
-    $responseData['Name']                 = $MapGrid->get('title')->value;
-    $responseData['userGamesState']       = $userGamesState;
-    $responseData['portalsArray']         = $portals;
-    $responseData['content']              = "Welcome to The Eclectic Meme Conspiracy, where everything you've read on the net is true.\nTravel the globe as an international player in a game of magic, mystery and zombies.\nGather crystals and other resources and create your own underground empire.";
-
-    if (isset($NpcArray)) {
-      $responseData['NpcArray']            = $NpcArray;
-    }
-    if (isset($MobArray)) {
-      $responseData['MobArray']           = $MobArray;
-    }
-    if (isset($rewards)) {
-      $responseData['rewardsArray']       = $rewards;
-    }
-    $responseData['Tiled']                = $tiled;
-    $responseData['MapWidth']             = $mapWidth;
-    $responseData['MapHeight']            = $mapHeight;
-    $responseData['tilesetArray_1']       = $tilesetArray_1;
-    $responseData['tilesetArray_2']       = $tilesetArray_2;
-    $responseData['tilesetArray_3']       = $tilesetArray_3;
-    if (isset($tilesetArray_4)) {
-      $responseData['tilesetArray_4'] = $tilesetArray_4;
-    }
-    if (isset($tilesetArray_5)) {
-      $responseData['tilesetArray_5'] = $tilesetArray_5;
-    }
+    $response                   = new AjaxResponse();
+    $player                     = new Player();
+    $responseData['player']     =  $player->create();
+    $gameConfig                 = new Game();
+    $responseData['gameConfig'] = $gameConfig->create();
+    $mapGrid                    = new MapGrid($responseData['player']['userMG']);
+    $responseData['MapGrid']    = $mapGrid->create();
+    $city                       = new City($responseData['MapGrid']['userCity']);
+    $responseData['City']       = $city->create();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
 
-  //////////////////////////////////////////////////////////////////////////////
-  public function myInventory()
-  {
-    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-    $response       = new AjaxResponse();
-    $playerName     = $this->user->get("name")->value;
-    $playerId       = \Drupal::currentUser()->id();
-    //Cached stuff
-    $userGamesState         = $this->user->field_game_state->value;
-
-    $database       = \Drupal::database();
-    $query             = $database->query("SELECT field_inventory_target_id FROM user__field_inventory WHERE entity_id= " . $playerId);
-
-    $player['inventory']  = $query->fetchAll();
-
-    foreach ($player['inventory'] as $invItem) {
-      $inventoryItemNumber = $invItem->field_inventory_target_id;
-
-      $query = $database->query("SELECT field_items_target_id FROM paragraph__field_items  WHERE entity_id= " . $inventoryItemNumber);
-      foreach ($query as $record) {
-        $item  = $record->field_items_target_id;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $item);
-        $name              = $query->fetchAll()[0]->title;
-
-        $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $inventoryItemNumber);
-        $location          = $query->fetchAll()[0]->field_location_value;
-
-        $player['items'][] = array('id' => $inventoryItemNumber, 'name' => $name, 'location' => $location);
-      }
-
-      $query             = $database->query("SELECT field_weapon_target_id FROM paragraph__field_weapon  WHERE entity_id= " . $inventoryItemNumber);
-      foreach ($query as $record) {
-        $weapon = $record->field_weapon_target_id;
-        if ($weapon) {
-          $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $weapon);
-          $name              = $query->fetchAll()[0]->title;
-
-          $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $inventoryItemNumber);
-          $location          = $query->fetchAll()[0]->field_location_value;
-          $player['items'][] = array('id' => $inventoryItemNumber, 'name' => $name, 'location' => $location);
-        }
-      }
-      //    $query             = $database->query("SELECT field_ammo_target_id FROM paragraph__field_ammo  WHERE entity_id= " . $inventoryItemNumber);
-      //    $element = $query->fetchAll()[0]->field_elements_target_id;
-      //    foreach ($query as $record) {
-      /*         $query             = $database->query("SELECT field_amount_value FROM paragraph__field_amount  WHERE entity_id= " . $element);
-        $amount            = $query->fetchAll()[0]->field_amount_value;
-        $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $element);
-        $name              = $query->fetchAll()[0]->title;
-        $player['items'][] = [$element, $amount, $name]; */
-      //    continue;
-      //    }
-    }
-
-    $responseData['playerInventory']          = $player;
-
-    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
-    return $response;
-  }
   public function myMissions()
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response           = new AjaxResponse();
-    $playerName         = $this->user->get("name")->value;
-    $playerId           = \Drupal::currentUser()->id();
-    //Cached stuff
-    $userGamesState     = $this->user->field_game_state->value;
-
-    $database           = \Drupal::database();
-
-    ////////////////////////////////////////////////////////////////////////////////
-    $query              = $database->query("SELECT field_missions_target_id FROM user__field_missions WHERE entity_id= " . $playerId);
-    $player['missions'] = $query->fetchAll();
-
-    foreach ($player['missions'] as $record) {
-      $mission = $record->field_missions_target_id;
-      if ($mission) {
-        $result             = $database->query("
-        SELECT node_field_data.title,node__body.body_value
-         FROM node_field_data
-         LEFT JOIN node__body
-         ON  node_field_data.nid = node__body.entity_id
-         WHERE node_field_data.nid = " . $mission);
-        $row              = $result->fetchAssoc();
-        $player['quests'][] = array('id' => $mission, 'name' => $row['title'], 'body' => $row['body_value']);
-      }
-    }
-
-    $responseData['playerMissions']          = $player;
-
+    $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
+    $responseData = $player->myMissions();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
 
-
-  public function toStorage(Request $request)
+  public function myInventory()
   {
-    $database       = \Drupal::database();
-    $query              = $database->query("UPDATE paragraph__field_location SET field_location_value = 'Storage' WHERE entity_id= " . $request->query->get('id'));
-    $query->execute();
-    return $this->myInventory();
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response           = new AjaxResponse();
+    $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
+    $responseData = $player->myInventory();
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
   }
 
-  public function toBackpack(Request $request)
+  public function toBackpack($request)
   {
-    $database       = \Drupal::database();
-    $query              = $database->query("UPDATE paragraph__field_location SET field_location_value = 'Backpack' WHERE entity_id= " . $request->query->get('id'));
-    $query->execute();
-    return $this->myInventory();
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response           = new AjaxResponse();
+    $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
+    $responseData = $player->toBackpack($request);
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+  }
+
+  public function toStorage( $request)
+  {
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response           = new AjaxResponse();
+    $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
+    $responseData = $player->toStorage( $request);
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
   }
 }
