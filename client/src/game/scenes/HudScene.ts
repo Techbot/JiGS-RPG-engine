@@ -53,9 +53,9 @@ export class HudScene extends Scene {
         }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
 
         // HUD1 bg
-        var r1 = this.add.rectangle(10, 10, 190, 120, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
+        // var r1 = this.add.rectangle(10, 10, 190, 120, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
         // HUD2 bg
-        var r2 = this.add.rectangle(730, 10, 160, 90, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
+        // var r2 = this.add.rectangle(730, 10, 160, 90, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
 
         // Grab a reference to the Game Scene
         let ourGame = this.scene.get('main');
@@ -79,20 +79,19 @@ export class HudScene extends Scene {
         }, this);
 
         //  Our Text object to display the Score
-        let info = this.add.text(15, 15, 'Credits: ', { font: '12px Arial', fill: '#ffffff' });
-        this.hud2 = this.add.text(15, 30, '', { font: '12px Arial', fill: '#ffffff'});
-        this.hud3 = this.add.text(15, 45, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud4 = this.add.text(15, 60, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud5 = this.add.text(15, 75, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud11 = this.add.text(15, 90, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud12 = this.add.text(15, 105, '', { font: '12px Arial', fill: '#ffffff' });
+        let info = this.add.text(15, 15, 'Credits: ', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud2 = this.add.text(15, 30, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud3 = this.add.text(15, 45, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud4 = this.add.text(15, 60, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud5 = this.add.text(15, 75, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud11 = this.add.text(15, 90, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud12 = this.add.text(15, 105, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
 
-        this.hud6 = this.add.text(735, 15, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud7 = this.add.text(735, 30, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud8 = this.add.text(735, 45, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud9 = this.add.text(735, 60, '', { font: '12px Arial', fill: '#ffffff' });
-        this.hud10 = this.add.text(735, 75, '', { font: '12px Arial', fill: '#ffffff' });
-
+        this.hud6 = this.add.text(735, 15, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud7 = this.add.text(735, 30, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud8 = this.add.text(735, 45, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud9 = this.add.text(735, 60, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud10 = this.add.text(735, 75, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     }
     update() {
         // HUD1
@@ -104,18 +103,18 @@ export class HudScene extends Scene {
         this.hud12.setText('Id: ' + this.jigs.playerId);
 
         // HUD2
-        this.hud6.setText('X: ' + this.x + 'Y: ' + this.y);
+        this.hud6.setText('X: ' + this.x + ' Y: ' + this.y);
 
         if (this.jigs.portalsArray[0]) {
-          this.hud7.setText('P1 X: ' + this.jigs.portalsArray[0].x + 'P1 Y: ' + this.jigs.portalsArray[0].y);
+          this.hud7.setText('P1 X: ' + this.jigs.portalsArray[0].x + ' P1 Y: ' + this.jigs.portalsArray[0].y);
         }
 
         if (this.jigs.portalsArray[1]) {
-          this.hud8.setText('P2 X: ' + this.jigs.portalsArray[1].x + 'P2 Y: ' + this.jigs.portalsArray[1].y);
+          this.hud8.setText('P2 X: ' + this.jigs.portalsArray[1].x + ' P2 Y: ' + this.jigs.portalsArray[1].y);
         }
 
         if (this.jigs.portalsArray[2]) {
-          this.hud9.setText('P3 X: ' + this.jigs.portalsArray[2].x + 'P3 Y: ' + this.jigs.portalsArray[2].y);
+          this.hud9.setText('P3 X: ' + this.jigs.portalsArray[2].x + ' P3 Y: ' + this.jigs.portalsArray[2].y);
         }
 
         this.hud10.setText('City: ' + this.jigs.city);
@@ -223,7 +222,7 @@ export class HudScene extends Scene {
           mode: 'word',
           width: 600
         },
-        maxLines: 3,
+        maxLines: 4,
       }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 })
     }
 
