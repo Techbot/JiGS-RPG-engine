@@ -1,5 +1,6 @@
 
 import { Scene } from 'phaser'
+import WebFont from '../../assets/WebFont'
 import { useJigsStore } from '../../stores/jigs'
 
 export class HudScene extends Scene {
@@ -38,7 +39,8 @@ export class HudScene extends Scene {
 
     preload() {
       this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-      this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+      // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+      this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
       this.load.image('cursor', '/assets/images/cursors/blank.cur');
       this.load.image('cursor2', '/assets/images/cursors/attack.cur');
       this.load.image('cursor3', '/assets/images/cursors/speak.cur');
@@ -79,19 +81,19 @@ export class HudScene extends Scene {
         }, this);
 
         //  Our Text object to display the Score
-        let info = this.add.text(15, 15, 'Credits: ', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud2 = this.add.text(15, 30, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud3 = this.add.text(15, 45, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud4 = this.add.text(15, 60, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud5 = this.add.text(15, 75, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud11 = this.add.text(15, 90, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud12 = this.add.text(15, 105, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        let info = this.add.text(15, 15, 'Credits: ', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud2 = this.add.text(15, 30, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud3 = this.add.text(15, 45, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud4 = this.add.text(15, 60, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud5 = this.add.text(15, 75, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud11 = this.add.text(15, 90, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud12 = this.add.text(15, 105, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
 
-        this.hud6 = this.add.text(735, 15, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud7 = this.add.text(735, 30, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud8 = this.add.text(735, 45, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud9 = this.add.text(735, 60, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud10 = this.add.text(735, 75, '', { font: '12px Arial', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud6 = this.add.text(735, 15, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud7 = this.add.text(735, 30, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud8 = this.add.text(735, 45, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud9 = this.add.text(735, 60, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud10 = this.add.text(735, 75, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     }
     update() {
         // HUD1
@@ -140,7 +142,7 @@ export class HudScene extends Scene {
 
           action: scene.add.image(0, 0, 'nextPage').setVisible(false),
 
-          title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Arial', fill: '#ffffff' }) : undefined,
+          title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
 
           // separator: (titleText) ? scene.rexUI.add.roundRectangle({ height: 3, color: this.COLOR_DARK }) : undefined,
 
@@ -213,7 +215,7 @@ export class HudScene extends Scene {
 
     getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
       return scene.rexUI.add.BBCodeText(0, 0, '', {
-        fontFamily:  "sans serif",
+        fontFamily: 'Neutron Demo',
         fontWeight: 'bold',
         fontSize: '24px',
         fill: 'white',

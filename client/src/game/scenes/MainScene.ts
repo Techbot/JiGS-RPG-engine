@@ -10,6 +10,7 @@
  */
 
 import Phaser from "phaser";
+import WebFont from '../../assets/WebFont'
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
@@ -105,7 +106,8 @@ export class MainScene extends Phaser.Scene {
         this.Loader.load(self);
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-        this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+        // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+        this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
 
@@ -183,7 +185,7 @@ export class MainScene extends Phaser.Scene {
                     .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
 
                 this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
-                    font: "12px Arial",
+                    font: "12px Neutron Demo",
                     fill: 'white',
                     fontStyle: 'strong',
                     backgroundColor: 'rgba(0, 0, 0, 0.6)',
