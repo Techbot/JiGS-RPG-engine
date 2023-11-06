@@ -56,6 +56,7 @@ tiled
 /client/node_modules
 /client/.parcel-cache
 /client/src/game/backend.ts
+/client/src/assets/fonts/*
 
 config
 config/install
