@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Colyseus + Phaser: Client-side",
   "scripts": {
-    "start": "parcel serve index.html",
+    "start": "parcel serve",
     "build": "parcel build index.html --no-content-hash",
+    "build-dev": "parcel build index.html --no-optimize --no-content-hash",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
