@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import WebFont from '../../assets/WebFont'
 
 export class SceneSelector extends Phaser.Scene {
 
@@ -18,7 +19,7 @@ export class SceneSelector extends Phaser.Scene {
     preload() {
         // update menu background color
         this.cameras.main.setBackgroundColor(0x000000);
-
+        this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.image('einstein', '/assets/images/8b0f172a-80ed-4fbd-b357-c512127970ce.png');
         // preload demo assets
         // this.load.image('ship_0001', 'assets/ship_0001.png');
@@ -32,8 +33,7 @@ export class SceneSelector extends Phaser.Scene {
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
             color: "#ff0000",
             fontSize: "32px",
-            // fontSize: "24px",
-            fontFamily: "Arial"
+            fontFamily: "Neutron Demo"
         };
 
         for (let partNum in this.parts) {

@@ -81,19 +81,19 @@ export class HudScene extends Scene {
         }, this);
 
         //  Our Text object to display the Score
-        let info = this.add.text(15, 15, 'Credits: ', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud2 = this.add.text(15, 30, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud3 = this.add.text(15, 45, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud4 = this.add.text(15, 60, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud5 = this.add.text(15, 75, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud11 = this.add.text(15, 90, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud12 = this.add.text(15, 105, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        let info = this.add.text(15, 15, 'Credits: ', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud2 = this.add.text(15, 30, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud3 = this.add.text(15, 45, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud4 = this.add.text(15, 60, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud5 = this.add.text(15, 75, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud11 = this.add.text(15, 90, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud12 = this.add.text(15, 105, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
 
-        this.hud6 = this.add.text(735, 15, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud7 = this.add.text(735, 30, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud8 = this.add.text(735, 45, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud9 = this.add.text(735, 60, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-        this.hud10 = this.add.text(735, 75, '', { font: '12px Neutron Demo', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud6 = this.add.text(735, 15, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud7 = this.add.text(735, 30, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud8 = this.add.text(735, 45, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud9 = this.add.text(735, 60, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+        this.hud10 = this.add.text(735, 75, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)'}).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     }
     update() {
         // HUD1
@@ -132,7 +132,7 @@ export class HudScene extends Scene {
 
         var textBox = scene.rexUI.add.textBox({
           x: 10,
-          y: 500,
+          y: 480,
           //background: scene.rexsUI.add.roundRectangle({ radius: 20, color: this.COLOR_PRIMARY, strokeColor: this.COLOR_LIGHT, strokeWidth: 2, backgroundColor: '#000000' }),
 
           // icon: scene.rexUI.add.roundRectangle({ radius: 20, color: this.COLOR_DARK }),
@@ -261,7 +261,7 @@ export class HudScene extends Scene {
             // },
 
             scroller: {
-                // pointerOutRelease: false,
+                pointerOutRelease: false,
             },
 
             mouseWheelScroller: {
