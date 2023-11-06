@@ -107,12 +107,10 @@ export class MainScene extends Phaser.Scene {
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
         this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
-
     }
 
     async create() {
         var self = this;
-        //this.cameras.main.zoom = 1.5;
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
@@ -157,7 +155,7 @@ export class MainScene extends Phaser.Scene {
                 delete this.playerEntities[sessionId];
             }
         });
-        this.cameras.main.setZoom(1.5);
+        // this.cameras.main.setZoom(1);
     }
 
     addRewards() {
@@ -185,13 +183,11 @@ export class MainScene extends Phaser.Scene {
                     .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
 
                 this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
-                    fontFamily: "sans serif",
-                    fontWeight: 'bold',
-                    fontSize: '12px',
+                    font: "12px Arial",
                     fill: 'white',
+                    fontStyle: 'strong',
                     backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                    maxLines: 3,
-                }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 2, right: 2, top: 2, bottom: 2 });
+                }).setPadding({ left: 1, right: 1, top: 1, bottom: 1 });
 
                 this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
                 this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
