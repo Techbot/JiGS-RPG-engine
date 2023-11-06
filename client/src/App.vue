@@ -63,7 +63,9 @@ export default {
 
         this.jigs.city = response.data[0].value["City"];
 
-        this.jigs.content = response.data[0].value["gameConfig"]["Body"];
+        // Regex replaces close/open p with \n new line
+        // And replaces all other html tags with null.
+        this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll( /(<([^>]+)>)/ig, '');
         // this.jigs.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
         // this.gameState = response.data[0].value[0]
         // this.userMapGrid =  parseInt(response.data[0].value[1])
