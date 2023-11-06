@@ -357,7 +357,7 @@ export class MainScene extends Phaser.Scene {
             this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
         }
         this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-        this.jigs.nodeTitle = response.data[0].value["MapGrid"]["Name"];
+        this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
 
         this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
         this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
