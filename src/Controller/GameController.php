@@ -111,22 +111,22 @@ class GameController extends ControllerBase
     return $response;
   }
 
-  public function toBackpack($request)
+  public function toBackpack(Request $request)
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response           = new AjaxResponse();
     $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
-    $responseData = $player->toBackpack($request);
+    $responseData = $player->toBackpack($request->query->get('id'));
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
 
-  public function toStorage( $request)
+  public function toStorage(Request $request)
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response           = new AjaxResponse();
     $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
-    $responseData = $player->toStorage( $request);
+    $responseData = $player->toStorage($request->query->get('id'));
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
