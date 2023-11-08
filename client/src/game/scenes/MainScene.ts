@@ -129,7 +129,9 @@ export class MainScene extends Phaser.Scene {
             if (sessionId === this.room.sessionId) {
                 self.jigs.playerState = "alive";
                 this.localPlayer.addLocalPlayer(this, player, entity, this.colliderMap);
-                this.jigs.content = "City:" + this.jigs.city;
+
+                this.jigs.content = "City: " + this.jigs.city;
+
                 self.events.emit('content');
 
                 this.addRewards();
@@ -241,29 +243,20 @@ export class MainScene extends Phaser.Scene {
 
     jump() {
         console.log("jump");
-        axios
-            .get("/mystate?_wrapper_format=drupal_ajax")
-            .then((response) => {
-                this.hydrate(response, true);
-            })
-            .then(() => {
-                var Loader = new Load;
-                Loader.load(this);
-                //portalJump(this);
-                this.room.leave(); // Backend
-                this.scene.start('main'); //Frontend)
-            });
+        this.jigs.hydrate(true).then(() => {
+            var Loader = new Load;
+            Loader.load(this);
+            //portalJump(this);
+            this.room.leave(); // Backend
+            this.scene.start('main'); //Frontend)
+        });
         return true;
     }
 
     updateState() {
-            if (this.jigs.playerState == "alive") {
-        axios
-            .get("/mystate?_wrapper_format=drupal_ajax")
-            .then((response) => {
-                this.hydrate(response, false);
-            })
-           }
+        if (this.jigs.playerState == "alive") {
+            this.jigs.hydrate(false);
+        }
     }
 
     async connect(room) {
@@ -299,20 +292,19 @@ export class MainScene extends Phaser.Scene {
         if (this.localPlayer !== undefined) {
             this.localPlayer.updatePlayer(this);
         }
-            if (this.jigs.mobArray != undefined) {
-        let i = 0;
-        while (i < this.MobContainerArray.length) {
-            if (this.jigs.mobArray[i] != undefined) {
-                this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
-                this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
-                this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][6] / 4;
-            }
-            i++;
-        };
-            }
+        if (this.jigs.mobArray != undefined) {
+            let i = 0;
+            while (i < this.MobContainerArray.length) {
+                if (this.jigs.mobArray[i] != undefined) {
+                    this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
+                    this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
+                    this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][6] / 4;
+                }
+                i++;
+            };
+        }
 
         for (let sessionId in this.playerEntities) {
-
             if (sessionId === this.room.sessionId) {
                 continue;
             }
@@ -341,31 +333,5 @@ export class MainScene extends Phaser.Scene {
 
     async hide(entity) {
         entity.disableBody(true, true);
-    }
-
-    hydrate(response, incMob) {
-
-        this.jigs.playerStats = response.data[0].value["player"];
-
-        this.jigs.gameState = response.data[0].value["player"]["userState"];
-        this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
-        this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-        this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-        this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-        this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-        this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-        if (incMob) {
-            this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-        }
-        this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-        this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
-
-        this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-        this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-        this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-        this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-
-        this.jigs.city = response.data[0].value["City"];
     }
 }

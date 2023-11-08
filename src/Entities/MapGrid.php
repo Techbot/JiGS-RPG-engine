@@ -29,15 +29,15 @@ class MapGrid
     }
 
     if ($this->MapGrid->field_map_width->getValue()) {
-    $mapGrid['mapWidth']      = $this->MapGrid->field_map_width->getValue()[0]['value'];
+      $mapGrid['mapWidth']      = $this->MapGrid->field_map_width->getValue()[0]['value'];
     }
 
     if ($this->MapGrid->field_map_height->getValue()) {
-    $mapGrid['mapHeight']     = $this->MapGrid->field_map_height->getValue()[0]['value'];
+      $mapGrid['mapHeight']     = $this->MapGrid->field_map_height->getValue()[0]['value'];
     }
 
     if ($this->MapGrid->field_city->getValue()) {
-    $mapGrid['userCity']      = (int)$this->MapGrid->field_city->getValue()[0]['target_id'];
+      $mapGrid['userCity']      = (int)$this->MapGrid->field_city->getValue()[0]['target_id'];
     }
 
     $mapGrid['npcArray']      = $this->getNpcs();
@@ -104,6 +104,7 @@ class MapGrid
 
   function getNpcs()
   {
+    $NpcArray = [];
     foreach ($this->MapGrid->field_npc->referencedEntities() as $Npc) {
       $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
 
@@ -121,6 +122,7 @@ class MapGrid
 
   function getMobs()
   {
+    $mArray = [];
     foreach ($this->MapGrid->field_mobs->referencedEntities() as $Mob) {
 
       $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);

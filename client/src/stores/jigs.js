@@ -8,6 +8,8 @@ export const useJigsStore = defineStore("jigs", {
 
     playerId: 0,
 
+    debug: 0,
+
     leave: 0,
 
     /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array ,mission: array}[]} */
@@ -56,7 +58,7 @@ export const useJigsStore = defineStore("jigs", {
     userMapGrid: 1,
 
     mapWidth: 120,
-    
+
     mapHeight: 120,
 
     tiled: 0,
@@ -110,11 +112,10 @@ export const useJigsStore = defineStore("jigs", {
           this.divideInventory(response);
         });
     },
-
     divideInventory(response) {
       this.playerInventory = response.data[0].value["playerInventory"].items;
-      this.listBackpack=[];
-      this.listStorage=[];
+      this.listBackpack = [];
+      this.listStorage = [];
 
       let i = 0;
       while (i < this.playerInventory.length) {
@@ -126,6 +127,42 @@ export const useJigsStore = defineStore("jigs", {
         }
         i++;
       }
-    }
+    },
+    hydrate(incMob) {
+      axios
+        .get("/mystate?_wrapper_format=drupal_ajax")
+        .then((response) => {
+
+          this.playerStats = response.data[0].value["player"];
+          this.playerId = parseInt(response.data[0].value["player"]["id"]);
+          this.playerName = response.data[0].value["player"]["name"];
+
+          this.gameState = response.data[0].value["player"]["userState"];
+          this.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
+
+          this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+          this.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
+          this.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
+          this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
+          this.npcArray = response.data[0].value["MapGrid"]["npcArray"];
+          if (incMob) {
+          this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+          }
+          this.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
+          this.nodeTitle = response.data[0].value["MapGrid"]["name"];
+
+          this.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
+          this.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
+          this.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
+          this.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
+
+          this.city = response.data[0].value["City"];
+
+          // Regex replaces close/open p with \n new line
+          // And replaces all other html tags with null.
+          this.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
+          this.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
+        })
+    },
   },
 });

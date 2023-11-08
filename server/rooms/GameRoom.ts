@@ -98,7 +98,7 @@ export class GameRoom extends Room<MyRoomState> {
         player.p2Player.Body.dead = false;
       }
       else if (player.p2Player.Body.reward) {
-        client.send("reward", player.Body.reward);
+        client.send("reward", player.p2Player.Body.reward);
         player.p2Player.Body.reward = false;
         player.inputQueue.push(input);
       }

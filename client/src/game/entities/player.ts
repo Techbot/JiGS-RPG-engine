@@ -32,20 +32,27 @@ export default class Player {
         self.lights.enable().setAmbientColor(0x555555);
         self.physics.world.enable([entity]);
         self.currentPlayer = entity;
-        //self.localRef = self.add.rectangle(0, 0, 32, 40).setDepth(7);
-        //self.localRef.setStrokeStyle(1, 0x00ff00);
-        //self.remoteRef = self.add.rectangle(0, 0, 32, 40).setDepth(8);
-        //self.remoteRef.setStrokeStyle(1, 0xff0000);
+
+        if (this.jigs.debug) {
+            self.localRef = self.add.rectangle(0, 0, 32, 40).setDepth(7);
+            self.localRef.setStrokeStyle(1, 0x00ff00);
+            self.remoteRef = self.add.rectangle(0, 0, 32, 40).setDepth(8);
+            self.remoteRef.setStrokeStyle(1, 0xff0000);
+        }
+
+
         player.onChange(() => {
-        //    self.remoteRef.x = player.x;
-        //    self.remoteRef.y = player.y;
+            if (this.jigs.debug) {
+                self.remoteRef.x = player.x;
+                self.remoteRef.y = player.y;
+            }
         });
         entity.setScale(.85);
         self.cameras.main.startFollow(entity);
         var cam = self.cameras.main;
 
 
-console.log("mapWidth" + this.jigs.mapWidth);
+        console.log("mapWidth" + this.jigs.mapWidth);
 
         //cam.setBounds(0, 0, 1896, 1896);
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
@@ -70,48 +77,48 @@ console.log("mapWidth" + this.jigs.mapWidth);
 
         self.input.on("pointerdown", (event) => {
 
-         //   if (this.jigs.playerState == "alive") {
+            //   if (this.jigs.playerState == "alive") {
 
-                if (self.currentPlayer.dir == 'left') {
-                    self.currentPlayer.play('thrustLeft_' + self.jigs.playerStats.sprite_sheet + '_slash');
-                    if (self.currentPlayer.speed == 'go') {
-                        self.currentPlayer.playAfterRepeat('walkLeft_' + self.jigs.playerStats.sprite_sheet);
-                    }
+            if (self.currentPlayer.dir == 'left') {
+                self.currentPlayer.play('thrustLeft_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                if (self.currentPlayer.speed == 'go') {
+                    self.currentPlayer.playAfterRepeat('walkLeft_' + self.jigs.playerStats.sprite_sheet);
+                }
+            }
+
+            else if (self.currentPlayer.dir == 'right') {
+                self.currentPlayer.anims.play('thrustRight_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                if (self.currentPlayer.speed == 'go') {
+                    self.currentPlayer.playAfterRepeat('walkRight_' + self.jigs.playerStats.sprite_sheet);
+                }
+            }
+
+            else if (self.currentPlayer.dir == 'up') {
+                self.currentPlayer.anims.play('thrustUp_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                if (self.currentPlayer.speed == 'go') {
+                    self.currentPlayer.playAfterRepeat('walkUp_' + self.jigs.playerStats.sprite_sheet);
                 }
 
-                else if (self.currentPlayer.dir == 'right') {
-                    self.currentPlayer.anims.play('thrustRight_' + self.jigs.playerStats.sprite_sheet + '_slash');
-                    if (self.currentPlayer.speed == 'go') {
-                        self.currentPlayer.playAfterRepeat('walkRight_' + self.jigs.playerStats.sprite_sheet);
-                    }
+            }
+            else if (self.currentPlayer.dir == 'down') {
+                self.currentPlayer.anims.play('thrustDown_' + self.jigs.playerStats.sprite_sheet + '_slash');
+                if (self.currentPlayer.speed == 'go') {
+                    self.currentPlayer.playAfterRepeat('walkDown_' + self.jigs.playerStats.sprite_sheet);
                 }
+            }
 
-                else if (self.currentPlayer.dir == 'up') {
-                    self.currentPlayer.anims.play('thrustUp_' + self.jigs.playerStats.sprite_sheet + '_slash');
-                    if (self.currentPlayer.speed == 'go') {
-                        self.currentPlayer.playAfterRepeat('walkUp_' + self.jigs.playerStats.sprite_sheet);
-                    }
+            self.gun.angle = Math.atan2(parseInt(event.worldY) - self.gun.y, parseInt(event.worldX) - self.gun.x) * 180 / Math.PI;
 
+            if (self.jigs.mobShoot != 0) {
+                let bullet = self.bullets.get();
+                if (bullet) {
+                    let offset = new Phaser.Geom.Point(0, -self.gun.height / 2);
+                    bullet.fire(self.gun);
                 }
-                else if (self.currentPlayer.dir == 'down') {
-                    self.currentPlayer.anims.play('thrustDown_' + self.jigs.playerStats.sprite_sheet + '_slash');
-                    if (self.currentPlayer.speed == 'go') {
-                        self.currentPlayer.playAfterRepeat('walkDown_' + self.jigs.playerStats.sprite_sheet);
-                    }
-                }
-
-                self.gun.angle = Math.atan2(parseInt(event.worldY) - self.gun.y, parseInt(event.worldX) - self.gun.x) * 180 / Math.PI;
-
-                if (self.jigs.mobShoot != 0) {
-                    let bullet = self.bullets.get();
-                    if (bullet) {
-                        let offset = new Phaser.Geom.Point(0, -self.gun.height / 2);
-                        bullet.fire(self.gun);
-                    }
-                    self.inputPayload.inputX = parseInt(event.worldX);
-                    self.inputPayload.inputY = parseInt(event.worldY);
-                }
-        //    }
+                self.inputPayload.inputX = parseInt(event.worldX);
+                self.inputPayload.inputY = parseInt(event.worldY);
+            }
+            //    }
         });
     }
 
@@ -156,8 +163,10 @@ console.log("mapWidth" + this.jigs.mapWidth);
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
             if (tile.index > 0) {
                 self.currentPlayer.x += 32;
-           //     self.currentPlayer.y = self.remoteRef.y;
-            //    self.currentPlayer.x = self.remoteRef.x;
+                if (this.jigs.debug) {
+                    self.currentPlayer.y = self.remoteRef.y;
+                    self.currentPlayer.x = self.remoteRef.x;
+                }
             }
             else {
                 self.currentPlayer.x -= velocity;
@@ -172,8 +181,10 @@ console.log("mapWidth" + this.jigs.mapWidth);
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x + 16, self.currentPlayer.y, true);
             if (tile.index > 0) {
                 self.currentPlayer.x -= 32;
-           //     self.currentPlayer.y = self.remoteRef.y;
-            //    self.currentPlayer.x = self.remoteRef.x;
+                if (this.jigs.debug) {
+                    self.currentPlayer.y = self.remoteRef.y;
+                    self.currentPlayer.x = self.remoteRef.x;
+                }
             }
             else {
                 self.currentPlayer.x += velocity;
@@ -188,8 +199,10 @@ console.log("mapWidth" + this.jigs.mapWidth);
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y - 16, true);
             if (tile.index > 0) {
                 self.currentPlayer.y += 32;
-            //    self.currentPlayer.y = self.remoteRef.y;
-             //   self.currentPlayer.x = self.remoteRef.x;
+                if (this.jigs.debug) {
+                    self.currentPlayer.y = self.remoteRef.y;
+                    self.currentPlayer.x = self.remoteRef.x;
+                }
             }
             else {
                 self.currentPlayer.y -= velocity;
@@ -204,8 +217,10 @@ console.log("mapWidth" + this.jigs.mapWidth);
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y + 16, true);
             if (tile.index > 0) {
                 self.currentPlayer.y -= 32;
-               // self.currentPlayer.y = self.remoteRef.y;
-               // self.currentPlayer.x = self.remoteRef.x;
+                if (this.jigs.debug) {
+                    self.currentPlayer.y = self.remoteRef.y;
+                    self.currentPlayer.x = self.remoteRef.x;
+                }
             }
             else {
                 self.currentPlayer.y += velocity;
@@ -219,8 +234,10 @@ console.log("mapWidth" + this.jigs.mapWidth);
         this.jigs.mobClick = 0;
         self.gun.x = self.currentPlayer.x;
         self.gun.y = self.currentPlayer.y;
-        //self.localRef.x = self.currentPlayer.x;
-        //self.localRef.y = self.currentPlayer.y;
+        if (this.jigs.debug) {
+            self.localRef.x = self.currentPlayer.x;
+            self.localRef.y = self.currentPlayer.y;
+        }
         this.light.x = self.currentPlayer.x;
         this.light.y = self.currentPlayer.y;
 

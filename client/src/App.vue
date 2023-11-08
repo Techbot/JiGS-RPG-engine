@@ -35,81 +35,12 @@ export default {
     this.room = new Room;
     this.client = new Client(BACKEND_URL);
     this.jigs = useJigsStore();
-
-    axios
-      .get("/mystate?_wrapper_format=drupal_ajax")
-      .then((response) => {
-
-        this.jigs.playerStats = response.data[0].value["player"];
-        this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
-        this.jigs.playerName = response.data[0].value["player"]["name"];
-
-        this.jigs.gameState = response.data[0].value["player"]["userState"];
-        this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
-        this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-        this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-        this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-        this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-        this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-        this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-        this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-        this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
-
-        this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-        this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-        this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-        this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-
-        this.jigs.city = response.data[0].value["City"];
-
-        // Regex replaces close/open p with \n new line
-        // And replaces all other html tags with null.
-        this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll( /(<([^>]+)>)/ig, '');
-        // this.jigs.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
-        // this.gameState = response.data[0].value[0]
-        // this.userMapGrid =  parseInt(response.data[0].value[1])
-      });
+    this.jigs.hydrate(true);
   },
   methods: {
     formSubmit(e) {
       e.preventDefault();
-
-      let currentObj = this;
-      axios.get("/mystate?_wrapper_format=drupal_ajax",
-        {
-          name: this.name,
-          description: this.description,
-        }).then(function (response) {
-          currentObj.jigs.playerName = response.data[0].value["player"]["name"];
-          currentObj.jigs.playerStats = response.data[0].value["player"];
-          currentObj.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
-
-          currentObj.jigs.gameState = response.data[0].value["player"]["userState"];
-          currentObj.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
-          currentObj.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-          currentObj.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-          currentObj.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-          currentObj.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-          currentObj.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-          currentObj.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-          currentObj.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-          currentObj.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
-
-          currentObj.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-          currentObj.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-          currentObj.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-          currentObj.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-
-          currentObj.jigs.city = response.data[0].value["City"];
-
-          currentObj.jigs.content = response.data[0].value["gameConfig"]["Body"];
-          //   currentObj.counter.tilesetArray_5 = response.data[0].value["tilesetArray_5"];
-        })
-        .catch(function (error) {
-          currentObj.jigs.output = error;
-        });
+      this.jigs.hydrate(true);
     },
     log(e) {
       e.preventDefault();
