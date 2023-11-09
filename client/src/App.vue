@@ -35,7 +35,7 @@ export default {
     this.room = new Room;
     this.client = new Client(BACKEND_URL);
     this.jigs = useJigsStore();
-    this.jigs.hydrate(true);
+    this.jigs.hydrateState(true);
   },
   methods: {
     formSubmit(e) {

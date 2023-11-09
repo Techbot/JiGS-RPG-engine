@@ -243,7 +243,7 @@ export class MainScene extends Phaser.Scene {
 
     jump() {
         console.log("jump");
-        this.jigs.hydrate(true).then(() => {
+        this.jigs.hydrateState(true).then(() => {
             var Loader = new Load;
             Loader.load(this);
             //portalJump(this);
@@ -255,7 +255,7 @@ export class MainScene extends Phaser.Scene {
 
     updateState() {
         if (this.jigs.playerState == "alive") {
-            this.jigs.hydrate(false);
+            this.jigs.hydrateState(false);
         }
     }
 

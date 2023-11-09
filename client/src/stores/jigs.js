@@ -102,6 +102,9 @@ export const useJigsStore = defineStore("jigs", {
       }
       return this.todos;
     },
+    hydrateState(state) {
+     return (incMob)=>this.hydrate(incMob);
+    }
   },
   actions: {
     // any amount of arguments, return a promise or not
