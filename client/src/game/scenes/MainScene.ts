@@ -228,9 +228,14 @@ export class MainScene extends Phaser.Scene {
     }
 
     onNPCDown(npc, img) {
-        this.jigs.npc = 1;
-        this.jigs.content = npc[4];
-        this.events.emit('content');
+        if (npc[0] == "Pope Turlock") {
+            this.events.emit('Pope Turlock');
+        }
+        else {
+            this.jigs.npc = 1;
+            this.jigs.content = npc[4];
+            this.events.emit('content');
+        }
     }
 
     onMobDown(mob, img) {
