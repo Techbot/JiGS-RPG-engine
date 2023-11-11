@@ -247,21 +247,57 @@ export class MainScene extends Phaser.Scene {
     incrementReward() { return; }
 
     jump() {
-        console.log("jump");
-        this.jigs.hydrateState(true).then(() => {
-            var Loader = new Load;
-            Loader.load(this);
-            //portalJump(this);
-            this.room.leave(); // Backend
-            this.scene.start('main'); //Frontend)
-        });
-        return true;
+        axios
+            .get("/mystate?_wrapper_format=drupal_ajax")
+            .then((response) => {
+                console.log("jump");
+                this.hydrate(response,true);
+                var Loader = new Load;
+                Loader.load(this);
+                //portalJump(this);
+                this.room.leave(); // Backend
+                this.scene.start('main'); //Frontend)
+            })
     }
 
     updateState() {
         if (this.jigs.playerState == "alive") {
-            this.jigs.hydrateState(false);
-        }
+            this.jigs.hydrate(false);
+            axios
+                .get("/mystate?_wrapper_format=drupal_ajax")
+                .then((response) => {
+                    this.hydrate(response, false);
+                })
+      }
+    }
+
+    hydrate(response,incMob) {
+                this.jigs.playerStats = response.data[0].value["player"];
+                this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
+                this.jigs.playerName = response.data[0].value["player"]["name"];
+
+                this.jigs.gameState = response.data[0].value["player"]["userState"];
+                this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
+
+                this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+                this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
+                this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
+                this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
+                this.npcArray = response.data[0].value["MapGrid"]["npcArray"];
+                if (incMob) {
+                    this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+                }
+                this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
+                this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
+                this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
+                this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
+                this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
+                this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
+                this.jigs.city = response.data[0].value["City"];
+                // Regex replaces close/open p with \n new line
+                // And replaces all other html tags with null.
+                this.jigs.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
+                this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
     }
 
     async connect(room) {
