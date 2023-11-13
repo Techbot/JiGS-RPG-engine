@@ -215,10 +215,11 @@ export default {
 
 
 <template>
-    <div class="character--stats">
-    <h3>Stats</h3>
-      <!-- <img src = "/assets/images/System/player-top.png"/> -->
-  	Health : {{ this.jigs.playerStats.health }}
+  <div class="character">
+    <!-- <img src = "/assets/images/System/player-top.png"/> -->
+    <div class="character-gauge">
+      <label>Health</label>
+      <span class="gauge-value">{{ this.jigs.playerStats.health }}</span>
       <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'top'">{{ text }}</div>
       <div class="vue-simple-progress" :style="progress_style">
         <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'middle'">{{ text }}</div>
@@ -227,34 +228,99 @@ export default {
           <div :style="text_style" v-if="text.length > 0 && textPosition == 'inside'">{{text}}</div>
         </div>
       </div>
-    <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'bottom'">{{text}}</div>
-  <br>
-	Energy : {{ this.jigs.playerStats.energy }}
-    <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'top'">{{text}}</div>
-    <div class="vue-simple-progress" :style="progress_style">
-      <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'middle'">{{text}}</div>
-      <div style="position: relative; left: -9999px" :style="text_style" v-if="text.length > 0 && textPosition == 'inside'">{{text}}</div>
-      <div class="vue-simple-progress-bar" :style="bar_style2">
-        <div :style="text_style" v-if="text.length > 0 && textPosition == 'inside'">{{text}}</div>
+      <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'bottom'">{{text}}</div>
+    </div>
+
+    <div class="character-gauge">
+      <label>Energy</label>
+      <span class="gauge-value">{{ this.jigs.playerStats.energy }}</span>
+      <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'top'">{{text}}</div>
+      <div class="vue-simple-progress" :style="progress_style">
+        <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'middle'">{{text}}</div>
+        <div style="position: relative; left: -9999px" :style="text_style" v-if="text.length > 0 && textPosition == 'inside'">{{text}}</div>
+        <div class="vue-simple-progress-bar" :style="bar_style2">
+          <div :style="text_style" v-if="text.length > 0 && textPosition == 'inside'">{{text}}</div>
+        </div>
+        <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'bottom'">{{text}}</div>
       </div>
     </div>
-    <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'bottom'">{{text}}</div>
-    <br>Intelligence : {{this.jigs.playerStats.intelligence}}
-    <br>Strength : {{ this.jigs.playerStats.strength }}
-    <br>Dexterity : {{ this.jigs.playerStats.dexterity }}
-    <br>Endurance : {{ this.jigs.playerStats.endurance }}
-    <br>Charisma : {{ this.jigs.playerStats.charisma }}
-    <br>PSI : {{ this.jigs.playerStats.psi }}
-    <br>
-    <br>Experience :  {{ this.jigs.playerStats.xp }}
-    <br>Credits : {{ this.jigs.playerStats.credits }}
-    <br>
-    <br><span>Weapon : {{ picked }}</span>
-    <br><input type="radio" id="sword" value="Sword" v-model="picked">
-    <label for="sword">Sword</label>
-    <br>
-    <input type="radio" id="gun" value="Gun" v-model="picked">
-    <label for="gun">Gun</label>
-    <br>
+
+    <div class="character-gauge">
+      <label>Intelligence</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.intelligence}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>Strength</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.strength}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>Dexterity</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.dexterity}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>Endurance</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.endurance}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>Charisma</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.charisma}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>PSI</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.psi}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>Experience</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.xp}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>Credits</label>
+      <span class="gauge-value">
+        {{ this.jigs.playerStats.credits }}
+      </span>
+    </div>
+
+    <div class="weapon">
+      <div class="weapon--picked">
+        <label>Weapon</label>
+        <!-- <span class="weapon-value">
+          {{ picked }}
+        </span> -->
+      </div>
+
+      <div class="weapon--select">
+        <div class="weapon-value">
+          <label for="sword">Sword</label>
+          <input type="radio" id="sword" value="Sword" v-model="picked">
+        </div>
+        <div class="weapon-value">
+          <label for="gun">Gun</label>
+          <input type="radio" id="gun" value="Gun" v-model="picked">
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </template>
