@@ -28,9 +28,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    QUESTS
-    <img src="/assets/images/header2.png" />
+  <div class="quests">
+    <!-- <img src="/assets/images/header2.png" /> -->
     <div class="accordion accordion-flush" id="accordionFlushExample" v-for="quest in jigs.playerQuests.quests" :key="quest.id">
       <div class="accordion-item">
         <h2 class="accordion-header">
@@ -42,7 +41,7 @@ export default {
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse"
           data-coreui-parent="#accordionFlushExample">
-          <div class="accordion-body">{{ quest.body}} }}</div>
+          <div class="accordion-body">{{ quest.body }}</div>
         </div>
       </div>
     </div>
