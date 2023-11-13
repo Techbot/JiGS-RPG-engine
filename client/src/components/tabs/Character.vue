@@ -215,9 +215,10 @@ export default {
 
 
 <template>
-    <div>
-      <img src = "/assets/images/System/player-top.png"/>
-  HEALTH:    {{ this.jigs.playerStats.health }}
+    <div class="character--stats">
+    <h3>Stats</h3>
+      <!-- <img src = "/assets/images/System/player-top.png"/> -->
+  	Health : {{ this.jigs.playerStats.health }}
       <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'top'">{{ text }}</div>
       <div class="vue-simple-progress" :style="progress_style">
         <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'middle'">{{ text }}</div>
@@ -228,7 +229,7 @@ export default {
       </div>
     <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'bottom'">{{text}}</div>
   <br>
-ENERGY:    {{ this.jigs.playerStats.energy }}
+	Energy : {{ this.jigs.playerStats.energy }}
     <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'top'">{{text}}</div>
     <div class="vue-simple-progress" :style="progress_style">
       <div class="vue-simple-progress-text" :style="text_style" v-if="text.length > 0 && textPosition == 'middle'">{{text}}</div>
@@ -245,10 +246,10 @@ ENERGY:    {{ this.jigs.playerStats.energy }}
     <br>Charisma : {{ this.jigs.playerStats.charisma }}
     <br>PSI : {{ this.jigs.playerStats.psi }}
     <br>
-    <br>EXPERIENCE:  {{ this.jigs.playerStats.xp }}
-    <br>CREDITS: {{ this.jigs.playerStats.credits }}
+    <br>Experience :  {{ this.jigs.playerStats.xp }}
+    <br>Credits : {{ this.jigs.playerStats.credits }}
     <br>
-    <br><span>Weapon: {{ picked }}</span>
+    <br><span>Weapon : {{ picked }}</span>
     <br><input type="radio" id="sword" value="Sword" v-model="picked">
     <label for="sword">Sword</label>
     <br>

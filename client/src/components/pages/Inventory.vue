@@ -63,9 +63,8 @@ export default {
   }
 };
 </script>
-
 <template>
-  <div>
+  <div class="inventory">
     <img src="/assets/images/header.png" />
     <div class="row">
       <div class="col">

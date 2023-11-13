@@ -10,17 +10,43 @@ export default {
       dataModel: [
         {
           id: "Skills",
-          label: "Root Node",
+          label: "Skills",
           treeNodeSpec: {
+            expandable: true,
+            selectable: true,
+            deletable: true,
+            input: {
+              type: 'checkbox',
+              name: 'checkbox1'
+            },
             state: {
-              expanded: true,
+              expanded: false,
+              selected: false,
+              input: {
+                value: false,
+                disabled: false
+              }
             }
           },
           children: [
             {
-              id: 1, label: "Lock Picking", treeNodeSpec: {
+              id: 1,
+              label: "Lock Picking",
+                treeNodeSpec: {
+                expandable: true,
+                selectable: true,
+                deletable: true,
+                input: {
+                  type: 'checkbox',
+                  name: 'checkbox1'
+                },
                 state: {
-                  expanded: true,
+                  expanded: false,
+                  selected: false,
+                  input: {
+                    value: false,
+                    disabled: false
+                  }
                 }
               },
               children: [
@@ -30,9 +56,23 @@ export default {
             },
 
             {
-              id: "node2", label: "Melee", treeNodeSpec: {
+              id: "node2",
+              label: "Melee",
+              treeNodeSpec: {
+                expandable: true,
+                selectable: true,
+                deletable: true,
+                input: {
+                  type: 'checkbox',
+                  name: 'checkbox1'
+                },
                 state: {
-                  expanded: true,
+                  expanded: false,
+                  selected: false,
+                  input: {
+                    value: false,
+                    disabled: false
+                  }
                 }
               },
               children: [
@@ -41,9 +81,23 @@ export default {
               ]
             },
             {
-              id: 1, label: "Range", treeNodeSpec: {
+              id: 1,
+              label: "Range",
+              treeNodeSpec: {
+                expandable: true,
+                selectable: true,
+                deletable: true,
+                input: {
+                  type: 'checkbox',
+                  name: 'checkbox1'
+                },
                 state: {
                   expanded: false,
+                  selected: false,
+                  input: {
+                    value: false,
+                    disabled: false
+                  }
                 }
               },
               children: [
