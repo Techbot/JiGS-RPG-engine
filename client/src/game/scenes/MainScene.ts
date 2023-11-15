@@ -228,8 +228,14 @@ export class MainScene extends Phaser.Scene {
     }
 
     onNPCDown(npc, img) {
-        if (npc[0] == "Pope Turlock") {
-            this.events.emit('Pope Turlock');
+        if (npc[5] == 1) {
+            axios
+                .get("/my_mission?_wrapper_format=drupal_ajax&npc=" + npc[6])
+                .then((response) => {
+                    console.log("");
+                    this.hydrateMission(response);
+                    this.events.emit('Mission',npc);
+                })
         }
         else {
             this.jigs.npc = 1;
@@ -251,7 +257,7 @@ export class MainScene extends Phaser.Scene {
             .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
                 console.log("jump");
-                this.hydrate(response,true);
+                this.hydrate(response,1);
                 var Loader = new Load;
                 Loader.load(this);
                 //portalJump(this);
@@ -262,16 +268,16 @@ export class MainScene extends Phaser.Scene {
 
     updateState() {
         if (this.jigs.playerState == "alive") {
-            this.jigs.hydrate(false);
+            this.jigs.hydrate(0);
             axios
                 .get("/mystate?_wrapper_format=drupal_ajax")
                 .then((response) => {
-                    this.hydrate(response, false);
+                    this.hydrate(response, 0);
                 })
       }
     }
 
-    hydrate(response,incMob) {
+    hydrate(response, incMob) {
                 this.jigs.playerStats = response.data[0].value["player"];
                 this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
                 this.jigs.playerName = response.data[0].value["player"]["name"];
@@ -298,6 +304,12 @@ export class MainScene extends Phaser.Scene {
                 // And replaces all other html tags with null.
                 this.jigs.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
                 this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
+    }
+
+    hydrateMission(response) {
+        this.jigs.dialogTitle   = response.data[0].value["dialogTitle"];
+        this.jigs.dialogContent = parseInt(response.data[0].value["dialogContent"]);
+        this.jigs.dialogChoices = response.data[0].value["dialogChoices"];
     }
 
     async connect(room) {

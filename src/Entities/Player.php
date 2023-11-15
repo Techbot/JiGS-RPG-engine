@@ -104,6 +104,39 @@ class Player
         //Cached stuff
         $userGamesState     = $this->user->field_game_state->value;
         $database           = \Drupal::database();
+        ////////////////////////////////////////////////////////////////////////////////
+        $player['missions'] = $this->getAllPlayerMissions($playerId);
+
+        foreach ($player['missions'] as $record) {
+            $mission = $record->field_missions_target_id;
+            if ($mission) {
+                $result             = $database->query("
+        SELECT node_field_data.title,node__body.body_value FROM node_field_data LEFT JOIN node__body ON  node_field_data.nid = node__body.entity_id
+         WHERE node_field_data.nid = " . $mission);
+                $row              = $result->fetchAssoc();
+                $player['quests'][] = array('id' => $mission, 'name' => $row['title'], 'body' => $row['body_value']);
+            }
+        }
+        $responseData['playerMissions']          = $player;
+        return $responseData;
+    }
+
+     public function getAllPlayerMissions($id){
+        $database           = \Drupal::database();
+        $query              = $database->query("SELECT field_missions_target_id FROM user__field_missions WHERE entity_id= " . $id);
+        return $query->fetchAll();
+}
+
+    public function myMission($npc)
+    {
+        $playerName         = $this->user->get("name")->value;
+        $playerId           = \Drupal::currentUser()->id();
+        //Cached stuff
+        $userGamesState     = $this->user->field_game_state->value;
+        $database           = \Drupal::database();
+
+        $missionObject =  \Drupal::entityTypeManager()->getStorage('node')->load($npc);
+
 
         ////////////////////////////////////////////////////////////////////////////////
         $query              = $database->query("SELECT field_missions_target_id FROM user__field_missions WHERE entity_id= " . $playerId);
@@ -122,6 +155,21 @@ class Player
         $responseData['playerMissions']          = $player;
         return $responseData;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function toStorage($id)
     {

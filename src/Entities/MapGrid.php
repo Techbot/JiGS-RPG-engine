@@ -107,7 +107,6 @@ class MapGrid
     $NpcArray = [];
     foreach ($this->MapGrid->field_npc->referencedEntities() as $Npc) {
       $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
-
       $NpcArray[] =
         [
           $NpcObject->getTitle(),
@@ -115,6 +114,8 @@ class MapGrid
           $Npc->field_y->value,
           $NpcObject->field_sprite_sheet->getValue()[0]['value'],
           $NpcObject->field_bark->value,
+          $NpcObject->field_is_handler->getValue()[0]['value'],
+          $Npc->field_name->getValue()[0]['target_id']
         ];
     }
     return $NpcArray;

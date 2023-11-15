@@ -15,6 +15,26 @@ export const useJigsStore = defineStore("jigs", {
     /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array ,mission: array}[]} */
     playerStats: [],
 
+    dialogTitle: "Bob",
+    dialogContent: `The Evil Wizard has stolen the Balls of Loveliness. \n
+Without the Balls there can be no loveliness across the land. \n
+Will you find my Balls?`,
+
+    dialogChoices:
+      [
+        { text: 'Yes I will find your balls.', value: '433' }, // { text: 'A', value: 10 },
+        { text: 'No I am not ready.', value: 0 }, // { text: 'B', value: 20 },
+        // 'C', // { text: 'C', value: 30 },
+        // 'D', // { text: 'D', value: 40 },
+        // 'E', // { text: 'E', value: 50 },
+        // 'F', // { text: 'F', value: 60 },
+        // 'G', // { text: 'G', value: 70 },
+        // 'H', // { text: 'H', value: 80 },
+        // 'I', // { text: 'I', value: 90 },
+        // 'J', // { text: 'J', value: 100 },
+        // 'K', // { text: 'K', value: 110 },
+      ],
+
     playerStorage: [],
 
     playerInventory: [],
@@ -29,13 +49,13 @@ export const useJigsStore = defineStore("jigs", {
 
     item: 0,
 
-    /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
+    /** @type {{ text: string, x: number, y: number, sprite: number, isHandler: boolean}[]} */
     npcArray: [],
 
-    /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health:number, following: number}[]} */
+    /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health: number, following: number}[]} */
     mobArray: [],
 
-    /** @type {{ text: string, x: number, y: number, sprite: number }[]} */
+    /** @type {{ text: string, x: number, y: number, sprite: number}[]} */
     rewardsArray: [],
 
     /** @type {{ text: string }[]} */
@@ -103,7 +123,7 @@ export const useJigsStore = defineStore("jigs", {
       return this.todos;
     },
     hydrateState(state) {
-     return (incMob)=>this.hydrate(incMob);
+      return (incMob) => this.hydrate(incMob);
     }
   },
   actions: {
@@ -149,7 +169,7 @@ export const useJigsStore = defineStore("jigs", {
           this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
           this.npcArray = response.data[0].value["MapGrid"]["npcArray"];
           if (incMob) {
-          this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+            this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
           }
           this.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
           this.nodeTitle = response.data[0].value["MapGrid"]["name"];

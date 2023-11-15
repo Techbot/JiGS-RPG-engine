@@ -101,6 +101,16 @@ class GameController extends ControllerBase
     return $response;
   }
 
+  public function myMission(Request $request)
+  {
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response           = new AjaxResponse();
+    $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
+    $responseData = $player->myMission($request->query->get('npc'));
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+  }
+
   public function myInventory()
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
