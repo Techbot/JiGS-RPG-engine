@@ -82,15 +82,15 @@ export class HudScene extends Scene {
     ourGame.events.on('position', function (x: number, y: number) {
       this.x = x;
       this.y = y;
-      //    info.setText('Credits: ' + this.jigs.playerStats.credits);
+      info.setText('Credits: ' + this.jigs.playerStats.credits);
     }, this);
 
     //  Our Text object to display the Score
-    //  let info = this.add.text(15, 15, 'Credits: ', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-    /*this.hud2 = this.add.text(15, 30, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+    let info = this.add.text(15, 15, 'Credits: ', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+    this.hud2 = this.add.text(15, 30, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud3 = this.add.text(15, 45, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud4 = this.add.text(15, 60, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
-    this.hud5 = this.add.text(15, 75, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 }); */
+    this.hud5 = this.add.text(15, 75, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud11 = this.add.text(15, 90, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud12 = this.add.text(15, 105, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud6 = this.add.text(735, 15, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
@@ -101,10 +101,10 @@ export class HudScene extends Scene {
   }
   update() {
     // HUD1
-    /*     this.hud2.setText('State: ' + this.jigs.gameState);
+        this.hud2.setText('State: ' + this.jigs.gameState);
         this.hud3.setText('Node: ' + this.jigs.userMapGrid);
         this.hud4.setText('TileMap: ' + this.jigs.tiled);
-        this.hud5.setText('Title: ' + this.jigs.nodeTitle); */
+        this.hud5.setText('Title: ' + this.jigs.nodeTitle);
     this.hud11.setText('Name: ' + this.jigs.playerName);
     this.hud12.setText('Id: ' + this.jigs.playerId);
 
