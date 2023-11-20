@@ -90,17 +90,15 @@ export default class Mission {
       },
     }
 
-    console.log('content' + self.jigs.dialogContent);
 
-    self.jigs.dialogTitle = "Turlock";
     var dialog = self.rexUI.add.confirmDialog(style)
       .setPosition(400, 300)
       .setDraggable('title')
       .setDraggable('content')
       .resetDisplayContent({
-        title: self.jigs.dialogTitle,
-        content: self.jigs.dialogContent,
-        choices: self.jigs.dialogChoices,
+        title: self.jigs.title,
+        content: self.jigs.content,
+        choices: self.jigs.choice,
         buttonA: 'Ok'
       })
       .layout()
@@ -116,7 +114,7 @@ export default class Mission {
       .modalPromise()
       .then(function (data) {
         if (data.value > 0) {
-          this.sendPositive(data);
+          sendPositive(data);
         }
         print.text = `\
 index: ${data.index}
@@ -125,9 +123,7 @@ value : ${data.value}`
       })
   }
 
-  sendPositive(data) {
-    console.log("this is me sending a value: " + data);
-  }
+
 
   updateHandler(npc) {
     console.log("this is me an NPC " + npc[0]);
@@ -135,7 +131,15 @@ value : ${data.value}`
   }
 
   loadMission(npc) {
-
   }
 
+}
+
+function sendPositive(data) {
+  console.log("this is me sending a value: " + data.value);
+  axios
+    .get("/addmission?_wrapper_format=drupal_ajax&id=" + data.value)
+    .then((response) => {
+      console.log("this is me recieving a value: " + response);
+    });
 }

@@ -9,7 +9,7 @@
   const game = import( '../game/index.ts')
 
   onMounted(() => {
-    gameInstance = game.launch(containerId)
+  //  gameInstance = game.launch(containerId)
   })
   onUnmounted(() => {
     gameInstance.destroy(false)

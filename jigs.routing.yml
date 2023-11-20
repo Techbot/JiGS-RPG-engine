@@ -54,6 +54,17 @@ jigs.my_mission:
   requirements:
     _permission: 'access content'
 
+jigs.add_mission:
+  path: '/addmission'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::addMission'
+    _title: 'add mission'
+  requirements:
+    _permission: 'access content'
+
+
+
+
 jigs.my_missions:
   path: '/mymissions'
   defaults:

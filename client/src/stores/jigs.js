@@ -15,24 +15,16 @@ export const useJigsStore = defineStore("jigs", {
     /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array ,mission: array}[]} */
     playerStats: [],
 
-    dialogTitle: "Bob",
-    dialogContent: `The Evil Wizard has stolen the Balls of Loveliness. \n
+    title: "Bob",
+
+    content: `The Evil Wizard has stolen the Balls of Loveliness. \n
 Without the Balls there can be no loveliness across the land. \n
 Will you find my Balls?`,
 
-    dialogChoices:
+    choice:
       [
-        { text: 'Yes I will find your balls.', value: '433' }, // { text: 'A', value: 10 },
+        { text: 'Yes I will find your balls.', value: 433 }, // { text: 'A', value: 10 },
         { text: 'No I am not ready.', value: 0 }, // { text: 'B', value: 20 },
-        // 'C', // { text: 'C', value: 30 },
-        // 'D', // { text: 'D', value: 40 },
-        // 'E', // { text: 'E', value: 50 },
-        // 'F', // { text: 'F', value: 60 },
-        // 'G', // { text: 'G', value: 70 },
-        // 'H', // { text: 'H', value: 80 },
-        // 'I', // { text: 'I', value: 90 },
-        // 'J', // { text: 'J', value: 100 },
-        // 'K', // { text: 'K', value: 110 },
       ],
 
     playerStorage: [],

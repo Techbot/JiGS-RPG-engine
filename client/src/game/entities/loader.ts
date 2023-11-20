@@ -44,7 +44,6 @@ export default class Load {
             }, this);
         }
 
-
         if (this.jigs.npcArray) {
             this.jigs.npcArray.forEach(function loader(Npc) {
                 self.load.spritesheet('npc' + Npc[3], '/assets/images/sprites/' + Npc[3] + '.png', { frameWidth: 64, frameHeight: 64 });

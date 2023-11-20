@@ -14,6 +14,7 @@ import WebFont from '../../assets/WebFont'
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
+
 import Player from "../entities/player";
 import Messenger from "../entities/messenger";
 //import NPC from "../entities/npc";
@@ -47,6 +48,7 @@ export class MainScene extends Phaser.Scene {
     portal = [];
     currentTick: number = 0;
     jigs: any;
+    dialogs: any;
     load: any;
     input: any;
     add: any;
@@ -86,6 +88,7 @@ export class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "main" });
         this.jigs = useJigsStore();
+
         this.client = new Client(BACKEND_URL);
         this.localPlayer = new Player(this.room, this.scene);
         this.rewardsArray = new Array;
@@ -230,7 +233,7 @@ export class MainScene extends Phaser.Scene {
     onNPCDown(npc, img) {
         if (npc[5] == 1) {
             axios
-                .get("/my_mission?_wrapper_format=drupal_ajax&npc=" + npc[6])
+                .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
                 .then((response) => {
                     console.log("");
                     this.hydrateMission(response);
@@ -238,6 +241,7 @@ export class MainScene extends Phaser.Scene {
                 })
         }
         else {
+            console.log("" + npc[5]);
             this.jigs.npc = 1;
             this.jigs.content = npc[4];
             this.events.emit('content');
@@ -307,9 +311,14 @@ export class MainScene extends Phaser.Scene {
     }
 
     hydrateMission(response) {
-        this.jigs.dialogTitle   = response.data[0].value["dialogTitle"];
-        this.jigs.dialogContent = parseInt(response.data[0].value["dialogContent"]);
-        this.jigs.dialogChoices = response.data[0].value["dialogChoices"];
+        this.jigs.title   = response.data[0].value["title"];
+        this.jigs.content = response.data[0].value["content"];
+        let no  = { text: 'No I am not ready.', value: 0 }
+        let yes = { text: response.data[0].value["choice"] , value: response.data[0].value["value"] };
+        this.jigs.choice = new Array;
+        this.jigs.choice.push(yes);
+        this.jigs.choice.push(no);
+        console.log(this.jigs.choice);
     }
 
     async connect(room) {

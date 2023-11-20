@@ -39,7 +39,6 @@ class MapGrid
     if ($this->MapGrid->field_city->getValue()) {
       $mapGrid['userCity']      = (int)$this->MapGrid->field_city->getValue()[0]['target_id'];
     }
-
     $mapGrid['npcArray']      = $this->getNpcs();
     $mapGrid['mobArray']      = $this->getMobs();
     $mapGrid['portalsArray']  = $this->getPortals();
@@ -78,12 +77,12 @@ class MapGrid
         ];
       }
     }
-
     return $rewards;
   }
 
   function getLayers()
   {
+    $responseData = [];
     foreach ($this->MapGrid->field_layer_1->referencedEntities() as $tileset) {
       $responseData['tilesetArray_1'][] = $tileset->name->value;
     }
@@ -105,18 +104,21 @@ class MapGrid
   function getNpcs()
   {
     $NpcArray = [];
-    foreach ($this->MapGrid->field_npc->referencedEntities() as $Npc) {
-      $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
-      $NpcArray[] =
-        [
-          $NpcObject->getTitle(),
-          $Npc->field_x->value,
-          $Npc->field_y->value,
-          $NpcObject->field_sprite_sheet->getValue()[0]['value'],
-          $NpcObject->field_bark->value,
-          $NpcObject->field_is_handler->getValue()[0]['value'],
-          $Npc->field_name->getValue()[0]['target_id']
-        ];
+
+   if (is_array( $this->MapGrid->field_npc->referencedEntities())){
+      foreach ($this->MapGrid->field_npc->referencedEntities() as $Npc) {
+        $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
+        $NpcArray[] =
+          [
+            $NpcObject->getTitle(),
+            $Npc->field_x->value,
+            $Npc->field_y->value,
+            $NpcObject->field_sprite_sheet->getValue()[0]['value'],
+            $NpcObject->field_bark->value,
+            $NpcObject->field_is_handler->getValue()[0]['value'],
+            $Npc->field_name->getValue()[0]['target_id']
+          ];
+        }
     }
     return $NpcArray;
   }
@@ -125,9 +127,7 @@ class MapGrid
   {
     $mArray = [];
     foreach ($this->MapGrid->field_mobs->referencedEntities() as $Mob) {
-
       $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
-
       $mArray[] =
         [
           $Mob->field_mobs->getValue()[0]['target_id'],
