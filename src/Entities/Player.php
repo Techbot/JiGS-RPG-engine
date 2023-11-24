@@ -55,34 +55,33 @@ class Player
     public function myInventory()
     {
         /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-        $playerName     = $this->user->get("name")->value;
-        $playerId       = \Drupal::currentUser()->id();
+        $Data = $this->user->get('player_profiles')->entity;
+        $inventory = [];
+        foreach ($Data->field_inventory as $item) {
+            $inventory[] = $item->target_id;
+        }
         //Cached stuff
-        $userGamesState = $this->user->field_game_state->value;
+        $player = [];
         $database       = \Drupal::database();
-        $query          = $database->query("SELECT field_inventory_target_id FROM user__field_inventory WHERE entity_id= " . $playerId);
-        $player['inventory']  = $query->fetchAll();
-
-        foreach ($player['inventory'] as $invItem) {
-            $inventoryItemNumber = $invItem->field_inventory_target_id;
-            $query = $database->query("SELECT field_items_target_id FROM paragraph__field_items  WHERE entity_id= " . $inventoryItemNumber);
+        foreach ($inventory as $invItem) {
+            $query = $database->query("SELECT field_items_target_id FROM paragraph__field_items  WHERE entity_id= " . $invItem);
             foreach ($query as $record) {
                 $item  = $record->field_items_target_id;
                 $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $item);
                 $name              = $query->fetchAll()[0]->title;
-                $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $inventoryItemNumber);
+                $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $invItem);
                 $location          = $query->fetchAll()[0]->field_location_value;
-                $player['items'][] = array('id' => $inventoryItemNumber, 'name' => $name, 'location' => $location);
+                $player['items'][] = array('id' => $invItem, 'name' => $name, 'location' => $location);
             }
-            $query             = $database->query("SELECT field_weapon_target_id FROM paragraph__field_weapon  WHERE entity_id= " . $inventoryItemNumber);
+            $query             = $database->query("SELECT field_weapon_target_id FROM paragraph__field_weapon  WHERE entity_id= " . $invItem);
             foreach ($query as $record) {
                 $weapon = $record->field_weapon_target_id;
                 if ($weapon) {
                     $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $weapon);
                     $name              = $query->fetchAll()[0]->title;
-                    $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $inventoryItemNumber);
+                    $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $invItem);
                     $location          = $query->fetchAll()[0]->field_location_value;
-                    $player['items'][] = array('id' => $inventoryItemNumber, 'name' => $name, 'location' => $location);
+                    $player['items'][] = array('id' => $invItem, 'name' => $name, 'location' => $location);
                 }
             }
         }
@@ -90,29 +89,26 @@ class Player
         return $responseData;
     }
 
-    public function addMission()
+    public function addMission($id)
     {
-        //  $profile = $this->user->get('player_profiles')->entity;
+        $profile = $this->user->get('player_profiles')->entity;
         $paragraph = Paragraph::create([
             'type' => 'missions',
-            'field_mission' => '399',
+            'field_mission' => $id,
             'bundle' => 'missions',
             'parent_field_name' => 'field_missions',
             'parent_type' => 'profile',
-            'parent_id' => 1
-
+            'parent_id' => $profile->profile_id
         ]);
-
         $paragraph->save();
-        $profile = $this->user->get('player_profiles')->entity;
+
         $profile->field_missions[] =
             array(
                 'target_id' => $paragraph->id(),
                 'target_revision_id' => $paragraph->getRevisionId(),
-
             );
         return $profile->save();
-     }
+    }
 
     public function myMissions()
     {
@@ -124,11 +120,12 @@ class Player
         ////////////////////////////////////////////////////////////////////////////////
         $player['missions'] = $this->getAllPlayerMissionIds($playerId);
 
-        foreach ($player['missions'] as $record) {
-            $mission = $record->field_missions_target_id;
+        foreach ($player['missions'] as $mission) {
+            // $mission = $record->field_missions_target_id;
             if ($mission) {
                 $result             = $database->query("SELECT
-                node_field_data.title,node__body.body_value
+                node_field_data.title,
+                node__body.body_value
                 FROM node_field_data
                 LEFT JOIN node__body
                 ON node_field_data.nid = node__body.entity_id
@@ -138,7 +135,6 @@ class Player
                     'id' => $mission,
                     'title' => $row['title'],
                     'content' => $row['body_value'],
-                    'choice' => $row['choice']
                 );
             }
         }
@@ -188,7 +184,7 @@ class Player
         }
         return $missionArray;
     }
-    // http://46.19.34.36/phpmyadmin/index.php?route=/table/recent-favorite&db=game&table=paragraph__field_mission
+
     public function myMission($npc)
     {
         $playerName        = $this->user->get("name")->value;
@@ -213,8 +209,6 @@ class Player
         if ($responseData['connected'] == 0) {
             // Are there any missions in handler mission not in completed
             foreach ($handlerMissions as $handlerMission) {
-                // print_r($completedMissions); // paragraph id
-                // print_r($handlerMissions); // node id
                 if (!in_array($handlerMission, $completedMissions)) {
                     //new mission available
                     $responseData = $this->getNewMission($handlerMission);
@@ -230,13 +224,15 @@ class Player
     public function getNewMission($handlerMission)
     {
         $database        = \Drupal::database();
-        $query           = $database->query(" SELECT node_field_data.title,
-        node__field_choice_a.field_choice_a_value, node__body.body_value
+        $query           = $database->query(" SELECT
+        node_field_data.title,
+        node__field_choice_a.field_choice_a_value,
+        node__field_handler_dialog.field_handler_dialog_value
         FROM node_field_data
         LEFT JOIN node__field_choice_a
         ON node_field_data.nid = node__field_choice_a.entity_id
-        LEFT JOIN node__body
-        ON node__body.entity_id = node__field_choice_a.entity_id
+        LEFT JOIN node__field_handler_dialog.field_handler_dialog_value
+        ON node__field_handler_dialog.entity_id = node__field_choice_a.entity_id
         WHERE node_field_data.nid = " . $handlerMission);
         ///////////////////////////////////////////////////////////////////////////////
         $stuff =  $query->fetchAll();
