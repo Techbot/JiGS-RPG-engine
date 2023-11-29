@@ -47,42 +47,49 @@ export class P2player {
   update(input: InputData,
     player: { lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any; },
     velocity: number) {
+      velocity = 150;
+
+    this.Body.velocity[0] = 0;
+    this.Body.velocity[1] = 0;
 
     if (input.inputX !== player.lastX) {
-      console.log('x = ' + input.inputX);
       player.lastX = input.inputX;
     }
     if (input.inputY !== player.lastY) {
-      console.log('y = ' + input.inputY);
       player.lastY = input.inputY;
     }
-    if (input.left) {
+    if (input.down) {
       if (!this.Body.collide) {
-        this.Body.position[0] -= velocity;
+        this.Body.velocity[1] = velocity;
+        this.Body.velocity[0] = 0;
       }
       else {
         this.Body.position[0] += 32;
       }
     }
-    else if (input.right) {
+    else if (input.up) {
       if (!this.Body.collide) {
-        this.Body.position[0] += velocity;
+
+        this.Body.velocity[1] = -velocity;
+        this.Body.velocity[0] = 0;
       }
       else {
         this.Body.position[0] -= 32;
       }
     }
-    else if (input.up) {
+    else if (input.right) {
       if (!this.Body.collide) {
-        this.Body.position[1] -= velocity;
+        this.Body.velocity[1] = 0;
+        this.Body.velocity[0] = velocity;
       }
       else {
         this.Body.position[1] += 32;
       }
     }
-    else if (input.down) {
+    else if (input.left) {
       if (!this.Body.collide) {
-        this.Body.position[1] += velocity;
+        this.Body.velocity[1] = 0;
+        this.Body.velocity[0] = -velocity;
       }
       else {
         this.Body.position[1] -= 32;
@@ -96,9 +103,6 @@ export class P2player {
         this.last_step_y = player.playerBody.position[1];
       } */
     player.tick = input.tick;
-
     return player;
-
-
   }
 }
