@@ -153,7 +153,7 @@ function updateBanks() {
   con.connect(function (err) {
     if (err) throw err;
     con.query(
-      `UPDATE user__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1`,
+      `UPDATE profile__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1`,
       function (err, result, fields) {
         if (err) throw err;
         return true;

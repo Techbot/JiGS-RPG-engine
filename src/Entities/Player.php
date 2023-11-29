@@ -17,7 +17,7 @@ class Player
 
     function __construct()
     {
-        $this->user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        $this->user           = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
         $this->database       = \Drupal::database();
     }
 
@@ -29,26 +29,30 @@ class Player
         $player['name']        = $this->user->get("name")->value;
         $this->userGamesState  = $this->user->field_game_state->value;
         $player['userState']   = $this->userGamesState;
-        $query                 = $this->database->query("SELECT field_map_grid_target_id FROM user__field_map_grid WHERE entity_id= " . $this->id);
+        $query                 = $this->database->query("SELECT profile_id FROM profile WHERE uid = " . $this->id   . " AND type = 'player'");
+        $player['profileId']   = $query->fetchAll()[0]->profile_id;
+        $query                 = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " .$player['profileId']);
         $player['userMG']      = $query->fetchAll()[0]->field_map_grid_target_id;
-        $query                 = $this->database->query("SELECT field_credits_value FROM user__field_credits WHERE entity_id= " . $this->id);
+        $query                 = $this->database->query("SELECT field_credits_value FROM profile__field_credits WHERE entity_id= " .$player['profileId']);
         $player['credits']     = $query->fetchAll()[0]->field_credits_value;
-        $query                 = $this->database->query("SELECT field_health_value FROM user__field_health WHERE entity_id= " . $this->id);
+        $query                 = $this->database->query("SELECT field_health_value FROM profile__field_health WHERE entity_id= " .$player['profileId']);
         $player['health']      = $query->fetchAll()[0]->field_health_value;
-        $query                 = $this->database->query("SELECT field_energy_value FROM user__field_energy WHERE entity_id= " . $this->id);
+        $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " .$player['profileId']);
+
+        $profile = $this->user->get('player_profiles')->entity;
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff
-        $player['level']        = $this->user->field_level->value;
-        $player['intelligence'] = $this->user->field_intelligence->value;
-        $player['strength']     = $this->user->field_strength->value;
-        $player['dexterity']    = $this->user->field_dexterity->value;
-        $player['endurance']    = $this->user->field_endurance->value;
-        $player['charisma']     = $this->user->field_charisma->value;
-        $player['psi']          = $this->user->field_psi->value;
-        $player['losses']       = $this->user->field_losses->value;
-        $player['wins']         = $this->user->field_wins->value;
-        $player['xp']           = $this->user->field_experience->value;
-        $player['sprite_sheet'] = $this->user->field_sprite_sheet->value;
+        $player['level']        = $profile->field_level->value;
+        $player['intelligence'] = $profile->field_intelligence->value;
+        $player['strength']     = $profile->field_strength->value;
+        $player['dexterity']    = $profile->field_dexterity->value;
+        $player['endurance']    = $profile->field_endurance->value;
+        $player['charisma']     = $profile->field_charisma->value;
+        $player['psi']          = $profile->field_psi->value;
+        $player['losses']       = $profile->field_losses->value;
+        $player['wins']         = $profile->field_wins->value;
+        $player['xp']           = $profile->field_xp->value;
+        $player['sprite_sheet'] = $profile->field_sprite_sheet->value;
         return $player;
     }
 
