@@ -1,7 +1,13 @@
 import { Room, Client } from "colyseus";
 const db = require("../services/db");
 import { InputData, MyRoomState, Player, ZombieState } from "./GameState";
-var Bridge = require('../services/bridge.ts');
+
+
+//var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
+
+
+
 var p2 = require('p2');
 const fs = require('fs');
 import { P2player } from "./P2player";
@@ -69,7 +75,7 @@ export class GameRoom extends Room<MyRoomState> {
     await this.Npcs.load(this.world, options.nodeNumber, this.share);
     //await this.Layers.load(options.nodeName, this.share);
     await this.Collisions.add(this);
-    await Bridge.getRoom(options.nodeNumber).then((result: any) => {
+    await roomModel.getRoom(options.nodeNumber).then((result: any) => {
       this.state.mapWidth = result[0].field_map_width_value * 16;
       this.state.mapHeight = result[0].field_map_height_value * 16;
       console.log('--------------' + this.state.mapWidth);
@@ -186,7 +192,7 @@ export class GameRoom extends Room<MyRoomState> {
     //  If you return false they will be removed from the narrow phase check all together.
     //  In this simple example if one of the bodies is our space ship,
     //  and the other body is the green pepper sprite (frame ID 4) then we DON'T allow the collision to happen.
-    //  Usually you would use a collision mask for something this simple, but it demonstates use.
+    //  Usually you would use a collision mask for something this simple, but it demonstrates use.
     /*     if ((body1.sprite.name === 'ship' && body2.sprite.frame === 4) || (body2.sprite.name === 'ship' && body1.sprite.frame === 4)) {
           console.log('Bilbo Baggins')
           return false;

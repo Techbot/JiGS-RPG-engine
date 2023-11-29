@@ -7,6 +7,7 @@ import { InputData, MyRoomState, Player } from "./GameState";
 
 var p2 = require('p2');
 var Bridge = require('../services/bridge.ts');
+var playerModel = require('../models/player.ts');
 
 export class P2player {
   Body: any;
@@ -15,7 +16,7 @@ export class P2player {
   }
 
   async load(id: any, share: any, player) {
-  await Bridge.getPlayer(id).then((result: any) => {
+    await playerModel.getPlayer(id).then((result: any) => {
       this.Body = new p2.Body({
         mass: 1,
       //  position: [result[0].field_x_value, result[0].field_y_value],

@@ -3,7 +3,8 @@
 // https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
-var Bridge = require('../services/bridge.ts');
+//var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 
 export class Reward {
@@ -11,7 +12,7 @@ export class Reward {
   async load(world, nodeNumber: number, share) {
     // Render page
     //var self = this;
-    Bridge.getRewards(nodeNumber).then((result: any) => {
+    roomModel.getRewards(nodeNumber).then((result: any) => {
       //  this.result = result;
       return result;
     }).then((newResult: any) => {

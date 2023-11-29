@@ -3,7 +3,8 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 import { ZombieState } from "./GameState";
-var Bridge = require('../services/bridge.ts');
+//var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 
 export class Mob {
@@ -13,7 +14,7 @@ export class Mob {
   }
 
   async load(self, nodeNumber: number, share) {
-    Bridge.getMobs(nodeNumber).then((result: any) => {
+    roomModel.getMobs(nodeNumber).then((result: any) => {
       result.forEach(mobState => {
         const mobItem = Mob.updateZombieState(self,
           undefined, undefined, undefined, undefined, 100, 0, 0, mobState, undefined

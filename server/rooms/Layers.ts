@@ -2,7 +2,8 @@
 //
 //
 //////////////////////////////////////////////////////////////////////////////
-var Bridge = require('../services/bridge.ts');
+//var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 
 export class Layer {

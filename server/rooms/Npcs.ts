@@ -3,13 +3,14 @@
 // https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
-var Bridge = require('../services/bridge.ts');
+//var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 
 export class Npc {
 
   async load(world, nodeNumber, share) {
-    Bridge.getNpcs(nodeNumber).then((result: any) => {
+    roomModel.getNpcs(nodeNumber).then((result: any) => {
       // state.NpcResult = result;
       return result;
     }).then((newResult: any) => {
@@ -20,7 +21,7 @@ export class Npc {
       console.log('NPC shit');
     });
   }
-  
+
   make(npc: any, share: any) {
     // console.log('place');
     const circleShape = new p2.Circle({ radius: 10 });

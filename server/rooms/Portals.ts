@@ -3,13 +3,14 @@
 // https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
 //
 //////////////////////////////////////////////////////////////////////////////
-var Bridge = require('../services/bridge.ts');
+//var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 
 export class Portal {
 
  async load(world, nodeNumber: number, share) {
-  Bridge.getPortals(nodeNumber).then((result: any) => {
+   roomModel.getPortals(nodeNumber).then((result: any) => {
     for (let i = 0; i < result.length; i++) {
       world.addBody(this.make(result[i], share));
     }
