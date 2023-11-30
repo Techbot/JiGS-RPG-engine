@@ -40,17 +40,17 @@ export default class Player {
             self.remoteRef.setStrokeStyle(1, 0xff0000);
         }
 
-
         player.onChange(() => {
             if (this.jigs.debug) {
                 self.remoteRef.x = player.x;
                 self.remoteRef.y = player.y;
+                //  self.currentPlayer.x = player.x;
+                //  self.currentPlayer.y = player.y;
             }
         });
         entity.setScale(.85);
         self.cameras.main.startFollow(entity);
         var cam = self.cameras.main;
-
 
         console.log("mapWidth" + this.jigs.mapWidth);
 
@@ -127,6 +127,7 @@ export default class Player {
         this.room.leave(); // Backend
         this.scene.switch("main", "DeadScene");
     }
+
     updatePlayer(self) {
         if (this.jigs.leave == 1) {
             this.jigs.leave = 0;
@@ -146,7 +147,6 @@ export default class Player {
                 self.room.send(0, self.inputPayload);
             }
         }
-
         if (!self.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
@@ -158,10 +158,11 @@ export default class Player {
             self.currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
             self.currentPlayer.speed = 'stopped';
             self.currentPlayer.dir = 'stopped';
+            this.lerp(self);
         }
         if (self.inputPayload.left) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
-            if (tile.index > 0) {
+            if (tile) {
                 self.currentPlayer.x += 32;
                 if (this.jigs.debug) {
                     self.currentPlayer.y = self.remoteRef.y;
@@ -179,7 +180,7 @@ export default class Player {
         }
         else if (self.inputPayload.right) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x + 16, self.currentPlayer.y, true);
-            if (tile.index > 0) {
+            if (tile) {
                 self.currentPlayer.x -= 32;
                 if (this.jigs.debug) {
                     self.currentPlayer.y = self.remoteRef.y;
@@ -197,7 +198,7 @@ export default class Player {
         }
         else if (self.inputPayload.up) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y - 16, true);
-            if (tile.index > 0) {
+            if (tile) {
                 self.currentPlayer.y += 32;
                 if (this.jigs.debug) {
                     self.currentPlayer.y = self.remoteRef.y;
@@ -215,7 +216,7 @@ export default class Player {
         }
         else if (self.inputPayload.down) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y + 16, true);
-            if (tile.index > 0) {
+            if (tile) {
                 self.currentPlayer.y -= 32;
                 if (this.jigs.debug) {
                     self.currentPlayer.y = self.remoteRef.y;
@@ -231,6 +232,8 @@ export default class Player {
                 self.currentPlayer.speed = 'go';
             }
         }
+
+
         this.jigs.mobClick = 0;
         self.gun.x = self.currentPlayer.x;
         self.gun.y = self.currentPlayer.y;
@@ -248,5 +251,20 @@ export default class Player {
         ////////////////////////////////////////////////////////////////////////////////
         //  Dispatch a Scene event
         self.events.emit('position', self.currentPlayer.x, self.currentPlayer.y);
+    }
+
+    lerp(self) {
+        if (self.currentPlayer.y > self.remoteRef.y) {
+            self.currentPlayer.y--;
+        }
+        if (self.currentPlayer.y < self.remoteRef.y) {
+            self.currentPlayer.y++;
+        }
+        if (self.currentPlayer.x > self.remoteRef.x) {
+            self.currentPlayer.x--;
+        }
+        if (self.currentPlayer.x < self.remoteRef.x) {
+            self.currentPlayer.x++;
+        }
     }
 }
