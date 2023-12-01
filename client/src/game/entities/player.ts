@@ -14,11 +14,13 @@ export default class Player {
     jigs: any;
     room: any;
     scene: any;
+    staticNum: number;
 
     constructor(room, scene) {
         this.room = room;
         this.scene = scene;
         this.jigs = useJigsStore();
+        this.staticNum=0;
     }
 
     addLocalPlayer(self, player, entity, colliderMap) {
@@ -44,8 +46,9 @@ export default class Player {
             if (this.jigs.debug) {
                 self.remoteRef.x = player.x;
                 self.remoteRef.y = player.y;
-                //  self.currentPlayer.x = player.x;
-                //  self.currentPlayer.y = player.y;
+           //     self.currentPlayer.x = player.x;
+            //    self.currentPlayer.y = player.y;
+                this.lerp(self);
             }
         });
         entity.setScale(.85);
@@ -133,6 +136,7 @@ export default class Player {
             this.jigs.leave = 0;
             this.room.leave(); // Backend
         }
+        this.lerp(self);
         const velocity = 2;
         self.inputPayload.left = self.cursorKeys.left.isDown;
         self.inputPayload.right = self.cursorKeys.right.isDown;
@@ -147,27 +151,23 @@ export default class Player {
                 self.room.send(0, self.inputPayload);
             }
         }
+
         if (!self.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
-        if (!self.inputPayload.left &&
-            !self.inputPayload.right &&
-            !self.inputPayload.up &&
-            !self.inputPayload.down &&
-            self.currentPlayer.speed != 'stopped') {
+        if (!self.inputPayload.left && !self.inputPayload.right &&
+            !self.inputPayload.up && !self.inputPayload.down &&
+            self.currentPlayer.speed != 'stopped')
+            {
             self.currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
             self.currentPlayer.speed = 'stopped';
             self.currentPlayer.dir = 'stopped';
-            this.lerp(self);
         }
+
         if (self.inputPayload.left) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
             if (tile) {
-                self.currentPlayer.x += 32;
-                if (this.jigs.debug) {
-                    self.currentPlayer.y = self.remoteRef.y;
-                    self.currentPlayer.x = self.remoteRef.x;
-                }
+                self.currentPlayer.x -= 3;
             }
             else {
                 self.currentPlayer.x -= velocity;
@@ -181,12 +181,8 @@ export default class Player {
         else if (self.inputPayload.right) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x + 16, self.currentPlayer.y, true);
             if (tile) {
-                self.currentPlayer.x -= 32;
-                if (this.jigs.debug) {
-                    self.currentPlayer.y = self.remoteRef.y;
-                    self.currentPlayer.x = self.remoteRef.x;
-                }
-            }
+                self.currentPlayer.x += 3;
+             }
             else {
                 self.currentPlayer.x += velocity;
             }
@@ -199,11 +195,7 @@ export default class Player {
         else if (self.inputPayload.up) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y - 16, true);
             if (tile) {
-                self.currentPlayer.y += 32;
-                if (this.jigs.debug) {
-                    self.currentPlayer.y = self.remoteRef.y;
-                    self.currentPlayer.x = self.remoteRef.x;
-                }
+                self.currentPlayer.y -= 3;
             }
             else {
                 self.currentPlayer.y -= velocity;
@@ -217,11 +209,7 @@ export default class Player {
         else if (self.inputPayload.down) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y + 16, true);
             if (tile) {
-                self.currentPlayer.y -= 32;
-                if (this.jigs.debug) {
-                    self.currentPlayer.y = self.remoteRef.y;
-                    self.currentPlayer.x = self.remoteRef.x;
-                }
+                self.currentPlayer.y += 3;
             }
             else {
                 self.currentPlayer.y += velocity;
@@ -232,7 +220,6 @@ export default class Player {
                 self.currentPlayer.speed = 'go';
             }
         }
-
 
         this.jigs.mobClick = 0;
         self.gun.x = self.currentPlayer.x;
@@ -253,18 +240,36 @@ export default class Player {
         self.events.emit('position', self.currentPlayer.x, self.currentPlayer.y);
     }
 
-    lerp(self) {
-        if (self.currentPlayer.y > self.remoteRef.y) {
-            self.currentPlayer.y--;
+    async lerp(self) {
+        if (this.staticNum == 0) {
+            this.staticNum = 1;
+            await this.skip(1000);
+            console.log('lerping');
+             if (self.currentPlayer.y > self.remoteRef.y) {
+                self.currentPlayer.y = self.currentPlayer.y -10;
+            }
+            if (self.currentPlayer.y < self.remoteRef.y) {
+                self.currentPlayer.y = self.currentPlayer.y + 10;
+            }
+            if (self.currentPlayer.x > self.remoteRef.x) {
+                self.currentPlayer.x = self.currentPlayer.x - 10;
+            }
+            if (self.currentPlayer.x < self.remoteRef.x) {
+                self.currentPlayer.x = self.currentPlayer.x + 10;
+            }
+
+         //   self.currentPlayer.y = self.remoteRef.y
+          //  self.currentPlayer.x = self.remoteRef.x
+
+            this.staticNum = 0;
         }
-        if (self.currentPlayer.y < self.remoteRef.y) {
-            self.currentPlayer.y++;
-        }
-        if (self.currentPlayer.x > self.remoteRef.x) {
-            self.currentPlayer.x--;
-        }
-        if (self.currentPlayer.x < self.remoteRef.x) {
-            self.currentPlayer.x++;
-        }
+    }
+
+    skip(val) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve('resolved');
+            }, val);
+        });
     }
 }

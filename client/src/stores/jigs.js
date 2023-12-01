@@ -93,6 +93,12 @@ Will you find my Balls?`,
     tilesetArray_5: [],
 
     portalsArray: [],
+    wallsArray: [
+      { x: 100, y: 100,width:200, height:10 },
+      { x: 200, y :100, width: 87, height:20 },
+    ],
+
+
   }),
   getters: {
     finishedTodos(state) {

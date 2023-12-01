@@ -22,6 +22,7 @@ import Messenger from "../entities/messenger";
 import Reward from "../entities/reward";
 import Load from "../entities/loader";
 import Portals from "../entities/portals";
+import Walls from "../entities/walls";
 import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
 
@@ -84,6 +85,8 @@ export class MainScene extends Phaser.Scene {
     plugins: any;
     messenger: Messenger;
     walkSound: Phaser.Sound.BaseSound;
+    Portals: Portals;
+    Walls: Walls;
 
     constructor() {
         super({ key: "main" });
@@ -100,6 +103,8 @@ export class MainScene extends Phaser.Scene {
         this.SceneNpcNameArray = new Array;
         this.SceneMobHealthBarArray = new Array;
         this.SceneMobNameArray = new Array;
+        this.Portals = new Portals;
+        this.Walls = new Walls;
     }
 
     preload() {
@@ -136,10 +141,11 @@ export class MainScene extends Phaser.Scene {
                 this.jigs.content = "City: " + this.jigs.city;
 
                 self.events.emit('content');
-
                 this.addRewards();
                 this.addNpc();
                 this.addMobs();
+                this.Portals.addPortals(this);
+                this.Walls.addWalls(this);
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates

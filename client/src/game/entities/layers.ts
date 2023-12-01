@@ -36,10 +36,8 @@ export default class Layers {
         map.createLayer('Tile Layer 3', this.jigs.tilesetArray_3).setDepth(3).setPipeline('Light2D');
         //self.physics.world.enable([self.colliderMap]);
         //self.colliderMap.setCollisionBetween(1, 16, true, false); //(line 125)
-        map.createLayer('Tile Layer 4', this.jigs.tilesetArray_4).setDepth(5);
-
-
-       self.animatedTiles.init(map);
+        map.createLayer('Tile Layer 4', this.jigs.tilesetArray_4).setDepth(5).setPipeline('Light2D');
+        self.animatedTiles.init(map);
 
     }
 }

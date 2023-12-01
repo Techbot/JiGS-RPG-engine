@@ -17,8 +17,9 @@ export class BootScene extends Scene {
     this.load.spritesheet('PsibotM_slash', '/assets/images/sprites/avatars/4351.png', { frameWidth: 192, frameHeight: 192 });
 
     //this.load.spritesheet('otherPlayer', '/assets/images/sprites/avatars/47054.png', { frameWidth: 64, frameHeight: 64 });
-/*     this.load.image('sky', '/assets/images/sky.png');
-    this.load.image('ship', '/assets/images/spaceShips_001.png'); */
+    /*     this.load.image('sky', '/assets/images/sky.png');*/
+
+    this.load.image('ship', '/assets/images/spaceShips_001.png');
     this.load.image('star', '/assets/images/star_gold.png');
     this.load.image('gun', "/assets/images/gun.png");
     this.load.image('bullet', "/assets/images/star_gold.png");

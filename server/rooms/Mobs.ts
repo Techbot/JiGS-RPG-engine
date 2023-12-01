@@ -3,7 +3,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 import { ZombieState } from "./GameState";
-//var Bridge = require('../services/bridge.ts');
+var Bridge = require('../services/bridge.ts');
 var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 
@@ -72,6 +72,7 @@ export class Mob {
         });
         myPromise.then((mobNumber) => {
           this.updateMobForce(mobNumber, self.P2mobBodies);
+          self.pause = 0;
         });
       }
       let i = 0;
@@ -105,7 +106,7 @@ export class Mob {
                 //var mobPlayerDist = Math.sqrt(Math.pow((player.x - parseInt(this.P2mobBodies[i].position[0])), 2) + Math.pow((player.y - parseInt(this.P2mobBodies[i].position[0])), 2));
                 var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[0]));
                 //  console.log('player ' + player.playerId + ' dist: ' + mobPlayerDist + "from " + i);
-                if (mobPlayerDist < 800) {
+                if (mobPlayerDist < 160) {
                   // this is to update the mobs follower
                   const mobItem = Mob.updateZombieState(self,
                     mobState.field_mobs_target_id,
@@ -220,10 +221,9 @@ export class Mob {
     var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
     var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
     if (P2mobBodies[i].dead != 1) {
-      P2mobBodies[i].destinationX = forceX;
-      P2mobBodies[i].destinationY = forceY;
+      P2mobBodies[i].velocity[0] = forceX;
+      P2mobBodies[i].destinationY[1] = forceY;
     }
-    this.pause = 0;
   }
 
   skip(val) {
