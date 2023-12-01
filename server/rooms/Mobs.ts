@@ -3,8 +3,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 import { ZombieState } from "./GameState";
-var Bridge = require('../services/bridge.ts');
+//var Bridge = require('../services/bridge.ts');
 var roomModel = require('../models/room.ts');
+var playerModel = require('../models/player.ts');
 var p2 = require('p2');
 
 export class Mob {
@@ -78,8 +79,6 @@ export class Mob {
       let i = 0;
       while (i < self.P2mobBodies.length) {
         self.P2mobBodies[i].setZeroForce();
-        //    this.P2mobBodies[i].force[0] = this.P2mobBodies[i].destinationX;
-        //    this.P2mobBodies[i].force[1] = this.P2mobBodies[i].destinationY;
         ////////////////////////////////////////////////////////////////////////////
         self.state.mobResult.forEach(mobState => {
           if (self.P2mobBodies[i].field_mob_name_value == mobState.field_mob_name_value) {
@@ -103,9 +102,7 @@ export class Mob {
                 )
               }
               self.state.players.forEach(player => {
-                //var mobPlayerDist = Math.sqrt(Math.pow((player.x - parseInt(this.P2mobBodies[i].position[0])), 2) + Math.pow((player.y - parseInt(this.P2mobBodies[i].position[0])), 2));
                 var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[0]));
-                //  console.log('player ' + player.playerId + ' dist: ' + mobPlayerDist + "from " + i);
                 if (mobPlayerDist < 160) {
                   // this is to update the mobs follower
                   const mobItem = Mob.updateZombieState(self,
@@ -119,7 +116,6 @@ export class Mob {
                     mobState,
                     i
                   );
-
                   self.state.mobResult.set(mobItem.field_mob_name_value, mobItem);
                 }
               })
@@ -197,7 +193,7 @@ export class Mob {
               undefined, 0, 0, 1, self.state.mobResult[input.mobClick], undefined
             )
             self.state.mobResult.set(mobItem, mobItem);
-            const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 10, 0));
+            const promise1 = Promise.resolve(playerModel.updatePlayer(player.playerId, 'credits', 10, 0));
             promise1.then(() => {
             });
             return 1;
@@ -206,7 +202,7 @@ export class Mob {
             self.state.mobResult[input.mobClick].health = 0;
           }
           else {
-            const promise1 = Promise.resolve(Bridge.updatePlayer(player.playerId, 'credits', 1, 0));
+            const promise1 = Promise.resolve(playerModel.updatePlayer(player.playerId, 'credits', 1, 0));
             promise1.then(() => {
             });
           }

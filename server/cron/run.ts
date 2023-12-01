@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import fs from 'fs';
 const db = require("../services/db");
-var Bridge = require('../services/bridge.ts');
+var roomModel = require('../models/room.ts');
 import { EVERY_30_SECONDS, EVERY_MINUTE, EVERY_30_MINUTES, EVERY_HOUR } from './scheduleConstants';
 
 const generateReport = (interval = '') => {
@@ -22,17 +22,14 @@ export default () => {
 
   cron.schedule(EVERY_MINUTE, () => {
     console.log('Banks');
-    const promise1 = Promise.resolve(Bridge.updateBanks());
+    const promise1 = Promise.resolve(roomModel.updateBanks());
     promise1.then(() => {
       console.log('cool');
     }).catch((e) => {
-      console.log('fuck');
+      console.log('error:');
     });
   //  generateReport('minute');
   });
-
-
-
 
   cron.schedule(EVERY_30_MINUTES, () => {
     generateReport('thirty-minutes');
