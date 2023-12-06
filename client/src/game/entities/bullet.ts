@@ -38,7 +38,6 @@ export default class Bullet extends Phaser.Physics.Arcade.Image {
 
         if (bullet.bodyType = "Bul") {
             console.log('kill Bullets');
-          //  bullet.disableBody(false, false);
             bullet.destroy();
         }
     }

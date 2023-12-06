@@ -30,6 +30,22 @@ export class Collision {
           bodyA.done = true;
         }
       }
+
+
+      ///////////////////////    WALL      ///////////////////////////////////
+      if (bodyA.isWall) {
+        console.log('wall');
+
+      }
+
+
+
+
+
+
+
+
+
       ////////////////////////// REWARD      ///////////////////////////////////
       if (bodyA.isReward) {
         if (!bodyA.done) {
@@ -97,7 +113,7 @@ export class Collision {
     self.world.on("endcontact", function (evt: any) {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
-      //   console.log('-----------End Contact--- Pay Attention---');
+       console.log('-----------End Contact--- Pay Attention---');
     });
   }
 }

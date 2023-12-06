@@ -121,9 +121,6 @@ class GameController extends ControllerBase
     return $response;
   }
 
-
-
-
   public function myInventory()
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */

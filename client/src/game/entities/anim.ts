@@ -8,8 +8,6 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
 
     if (tag == 'default') {
 
-        //console.log('adding entity in default:' + entity);
-
         anims.create({
             key: 'walkLeft_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [117, 118, 119, 120, 121, 122, 123, 124, 125] }),
@@ -45,53 +43,15 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
             repeat: -1
         });
 
-     /*     anims.create({
-            key: 'thrustLeft_' + entity,
-            frames: anims.generateFrameNumbers(entity, { frames: [117, 118, 119, 120, 121, 122, 123, 124, 125] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: 'thrustRight_' + entity,
-            frames: anims.generateFrameNumbers(entity, { frames: [143, 144, 145, 146, 147, 148, 149, 150, 151] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: 'thrustUp_' + entity,
-            frames: anims.generateFrameNumbers(entity, { frames: [14, 15, 16, 17, 18, 19, 10, 11, 12] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: 'thrustDown_' + entity,
-            frames: anims.generateFrameNumbers(entity, { frames: [130, 131, 132, 133, 134, 135, 136, 137, 138] }),
-            frameRate: 12,
-            repeat: -1
-        }); */
-
         anims.create({
             key: 'hurt_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [260, 261, 262, 263, 264, 265] }),
             frameRate: 12,
             repeat: 0
         });
-
-/*         anims.create({
-            key: 'kick_' + entity,
-            frames: anims.generateFrameNumbers(entity, { frames: [10, 11, 12, 13, 10] }),
-            frameRate: 12,
-            repeat: -1,
-            repeatDelay: 2000
-        }); */
     }
 
     if (tag == 'slash_oversize') {
-
-       // console.log('adding entity in slash_oversize:' + entity);
 
        anims.create({
             key: 'walkLeft_' + entity,
@@ -156,41 +116,12 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
             repeat: 0
         });
 
- /*        anims.create({
-            key: 'thrustLeft_' + entity ,
-            frames: anims.generateFrameNumbers(entity, { frames: [388, 389, 390, 391, 392, 393] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: 'thrustDown_' + entity ,
-            frames: anims.generateFrameNumbers(entity, { frames: [394, 395, 396, 397, 398, 399] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: 'thrustRight_' + entity ,
-            frames: anims.generateFrameNumbers(entity, { frames: [402, 403, 404, 405, 406, 406] }),
-            frameRate: 12,
-            repeat: -1
-        }); */
-
           anims.create({
             key: 'hurt_' + entity,
             frames: anims.generateFrameNumbers(entity, { frames: [360, 361, 362, 363, 364, 365] }),
             frameRate: 12,
             repeat: 0
         });
-
-/*         anims.create({
-            key: 'kick_' + entity,
-            frames: anims.generateFrameNumbers(entity, { frames: [10, 11, 12, 13, 10] }),
-            frameRate: 12,
-            repeat: -1,
-            repeatDelay: 2000
-        }); */
     }
 }
 

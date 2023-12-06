@@ -27,21 +27,19 @@ class MapGrid
     if ($this->MapGrid->field_tiled->getValue()) {
       $mapGrid['tiled']         = $this->MapGrid->field_tiled->getValue()[0]['value'];
     }
-
     if ($this->MapGrid->field_map_width->getValue()) {
       $mapGrid['mapWidth']      = $this->MapGrid->field_map_width->getValue()[0]['value'];
     }
-
     if ($this->MapGrid->field_map_height->getValue()) {
       $mapGrid['mapHeight']     = $this->MapGrid->field_map_height->getValue()[0]['value'];
     }
-
     if ($this->MapGrid->field_city->getValue()) {
       $mapGrid['userCity']      = (int)$this->MapGrid->field_city->getValue()[0]['target_id'];
     }
     $mapGrid['npcArray']      = $this->getNpcs();
     $mapGrid['mobArray']      = $this->getMobs();
     $mapGrid['portalsArray']  = $this->getPortals();
+    $mapGrid['wallsArray']    = $this->getWalls();
     $mapGrid['rewardsArray']  = $this->getRewards();
     $mapGrid['tileset']       = $this->getLayers();
     $mapGrid['name']          = $this->MapGrid->get('title')->value;
@@ -67,7 +65,6 @@ class MapGrid
   function getRewards()
   {
     $rewards = [];
-
     if ($this->MapGrid->field_rewards->referencedEntities) {
       foreach ($this->MapGrid->field_rewards->referencedEntities as $reward) {
         $rewards[] = [
@@ -105,7 +102,7 @@ class MapGrid
   {
     $NpcArray = [];
 
-   if (is_array( $this->MapGrid->field_npc->referencedEntities())){
+    if (is_array($this->MapGrid->field_npc->referencedEntities())) {
       foreach ($this->MapGrid->field_npc->referencedEntities() as $Npc) {
         $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
         $NpcArray[] =
@@ -118,7 +115,7 @@ class MapGrid
             $NpcObject->field_is_handler->getValue()[0]['value'],
             $Npc->field_name->getValue()[0]['target_id']
           ];
-        }
+      }
     }
     return $NpcArray;
   }
@@ -139,5 +136,20 @@ class MapGrid
         ];
     }
     return $mArray;
+  }
+
+  function getWalls()
+  {
+    $wallsArray = [];
+    foreach ($this->MapGrid->field_walls->referencedEntities() as $Wall) {
+      $wallsArray[] =
+        [
+          'x'=>$Wall->field_x->value,
+          'y'=>$Wall->field_y->value,
+          'width'=>$Wall->field_width->value,
+          'height'=>$Wall->field_height->value,
+        ];
+    }
+    return $wallsArray;
   }
 }

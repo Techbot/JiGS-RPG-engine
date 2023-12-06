@@ -5,26 +5,15 @@ import axios from "axios";
 
 
 export default class Mission {
-
   constructor() {
-
   }
 
   dialog(self, npc) {
-
     const COLOR_PRIMARY = 0x333333;
     const COLOR_LIGHT = 0xffffff;
     const COLOR_DARK = 0x111111;
 
     var print = self.add.text(0, 0, '').setDepth(1);
-
-    /*     this.add.image(400, 300, 'classroom')
-          .setInteractive()
-          .on('pointerup', function () {
-            print.text += 'Click bottom image\n';
-          }) */
-
-    // 'radio', 'x-radio', 'wrap-radio',
     var choicesType = 'radio';
     var style = {
       width: 300,
@@ -78,7 +67,6 @@ export default class Mission {
           color: COLOR_DARK,
           strokeWidth: 0,
           radius: 10,
-
           'hover.strokeColor': 0xffffff,
           'hover.strokeWidth': 2,
           'active.color': 'red',
@@ -89,7 +77,6 @@ export default class Mission {
         actions: 'right'
       },
     }
-
 
     var dialog = self.rexUI.add.confirmDialog(style)
       .setPosition(400, 300)
@@ -123,8 +110,6 @@ value : ${data.value}`
       })
   }
 
-
-
   updateHandler(npc) {
     console.log("this is me an NPC " + npc[0]);
     this.loadMission(npc[6]);
@@ -132,7 +117,6 @@ value : ${data.value}`
 
   loadMission(npc) {
   }
-
 }
 
 function sendPositive(data) {
@@ -140,6 +124,6 @@ function sendPositive(data) {
   axios
     .get("/addmission?_wrapper_format=drupal_ajax&id=" + data.value)
     .then((response) => {
-      console.log("this is me recieving a value: " + response);
+      console.log("this is me receiving a value: " + response);
     });
 }

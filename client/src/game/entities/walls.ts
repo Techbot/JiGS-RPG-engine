@@ -1,17 +1,25 @@
 /**
- * -------Portals ---------
+ * -------Walls ---------
  */
 import Wall from "../entities/wall";
+import { useJigsStore } from '../../stores/jigs';
+
 export default class Walls {
+
+    jigs: any;
+    walls:any;
+
+    constructor() {
+        this.jigs = useJigsStore();
+    }
+
     addWalls(self) {
-
-        const wallsArray = self.jigs.wallsArray;
-        const walls = self.physics.add.group({ allowGravity: false });
-
+        const wallsArray = this.jigs.wallsArray;
+        this.walls = self.physics.add.staticGroup({ allowGravity: false });
         for (var index = 0; index < wallsArray.length; index++) {
-            console.log(wallsArray[index].destination);
-            walls.add(new Wall(self, wallsArray[index].x, wallsArray[index].y), true);
-            //portal[index].dest = portals[index].destination;
+            const wall = new Wall(self, wallsArray[index].x, wallsArray[index].y, wallsArray[index].width, wallsArray[index].height);
+            this.walls.add(wall, true);
+            self.physics.add.existing(wall);
         }
     }
 }

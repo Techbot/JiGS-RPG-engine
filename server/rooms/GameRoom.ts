@@ -13,6 +13,7 @@ const fs = require('fs');
 import { P2player } from "./P2player";
 import { Mob } from "./Mobs";
 import { Portal } from "./Portals";
+import { Wall } from "./Walls";
 import { Npc } from "./Npcs";
 import { Reward } from "./Rewards";
 import { Layer } from "./Layers";
@@ -49,6 +50,7 @@ export class GameRoom extends Room<MyRoomState> {
   P2mobBodies: any;
   Mobs: Mob;
   Portals: Portal;
+  Walls: Wall;
   Npcs: Npc;
   Rewards: Reward;
   Collisions: Collision;
@@ -60,6 +62,7 @@ export class GameRoom extends Room<MyRoomState> {
     this.P2mobBodies = [];
     this.Mobs = new Mob;
     this.Portals = new Portal;
+    this.Walls = new Wall;
     this.Rewards = new Reward;
     this.Npcs = new Npc;
     this.Layers = new Layer;
@@ -71,6 +74,7 @@ export class GameRoom extends Room<MyRoomState> {
     this.setState(new MyRoomState());
     await this.Mobs.load(this, options.nodeNumber, this.share);
     await this.Portals.load(this.world, options.nodeNumber, this.share);
+    await this.Walls.load(this.world, options.nodeNumber, this.share);
     await this.Rewards.load(this.world, options.nodeNumber, this.share);
     await this.Npcs.load(this.world, options.nodeNumber, this.share);
     //await this.Layers.load(options.nodeName, this.share);
@@ -82,8 +86,6 @@ export class GameRoom extends Room<MyRoomState> {
     }).catch(function (err) {
       console.log('room error' + err)
     });
-    //this.state.mapWidth = 1900;
-    //this.state.mapHeight = 1900;
 
     this.onMessage(0, (client, input) => {
       const player = this.state.players.get(client.sessionId);

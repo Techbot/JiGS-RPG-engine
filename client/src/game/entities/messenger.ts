@@ -58,9 +58,6 @@ export default class Messenger {
     });
 
     self.room.onMessage("remove-reward", (message) => {
-      //   self.currentPlayer.y = self.remoteRef.y;
-      //   self.currentPlayer.x = self.remoteRef.x;
-      //    this.incrementReward();
       let i = 0;
       while (i < self.rewardsArray.length) {
         if (self.rewardsArray[i].ref == message) {
@@ -78,22 +75,10 @@ export default class Messenger {
       // console.log("the room state has been updated:", state);
     });
 
-    //self.room.state.listen("mobResult", (currentValue, previousValue) => {
-      //  console.log(`currentTurn is now ${currentValue}`);
-      //  console.log(`previous value was: ${previousValue}`);
-  //  });
-
     self.room.state.mobResult.onChange((value, key) => {
 
       let i = 0;
       while (i < self.jigs.mobArray.length) {
-
-        /* console.log(self.jigs.mobArray[i][0]);
-        console.log(self.jigs.mobArray[i][1]);
-        console.log(self.jigs.mobArray[i][2]);
-        console.log(self.jigs.mobArray[i][3]);
-        console.log(self.jigs.mobArray[i][4]); */
-
         if (self.jigs.mobArray[i][1] == key) {
           self.jigs.mobArray[i][2] = parseInt(value.field_x_value);
           self.jigs.mobArray[i][3] = parseInt(value.field_y_value);

@@ -93,7 +93,7 @@ export class MainScene extends Phaser.Scene {
         this.jigs = useJigsStore();
 
         this.client = new Client(BACKEND_URL);
-        this.localPlayer = new Player(this.room, this.scene);
+
         this.rewardsArray = new Array;
         this.rewardsArray = new Array;
         this.NpcContainerArray = new Array;
@@ -128,15 +128,17 @@ export class MainScene extends Phaser.Scene {
 
         await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
 
+
         this.walkSound = this.sound.add('walk', { volume: 0.1 });
         this.messenger.initMessages(self);
 
         this.room.state.players.onAdd((player, sessionId) => {
+            this.localPlayer = new Player(this,this.room, this.scene,player);
             var entity: any;
             // is current player
             if (sessionId === this.room.sessionId) {
                 self.jigs.playerState = "alive";
-                this.localPlayer.addLocalPlayer(this, player, entity, this.colliderMap);
+
 
                 this.jigs.content = "City: " + this.jigs.city;
 
@@ -145,7 +147,12 @@ export class MainScene extends Phaser.Scene {
                 this.addNpc();
                 this.addMobs();
                 this.Portals.addPortals(this);
-                this.Walls.addWalls(this);
+                this.Walls.addWalls(self);
+            //    this.physics.world.enable([this.Walls.walls]);
+            //    this.physics.world.add(this.Walls.walls);
+                this.localPlayer.addLocalPlayer(this, player, this.colliderMap);
+           //     this.physics.add.collider(this.localPlayer.entity, this.Walls.walls);
+
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
@@ -278,7 +285,7 @@ export class MainScene extends Phaser.Scene {
 
     updateState() {
         if (this.jigs.playerState == "alive") {
-            this.jigs.hydrate(0);
+           // this.jigs.hydrate(0);
             axios
                 .get("/mystate?_wrapper_format=drupal_ajax")
                 .then((response) => {
@@ -345,6 +352,10 @@ export class MainScene extends Phaser.Scene {
     }
 
     update(time: number, delta: number): void {
+
+        if(this.localPlayer){
+        this.physics.world.collide(this.localPlayer, this.Walls.walls);
+        }
         // skip loop if not connected yet.
         if (!this.currentPlayer || !this.playerEntities) { return; }
         this.elapsedTime += delta;
