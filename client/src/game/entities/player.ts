@@ -15,25 +15,29 @@ export default class Player {
     room: any;
     scene: any;
     staticNum: number;
-
-    constructor(room, scene) {
+    walls: any;
+    entity:any;
+    constructor(self,room, scene,player) {
         this.room = room;
         this.scene = scene;
         this.jigs = useJigsStore();
-        this.staticNum=0;
-    }
-
-    addLocalPlayer(self, player, entity, colliderMap) {
-        this.colliderMap = colliderMap
-
-        entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
+        this.staticNum = 0;
+        this.entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
             .setDepth(7)
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-            .on('pointerdown', this.onPlayerDown.bind(self));
+            .on('pointerdown', this.onPlayerDown.bind(self))
+            .setScale(.85);
+
+    }
+
+    addLocalPlayer(self, player,  colliderMap) {
+        this.colliderMap = colliderMap
         this.light = self.lights.addLight(player.x, player.y, 200);
         self.lights.enable().setAmbientColor(0x555555);
-        self.physics.world.enable([entity]);
-        self.currentPlayer = entity;
+        self.physics.add.existing(this.entity);
+        self.physics.world.enable([this.entity]);
+        self.cameras.main.startFollow(this.entity);
+        self.currentPlayer = this.entity;
 
         if (this.jigs.debug) {
             self.localRef = self.add.rectangle(0, 0, 32, 40).setDepth(7);
@@ -46,18 +50,13 @@ export default class Player {
             if (this.jigs.debug) {
                 self.remoteRef.x = player.x;
                 self.remoteRef.y = player.y;
-           //     self.currentPlayer.x = player.x;
-            //    self.currentPlayer.y = player.y;
+                //     self.currentPlayer.x = player.x;
+                //    self.currentPlayer.y = player.y;
                 this.lerp(self);
             }
         });
-        entity.setScale(.85);
-        self.cameras.main.startFollow(entity);
+
         var cam = self.cameras.main;
-
-        console.log("mapWidth" + this.jigs.mapWidth);
-
-        //cam.setBounds(0, 0, 1896, 1896);
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
 
         this.drones = self.physics.add.group({ allowGravity: false });
@@ -66,12 +65,12 @@ export default class Player {
         this.drones.add(new FlyingStar(self, player.x, player.y, 40, 100, 0.005), true);
         this.drones.add(new FlyingStar(self, player.x, player.y, 40, 100, -0.005), true);
 
-        self.gun = self.physics.add.image(player.x, player.y, 'gun');
-        self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        self.gun       = self.physics.add.image(player.x, player.y, 'gun');
+        self.key_left  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        self.bullets = self.physics.add.group({
+        self.key_up    = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        self.key_down  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        self.bullets   = self.physics.add.group({
             classType: Bullet,
             maxSize: 10,
             runChildUpdate: true,
@@ -80,22 +79,18 @@ export default class Player {
 
         self.input.on("pointerdown", (event) => {
 
-            //   if (this.jigs.playerState == "alive") {
-
             if (self.currentPlayer.dir == 'left') {
                 self.currentPlayer.play('thrustLeft_' + self.jigs.playerStats.sprite_sheet + '_slash');
                 if (self.currentPlayer.speed == 'go') {
                     self.currentPlayer.playAfterRepeat('walkLeft_' + self.jigs.playerStats.sprite_sheet);
                 }
             }
-
             else if (self.currentPlayer.dir == 'right') {
                 self.currentPlayer.anims.play('thrustRight_' + self.jigs.playerStats.sprite_sheet + '_slash');
                 if (self.currentPlayer.speed == 'go') {
                     self.currentPlayer.playAfterRepeat('walkRight_' + self.jigs.playerStats.sprite_sheet);
                 }
             }
-
             else if (self.currentPlayer.dir == 'up') {
                 self.currentPlayer.anims.play('thrustUp_' + self.jigs.playerStats.sprite_sheet + '_slash');
                 if (self.currentPlayer.speed == 'go') {
@@ -136,8 +131,7 @@ export default class Player {
             this.jigs.leave = 0;
             this.room.leave(); // Backend
         }
-        this.lerp(self);
-        const velocity = 2;
+        const velocity = 80;
         self.inputPayload.left = self.cursorKeys.left.isDown;
         self.inputPayload.right = self.cursorKeys.right.isDown;
         self.inputPayload.up = self.cursorKeys.up.isDown;
@@ -151,23 +145,26 @@ export default class Player {
                 self.room.send(0, self.inputPayload);
             }
         }
-
         if (!self.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
+        self.physics.world.collide(self.localPlayer.entity, self.Walls.walls);
+
         if (!self.inputPayload.left && !self.inputPayload.right &&
             !self.inputPayload.up && !self.inputPayload.down &&
-            self.currentPlayer.speed != 'stopped')
-            {
+            self.currentPlayer.speed != 'stopped') {
             self.currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
             self.currentPlayer.speed = 'stopped';
             self.currentPlayer.dir = 'stopped';
-        }
+            self.currentPlayer.setVelocityX(0);
+            self.currentPlayer.setVelocityY(0);
 
+        }
         if (self.inputPayload.left) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
             if (tile) {
-                self.currentPlayer.x -= 3;
+                self.currentPlayer.setVelocityX(-velocity);
+              //  this.lerp(self);
             }
             else {
                 self.currentPlayer.x -= velocity;
@@ -181,8 +178,9 @@ export default class Player {
         else if (self.inputPayload.right) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x + 16, self.currentPlayer.y, true);
             if (tile) {
-                self.currentPlayer.x += 3;
-             }
+                self.currentPlayer.setVelocityX(velocity);
+            //    this.lerp(self);
+            }
             else {
                 self.currentPlayer.x += velocity;
             }
@@ -195,7 +193,8 @@ export default class Player {
         else if (self.inputPayload.up) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y - 16, true);
             if (tile) {
-                self.currentPlayer.y -= 3;
+                self.currentPlayer.setVelocityY(-velocity);
+             //   this.lerp(self);
             }
             else {
                 self.currentPlayer.y -= velocity;
@@ -209,7 +208,8 @@ export default class Player {
         else if (self.inputPayload.down) {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y + 16, true);
             if (tile) {
-                self.currentPlayer.y += 3;
+                self.currentPlayer.setVelocityY(velocity);
+              //  this.lerp(self);
             }
             else {
                 self.currentPlayer.y += velocity;
@@ -241,27 +241,27 @@ export default class Player {
     }
 
     async lerp(self) {
+
+        self.physics.world.collide(this.entity, self.Walls.walls);
+
         if (this.staticNum == 0) {
             this.staticNum = 1;
-            await this.skip(1000);
             console.log('lerping');
-             if (self.currentPlayer.y > self.remoteRef.y) {
-                self.currentPlayer.y = self.currentPlayer.y -10;
+            if (self.currentPlayer.y  > self.remoteRef.y) {
+                self.currentPlayer.setVelocityY((self.currentPlayer.y - self.remoteRef.y) * -1.9);
             }
-            if (self.currentPlayer.y < self.remoteRef.y) {
-                self.currentPlayer.y = self.currentPlayer.y + 10;
+            if (self.currentPlayer.y < self.remoteRef.y ) {
+                self.currentPlayer.setVelocityY((self.currentPlayer.y - self.remoteRef.y) * -1.9);
             }
-            if (self.currentPlayer.x > self.remoteRef.x) {
-                self.currentPlayer.x = self.currentPlayer.x - 10;
+            if (self.currentPlayer.x  > self.remoteRef.x) {
+                self.currentPlayer.setVelocityX((self.currentPlayer.x - self.remoteRef.x) * -1.9);
             }
-            if (self.currentPlayer.x < self.remoteRef.x) {
-                self.currentPlayer.x = self.currentPlayer.x + 10;
+            if (self.currentPlayer.x  < self.remoteRef.x ) {
+                self.currentPlayer.setVelocityX((self.currentPlayer.x - self.remoteRef.x) * -1.9);
             }
-
-         //   self.currentPlayer.y = self.remoteRef.y
-          //  self.currentPlayer.x = self.remoteRef.x
-
+            await this.skip(500);
             this.staticNum = 0;
+
         }
     }
 

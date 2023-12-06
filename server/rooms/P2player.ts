@@ -48,7 +48,7 @@ export class P2player {
   update(input: InputData,
     player: { lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any; },
     velocity: number) {
-      velocity = 175;
+      velocity = 76;
 
     this.Body.velocity[0] = 0;
     this.Body.velocity[1] = 0;

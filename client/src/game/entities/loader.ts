@@ -24,6 +24,9 @@ export default class Load {
     }
 
     load(self) {
+
+        self.load.image('black', '/assets/images/black.png');
+
         self.load.tilemapTiledJSON(this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
 
         this.jigs.tilesetArray_1.forEach(function loader(image) {
@@ -62,9 +65,6 @@ export default class Load {
 
             const Layer = new Layers;
             Layer.loadLayers(self);
-
-            //const Anims = new Anim;
-            //Anims.addAnim(this);
             createCharacterAnims(self.anims, 'PsibotF','slash_oversize');
             createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize');
             createCharacterAnims(self.anims, 'PsibotM', 'slash_oversize');

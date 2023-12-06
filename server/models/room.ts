@@ -42,8 +42,8 @@ function getPortals(NodeNumber) {
      paragraph__field_destination_y.field_destination_y_value,
      paragraph__field_x.field_x_value,
      paragraph__field_y.field_y_value
-     FROM node__field_portals Left
-     Join paragraph__field_destination
+     FROM node__field_portals
+     Left Join paragraph__field_destination
       On node__field_portals.field_portals_target_id = paragraph__field_destination.entity_id
       Left Join paragraph__field_tiled
       On node__field_portals.field_portals_target_id = paragraph__field_tiled.entity_id
@@ -64,6 +64,43 @@ function getPortals(NodeNumber) {
     });
   });
 }
+
+function getWalls(NodeNumber) {
+  return new Promise(function (resolve, reject) {
+    con.connect(function (err) {
+      if (err) throw err;
+      con.query(
+        `SELECT node__field_walls.entity_id,
+     paragraph__field_x.field_x_value,
+     paragraph__field_y.field_y_value,
+     paragraph__field_width.field_width_value,
+     paragraph__field_height.field_height_value
+
+     FROM node__field_walls
+
+      Left Join paragraph__field_x
+      On node__field_walls.field_walls_target_id = paragraph__field_x.entity_id
+
+      Left Join paragraph__field_y
+      On node__field_walls.field_walls_target_id = paragraph__field_y.entity_id
+
+      Left Join paragraph__field_width
+      On node__field_walls.field_walls_target_id = paragraph__field_width.entity_id
+
+      Left Join paragraph__field_height
+      On node__field_walls.field_walls_target_id = paragraph__field_height.entity_id
+
+      WHERE node__field_walls.entity_id = ` + NodeNumber,
+        function (err, result) {
+          if (err) throw err;
+          resolve(result);
+        }
+      );
+    });
+  });
+}
+
+
 
 function getNpcs(NodeNumber) {
   return new Promise(function (resolve, reject) {
@@ -166,6 +203,7 @@ function updateBanks() {
 module.exports = {
   getRoom,
   getPortals,
+  getWalls,
   getNpcs,
   getMobs,
   getRewards,
