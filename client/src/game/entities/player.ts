@@ -242,7 +242,7 @@ export default class Player {
 
     async lerp(self) {
 
-        self.physics.world.collide(this.entity, self.Walls.walls);
+      //  self.physics.world.collide(this.entity, self.Walls.walls);
 
         if (this.staticNum == 0) {
             this.staticNum = 1;

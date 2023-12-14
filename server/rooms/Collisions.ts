@@ -33,25 +33,20 @@ export class Collision {
 
 
       ///////////////////////    WALL      ///////////////////////////////////
-      if (bodyA.isWall) {
-        console.log('wall');
-
+      if (bodyA.isMob) {
+        console.log('Body A mob');
+        if (bodyB.isWall) {
+          console.log('Body B Wall');
+          return;
+        }
       }
-
-
-
-
-
-
-
-
 
       ////////////////////////// REWARD      ///////////////////////////////////
       if (bodyA.isReward) {
         if (!bodyA.done) {
           const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'credits', 1, 0));
           promise1.then(() => { });
-          const promise2 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'experience', 1, 0));
+          const promise2 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'xp', 1, 0));
           promise2.then(() => { });
           self.broadcast("remove-reward", bodyA.ref);
           bodyB.reward = bodyA.ref;
@@ -113,7 +108,7 @@ export class Collision {
     self.world.on("endcontact", function (evt: any) {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
-       console.log('-----------End Contact--- Pay Attention---');
+      console.log('-----------End Contact--- Pay Attention---');
     });
   }
 }

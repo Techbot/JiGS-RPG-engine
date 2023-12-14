@@ -11,7 +11,7 @@ export class SceneSelector extends Phaser.Scene {
     };
 
     constructor() {
-        super({ key: "selector"});
+        super({ key: "selector" });
     }
 
     image;
@@ -23,12 +23,17 @@ export class SceneSelector extends Phaser.Scene {
         this.load.image('einstein', '/assets/images/8b0f172a-80ed-4fbd-b357-c512127970ce.png');
         // preload demo assets
         // this.load.image('ship_0001', 'assets/ship_0001.png');
-     //   this.load.image('ship_0001', 'https://cdn.glitch.global/3e033dcd-d5be-4db4-99e8-086ae90969ec/ship_0001.png?v=1649945243288');
+        //   this.load.image('ship_0001', 'https://cdn.glitch.global/3e033dcd-d5be-4db4-99e8-086ae90969ec/ship_0001.png?v=1649945243288');
+        this.load.sceneFile('ExternalScene', '../assets/scenes/ExternalScene.js');
     }
 
     create() {
+        this.image = this.add.image(480, 320, 'einstein')
+            .setInteractive().
+            on("pointerdown", () => {
+                this.game.scene.switch("selector", 'myScene');
+            });
 
-        this.image = this.add.image(480, 320, 'einstein');
 
         const textStyle: Phaser.Types.GameObjects.Text.TextStyle = {
             color: "#ff0000",
@@ -45,7 +50,7 @@ export class SceneSelector extends Phaser.Scene {
                 .setInteractive()
                 .setPadding(6)
                 .on("pointerdown", () => {
-                    this.game.scene.switch("selector","main");
+                    this.game.scene.switch("selector", "main");
                 });
         }
     }

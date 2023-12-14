@@ -10,7 +10,6 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
     colliderMap: any;
     data: any;
     sprite: any;
-    thing: any;
     anims: any;
 
     constructor(scene, data) {

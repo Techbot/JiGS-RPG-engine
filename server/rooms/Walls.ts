@@ -22,8 +22,8 @@ export class Wall {
   make(wall: any, share: any) {
      console.log('placeWall');
     const Shape = new p2.Box({ width: wall.field_width_value, height: wall.field_height_value });
-    Shape.collisionGroup = share.COL_ENEMY;
-    Shape.collisionMask = share.COL_PLAYER;
+    Shape.collisionGroup = share.COL_GROUND;
+    Shape.collisionMask = share.COL_PLAYER | share.COL_ENEMY;
     // Create a typical dynamic body
     const Body = new p2.Body({
       mass: 1,
@@ -34,7 +34,7 @@ export class Wall {
       velocity: [0, 0],
       angularVelocity: 0
     });
-/*     Body.destination_x = wall.field_destination_x_value;
+/*  Body.destination_x = wall.field_destination_x_value;
     Body.destination_y = wall.field_destination_y_value;
     Body.destination = wall.field_destination_target_id;
     Body.tiled = wall.field_tiled_value; */

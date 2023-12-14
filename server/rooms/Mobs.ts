@@ -41,7 +41,8 @@ export class Mob {
     // console.log('place');
     const circleShape = new p2.Circle({ radius: 10 });
     circleShape.collisionGroup = share.COL_ENEMY;
-    circleShape.collisionMask = share.COL_PLAYER;
+    circleShape.collisionMask = share.COL_PLAYER | share.COL_GROUND;
+    //circleShape.collisionMask = share.COL_PLAYER;
     // Create a typical dynamic body
     const circleBody = new p2.Body({
       mass: 20,
@@ -69,99 +70,102 @@ export class Mob {
       if (self.pause == 0) {
         self.pause = 1;
         const myPromise = new Promise((resolve, reject) => {
-          resolve(Math.ceil(Math.random() * self.P2mobBodies.length - 1));
+          resolve(Math.ceil(Math.random() * self.P2mobBodies.length - 1)) ;
         });
-        myPromise.then((mobNumber) => {
-          this.updateMobForce(mobNumber, self.P2mobBodies);
+
+        myPromise.then((mobNumber )  => {
+          this.updateMobForce(self.P2mobBodies[mobNumber]);
           self.pause = 0;
         });
       }
+
       let i = 0;
       while (i < self.P2mobBodies.length) {
         self.P2mobBodies[i].setZeroForce();
         ////////////////////////////////////////////////////////////////////////////
         self.state.mobResult.forEach(mobState => {
           if (self.P2mobBodies[i].field_mob_name_value == mobState.field_mob_name_value) {
-
             //if  not following someone, do the test
             if (mobState.following == 0) {
-
+              //if state x,y is out of date
               if (parseInt(mobState.field_x_value) != parseInt(self.P2mobBodies[i].position[0])
                 || parseInt(mobState.field_y_value) != parseInt(self.P2mobBodies[i].position[1])) {
-                //if state x,y is out of date
-                Mob.updateZombieState(self,
-                  mobState.field_mobs_target_id,
-                  mobState.field_mob_name_value,
-                  parseInt(self.P2mobBodies[i].position[0]),
-                  parseInt(self.P2mobBodies[i].position[1]),
-                  undefined,
-                  undefined,
-                  0,
-                  mobState,
-                  i
-                )
+                this.sendObject(self, mobState, i);
               }
+
               self.state.players.forEach(player => {
-                var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[0]));
+                //find distance
+                var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[1]));
                 if (mobPlayerDist < 160) {
                   // this is to update the mobs follower
-                  const mobItem = Mob.updateZombieState(self,
-                    mobState.field_mobs_target_id,
-                    mobState.field_mob_name_value,
-                    parseInt(self.P2mobBodies[i].position[0]),
-                    parseInt(self.P2mobBodies[i].position[1]),
-                    undefined,
-                    undefined,
-                    player.playerId,
-                    mobState,
-                    i
-                  );
-                  self.state.mobResult.set(mobItem.field_mob_name_value, mobItem);
+                  mobState.following = player.playerId;
                 }
+                this.sendObject(self, mobState, i)
               })
             }
-            if (mobState.following > 0) {
+            if (mobState.following) {
               self.state.players.forEach(player => {
-                if (player.playerId == mobState.following && mobState.dead != 1) {
-                  if (mobState.dead == 0) {
-                    if (parseInt(self.P2mobBodies[i].position[0]) > player.p2Player.Body.position[0]) {
-                      self.P2mobBodies[i].force[0] = -130;
-                    }
-                    else {
-                      self.P2mobBodies[i].force[0] = 130;
-                    }
-                    if (parseInt(self.P2mobBodies[i].position[1]) > player.p2Player.Body.position[1]) {
-                      self.P2mobBodies[i].force[1] = -130;
-                    }
-                    else {
-                      self.P2mobBodies[i].force[1] = 130;
-                    }
+                //follow the first player in the array
+                if (player.playerId == mobState.following && !mobState.dead) {
+                  var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[1]));
+                  if (mobPlayerDist > 160) {
+                    // this is to update the mobs follower
+                    mobState.following = 0;
+                    self.P2mobBodies[i].velocity[0] = 0;
+                    self.P2mobBodies[i].velocity[1] = 0;
                   }
-                  const mobItem = Mob.updateZombieState(
-                    self,
-                    mobState.field_mobs_target_id,
-                    mobState.field_mob_name_value,
-                    parseInt(self.P2mobBodies[i].position[0]),
-                    parseInt(self.P2mobBodies[i].position[1]),
-                    undefined,
-                    undefined,
-                    player.playerId,
-                    mobState,
-                    i
-                  )
-                  self.state.mobResult.set(mobItem.field_mob_name_value, mobItem);
+                  else {
+                    this.adjustVelocity(self.P2mobBodies[i], player.p2Player.Body, 20);
+                    this.sendObject(self, mobState, i)
+                  }
                 }
               })
             };
-            if (mobState.dead > 0) {
-              self.P2mobBodies[i].destinationX = 0;
-              self.P2mobBodies[i].destinationY = 0;
-            }
+          }
+          if (mobState.dead) {
+            self.P2mobBodies[i].velocity[0] = 0;
+            self.P2mobBodies[i].velocity[1] = 0;
           }
         });
         i++;
       };
     };
+  }
+
+  adjustVelocity(body, body2, amount) {
+
+    body.velocity[0] = 0;
+    if (parseInt(body.position[0]) > body2.position[0]) {
+      body.velocity[0] = -amount;
+    }
+    if (parseInt(body.position[0]) < body2.position[0]) {
+      body.velocity[0] = amount;
+    }
+
+    body.velocity[1] = 0;
+    if (parseInt(body.position[1]) > body2.position[1]) {
+      body.velocity[1] = -amount;
+    }
+    if (parseInt(body.position[1]) < body2.position[1]) {
+      body.velocity[1] = amount;
+    }
+  }
+
+  sendObject(self, mobState, i) {
+
+    const mobItem = Mob.updateZombieState(
+      self,
+      mobState.field_mobs_target_id,
+      mobState.field_mob_name_value,
+      parseInt(self.P2mobBodies[i].position[0]),
+      parseInt(self.P2mobBodies[i].position[1]),
+      undefined,
+      undefined,
+      mobState.following,
+      mobState,
+      i
+    )
+    self.state.mobResult.set(mobItem.field_mob_name_value, mobItem);
   }
 
   mobClicked(self, input, player) {
@@ -212,13 +216,16 @@ export class Mob {
     }
   };
 
-  async updateMobForce(i, P2mobBodies) {
+  async updateMobForce(body) {
     await this.skip(2000);
-    var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
-    var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
-    if (P2mobBodies[i].dead != 1) {
-      P2mobBodies[i].velocity[0] = forceX;
-      P2mobBodies[i].destinationY[1] = forceY;
+    // var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
+    //  var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
+    var forceX = (Math.ceil(Math.random() * 50) + 20);
+    var forceY = (Math.ceil(Math.random() * 50) + 20);
+
+    if (body.dead != 1) {
+      body.velocity[0] = forceX;
+      body.velocity[1] = forceY;
     }
   }
 

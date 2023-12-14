@@ -3,7 +3,6 @@
  */
 import axios from "axios";
 
-
 export default class Mission {
   constructor() {
   }
@@ -12,7 +11,6 @@ export default class Mission {
     const COLOR_PRIMARY = 0x333333;
     const COLOR_LIGHT = 0xffffff;
     const COLOR_DARK = 0x111111;
-
     var print = self.add.text(0, 0, '').setDepth(1);
     var choicesType = 'radio';
     var style = {

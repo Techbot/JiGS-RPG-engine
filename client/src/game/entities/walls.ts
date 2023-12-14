@@ -7,7 +7,7 @@ import { useJigsStore } from '../../stores/jigs';
 export default class Walls {
 
     jigs: any;
-    walls:any;
+    walls: any;
 
     constructor() {
         this.jigs = useJigsStore();
