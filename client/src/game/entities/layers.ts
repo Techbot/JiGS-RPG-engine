@@ -12,7 +12,7 @@ export default class Layers {
     }
 
     loadLayers(self) {
-        var map = self.make.tilemap({ key: self.jigs.tiled, tileWidth: 32, tileHeight: 32 });
+        var map = self.make.tilemap({ key: self.jigs.city + "_" + self.jigs.tiled, tileWidth: 32, tileHeight: 32 });
 
         this.jigs.tilesetArray_1.forEach(function loader(image: any) {
             map.addTilesetImage(image);
