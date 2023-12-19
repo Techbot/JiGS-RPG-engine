@@ -39,9 +39,14 @@ class Player
         $player['health']      = $query->fetchAll()[0]->field_health_value;
         $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " .$player['profileId']);
 
+
+
+
         $profile = $this->user->get('player_profiles')->entity;
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff
+        // $player['sprite_sheet'] = $profile->field_sprite_sheet->value;
+        $player['sprite_sheet'] = $this->user->field_sprite_sheet->value;
         $player['level']        = $profile->field_level->value;
         $player['intelligence'] = $profile->field_intelligence->value;
         $player['strength']     = $profile->field_strength->value;
@@ -52,7 +57,7 @@ class Player
         $player['losses']       = $profile->field_losses->value;
         $player['wins']         = $profile->field_wins->value;
         $player['xp']           = $profile->field_xp->value;
-        $player['sprite_sheet'] = $profile->field_sprite_sheet->value;
+
         return $player;
     }
 
@@ -242,6 +247,7 @@ class Player
         $stuff =  $query->fetchAll();
         //print_r($stuff);
         $responseData['title']   = $stuff[0]->title;
+
         $responseData['content'] = $stuff[0]->body_value;
         $responseData['choice']  = $stuff[0]->field_choice_a_value;
         $responseData['value']   = $handlerMission;

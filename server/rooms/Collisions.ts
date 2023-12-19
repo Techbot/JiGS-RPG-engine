@@ -16,16 +16,16 @@ export class Collision {
       if (bodyA.isPortal) {
         console.log('portal ');
         if (!bodyA.done) {
-          const promise1 = Promise.resolve(playerModel.updateMap(bodyB.playerId, bodyA.destination));
+          const promise1 = Promise.resolve(playerModel.updateMap(bodyB.profileId, bodyA.destination));
           promise1
             .then(() => { bodyB.portal = bodyA.tiled; })
             .then(() => {
               //        console.log(bodyA.destination_x);
-              playerModel.updatePlayer(bodyB.playerId, 'x', bodyA.destination_x, 1)
+              playerModel.updatePlayer(bodyB.profileId, 'x', bodyA.destination_x, 1)
             })
             .then(() => {
               //         console.log(bodyA.destination_y);
-              playerModel.updatePlayer(bodyB.playerId, 'y', bodyA.destination_y, 1)
+              playerModel.updatePlayer(bodyB.profileId, 'y', bodyA.destination_y, 1)
             });
           bodyA.done = true;
         }
@@ -44,9 +44,9 @@ export class Collision {
       ////////////////////////// REWARD      ///////////////////////////////////
       if (bodyA.isReward) {
         if (!bodyA.done) {
-          const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'credits', 1, 0));
+          const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.profileId, 'credits', 1, 0));
           promise1.then(() => { });
-          const promise2 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'xp', 1, 0));
+          const promise2 = Promise.resolve(playerModel.updatePlayer(bodyB.profileId, 'xp', 1, 0));
           promise2.then(() => { });
           self.broadcast("remove-reward", bodyA.ref);
           bodyB.reward = bodyA.ref;
@@ -60,14 +60,14 @@ export class Collision {
         //     console.log('playerId: ' + bodyB.playerId);
         //      console.log('health: ' + bodyB.health);
         bodyB.struck = true;
-        const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'health', -10, false));
+        const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.profileId, 'health', -10, false));
         promise1.then(() => {
           bodyB.health = bodyB.health - 10;
 
           if (bodyB.health <= 0) {
             //bodyB.health = 0;
-            const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.playerId, 'health', 80, true));
-            self.broadcast("dead", bodyB.playerId);
+            const promise1 = Promise.resolve(playerModel.updatePlayer(bodyB.profileId, 'health', 80, true));
+            self.broadcast("dead", bodyB.profileId);
           }
         });
         //When zombie is dead set dead health  and following

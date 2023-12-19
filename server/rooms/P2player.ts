@@ -31,7 +31,7 @@ export class P2player {
       playerShape.collisionMask = share.COL_ENEMY | share.COL_GROUND;
 
       this.Body.playerId = id;
-      this.Body.profileId = result[0].field_profile_id_value;
+      this.Body.profileId = result[0].profile_id;
       this.Body.isPlayer = true;
       this.Body.position[0] = result[0].field_x_value;
       this.Body.position[1] = result[0].field_y_value;

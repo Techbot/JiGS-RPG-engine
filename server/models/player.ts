@@ -26,11 +26,11 @@ function getPlayer(player) {
       ON  profile.uid                     =  users_field_data.uid
       AND type                            = 'player'
       INNER JOIN profile__field_x
-      ON  profile__field_x.entity_id      =  users_field_data.uid
+      ON  profile__field_x.entity_id      =  profile.profile_id
       INNER JOIN profile__field_y
-      ON  profile__field_y.entity_id      =  users_field_data.uid
+      ON  profile__field_y.entity_id      =  profile.profile_id
       INNER JOIN profile__field_health
-      ON  profile__field_health.entity_id =  users_field_data.uid
+      ON  profile__field_health.entity_id =  profile.profile_id
       WHERE  users_field_data.uid         = ` + player
       ,
         function (err, result) {

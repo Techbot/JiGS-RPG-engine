@@ -197,7 +197,7 @@ export class Mob {
               undefined, 0, 0, 1, self.state.mobResult[input.mobClick], undefined
             )
             self.state.mobResult.set(mobItem, mobItem);
-            const promise1 = Promise.resolve(playerModel.updatePlayer(player.playerId, 'credits', 10, 0));
+            const promise1 = Promise.resolve(playerModel.updatePlayer(player.profileId, 'credits', 10, 0));
             promise1.then(() => {
             });
             return 1;
@@ -206,7 +206,7 @@ export class Mob {
             self.state.mobResult[input.mobClick].health = 0;
           }
           else {
-            const promise1 = Promise.resolve(playerModel.updatePlayer(player.playerId, 'credits', 1, 0));
+            const promise1 = Promise.resolve(playerModel.updatePlayer(player.profileId, 'credits', 1, 0));
             promise1.then(() => {
             });
           }
