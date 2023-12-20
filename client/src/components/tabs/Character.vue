@@ -288,7 +288,14 @@ export default {
     </div>
 
     <div class="character-gauge">
-      <label>Experience</label>
+      <label>Level</label>
+      <span class="gauge-value">
+        {{this.jigs.playerStats.level}}
+      </span>
+    </div>
+
+    <div class="character-gauge">
+      <label>XP</label>
       <span class="gauge-value">
         {{this.jigs.playerStats.xp}}
       </span>
@@ -300,6 +307,13 @@ export default {
         {{ this.jigs.playerStats.credits }}
       </span>
     </div>
+
+      <div class="character-gauge">
+        <label>Nanites</label>
+        <span class="gauge-value">
+          {{ this.jigs.playerStats.nanites }}
+        </span>
+      </div>
 
     <div class="weapon">
       <div class="weapon--picked">
