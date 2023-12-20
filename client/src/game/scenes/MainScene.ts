@@ -22,6 +22,7 @@ import Messenger from "../entities/messenger";
 import Reward from "../entities/reward";
 import Load from "../entities/loader";
 import Portals from "../entities/portals";
+import Switches from "../entities/switches";
 import Walls from "../entities/walls";
 import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
@@ -86,6 +87,7 @@ export class MainScene extends Phaser.Scene {
     messenger: Messenger;
     walkSound: Phaser.Sound.BaseSound;
     Portals: Portals;
+    Switches:Switches;
     Walls: Walls;
 
     constructor() {
@@ -104,6 +106,7 @@ export class MainScene extends Phaser.Scene {
         this.SceneMobHealthBarArray = new Array;
         this.SceneMobNameArray = new Array;
         this.Portals = new Portals;
+        this.Switches = new Switches;
         this.Walls = new Walls;
     }
 
@@ -146,12 +149,10 @@ export class MainScene extends Phaser.Scene {
                 this.addRewards();
                 this.addNpc();
                 this.addMobs();
-                this.Portals.addPortals(this);
-                this.Walls.addWalls(self);
-            //    this.physics.world.enable([this.Walls.walls]);
-            //    this.physics.world.add(this.Walls.walls);
+                this.Portals.add(this);
+                this.Switches.add(this);
+                this.Walls.add(self);
                 this.localPlayer.addLocalPlayer(this, player, this.colliderMap);
-           //     this.physics.add.collider(this.localPlayer.entity, this.Walls.walls);
 
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
@@ -306,11 +307,12 @@ export class MainScene extends Phaser.Scene {
                 this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
                 this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
                 this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
+                this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
                 this.jigs.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
                 this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-                if (incMob) {
+               // if (incMob) {
                     this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-                }
+             //   }
                 this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
                 this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
                 this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];

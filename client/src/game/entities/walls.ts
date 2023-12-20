@@ -13,7 +13,7 @@ export default class Walls {
         this.jigs = useJigsStore();
     }
 
-    addWalls(self) {
+    add(self) {
         const wallsArray = this.jigs.wallsArray;
         this.walls = self.physics.add.staticGroup({ allowGravity: false });
         for (var index = 0; index < wallsArray.length; index++) {

@@ -77,6 +77,7 @@ class GameController extends ControllerBase
 
   public function myState()
   {
+
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
     $player                     = new Player();
@@ -150,4 +151,565 @@ class GameController extends ControllerBase
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
+
+   public function mySwitches( Request $request) {
+
+      $build = [
+      '#markup' => $this->t("
+
+      <fieldset>
+      <legend>Dublin</legend>
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       </fieldset>
+
+
+ <fieldset>
+      <legend>Dublin</legend>
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       </fieldset>
+
+
+ <fieldset>
+      <legend>Dublin</legend>
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       </fieldset>
+
+ <fieldset>
+      <legend>Dublin</legend>
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       <div>
+       <input type='checkbox' id='001' name='001' /> <label for='001'>001</label>
+       <input type='checkbox' id='002' name='002' /> <label for='002'>002</label>
+       <input type='checkbox' id='003' name='003' /> <label for='003'>003</label>
+       <input type='checkbox' id='004' name='004' /> <label for='004'>004</label>
+       <input type='checkbox' id='005' name='005' /> <label for='005'>005</label>
+       <input type='checkbox' id='006' name='006' /> <label for='006'>006</label>
+       <input type='checkbox' id='007' name='007' /> <label for='007'>007</label>
+       <input type='checkbox' id='008' name='008' /> <label for='008'>008</label>
+       <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
+       <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
+        </div>
+
+       </fieldset>
+
+"),
+    ];
+    return $build;
+  }
+
 }

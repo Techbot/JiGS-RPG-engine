@@ -65,6 +65,32 @@ function getPortals(NodeNumber) {
   });
 }
 
+function getSwitches(NodeNumber) {
+  return new Promise(function (resolve, reject) {
+    con.connect(function (err) {
+      if (err) throw err;
+      con.query(
+        `SELECT node__field_portals.field_switches_target_id,
+     paragraph__field_switch_type.field_switch_type,
+     paragraph__field_x.field_x_value,
+     paragraph__field_y.field_y_value
+     FROM node__field_switches
+     Left Join paragraph__field_switch_type
+      On node__field_switches.field_switches_target_id = paragraph__field_switch_type.entity_id
+      Left Join paragraph__field_x
+      On node__field_portals.field_portals_target_id = paragraph__field_x.entity_id
+      Left Join paragraph__field_y
+      On node__field_portals.field_portals_target_id = paragraph__field_y.entity_id
+      where node__field_portals.entity_id = ` + NodeNumber,
+        function (err, result) {
+          if (err) throw err;
+          resolve(result);
+        }
+      );
+    });
+  });
+}
+
 function getWalls(NodeNumber) {
   return new Promise(function (resolve, reject) {
     con.connect(function (err) {
@@ -206,6 +232,7 @@ module.exports = {
   getWalls,
   getNpcs,
   getMobs,
+  getSwitches,
   getRewards,
   updateBanks
 };

@@ -1,0 +1,4 @@
+jigs.switches:
+  route_name: jigs.my_switches
+  base_route: entity.user.canonical
+  title: 'Switches'

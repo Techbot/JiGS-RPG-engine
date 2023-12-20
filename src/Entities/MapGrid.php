@@ -39,6 +39,7 @@ class MapGrid
     $mapGrid['npcArray']      = $this->getNpcs();
     $mapGrid['mobArray']      = $this->getMobs();
     $mapGrid['portalsArray']  = $this->getPortals();
+    $mapGrid['switchesArray']  = $this->getSwitches();
     $mapGrid['wallsArray']    = $this->getWalls();
     $mapGrid['rewardsArray']  = $this->getRewards();
     $mapGrid['tileset']       = $this->getLayers();
@@ -60,6 +61,19 @@ class MapGrid
       ];
     }
     return $portals;
+  }
+
+  function getSwitches()
+  {
+    $switches = [];
+    foreach ($this->MapGrid->field_switches->referencedEntities() as $switch) {
+      $switches[] = [
+        'type' => $switch->field_switch_type->getValue()[0]['value'],
+        'x' => (int)$switch->field_x->getValue()[0]['value'],
+        'y' => (int)$switch->field_y->getValue()[0]['value']
+      ];
+    }
+    return $switches;
   }
 
   function getRewards()
@@ -128,6 +142,7 @@ class MapGrid
       $mArray[] =
         [
           $Mob->field_mobs->getValue()[0]['target_id'],
+         // $Mob->field_mob_name->getValue()[0]['value'],
           $Mob->field_mob_name->value,
           $Mob->field_x->value,
           $Mob->field_y->value,

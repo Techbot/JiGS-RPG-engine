@@ -9,8 +9,6 @@ import ViewMain from "./components/ViewMain";
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "./game/backend";
 
-//export = CButton;
-
 export default {
   components: {
     Room,
@@ -42,8 +40,18 @@ export default {
       e.preventDefault();
       this.jigs.hydrate(1);
     },
+    toggleClass(e) {
+      const nav = document.querySelectorAll('.tab-buttons .btn');
+      nav.forEach(navItem => {
+        navItem.classList.remove('active');
+        if (!e.target.classList.contains('active')) {
+          e.target.classList.add('active');
+        }
+      });
+    },
     log(e) {
       e.preventDefault();
+      this.toggleClass(e);
       this.jigs.gameState = "Log";
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.gameState);
@@ -53,6 +61,7 @@ export default {
     },
     char(e) {
       e.preventDefault();
+      this.toggleClass(e);
       this.jigs.gameState = "Character";
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.tiled);
@@ -61,6 +70,7 @@ export default {
     },
     inventory(e) {
       e.preventDefault();
+      this.toggleClass(e);
       this.jigs.gameState = "Inventory";
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.tiled);
@@ -70,6 +80,7 @@ export default {
 
     skills(e) {
       e.preventDefault();
+      this.toggleClass(e);
       this.jigs.gameState = "Skills";
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
@@ -78,6 +89,7 @@ export default {
     },
     quests(e) {
       e.preventDefault();
+      this.toggleClass(e);
       this.jigs.gameState = "Quests";
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
@@ -86,6 +98,7 @@ export default {
     },
     game(e) {
       e.preventDefault();
+      this.toggleClass(e);
       location.reload();
       //this.jigs.gameState = "GamePhaser";
       console.log(this.jigs.gameState);
@@ -100,7 +113,7 @@ export default {
     <form @submit="formSubmit" class="tabs">
       <div class="tab-buttons">
         <CButton @click="game" component="button" color="primary"
-          shape="rounded-pill" size="sm">Game</CButton>
+          shape="rounded-pill" size="lg" active>Game</CButton>
         <CButton @click="char" component="button" color="primary"
           shape="rounded-pill" size="sm">Char </CButton>
         <CButton @click="inventory" component="button" color="primary"

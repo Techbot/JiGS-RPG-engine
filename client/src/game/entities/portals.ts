@@ -3,7 +3,7 @@
  */
 import Portal from "../entities/portal";
 export default class Portals {
-    addPortals(self) {
+    add(self) {
 
         const portalsArray = self.jigs.portalsArray;
         const portals = self.physics.add.group({ allowGravity: false });
