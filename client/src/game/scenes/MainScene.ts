@@ -252,6 +252,7 @@ export class MainScene extends Phaser.Scene {
                     console.log("");
                     this.hydrateMission(response);
                     this.events.emit('Mission',npc);
+                 //   this.game.scene.start("main", 'myScene');
                 })
         }
         else {
@@ -310,9 +311,9 @@ export class MainScene extends Phaser.Scene {
                 this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
                 this.jigs.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
                 this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-               // if (incMob) {
-                    this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-             //   }
+                if (incMob) {
+                    this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+                }
                 this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
                 this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
                 this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
