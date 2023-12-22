@@ -1,5 +1,5 @@
 <h1>JiGS</h1>
-<h2>An Online Realtime Multiplayer RPG Trading game engine.</h2>
+<h2>An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS</h2>
 
 
 
