@@ -24,29 +24,34 @@ export default class Load {
     }
 
     load(self) {
-
+        const textureManager = self.textures;
         self.load.image('black', '/assets/images/black.png');
-
+        self.load.image(this.jigs.switchesArray[0].on, '/assets/images/System/' + this.jigs.switchesArray[0].on  + '.png');
+        self.load.image(this.jigs.switchesArray[0].off, '/assets/images/System/' + this.jigs.switchesArray[0].off + '.png');
         self.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
 
         this.jigs.tilesetArray_1.forEach(function loader(image) {
-            self.load.image(image, '/assets/images/System/' + image + '.png');
+            if (!textureManager.exists(image)) {
+                self.load.image(image, '/assets/images/System/' + image + '.png');
+            }
         }, this);
-
         this.jigs.tilesetArray_2.forEach(function loader(image) {
+            if (!textureManager.exists(image)) {
             self.load.image(image, '/assets/images/System/' + image + '.png');
+            }
         }, this);
-
         this.jigs.tilesetArray_3.forEach(function loader(image) {
+            if (!textureManager.exists(image)) {
             self.load.image(image, '/assets/images/System/' + image + '.png');
+            }
         }, this);
-
         if (this.jigs.tilesetArray_4 !== undefined) {
             this.jigs.tilesetArray_4.forEach(function loader(image) {
+                if (!textureManager.exists(image)) {
                 self.load.image(image, '/assets/images/System/' + image + '.png');
+                }
             }, this);
         }
-
         if (this.jigs.npcArray) {
             this.jigs.npcArray.forEach(function loader(Npc) {
                 self.load.spritesheet('npc' + Npc[3], '/assets/images/sprites/' + Npc[3] + '.png', { frameWidth: 64, frameHeight: 64 });
@@ -61,8 +66,6 @@ export default class Load {
 
         self.load.once(Phaser.Loader.Events.COMPLETE, () => {
             // texture loaded so use instead of the placeholder
-            console.log('once');
-
             const Layer = new Layers;
             Layer.loadLayers(self);
             createCharacterAnims(self.anims, 'PsibotF','slash_oversize');
@@ -82,11 +85,8 @@ export default class Load {
                     createCharacterAnims(self.anims, 'mob' + mob[4],'default');
                 });
             }
-            //console.log('twice');
             return self;
-
         });
         self.load.start();
-
     }
 }
