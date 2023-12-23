@@ -81,9 +81,9 @@ export default class Mission {
       .setDraggable('title')
       .setDraggable('content')
       .resetDisplayContent({
-        title: self.jigs.title,
-        content: self.jigs.content,
-        choices: self.jigs.choice,
+        title: self.jigs.missionTitle,
+        content: self.jigs.missionHandlerDialog,
+        choices: self.jigs.missionChoice,
         buttonA: 'Ok'
       })
       .layout()
