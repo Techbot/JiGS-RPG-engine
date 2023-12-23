@@ -15,17 +15,19 @@ export const useJigsStore = defineStore("jigs", {
     /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array ,mission: array}[]} */
     playerStats: [],
 
-    title: "Bob",
+    missionTitle: "Bob",
 
-    content: `The Evil Wizard has stolen the Balls of Loveliness. \n
+    missionHandlerDialog: `The Evil Wizard has stolen the Balls of Loveliness. \n
 Without the Balls there can be no loveliness across the land. \n
 Will you find my Balls?`,
 
-    choice:
+    missionChoice:
       [
         { text: 'Yes I will find your balls.', value: 433 }, // { text: 'A', value: 10 },
         { text: 'No I am not ready.', value: 0 }, // { text: 'B', value: 20 },
       ],
+    missionValue:0,
+
 
     playerStorage: [],
 
