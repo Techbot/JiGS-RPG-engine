@@ -17,7 +17,7 @@ import { useJigsStore } from '../../stores/jigs';
 
 import Player from "../entities/player";
 import Messenger from "../entities/messenger";
-import Reward from "../entities/reward";
+import Rewards from "../entities/rewards";
 import Load from "../entities/loader";
 import Portals from "../entities/portals";
 import Switches from "../entities/switches";
@@ -90,7 +90,8 @@ export class MainScene extends Phaser.Scene {
     Switches:Switches;
     Walls: Walls;
     Mobs: Mobs;
-    NPCs: any;
+    NPCs: NPCs;
+    Rewards: Rewards;
 
     constructor() {
         super({ key: "main" });
@@ -112,6 +113,7 @@ export class MainScene extends Phaser.Scene {
         this.Walls = new Walls;
         this.NPCs = new NPCs;
         this.Mobs = new Mobs;
+        this.Rewards = new Rewards;
     }
 
     preload() {
@@ -121,7 +123,6 @@ export class MainScene extends Phaser.Scene {
         this.Loader.load(self);
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-        // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
@@ -145,18 +146,15 @@ export class MainScene extends Phaser.Scene {
             // is current player
             if (sessionId === this.room.sessionId) {
                 self.jigs.playerState = "alive";
-
-
                 this.jigs.content = "City: " + this.jigs.city;
-
                 self.events.emit('content');
-                this.addRewards();
+                this.Rewards.add(this);
                 this.NPCs.add(this);
                 this.Mobs.add(this);
                 this.Portals.add(this);
                 this.Switches.add(this);
                 this.Walls.add(self);
-                this.localPlayer.addLocalPlayer(this, player, this.colliderMap);
+                this.localPlayer.add(this, player, this.colliderMap);
 
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
@@ -183,102 +181,6 @@ export class MainScene extends Phaser.Scene {
         // this.cameras.main.setZoom(1);
     }
 
-    addRewards() {
-        this.rewardsGroup = this.physics.add.group({ allowGravity: false });
-        let a = 0;
-        if (typeof this.jigs.rewardsArray !== 'undefined') {
-            while (a < this.jigs.rewardsArray.length) {
-                this.rewardsArray[a] = new Reward(this, this.jigs.rewardsArray[a]);
-                this.rewardsGroup.add(this.rewardsArray[a], true);
-                a++;
-            }
-        }
-    }
-
-    addNpc() {
-        this.npcGroup = this.physics.add.group({ allowGravity: false });
-        if (typeof this.jigs.npcArray !== 'undefined') {
-            let i = 0;
-            while (i < this.jigs.npcArray.length) {
-                this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
-                this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
-                    .setScale(.85)
-                    .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-                    .setData("levelindex", this.jigs.npcArray[i][1])
-                    .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
-
-                this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
-                    font: "12px Neutron Demo",
-                    fill: 'white',
-                    fontStyle: 'strong',
-                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                }).setPadding({ left: 1, right: 1, top: 1, bottom: 1 });
-
-                this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
-                this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
-                //this.NpcContainerArray[i].setDepth(5);
-                this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
-                this.npcGroup.add(this.NpcContainerArray[i], true);
-                i++;
-            }
-        }
-    }
-
-    addMobs() {
-        this.mobGroup = this.physics.add.group({ allowGravity: false });
-
-        if (typeof this.jigs.mobArray !== 'undefined') {
-            let i = 0;
-            while (i < this.jigs.mobArray.length) {
-                this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
-              //  this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
-
-
-              this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
-                    .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-                    .setScale(.85)
-                    .setData("levelindex", this.jigs.mobArray[i][1])
-                    .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
-
-
-
-
-                this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
-                this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
-                this.SceneMobHealthBarArray[i].displayWidth = 25;
-                this.MobContainerArray[i].add(this.SceneMobArray[i]);
-                this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
-                this.MobContainerArray[i].setDepth(6);
-                this.mobGroup.add(this.MobContainerArray[i], true);
-                i++;
-            }
-        }
-    }
-
-    onNPCDown(npc, img) {
-        if (npc[5] == 1) {
-            axios
-                .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
-                .then((response) => {
-                    console.log("");
-                    this.hydrateMission(response);
-                    this.events.emit('Mission',npc);
-                 //   this.game.scene.start("main", 'myScene');
-                })
-        }
-        else {
-            console.log("" + npc[5]);
-            this.jigs.npc = 1;
-            this.jigs.content = npc[4];
-            this.events.emit('content');
-        }
-    }
-
-    onMobDown(mob, img) {
-        this.jigs.mobClick = mob[1];
-        this.jigs.mobShoot = mob[1];
-        this.jigs.playerStats.credits++;
-    }
 
     incrementReward() { return; }
 
@@ -323,7 +225,7 @@ export class MainScene extends Phaser.Scene {
                 this.jigs.wallsArray    = response.data[0].value["MapGrid"]["wallsArray"];
                 this.jigs.npcArray      = response.data[0].value["MapGrid"]["npcArray"];
                 if (incMob) {
-                    this.jigs.mobArray   = response.data[0].value["MapGrid"]["mobArray"];
+                    this.jigs.mobArray   = response.data[0].value["MapGrid"]["mobArray"];//don't update mobs with default positions during game
                 }
                 this.jigs.rewardsArray   = response.data[0].value["MapGrid"]["rewardsArray"];
                 this.jigs.nodeTitle      = response.data[0].value["MapGrid"]["name"];
