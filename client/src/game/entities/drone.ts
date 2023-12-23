@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-export default class FlyingStar extends Phaser.Physics.Arcade.Sprite {
+export default class Drone extends Phaser.Physics.Arcade.Sprite {
   path: Phaser.Curves.Ellipse;
   pathIndex: number;
   pathSpeed: any;
@@ -36,10 +36,5 @@ bilbob(newX,newY){
   this.path.y = newY;
 
 }
-
-
-
-
-
 
 }
