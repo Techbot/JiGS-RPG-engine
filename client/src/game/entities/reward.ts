@@ -1,5 +1,5 @@
 /**
- * -------Layers ---------
+ * -------Reward ---------
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
@@ -14,7 +14,7 @@ export default class Reward extends Phaser.Physics.Arcade.Sprite {
     ref: any;
 
     constructor(scene, data) {
-        super(scene, 100, 100);
+        super(scene, 100, 100,'reward');
         this.ref = data.ref;
         this.jigs = useJigsStore();
         //const entity = scene.physics.add.sprite(parseInt(data.x), parseInt(data.y) , 'reward' ).setDepth(5);

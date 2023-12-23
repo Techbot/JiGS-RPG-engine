@@ -12,18 +12,26 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
     sprite: any;
     anims: any;
 
-    constructor(scene, data) {
+    constructor(scene, x,y, sprite) {
         super(scene, 100, 100,null);
-        this.setTexture('mob' + data[3]);
+        this.setTexture('mob' + sprite);
         this.setDepth(5)
-        this.setPosition(parseInt(data[1]), parseInt(data[2]));
-        this.setScale(.75);
-        this.anims.play('hurt_mob' + data[3]);
+        this.setPosition(parseInt(x), parseInt(y));
+        this.setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+        this.setScale(.85)
+        this.on('pointerdown', this.onMobDown.bind(this));
       //  this.loadNPC();
+
     }
 
-    loadNPC() {
-        console.log('sprite added');
+    onMobDown(mob, img) {
+        this.jigs.mobClick = mob[1];
+        this.jigs.mobShoot = mob[1];
+        this.jigs.playerStats.credits++;
+    }
+
+    loadMob() {
+        console.log('mob added');
     }
 }
 
