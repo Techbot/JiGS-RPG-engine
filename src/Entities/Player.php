@@ -124,11 +124,10 @@ class Player
         $playerName         = $this->user->get("name")->value;
         $playerId           = \Drupal::currentUser()->id();
         //Cached stuff
-        $userGamesState     = $this->user->field_game_state->value;
+        //$userGamesState     = $this->user->field_game_state->value;
         $database           = \Drupal::database();
         ////////////////////////////////////////////////////////////////////////////////
         $player['missions'] = $this->getAllPlayerMissionIds($playerId);
-
         foreach ($player['missions'] as $mission) {
             // $mission = $record->field_missions_target_id;
             if ($mission) {
@@ -154,7 +153,7 @@ class Player
     public function getAllPlayerMissionIds($id)
     {
         $database = \Drupal::database();
-        $query    = $database->query("SELECT field_missions_target_id FROM user__field_missions WHERE entity_id= " . $id);
+        $query    = $database->query("SELECT field_missions_target_id FROM profile__field_missions WHERE entity_id= " . $id);
         $result   = $query->fetchAll();
         $missionArray = [];
         foreach ($result as $mission) {
@@ -233,24 +232,25 @@ class Player
     public function getNewMission($handlerMission)
     {
         $database        = \Drupal::database();
-        $query           = $database->query(" SELECT
-        node_field_data.title,
+        $query           = $database->query('
+        SELECT node_field_data.title,
         node__field_choice_a.field_choice_a_value,
         node__field_handler_dialog.field_handler_dialog_value
+
         FROM node_field_data
         LEFT JOIN node__field_choice_a
         ON node_field_data.nid = node__field_choice_a.entity_id
-        LEFT JOIN node__field_handler_dialog.field_handler_dialog_value
+        LEFT JOIN node__field_handler_dialog
         ON node__field_handler_dialog.entity_id = node__field_choice_a.entity_id
-        WHERE node_field_data.nid = " . $handlerMission);
+        WHERE node_field_data.nid = ' . $handlerMission);
+
         ///////////////////////////////////////////////////////////////////////////////
         $stuff =  $query->fetchAll();
         //print_r($stuff);
-        $responseData['title']   = $stuff[0]->title;
-
-        $responseData['content'] = $stuff[0]->body_value;
-        $responseData['choice']  = $stuff[0]->field_choice_a_value;
-        $responseData['value']   = $handlerMission;
+        $responseData['title']          = $stuff[0]->title;
+        $responseData['handler_dialog'] = $stuff[0]->field_handler_dialog_value;
+        $responseData['choice']         = $stuff[0]->field_choice_a_value;
+        $responseData['value']          = $handlerMission;
         return $responseData;
     }
 

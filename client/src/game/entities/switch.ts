@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
 export default class Switch extends Phaser.Physics.Arcade.Sprite {
   jigs: any;
+
   constructor(scene, x, y) {
     super(scene, x, y, 'switch-001-lever-off');
     this.jigs = useJigsStore();

@@ -2,7 +2,7 @@
  * -------Sprites ---------
  */
 import Phaser from "phaser";
-import FlyingStar from "../entities/flyingStar";
+import Drones from "../entities/drones";
 import Bullet from "../entities/bullet";
 import { useJigsStore } from '../../stores/jigs';
 
@@ -10,17 +10,19 @@ export default class Player {
 
     colliderMap: any;
     light: any;
-    drones: any;
+  //  drones: any;
     jigs: any;
     room: any;
     scene: any;
     staticNum: number;
     walls: any;
     entity:any;
+
     constructor(self,room, scene,player) {
         this.room = room;
         this.scene = scene;
         this.jigs = useJigsStore();
+    //    this.drones = new Drones(self,player.x, player.y);
         this.staticNum = 0;
         this.entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
             .setDepth(7)
@@ -30,7 +32,7 @@ export default class Player {
 
     }
 
-    addLocalPlayer(self, player,  colliderMap) {
+    add(self, player,  colliderMap) {
         this.colliderMap = colliderMap
         this.light = self.lights.addLight(player.x, player.y, 200);
         self.lights.enable().setAmbientColor(0x555555);
@@ -50,7 +52,7 @@ export default class Player {
             if (this.jigs.debug) {
                 self.remoteRef.x = player.x;
                 self.remoteRef.y = player.y;
-                //     self.currentPlayer.x = player.x;
+                //    self.currentPlayer.x = player.x;
                 //    self.currentPlayer.y = player.y;
                 this.lerp(self);
             }
@@ -59,11 +61,7 @@ export default class Player {
         var cam = self.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
 
-        this.drones = self.physics.add.group({ allowGravity: false });
-
-        this.drones.add(new FlyingStar(self, player.x, player.y, 100, 100, 0.005), true);
-        this.drones.add(new FlyingStar(self, player.x, player.y, 40, 100, 0.005), true);
-        this.drones.add(new FlyingStar(self, player.x, player.y, 40, 100, -0.005), true);
+        //this.drones.add(self, player.x, player.y);
 
         self.gun       = self.physics.add.image(player.x, player.y, 'gun');
         self.key_left  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -231,9 +229,9 @@ export default class Player {
         this.light.x = self.currentPlayer.x;
         this.light.y = self.currentPlayer.y;
 
-        this.drones.children.iterate(drone => {
-            drone.bilbob(self.currentPlayer.x, self.currentPlayer.y);
-        });
+     //   this.drones.children.iterate(drone => {
+          //  drone.bilbob(self.currentPlayer.x, self.currentPlayer.y);
+   //     });
 
         ////////////////////////////////////////////////////////////////////////////////
         //  Dispatch a Scene event

@@ -17,8 +17,8 @@ export default class Reward extends Phaser.Physics.Arcade.Sprite {
         super(scene, 100, 100,'reward');
         this.ref = data.ref;
         this.jigs = useJigsStore();
-        //const entity = scene.physics.add.sprite(parseInt(data.x), parseInt(data.y) , 'reward' ).setDepth(5);
-        //entity.setScale(.75);
+        const entity = scene.physics.add.sprite(parseInt(data.x), parseInt(data.y) , 'reward' ).setDepth(5);
+        entity.setScale(.75);
         this.setTexture('reward');
         this.setDepth(5)
         this.setInteractive({ cursor: 'url(/assets/images/cursors/point.cur), pointer' })

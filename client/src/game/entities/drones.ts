@@ -1,18 +1,16 @@
 import Drone from "./drone";
 import { useJigsStore } from '../../stores/jigs';
 
-export default class Drones {
+export default class Drones extends Phaser.Physics.Arcade.Group {
   jigs: any;
-  drones: any;
+  dronesGroup: any;
 
-  constructor() {
+  constructor(self,x,y) {
+    super(self.physics.world, self);
     this.jigs = useJigsStore();
+    this.add(new Drone(self, x, y, 100, 100, 0.005),true);
+    this.add(new Drone(self, x, y, 40, 100, 0.005), true);
+    this.add(new Drone(self, x, y, 40, 100, -0.005), true);
   }
 
-  add(self,x,y) {
-    this.drones = self.physics.add.group({ allowGravity: false });
-    this.drones.add(new Drone(self, x, y, 100, 100, 0.005), true);
-    this.drones.add(new Drone(self, x, y, 40, 100, 0.005), true);
-    this.drones.add(new Drone(self, x, y, 40, 100, -0.005), true);
-  }
 }

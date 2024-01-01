@@ -70,10 +70,10 @@ export class Mob {
       if (self.pause == 0) {
         self.pause = 1;
         const myPromise = new Promise((resolve, reject) => {
-          resolve(Math.ceil(Math.random() * self.P2mobBodies.length - 1)) ;
+          resolve(Math.ceil(Math.random() * self.P2mobBodies.length - 1));
         });
 
-        myPromise.then((mobNumber )  => {
+        myPromise.then((mobNumber) => {
           this.updateMobForce(self.P2mobBodies[mobNumber]);
           self.pause = 0;
         });

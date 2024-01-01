@@ -17,6 +17,8 @@ import { useJigsStore } from '../../stores/jigs';
 
 import Player from "../entities/player";
 import Messenger from "../entities/messenger";
+//import NPC from "../entities/npc";
+//import Mob from "../entities/mob";
 import Rewards from "../entities/rewards";
 import Load from "../entities/loader";
 import Portals from "../entities/portals";
@@ -79,7 +81,7 @@ export class MainScene extends Phaser.Scene {
     NpcContainerArray: any;
     MobContainerArray: any;
     SceneMobArray: any;
-    mobGroup: any;
+    mobArray: any;
     SceneMobHealthBarArray: any;
     SceneMobNameArray: any[];
     sys: any;
@@ -87,7 +89,7 @@ export class MainScene extends Phaser.Scene {
     messenger: Messenger;
     walkSound: Phaser.Sound.BaseSound;
     Portals: Portals;
-    Switches:Switches;
+    Switches: Switches;
     Walls: Walls;
     Mobs: Mobs;
     NPCs: NPCs;
@@ -95,17 +97,15 @@ export class MainScene extends Phaser.Scene {
 
     constructor() {
         super({ key: "main" });
-        this.jigs = useJigsStore();
-
-        this.client = new Client(BACKEND_URL);
-
-        this.rewardsArray = new Array;
-        this.rewardsArray = new Array;
-        this.NpcContainerArray = new Array;
-        this.MobContainerArray = new Array;
-        this.SceneNpcArray = new Array;
-        this.SceneMobArray = new Array;
-        this.SceneNpcNameArray = new Array;
+        this.jigs                = useJigsStore();
+        this.client              = new Client(BACKEND_URL);
+        this.rewardsArray        = new Array;
+        this.rewardsArray        = new Array;
+        //this.NpcContainerArray = new Array;
+        this.MobContainerArray   = new Array;
+        //this.SceneNpcArray     = new Array;
+        this.SceneMobArray       = new Array;
+        //this.SceneNpcNameArray = new Array;
         this.SceneMobHealthBarArray = new Array;
         this.SceneMobNameArray = new Array;
         this.Portals = new Portals;
@@ -123,6 +123,7 @@ export class MainScene extends Phaser.Scene {
         this.Loader.load(self);
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+        // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
@@ -133,29 +134,29 @@ export class MainScene extends Phaser.Scene {
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
-
         await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
-
-
         this.walkSound = this.sound.add('walk', { volume: 0.1 });
         this.messenger.initMessages(self);
 
+
         this.room.state.players.onAdd((player, sessionId) => {
-            this.localPlayer = new Player(this,this.room, this.scene,player);
+            this.localPlayer = new Player(this, this.room, this.scene, player);
             var entity: any;
             // is current player
             if (sessionId === this.room.sessionId) {
                 self.jigs.playerState = "alive";
                 this.jigs.content = "City: " + this.jigs.city;
                 self.events.emit('content');
+                //this.addRewards();
                 this.Rewards.add(this);
+                //this.addNpc();
                 this.NPCs.add(this);
+                //this.addMobs();
                 this.Mobs.add(this);
                 this.Portals.add(this);
                 this.Switches.add(this);
                 this.Walls.add(self);
                 this.localPlayer.add(this, player, this.colliderMap);
-
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
@@ -181,15 +182,108 @@ export class MainScene extends Phaser.Scene {
         // this.cameras.main.setZoom(1);
     }
 
+/*     addRewards() {
+        this.rewardsGroup = this.physics.add.group({ allowGravity: false });
+        let a = 0;
+        if (typeof this.jigs.rewardsArray !== 'undefined') {
+            while (a < this.jigs.rewardsArray.length) {
+                //   this.rewardsArray[a] = new Reward(this, this.jigs.rewardsArray[a]);
+                this.rewardsGroup.add(this.rewardsArray[a], true);
+                a++;
+            }
+        }
+    } */
 
-    incrementReward() { return; }
+/*     addNpc() {
+        this.npcGroup = this.physics.add.group({ allowGravity: false });
+        if (typeof this.jigs.npcArray !== 'undefined') {
+            let i = 0;
+
+            while (i < this.jigs.npcArray.length) {
+                this.NpcContainerArray[i] = this.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
+
+                this.SceneNpcArray[i] = this.add.sprite(0, 0, 'npc' + this.jigs.npcArray[i][3])
+                    .setScale(.85)
+                    .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+                    .setData("levelindex", this.jigs.npcArray[i][1])
+                    .on('pointerdown', this.onNPCDown.bind(this, this.jigs.npcArray[i]));
+
+                this.SceneNpcNameArray[i] = this.add.text(10, -10, this.jigs.npcArray[i][0], {
+                    font: "12px Neutron Demo",
+                    fill: 'white',
+                    fontStyle: 'strong',
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                }).setPadding({ left: 1, right: 1, top: 1, bottom: 1 });
+
+                this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
+                this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
+
+                this.NpcContainerArray[i].setDepth(5);
+                this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
+
+                this.npcGroup.add(this.NpcContainerArray[i], true);
+                i++;
+            }
+        }
+    } */
+
+/*     addMobs() {
+        this.mobArray = this.physics.add.group({ allowGravity: false });
+        if (typeof this.jigs.mobArray !== 'undefined') {
+            let i = 0;
+            while (i < this.jigs.mobArray.length) {
+                this.MobContainerArray[i] = this.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
+                this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
+                this.SceneMobArray[i] = this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
+                    .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+                    .setScale(.85)
+                    .setData("levelindex", this.jigs.mobArray[i][1])
+                    .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
+                this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
+                this.SceneMobHealthBarArray[i] = this.add.image(0, -30, 'healthBar');
+                this.SceneMobHealthBarArray[i].displayWidth = 25;
+                this.MobContainerArray[i].add(this.SceneMobArray[i]);
+                this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
+                this.MobContainerArray[i].setDepth(6);
+                this.mobArray.add(this.MobContainerArray[i], true);
+                i++;
+            }
+        }
+    } */
+
+/*     onNPCDown(npc, img) {
+        if (npc[5] == 1) {
+            axios
+                .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
+                .then((response) => {
+                    console.log("");
+                    this.hydrateMission(response);
+                    this.events.emit('Mission', npc);
+                    //   this.game.scene.start("main", 'myScene');
+                })
+        }
+        else {
+            console.log("" + npc[5]);
+            this.jigs.npc = 1;
+            this.jigs.content = npc[4];
+            this.events.emit('content');
+        }
+    }
+
+    onMobDown(mob, img) {
+        this.jigs.mobClick = mob[1];
+        this.jigs.mobShoot = mob[1];
+        this.jigs.playerStats.credits++;
+    } */
+
+/*     incrementReward() { return; } */
 
     jump() {
         axios
             .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
                 console.log("jump");
-                this.hydrate(response,1);
+                this.hydrate(response, 1);
                 var Loader = new Load;
                 Loader.load(this);
                 //portalJump(this);
@@ -200,56 +294,56 @@ export class MainScene extends Phaser.Scene {
 
     updateState() {
         if (this.jigs.playerState == "alive") {
-           // this.jigs.hydrate(0);
+            // this.jigs.hydrate(0);
             axios
                 .get("/mystate?_wrapper_format=drupal_ajax")
                 .then((response) => {
                     this.hydrate(response, 0);
                 })
-      }
+        }
     }
 
     hydrate(response, incMob) {
-                this.jigs.playerStats   = response.data[0].value["player"];
-                this.jigs.playerId      = parseInt(response.data[0].value["player"]["id"]);
-                this.jigs.playerName    = response.data[0].value["player"]["name"];
+        this.jigs.playerStats   = response.data[0].value["player"];
+        this.jigs.playerId      = parseInt(response.data[0].value["player"]["id"]);
+        this.jigs.profileId     = parseInt(response.data[0].value["player"]["profileId"]);
+        this.jigs.playerName    = response.data[0].value["player"]["name"];
 
-                this.jigs.gameState     = response.data[0].value["player"]["userState"];
-                this.jigs.userMapGrid   = parseInt(response.data[0].value["player"]["userMG"]);
+        this.jigs.gameState     = response.data[0].value["player"]["userState"];
+        this.jigs.userMapGrid   = parseInt(response.data[0].value["player"]["userMG"]);
 
-                this.jigs.tiled         = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-                this.jigs.mapWidth      = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-                this.jigs.mapHeight     = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-                this.jigs.portalsArray  = response.data[0].value["MapGrid"]["portalsArray"];
-                this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
-                this.jigs.wallsArray    = response.data[0].value["MapGrid"]["wallsArray"];
-                this.jigs.npcArray      = response.data[0].value["MapGrid"]["npcArray"];
-                if (incMob) {
-                    this.jigs.mobArray   = response.data[0].value["MapGrid"]["mobArray"];//don't update mobs with default positions during game
-                }
-                this.jigs.rewardsArray   = response.data[0].value["MapGrid"]["rewardsArray"];
-                this.jigs.nodeTitle      = response.data[0].value["MapGrid"]["name"];
-                this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-                this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-                this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-                this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-                this.jigs.city = response.data[0].value["City"];
-                // Regex replaces close/open p with \n new line
-                // And replaces all other html tags with null.
-                this.jigs.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
-                this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
+        this.jigs.tiled         = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+        this.jigs.mapWidth      = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
+        this.jigs.mapHeight     = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
+        this.jigs.portalsArray  = response.data[0].value["MapGrid"]["portalsArray"];
+        this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+        this.jigs.wallsArray    = response.data[0].value["MapGrid"]["wallsArray"];
+        this.jigs.npcArray      = response.data[0].value["MapGrid"]["npcArray"];
+        if (incMob) {
+            this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
+        }
+        this.jigs.rewardsArray   = response.data[0].value["MapGrid"]["rewardsArray"];
+        this.jigs.nodeTitle      = response.data[0].value["MapGrid"]["name"];
+        this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
+        this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
+        this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
+        this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
+        this.jigs.city           = response.data[0].value["City"];
+        // Regex replaces close/open p with \n new line
+        // And replaces all other html tags with null.
+        this.jigs.debug   = parseInt(response.data[0].value["gameConfig"]["Debug"]);
+        this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
     }
 
     hydrateMission(response) {
-        this.jigs.missionTitle   = response.data[0].value["value"];
-        this.jigs.missionHandlerDialog = response.data[0].value["handler_dialog"];
+        this.jigs.title   = response.data[0].value["title"];
+        this.jigs.content = response.data[0].value["content"];
         let no  = { text: 'No I am not ready.', value: 0 }
-        let yes = { text: response.data[0].value["choice"] , value: response.data[0].value["value"] };
-        this.jigs.missionChoice = new Array;
-
-        this.jigs.missionChoice.push(yes);
-        this.jigs.missionChoice.push(no);
-        console.log(this.jigs.missionChoice);
+        let yes = { text: response.data[0].value["choice"], value: response.data[0].value["value"] };
+        this.jigs.choice = new Array;
+        this.jigs.choice.push(yes);
+        this.jigs.choice.push(no);
+        console.log(this.jigs.choice);
     }
 
     async connect(room) {
@@ -260,7 +354,9 @@ export class MainScene extends Phaser.Scene {
             .setPadding(4)
         try {
             this.room = await this.client.joinOrCreate(room,
-                { playerId: this.jigs.playerId });
+                { playerId: this.jigs.playerId,
+                  profileId: this.jigs.profileId,
+                });
             // connection successful!
             connectionStatusText.destroy();
         } catch (e) {
@@ -271,8 +367,8 @@ export class MainScene extends Phaser.Scene {
 
     update(time: number, delta: number): void {
 
-        if(this.localPlayer){
-        this.physics.world.collide(this.localPlayer, this.Walls.walls);
+        if (this.localPlayer) {
+            this.physics.world.collide(this.localPlayer, this.Walls.walls);
         }
         // skip loop if not connected yet.
         if (!this.currentPlayer || !this.playerEntities) { return; }

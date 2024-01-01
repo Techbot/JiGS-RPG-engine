@@ -26,8 +26,13 @@ export default class Load {
     load(self) {
         const textureManager = self.textures;
         self.load.image('black', '/assets/images/black.png');
-        self.load.image(this.jigs.switchesArray[0].on, '/assets/images/System/' + this.jigs.switchesArray[0].on  + '.png');
-        self.load.image(this.jigs.switchesArray[0].off, '/assets/images/System/' + this.jigs.switchesArray[0].off + '.png');
+        self.load.image('pink', '/assets/images/pink.png');
+
+        this.jigs.switchesArray.forEach(function loader(switchItem) {
+            self.load.image(switchItem.on, '/assets/images/System/' + switchItem.on  + '.png');
+            self.load.image(switchItem.off, '/assets/images/System/' + switchItem.off + '.png');
+        });
+
         self.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
 
         this.jigs.tilesetArray_1.forEach(function loader(image) {

@@ -64,8 +64,8 @@ export class HudScene extends Scene {
     // Grab a reference to the Game Scene
     let ourGame = this.scene.get('main');
 
-    ourGame.events.on('Mission', function (response,npc) {
-      this.mission.dialog(this,npc,response);
+    ourGame.events.on('Mission', function (response, npc) {
+      this.mission.dialog(this, npc, response);
     }, this);
 
     ourGame.events.on('addScore', function () {
@@ -101,10 +101,10 @@ export class HudScene extends Scene {
   }
   update() {
     // HUD1
-        this.hud2.setText('State: ' + this.jigs.gameState);
-        this.hud3.setText('Node: ' + this.jigs.userMapGrid);
-        this.hud4.setText('TileMap: ' + this.jigs.tiled);
-        this.hud5.setText('Title: ' + this.jigs.nodeTitle);
+    this.hud2.setText('State: ' + this.jigs.gameState);
+    this.hud3.setText('Node: ' + this.jigs.userMapGrid);
+    this.hud4.setText('TileMap: ' + this.jigs.tiled);
+    this.hud5.setText('Title: ' + this.jigs.nodeTitle);
     this.hud11.setText('Name: ' + this.jigs.playerName);
     this.hud12.setText('Id: ' + this.jigs.playerId);
 

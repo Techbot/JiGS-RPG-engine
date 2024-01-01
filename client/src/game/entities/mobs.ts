@@ -23,13 +23,13 @@ export default class Mobs {
         //  this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
 
 
-/*         self.SceneMobArray[i] = self.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
+         self.SceneMobArray[i] = self.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
           .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
           .setScale(.85)
           .setData("levelindex", self.jigs.mobArray[i][1])
-          .on('pointerdown', self.onMobDown.bind(this, this.jigs.mobArray[i])); */
+          .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
 
-        self.SceneMobArray[i] = new Mob(self, this.jigs.mobArray[i].x, this.jigs.mobArray[i].y, this.jigs.mobArray[i].sprite);
+   //     self.SceneMobArray[i] = new Mob(self, this.jigs.mobArray[i].x, this.jigs.mobArray[i].y, this.jigs.mobArray[i].sprite);
 
         self.SceneMobArray[i].anims.play('walkDown_mob' + self.jigs.mobArray[i][4]);
         self.SceneMobHealthBarArray[i] = self.add.image(0, -30, 'healthBar');
