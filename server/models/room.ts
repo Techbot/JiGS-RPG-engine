@@ -1,7 +1,8 @@
 var mysql = require("mysql2");
 import config from '../services/db';
 
-var con = mysql.createConnection({
+var con = mysql.createPool({
+  connectionLimit: 10,
   host: config.host,
   user: config.user,
   password: config.password,
@@ -11,31 +12,26 @@ var con = mysql.createConnection({
 
 function getRoom(id) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT
+    con.query(
+      `SELECT
         node__field_map_width.field_map_width_value,
         node__field_map_height.field_map_height_value
         FROM node__field_map_width
         LEFT JOIN node__field_map_height
         ON node__field_map_width.entity_id = node__field_map_height.entity_id
         WHERE node__field_map_width.entity_id = ` + id,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
-  });
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  })
 }
 
 function getPortals(NodeNumber) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT node__field_portals.field_portals_target_id,
+    con.query(
+      `SELECT node__field_portals.field_portals_target_id,
      paragraph__field_destination.field_destination_target_id,
      paragraph__field_tiled.field_tiled_value,
      paragraph__field_destination_x.field_destination_x_value,
@@ -56,21 +52,18 @@ function getPortals(NodeNumber) {
       Left Join paragraph__field_y
       On node__field_portals.field_portals_target_id = paragraph__field_y.entity_id
       where node__field_portals.entity_id = ` + NodeNumber,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
-  });
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  })
 }
 
 function getSwitches(NodeNumber) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT node__field_portals.field_switches_target_id,
+    con.query(
+      `SELECT node__field_portals.field_switches_target_id,
      paragraph__field_switch_type.field_switch_type,
      paragraph__field_x.field_x_value,
      paragraph__field_y.field_y_value
@@ -82,21 +75,18 @@ function getSwitches(NodeNumber) {
       Left Join paragraph__field_y
       On node__field_portals.field_portals_target_id = paragraph__field_y.entity_id
       where node__field_portals.entity_id = ` + NodeNumber,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
-  });
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  })
 }
 
 function getWalls(NodeNumber) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT node__field_walls.entity_id,
+    con.query(
+      `SELECT node__field_walls.entity_id,
      paragraph__field_x.field_x_value,
      paragraph__field_y.field_y_value,
      paragraph__field_width.field_width_value,
@@ -117,23 +107,18 @@ function getWalls(NodeNumber) {
       On node__field_walls.field_walls_target_id = paragraph__field_height.entity_id
 
       WHERE node__field_walls.entity_id = ` + NodeNumber,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
-  });
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  })
 }
-
-
 
 function getNpcs(NodeNumber) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT
+    con.query(
+      `SELECT
      node__field_npc.field_npc_target_id,
      paragraph__field_name.field_name_target_id,
      node_field_data.title,
@@ -148,21 +133,17 @@ function getNpcs(NodeNumber) {
      Left Join paragraph__field_y
      On paragraph__field_y.entity_id = paragraph__field_name.entity_id
      WHERE node__field_npc.entity_id = ` + NodeNumber,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
-  });
-}
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  })
+};
 
 function getMobs(NodeNumber) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT node__field_mobs.field_mobs_target_id,
+    con.query(`SELECT node__field_mobs.field_mobs_target_id,
        paragraph__field_mob_name.field_mob_name_value,
        paragraph__field_x.field_x_value,
        paragraph__field_y.field_y_value
@@ -174,22 +155,19 @@ function getMobs(NodeNumber) {
        Left Join paragraph__field_y
        On paragraph__field_y.entity_id = node__field_mobs.field_mobs_target_id
        WHERE node__field_mobs.entity_id =
-        ` + NodeNumber,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
+        ` + NodeNumber, function (error, results) {
+      if (error) throw error;
+      console.log('The solution is: ', results);
+      resolve(results);
     });
-  });
+  })
 }
 
 function getRewards(NodeNumber) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `SELECT
+
+    con.query(
+      `SELECT
      node__field_rewards.field_rewards_target_id,
      paragraph__field_x.field_x_value,
      paragraph__field_y.field_y_value,
@@ -203,26 +181,22 @@ function getRewards(NodeNumber) {
      ON paragraph__field_ref.entity_id = node__field_rewards.field_rewards_target_id
 
      WHERE node__field_rewards.entity_id = ` + NodeNumber,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
   });
 }
 
 function updateBanks() {
-  con.connect(function (err) {
-    if (err) throw err;
-    con.query(
-      `UPDATE profile__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1`,
-      function (err, result, fields) {
-        if (err) throw err;
-        return true;
-      }
-    );
-  });
+  con.query(
+    `UPDATE profile__field_credits SET field_credits_value = field_credits_value + 1 WHERE 1 = 1`,
+    function (err, result, fields) {
+      if (err) throw err;
+      return true;
+    }
+  );
   return;
 }
 

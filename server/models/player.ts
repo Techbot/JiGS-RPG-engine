@@ -1,7 +1,8 @@
 var mysql = require("mysql2");
 import config from '../services/db';
 
-var con = mysql.createConnection({
+var con = mysql.createPool({
+  connectionLimit: 10,
   host: config.host,
   user: config.user,
   password: config.password,
@@ -10,9 +11,7 @@ var con = mysql.createConnection({
 
 function getPlayer(player) {
   return new Promise(function (resolve, reject) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
+    con.query(
       `SELECT
       users_field_data.name,
       users_field_data.login,
@@ -33,65 +32,56 @@ function getPlayer(player) {
       ON  profile__field_health.entity_id =  profile.profile_id
       WHERE  users_field_data.uid         = ` + player
       ,
-        function (err, result) {
-          if (err) throw err;
-          resolve(result);
-        }
-      );
-    });
-  });
+      function (err, result) {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  })
 }
 
 function updateMap(id, map) {
-  con.connect(function (err) {
-    if (err) throw err;
+
+  con.query(
+    `UPDATE profile__field_map_grid SET field_map_grid_target_id = ` +
+    map + ` WHERE profile__field_map_grid.entity_id = ` + id,
+    function (err, result, fields) {
+      if (err) throw err;
+      return true;
+    }
+  );
+}
+
+function updatePlayer(id, stat, value, replace) {
+  console.log("stat:" + id);
+  if (replace) {
+
     con.query(
-      `UPDATE profile__field_map_grid SET field_map_grid_target_id = ` +
-      map + ` WHERE profile__field_map_grid.entity_id = ` + id,
+      `UPDATE profile__field_` + stat +
+      ` SET field_` + stat + `_value = ` + value +
+      ` WHERE profile__field_` + stat + `.entity_id = ` + id,
       function (err, result, fields) {
         if (err) throw err;
         return true;
       }
     );
-  });
-  return;
-}
-
-function updatePlayer(id, stat, value, replace) {
-  if (replace) {
-    con.connect(function (err) {
-      if (err) throw err;
-      con.query(
-        `UPDATE profile__field_` + stat +
-        ` SET field_` + stat + `_value = ` + value +
-        ` WHERE profile__field_` + stat + `.entity_id = ` + id,
-        function (err, result, fields) {
-          if (err) throw err;
-          return true;
-        }
-      );
-    });
 
   } else {
-    con.connect(function (err) {
-      //     console.log(value);
-      if (err) throw err;
-      con.query(
-        `UPDATE profile__field_` + stat +
-        ` SET field_` + stat + `_value = field_` + stat + `_value + ` + value +
-        ` WHERE profile__field_` + stat + `.entity_id = ` + id,
-        function (err, result, fields) {
-          if (err) throw err;
-          return true;
-        }
-      );
-    });
+
+    con.query(
+      `UPDATE profile__field_` + stat +
+      ` SET field_` + stat + `_value = field_` + stat + `_value + ` + value +
+      ` WHERE profile__field_` + stat + `.entity_id = ` + id,
+      function (err, result, fields) {
+        if (err) throw err;
+        return true;
+      }
+    );
   }
-  return;
 }
 
 module.exports = {
   getPlayer,
   updateMap,
   updatePlayer,
-};
+}
