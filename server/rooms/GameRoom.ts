@@ -157,9 +157,13 @@ export class GameRoom extends Room<MyRoomState> {
   async onJoin(client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     console.log(options.playerId, "joined!");
+    console.log(options.profileId, "joined!");
+
     const player = new Player();
     player.playerId = options.playerId;
+    player.profileId = options.profileId;
     player.p2Player = new P2player();
+
     await player.p2Player.load(player.playerId, this.share, player, client, this);
     this.world.addBody(player.p2Player.Body);
     this.state.players.set(client.sessionId, player);

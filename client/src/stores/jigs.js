@@ -8,6 +8,8 @@ export const useJigsStore = defineStore("jigs", {
 
     playerId: 0,
 
+    profileId: 0,
+
     debug: 0,
 
     leave: 0,
@@ -160,6 +162,7 @@ Will you find my Balls?`,
 
           this.playerStats = response.data[0].value["player"];
           this.playerId = parseInt(response.data[0].value["player"]["id"]);
+          this.profileId = parseInt(response.data[0].value["player"]["profileId"]);
           this.playerName = response.data[0].value["player"]["name"];
 
           this.gameState = response.data[0].value["player"]["userState"];

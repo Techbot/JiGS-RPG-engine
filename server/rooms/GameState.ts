@@ -24,7 +24,8 @@ export class Player extends Schema {
   id: string;
   portal: number;
   Body: any;
-  playerId: any;
+  playerId: number;
+  profileId: number;
   lastX: number;
   lastY: number;
   p2Player: any;
