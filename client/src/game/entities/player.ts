@@ -107,9 +107,10 @@ export default class Player {
 
             if (self.jigs.mobShoot != 0) {
                 let bullet = self.bullets.get();
-                if (bullet) {
+               if (bullet) {
                     let offset = new Phaser.Geom.Point(0, -self.gun.height / 2);
-                    bullet.fire(self.gun);
+                   bullet.fire(self.gun);
+                   self.jigs.mobShoot = 0;
                 }
                 self.inputPayload.inputX = parseInt(event.worldX);
                 self.inputPayload.inputY = parseInt(event.worldY);

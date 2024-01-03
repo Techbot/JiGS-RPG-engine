@@ -8,67 +8,63 @@ export default class Mobs {
   jigs: any;
   walls: any;
   mobArray: any;
+  SceneMobHealthBarArray: Array<any>;
+  MobContainerArray: Array<any>;
+  mobGroup: any;
+  SceneMobArray: any;
 
   constructor() {
     this.jigs = useJigsStore();
+    this.SceneMobHealthBarArray = new Array;
+    this.MobContainerArray = new Array;
+    this.SceneMobArray = new Array;
   }
 
-  add(self) {
-    self.mobGroup = self.physics.add.group({ allowGravity: false });
-
+  add(scene) {
+    this.mobGroup = scene.physics.add.group({ allowGravity: false });
     if (typeof this.jigs.mobArray !== 'undefined') {
       let i = 0;
       while (i < this.jigs.mobArray.length) {
-        self.MobContainerArray[i] = self.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
-        //  this.add.existing(this.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4]));
+        this.MobContainerArray[i] = scene.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
 
+     //   this.SceneMobArray[i] = new Mob(scene, 0, 0, this.jigs.mobArray[i][4], this.jigs.mobArray[i][1]);
 
-         self.SceneMobArray[i] = self.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
+         this.SceneMobArray[i] = scene.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
           .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
           .setScale(.85)
-          .setData("levelindex", self.jigs.mobArray[i][1])
+          .setData("levelindex", this.jigs.mobArray[i][1])
           .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
 
-   //     self.SceneMobArray[i] = new Mob(self, this.jigs.mobArray[i].x, this.jigs.mobArray[i].y, this.jigs.mobArray[i].sprite);
-
-        self.SceneMobArray[i].anims.play('walkDown_mob' + self.jigs.mobArray[i][4]);
-        self.SceneMobHealthBarArray[i] = self.add.image(0, -30, 'healthBar');
-        self.SceneMobHealthBarArray[i].displayWidth = 25;
-        self.MobContainerArray[i].add(self.SceneMobArray[i]);
-        self.MobContainerArray[i].add(self.SceneMobHealthBarArray[i]);
-        self.MobContainerArray[i].setDepth(6);
-        self.mobGroup.add(self.MobContainerArray[i], true);
+        this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
+        this.SceneMobHealthBarArray[i] = scene.add.image(0, -30, 'healthBar');
+        this.SceneMobHealthBarArray[i].displayWidth = 25;
+        this.MobContainerArray[i].add(this.SceneMobArray[i]);
+        this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);
+        this.MobContainerArray[i].setDepth(6);
+        this.mobGroup.add(this.MobContainerArray[i], true);
         i++;
       }
     }
   }
-    /*   add(self) {
-        this.mobArray = self.physics.add.group({ allowGravity: false });
-        if (typeof this.jigs.mobArray !== 'undefined') {
-          let i = 0;
-          while (i < this.jigs.mobArray.length) {
-            self.MobContainerArray[i] = self.add.container(parseInt(self.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
-            self.add.existing(self.add.sprite(0, 0, 'mob' + self.jigs.mobArray[i][4]));
-            self.SceneMobArray[i] = self.add.sprite(0, 0, 'mob' + self.jigs.mobArray[i][4])
-              .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-              .setScale(.85)
-              .setData("levelindex", this.jigs.mobArray[i][1])
-              .on('pointerdown', self.onMobDown.bind(this, self.jigs.mobArray[i]));
-            self.SceneMobArray[i].anims.play('walkDown_mob' + self.jigs.mobArray[i][4]);
-            self.SceneMobHealthBarArray[i] = self.add.image(0, -30, 'healthBar');
-            self.SceneMobHealthBarArray[i].displayWidth = 25;
-            self.MobContainerArray[i].add(self.SceneMobArray[i]);
-            self.MobContainerArray[i].add(self.SceneMobHealthBarArray[i]);
-            self.MobContainerArray[i].setDepth(6);
-            self.mobArray.add(self.MobContainerArray[i], true);
-            i++;
-          }
-        }
-      } */
 
-    onMobDown(mob, img) {
-      this.jigs.mobClick = mob[1];
-      this.jigs.mobShoot = mob[1];
-      this.jigs.playerStats.credits++;
+  updateMobs(scene) {
+    let i = 0;
+    while (i < this.MobContainerArray.length) {
+      if (this.jigs.mobArray[i] != undefined) {
+        this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
+        this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
+        this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][6] / 4;
+      }
+      i++;
+    };
+  }
+
+  onMobDown(mob, img) {
+    this.jigs.mobClick = mob[1];
+    this.jigs.mobShoot = mob[1];
+    this.jigs.playerStats.credits++;
+    if (this.jigs.debug) {
+      console.log('mob clicked: ' + mob[1]);
     }
   }
+}
