@@ -98,6 +98,7 @@ Will you find my Balls?`,
 
     portalsArray: [],
     switchesArray: [],
+    foliosArray: [],
     wallsArray: [
   //    { x: 260, y: 440, width: 360, height:  10 },
   //    { x: 440, y: 190, width:  10, height: 480 },
@@ -173,6 +174,7 @@ Will you find my Balls?`,
           this.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
           this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
           this.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+          this.foliosArray = response.data[0].value["MapGrid"]["foliosArray"];
           this.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
           this.npcArray = response.data[0].value["MapGrid"]["npcArray"];
           if (incMob) {

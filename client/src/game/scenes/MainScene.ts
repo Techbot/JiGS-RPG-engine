@@ -14,11 +14,10 @@ import WebFont from '../../assets/WebFont'
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
+import axios from "axios";
 
 import Player from "../entities/player";
 import Messenger from "../entities/messenger";
-//import NPC from "../entities/npc";
-//import Mob from "../entities/mob";
 import Rewards from "../entities/rewards";
 import Load from "../entities/loader";
 import Portals from "../entities/portals";
@@ -26,16 +25,13 @@ import Switches from "../entities/switches";
 import NPCs from "../entities/npcs";
 import Mobs from "../entities/mobs";
 import Walls from "../entities/walls";
-import { createCharacterAnims } from "../entities/anim";
-import axios from "axios";
+import Folios from "../entities/folios";
 
 export class MainScene extends Phaser.Scene {
     room: Room;
     currentPlayer: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
     playerEntities: { [sessionId: string]: Phaser.Types.Physics.Arcade.ImageWithDynamicBody } = {};
     debugFPS: Phaser.GameObjects.Text;
-    //localRef: Phaser.GameObjects.Rectangle;
-    // remoteRef: Phaser.GameObjects.Rectangle;
     cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
     inputPayload = {
@@ -83,6 +79,7 @@ export class MainScene extends Phaser.Scene {
     Mobs: Mobs;
     NPCs: NPCs;
     Rewards: Rewards;
+    Folio: Folios;
 
     constructor() {
         super({ key: "main" });
@@ -94,6 +91,7 @@ export class MainScene extends Phaser.Scene {
         this.NPCs     = new NPCs;
         this.Mobs     = new Mobs;
         this.Rewards  = new Rewards;
+        this.Folio    = new Folios;
     }
 
     preload() {
@@ -130,7 +128,8 @@ export class MainScene extends Phaser.Scene {
                 this.Mobs.add(this);
                 this.Portals.add(this);
                 this.Switches.add(this);
-                this.Walls.add(self);
+                this.Walls.add(this);
+                this.Folio.add(this);
                 this.localPlayer.add(this, player, this.colliderMap);
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
@@ -192,6 +191,7 @@ export class MainScene extends Phaser.Scene {
         this.jigs.mapHeight     = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
         this.jigs.portalsArray  = response.data[0].value["MapGrid"]["portalsArray"];
         this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+        this.jigs.foliosArray   = response.data[0].value["MapGrid"]["foliosArray"];
         this.jigs.wallsArray    = response.data[0].value["MapGrid"]["wallsArray"];
         this.jigs.npcArray      = response.data[0].value["MapGrid"]["npcArray"];
         if (incMob) {

@@ -8,15 +8,8 @@ import axios from "axios";
 
 export default class Npc extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
-   // colliderMap: any;
-   // data: any;
-   // sprite: any;
-    //thing: any;
-    //anims: any;
-    //scone: any;
 
     constructor(scene, data) {
-
         console.log('data:' + data[3]);
         super(scene, 0, 0, 'npc' + data[3]);
         this.setTexture('npc' + data[3]);
@@ -24,13 +17,12 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
         this.setDepth(5)
         this.setScale(.85);
         this.anims.play('walkDown_npc' + data[3]);
-        this.on('pointerdown', this.onNPCDown.bind(scene, data,scene ));
+        this.on('pointerdown', this.onNPCDown.bind(scene, data, scene));
         this.loadNPC();
     }
 
-    onNPCDown(npc,scene) {
+    onNPCDown(npc, scene) {
         console.log("who" + npc);
-
         if (npc[5] == 1) {
             axios
                 .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
@@ -38,7 +30,6 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
                     console.log("why");
                     scene.hydrateMission(response);
                     scene.events.emit('Mission', npc);
-                    //   this.game.scene.start("main", 'myScene');
                 })
         }
         else {

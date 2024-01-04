@@ -80,6 +80,7 @@ class GameController extends ControllerBase
 
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
+
     $player                     = new Player();
     $responseData['player']     =  $player->create();
     $gameConfig                 = new Game();

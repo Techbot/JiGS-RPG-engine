@@ -40,6 +40,7 @@ class MapGrid
     $mapGrid['mobArray']      = $this->getMobs();
     $mapGrid['portalsArray']  = $this->getPortals();
     $mapGrid['switchesArray'] = $this->getSwitches();
+    $mapGrid['foliosArray']   = $this->getFolios();
     $mapGrid['wallsArray']    = $this->getWalls();
     $mapGrid['rewardsArray']  = $this->getRewards();
     $mapGrid['tileset']       = $this->getLayers();
@@ -77,6 +78,22 @@ class MapGrid
       ];
     }
     return $switches;
+  }
+
+  function getFolios()
+  {
+    $folios = [];
+    foreach ($this->MapGrid->field_folio->referencedEntities() as $folio) {
+      $FolioObject =  \Drupal::entityTypeManager()->getStorage('node')->load($folio->field_page->getValue()[0]['target_id']);
+      $folios[] = [
+        'id' => $folio->id->getValue()[0]['value'],
+        'node'=>$folio->field_page->getValue()[0]['target_id'],
+        'nodeBody'=>$FolioObject->get('body')->value,
+        'x' => (int)$folio->field_x->getValue()[0]['value'],
+        'y' => (int)$folio->field_y->getValue()[0]['value']
+      ];
+    }
+    return $folios;
   }
 
   function getRewards()

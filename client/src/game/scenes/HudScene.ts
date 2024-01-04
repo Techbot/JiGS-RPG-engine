@@ -1,5 +1,4 @@
 import { Scene } from 'phaser'
-import WebFont from '../../assets/WebFont'
 import { useJigsStore } from '../../stores/jigs'
 import Mission from '../entities/mission'
 
@@ -40,14 +39,6 @@ export class HudScene extends Scene {
   }
 
   preload() {
-    this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-    // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
-    this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-    this.load.image('cursor', '/assets/images/cursors/blank.cur');
-    this.load.image('cursor2', '/assets/images/cursors/attack.cur');
-    this.load.image('cursor3', '/assets/images/cursors/speak.cur');
-    this.load.image('cursor4', '/assets/images/cursors/blank.cur');
-    this.load.image('cursor4', '/assets/images/cursors/point.cur');
   }
   create() {
 
@@ -137,29 +128,9 @@ export class HudScene extends Scene {
     var textBox = scene.rexUI.add.textBox({
       x: 10,
       y: 480,
-      //background: scene.rexsUI.add.roundRectangle({ radius: 20, color: this.COLOR_PRIMARY, strokeColor: this.COLOR_LIGHT, strokeWidth: 2, backgroundColor: '#000000' }),
-
-      // icon: scene.rexUI.add.roundRectangle({ radius: 20, color: this.COLOR_DARK }),
-
-      // text: getBuiltInText(scene, wrapWidth, fixedWidth, fixedHeight),
       text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
-
       action: scene.add.image(0, 0, 'nextPage').setVisible(false),
-
       title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
-
-      // separator: (titleText) ? scene.rexUI.add.roundRectangle({ height: 3, color: this.COLOR_DARK }) : undefined,
-
-      // space: {
-      //   left: 0,
-      //   right: 0,
-      //   top: 0,
-      //   bottom: 0,
-      //   icon: 10,
-      //   text: 10,
-      //   separator: 6,
-      // },
-
       align: {
         title: 'left'
       }
@@ -198,23 +169,8 @@ export class HudScene extends Scene {
       .on('complete', function () {
         console.log('all pages typing complete')
       })
-    //.on('type', function () {
-    //})
     return textBox;
   }
-
-  // getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
-  //   return scene.add.text(0, 0, '', {
-  //     fontFamily: "sans serif",
-  //     fontWeight: 'bold',
-  //     fontSize: '24px',
-  //     fill: '#ffffff',
-  //     wordWrap: {
-  //         width: wrapWidth
-  //     },
-  //     maxLines: 3
-  //   }).setFixedSize(fixedWidth, fixedHeight);
-  // }
 
   getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
     return scene.rexUI.add.BBCodeText(0, 0, '', {
@@ -237,75 +193,17 @@ export class HudScene extends Scene {
       y: 260,
       width: 500,
       height: 400,
-
       // text: scene.add.text(),
       text: scene.rexUI.add.BBCodeText(),
       // textMask: true,
-
-      // slider: {
-      //   track: scene.rexUI.add.roundRectangle(0, 0, 20, 10, 10, this.COLOR_DARK),
-      //   thumb: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 13, this.COLOR_LIGHT),
-      // },
-
-      // space: {
-      //   left: 10,
-      //   right: 10,
-      //   top: 10,
-      //   bottom: 10,
-      //   text: 10,
-      //   // text: {
-      //   //     top: 20,
-      //   //     bottom: 20,
-      //   //     left: 20,
-      //   //     right: 20,
-      //   // },
-      //   header: 20,
-      //   footer: 20,
-      // },
-
       scroller: {
         pointerOutRelease: false,
       },
-
       mouseWheelScroller: {
         focus: false,
         speed: 0.1
       },
-
-      // header: scene.rexUI.add.label({
-      //   space: {
-      //     left: 10,
-      //     right: 10,
-      //     top: 10,
-      //     bottom: 10
-      //   },
-
-      //   orientation: 0,
-      //   background: scene.rexUI.add.roundRectangle(0, 0, 600, 50, 0, "#000000"),
-      //   text: scene.add.text(0, 0, 'Title'),
-      // }),
-
-      // footer: scene.rexUI.add.label({
-      //   space: {
-      //     left: 10,
-      //     right: 10,
-      //     top: 10,
-      //     bottom: 10
-      //   },
-
-      //   orientation: 0,
-      //   background: scene.rexUI.add.roundRectangle({
-      //       radius: 10,
-      //       color: this.COLOR_DARK,
-      //       strokeColor: this.COLOR_LIGHT
-      //   }),
-      //   text: scene.add.text(0, 0, 'Close'),
-      // }).onClick(function (button, gameObject, pointer, event) {
-      //   gameObject.getTopmostSizer().modalClose();
-      // }),
-
       content: this.jigs.content,
-
       expand: {
         footer: false
       }
