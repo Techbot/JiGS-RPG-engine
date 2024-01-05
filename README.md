@@ -3,14 +3,14 @@
 
 
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Not Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Almost Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
 
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot03.png)
 
 <h2>DEMO</h2>
 <ul>
- <li>The Eclectic Meme Conspiracy - Https://www.eclecticmeme.com</li>
+ <li>The Eclectic Meme Conspiracy - https://www.eclecticmeme.com</li>
  <li>Your server here</li>
  </ul>
 
@@ -176,7 +176,7 @@ Featurelist:
     <li> Secret Societies, Conspiracies and Guild politics </li>
 </ul>
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/image03.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/paragraph types.png)
 
 <ul>
    <li> Main Gameplay Screens</li>
@@ -205,7 +205,7 @@ Featurelist:
 <hr>
 <h2> Main Gameplay Screen</h2>
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/portal.gif)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/content.png)
 
 <h3>Default Modules:</h3>
 ![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
@@ -228,7 +228,7 @@ Featurelist:
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot01.png)
 Default Modules:
 
-![Wavy Lines](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
+![Wavy Lines](https://github.com/EMC23/JiGS/blob/master/images/content2.png)
 
 WavyLines is the Universe in action. All people receive numerous ESP messages from the people and world around them. Some messages are esoteric and obscure others are simple messages. Typical Messages would be “John increased one level” “John has converted to buddhism” “ A zombie horde attacks the outer villages.”
 
@@ -239,7 +239,7 @@ At one point this also collected spam, which had some interesting outcomes. This
 Messenger Module:
 This is a direct line between the player and the world. Typical messages would be “You picked up the rock”, “You increased one level”
 
-![WMessenger](https://github.com/EMC23/JiGS/blob/master/images/image06.png)
+
 
 <h3>Main View Option One</h3>
 
@@ -253,11 +253,11 @@ Grid: User Defined
 Uses cursor or button presses( see compass button) to move one tile at a time .
 Tiles 50 *50px
 
-![8X8 tiles](https://github.com/EMC23/JiGS/blob/master/images/image04.png)
+
 
 <h3>Character Creation</h3> [On hold]
 
-![Character Creation ](https://github.com/EMC23/JiGS/blob/master/images/image08.png)
+
 
 In the main views , players see themselves represented by webstyle  avatars as opposed to game style representations. This allows players to upload their own images. The conflict of styles creates part of the cut’paste aesthetic.
 Extended Character selection is on hold until third party plugin system is complete to allow for more varied character selection systems.
@@ -284,18 +284,18 @@ Each additional primary system is accessed via tabs and is identical in layout.
 <h3>Banks, Terminals, Banks and hacking</h3>
 Players and NPCs can hack and be hacked, causing grief, stealing bank account percentages and spreading viruses. There are three global banks each with their own interest rates ,security packages and insurance deals.
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/terminal.gif)
+
 
 <h3>Factories</h3>
 Screenshot from 2014-10-19 14:27:09.png
 
 Factories require blueprints, energy, workforce(hobbits) & materials to create objects - can be hacked/attacked.
 Objects vary in quality time and cost to produce.
-![Factories ](https://github.com/EMC23/JiGS/blob/master/images/image16.png)
+
+
 
 <h3>Farms</h3>
 
-![Farms ](https://github.com/EMC23/JiGS/blob/master/images/image03.png)
 
 Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
 
@@ -335,6 +335,7 @@ Screenshot from 2014-10-19 14:27:48.png
     Reprocessing
     Navigation
     Trade
+    
 ![Skills ](https://github.com/EMC23/JiGS/blob/master/images/image12.png)
 
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
