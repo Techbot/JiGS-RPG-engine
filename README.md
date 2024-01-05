@@ -176,7 +176,7 @@ Featurelist:
     <li> Secret Societies, Conspiracies and Guild politics </li>
 </ul>
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/paragraph types.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/paragraph_types.png)
 
 <ul>
    <li> Main Gameplay Screens</li>
