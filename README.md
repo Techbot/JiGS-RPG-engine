@@ -336,7 +336,7 @@ Screenshot from 2014-10-19 14:27:48.png
     Navigation
     Trade
     
-![Skills ](https://github.com/EMC23/JiGS/blob/master/images/image12.png)
+![Folio](https://github.com/EMC23/JiGS/blob/master/images/folioandonstacles.png)
 
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
