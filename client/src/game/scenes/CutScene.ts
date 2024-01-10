@@ -24,7 +24,7 @@ export class CutScene extends Phaser.Scene {
     console.log('blob');
 
 
-    this.jigs.foliosArray.array.forEach(element => {
+    this.jigs.foliosArray.forEach(element => {
       if (element.id = this.jigs.folioClicked){
         const data = element.nodeBody;
         this.addDom(data);
