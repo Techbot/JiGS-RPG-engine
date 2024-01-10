@@ -99,6 +99,7 @@ Will you find my Balls?`,
     portalsArray: [],
     switchesArray: [],
     foliosArray: [],
+    folioClicked: 0,
     wallsArray: [
   //    { x: 260, y: 440, width: 360, height:  10 },
   //    { x: 440, y: 190, width:  10, height: 480 },

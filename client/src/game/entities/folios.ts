@@ -10,7 +10,7 @@ export default class Folios {
 
         for (var index = 0; index < foliosArray.length; index++) {
             console.log("switch: " + foliosArray[index].x);
-            folios.add(new Folio(self, foliosArray[index].x, foliosArray[index].y), true);
+            folios.add(new Folio(self, foliosArray[index].x, foliosArray[index].y,foliosArray[index].id), true);
         }
     }
 }

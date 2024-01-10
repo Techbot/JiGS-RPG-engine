@@ -6,7 +6,7 @@ export default class Folio extends Phaser.Physics.Arcade.Sprite {
   jigs: any;
   mainScene:any;
 
-  constructor(mainScene, x, y) {
+  constructor(mainScene, x, y, id) {
 
     super(mainScene, x, y, 'book');
     this.jigs = useJigsStore();
@@ -14,12 +14,13 @@ export default class Folio extends Phaser.Physics.Arcade.Sprite {
     const stuff = 0;
     // this.pathIndex = 0;
     this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' });
-    this.on('pointerdown', this.onFolioDown.bind(this, this.mainScene));
+    this.on('pointerdown', this.onFolioDown.bind(this, this.mainScene,id));
     this.setDepth(6);
   }
 
-  onFolioDown(thing) {
+  onFolioDown(thing, id) {
     console.log('Book read');
+    this.jigs.folioClicked=id;
   //  this.scene.scene.start("CutScene");
     thing.scene.switch("CutScene","HudScene");
   //  this.scene.scene.start("CutScene");

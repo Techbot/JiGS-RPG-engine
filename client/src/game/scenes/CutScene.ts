@@ -22,11 +22,16 @@ export class CutScene extends Phaser.Scene {
 
   create() {
     console.log('blob');
-   const data = this.jigs.foliosArray[0].nodeBody;
 
-   this.dommy(data);
 
-    console.log(data);
+    this.jigs.foliosArray.array.forEach(element => {
+      if (element.id = this.jigs.folioClicked){
+        const data = element.nodeBody;
+        this.addDom(data);
+        console.log(data);
+      }
+    });
+
   }
 
   onCutsceneDown(){
@@ -46,8 +51,7 @@ texty(data){
     .on('pointerdown', this.onCutsceneDown.bind(this));
 }
 
-  dommy(data) {
-
+  addDom(data) {
     this.add.dom(450, 280, 'div', ' width: 820px; height: 300px; font: 14px Arial', data)
       .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
       .on('pointerdown', this.onCutsceneDown.bind(this));
