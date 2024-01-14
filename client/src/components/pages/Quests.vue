@@ -36,12 +36,12 @@ export default {
           <button class="accordion-button collapsed" type="button"
             data-coreui-toggle="collapse" data-coreui-target="#flush-collapseOne"
             aria-expanded="false" aria-controls="flush-collapseOne">
-              Id: {{ quest.id }} => Name: {{ quest.title }}
+              Id: {{ quest.id }} => Name: {{ quest.title ? quest.title : 'Quest Title' }}
           </button>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse"
           data-coreui-parent="#accordionFlushExample">
-          <div class="accordion-body">{{ quest.content }}</div>
+          <div class="accordion-body">{{ quest.content ? quest.content : 'Content of the quest.' }}</div>
         </div>
       </div>
     </div>
