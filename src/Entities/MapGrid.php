@@ -74,7 +74,11 @@ class MapGrid
         'off' => $switch->field_switch_off->getValue()[0]['value'],
         'on' =>  $switch->field_switch_on->getValue()[0]['value'],
         'x' => (int)$switch->field_x->getValue()[0]['value'],
-        'y' => (int)$switch->field_y->getValue()[0]['value']
+        'y' => (int)$switch->field_y->getValue()[0]['value'],
+        'file' =>  $switch->field_file->getValue()[0]['value'],
+        'frameHeight' => (int)$switch->field_frameheight->getValue()[0]['value'],
+        'frameWidth' => (int)$switch->field_framewidth->getValue()[0]['value'],
+        'numberOfFrames' => (int)$switch->field_number_of_frames->getValue()[0]['value'],
       ];
     }
     return $switches;
