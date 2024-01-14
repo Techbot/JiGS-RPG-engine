@@ -6,7 +6,7 @@ import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
 import Layers from "../entities/layers";
 import { createCharacterAnims } from "../entities/anim";
-
+import { createSwitchesAnims } from "../entities/anim";
 export default class Load {
 
     jigs: any;
@@ -28,12 +28,9 @@ export default class Load {
         self.load.image('black', '/assets/images/black.png');
         self.load.image('pink', '/assets/images/pink.png');
 
-        this.jigs.switchesArray.forEach(function loader(switchItem) {
-            self.load.image(switchItem.on, '/assets/images/System/' + switchItem.on  + '.png');
-            self.load.image(switchItem.off, '/assets/images/System/' + switchItem.off + '.png');
-        });
 
         self.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
+
 
         this.jigs.tilesetArray_1.forEach(function loader(image) {
             if (!textureManager.exists(image)) {
@@ -68,6 +65,14 @@ export default class Load {
                 self.load.spritesheet('mob' + Mob[4], '/assets/images/sprites/' + Mob[4] + '.png', { frameWidth: 64, frameHeight: 64 });
             }, this);
         }
+        this.jigs.switchesArray.forEach(function loader(switchItem) {
+            //self.load.image(switchItem.on, '/assets/images/System/' + switchItem.on + '.png');
+            //self.load.image(switchItem.off, '/assets/images/System/' + switchItem.off + '.png');
+            console.log('load ' + switchItem.id);
+           self.load.spritesheet('switch_' + switchItem.id, '/assets/images/animations/' + switchItem.file + '.png',{ frameWidth: switchItem.frameWidth, frameHeight: switchItem.frameHeight });
+         //   self.load.spritesheet('switch_' + switchItem.id, '/assets/images/animations/' + switchItem.file + '.png', 32, 32 );
+
+        });
 
         self.load.once(Phaser.Loader.Events.COMPLETE, () => {
             // texture loaded so use instead of the placeholder
@@ -79,6 +84,7 @@ export default class Load {
             createCharacterAnims(self.anims, 'PsibotM_slash','slash_oversize');
             createCharacterAnims(self.anims, 'otherPlayer','default');
 
+
             if (this.jigs.npcArray) {
                 this.jigs.npcArray.forEach(function loader(Npc) {
                     createCharacterAnims(self.anims, 'npc' + Npc[3],'default');
@@ -88,6 +94,13 @@ export default class Load {
             if (this.jigs.mobArray) {
                 this.jigs.mobArray.forEach(function loader(mob) {
                     createCharacterAnims(self.anims, 'mob' + mob[4],'default');
+                });
+            }
+
+            if (this.jigs.switchesArray) {
+                this.jigs.switchesArray.forEach(function loader(switches) {
+               //     createSwitchesAnims(self.anims, 'switchAnim_' + switches.id, switches.numberOfFrames);
+                    createSwitchesAnims(self.anims, 'switch_'     + switches.id, 'switchAnim_' + switches.id,  6);
                 });
             }
             return self;

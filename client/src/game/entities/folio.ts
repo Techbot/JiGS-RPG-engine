@@ -20,9 +20,8 @@ export default class Folio extends Phaser.Physics.Arcade.Sprite {
 
   onFolioDown(thing, id) {
     console.log('Book read');
-    this.jigs.folioClicked=id;
+    this.jigs.folioClicked = id;
   //  this.scene.scene.start("CutScene");
     thing.scene.switch("CutScene","HudScene");
-  //  this.scene.scene.start("CutScene");
   }
 }

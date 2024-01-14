@@ -9,7 +9,6 @@ export default class Folios {
         const folios = self.physics.add.group({ allowGravity: false });
 
         for (var index = 0; index < foliosArray.length; index++) {
-            console.log("switch: " + foliosArray[index].x);
             folios.add(new Folio(self, foliosArray[index].x, foliosArray[index].y,foliosArray[index].id), true);
         }
     }
