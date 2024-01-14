@@ -124,15 +124,29 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
         });
     }
 }
-const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager, entity, texture, numberOfFrames) => {
+const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager, entity, texture, switchType,repeat) => {
 
+
+
+    if (switchType==1){
         console.log('create ' + texture);
         anims.create({
             key: texture,
             frames: anims.generateFrameNumbers(entity, { frames: [1, 2, 3] }),
             frameRate: 12,
-            repeat: -1
+            repeat: repeat
         });
+    }
+
+    if (switchType == 2) {
+        console.log('create ' + texture);
+        anims.create({
+            key: texture,
+            frames: anims.generateFrameNumbers(entity, { frames: [5, 6, 7] }),
+            frameRate: 12,
+            repeat: repeat
+        });
+    }
 
 }
 
