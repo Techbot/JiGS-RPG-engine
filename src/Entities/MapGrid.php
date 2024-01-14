@@ -79,6 +79,8 @@ class MapGrid
         'frameHeight' => (int)$switch->field_frameheight->getValue()[0]['value'],
         'frameWidth' => (int)$switch->field_framewidth->getValue()[0]['value'],
         'numberOfFrames' => (int)$switch->field_number_of_frames->getValue()[0]['value'],
+        'type' => (int)$switch->field_switch_type->getValue()[0]['value'],
+        'repeat' => (int)$switch->field_repeatable->getValue()[0]['value'],
       ];
     }
     return $switches;
