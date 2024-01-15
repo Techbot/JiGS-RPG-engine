@@ -101,7 +101,6 @@ export class MainScene extends Phaser.Scene {
         this.Loader.load(self);
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
-        // this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
