@@ -1,6 +1,7 @@
 import { Scene } from 'phaser'
 import { useJigsStore } from '../../stores/jigs'
 import Mission from '../entities/mission'
+import WebFont from '../../assets/WebFont'
 
 export class HudScene extends Scene {
   jigs: any;
@@ -39,6 +40,8 @@ export class HudScene extends Scene {
   }
 
   preload() {
+    this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
+    this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
   }
   create() {
 
