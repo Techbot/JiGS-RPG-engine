@@ -40,14 +40,12 @@ export default class Player {
         self.physics.world.enable([this.entity]);
         self.cameras.main.startFollow(this.entity);
         self.currentPlayer = this.entity;
-
         if (this.jigs.debug) {
             self.localRef = self.add.rectangle(0, 0, 32, 40).setDepth(7);
             self.localRef.setStrokeStyle(1, 0x00ff00);
             self.remoteRef = self.add.rectangle(0, 0, 32, 40).setDepth(8);
             self.remoteRef.setStrokeStyle(1, 0xff0000);
         }
-
         player.onChange(() => {
             if (this.jigs.debug) {
                 self.remoteRef.x = player.x;
@@ -60,9 +58,7 @@ export default class Player {
 
         var cam = self.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
-
         //this.drones.add(self, player.x, player.y);
-
         self.gun       = self.physics.add.image(player.x, player.y, 'gun');
         self.key_left  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

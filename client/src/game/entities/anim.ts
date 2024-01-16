@@ -126,28 +126,112 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entity,
 }
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager, entity, texture, switchType,repeat) => {
 
-
-
     if (switchType==1){
         console.log('create ' + texture);
         anims.create({
-            key: texture,
-            frames: anims.generateFrameNumbers(entity, { frames: [1, 2, 3] }),
+            key: texture + 'On',
+            frames: anims.generateFrameNumbers(entity, { frames: [0,1,2,3,4,5,6,7,8,9,10,11] }),
             frameRate: 12,
             repeat: repeat
         });
+
+        anims.create({
+            key: texture + 'Off',
+            frames: anims.generateFrameNumbers(entity, { frames: [11] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
     }
 
     if (switchType == 2) {
         console.log('create ' + texture);
         anims.create({
-            key: texture,
-            frames: anims.generateFrameNumbers(entity, { frames: [5, 6, 7] }),
+            key: texture + 'On',
+            frames: anims.generateFrameNumbers(entity, { frames: [1] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
+        anims.create({
+            key: texture + 'Off',
+            frames: anims.generateFrameNumbers(entity, { frames: [1,4,7,10] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
+    }
+
+    if (switchType == 3) {
+        console.log('create ' + texture);
+        anims.create({
+            key: texture + 'On',
+            frames: anims.generateFrameNumbers(entity, { frames: [0, 1, 2, 3, 4, 5, 6, 7, 8] }),
             frameRate: 12,
             repeat: repeat
         });
+
+        anims.create({
+            key: texture + 'Off',
+            frames: anims.generateFrameNumbers(entity, { frames: [11] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
     }
 
+    if (switchType == 4) {
+        console.log('create ' + texture);
+        anims.create({
+            key: texture + 'On',
+            frames: anims.generateFrameNumbers(entity, { frames: [0] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
+        anims.create({
+            key: texture + 'Off',
+            frames: anims.generateFrameNumbers(entity, { frames: [0,3,6,9] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
+    }
+
+    if (switchType == 5) {
+        console.log('create ' + texture);
+        anims.create({
+            key: texture + 'On',
+            frames: anims.generateFrameNumbers(entity, { frames: [0, 3, 6, 10] }),
+            frameRate: 12,
+            repeat: repeat
+        });
+
+        anims.create({
+            key: texture + 'Off',
+            frames: anims.generateFrameNumbers(entity, { frames: [3] }),
+            frameRate: 12,
+            repeat: 0
+        });
+
+    }
+
+    if (switchType == 6) {
+        console.log('create ' + texture);
+        anims.create({
+            key: texture + 'On',
+            frames: anims.generateFrameNumbers(entity, { frames: [0, 1, 2, 3,4,5] }),
+            frameRate: 12,
+            repeat: repeat
+        });
+
+        anims.create({
+            key: texture + 'Off',
+            frames: anims.generateFrameNumbers(entity, { frames: [3] }),
+            frameRate: 12,
+            repeat: 0
+        });
+    }
 }
 
 export {

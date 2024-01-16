@@ -18,28 +18,21 @@ export default class NPCs {
 
   add(self) {
     self.npcGroup = self.physics.add.group({ allowGravity: false });
-
     if (typeof this.jigs.npcArray !== 'undefined') {
       let i = 0;
-
       while (i < this.jigs.npcArray.length) {
         this.NpcContainerArray[i] = self.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
-
         this.SceneNpcArray[i] = new Npc(self, this.jigs.npcArray[i]);
-
         this.SceneNpcNameArray[i] = self.add.text(10, -10, this.jigs.npcArray[i][0], {
           font: "12px Neutron Demo",
           fill: 'white',
           fontStyle: 'strong',
           backgroundColor: 'rgba(0, 0, 0, 0.6)',
         }).setPadding({ left: 1, right: 1, top: 1, bottom: 1 });
-
         this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
         this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
-
         this.NpcContainerArray[i].setDepth(5);
         this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
-
         self.npcGroup.add(this.NpcContainerArray[i], true);
         console.log("add container " + this.jigs.npcArray[i][0]);
         i++;

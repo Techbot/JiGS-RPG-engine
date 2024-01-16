@@ -8,7 +8,12 @@ export default class Switches {
         const switchesArray = self.jigs.switchesArray;
         const switches = self.physics.add.group({ allowGravity: false });
         for (var index = 0; index < switchesArray.length; index++) {
-            switches.add(new Switch(self, switchesArray[index].x, switchesArray[index].y, switchesArray[index].id), true);
+            switches.add(new Switch(self,
+                switchesArray[index].x,
+                switchesArray[index].y,
+                switchesArray[index].id,
+                switchesArray[index].startFrame
+                ), true);
         }
     }
 }

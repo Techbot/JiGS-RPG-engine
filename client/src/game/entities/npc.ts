@@ -1,5 +1,5 @@
 /**
- * -------Layers ---------
+ * -------NPC ---------
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';

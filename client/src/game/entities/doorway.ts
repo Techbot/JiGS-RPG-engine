@@ -6,6 +6,4 @@ export default class Doorway extends Phaser.Physics.Arcade.Sprite {
     this.pathIndex = 0;
   }
 
-  preUpdate(time, delta) {
-  }
 }

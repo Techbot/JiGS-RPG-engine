@@ -1,5 +1,5 @@
 /**
- * -------Mobs ---------
+ * -------Rewards ---------
  */
 import Reward from "./reward";
 import { useJigsStore } from '../../stores/jigs';

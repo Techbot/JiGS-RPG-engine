@@ -11,8 +11,6 @@ export default class Messenger {
     });
 
     self.room.onMessage("collide", (message) => {
-      //  self.currentPlayer.y = self.remoteRef.y;
-      //  self.currentPlayer.x = self.remoteRef.x;
       let i = 0;
       while (i < self.jigs.mobArray.length) {
       //  self.MobContainerArray[i].x = self.jigs.mobArray[i][1];
@@ -30,8 +28,6 @@ export default class Messenger {
     });
 
     self.room.onMessage("reward", (message) => {
-      //   self.currentPlayer.y = self.remoteRef.y;
-      //   self.currentPlayer.x = self.remoteRef.x;
       self.jigs.playerStats.credits++;
       //   this.incrementReward();
     });
