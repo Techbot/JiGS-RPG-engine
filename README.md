@@ -11,6 +11,7 @@
 <h2>DEMO</h2>
 <ul>
  <li>The Eclectic Meme Conspiracy - https://www.eclecticmeme.com</li>
+ <li>JiGS DEMO Site - http://jigs.tilaa.cloud</li>
  <li>Your server here</li>
  </ul>
 
