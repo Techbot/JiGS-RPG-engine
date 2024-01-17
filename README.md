@@ -3,7 +3,7 @@
 
 
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Almost Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
 
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot03.png)
