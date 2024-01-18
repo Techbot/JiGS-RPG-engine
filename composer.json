@@ -1,5 +1,5 @@
 {
-    "name": "Techbot/JiGS-RPG-engine",
+    "name": "techbot/jigs-rpg-engine",
     "type": "plugin",
     "autoload": {
         "psr-4": {
