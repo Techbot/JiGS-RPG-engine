@@ -10,14 +10,14 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
 
     constructor(scene, data) {
-        console.log('data:' + data[3]);
-        super(scene, 0, 0, 'npc' + data[3]);
+        super(scene, 0, 0, null);
+        scene.add.sprite(0, 0);
         this.setTexture('npc' + data[3]);
         this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-        this.setDepth(5)
-        this.setScale(.85);
         this.play('walkDown_npc' + data[3]);
+        this.setScale(.85);
         this.on('pointerdown', this.onNPCDown.bind(scene, data, scene));
+        this.setDepth(5)
         this.loadNPC();
     }
 

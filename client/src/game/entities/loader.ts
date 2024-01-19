@@ -1,5 +1,5 @@
 /**
- * -------Sprites ---------
+ * -------Loader ---------
  */
 
 import Phaser from "phaser";
@@ -37,20 +37,20 @@ export default class Load {
 
         this.jigs.tilesetArray_2.forEach(function loader(image) {
             if (!textureManager.exists(image)) {
-            self.load.image(image, '/assets/images/System/' + image + '.png');
+                self.load.image(image, '/assets/images/System/' + image + '.png');
             }
         }, this);
 
         this.jigs.tilesetArray_3.forEach(function loader(image) {
             if (!textureManager.exists(image)) {
-            self.load.image(image, '/assets/images/System/' + image + '.png');
+                self.load.image(image, '/assets/images/System/' + image + '.png');
             }
         }, this);
 
         if (this.jigs.tilesetArray_4 !== undefined) {
             this.jigs.tilesetArray_4.forEach(function loader(image) {
                 if (!textureManager.exists(image)) {
-                self.load.image(image, '/assets/images/System/' + image + '.png');
+                    self.load.image(image, '/assets/images/System/' + image + '.png');
                 }
             }, this);
         }
@@ -66,39 +66,39 @@ export default class Load {
                 self.load.spritesheet('mob' + Mob[4], '/assets/images/sprites/' + Mob[4] + '.png', { frameWidth: 64, frameHeight: 64 });
             }, this);
         }
-        
+
         this.jigs.switchesArray.forEach(function loader(switchItem) {
-           self.load.spritesheet('switch_' + switchItem.id, '/assets/images/animations/' + switchItem.file + '.png',
-           { frameWidth: switchItem.frameWidth, frameHeight: switchItem.frameHeight });
+            self.load.spritesheet('switch_' + switchItem.id, '/assets/images/animations/' + switchItem.file + '.png',
+                { frameWidth: switchItem.frameWidth, frameHeight: switchItem.frameHeight });
         });
 
         self.load.once(Phaser.Loader.Events.COMPLETE, () => {
             // texture loaded so use instead of the placeholder
             const Layer = new Layers;
             Layer.loadLayers(self);
-            createCharacterAnims(self.anims, 'PsibotF','slash_oversize');
+            createCharacterAnims(self.anims, 'PsibotF', 'slash_oversize');
             createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize');
             createCharacterAnims(self.anims, 'PsibotM', 'slash_oversize');
-            createCharacterAnims(self.anims, 'PsibotM_slash','slash_oversize');
-            createCharacterAnims(self.anims, 'otherPlayer','default');
+            createCharacterAnims(self.anims, 'PsibotM_slash', 'slash_oversize');
+            createCharacterAnims(self.anims, 'otherPlayer', 'default');
             if (this.jigs.npcArray) {
                 this.jigs.npcArray.forEach(function loader(Npc) {
-                    createCharacterAnims(self.anims, 'npc' + Npc[3],'default');
+                    createCharacterAnims(self.anims, 'npc' + Npc[3], 'default');
                 });
             }
             if (this.jigs.mobArray) {
                 this.jigs.mobArray.forEach(function loader(mob) {
-                    createCharacterAnims(self.anims, 'mob' + mob[4],'default');
+                    createCharacterAnims(self.anims, 'mob' + mob[4], 'default');
                 });
             }
             if (this.jigs.switchesArray) {
                 this.jigs.switchesArray.forEach(function loader(switches) {
                     createSwitchesAnims(self.anims,
                         'switch_' + switches.id,
-                         'switchAnim_' + switches.id,
-                         switches.type,
-                         switches.repeat
-                         );
+                        'switchAnim_' + switches.id,
+                        switches.type,
+                        switches.repeat
+                    );
                 });
             }
             return self;

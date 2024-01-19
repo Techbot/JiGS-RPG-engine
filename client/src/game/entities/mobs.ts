@@ -1,5 +1,5 @@
 /**
- * -------Mobs ---------
+ * ------- Mobs ---------
  */
 import Mob from "./mob";
 import { useJigsStore } from '../../stores/jigs';
@@ -20,23 +20,15 @@ export default class Mobs {
     this.SceneMobArray = new Array;
   }
 
-  add(scene) {
-    this.mobGroup = scene.physics.add.group({ allowGravity: false });
+  add(self) {
+    this.mobGroup = self.physics.add.group({ allowGravity: false });
     if (typeof this.jigs.mobArray !== 'undefined') {
       let i = 0;
       while (i < this.jigs.mobArray.length) {
-        this.MobContainerArray[i] = scene.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
-
-     //   this.SceneMobArray[i] = new Mob(scene, 0, 0, this.jigs.mobArray[i][4], this.jigs.mobArray[i][1]);
-
-         this.SceneMobArray[i] = scene.add.sprite(0, 0, 'mob' + this.jigs.mobArray[i][4])
-          .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-          .setScale(.85)
-          .setData("levelindex", this.jigs.mobArray[i][1])
-          .on('pointerdown', this.onMobDown.bind(this, this.jigs.mobArray[i]));
-
-        this.SceneMobArray[i].anims.play('walkDown_mob' + this.jigs.mobArray[i][4]);
-        this.SceneMobHealthBarArray[i] = scene.add.image(0, -30, 'healthBar');
+        this.MobContainerArray[i] = self.add.container(parseInt(this.jigs.mobArray[i][2]), parseInt(this.jigs.mobArray[i][3]));
+        this.SceneMobArray[i] = new Mob(self, 0, 0, this.jigs.mobArray[i][4], this.jigs.mobArray[i][1]);
+        self.add.existing(this.SceneMobArray[i]);
+        this.SceneMobHealthBarArray[i] = self.add.image(0, -30, 'healthBar');
         this.SceneMobHealthBarArray[i].displayWidth = 25;
         this.MobContainerArray[i].add(this.SceneMobArray[i]);
         this.MobContainerArray[i].add(this.SceneMobHealthBarArray[i]);

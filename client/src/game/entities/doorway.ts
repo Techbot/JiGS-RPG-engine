@@ -1,3 +1,6 @@
+/**
+ * ------- Doorway ---------
+ */
 import Phaser from "phaser";
 
 export default class Doorway extends Phaser.Physics.Arcade.Sprite {

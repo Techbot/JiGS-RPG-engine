@@ -1,5 +1,5 @@
 /**
- * -------Layers ---------
+ * ------- Layers ---------
  */
 import { useJigsStore } from '../../stores/jigs';
 

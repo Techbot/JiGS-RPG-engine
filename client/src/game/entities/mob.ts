@@ -1,32 +1,30 @@
 /**
- * -------Mob ---------
+ * ------- Mob ---------
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
-import { createCharacterAnims } from "../entities/anim";
 
-export default class Mob {
+
+export default class Mob extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
-    colliderMap: any;
-    data: any;
-    sprite: any;
-    anims: any;
 
     constructor(scene, x, y, sprite, name) {
-       scene.add.sprite(0, 0, 'mob' + sprite);
-   /*      .setTexture('mob' + sprite)
-        .setDepth(6)
-        .setPosition(parseInt(x), parseInt(y))
-        .setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
-        .setScale(.85)
-        .on('pointerdown', this.onMobDown.bind(this, name)); */
-       // this.loadMob(sprite);
+        super(scene, x, y, null);
+        scene.add.sprite(x, y);
+        this.jigs = useJigsStore();
+        this.setTexture('mob' + sprite)
+        this.play('walkDown_mob' + sprite);
+        this.setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
+        this.setScale(.85)
+        this.on('pointerdown', this.onMobDown.bind(this, name));
+        this.loadMob(sprite);
+        this.setDepth(6);
     }
 
     onMobDown(name) {
         this.jigs.mobClick = name;
         this.jigs.mobShoot = name;
-        // this.jigs.playerStats.credits++;
+        this.jigs.playerStats.credits++;
         if (this.jigs.debug) {
             console.log('mob clicked: ' + name);
         }
@@ -35,6 +33,4 @@ export default class Mob {
     loadMob(sprite) {
         console.log('mob added' + sprite);
     }
-
 }
-

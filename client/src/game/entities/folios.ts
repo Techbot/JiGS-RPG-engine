@@ -1,5 +1,5 @@
 /**
- * -------Folios ---------
+ * ------- Folios ---------
  */
 import Folio from "./folio";
 

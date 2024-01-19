@@ -1,3 +1,6 @@
+/**
+ * ------- Drone ---------
+ */
 import Phaser from "phaser";
 
 export default class Drone extends Phaser.Physics.Arcade.Sprite {
@@ -9,6 +12,7 @@ export default class Drone extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, width, height, speed) {
     super(scene, x, y, 'star');
     //  This is the path the sprite will follow
+    //     scene.add.existing(this);
     this.path = new Phaser.Curves.Ellipse(x, y, width, height);
     this.pathIndex = 0;
     this.pathSpeed = speed;

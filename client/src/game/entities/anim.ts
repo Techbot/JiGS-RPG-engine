@@ -1,5 +1,5 @@
 /**
- * -------Anim ---------
+ * ------- Anim ---------
  */
 
 import Phaser from 'phaser'

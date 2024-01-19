@@ -71,8 +71,6 @@ class MapGrid
       $switches[] = [
         'id' => $switch->id->getValue()[0]['value'],
         // 'id' => $switch->field_switch_id->getValue()[0]['value'],
-        'off' => $switch->field_switch_off->getValue()[0]['value'],
-        'on' =>  $switch->field_switch_on->getValue()[0]['value'],
         'x' => (int)$switch->field_x->getValue()[0]['value'],
         'y' => (int)$switch->field_y->getValue()[0]['value'],
         'file' =>  $switch->field_file->getValue()[0]['value'],
@@ -81,6 +79,8 @@ class MapGrid
         'numberOfFrames' => (int)$switch->field_number_of_frames->getValue()[0]['value'],
         'type' => (int)$switch->field_switch_type->getValue()[0]['value'],
         'repeat' => (int)$switch->field_repeatable->getValue()[0]['value'],
+        'startFrame' => (int)$switch->field_starting_frame->getValue()[0]['value'],
+        'endFrame' => (int)$switch->field_end_frame->getValue()[0]['value'],
       ];
     }
     return $switches;

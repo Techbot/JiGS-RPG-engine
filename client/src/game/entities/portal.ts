@@ -1,3 +1,6 @@
+/**
+ * -------Portals ---------
+ */
 import Phaser from "phaser";
 
 export default class Portal extends Phaser.Physics.Arcade.Sprite {

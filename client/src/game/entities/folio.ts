@@ -1,3 +1,6 @@
+/**
+ * ------- Folio ---------
+ */
 import Phaser from "phaser";
 //import { Scene } from 'phaser'
 import { useJigsStore } from '../../stores/jigs';

@@ -12,7 +12,6 @@ export default class Bullet extends Phaser.Physics.Arcade.Image {
         super(scene, 0, 0,"bullet");
         Phaser.Physics.Arcade.Image.call(this, scene, 0, 0, "bullet");
         scene.physics.add.overlap(scene.Mobs.MobContainerArray, this, this.killBullet, null, this);
-    //    this.speed = Phaser.Math.GetSpeed(400, 1);
         this.speed = 400;
     }
 

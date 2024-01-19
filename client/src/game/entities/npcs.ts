@@ -1,3 +1,6 @@
+/**
+ * -------NPCs ---------
+ */
 import Npc from "./npc";
 import { useJigsStore } from '../../stores/jigs';
 import axios from "axios";
@@ -23,6 +26,7 @@ export default class NPCs {
       while (i < this.jigs.npcArray.length) {
         this.NpcContainerArray[i] = self.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
         this.SceneNpcArray[i] = new Npc(self, this.jigs.npcArray[i]);
+
         this.SceneNpcNameArray[i] = self.add.text(10, -10, this.jigs.npcArray[i][0], {
           font: "12px Neutron Demo",
           fill: 'white',

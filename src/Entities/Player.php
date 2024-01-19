@@ -38,10 +38,6 @@ class Player
         $query                 = $this->database->query("SELECT field_health_value FROM profile__field_health WHERE entity_id= " .$player['profileId']);
         $player['health']      = $query->fetchAll()[0]->field_health_value;
         $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " .$player['profileId']);
-
-
-
-
         $profile = $this->user->get('player_profiles')->entity;
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff

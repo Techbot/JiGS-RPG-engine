@@ -1,5 +1,5 @@
 /**
- * -------Sprites ---------
+ * -------Player ---------
  */
 import Phaser from "phaser";
 import Drones from "../entities/drones";
@@ -10,20 +10,21 @@ export default class Player {
 
     colliderMap: any;
     light: any;
-  //  drones: any;
+    drones: any;
     jigs: any;
     room: any;
     scene: any;
     staticNum: number;
     walls: any;
-    entity:any;
+    entity: any;
+    gun: any;
 
-    constructor(self,room, scene,player) {
+    constructor(self, room, scene, player) {
         this.room = room;
         this.scene = scene;
         this.jigs = useJigsStore();
-    //    this.drones = new Drones(self,player.x, player.y);
         this.staticNum = 0;
+
         this.entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
             .setDepth(7)
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
@@ -32,14 +33,18 @@ export default class Player {
 
     }
 
-    add(self, player,  colliderMap) {
+    add(self, player, colliderMap) {
         this.colliderMap = colliderMap
         this.light = self.lights.addLight(player.x, player.y, 200);
+        this.gun = self.physics.add.image(player.x, player.y, 'gun');
         self.lights.enable().setAmbientColor(0x555555);
         self.physics.add.existing(this.entity);
         self.physics.world.enable([this.entity]);
         self.cameras.main.startFollow(this.entity);
         self.currentPlayer = this.entity;
+        this.drones = new Drones(self, player.x, player.y);
+        //    this.drones.add(self, player.x, player.y);
+
         if (this.jigs.debug) {
             self.localRef = self.add.rectangle(0, 0, 32, 40).setDepth(7);
             self.localRef.setStrokeStyle(1, 0x00ff00);
@@ -58,13 +63,12 @@ export default class Player {
 
         var cam = self.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
-        //this.drones.add(self, player.x, player.y);
-        self.gun       = self.physics.add.image(player.x, player.y, 'gun');
-        self.key_left  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+
+        self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        self.key_up    = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        self.key_down  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        self.bullets   = self.physics.add.group({
+        self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        self.bullets = self.physics.add.group({
             classType: Bullet,
             maxSize: 10,
             runChildUpdate: true,
@@ -98,20 +102,22 @@ export default class Player {
                     self.currentPlayer.playAfterRepeat('walkDown_' + self.jigs.playerStats.sprite_sheet);
                 }
             }
+            else {
+                self.currentPlayer.anims.play('thrustDown_' + self.jigs.playerStats.sprite_sheet + '_slash');
+            }
 
-            self.gun.angle = Math.atan2(parseInt(event.worldY) - self.gun.y, parseInt(event.worldX) - self.gun.x) * 180 / Math.PI;
+            this.gun.angle = Math.atan2(parseInt(event.worldY) - this.gun.y, parseInt(event.worldX) - this.gun.x) * 180 / Math.PI;
 
             if (self.jigs.mobShoot != 0) {
                 let bullet = self.bullets.get();
-               if (bullet) {
-                    let offset = new Phaser.Geom.Point(0, -self.gun.height / 2);
-                   bullet.fire(self.gun);
-                   self.jigs.mobShoot = 0;
+                if (bullet) {
+                    let offset = new Phaser.Geom.Point(0, -this.gun.height / 2);
+                    bullet.fire(this.gun);
+                    self.jigs.mobShoot = 0;
                 }
                 self.inputPayload.inputX = parseInt(event.worldX);
                 self.inputPayload.inputY = parseInt(event.worldY);
             }
-            //    }
         });
     }
 
@@ -159,7 +165,6 @@ export default class Player {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x - 16, self.currentPlayer.y, true);
             if (tile) {
                 self.currentPlayer.setVelocityX(-velocity);
-              //  this.lerp(self);
             }
             else {
                 self.currentPlayer.x -= velocity;
@@ -174,7 +179,6 @@ export default class Player {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x + 16, self.currentPlayer.y, true);
             if (tile) {
                 self.currentPlayer.setVelocityX(velocity);
-            //    this.lerp(self);
             }
             else {
                 self.currentPlayer.x += velocity;
@@ -189,7 +193,6 @@ export default class Player {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y - 16, true);
             if (tile) {
                 self.currentPlayer.setVelocityY(-velocity);
-             //   this.lerp(self);
             }
             else {
                 self.currentPlayer.y -= velocity;
@@ -204,7 +207,6 @@ export default class Player {
             const tile = this.colliderMap.getTileAtWorldXY(self.currentPlayer.x, self.currentPlayer.y + 16, true);
             if (tile) {
                 self.currentPlayer.setVelocityY(velocity);
-              //  this.lerp(self);
             }
             else {
                 self.currentPlayer.y += velocity;
@@ -217,8 +219,8 @@ export default class Player {
         }
 
         this.jigs.mobClick = 0;
-        self.gun.x = self.currentPlayer.x;
-        self.gun.y = self.currentPlayer.y;
+        this.gun.x = self.currentPlayer.x;
+        this.gun.y = self.currentPlayer.y;
         if (this.jigs.debug) {
             self.localRef.x = self.currentPlayer.x;
             self.localRef.y = self.currentPlayer.y;
@@ -226,9 +228,9 @@ export default class Player {
         this.light.x = self.currentPlayer.x;
         this.light.y = self.currentPlayer.y;
 
-     //   this.drones.children.iterate(drone => {
-          //  drone.bilbob(self.currentPlayer.x, self.currentPlayer.y);
-   //     });
+        this.drones.dronesGroup.children.each(function (drone) {
+            drone.bilbob(self.currentPlayer.x, self.currentPlayer.y);
+        }, this);
 
         ////////////////////////////////////////////////////////////////////////////////
         //  Dispatch a Scene event
@@ -236,27 +238,23 @@ export default class Player {
     }
 
     async lerp(self) {
-
-      //  self.physics.world.collide(this.entity, self.Walls.walls);
-
         if (this.staticNum == 0) {
             this.staticNum = 1;
             console.log('lerping');
-            if (self.currentPlayer.y  > self.remoteRef.y) {
+            if (self.currentPlayer.y > self.remoteRef.y) {
                 self.currentPlayer.setVelocityY((self.currentPlayer.y - self.remoteRef.y) * -1.9);
             }
-            if (self.currentPlayer.y < self.remoteRef.y ) {
+            if (self.currentPlayer.y < self.remoteRef.y) {
                 self.currentPlayer.setVelocityY((self.currentPlayer.y - self.remoteRef.y) * -1.9);
             }
-            if (self.currentPlayer.x  > self.remoteRef.x) {
+            if (self.currentPlayer.x > self.remoteRef.x) {
                 self.currentPlayer.setVelocityX((self.currentPlayer.x - self.remoteRef.x) * -1.9);
             }
-            if (self.currentPlayer.x  < self.remoteRef.x ) {
+            if (self.currentPlayer.x < self.remoteRef.x) {
                 self.currentPlayer.setVelocityX((self.currentPlayer.x - self.remoteRef.x) * -1.9);
             }
             await this.skip(500);
             this.staticNum = 0;
-
         }
     }
 

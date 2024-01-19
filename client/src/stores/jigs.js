@@ -79,6 +79,7 @@ Will you find my Balls?`,
 
     tiled: 0,
 
+  
     /** @type {{ text: string }[]} */
     content: "Blank",
 
