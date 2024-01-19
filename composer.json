@@ -20,6 +20,6 @@
     "require": {
         "drupal/paragraphs": "^1.15",
         "drupal/profile": "^1.7",
-	"drupal/entity_reference_revisions"
-    },
+	    "drupal/entity_reference_revisions": "^1"
+    }
 }
