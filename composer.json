@@ -1,6 +1,6 @@
 {
     "name": "techbot/jigs-rpg-engine",
-    "type": "plugin",
+    "type": "drupal-module",
     "autoload": {
         "psr-4": {
             "Drupal\\jigs\\": "src/"
@@ -20,6 +20,6 @@
     "require": {
         "drupal/paragraphs": "^1.15",
         "drupal/profile": "^1.7",
-	 "drupal/entity_reference_revisions"
+	"drupal/entity_reference_revisions"
     },
 }
