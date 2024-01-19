@@ -1,5 +1,5 @@
 {
-    "name": "techbot/jigs-rpg-engine",
+    "name": "drupal/jigs-rpg-engine",
     "type": "drupal-module",
     "autoload": {
         "psr-4": {
