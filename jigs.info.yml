@@ -3,5 +3,7 @@ type: module
 description: 'Complete Realtime RPG and Trading Game Engine For Drupal'
 package: JiGS
 core_version_requirement: '^9 || ^10'
-
-
+dependencies:
+- profile:profile
+- drupal:paragraphs
+- drupal:entity_reference_revisions
