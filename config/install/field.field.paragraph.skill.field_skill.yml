@@ -1,0 +1,29 @@
+uuid: b4fcf2df-e32a-4ceb-8f37-d05837a419f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_skill
+    - node.type.skill
+    - paragraphs.paragraphs_type.skill
+id: paragraph.skill.field_skill
+field_name: field_skill
+entity_type: paragraph
+bundle: skill
+label: Skill
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      skill: skill
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

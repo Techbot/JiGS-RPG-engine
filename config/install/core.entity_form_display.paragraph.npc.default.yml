@@ -1,0 +1,41 @@
+uuid: 84aa3793-ac46-4adf-afae-5a5a2def4658
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.npc.field_name
+    - field.field.paragraph.npc.field_x
+    - field.field.paragraph.npc.field_y
+    - paragraphs.paragraphs_type.npc
+id: paragraph.npc.default
+targetEntityType: paragraph
+bundle: npc
+mode: default
+content:
+  field_name:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

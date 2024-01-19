@@ -1,0 +1,27 @@
+uuid: 668674e0-31d6-46da-97ab-222de78a6c85
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - user
+id: user.field_game_state
+field_name: field_game_state
+entity_type: user
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Character
+      label: Character
+    -
+      value: GamePhaser
+      label: GamePhaser
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

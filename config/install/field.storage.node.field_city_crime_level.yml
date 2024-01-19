@@ -1,0 +1,51 @@
+uuid: 937f6dc1-beee-4353-99f1-b334250d769b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_crime_level
+field_name: field_city_crime_level
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Primitive Crime: At this level, the town is still struggling to survive, and most of the criminal activity is limited to basic theft and robbery.'
+    -
+      value: 2
+      label: 'Gang Activity: As the town grows, so too does the prevalence of criminal gangs. These gangs may engage in drug dealing, extortion, and other forms of organized crime.'
+    -
+      value: 3
+      label: 'Protection Rackets: Criminal organizations begin to demand protection money from businesses and individuals, threatening violence if their demands are not met.'
+    -
+      value: 4
+      label: 'Cybercrime: With the proliferation of technology, criminals start to exploit vulnerabilities in computer systems to commit fraud, theft, and other crimes.'
+    -
+      value: 5
+      label: 'White Collar Crime: As the economy becomes more complex, white-collar crimes like embezzlement, insider trading, and corporate fraud become more common.'
+    -
+      value: 6
+      label: 'Assassination: With the rise of powerful individuals and organizations, assassination becomes a tool for eliminating rivals and consolidating power.'
+    -
+      value: 7
+      label: 'Terrorism: Groups begin to use violence and intimidation to achieve political or ideological goals.'
+    -
+      value: 8
+      label: 'Espionage: With the proliferation of secrets and valuable information, espionage becomes a valuable tool for gaining an advantage over rivals.'
+    -
+      value: 9
+      label: 'Black Market: A thriving black market emerges, dealing in everything from weapons and drugs to genetic modifications and alien technology.'
+    -
+      value: 10
+      label: "Organized Crime Syndicate: A powerful, multi-layered criminal organization dominates the town, controlling every aspect of criminal activity and exerting significant influence over the town's political and economic systems."
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

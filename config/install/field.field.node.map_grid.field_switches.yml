@@ -1,0 +1,76 @@
+uuid: 97f9a612-f045-4f56-90ba-eccf3c850406
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_switches
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.switches
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_switches
+field_name: field_switches
+entity_type: node
+bundle: map_grid
+label: Switches
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      switches: switches
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: -33
+        enabled: false
+      buildings:
+        weight: -32
+        enabled: false
+      components:
+        weight: -31
+        enabled: false
+      items:
+        weight: -30
+        enabled: false
+      mission_stage:
+        weight: -29
+        enabled: false
+      missions:
+        weight: -28
+        enabled: false
+      mobs:
+        weight: -27
+        enabled: false
+      modifier:
+        weight: -26
+        enabled: false
+      npc:
+        weight: -25
+        enabled: false
+      portal:
+        weight: -24
+        enabled: false
+      reward_item:
+        weight: -23
+        enabled: false
+      rewards:
+        weight: -22
+        enabled: false
+      skill:
+        weight: -21
+        enabled: false
+      switches:
+        weight: -20
+        enabled: true
+      walls:
+        weight: -19
+        enabled: false
+      weapon:
+        weight: -18
+        enabled: false
+field_type: entity_reference_revisions

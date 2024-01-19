@@ -1,0 +1,20 @@
+uuid: f2bdbe37-9f2d-4f80-9f01-03dffd98f64b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_ammo_type
+field_name: field_ammo_type
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

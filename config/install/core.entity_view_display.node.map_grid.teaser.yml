@@ -1,0 +1,54 @@
+uuid: 042378b7-86d6-49d5-b2d5-9fecf1b56db4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.map_grid.body
+    - field.field.node.map_grid.field_city
+    - field.field.node.map_grid.field_folio
+    - field.field.node.map_grid.field_layer_1
+    - field.field.node.map_grid.field_layer_2
+    - field.field.node.map_grid.field_layer_3
+    - field.field.node.map_grid.field_layer_4
+    - field.field.node.map_grid.field_layer_5
+    - field.field.node.map_grid.field_map_height
+    - field.field.node.map_grid.field_map_width
+    - field.field.node.map_grid.field_mobs
+    - field.field.node.map_grid.field_npc
+    - field.field.node.map_grid.field_portals
+    - field.field.node.map_grid.field_rewards
+    - field.field.node.map_grid.field_sound_track
+    - field.field.node.map_grid.field_switches
+    - field.field.node.map_grid.field_tiled
+    - field.field.node.map_grid.field_walls
+    - node.type.map_grid
+  module:
+    - user
+_core:
+  default_config_hash: SX2KN7r_jaG7rPZLTSeIgg1AaRu0HSRw6N38lCvjxPo
+id: node.map_grid.teaser
+targetEntityType: node
+bundle: map_grid
+mode: teaser
+content: {  }
+hidden:
+  body: true
+  field_city: true
+  field_folio: true
+  field_layer_1: true
+  field_layer_2: true
+  field_layer_3: true
+  field_layer_4: true
+  field_layer_5: true
+  field_map_height: true
+  field_map_width: true
+  field_mobs: true
+  field_npc: true
+  field_portals: true
+  field_rewards: true
+  field_sound_track: true
+  field_switches: true
+  field_tiled: true
+  field_walls: true
+  links: true

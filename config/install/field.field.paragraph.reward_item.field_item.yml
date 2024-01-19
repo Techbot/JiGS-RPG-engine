@@ -1,0 +1,29 @@
+uuid: 0a287514-e0cf-49ff-b40f-99e3a69341b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_item
+    - node.type.items
+    - paragraphs.paragraphs_type.reward_item
+id: paragraph.reward_item.field_item
+field_name: field_item
+entity_type: paragraph
+bundle: reward_item
+label: Item
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      items: items
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

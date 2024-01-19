@@ -1,0 +1,23 @@
+uuid: 8ee695a7-89df-4d31-a771-46db1142f682
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_x
+field_name: field_x
+entity_type: paragraph
+bundle: mission_stage
+label: 'Mark X'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

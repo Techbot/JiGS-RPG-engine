@@ -1,0 +1,20 @@
+uuid: 499aaaae-4726-4b7e-96a5-16d2728dfa4a
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_intelligence
+field_name: field_intelligence
+entity_type: profile
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

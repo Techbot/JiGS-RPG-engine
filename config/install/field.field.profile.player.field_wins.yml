@@ -1,0 +1,25 @@
+uuid: 11eb5c10-a917-425c-b3c6-633a74045fd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_wins
+    - profile.type.player
+id: profile.player.field_wins
+field_name: field_wins
+entity_type: profile
+bundle: player
+label: Wins
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

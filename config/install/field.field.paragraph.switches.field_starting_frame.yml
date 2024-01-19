@@ -1,0 +1,25 @@
+uuid: 9e3d9a35-9231-4a7f-bee0-82345ae9ef97
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_starting_frame
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_starting_frame
+field_name: field_starting_frame
+entity_type: paragraph
+bundle: switches
+label: 'Starting Frame'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

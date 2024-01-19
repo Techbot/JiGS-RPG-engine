@@ -1,0 +1,51 @@
+uuid: 7a2bc724-5004-4efb-8063-ea60caa59ec7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_technology
+field_name: field_city_technology
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Level 1: Primitive Technology - At this level, the town relies on basic tools and weapons made from stone, wood, and other natural materials. Genetic modification is minimal and not well-understood.'
+    -
+      value: 2
+      label: 'Level 2: Simple Machines - The town has begun to use simple machines like pulleys and levers to aid in tasks. Genetic modification is still in its early stages.'
+    -
+      value: 3
+      label: 'Level 3: Electricity - The town has discovered ways to harness electricity, allowing for lighting and the use of electric tools. Genetic modification is starting to become more common.'
+    -
+      value: 4
+      label: 'Level 4: Steam Power - The town has developed the ability to create steam engines, allowing for more advanced machinery to be used. Genetic modification is becoming more widespread.'
+    -
+      value: 5
+      label: 'Level 5: Internal Combustion - The town has discovered the principles of the internal combustion engine, allowing for the creation of automobiles and other advanced vehicles. Genetic modification is now a common practice.'
+    -
+      value: 6
+      label: 'Level 6: Nuclear Power - The town has discovered how to harness nuclear power, allowing for more efficient energy production. Genetic modification is now a well-understood and regulated practice.'
+    -
+      value: 7
+      label: 'Level 7: Space Travel - The town has advanced to the point of being able to launch rockets and satellites into space. Genetic modification is now being used to improve the abilities of astronauts and other space personnel.'
+    -
+      value: 8
+      label: 'Level 8: Artificial Intelligence - The town has developed sophisticated artificial intelligence systems, allowing for automation of many tasks. Genetic modification is being used to create more intelligent and capable individuals.'
+    -
+      value: 9
+      label: 'Level 9: Nanotechnology - The town has advanced to the point of being able to create and manipulate materials at the molecular level. Genetic modification is being used to create nanobots and other advanced technologies.'
+    -
+      value: 10
+      label: 'Level 10: Transhumanism - The town has fully embraced genetic modification and cybernetic enhancements, resulting in a new type of being known as a transhuman. These individuals have incredible abilities and are able to manipulate technology with their minds.'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

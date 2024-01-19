@@ -1,0 +1,76 @@
+uuid: b3c676c0-3453-412e-89a1-b9d34dc4f220
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_skill
+    - paragraphs.paragraphs_type.skill
+    - profile.type.player
+  module:
+    - entity_reference_revisions
+id: profile.player.field_skill
+field_name: field_skill
+entity_type: profile
+bundle: player
+label: Skills
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      skill: skill
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 13
+        enabled: false
+      buildings:
+        weight: 14
+        enabled: false
+      components:
+        weight: 15
+        enabled: false
+      items:
+        weight: 16
+        enabled: false
+      mission_stage:
+        weight: 17
+        enabled: false
+      missions:
+        weight: 21
+        enabled: false
+      mobs:
+        weight: 18
+        enabled: false
+      modifier:
+        weight: 19
+        enabled: false
+      npc:
+        weight: 20
+        enabled: false
+      portal:
+        weight: 21
+        enabled: false
+      reward_item:
+        weight: 28
+        enabled: false
+      rewards:
+        weight: 22
+        enabled: false
+      skill:
+        weight: 23
+        enabled: true
+      switches:
+        weight: 30
+        enabled: false
+      walls:
+        weight: 31
+        enabled: false
+      weapon:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

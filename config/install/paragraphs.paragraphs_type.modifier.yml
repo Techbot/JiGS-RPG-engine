@@ -1,0 +1,12 @@
+uuid: ea9d20ab-f867-44b4-b8da-6fb323b90552
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:1e0782a1-1083-4e51-bc36-d062ad788ed5'
+id: modifier
+label: Modifier
+icon_uuid: 1e0782a1-1083-4e51-bc36-d062ad788ed5
+icon_default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAZxJREFUaIFjZEAC8zRMGUgBpwTM4Wx9ERY4++KbP/+xqdcXYWFEUgMXN/twkiR7k26chrOZSNI5CMGQ9wAjYSWoIMMiB87GlWz6bPmw6i06/AlZL9bkNOPEFJLcM+RjYMh7gKgkREmywQWolZyGfAwMeQ/gTEK0SDa4ACXJacjHwJD3AAthJbRJNsgA2cyiw5+Q21EES8khHwND3gM4k9DTLy/gbGkeCTj7k5MMbV10+BpWN+ACQz4GhrwHiEpCp19chLN9ZxJOQptfPMEq7itBWO+GOzvhbCkecYLqh3wMDHkP4ExCz768JMkg5GSDu0eGUENMciLGDUM+Boa8B3C2NSREVJG5WMd5AlTc4WxKemTIJQ8agLvvxZvbWBUM+RgY8h7AWQppCCnD2Sr8XPCoZGGWokrTGlUvIin++fsMbtedj9/g4qNJaLACPElIBZlLxx4Zwi4NIUQpdACH3iEfA0PeA6M9soEGQ94DNOmRUQJGe2RDDVCtR0YLMNojGwqAoh4ZHcBoj2zQA6ImOBjImNGnFxjyMTDkPQAA5U+UKfyTVE4AAAAASUVORK5CYII='
+description: 'Modifies Statistics'
+behavior_plugins: {  }

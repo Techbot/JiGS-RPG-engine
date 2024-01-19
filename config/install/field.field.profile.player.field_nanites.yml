@@ -1,0 +1,25 @@
+uuid: b22bd842-5a75-49ef-ad57-745b66d9ecad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_nanites
+    - profile.type.player
+id: profile.player.field_nanites
+field_name: field_nanites
+entity_type: profile
+bundle: player
+label: Nanites
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

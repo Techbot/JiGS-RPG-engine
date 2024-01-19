@@ -1,0 +1,25 @@
+uuid: c5774920-ec80-4048-a79d-25584dce02a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_switch_type
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_switch_type
+field_name: field_switch_type
+entity_type: paragraph
+bundle: switches
+label: 'Switch type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

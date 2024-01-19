@@ -1,0 +1,20 @@
+uuid: 2e59bfb0-f9e7-4cd5-b495-ea4c9a6d4459
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_mission_stage
+field_name: field_mission_stage
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

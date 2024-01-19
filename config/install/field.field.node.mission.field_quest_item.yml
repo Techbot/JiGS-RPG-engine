@@ -1,0 +1,29 @@
+uuid: c7e9dbf9-3f47-4182-9af4-ffbc98ece9ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_quest_item
+    - node.type.items
+    - node.type.mission
+id: node.mission.field_quest_item
+field_name: field_quest_item
+entity_type: node
+bundle: mission
+label: 'Quest Item'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      items: items
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

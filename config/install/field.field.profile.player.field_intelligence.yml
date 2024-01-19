@@ -1,0 +1,25 @@
+uuid: 2d43da5c-77c5-4324-ba84-1d49c80e92bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_intelligence
+    - profile.type.player
+id: profile.player.field_intelligence
+field_name: field_intelligence
+entity_type: profile
+bundle: player
+label: Intelligence
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

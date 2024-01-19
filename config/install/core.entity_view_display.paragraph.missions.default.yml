@@ -1,0 +1,31 @@
+uuid: 2fdfb654-e6e5-44bd-a730-f282d5403690
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.missions.field_mission
+    - field.field.paragraph.missions.field_mission_stage
+    - paragraphs.paragraphs_type.missions
+id: paragraph.missions.default
+targetEntityType: paragraph
+bundle: missions
+mode: default
+content:
+  field_mission:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_mission_stage:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -1,0 +1,25 @@
+uuid: 842b55c9-ff76-49c8-b949-8ecba30c8d19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_health
+    - profile.type.player
+id: profile.player.field_health
+field_name: field_health
+entity_type: profile
+bundle: player
+label: Health
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 100
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

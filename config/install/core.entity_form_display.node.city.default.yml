@@ -1,0 +1,137 @@
+uuid: 6ed63375-37dc-414f-b424-fedb3bef34fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.city.body
+    - field.field.node.city.field_city_climate
+    - field.field.node.city.field_city_crime_level
+    - field.field.node.city.field_city_description
+    - field.field.node.city.field_city_education_level
+    - field.field.node.city.field_city_politics
+    - field.field.node.city.field_city_pollution
+    - field.field.node.city.field_city_population
+    - field.field.node.city.field_city_technology
+    - node.type.city
+  module:
+    - path
+    - text
+id: node.city.default
+targetEntityType: node
+bundle: city
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 121
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_climate:
+    type: options_select
+    weight: 131
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_crime_level:
+    type: options_select
+    weight: 127
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_description:
+    type: text_textarea_with_summary
+    weight: 135
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_city_education_level:
+    type: options_select
+    weight: 128
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_politics:
+    type: options_select
+    weight: 133
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_pollution:
+    type: options_select
+    weight: 130
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_population:
+    type: options_select
+    weight: 129
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_city_technology:
+    type: options_select
+    weight: 132
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

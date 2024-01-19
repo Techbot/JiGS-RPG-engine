@@ -1,0 +1,21 @@
+uuid: 27cd8db2-8e34-4aaf-b3a8-c112a31398dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_pollution
+    - node.type.city
+  module:
+    - options
+id: node.city.field_city_pollution
+field_name: field_city_pollution
+entity_type: node
+bundle: city
+label: 'City Pollution'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

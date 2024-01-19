@@ -1,0 +1,20 @@
+uuid: 2143319c-5ea2-4b30-9e58-f836bd9ad83d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_starting_frame
+field_name: field_starting_frame
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

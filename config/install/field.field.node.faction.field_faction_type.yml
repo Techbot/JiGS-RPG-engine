@@ -1,0 +1,29 @@
+uuid: b8c61bbd-e265-43d8-8923-a90b9391e455
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_faction_type
+    - node.type.faction
+    - taxonomy.vocabulary.faction_type
+id: node.faction.field_faction_type
+field_name: field_faction_type
+entity_type: node
+bundle: faction
+label: 'Faction Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      faction_type: faction_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,25 @@
+uuid: 2c4ae7a3-edc1-4623-b9f8-e3a109b81e4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_losses
+    - profile.type.player
+id: profile.player.field_losses
+field_name: field_losses
+entity_type: profile
+bundle: player
+label: Losses
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

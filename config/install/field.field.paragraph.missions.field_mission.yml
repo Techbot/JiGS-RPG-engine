@@ -1,0 +1,29 @@
+uuid: a05d2fa5-ea20-4038-8dcb-eea2312ecff9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_mission
+    - node.type.mission
+    - paragraphs.paragraphs_type.missions
+id: paragraph.missions.field_mission
+field_name: field_mission
+entity_type: paragraph
+bundle: missions
+label: Mission
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      mission: mission
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

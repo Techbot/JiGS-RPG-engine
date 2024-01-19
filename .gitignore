@@ -58,7 +58,5 @@ tiled
 /client/src/game/backend.ts
 /client/src/assets/fonts/*
 
-config
-config/install
 node_modules
 LICENSE.md

@@ -1,0 +1,29 @@
+uuid: 6aa08760-9337-4210-bf0b-d1cc70274470
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_layer_5
+    - node.type.map_grid
+    - taxonomy.vocabulary.tilemaps
+id: node.map_grid.field_layer_5
+field_name: field_layer_5
+entity_type: node
+bundle: map_grid
+label: 'Layer 5'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tilemaps: tilemaps
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,79 @@
+uuid: 2f4fadda-0a91-4be2-aa29-6138d1970741
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_folio
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.folio
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_folio
+field_name: field_folio
+entity_type: node
+bundle: map_grid
+label: Folio
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      folio: folio
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 19
+        enabled: false
+      buildings:
+        weight: 20
+        enabled: false
+      components:
+        weight: 21
+        enabled: false
+      folio:
+        weight: 18
+        enabled: true
+      items:
+        weight: 22
+        enabled: false
+      mission_stage:
+        weight: 23
+        enabled: false
+      missions:
+        weight: 24
+        enabled: false
+      mobs:
+        weight: 25
+        enabled: false
+      modifier:
+        weight: 26
+        enabled: false
+      npc:
+        weight: 27
+        enabled: false
+      portal:
+        weight: 28
+        enabled: false
+      reward_item:
+        weight: 29
+        enabled: false
+      rewards:
+        weight: 30
+        enabled: false
+      skill:
+        weight: 31
+        enabled: false
+      switches:
+        weight: 32
+        enabled: false
+      walls:
+        weight: 33
+        enabled: false
+      weapon:
+        weight: 34
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,28 @@
+uuid: 34201a15-2948-430a-aa78-98263cc5e32f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.faction.body
+    - field.field.node.faction.field_faction_type
+    - node.type.faction
+  module:
+    - text
+    - user
+id: node.faction.teaser
+targetEntityType: node
+bundle: faction
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_faction_type: true
+  links: true

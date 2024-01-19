@@ -1,0 +1,21 @@
+uuid: fa8b2f54-c7ac-4bca-9ffa-a394a6895125
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_population
+    - node.type.city
+  module:
+    - options
+id: node.city.field_city_population
+field_name: field_city_population
+entity_type: node
+bundle: city
+label: 'City Population'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

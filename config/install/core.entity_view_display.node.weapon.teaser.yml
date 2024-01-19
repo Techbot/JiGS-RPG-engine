@@ -1,0 +1,38 @@
+uuid: 06c13fba-8b62-49dd-a05a-dca2b4621f65
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.weapon.body
+    - field.field.node.weapon.field_ammo_type
+    - field.field.node.weapon.field_magazine
+    - field.field.node.weapon.field_materials
+    - field.field.node.weapon.field_modifiers
+    - node.type.weapon
+  module:
+    - text
+    - user
+id: node.weapon.teaser
+targetEntityType: node
+bundle: weapon
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_ammo_type: true
+  field_magazine: true
+  field_materials: true
+  field_modifiers: true

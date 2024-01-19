@@ -1,0 +1,21 @@
+uuid: 7008e854-281e-490d-bfed-3675cc120051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bark
+    - node.type.npc
+id: node.npc.field_bark
+field_name: field_bark
+entity_type: node
+bundle: npc
+label: Bark
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Forget about it!'
+default_value_callback: ''
+settings: {  }
+field_type: string_long

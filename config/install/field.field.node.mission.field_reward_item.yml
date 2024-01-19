@@ -1,0 +1,29 @@
+uuid: 03e01704-8516-4e15-abc5-22689c184a91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reward_item
+    - node.type.items
+    - node.type.mission
+id: node.mission.field_reward_item
+field_name: field_reward_item
+entity_type: node
+bundle: mission
+label: 'Reward item'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      items: items
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,195 @@
+uuid: 8b1bb7a2-f3b8-43d4-8606-0ac4bd802ea7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.map_grid.body
+    - field.field.node.map_grid.field_city
+    - field.field.node.map_grid.field_folio
+    - field.field.node.map_grid.field_layer_1
+    - field.field.node.map_grid.field_layer_2
+    - field.field.node.map_grid.field_layer_3
+    - field.field.node.map_grid.field_layer_4
+    - field.field.node.map_grid.field_layer_5
+    - field.field.node.map_grid.field_map_height
+    - field.field.node.map_grid.field_map_width
+    - field.field.node.map_grid.field_mobs
+    - field.field.node.map_grid.field_npc
+    - field.field.node.map_grid.field_portals
+    - field.field.node.map_grid.field_rewards
+    - field.field.node.map_grid.field_sound_track
+    - field.field.node.map_grid.field_switches
+    - field.field.node.map_grid.field_tiled
+    - field.field.node.map_grid.field_walls
+    - node.type.map_grid
+  module:
+    - entity_reference_revisions
+    - text
+    - user
+_core:
+  default_config_hash: tjfypo69-FCN_0b1wK35sjUk5z0Aq-VTgaNkeVPN21M
+id: node.map_grid.default
+targetEntityType: node
+bundle: map_grid
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_city:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_folio:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_layer_1:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_layer_2:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_layer_3:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_layer_4:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_layer_5:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_map_height:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_map_width:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_mobs:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_npc:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_portals:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_rewards:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_sound_track:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_switches:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_tiled:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_walls:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

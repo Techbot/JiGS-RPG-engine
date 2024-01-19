@@ -1,0 +1,21 @@
+uuid: 1588256a-d7f7-43ed-836e-8116fcb1e5b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_climate
+    - node.type.city
+  module:
+    - options
+id: node.city.field_city_climate
+field_name: field_city_climate
+entity_type: node
+bundle: city
+label: 'City Climate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

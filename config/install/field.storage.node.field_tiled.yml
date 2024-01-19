@@ -1,0 +1,20 @@
+uuid: 78a0895d-e942-449a-a98c-af626f980559
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_tiled
+field_name: field_tiled
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

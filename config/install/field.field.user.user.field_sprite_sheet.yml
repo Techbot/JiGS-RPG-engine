@@ -1,0 +1,23 @@
+uuid: 647affca-20c3-4971-8042-24b856e7e1fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_sprite_sheet
+  module:
+    - options
+    - user
+id: user.user.field_sprite_sheet
+field_name: field_sprite_sheet
+entity_type: user
+bundle: user
+label: 'Sprite Sheet'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: PsibotF
+default_value_callback: ''
+settings: {  }
+field_type: list_string

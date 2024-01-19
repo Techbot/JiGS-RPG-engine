@@ -1,0 +1,102 @@
+uuid: 4f5dc1be-e67f-4434-b8b7-4f237893e530
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mission_stage.field_handler
+    - field.field.paragraph.mission_stage.field_handler_dialogue
+    - field.field.paragraph.mission_stage.field_mark
+    - field.field.paragraph.mission_stage.field_mark_dialog
+    - field.field.paragraph.mission_stage.field_mark_grid_map
+    - field.field.paragraph.mission_stage.field_prerequisite
+    - field.field.paragraph.mission_stage.field_reward
+    - field.field.paragraph.mission_stage.field_stage
+    - field.field.paragraph.mission_stage.field_x
+    - field.field.paragraph.mission_stage.field_y
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.default
+targetEntityType: paragraph
+bundle: mission_stage
+mode: default
+content:
+  field_handler:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_handler_dialogue:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_mark:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_mark_dialog:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_mark_grid_map:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_prerequisite:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_reward:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_stage:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

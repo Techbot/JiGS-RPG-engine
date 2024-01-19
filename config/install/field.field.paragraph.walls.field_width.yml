@@ -1,0 +1,23 @@
+uuid: e95ef26e-3dda-4c1e-b6bb-6a94c6c89687
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_width
+    - paragraphs.paragraphs_type.walls
+id: paragraph.walls.field_width
+field_name: field_width
+entity_type: paragraph
+bundle: walls
+label: Width
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

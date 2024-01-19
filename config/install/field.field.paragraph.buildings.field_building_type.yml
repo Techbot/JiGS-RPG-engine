@@ -1,0 +1,29 @@
+uuid: 28e4e239-537a-43b4-81da-5bb6daaec84a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_building_type
+    - paragraphs.paragraphs_type.buildings
+    - taxonomy.vocabulary.building_type
+id: paragraph.buildings.field_building_type
+field_name: field_building_type
+entity_type: paragraph
+bundle: buildings
+label: 'Building Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      building_type: building_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

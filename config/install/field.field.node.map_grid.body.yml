@@ -1,0 +1,25 @@
+uuid: a142fc80-634b-448e-8617-6446db5dbc11
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.map_grid
+  module:
+    - text
+_core:
+  default_config_hash: b_j-0QV3WDmD9K3aRneFBTe56hJMpCXxJwlWhsdcfeY
+id: node.map_grid.body
+field_name: body
+entity_type: node
+bundle: map_grid
+label: Body
+description: 'More specific information about the Map-Grid.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

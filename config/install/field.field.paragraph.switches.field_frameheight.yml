@@ -1,0 +1,23 @@
+uuid: ab6cbd03-6b57-4706-a730-5bb9e48d3d26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_frameheight
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_frameheight
+field_name: field_frameheight
+entity_type: paragraph
+bundle: switches
+label: 'Frame Height'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: 78e87b98-91fd-400c-88fc-cc5c7adf96a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.faction
+  module:
+    - text
+id: node.faction.body
+field_name: body
+entity_type: node
+bundle: faction
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

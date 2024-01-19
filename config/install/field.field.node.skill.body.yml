@@ -1,0 +1,23 @@
+uuid: c9bda206-8600-4c90-a044-3ba1ffd40928
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.skill
+  module:
+    - text
+id: node.skill.body
+field_name: body
+entity_type: node
+bundle: skill
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

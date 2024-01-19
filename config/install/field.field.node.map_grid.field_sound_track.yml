@@ -1,0 +1,23 @@
+uuid: afc47a3c-58ab-47b0-a4b2-c31d3bd0b7a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sound_track
+    - node.type.map_grid
+id: node.map_grid.field_sound_track
+field_name: field_sound_track
+entity_type: node
+bundle: map_grid
+label: 'Sound Track'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

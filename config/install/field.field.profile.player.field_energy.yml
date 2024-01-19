@@ -1,0 +1,25 @@
+uuid: a7b86a64-5feb-4749-a6e6-e40488be3fb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_energy
+    - profile.type.player
+id: profile.player.field_energy
+field_name: field_energy
+entity_type: profile
+bundle: player
+label: Energy
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,20 @@
+uuid: 51ee6916-77ac-435c-b07e-66fe52bba67c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.faction.field_faction
+    - profile.type.faction
+id: profile.faction.default
+targetEntityType: profile
+bundle: faction
+mode: default
+content:
+  field_faction:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  is_default: true

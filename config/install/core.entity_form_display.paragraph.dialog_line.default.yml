@@ -1,0 +1,43 @@
+uuid: f9b7fb0b-7ccb-4dd2-8ec4-b6a24309ac2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dialog_line.field_line
+    - field.field.paragraph.dialog_line.field_line_dialog
+    - field.field.paragraph.dialog_line.field_npc
+    - paragraphs.paragraphs_type.dialog_line
+id: paragraph.dialog_line.default
+targetEntityType: paragraph
+bundle: dialog_line
+mode: default
+content:
+  field_line:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_line_dialog:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_npc:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

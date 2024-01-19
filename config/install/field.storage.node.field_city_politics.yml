@@ -1,0 +1,51 @@
+uuid: b0953545-3a3a-4487-9f49-0cd0a63b50c3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_politics
+field_name: field_city_politics
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Anarchy: The town has no centralized government or authority. Every individual or group fends for themselves, leading to a high degree of lawlessness and chaos.'
+    -
+      value: 2
+      label: 'Tribalism: The town is divided into various tribes or clans, each with their own leader and rules. Conflicts between these groups are common, and diplomacy is often achieved through force.'
+    -
+      value: 3
+      label: 'Autocracy: The town is ruled by a single individual who holds all the power. This leader is often authoritarian and uses fear and force to maintain control.'
+    -
+      value: 4
+      label: 'Oligarchy: The town is controlled by a small group of elites who hold all the power. This group often uses their wealth and influence to maintain control over the rest of the population.'
+    -
+      value: 5
+      label: 'Democracy: The town has a system of government in which all citizens have an equal say in the decision-making process. Elections are held to choose leaders and representatives.'
+    -
+      value: 6
+      label: 'Republic: The town has a system of government in which citizens elect representatives to make decisions on their behalf. These representatives are held accountable through regular elections.'
+    -
+      value: 7
+      label: 'Technocracy: The town is governed by a group of scientists or experts who have the most knowledge in their respective fields. Decision-making is based on scientific evidence and data.'
+    -
+      value: 8
+      label: 'Socialist: The town has a system of government in which the means of production are owned and controlled by the community as a whole. This system aims to eliminate inequality and promote social welfare.'
+    -
+      value: 9
+      label: 'Fascist: The town is ruled by a totalitarian government that promotes extreme nationalism and the suppression of individual rights. Dissent is not tolerated, and the government often uses violence to maintain control.'
+    -
+      value: 10
+      label: 'Corporate: The town is controlled by large corporations that hold significant economic and political power. These corporations prioritize profit over the well-being of the community and often operate with little regulation or oversight.'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

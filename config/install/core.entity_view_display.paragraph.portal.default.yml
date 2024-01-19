@@ -1,0 +1,71 @@
+uuid: a9b4d50c-b38b-4ad5-a187-ffbae53db1c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.portal.field_destination
+    - field.field.paragraph.portal.field_destination_x
+    - field.field.paragraph.portal.field_destination_y
+    - field.field.paragraph.portal.field_tiled
+    - field.field.paragraph.portal.field_x
+    - field.field.paragraph.portal.field_y
+    - paragraphs.paragraphs_type.portal
+id: paragraph.portal.default
+targetEntityType: paragraph
+bundle: portal
+mode: default
+content:
+  field_destination:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_destination_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_destination_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_tiled:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

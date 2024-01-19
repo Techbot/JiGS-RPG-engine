@@ -1,0 +1,25 @@
+uuid: 0cb20aea-f810-46d8-9a66-a390fe2ac01c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tiled
+    - paragraphs.paragraphs_type.portal
+id: paragraph.portal.field_tiled
+field_name: field_tiled
+entity_type: paragraph
+bundle: portal
+label: Tiled
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

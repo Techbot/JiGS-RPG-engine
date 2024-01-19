@@ -1,0 +1,23 @@
+uuid: 136212a7-2b07-4b26-8d23-8a949c08a9fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+  enforced:
+    module:
+      - jigs
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: VMWMHBsHNIM-4AOBmciDqAxa0Xg1vnrhar78QFHz0Bw
+name: Map-Grid
+type: map_grid
+description: 'Content type that can be used to collate objects for <em>Map-Grids</em>'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

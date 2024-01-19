@@ -1,0 +1,25 @@
+uuid: 3039c661-c814-4ba4-9468-148e519c0108
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_credits
+    - profile.type.player
+id: profile.player.field_credits
+field_name: field_credits
+entity_type: profile
+bundle: player
+label: Credits
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: a1cc8ef3-6076-40d8-be71-f7550d0028d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+  enforced:
+    module:
+      - jigs
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: dDZJJLXtDIzYpteULS-S6NNJpt3tCcwkqLsXMdmVaa4
+name: Game
+type: game
+description: 'Content type that can be used to collate objects for <em>game</em>'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

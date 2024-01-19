@@ -1,0 +1,23 @@
+uuid: 4b6bf1bd-b7cf-4beb-b084-c506eb1a62ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_destination_y
+    - paragraphs.paragraphs_type.portal
+id: paragraph.portal.field_destination_y
+field_name: field_destination_y
+entity_type: paragraph
+bundle: portal
+label: 'Destination Y'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

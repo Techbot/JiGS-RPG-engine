@@ -1,0 +1,10 @@
+uuid: 35e72048-c1bc-48b5-a0ad-2f7eb001061a
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.compact_table
+label: 'Compact Table'
+targetEntityType: paragraph
+cache: true

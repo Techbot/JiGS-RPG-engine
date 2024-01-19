@@ -1,0 +1,8 @@
+uuid: 7db9200a-3e21-45bd-8f08-021ce60dfabf
+langcode: en
+status: true
+dependencies: {  }
+name: 'Modifer Type'
+vid: modifer_type
+description: ''
+weight: 0

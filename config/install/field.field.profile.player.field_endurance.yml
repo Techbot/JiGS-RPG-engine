@@ -1,0 +1,25 @@
+uuid: 877bdc7c-de25-4cbd-a0ea-cb36aa63a1f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_endurance
+    - profile.type.player
+id: profile.player.field_endurance
+field_name: field_endurance
+entity_type: profile
+bundle: player
+label: Endurance
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

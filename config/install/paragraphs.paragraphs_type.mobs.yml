@@ -1,0 +1,12 @@
+uuid: 5178dc7e-51d2-48f5-bd8c-d11c54f08be4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:3936ac13-2c56-4b9c-9354-84ed7ae9beb9'
+id: mobs
+label: Mob
+icon_uuid: 3936ac13-2c56-4b9c-9354-84ed7ae9beb9
+icon_default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAW5JREFUWIXtVruOwkAMNAjRU1MgkuJ0afkLWsRXRmnzF7RBFAmioL6eJlc5snzr3fECFTdVlNieiV+7RJ+OWY7TerMdQ+/vt6s7nsuBicfHKhxs+eMWAhuuN9vRIg4JQUVARpr8fDkF7b6/dm4RSQNJzsRdP1BVFqYPC0FERD9K8qatiYiixDki5gi5lfIY2Gd8rMypISJaoAHRP/cimJrU33N6uSyH/TFpa5XCLIEF2emebxZcAhACrwhYgA7ctDVVZUFVWUylyBGRbMKuH/68Y3ImOl9O1LT11AuWXwjmfOpGlAElOSNmE9sF0BiGNp9OO5NKHwTwJtQj1vXDlHIuicTTmzAFWW/57AUsAE2p1zYq4H67zviScdgfocCyNMhp6CpBSoQkR+HugRhBTi9kN6Ecw9BIvkSAdQ/Ue6Eqi2BpUncBIsce0NB7wdr/b9sD8o89Y6cBnQUW9IXEJIlk4SkBKLIPI15C/3gnfgFQHOBJhXxi/AAAAABJRU5ErkJggg=='
+description: 'Zombies, Orcs Trolls etc'
+behavior_plugins: {  }

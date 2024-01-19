@@ -1,0 +1,21 @@
+uuid: ed9df921-271b-4173-8d5d-3c34e377a1d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_handler_dialogue
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_handler_dialogue
+field_name: field_handler_dialogue
+entity_type: paragraph
+bundle: mission_stage
+label: 'Handler Dialogue'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'I need you to'
+default_value_callback: ''
+settings: {  }
+field_type: string_long

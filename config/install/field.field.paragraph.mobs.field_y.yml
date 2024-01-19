@@ -1,0 +1,23 @@
+uuid: 4e283f85-cc3a-4442-bc93-569104d3c40b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y
+    - paragraphs.paragraphs_type.mobs
+id: paragraph.mobs.field_y
+field_name: field_y
+entity_type: paragraph
+bundle: mobs
+label: 'Y'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

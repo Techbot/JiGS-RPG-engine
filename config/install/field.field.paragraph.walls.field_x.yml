@@ -1,0 +1,23 @@
+uuid: bb26e3b0-c357-42da-a6ca-2538de4d0fb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x
+    - paragraphs.paragraphs_type.walls
+id: paragraph.walls.field_x
+field_name: field_x
+entity_type: paragraph
+bundle: walls
+label: 'Wall X'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

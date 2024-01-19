@@ -1,0 +1,23 @@
+uuid: ba8f9152-a6e2-48be-9792-cb33b71e2096
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x
+    - paragraphs.paragraphs_type.portal
+id: paragraph.portal.field_x
+field_name: field_x
+entity_type: paragraph
+bundle: portal
+label: X
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

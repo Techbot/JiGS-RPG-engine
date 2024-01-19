@@ -1,0 +1,46 @@
+uuid: 3ea2f262-4e91-41e7-a3a9-e6ca7f22fa55
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.city.body
+    - field.field.node.city.field_city_climate
+    - field.field.node.city.field_city_crime_level
+    - field.field.node.city.field_city_description
+    - field.field.node.city.field_city_education_level
+    - field.field.node.city.field_city_politics
+    - field.field.node.city.field_city_pollution
+    - field.field.node.city.field_city_population
+    - field.field.node.city.field_city_technology
+    - node.type.city
+  module:
+    - text
+    - user
+id: node.city.teaser
+targetEntityType: node
+bundle: city
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_city_climate: true
+  field_city_crime_level: true
+  field_city_description: true
+  field_city_education_level: true
+  field_city_politics: true
+  field_city_pollution: true
+  field_city_population: true
+  field_city_technology: true

@@ -1,0 +1,19 @@
+uuid: 67a5533d-d4b5-426b-8729-6fc14002a17d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_building_name
+    - paragraphs.paragraphs_type.buildings
+id: paragraph.buildings.field_building_name
+field_name: field_building_name
+entity_type: paragraph
+bundle: buildings
+label: 'Building Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

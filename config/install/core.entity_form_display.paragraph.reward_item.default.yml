@@ -1,0 +1,25 @@
+uuid: 4d7acafb-b33f-4712-af08-0bd9ff51a34b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.reward_item.field_item
+    - paragraphs.paragraphs_type.reward_item
+id: paragraph.reward_item.default
+targetEntityType: paragraph
+bundle: reward_item
+mode: default
+content:
+  field_item:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

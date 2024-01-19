@@ -1,0 +1,25 @@
+uuid: 5e8a9f4c-d18c-4b1e-83e5-afa42c015d15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_repeatable
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_repeatable
+field_name: field_repeatable
+entity_type: paragraph
+bundle: switches
+label: Repeatable
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

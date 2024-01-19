@@ -1,0 +1,52 @@
+uuid: a908942f-6276-489f-ba73-133a5413fbf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_npc
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.npc
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_npc
+field_name: field_npc
+entity_type: node
+bundle: map_grid
+label: NPC
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      npc: npc
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 9
+        enabled: false
+      buildings:
+        weight: 10
+        enabled: false
+      items:
+        weight: 11
+        enabled: false
+      materials:
+        weight: 12
+        enabled: false
+      modifier:
+        weight: 13
+        enabled: false
+      npc:
+        weight: 14
+        enabled: true
+      portal:
+        weight: 15
+        enabled: false
+      potions:
+        weight: 16
+        enabled: false
+field_type: entity_reference_revisions

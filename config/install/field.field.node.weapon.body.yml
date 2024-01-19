@@ -1,0 +1,23 @@
+uuid: 5ba0d963-60c9-42de-a8bf-20557bd8ed57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.weapon
+  module:
+    - text
+id: node.weapon.body
+field_name: body
+entity_type: node
+bundle: weapon
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

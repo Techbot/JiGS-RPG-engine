@@ -1,0 +1,28 @@
+uuid: d3ca2a05-2bca-498f-89c2-b531ea9480f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.component.body
+    - node.type.component
+  module:
+    - text
+    - user
+id: node.component.default
+targetEntityType: node
+bundle: component
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

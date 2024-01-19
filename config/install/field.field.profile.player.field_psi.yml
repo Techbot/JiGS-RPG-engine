@@ -1,0 +1,25 @@
+uuid: cf30a470-e2cd-43ed-8e0a-63eced9115a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_psi
+    - profile.type.player
+id: profile.player.field_psi
+field_name: field_psi
+entity_type: profile
+bundle: player
+label: PSI
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

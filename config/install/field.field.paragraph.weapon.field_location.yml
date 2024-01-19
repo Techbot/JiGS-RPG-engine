@@ -1,0 +1,23 @@
+uuid: a4af5b58-3733-40c0-a5dd-ff623fa29c5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_location
+    - paragraphs.paragraphs_type.weapon
+  module:
+    - options
+id: paragraph.weapon.field_location
+field_name: field_location
+entity_type: paragraph
+bundle: weapon
+label: Location
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: Backpack
+default_value_callback: ''
+settings: {  }
+field_type: list_string

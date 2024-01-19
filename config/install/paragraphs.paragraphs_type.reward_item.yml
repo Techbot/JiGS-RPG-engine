@@ -1,0 +1,10 @@
+uuid: b83ad708-920d-41c4-88cd-b6400e0b41a4
+langcode: en
+status: true
+dependencies: {  }
+id: reward_item
+label: 'reward item'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,82 @@
+uuid: adb76bdd-80d7-455c-8c26-db43de903e31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dialog_line
+    - node.type.dialog
+    - paragraphs.paragraphs_type.dialog_line
+  module:
+    - entity_reference_revisions
+id: node.dialog.field_dialog_line
+field_name: field_dialog_line
+entity_type: node
+bundle: dialog
+label: 'Line of Dialog'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      dialog_line: dialog_line
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 20
+        enabled: false
+      buildings:
+        weight: 21
+        enabled: false
+      components:
+        weight: 22
+        enabled: false
+      dialog_line:
+        weight: 19
+        enabled: true
+      folio:
+        weight: 23
+        enabled: false
+      items:
+        weight: 24
+        enabled: false
+      mission_stage:
+        weight: 25
+        enabled: false
+      missions:
+        weight: 26
+        enabled: false
+      mobs:
+        weight: 27
+        enabled: false
+      modifier:
+        weight: 28
+        enabled: false
+      npc:
+        weight: 29
+        enabled: false
+      portal:
+        weight: 30
+        enabled: false
+      reward_item:
+        weight: 31
+        enabled: false
+      rewards:
+        weight: 32
+        enabled: false
+      skill:
+        weight: 33
+        enabled: false
+      switches:
+        weight: 34
+        enabled: false
+      walls:
+        weight: 35
+        enabled: false
+      weapon:
+        weight: 36
+        enabled: false
+field_type: entity_reference_revisions

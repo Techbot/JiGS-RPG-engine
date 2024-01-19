@@ -1,0 +1,23 @@
+uuid: bd410db3-ed84-42ee-8915-2363461df792
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x
+    - paragraphs.paragraphs_type.npc
+id: paragraph.npc.field_x
+field_name: field_x
+entity_type: paragraph
+bundle: npc
+label: X
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

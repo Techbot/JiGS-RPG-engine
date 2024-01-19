@@ -1,0 +1,23 @@
+uuid: f59abc82-2159-447c-8277-159957cbdcc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_mission_stage
+    - paragraphs.paragraphs_type.missions
+id: paragraph.missions.field_mission_stage
+field_name: field_mission_stage
+entity_type: paragraph
+bundle: missions
+label: Stage
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

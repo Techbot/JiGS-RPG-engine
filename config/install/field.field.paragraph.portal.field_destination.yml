@@ -1,0 +1,29 @@
+uuid: 4faadef2-e5e1-423f-be19-75b217a4cc4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_destination
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.portal
+id: paragraph.portal.field_destination
+field_name: field_destination
+entity_type: paragraph
+bundle: portal
+label: Destination
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      map_grid: map_grid
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

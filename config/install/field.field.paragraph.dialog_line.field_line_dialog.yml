@@ -1,0 +1,19 @@
+uuid: c8050a7a-199a-42c9-8e25-7075eed17af1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_line_dialog
+    - paragraphs.paragraphs_type.dialog_line
+id: paragraph.dialog_line.field_line_dialog
+field_name: field_line_dialog
+entity_type: paragraph
+bundle: dialog_line
+label: 'Line of Dialog'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

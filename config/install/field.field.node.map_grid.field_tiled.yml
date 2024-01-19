@@ -1,0 +1,23 @@
+uuid: c9957b1f-00eb-4a67-8071-ddf56d75a694
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tiled
+    - node.type.map_grid
+id: node.map_grid.field_tiled
+field_name: field_tiled
+entity_type: node
+bundle: map_grid
+label: Tiled
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

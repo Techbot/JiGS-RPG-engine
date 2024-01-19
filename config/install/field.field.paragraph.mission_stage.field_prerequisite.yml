@@ -1,0 +1,33 @@
+uuid: 0e9bd35b-8f9f-4798-81c0-9bf578ccefee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_prerequisite
+    - node.type.component
+    - node.type.items
+    - node.type.weapon
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_prerequisite
+field_name: field_prerequisite
+entity_type: paragraph
+bundle: mission_stage
+label: Prerequisite
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      component: component
+      items: items
+      weapon: weapon
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: component
+field_type: entity_reference

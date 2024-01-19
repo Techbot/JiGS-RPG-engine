@@ -1,0 +1,31 @@
+uuid: ca24d06a-0e8f-4910-8a82-e9f7c7f41b61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.components.field_components
+    - field.field.paragraph.components.field_location
+    - paragraphs.paragraphs_type.components
+  module:
+    - options
+id: paragraph.components.default
+targetEntityType: paragraph
+bundle: components
+mode: default
+content:
+  field_components:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_location:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

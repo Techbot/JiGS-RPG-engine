@@ -1,0 +1,23 @@
+uuid: 6029dc03-cad2-441f-b628-050873745e1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y
+    - paragraphs.paragraphs_type.npc
+id: paragraph.npc.field_y
+field_name: field_y
+entity_type: paragraph
+bundle: npc
+label: 'Y'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: 1a8e67fb-6953-43d0-a786-e1f259496e57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_skill_level
+    - paragraphs.paragraphs_type.skill
+id: paragraph.skill.field_skill_level
+field_name: field_skill_level
+entity_type: paragraph
+bundle: skill
+label: 'Skill Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: 3c71c94c-b0e7-419b-8fd6-fbe7fbe131e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_npc
+    - node.type.npc
+    - paragraphs.paragraphs_type.dialog_line
+id: paragraph.dialog_line.field_npc
+field_name: field_npc
+entity_type: paragraph
+bundle: dialog_line
+label: NPC
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      npc: npc
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

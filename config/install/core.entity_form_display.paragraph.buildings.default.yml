@@ -1,0 +1,30 @@
+uuid: dc177b0a-3582-46ae-8018-3dc4a9e441d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.buildings.field_building_name
+    - field.field.paragraph.buildings.field_building_type
+    - paragraphs.paragraphs_type.buildings
+id: paragraph.buildings.default
+targetEntityType: paragraph
+bundle: buildings
+mode: default
+content:
+  field_building_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_building_type:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

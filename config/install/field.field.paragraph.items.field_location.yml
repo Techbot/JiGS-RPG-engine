@@ -1,0 +1,23 @@
+uuid: 532228b4-b42f-4fea-9cb9-a4db6ab7d2c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_location
+    - paragraphs.paragraphs_type.items
+  module:
+    - options
+id: paragraph.items.field_location
+field_name: field_location
+entity_type: paragraph
+bundle: items
+label: Location
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: Backpack
+default_value_callback: ''
+settings: {  }
+field_type: list_string

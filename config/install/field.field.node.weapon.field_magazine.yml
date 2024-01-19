@@ -1,0 +1,23 @@
+uuid: 0e5e93ff-596f-47d2-a0c6-094d39897729
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_magazine
+    - node.type.weapon
+id: node.weapon.field_magazine
+field_name: field_magazine
+entity_type: node
+bundle: weapon
+label: Magazine
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

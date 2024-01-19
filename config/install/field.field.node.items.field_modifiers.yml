@@ -1,0 +1,49 @@
+uuid: 74de538b-3a07-40f5-b586-4cee43e2f968
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_modifiers
+    - node.type.items
+    - paragraphs.paragraphs_type.modifier
+  module:
+    - entity_reference_revisions
+id: node.items.field_modifiers
+field_name: field_modifiers
+entity_type: node
+bundle: items
+label: Modifiers
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      modifier: modifier
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 8
+        enabled: false
+      buildings:
+        weight: 9
+        enabled: false
+      items:
+        weight: 10
+        enabled: false
+      materials:
+        weight: 11
+        enabled: false
+      modifier:
+        weight: 12
+        enabled: true
+      potions:
+        weight: 13
+        enabled: false
+      weapons:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,34 @@
+uuid: eb14f0c0-78a5-40c0-8e16-bd5352001aa8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.mob.body
+    - field.field.node.mob.field_mob_sprite_sheet
+    - field.field.node.mob.field_type
+    - node.type.mob
+  module:
+    - text
+    - user
+id: node.mob.teaser
+targetEntityType: node
+bundle: mob
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_mob_sprite_sheet: true
+  field_type: true

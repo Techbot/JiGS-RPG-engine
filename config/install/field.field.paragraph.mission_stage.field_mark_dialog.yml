@@ -1,0 +1,19 @@
+uuid: 522a12a7-4583-48c0-ae93-fa6e287d4806
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_mark_dialog
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_mark_dialog
+field_name: field_mark_dialog
+entity_type: paragraph
+bundle: mission_stage
+label: 'Mark Dialog'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

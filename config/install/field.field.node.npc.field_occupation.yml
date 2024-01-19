@@ -1,0 +1,29 @@
+uuid: eb195f97-c469-427b-b194-f0a01ceea277
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_occupation
+    - node.type.npc
+    - taxonomy.vocabulary.occupation
+id: node.npc.field_occupation
+field_name: field_occupation
+entity_type: node
+bundle: npc
+label: Occupation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      occupation: occupation
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

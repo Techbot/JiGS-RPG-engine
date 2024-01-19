@@ -1,0 +1,25 @@
+uuid: 693bc42a-653d-464c-84ea-94baa40b92b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_charisma
+    - profile.type.player
+id: profile.player.field_charisma
+field_name: field_charisma
+entity_type: profile
+bundle: player
+label: Charisma
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

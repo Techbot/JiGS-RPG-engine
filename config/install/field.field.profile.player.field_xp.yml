@@ -1,0 +1,25 @@
+uuid: c1d1543f-93ca-44d4-a473-d9b1992b04b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_xp
+    - profile.type.player
+id: profile.player.field_xp
+field_name: field_xp
+entity_type: profile
+bundle: player
+label: XP
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: 44f2a657-df0b-472d-8d42-6ab2394f44db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x
+    - paragraphs.paragraphs_type.mobs
+id: paragraph.mobs.field_x
+field_name: field_x
+entity_type: paragraph
+bundle: mobs
+label: X
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

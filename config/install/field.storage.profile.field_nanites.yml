@@ -1,0 +1,20 @@
+uuid: 737a6fa2-aa19-4f8a-b001-20ba72f2cdef
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_nanites
+field_name: field_nanites
+entity_type: profile
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

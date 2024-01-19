@@ -1,0 +1,47 @@
+uuid: 09e93e37-6183-4eb6-ac14-69264c88f5af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.mob.body
+    - field.field.node.mob.field_mob_sprite_sheet
+    - field.field.node.mob.field_type
+    - node.type.mob
+  module:
+    - text
+    - user
+id: node.mob.default
+targetEntityType: node
+bundle: mob
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_mob_sprite_sheet:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_type:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

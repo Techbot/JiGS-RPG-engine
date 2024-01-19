@@ -1,0 +1,47 @@
+uuid: 236899d2-5c69-4be8-a755-3d946b6979d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.paragraph.compact_table
+    - field.field.paragraph.walls.field_height
+    - field.field.paragraph.walls.field_width
+    - field.field.paragraph.walls.field_x
+    - field.field.paragraph.walls.field_y
+    - paragraphs.paragraphs_type.walls
+id: paragraph.walls.compact_table
+targetEntityType: paragraph
+bundle: walls
+mode: compact_table
+content:
+  field_height:
+    type: number
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_width:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

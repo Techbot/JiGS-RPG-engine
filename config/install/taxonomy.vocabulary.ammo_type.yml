@@ -1,0 +1,8 @@
+uuid: e8eda6de-2d0f-472e-bd4f-0bcd1d0bf1ad
+langcode: en
+status: true
+dependencies: {  }
+name: 'Ammo Type'
+vid: ammo_type
+description: ''
+weight: 0

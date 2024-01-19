@@ -1,0 +1,70 @@
+uuid: 932e9020-9b86-4f00-9614-8e921d0a4230
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_inventory
+    - paragraphs.paragraphs_type.ammunition
+    - paragraphs.paragraphs_type.components
+    - paragraphs.paragraphs_type.items
+    - paragraphs.paragraphs_type.weapon
+    - profile.type.player
+  module:
+    - entity_reference_revisions
+id: profile.player.field_inventory
+field_name: field_inventory
+entity_type: profile
+bundle: player
+label: Inventory
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ammunition: ammunition
+      components: components
+      items: items
+      weapon: weapon
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 13
+        enabled: true
+      buildings:
+        weight: 14
+        enabled: false
+      components:
+        weight: 15
+        enabled: true
+      items:
+        weight: 16
+        enabled: true
+      mission_stage:
+        weight: 17
+        enabled: false
+      mobs:
+        weight: 18
+        enabled: false
+      modifier:
+        weight: 19
+        enabled: false
+      npc:
+        weight: 20
+        enabled: false
+      portal:
+        weight: 21
+        enabled: false
+      rewards:
+        weight: 22
+        enabled: false
+      skill:
+        weight: 23
+        enabled: false
+      weapon:
+        weight: 24
+        enabled: true
+field_type: entity_reference_revisions

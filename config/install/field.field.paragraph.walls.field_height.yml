@@ -1,0 +1,23 @@
+uuid: 17f5b8b7-4b73-4a94-bba1-c219aec090eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_height
+    - paragraphs.paragraphs_type.walls
+id: paragraph.walls.field_height
+field_name: field_height
+entity_type: paragraph
+bundle: walls
+label: Height
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

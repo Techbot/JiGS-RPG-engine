@@ -1,0 +1,33 @@
+uuid: e842990b-123b-4ced-9844-fe4c8eed95a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reward
+    - node.type.component
+    - node.type.items
+    - node.type.weapon
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_reward
+field_name: field_reward
+entity_type: paragraph
+bundle: mission_stage
+label: Reward
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      component: component
+      items: items
+      weapon: weapon
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: component
+field_type: entity_reference

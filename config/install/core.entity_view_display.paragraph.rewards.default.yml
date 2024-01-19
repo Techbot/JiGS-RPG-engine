@@ -1,0 +1,53 @@
+uuid: f4615573-57ce-4e14-9e2e-5c2b390b3d9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.rewards.field_ref
+    - field.field.paragraph.rewards.field_reward_item
+    - field.field.paragraph.rewards.field_x
+    - field.field.paragraph.rewards.field_y
+    - paragraphs.paragraphs_type.rewards
+  module:
+    - entity_reference_revisions
+id: paragraph.rewards.default
+targetEntityType: paragraph
+bundle: rewards
+mode: default
+content:
+  field_ref:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_reward_item:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

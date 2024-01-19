@@ -1,0 +1,50 @@
+uuid: eb38ac1c-8037-4771-8bba-4062c1aa98aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.folio.field_page
+    - field.field.paragraph.folio.field_sprite
+    - field.field.paragraph.folio.field_x
+    - field.field.paragraph.folio.field_y
+    - paragraphs.paragraphs_type.folio
+id: paragraph.folio.default
+targetEntityType: paragraph
+bundle: folio
+mode: default
+content:
+  field_page:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sprite:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

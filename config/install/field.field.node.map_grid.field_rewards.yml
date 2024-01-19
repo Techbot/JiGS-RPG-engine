@@ -1,0 +1,73 @@
+uuid: 13625dc9-0bb6-4429-b399-859c0a26707b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rewards
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.rewards
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_rewards
+field_name: field_rewards
+entity_type: node
+bundle: map_grid
+label: Rewards
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      rewards: rewards
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 10
+        enabled: false
+      buildings:
+        weight: 11
+        enabled: false
+      components:
+        weight: 18
+        enabled: false
+      elements:
+        weight: 19
+        enabled: false
+      ingredients:
+        weight: 20
+        enabled: false
+      items:
+        weight: 12
+        enabled: false
+      mission_stage:
+        weight: 22
+        enabled: false
+      mobs:
+        weight: 23
+        enabled: false
+      modifier:
+        weight: 14
+        enabled: false
+      npc:
+        weight: 15
+        enabled: false
+      portal:
+        weight: 16
+        enabled: false
+      potions:
+        weight: 17
+        enabled: false
+      rewards:
+        weight: 18
+        enabled: true
+      skill:
+        weight: 29
+        enabled: false
+      weapon:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,32 @@
+uuid: 181cdaaf-208c-4865-a0fb-4c3fe4ce30dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.items.field_items
+    - field.field.paragraph.items.field_location
+    - paragraphs.paragraphs_type.items
+id: paragraph.items.default
+targetEntityType: paragraph
+bundle: items
+mode: default
+content:
+  field_items:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_location:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

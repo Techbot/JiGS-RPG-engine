@@ -1,0 +1,23 @@
+uuid: 54a727fd-2ed1-4a1c-b3e2-6e6bde24ab90
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y
+    - paragraphs.paragraphs_type.rewards
+id: paragraph.rewards.field_y
+field_name: field_y
+entity_type: paragraph
+bundle: rewards
+label: 'Y'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

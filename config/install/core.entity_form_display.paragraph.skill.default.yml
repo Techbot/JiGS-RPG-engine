@@ -1,0 +1,29 @@
+uuid: d89d2aaa-f0e1-43bf-ab60-10220be13978
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.skill.field_skill
+    - field.field.paragraph.skill.field_skill_level
+    - paragraphs.paragraphs_type.skill
+id: paragraph.skill.default
+targetEntityType: paragraph
+bundle: skill
+mode: default
+content:
+  field_skill:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_skill_level:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

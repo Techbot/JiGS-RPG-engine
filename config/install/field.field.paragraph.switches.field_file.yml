@@ -1,0 +1,19 @@
+uuid: ef64a649-45c4-4d29-8f40-0211fffef9df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_file
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_file
+field_name: field_file
+entity_type: paragraph
+bundle: switches
+label: File
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

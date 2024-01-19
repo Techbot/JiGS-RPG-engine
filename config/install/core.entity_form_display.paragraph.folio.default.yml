@@ -1,0 +1,50 @@
+uuid: 28b2641a-6f99-4a18-ae4b-e5b0f3ac43f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.folio.field_page
+    - field.field.paragraph.folio.field_sprite
+    - field.field.paragraph.folio.field_x
+    - field.field.paragraph.folio.field_y
+    - paragraphs.paragraphs_type.folio
+id: paragraph.folio.default
+targetEntityType: paragraph
+bundle: folio
+mode: default
+content:
+  field_page:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_sprite:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

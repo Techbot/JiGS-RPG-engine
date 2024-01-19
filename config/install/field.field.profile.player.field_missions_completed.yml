@@ -1,0 +1,70 @@
+uuid: 51e45ae5-37b6-467c-8ec9-b61d2cebe0ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_missions_completed
+    - paragraphs.paragraphs_type.missions
+    - profile.type.player
+  module:
+    - entity_reference_revisions
+id: profile.player.field_missions_completed
+field_name: field_missions_completed
+entity_type: profile
+bundle: player
+label: 'Missions Completed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      missions: missions
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 15
+        enabled: false
+      buildings:
+        weight: 16
+        enabled: false
+      components:
+        weight: 17
+        enabled: false
+      items:
+        weight: 18
+        enabled: false
+      mission_stage:
+        weight: 20
+        enabled: false
+      missions:
+        weight: 19
+        enabled: true
+      mobs:
+        weight: 21
+        enabled: false
+      modifier:
+        weight: 22
+        enabled: false
+      npc:
+        weight: 23
+        enabled: false
+      portal:
+        weight: 24
+        enabled: false
+      reward_item:
+        weight: 26
+        enabled: false
+      rewards:
+        weight: 25
+        enabled: false
+      skill:
+        weight: 27
+        enabled: false
+      weapon:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions

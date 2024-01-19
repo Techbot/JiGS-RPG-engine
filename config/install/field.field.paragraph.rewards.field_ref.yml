@@ -1,0 +1,19 @@
+uuid: cc46b94e-5582-486a-8903-f4f9d6091fae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ref
+    - paragraphs.paragraphs_type.rewards
+id: paragraph.rewards.field_ref
+field_name: field_ref
+entity_type: paragraph
+bundle: rewards
+label: ref
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,58 @@
+uuid: d82c98b3-1375-4407-a545-7953ed2cb1df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.mobs.field_level
+    - field.field.paragraph.mobs.field_mob_name
+    - field.field.paragraph.mobs.field_mobs
+    - field.field.paragraph.mobs.field_x
+    - field.field.paragraph.mobs.field_y
+    - paragraphs.paragraphs_type.mobs
+id: paragraph.mobs.default
+targetEntityType: paragraph
+bundle: mobs
+mode: default
+content:
+  field_level:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_mob_name:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_mobs:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,95 @@
+uuid: 5edc17a7-9864-4b04-aff4-2b40b2d61952
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.switches.field_end_frame
+    - field.field.paragraph.switches.field_file
+    - field.field.paragraph.switches.field_frameheight
+    - field.field.paragraph.switches.field_framewidth
+    - field.field.paragraph.switches.field_number_of_frames
+    - field.field.paragraph.switches.field_repeatable
+    - field.field.paragraph.switches.field_starting_frame
+    - field.field.paragraph.switches.field_switch_type
+    - field.field.paragraph.switches.field_x
+    - field.field.paragraph.switches.field_y
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.default
+targetEntityType: paragraph
+bundle: switches
+mode: default
+content:
+  field_end_frame:
+    type: number
+    weight: 17
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_file:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_frameheight:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_framewidth:
+    type: number
+    weight: 12
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_number_of_frames:
+    type: number
+    weight: 13
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_repeatable:
+    type: number
+    weight: 15
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_starting_frame:
+    type: number
+    weight: 16
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_switch_type:
+    type: number
+    weight: 14
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

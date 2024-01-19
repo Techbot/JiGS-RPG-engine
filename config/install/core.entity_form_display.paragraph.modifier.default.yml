@@ -1,0 +1,37 @@
+uuid: ae7dea64-ad01-425d-ab84-6505d01b372d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.modifier.field_attribute
+    - field.field.paragraph.modifier.field_duration
+    - field.field.paragraph.modifier.field_value
+    - paragraphs.paragraphs_type.modifier
+id: paragraph.modifier.default
+targetEntityType: paragraph
+bundle: modifier
+mode: default
+content:
+  field_attribute:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_duration:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_value:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

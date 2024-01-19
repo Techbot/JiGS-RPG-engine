@@ -1,0 +1,73 @@
+uuid: 6477c88b-c73d-4f9f-990d-8fc14aead207
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_reward_item
+    - paragraphs.paragraphs_type.ammunition
+    - paragraphs.paragraphs_type.components
+    - paragraphs.paragraphs_type.reward_item
+    - paragraphs.paragraphs_type.rewards
+    - paragraphs.paragraphs_type.weapon
+  module:
+    - entity_reference_revisions
+id: paragraph.rewards.field_reward_item
+field_name: field_reward_item
+entity_type: paragraph
+bundle: rewards
+label: Item
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      reward_item: reward_item
+      ammunition: ammunition
+      components: components
+      weapon: weapon
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 15
+        enabled: true
+      buildings:
+        weight: 16
+        enabled: false
+      components:
+        weight: 17
+        enabled: true
+      items:
+        weight: 18
+        enabled: false
+      mission_stage:
+        weight: 19
+        enabled: false
+      mobs:
+        weight: 20
+        enabled: false
+      modifier:
+        weight: 21
+        enabled: false
+      npc:
+        weight: 22
+        enabled: false
+      portal:
+        weight: 23
+        enabled: false
+      reward_item:
+        weight: 14
+        enabled: true
+      rewards:
+        weight: 24
+        enabled: false
+      skill:
+        weight: 25
+        enabled: false
+      weapon:
+        weight: 26
+        enabled: true
+field_type: entity_reference_revisions

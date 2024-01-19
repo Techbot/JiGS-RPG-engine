@@ -1,0 +1,18 @@
+uuid: ae86cc06-6502-4be1-a719-0b108b72a17f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Weapon
+type: weapon
+description: 'For when diplomacy breaks down ...  and zombies'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

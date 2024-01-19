@@ -1,0 +1,25 @@
+uuid: a20a7f59-8875-450a-9989-99085c1a1386
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_y
+    - profile.type.player
+id: profile.player.field_y
+field_name: field_y
+entity_type: profile
+bundle: player
+label: 'Y'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1504
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

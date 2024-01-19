@@ -1,0 +1,51 @@
+uuid: b67b9a19-c192-4b9a-ae95-0439361adb6c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_population
+field_name: field_city_population
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Struggling survivors: The town has a small population of only a few hundred people who are struggling to survive in the harsh post-apocalyptic environment. They have very limited access to resources and live in constant fear of raiders and mutated creatures.'
+    -
+      value: 2
+      label: 'Small settlement: The town has grown slightly in size and has a population of a few thousand people. They have established a few basic structures and have started to form a rudimentary economy based on bartering.'
+    -
+      value: 3
+      label: 'Established community: The town has become an established community with a population of around 10,000 people. They have developed a more organized system of governance, basic infrastructure, and access to some limited technology.'
+    -
+      value: 4
+      label: 'Growing town: The town is growing rapidly, with a population of around 25,000 people. They have developed a more advanced economy, with a barter system that is supplemented by the use of some form of currency. The town has access to more advanced technology and has developed a basic education system.'
+    -
+      value: 5
+      label: 'Thriving city: The town has developed into a thriving city with a population of around 50,000 people. They have developed more advanced infrastructure, including roads and public transportation. The city has a diverse economy and access to advanced technology, including energy sources and communication systems.'
+    -
+      value: 6
+      label: 'Major metropolitan area: The city has grown into a major metropolitan area with a population of around 100,000 people. They have established a complex system of governance and a diversified economy that includes manufacturing, agriculture, and trade. The city has access to advanced technology, including robotics and artificial intelligence.'
+    -
+      value: 7
+      label: 'Regional center: The city has become a regional center with a population of around 250,000 people. They have developed a sophisticated economy, including financial and service sectors. The city has access to cutting-edge technology, including genetic engineering and advanced medical treatments.'
+    -
+      value: 8
+      label: 'National hub: The city has become a national hub with a population of around 500,000 people. They have developed a thriving culture and arts scene, with advanced educational and research institutions. The city has access to advanced technology in fields such as nanotechnology and space exploration.'
+    -
+      value: 9
+      label: 'Global player: The city has become a global player with a population of around 1 million people. They have developed a highly advanced economy, with a focus on innovation and sustainability. The city has access to advanced technology in fields such as quantum computing and clean energy.'
+    -
+      value: 10
+      label: 'Interstellar hub: The city has become an interstellar hub with a population of over 10 million people. They have established a highly advanced civilization, with access to advanced technology that enables faster-than-light travel and communication across the galaxy. The city has become a center of scientific research and exploration, and its people are among the most advanced and intelligent in the galaxy.'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

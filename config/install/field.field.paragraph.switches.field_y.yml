@@ -1,0 +1,23 @@
+uuid: a4874b1b-f641-4f22-9ad8-208b859edcf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.field_y
+field_name: field_y
+entity_type: paragraph
+bundle: switches
+label: 'Y'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

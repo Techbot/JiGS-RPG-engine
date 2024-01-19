@@ -1,0 +1,19 @@
+uuid: 5b0f57ec-3335-4689-ab21-a9422c398447
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_mob_name
+    - paragraphs.paragraphs_type.mobs
+id: paragraph.mobs.field_mob_name
+field_name: field_mob_name
+entity_type: paragraph
+bundle: mobs
+label: 'Mob Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

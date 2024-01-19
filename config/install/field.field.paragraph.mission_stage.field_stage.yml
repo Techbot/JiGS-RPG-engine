@@ -1,0 +1,19 @@
+uuid: aadd1a84-880f-443a-80c6-d1a4e3fea783
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stage
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_stage
+field_name: field_stage
+entity_type: paragraph
+bundle: mission_stage
+label: Stage
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

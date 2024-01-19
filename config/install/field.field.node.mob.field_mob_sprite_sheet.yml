@@ -1,0 +1,23 @@
+uuid: cd34b5ea-5c07-4912-bcec-0213bbf51787
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mob_sprite_sheet
+    - node.type.mob
+id: node.mob.field_mob_sprite_sheet
+field_name: field_mob_sprite_sheet
+entity_type: node
+bundle: mob
+label: 'Sprite Sheet'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

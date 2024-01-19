@@ -1,0 +1,20 @@
+uuid: 2db30f84-162d-42c7-8b34-18933e0cd2c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_framewidth
+field_name: field_framewidth
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

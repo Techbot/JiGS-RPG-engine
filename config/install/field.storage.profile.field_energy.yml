@@ -1,0 +1,20 @@
+uuid: 7d3f7f58-36a4-4628-821d-fd8a20b6840a
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_energy
+field_name: field_energy
+entity_type: profile
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

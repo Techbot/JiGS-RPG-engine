@@ -1,0 +1,20 @@
+uuid: e2d5e075-6c75-4158-a677-daccf9d0300d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_end_frame
+field_name: field_end_frame
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

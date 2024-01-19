@@ -1,0 +1,25 @@
+uuid: 0bc9b377-6684-4e95-aee4-c619750c989d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_dexterity
+    - profile.type.player
+id: profile.player.field_dexterity
+field_name: field_dexterity
+entity_type: profile
+bundle: player
+label: Dexterity
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,33 @@
+uuid: 1af8648d-4270-47da-94df-d19cfff78aa2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_map_grid
+    - node.type.map_grid
+    - profile.type.player
+  content:
+    - 'node:map_grid:830ba27c-a1f2-4770-96f8-49f0441e9eaf'
+id: profile.player.field_map_grid
+field_name: field_map_grid
+entity_type: profile
+bundle: player
+label: Map-Grid
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 830ba27c-a1f2-4770-96f8-49f0441e9eaf
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      map_grid: map_grid
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

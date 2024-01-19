@@ -1,0 +1,51 @@
+uuid: 20e4471a-5546-4b21-bcc8-1b0d19e59cb9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_education_level
+field_name: field_city_education_level
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Basic literacy and numeracy skills are taught to the population, but formal education is not widely available.'
+    -
+      value: 2
+      label: 'The town establishes a basic school system with a few trained teachers and limited resources.'
+    -
+      value: 3
+      label: 'The school system expands to include more subjects and better-trained teachers, but resources are still limited.'
+    -
+      value: 4
+      label: 'The town invests in education and builds more schools, providing a wider range of subjects and more resources for teachers.'
+    -
+      value: 5
+      label: 'The education system becomes more advanced, with specialized schools for different fields, such as science, engineering, and medicine.'
+    -
+      value: 6
+      label: 'The town attracts highly educated people from other areas, bringing new knowledge and expertise to the community.'
+    -
+      value: 7
+      label: 'The education system becomes more interdisciplinary, with a focus on developing critical thinking and problem-solving skills.'
+    -
+      value: 8
+      label: 'The town becomes a center of education and research, with institutions of higher learning and opportunities for advanced study.'
+    -
+      value: 9
+      label: 'The education system becomes highly specialized, with students focusing on specific fields and pursuing advanced degrees.'
+    -
+      value: 10
+      label: 'The town becomes a leader in education and innovation, with cutting-edge research and development and a highly skilled population.'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

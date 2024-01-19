@@ -1,0 +1,19 @@
+uuid: 1bc33145-77ee-4f91-a863-f684759e4eb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sprite
+    - paragraphs.paragraphs_type.folio
+id: paragraph.folio.field_sprite
+field_name: field_sprite
+entity_type: paragraph
+bundle: folio
+label: Sprite
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

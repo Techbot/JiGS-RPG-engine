@@ -1,0 +1,10 @@
+uuid: 33724886-92bf-4615-b30f-891ca3653660
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.player
+label: Player
+targetEntityType: profile
+cache: true

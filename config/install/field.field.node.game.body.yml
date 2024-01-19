@@ -1,0 +1,25 @@
+uuid: cbed0a26-d684-4c3f-a642-2f1ec814d659
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.game
+  module:
+    - text
+_core:
+  default_config_hash: Vxc6WE2C-RBnyZDituMPHl_ksEZTEuLzJZJPkQ9kWl4
+id: node.game.body
+field_name: body
+entity_type: node
+bundle: game
+label: Body
+description: 'More specific information about the Game.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

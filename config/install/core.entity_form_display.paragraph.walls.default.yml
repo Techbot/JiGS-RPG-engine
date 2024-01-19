@@ -1,0 +1,46 @@
+uuid: 7463b25d-9809-4dd4-bb9a-2d1a71f7d4cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.walls.field_height
+    - field.field.paragraph.walls.field_width
+    - field.field.paragraph.walls.field_x
+    - field.field.paragraph.walls.field_y
+    - paragraphs.paragraphs_type.walls
+id: paragraph.walls.default
+targetEntityType: paragraph
+bundle: walls
+mode: default
+content:
+  field_height:
+    type: number
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_width:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

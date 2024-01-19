@@ -1,0 +1,23 @@
+uuid: 4e1787b7-609b-42d9-bcaa-9b47b4fa672f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y
+    - paragraphs.paragraphs_type.mission_stage
+id: paragraph.mission_stage.field_y
+field_name: field_y
+entity_type: paragraph
+bundle: mission_stage
+label: 'Mark Y'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

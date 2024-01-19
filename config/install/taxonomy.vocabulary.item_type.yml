@@ -1,0 +1,8 @@
+uuid: fdac810c-8f6b-42eb-a93d-78724dca28f5
+langcode: en
+status: true
+dependencies: {  }
+name: 'Item Type'
+vid: item_type
+description: ''
+weight: 0

@@ -1,0 +1,25 @@
+uuid: eb183ba2-2dbe-4fc6-aca5-9fa4b58e1043
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_strength
+    - profile.type.player
+id: profile.player.field_strength
+field_name: field_strength
+entity_type: profile
+bundle: player
+label: Strength
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

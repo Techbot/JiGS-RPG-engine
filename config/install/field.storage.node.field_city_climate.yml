@@ -1,0 +1,51 @@
+uuid: 1f11b071-7023-4c72-a798-4a24f72577d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_climate
+field_name: field_city_climate
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Arctic Wasteland: The town is located in a region with extreme cold temperatures and snow cover all year round.'
+    -
+      value: 2
+      label: 'Cold Desert: The town is located in a region with low precipitation and cold temperatures, similar to a polar desert.'
+    -
+      value: 3
+      label: 'Temperate Rainforest: The town is located in a region with high rainfall and mild temperatures, resulting in a lush forest environment.'
+    -
+      value: 4
+      label: 'Coastal City: The town is located on the coast and is affected by the oceanic climate, with moderate temperatures and high humidity.'
+    -
+      value: 5
+      label: 'Tropical Jungle: The town is located in a region with high precipitation and hot temperatures, resulting in a dense jungle environment.'
+    -
+      value: 6
+      label: 'Mountain Town: The town is located at high altitude, with cold temperatures and harsh weather conditions.'
+    -
+      value: 7
+      label: 'Arid Plains: The town is located in a region with low precipitation and hot temperatures, resulting in a dry, desert-like environment.'
+    -
+      value: 8
+      label: 'Flooded Town: The town is located in a region with frequent flooding, resulting in a high water table and flooded streets.'
+    -
+      value: 9
+      label: 'Acid Rain City: The town is located in a region with high levels of air pollution, resulting in acid rain that damages buildings and vegetation.'
+    -
+      value: 10
+      label: 'Radiated Wasteland: The town is located in a region with high levels of radiation, resulting in mutations in the local flora and fauna, and harsh environmental conditions for the population.'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

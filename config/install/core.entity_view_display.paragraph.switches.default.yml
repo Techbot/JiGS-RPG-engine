@@ -1,0 +1,111 @@
+uuid: 798c5790-2009-4b48-84be-e690336371be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.switches.field_end_frame
+    - field.field.paragraph.switches.field_file
+    - field.field.paragraph.switches.field_frameheight
+    - field.field.paragraph.switches.field_framewidth
+    - field.field.paragraph.switches.field_number_of_frames
+    - field.field.paragraph.switches.field_repeatable
+    - field.field.paragraph.switches.field_starting_frame
+    - field.field.paragraph.switches.field_switch_type
+    - field.field.paragraph.switches.field_x
+    - field.field.paragraph.switches.field_y
+    - paragraphs.paragraphs_type.switches
+id: paragraph.switches.default
+targetEntityType: paragraph
+bundle: switches
+mode: default
+content:
+  field_end_frame:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_file:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_frameheight:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_framewidth:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_number_of_frames:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_repeatable:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_starting_frame:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_switch_type:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_x:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_y:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden: {  }

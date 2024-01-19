@@ -1,0 +1,23 @@
+uuid: e3d7cd04-a675-4b91-82f8-7278abeba2e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_y
+    - paragraphs.paragraphs_type.walls
+id: paragraph.walls.field_y
+field_name: field_y
+entity_type: paragraph
+bundle: walls
+label: 'Wall Y'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

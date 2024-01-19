@@ -1,0 +1,18 @@
+uuid: 89565abc-787e-4e7c-a7d2-70bea13f7f9c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Mission
+type: mission
+description: 'This message will self destruct in 10 seconds'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

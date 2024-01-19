@@ -1,0 +1,8 @@
+uuid: b493a9e3-fca7-44fa-9e28-74b6f597a163
+langcode: en
+status: true
+dependencies: {  }
+name: 'Faction Type'
+vid: faction_type
+description: ''
+weight: 0

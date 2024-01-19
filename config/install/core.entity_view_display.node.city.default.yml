@@ -1,0 +1,93 @@
+uuid: 2b236753-8065-4067-b158-d2a4724b0d0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.city.body
+    - field.field.node.city.field_city_climate
+    - field.field.node.city.field_city_crime_level
+    - field.field.node.city.field_city_description
+    - field.field.node.city.field_city_education_level
+    - field.field.node.city.field_city_politics
+    - field.field.node.city.field_city_pollution
+    - field.field.node.city.field_city_population
+    - field.field.node.city.field_city_technology
+    - node.type.city
+  module:
+    - options
+    - text
+    - user
+id: node.city.default
+targetEntityType: node
+bundle: city
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_city_climate:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_city_crime_level:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_city_description:
+    type: text_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_city_education_level:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_city_politics:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_city_pollution:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_city_population:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_city_technology:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

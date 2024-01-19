@@ -1,0 +1,21 @@
+uuid: afb8e2f1-7882-49f9-9d96-aa2a01fd5f2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_game_state
+    - profile.type.player
+  module:
+    - options
+id: profile.player.field_game_state
+field_name: field_game_state
+entity_type: profile
+bundle: player
+label: 'Game State'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

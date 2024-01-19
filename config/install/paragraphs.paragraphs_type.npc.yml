@@ -1,0 +1,12 @@
+uuid: b87ad0ac-5047-449d-bd16-e93292a6580b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:5e51d8fa-2da4-48d9-b0d4-060f25578a6d'
+id: npc
+label: NPC
+icon_uuid: 5e51d8fa-2da4-48d9-b0d4-060f25578a6d
+icon_default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAcFJREFUaIFjZCACsLFxwNkdPl5wtqqlJZx9+/jx/8SYBddrqsII13v6Dly8aN06UoxhYCJJ9SAEQ94DjISVMDD0BQXB2aqmKnD27dN34MmmcO1agub8/3IQzp4QPwnZTLKT05CPgSHvAZxJCCXZ4ChtChbmIQzisSfJYlzJSVhREu6mXfvOwsWXnj+B1ZwhHwND3gMsxChCTjbElDakgpyWNDg7MboBuUIkWEoO+RgY8h4gKgnRGrDIchBWhAMM+RgY9cBAg1EPDDQguRRCbsOQ2v6hBRjyMTDkPUBUEpLRkIa3SSbET0JqTiPUEJOckJPfn8c/4OzE6AY4W8NACW7XjQv3CJo55GNgyHuAuFKIWQCJ8xTOQu5JIScnYgBysqEEDPkYGPIeQElCuMd/rhLskfUHB5Nk8eJDHVjFY+0q4HaZmmth7ZEhd/CHfAwMeQ8wEjNsSMn4DzGAmAoOOTmdPnkNLj7kY2DIewAlCTEwMNAt2aBYipSEkAGu5MSANF405GNgyHsAZ1toMPS2iBkvGvIxMOqBgQajHhhogLMUGgzjP8gVGS4w5GNgyHsAZ1sIFzh7/xntXEM8GG0LDRoAAKI4frhi9ojXAAAAAElFTkSuQmCC'
+description: 'Non Player Characters that inhabit the world and interact with the players'
+behavior_plugins: {  }

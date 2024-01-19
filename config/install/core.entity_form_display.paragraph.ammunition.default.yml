@@ -1,0 +1,29 @@
+uuid: 16da3b34-aa85-419e-94a6-36321ed64e6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ammunition.field_ammo_type
+    - field.field.paragraph.ammunition.field_amount
+    - paragraphs.paragraphs_type.ammunition
+id: paragraph.ammunition.default
+targetEntityType: paragraph
+bundle: ammunition
+mode: default
+content:
+  field_ammo_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_amount:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

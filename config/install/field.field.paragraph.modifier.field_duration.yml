@@ -1,0 +1,25 @@
+uuid: c911eff7-d96f-4f49-adf9-3b3b636ef594
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_duration
+    - paragraphs.paragraphs_type.modifier
+id: paragraph.modifier.field_duration
+field_name: field_duration
+entity_type: paragraph
+bundle: modifier
+label: Duration
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 100
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: Minutes
+field_type: integer

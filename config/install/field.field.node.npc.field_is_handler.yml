@@ -1,0 +1,23 @@
+uuid: 946d3558-9e8a-4db2-8716-3bcd7bc6a59b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_handler
+    - node.type.npc
+id: node.npc.field_is_handler
+field_name: field_is_handler
+entity_type: node
+bundle: npc
+label: 'Is Handler'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

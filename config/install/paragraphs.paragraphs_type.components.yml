@@ -1,0 +1,12 @@
+uuid: 7c0edb07-fb11-487f-a4d5-16a0c1ee006f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:a634ab80-5da0-44ee-ab14-5015fc3d252d'
+id: components
+label: Components
+icon_uuid: a634ab80-5da0-44ee-ab14-5015fc3d252d
+icon_default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAgdJREFUaIHtmE1LAlEUhmfMTNJIaAIthTJGhEbsg35A0Dpo1T5ob7TqF9Qmch+0bxW0DvwBUgkWhAPWQvrSQCrBLKqVZ87AvdzrJ3PAd/U6nrn6ch7O3LnqSXxFaWrrLqu0q9j8GvhZXQd/b5p/ontD4bDa9E+lErOmcHvBvO6S/4vOFPkA7k5ulsFmO5USrnOcTjMxi0SmAa33F2v954oJnnwHyAfoCCGsVrHB4tUf7u3AmrFEEnBS8lYN+Q6QD9A1hHi6vroR1iwuGczru/tH4DFOvsAk4ES+A+QD9BwhGWHMHswi+I3NdfDRhVXwxVwGcCLfAfIBuoZQ3DBgMuC9DX5IyUykGT0K/uz0XFhPvgPkA6jiErvwFtrj9YFv1GvCvZAMQjzh6VTMZcCT7wD5AFIIybx5aaGo0q7w5MHC2GANEHKSuA8y3rSRefPi7W2wMAYywvWD7bSTZJtCvZ42GIOxiSn47Y+3R+HxI8amVi3DdfIdIB9AxafTB0Pj+LuuTxseBq1qcLToJKlBzZo2c4ll8OXXStuTRwYbjEEnIt8B8gHcsUQSPhTyl4ANPtbD4r1o9xMbLPIdIB9ADWo6ExsZVLD6iQ0W+Q6QD2BDCJ8AY2FsvP4AoFL/rDLre40NFvkOkA9gQ4gn3oTRRv3M+l+3h+2HR8C7vr8s/9NgehmR7wD5AP8tjccsyKOM0AAAAABJRU5ErkJggg=='
+description: 'Things items are made of'
+behavior_plugins: {  }

@@ -1,0 +1,20 @@
+uuid: aad3b7bc-2fbb-4aee-819d-77ecafe956ae
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_y
+field_name: field_y
+entity_type: profile
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

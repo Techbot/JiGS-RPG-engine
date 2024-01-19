@@ -1,0 +1,20 @@
+uuid: beaf39fc-f6d0-4344-8ee5-d9cbaab962b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sprite_sheet
+field_name: field_sprite_sheet
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

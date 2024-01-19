@@ -1,0 +1,19 @@
+uuid: 3e44c70e-577b-4ebb-992f-aeb5691670cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_handler_dialog
+    - node.type.mission
+id: node.mission.field_handler_dialog
+field_name: field_handler_dialog
+entity_type: node
+bundle: mission
+label: 'Handler Dialog'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

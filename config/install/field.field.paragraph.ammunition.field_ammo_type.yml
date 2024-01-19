@@ -1,0 +1,29 @@
+uuid: 519c5162-cf7f-4458-8603-c4cf704de059
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ammo_type
+    - paragraphs.paragraphs_type.ammunition
+    - taxonomy.vocabulary.ammo_type
+id: paragraph.ammunition.field_ammo_type
+field_name: field_ammo_type
+entity_type: paragraph
+bundle: ammunition
+label: 'Ammo Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ammo_type: ammo_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

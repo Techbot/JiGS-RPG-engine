@@ -1,0 +1,33 @@
+uuid: 2302f0cf-9e39-44ef-bb5e-52b29d0fe517
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_handler
+    - node.type.npc
+    - paragraphs.paragraphs_type.mission_stage
+  content:
+    - 'node:npc:27e8ac89-25f7-4c94-a15e-ee217fe37a5f'
+id: paragraph.mission_stage.field_handler
+field_name: field_handler
+entity_type: paragraph
+bundle: mission_stage
+label: Handler
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 27e8ac89-25f7-4c94-a15e-ee217fe37a5f
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      npc: npc
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,65 @@
+uuid: 5739ddc0-98ab-465a-b483-372bd2e2fb0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.portal.field_destination
+    - field.field.paragraph.portal.field_destination_x
+    - field.field.paragraph.portal.field_destination_y
+    - field.field.paragraph.portal.field_tiled
+    - field.field.paragraph.portal.field_x
+    - field.field.paragraph.portal.field_y
+    - paragraphs.paragraphs_type.portal
+id: paragraph.portal.default
+targetEntityType: paragraph
+bundle: portal
+mode: default
+content:
+  field_destination:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_destination_x:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_destination_y:
+    type: number
+    weight: 4
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_tiled:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_x:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_y:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

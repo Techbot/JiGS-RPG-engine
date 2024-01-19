@@ -1,0 +1,13 @@
+uuid: d5deacdf-9681-43d9-9486-f6faa8ff2b93
+langcode: en
+status: true
+dependencies: {  }
+id: player
+label: Player
+display_label: ''
+multiple: false
+registration: false
+roles:
+  player: player
+allow_revisions: false
+new_revision: false

@@ -1,0 +1,22 @@
+uuid: c381b09f-0226-4643-aff5-25fab02092a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.faction.field_faction
+    - profile.type.faction
+id: profile.faction.default
+targetEntityType: profile
+bundle: faction
+mode: default
+content:
+  field_faction:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

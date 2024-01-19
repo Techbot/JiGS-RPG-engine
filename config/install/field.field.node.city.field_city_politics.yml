@@ -1,0 +1,23 @@
+uuid: c497c5d1-7d0d-4cd8-846d-aaf442d93131
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_politics
+    - node.type.city
+  module:
+    - options
+id: node.city.field_city_politics
+field_name: field_city_politics
+entity_type: node
+bundle: city
+label: 'City Politics'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

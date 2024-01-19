@@ -1,0 +1,41 @@
+uuid: 33a12d9b-5bdb-4fdb-be91-624f98830dab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.modifier.field_attribute
+    - field.field.paragraph.modifier.field_duration
+    - field.field.paragraph.modifier.field_value
+    - paragraphs.paragraphs_type.modifier
+id: paragraph.modifier.default
+targetEntityType: paragraph
+bundle: modifier
+mode: default
+content:
+  field_attribute:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_duration:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_value:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

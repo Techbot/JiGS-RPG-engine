@@ -1,0 +1,49 @@
+uuid: b0b178a5-95ec-4576-bb48-e54d3b8fc548
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_portals
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.portal
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_portals
+field_name: field_portals
+entity_type: node
+bundle: map_grid
+label: Portals
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      portal: portal
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 8
+        enabled: false
+      buildings:
+        weight: 9
+        enabled: false
+      items:
+        weight: 10
+        enabled: false
+      materials:
+        weight: 11
+        enabled: false
+      modifier:
+        weight: 12
+        enabled: false
+      portal:
+        weight: 13
+        enabled: true
+      potions:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

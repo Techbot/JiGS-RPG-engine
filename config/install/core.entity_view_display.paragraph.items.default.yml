@@ -1,0 +1,31 @@
+uuid: 95b48af7-58bc-4990-94f9-bd21a6675a99
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.items.field_items
+    - field.field.paragraph.items.field_location
+    - paragraphs.paragraphs_type.items
+  module:
+    - options
+id: paragraph.items.default
+targetEntityType: paragraph
+bundle: items
+mode: default
+content:
+  field_items:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_location:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

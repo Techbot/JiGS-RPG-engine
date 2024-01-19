@@ -1,0 +1,21 @@
+uuid: b35bb7e7-1d28-4acc-81d5-fdef97bf06b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_crime_level
+    - node.type.city
+  module:
+    - options
+id: node.city.field_city_crime_level
+field_name: field_city_crime_level
+entity_type: node
+bundle: city
+label: 'City Crime Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

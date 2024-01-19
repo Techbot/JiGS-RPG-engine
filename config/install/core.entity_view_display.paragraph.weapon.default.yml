@@ -1,0 +1,31 @@
+uuid: 3af04fcb-bf3b-41cf-b094-ca1d7136864b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.weapon.field_location
+    - field.field.paragraph.weapon.field_weapon
+    - paragraphs.paragraphs_type.weapon
+  module:
+    - options
+id: paragraph.weapon.default
+targetEntityType: paragraph
+bundle: weapon
+mode: default
+content:
+  field_location:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_weapon:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

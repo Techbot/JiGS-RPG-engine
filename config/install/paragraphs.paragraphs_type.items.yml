@@ -1,0 +1,12 @@
+uuid: efb9d3dd-b4c6-49d1-9410-5f9c50aa477e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:958c9026-998e-419d-a7b1-a8131d0d19a0'
+id: items
+label: Items
+icon_uuid: 958c9026-998e-419d-a7b1-a8131d0d19a0
+icon_default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAhJJREFUaIHVmMtLAlEYxWdsfCCGmZGtjBaBkJJELXqABIJtCqFdq1atWrZpFf0P0SIi+htqkxCEEG6CiCKQWogh+dYiEUXQdmc+4w6+ye+sjpf57szh/LgjI0tEUxOzUidK5d67nt3c2oC/vrppdDRMpOt2cFjEPoA86BtQtLSwSWbfhLOedFm4nnN74dk3wD7AQBCi2FTm1uFNr3dCbCgqLw6zcE/5NKPuf7QGz74B9gGUQd+AYpM6vsc6RcK9bRHO0mu0xL4B9gH6htCBbxk+VFBPkmzyA348dAlfCOzCf+6dwHvO9oX701kq9g2wD9C3FxlFSJIknDwX1mDLWYoTFcXGEDmHr9tn8NzsG2AfoCeEKDY2ix6+WKoBIb/XgfWdWBNmLaWJTT6GdfYNsA/QMUIUm8kxI3zmqyrEhur2KQ1PTyeKCpUWNs8rdnj2DbAP0BZC/cLmIV0VXhNvWPEclXxCeA39BpVY9cOzb4B9AM2/0z7XArzepL6kesFmVC8DlR/1XSdNy9/wYYJKO2LfAPsATQhRbFzk+0wkXkLfhwGncCMtbGxGHbApVutYD0cfu3viP2LfAPsAihY20XR5aLGhYt8A+wCKzahm4IKNwV6CZ98A+wBKsVoHNksO9a8yRYXqv7ChGjHX4Nk3wD5AW1+nhwEbKrOzCM++AfYB5OD8In7QE4lqGLDREvsG2Af4Bf7tzQdwSxO9AAAAAElFTkSuQmCC'
+description: 'Tools Of The Trade'
+behavior_plugins: {  }

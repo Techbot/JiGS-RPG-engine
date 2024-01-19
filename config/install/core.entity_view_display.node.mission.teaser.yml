@@ -1,0 +1,38 @@
+uuid: b6d0d8c2-1169-4556-9473-e4aeb70ae697
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.mission.body
+    - field.field.node.mission.field_choice_a
+    - field.field.node.mission.field_handler_dialog
+    - field.field.node.mission.field_quest_item
+    - field.field.node.mission.field_reward_item
+    - node.type.mission
+  module:
+    - text
+    - user
+id: node.mission.teaser
+targetEntityType: node
+bundle: mission
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_choice_a: true
+  field_handler_dialog: true
+  field_quest_item: true
+  field_reward_item: true

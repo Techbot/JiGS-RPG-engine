@@ -1,0 +1,21 @@
+uuid: f0b06747-f689-4f01-a877-9b92d73af97e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.reward_item.field_item
+    - paragraphs.paragraphs_type.reward_item
+id: paragraph.reward_item.default
+targetEntityType: paragraph
+bundle: reward_item
+mode: default
+content:
+  field_item:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,32 @@
+uuid: a489058b-6306-4ba1-9712-cb5ef8c20436
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.components.field_components
+    - field.field.paragraph.components.field_location
+    - paragraphs.paragraphs_type.components
+id: paragraph.components.default
+targetEntityType: paragraph
+bundle: components
+mode: default
+content:
+  field_components:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_location:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

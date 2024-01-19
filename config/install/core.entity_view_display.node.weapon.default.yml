@@ -1,0 +1,68 @@
+uuid: c3223b53-c7c7-470d-85be-041910886836
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.weapon.body
+    - field.field.node.weapon.field_ammo_type
+    - field.field.node.weapon.field_magazine
+    - field.field.node.weapon.field_materials
+    - field.field.node.weapon.field_modifiers
+    - node.type.weapon
+  module:
+    - entity_reference_revisions
+    - text
+    - user
+id: node.weapon.default
+targetEntityType: node
+bundle: weapon
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_ammo_type:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_magazine:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_materials:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_modifiers:
+    type: entity_reference_revisions_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

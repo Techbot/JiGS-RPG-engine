@@ -1,0 +1,73 @@
+uuid: be1ae502-b595-4881-810d-2b07e9862e4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_walls
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.walls
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_walls
+field_name: field_walls
+entity_type: node
+bundle: map_grid
+label: Walls
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      walls: walls
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 17
+        enabled: false
+      buildings:
+        weight: 18
+        enabled: false
+      components:
+        weight: 19
+        enabled: false
+      items:
+        weight: 20
+        enabled: false
+      mission_stage:
+        weight: 21
+        enabled: false
+      missions:
+        weight: 22
+        enabled: false
+      mobs:
+        weight: 23
+        enabled: false
+      modifier:
+        weight: 24
+        enabled: false
+      npc:
+        weight: 25
+        enabled: false
+      portal:
+        weight: 26
+        enabled: false
+      reward_item:
+        weight: 27
+        enabled: false
+      rewards:
+        weight: 28
+        enabled: false
+      skill:
+        weight: 29
+        enabled: false
+      walls:
+        weight: 16
+        enabled: true
+      weapon:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

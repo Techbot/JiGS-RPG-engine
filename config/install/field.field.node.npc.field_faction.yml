@@ -1,0 +1,29 @@
+uuid: 01032333-2891-4848-90c4-956a48179d48
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_faction
+    - node.type.faction
+    - node.type.npc
+id: node.npc.field_faction
+field_name: field_faction
+entity_type: node
+bundle: npc
+label: Faction
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      faction: faction
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,25 @@
+uuid: 4feafed4-33b3-4805-b880-85f0335ab104
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_left_weapon
+    - profile.type.player
+id: profile.player.field_left_weapon
+field_name: field_left_weapon
+entity_type: profile
+bundle: player
+label: 'Left Weapon'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

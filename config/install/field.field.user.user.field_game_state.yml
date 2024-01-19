@@ -1,0 +1,23 @@
+uuid: 37b31e36-fb83-4b88-a170-45de6771f3f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_game_state
+  module:
+    - options
+    - user
+id: user.user.field_game_state
+field_name: field_game_state
+entity_type: user
+bundle: user
+label: game_state
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: GamePhaser
+default_value_callback: ''
+settings: {  }
+field_type: list_string

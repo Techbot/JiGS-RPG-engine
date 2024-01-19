@@ -1,0 +1,33 @@
+uuid: 71aedab9-deac-47a1-82e3-56a85816548b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.missions.field_mission
+    - field.field.paragraph.missions.field_mission_stage
+    - paragraphs.paragraphs_type.missions
+id: paragraph.missions.default
+targetEntityType: paragraph
+bundle: missions
+mode: default
+content:
+  field_mission:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_mission_stage:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

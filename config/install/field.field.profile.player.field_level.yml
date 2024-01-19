@@ -1,0 +1,25 @@
+uuid: e1f39eb2-5689-473b-834b-ffb30912e3a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_level
+    - profile.type.player
+id: profile.player.field_level
+field_name: field_level
+entity_type: profile
+bundle: player
+label: Level
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

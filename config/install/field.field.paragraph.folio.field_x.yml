@@ -1,0 +1,23 @@
+uuid: a59d2a43-318b-47ac-87f1-f874737ee57b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x
+    - paragraphs.paragraphs_type.folio
+id: paragraph.folio.field_x
+field_name: field_x
+entity_type: paragraph
+bundle: folio
+label: X
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

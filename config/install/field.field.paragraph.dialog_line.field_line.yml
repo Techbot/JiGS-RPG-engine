@@ -1,0 +1,19 @@
+uuid: f766dc2e-8293-4efb-b16e-971a5fe89959
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_line
+    - paragraphs.paragraphs_type.dialog_line
+id: paragraph.dialog_line.field_line
+field_name: field_line
+entity_type: paragraph
+bundle: dialog_line
+label: Line
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

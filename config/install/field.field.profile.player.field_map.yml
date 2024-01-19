@@ -1,0 +1,25 @@
+uuid: 9c420894-4b9c-4e30-9a44-fab31bdef1ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_map
+    - profile.type.player
+id: profile.player.field_map
+field_name: field_map
+entity_type: profile
+bundle: player
+label: Map
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

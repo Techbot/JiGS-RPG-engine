@@ -1,0 +1,23 @@
+uuid: acaf1387-5f3d-46c8-aca4-0ae09ca1686b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_technology
+    - node.type.city
+  module:
+    - options
+id: node.city.field_city_technology
+field_name: field_city_technology
+entity_type: node
+bundle: city
+label: 'City Technology'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

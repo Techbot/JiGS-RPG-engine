@@ -1,0 +1,20 @@
+uuid: 8c9d1ef4-61b8-4396-9910-79339cb7ac9d
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_losses
+field_name: field_losses
+entity_type: profile
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

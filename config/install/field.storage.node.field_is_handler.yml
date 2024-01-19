@@ -1,0 +1,18 @@
+uuid: eb2aefd9-ba42-464f-bef1-ad11e1596c53
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_is_handler
+field_name: field_is_handler
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

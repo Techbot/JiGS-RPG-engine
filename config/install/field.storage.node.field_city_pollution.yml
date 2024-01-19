@@ -1,0 +1,51 @@
+uuid: ec9bb52b-1946-4884-9a4f-316910341784
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_city_pollution
+field_name: field_city_pollution
+entity_type: node
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 1
+      label: 'Minimal Pollution: The town has been able to successfully limit its pollution levels by implementing strict regulations on waste disposal and encouraging the use of sustainable energy sources.'
+    -
+      value: 2
+      label: 'Moderate Pollution: Despite efforts to limit pollution, the town struggles to keep up with the increasing population and industrialization. There are visible signs of pollution such as smog and contaminated water sources.'
+    -
+      value: 3
+      label: 'High Pollution: The town has become heavily industrialized, with factories and power plants polluting the air and water at alarming levels. Residents suffer from respiratory problems and there are frequent environmental disasters.'
+    -
+      value: 4
+      label: 'Extreme Pollution: The town is almost uninhabitable due to the high levels of pollution. The air is toxic, water is undrinkable, and many of the plants and animals have died off.'
+    -
+      value: 5
+      label: 'Moderate Recovery: The town was heavily polluted but has made significant progress in reducing pollution levels. There are still some visible signs of pollution, but overall the town is much cleaner than before.'
+    -
+      value: 6
+      label: 'High Recovery: The town has made significant progress in cleaning up its pollution levels. The air and water quality have improved, but there is still work to be done.'
+    -
+      value: 7
+      label: 'Successful Recovery: The town has successfully cleaned up its pollution levels and is now a model for other towns to follow. The air and water quality are excellent and the town is environmentally sustainable.'
+    -
+      value: 8
+      label: 'Stagnant Pollution: Despite efforts to limit pollution, the town has not been able to make any significant progress in reducing pollution levels. There are visible signs of pollution and the situation seems to be worsening.'
+    -
+      value: 9
+      label: 'Failed Recovery: The town attempted to clean up its pollution levels, but the efforts were unsuccessful. The town remains heavily polluted and is in danger of becoming uninhabitable.'
+    -
+      value: 10
+      label: 'Worsening Pollution: The town started with low pollution levels, but as the population and industry grew, pollution levels have started to increase rapidly. The town is in danger of becoming heavily polluted if action is not taken soon.'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

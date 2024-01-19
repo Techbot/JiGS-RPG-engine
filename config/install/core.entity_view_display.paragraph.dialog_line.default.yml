@@ -1,0 +1,38 @@
+uuid: 28651426-5551-4e72-bc8c-06cd40235c73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dialog_line.field_line
+    - field.field.paragraph.dialog_line.field_line_dialog
+    - field.field.paragraph.dialog_line.field_npc
+    - paragraphs.paragraphs_type.dialog_line
+id: paragraph.dialog_line.default
+targetEntityType: paragraph
+bundle: dialog_line
+mode: default
+content:
+  field_line:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_line_dialog:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_npc:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,19 @@
+uuid: 93f9f473-dfd5-4553-ade7-55b10349c32c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_reward_item
+field_name: field_reward_item
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

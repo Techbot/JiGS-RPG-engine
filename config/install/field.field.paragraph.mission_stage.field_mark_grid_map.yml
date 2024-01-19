@@ -1,0 +1,33 @@
+uuid: f64e79a0-79a7-4eca-9b1a-efe565d64167
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_mark_grid_map
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.mission_stage
+  content:
+    - 'node:map_grid:830ba27c-a1f2-4770-96f8-49f0441e9eaf'
+id: paragraph.mission_stage.field_mark_grid_map
+field_name: field_mark_grid_map
+entity_type: paragraph
+bundle: mission_stage
+label: 'Mark Grid Map'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 830ba27c-a1f2-4770-96f8-49f0441e9eaf
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      map_grid: map_grid
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

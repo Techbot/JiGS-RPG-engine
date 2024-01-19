@@ -1,0 +1,25 @@
+uuid: 440fd3f6-25a5-47ff-9713-84dbe5391a8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_x
+    - profile.type.player
+id: profile.player.field_x
+field_name: field_x
+entity_type: profile
+bundle: player
+label: X
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 416
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

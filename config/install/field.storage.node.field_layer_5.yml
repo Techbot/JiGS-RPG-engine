@@ -1,0 +1,20 @@
+uuid: 38788151-c35f-4987-8c5b-7c39031c0a7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_layer_5
+field_name: field_layer_5
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

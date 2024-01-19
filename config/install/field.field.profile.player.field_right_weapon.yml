@@ -1,0 +1,25 @@
+uuid: c49be217-5196-4140-abec-967fc4cf5bdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_right_weapon
+    - profile.type.player
+id: profile.player.field_right_weapon
+field_name: field_right_weapon
+entity_type: profile
+bundle: player
+label: 'Right Weapon'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

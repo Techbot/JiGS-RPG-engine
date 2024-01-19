@@ -1,0 +1,64 @@
+uuid: 76a51a3c-8a95-4150-b21f-2a34e7cb9547
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mobs
+    - node.type.map_grid
+    - paragraphs.paragraphs_type.mobs
+  module:
+    - entity_reference_revisions
+id: node.map_grid.field_mobs
+field_name: field_mobs
+entity_type: node
+bundle: map_grid
+label: Mobs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      mobs: mobs
+    negate: 0
+    target_bundles_drag_drop:
+      ammunition:
+        weight: 13
+        enabled: false
+      buildings:
+        weight: 14
+        enabled: false
+      components:
+        weight: 15
+        enabled: false
+      elements:
+        weight: 16
+        enabled: false
+      ingredients:
+        weight: 17
+        enabled: false
+      items:
+        weight: 18
+        enabled: false
+      mobs:
+        weight: 19
+        enabled: true
+      modifier:
+        weight: 20
+        enabled: false
+      npc:
+        weight: 21
+        enabled: false
+      portal:
+        weight: 22
+        enabled: false
+      potions:
+        weight: 23
+        enabled: false
+      rewards:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

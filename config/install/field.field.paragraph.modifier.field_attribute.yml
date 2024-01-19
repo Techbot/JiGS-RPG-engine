@@ -1,0 +1,29 @@
+uuid: 1d82de2d-7a6d-47a8-9a92-e4e3238f8db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_attribute
+    - paragraphs.paragraphs_type.modifier
+    - taxonomy.vocabulary.modifer_type
+id: paragraph.modifier.field_attribute
+field_name: field_attribute
+entity_type: paragraph
+bundle: modifier
+label: Attribute
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      modifer_type: modifer_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ammo_type
+field_type: entity_reference

@@ -1,0 +1,25 @@
+uuid: 90939cc3-d7b5-4a64-bd7a-f220d3aed022
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_value
+    - paragraphs.paragraphs_type.modifier
+id: paragraph.modifier.field_value
+field_name: field_value
+entity_type: paragraph
+bundle: modifier
+label: Value
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  min: 1
+  max: 100
+  prefix: ''
+  suffix: ''
+field_type: integer

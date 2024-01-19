@@ -1,0 +1,8 @@
+uuid: fab91e07-e125-43e2-8902-c673af6be498
+langcode: en
+status: true
+dependencies: {  }
+name: 'Mob Type'
+vid: mob_type
+description: ''
+weight: 0

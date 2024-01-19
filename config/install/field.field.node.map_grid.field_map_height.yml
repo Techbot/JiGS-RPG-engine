@@ -1,0 +1,25 @@
+uuid: 88f3b014-8a3c-484c-bd96-02c953621258
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_height
+    - node.type.map_grid
+id: node.map_grid.field_map_height
+field_name: field_map_height
+entity_type: node
+bundle: map_grid
+label: 'Map Height'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 120
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
