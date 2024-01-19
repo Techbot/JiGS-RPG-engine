@@ -3,7 +3,7 @@
 
 
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Almost Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
+![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
 
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot03.png)
@@ -11,6 +11,7 @@
 <h2>DEMO</h2>
 <ul>
  <li>The Eclectic Meme Conspiracy - https://www.eclecticmeme.com</li>
+ <li>JiGS DEMO Site - http://jigs.tilaa.cloud</li>
  <li>Your server here</li>
  </ul>
 

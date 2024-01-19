@@ -1,6 +1,6 @@
 {
-    "name": "drupal/jigs",
-    "type": "plugin",
+    "name": "drupal/jigs-rpg-engine",
+    "type": "drupal-module",
     "autoload": {
         "psr-4": {
             "Drupal\\jigs\\": "src/"
@@ -11,10 +11,15 @@
             "name": "techbot"
         }
     ],
-	"minimum-stability": "dev",
+    "minimum-stability": "dev",
     "require-dev": {
         "behat/behat": "^3.12",
         "phpunit/phpunit": "^9.5",
         "phpspec/phpspec": "^7.3"
-    }
+    },
+    "require": {
+        "drupal/paragraphs": "^1.15",
+        "drupal/profile": "^1.7",
+	"drupal/entity_reference_revisions"
+    },
 }
