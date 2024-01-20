@@ -7,3 +7,4 @@ dependencies:
 - profile:profile
 - drupal:paragraphs
 - drupal:entity_reference_revisions
+- registration_role:registration_role
