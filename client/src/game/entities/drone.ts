@@ -29,7 +29,7 @@ export default class Drone extends Phaser.Physics.Arcade.Sprite {
     this.pathIndex = Phaser.Math.Wrap(this.pathIndex + this.pathSpeed, 0, 1);
   }
 
-  bilbob(newX, newY) {
+  update(newX, newY) {
     this.path.x = newX;
     this.path.y = newY;
   }
