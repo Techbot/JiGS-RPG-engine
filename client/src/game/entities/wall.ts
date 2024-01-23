@@ -13,13 +13,12 @@ export default class Wall extends Phaser.Physics.Arcade.Sprite {
     this.setDepth(7);
     this.wallWidth  = width;
     this.wallHeight = height;
-    this.x      = x;
-    this.y      = y;
-    this.jigs = useJigsStore();
+    this.x          = x;
+    this.y          = y;
+    this.jigs       = useJigsStore();
     this.setVisible(this.jigs.debug);
-    this.alpha = 0.5;
+    this.alpha      = 0.5;
     this.setTexture('black');
-   // this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
     const obstacle = this;
     if (this.jigs.debug) {
       this.do_something_special();
