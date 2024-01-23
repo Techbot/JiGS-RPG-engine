@@ -16,6 +16,7 @@ export default class Gun extends Phaser.Physics.Arcade.Sprite {
     this.x = x;
     this.y = y;
     this.jigs = useJigsStore();
+    scene.events.on('position', this.handler, this);
   }
 
   shoot(self,event) {
@@ -44,6 +45,10 @@ export default class Gun extends Phaser.Physics.Arcade.Sprite {
 
   loadGun(sprite) {
     console.log('gun added' + sprite);
+  }
+
+  handler(x, y) {
+    this.setPosition(x , y);
   }
 
 }
