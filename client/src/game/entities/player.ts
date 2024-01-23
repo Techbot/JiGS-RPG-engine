@@ -5,6 +5,8 @@ import Phaser from "phaser";
 import Drones from "../entities/drones";
 import Gun from "../entities/gun";
 import Sword from "../entities/sword";
+import Light from "../entities/light";
+
 import PlayerMovement from "../entities/player_movement";
 import { useJigsStore } from '../../stores/jigs';
 
@@ -35,13 +37,11 @@ export default class Player {
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
             .on('pointerdown', this.onPlayerDown.bind(self))
             .setScale(.85);
-
     }
 
     add(self, player, colliderMap) {
         this.colliderMap = colliderMap
-        this.light = self.lights.addLight(player.x, player.y, 200);
-
+        this.light = new Light(self, player.x, player.y, null);
         this.gun = new Gun(self, player.x, player.y, 'gun');
         this.sword = new Sword(self, player.x, player.y, null);
         this.drones = new Drones(self, player.x, player.y);
@@ -62,21 +62,23 @@ export default class Player {
             if (this.jigs.debug) {
                 self.remoteRef.x = player.x;
                 self.remoteRef.y = player.y;
-                this.lerp(self);
             }
+            this.lerp(self);
         });
 
         var cam = self.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
 
-        self.key_left  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        self.key_up    = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        self.key_down  = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
 
         self.input.on("pointerdown", (event) => {
+
             this.sword.strike(self);
             this.gun.shoot(self, event);
+
             //Send Mouse Co-ordinates from World point of view
             self.inputPayload.inputX = parseInt(event.worldX);
             self.inputPayload.inputY = parseInt(event.worldY);
@@ -106,29 +108,19 @@ export default class Player {
         if (self.room.send && self.room.send !== undefined) {
             if (this.jigs.playerState == "alive") {
                 self.room.send(0, self.inputPayload);
-           }
+            }
         }
         if (!self.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
         self.physics.world.collide(self.localPlayer.entity, self.Walls.walls);
-
         this.playerMovement.move(self, velocity, this.colliderMap);
-
         this.jigs.mobClick = 0;
-        this.gun.x = self.currentPlayer.x;
-        this.gun.y = self.currentPlayer.y;
 
         if (this.jigs.debug) {
             self.localRef.x = self.currentPlayer.x;
             self.localRef.y = self.currentPlayer.y;
         }
-        this.light.x = self.currentPlayer.x;
-        this.light.y = self.currentPlayer.y;
-
-        this.drones.dronesGroup.children.each(function (drone) {
-            drone.bilbob(self.currentPlayer.x, self.currentPlayer.y);
-        }, this);
 
         ///////////////////////////////////////////////////////////////////////
         //  Dispatch a Scene event
