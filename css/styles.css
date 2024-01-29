@@ -687,6 +687,12 @@ h1 {
   margin-bottom: 2rem;
 }
 
+.emc-player {
+  background-color: #000000 !important;
+  color: #eee;
+  font-family: "Roboto", verdana, arial, helvetica, sans-serif;
+}
+
 .emc-player .emc-player__wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
