@@ -1,0 +1,122 @@
+{#
+/**
+ * @file
+ *
+ * Default theme implementation for profiles.
+ *
+ * Available variables:
+ * - content: Items for the content of the profile.
+ *   Use 'content' to print them all, or print a subset such as
+ *   'content.title'. Use the following code to exclude the
+ *   printing of a given child element:
+ *   @code
+ *   {{ content|without('title') }}
+ *   @endcode
+ * - attributes: HTML attributes for the wrapper.
+ * - view_mode: The profile view mode used.
+ * - profile: The profile object.
+ * - url: The profile URL, if available.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  'profile',
+  'profile--' ~ profile.id,
+  'profile--type--' ~ profile.bundle|clean_class,
+  profile.isDefault() ? 'profile--is-default',
+  view_mode ? 'profile--view-mode--' ~ view_mode|clean_class,
+  'clearfix',
+  'emc-player'
+]
+%}
+<div{{ attributes.addClass(classes) }}>
+
+  {{ title_suffix.contextual_links }}
+
+  <div class="emc-player__wrapper">
+
+    <div class="emc-player__stats">
+
+      <div class="character-gauge">
+        <label>{{ content.field_health['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_health[0]['#markup'] }}</span>
+        <div class="vue-simple-progress" style="background: rgb(238, 238, 238);">
+          <div class="vue-simple-progress-bar" style="background: rgb(33, 150, 243); height: 3px; transition: all 0.5s ease 0s; width: 80%;">
+          </div>
+        </div>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_energy['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_energy[0]['#markup'] }}</span>
+        <div class="vue-simple-progress" style="background: rgb(238, 238, 238);">
+            <div class="vue-simple-progress-bar" style="background: rgb(33, 150, 243); height: 3px; transition: all 0.5s ease 0s; width: 6%;">
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="emc-player__stats">
+
+      <div class="character-gauge">
+        <label>{{ content.field_intelligence['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_intelligence[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_strength['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_strength[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_dexterity['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_dexterity[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_endurance['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_endurance[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_charisma['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_charisma[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_psi['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_psi[0]['#markup'] }}</span>
+      </div>
+    </div>
+
+    <div class="emc-player__stats">
+
+      <div class="character-gauge">
+        <label>{{ content.field_credits['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_credits[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_nanites['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_nanites[0]['#markup'] }}</span>
+      </div>
+
+    </div>
+
+
+    <div class="emc-player__stats">
+
+      <div class="character-gauge">
+        <label>{{ content.field_level['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_level[0]['#markup'] }}</span>
+      </div>
+      <div class="character-gauge">
+        <label>{{ content.field_xp['#title'] }}</label>
+        <span class="gauge-value">{{ content.field_xp[0]['#markup'] }}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  {# {{ dpm(content) }} #}
+
+  {{ content.field_skill }}
+</div>

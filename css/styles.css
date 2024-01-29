@@ -1,0 +1,806 @@
+:root {
+  --emc-white: #FFFFFF;
+  --emc-white-off: #F5EFED;
+  --emc-white-grey: #E8F1F2;
+  --emc-grey-bg: #E6E6EA;
+  --emc-grey-light: #E2E2E2;
+  --emc-grey-mid: #605F5E;
+  --emc-grey-dark: #363F3F;
+  --emc-grey-dark-alt: #33312E;
+  --emc-black: #0A0908;
+  --emc-black-rich: #04151F;
+  --emc-dark: #230007;
+  --emc-teal-light: #00F2F2;
+  --emc-teal-light-alt: #00B9AE;
+  --emc-teal: #009999;
+  --emc-teal-alt: #19535F;
+  --emc-teal-dark: #0B3C49;
+  --emc-teal-dark-alt: #022B3A;
+  --emc-teal-dark-rich: #042A2B;
+  --emc-blue: #0A2463;
+  --emc-green: #00CC66;
+  --emc-yellow: #FFC43D;
+  --emc-lime: #CEFF1A;
+  --emc-red: #D00A01;
+  --emc-pink: #EF476F;
+  --emc-orange: #FB5012;
+  --emc-purple: #3C1642;
+
+  --cui-body-color: #eee;
+  --cui-body-bg: #000000;
+  --cui-nav-tabs-link-active-color: #fff;
+  --cui-emphasis-color: #fff;
+}
+
+.path-frontpage:not(.user-logged-in) .wrapper-main {
+  background: url('../images/intro-Dublin.jpg') center 8rem no-repeat;
+  width: 960px;
+  min-height: 85vh;
+  margin: 2rem auto 0;
+}
+
+.game__wrapper,
+.game__wrapper .layout-container {
+  background-color: #000000 !important;
+  color: #eee;
+  font-family: "Roboto", verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.game__wrapper .layout-container a:link {
+  color: #9c77d1;
+  text-decoration:none;
+}
+
+.game__wrapper .layout-container a:visited {
+  color: #009999;
+}
+
+.game__wrapper .layout-container a:hover {
+  color:#F7F7F7;
+}
+
+.game__wrapper .layout-container h1,
+.game__wrapper .layout-container h2,
+.game__wrapper .layout-container h3 {
+  text-shadow: 2px 2px 2px #000;
+}
+
+.game__wrapper .layout-container h2,
+.game__wrapper .layout-container h3 {
+  font-family: Neutron Demo;
+}
+
+.game__wrapper .layout-container h1 {
+  font-family: Neutron Demo;
+  font-size: 2rem;
+}
+
+h1 {
+  font-family: 'Droid Sans', sans-serif;
+}
+
+@font-face {
+  font-family: Neutron Demo;
+  src: local(" Neutron Demo"), url("../fonts/neutrond.ttf") format("truetype"), url("../fonts/neutrond.ttf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.path-frontpage:not(.user-logged-in) .wrapper-main {
+  background: url('../images/intro-Dublin.jpg') center 8rem no-repeat;
+  width: 960px;
+  min-height: 85vh;
+  margin: 2rem auto 0;
+}
+
+.client .layout-container {
+    display: flex;
+}
+
+.client .sidebar-2 {
+  padding-left: 2rem;
+}
+
+.tabs {
+  flex: 0 1 auto;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.client .layout-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1280px;
+}
+
+.tabs .tab-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.tabs .tab-buttons a,
+.tabs .tab-buttons button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  text-transform: uppercase;
+  color: white;
+  background-color: #333;
+  font-family: 'Neutron Demo';
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: 0 none;
+  height: 3rem;
+  border-radius: 0 !important;
+  box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.5s ease, width 4s 4s;
+}
+
+.tabs .tab-buttons a:hover,
+.tabs .tab-buttons a:focus,
+.tabs .tab-buttons a.active,
+.tabs .tab-buttons button:hover,
+.tabs .tab-buttons button:focus,
+.tabs .tab-buttons button.active {
+  color: white;
+  background-color: var(--emc-teal);
+  border: 0 none;
+  box-shadow: inset -5px -5px 10px 0px rgba(12, 7, 7, 0.5), inset 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.tabs .tab-buttons a.active,
+.tabs .tab-buttons button.active {
+  background-color: var(--emc-teal-dark);
+  width: 300px;
+}
+
+.tabs .tab-buttons a.active:hover,
+.tabs .tab-buttons button.active:hover {
+  color: white;
+  background-color: var(--emc-teal-alt);
+}
+
+.path-frontpage:not(.user-logged-in) .region-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 70vh;
+}
+
+
+/* Skills tree */
+.grtv-wrapper.grtv-default-skin > .grtv {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #111;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
+/* Everything's in a .grtv-wrapper (embedded CSS is the 'grtv-default-skin' skin) */
+.grtv-wrapper.grtv-default-skin {
+  --baseHeight: 2rem;
+  --itemSpacing: 2rem;
+}
+
+/* The node, including its content and children list */
+.grtv-wrapper.grtv-default-skin .grtvn {
+  padding-left: 0;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn:first-child {
+  margin-top: 0;
+}
+
+/* ARIA styles */
+.grtv-wrapper.grtv-default-skin .grtvn[role="treeitem"]:focus {
+  outline: 0;
+}
+
+/* .grtv-wrapper.grtv-default-skin .grtvn[role="treeitem"]:focus >.grtvn-self {
+  outline: black dotted 1px;
+} */
+
+/* The node's content, excluding the list of child nodes */
+.grtv-wrapper.grtv-default-skin .grtvn-self {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  /* line-height: 2rem; */
+  margin-bottom: 1rem;
+}
+.grtv-wrapper.grtv-default-skin .grtvn-children .grtvn-children .grtvn-self {
+  margin-bottom: 0;
+}
+/* Drag and Drop styles */
+.grtv-wrapper.grtv-default-skin .grtvn-dragging .grtvn-self {
+  opacity: 0.5;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-drop-target {
+  flex-wrap: wrap;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-drop-target.grtvn-self-child-drop-target {
+  opacity: .5;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-drop-target .grtvn-self-sibling-drop-target {
+  width: 100%;
+  height: 7px;
+  background-color: #dddddd;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-drop-target .grtvn-self-sibling-drop-target.grtvn-self-sibling-drop-target-hover {
+  background-color: #bbbbbb;
+}
+
+/* The expander button and indicator content */
+.grtv-wrapper.grtv-default-skin .grtvn-self-expander {
+  /* padding: 0; */
+  /* background: none; */
+  /* border: none; */
+  /* height: var(--baseHeight); */
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-expander i.grtvn-self-expanded-indicator {
+  font-style: normal;
+  color: white;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-expander i.grtvn-self-expanded-indicator::before {
+  content: '+';
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-expander.grtvn-self-expanded i.grtvn-self-expanded-indicator::before {
+  content: '-';
+}
+
+/* The styling for when the node is selected */
+.grtv-wrapper.grtv-default-skin .grtvn-self-selected {
+  background-color: #f0f0f8;
+}
+
+/* Spacing */
+.grtv-wrapper.grtv-default-skin .grtvn-self-expander,
+.grtv-wrapper.grtv-default-skin .grtvn-self-checkbox,
+.grtv-wrapper.grtv-default-skin .grtvn-self-radio,
+/* .grtv-wrapper.grtv-default-skin .grtvn-self-spacer, */
+.grtv-wrapper.grtv-default-skin .grtvn-self-action {
+  min-width: 1rem;
+  flex: 0 1 2rem;
+  background-color: var(--emc-teal-alt);
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: 4px solid transparent;
+}
+
+.grtvn-self-expander:hover,
+.grtvn-self-expander:focus {
+  border: 4px solid var(--emc-teal-dark-alt);
+}
+.grtvn-self-expander:focus {
+  border-color: var(--emc-teal-alt);
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-expander,
+.grtv-wrapper.grtv-default-skin .grtvn-self-spacer {
+  margin: 0;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-checkbox,
+.grtv-wrapper.grtv-default-skin .grtvn-self-radio {
+  /* margin: 0 0 0 calc(-1 * var(--itemSpacing)); */
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-self-text,
+.grtv-wrapper.grtv-default-skin .grtvn-self-label {
+  /* margin-left: var(--itemSpacing); */
+}
+
+.grtvn-self-label {
+  font-family: "Neutron Demo";
+  font-size: 1.75rem;
+}
+
+/* Action buttons section */
+.grtv-wrapper.grtv-default-skin .grtvn-self-action {
+  /* padding: 0; */
+  /* background: none; */
+  /* border: none; */
+  /* height: var(--baseHeight); */
+}
+
+/* Action buttons (add, delete, etc) */
+.grtv-wrapper.grtv-default-skin i.grtvn-self-add-child-icon {
+  font-style: normal;
+}
+
+.grtv-wrapper.grtv-default-skin i.grtvn-self-add-child-icon::before {
+  content: '+';
+}
+
+.grtv-wrapper.grtv-default-skin i.grtvn-self-delete-icon {
+  font-style: normal;
+  color: white;
+}
+
+.grtv-wrapper.grtv-default-skin i.grtvn-self-delete-icon::before {
+  content: 'x';
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn-children-wrapper {
+  margin: 0 0 0 calc(1rem + var(--itemSpacing));
+}
+
+/* The node's child list */
+.grtv-wrapper.grtv-default-skin .grtvn-children {
+  padding: 0;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.grtv-wrapper.grtv-default-skin .grtvn.grtvn-hidden {
+  display: none;
+}
+
+.grtvn-children-wrapper > ul > li > .grtvn-children-wrapper > .grtvn-children {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-areas:s
+    "level1 level2 level3 level4"
+}
+
+.grtvn-children-wrapper > ul > li > .grtvn-children-wrapper > .grtvn-children > li {
+  background-color: var(--emc-dark);
+}
+.grtv-wrapper.grtv-default-skin .grtvn-self-action {
+  background-color: var(--emc-black);
+}
+.grtvn-self-action:hover,
+.grtvn-self-action:focus {
+  border: 4px solid var(--emc-black-rich);
+}
+.grtvn-self-action:focus {
+  border-color: var(--emc-teal-alt);
+}
+
+/* Inventory */
+.inventory h3 {
+  margin-top: 1rem;
+}
+
+.inventory img {
+  margin-bottom: 1rem;
+}
+
+.list-group {
+  display: flex;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+  height: 100%;
+  min-height: 184px; /* Two rows */
+  background-color: #111;
+}
+
+.list-group-item {
+  max-width: 20%;
+  min-height: 80px;
+  flex: 1 0 20%;
+  border: 0 none;
+  border-radius: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+}
+
+.list-group-item:hover,
+.list-group-item.sortable-chosen {
+  border: 2px solid red;
+  background: #222;
+}
+.list-group-item.sortable-chosen {
+  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child {
+  border-radius: 0;
+}
+
+.tab-panels {
+  height: 100%;
+}
+.character {
+  background: #111;
+  padding: 2rem;
+}
+
+.vue-simple-progress,
+.vue-simple-progress-bar {
+  height: 1rem !important;
+}
+
+.character h3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  text-transform: uppercase;
+  color: white;
+  background-color: #333;
+  font-family: 'Neutron Demo';
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 2rem;
+  box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
+}
+
+.character-gauge {
+  margin-bottom: 0.5rem;
+}
+.character-gauge label {
+  display: inline-block;
+}
+.weapon label,
+.character-gauge label {
+  margin-inline-end: 0.5rem;
+}
+.weapon label::after,
+.character-gauge label::after {
+  content:': '
+}
+/* .character-gauge .gauge-value {
+  margin-inline-end: 0.5rem;
+} */
+
+.weapon {
+  /* padding: 1rem; */
+  /* background: #000; */
+  margin-top: 2rem;
+}
+
+.weapon--picked,
+.weapon--select {
+  margin-bottom: 0.5rem;
+}
+
+.weapon--select {
+  display: flex;
+  gap: 1rem;
+}
+.weapon--select .weapon-value {
+  flex: 1 0 auto;
+  padding: 1rem;
+  border: 2px solid transparent;
+}
+
+.weapon--select .weapon-value:hover {
+  border: 2px solid red;
+  background: #222;
+}
+.weapon--select .weapon-value {
+  border: 2px solid var(--emc-black);
+  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px var(--emc-black), 5px 5px 15px 5px rgba(0,0,0,0);
+}
+.weapon--select .weapon-value:first-child {
+  border: 2px solid red;
+  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+/* Quests */
+.quests .accordion-item {
+  background: var(--emc-black);
+}
+
+.quests .accordion-button {
+  background: var(--emc-black);
+  border: 4px solid transparent;
+}
+
+.accordion.accordion-flush {
+  margin-bottom: 2rem;
+}
+
+.accordion-body {
+  background-color: var(--emc-black-rich);
+}
+
+.accordion-button:hover,
+.accordion-button:focus {
+  border: 4px solid var(--emc-teal-dark-alt);
+}
+
+.accordion-button:focus {
+  border-color: var(--emc-teal-alt);
+  outline: 0;
+}
+
+.accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:not(.collapsed) {
+  color: white !important;
+  background-color: var(--emc-black) !important;
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/* Chatacter */
+.emc-layout.emc-char {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.emc-char select {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--emc-teal-dark-alt);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: var(--emc-black-rich);
+  background-image: linear-gradient(to top, var(--emc-black-rich), var(--emc-black) 33%);
+  color: white;
+}
+
+.emc-char select:focus {
+  border: 1px solid var(--emc-teal);
+}
+
+.emc-layout.emc-char > div {
+  flex: 0 1 33%;
+  width: 33%;
+  padding: 1rem;
+  border: 6px solid var(--emc-black-rich);
+  min-height: 450px;
+  text-align: center;
+}
+
+.emc-layout.emc-char > .emc-char__center {
+  flex: 1 0 50%;
+  width: 50%;
+  background-color: var(--emc-black);
+  border-width: 8px;
+  min-height: 600px;
+  padding: 3rem 1rem;
+}
+
+.emc-char__item {
+  margin-bottom: 2rem;
+  border: 3px solid var(--emc-black);
+}
+
+.emc-char__heading {
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--emc-black);
+  font-family: 'Neutron Demo';
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.emc-char__part .emc-char__heading {
+  background-color: var(--emc-black);
+  font-family: 'Roboto';
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.emc-char__body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-areas:
+    ". head ."
+    "headgear head implant"
+    ". armour . "
+    "weapon_left armour weapon_right"
+    "weapon_left armour weapon_right"
+    "bionics footwear ."
+    ". footwear .";
+}
+
+.emc-char__body > div {
+  background: black;
+  border: 4px solid black;
+  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #042A2B, 5px 5px 15px 5px rgba(0,0,0,0);
+  cursor: pointer;
+}
+
+.emc-char__body > div:hover,
+.emc-char__body > div:focus {
+  border: 4px solid var(--emc-teal-dark-alt);
+  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #19535F, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.emc-char__body > div:focus {
+  border: 4px solid var(--emc-teal-alt);
+}
+
+.emc-char__body .headgear {
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+.emc-char__body .head {
+  grid-area: 1 / 2 / 3 / 3;
+}
+
+.emc-char__body .head img {
+  object-position: 50% 50%;
+  object-fit: cover;
+}
+
+.emc-char__body .implant {
+  grid-area: 2 / 3 / 4 / 4;
+}
+
+.emc-char__body .armour {
+  grid-area: 3 / 2 / 6 / 3;
+}
+
+.emc-char__body .weapon_left {
+  grid-area: 4 / 1 / 6 / 2;
+}
+
+.emc-char__body .weapon_right {
+  grid-area: 4 / 3 / 6 / 4;
+}
+
+.emc-char__body .bionics {
+  grid-area: 6 / 1 / 8 / 2;
+}
+
+.emc-char__body .footwear {
+  grid-area: 6 / 2 / 8 / 3;
+}
+
+/* Profile */
+.emc-user > .form-item.form-no-label {
+  margin-bottom: 2rem;
+}
+
+.emc-player .emc-player__wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+  grid-template-areas:
+    "stats1 stats2 stats3 stats4";
+  margin-bottom: 2rem;
+}
+
+.emc-player .emc-player__wrapper .emc-player__stats:nth-last-child(2) {
+  grid-area: stats3;
+  background-color: var(--emc-teal-dark-rich);
+}
+.emc-player .emc-player__wrapper .emc-player__stats:last-child {
+  grid-area: stats4;
+  background-color: var(--emc-dark);
+}
+
+.emc-player .emc-player__wrapper .emc-player__stats {
+  background: var(--emc-black-rich);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Skills field */
+.field--name-field-faction > .field__items,
+.field--name-field-skill > .field__items {
+  margin-bottom: 4rem;
+}
+
+.field--name-field-faction > .field__label,
+.field--name-field-skill > .field__label {
+  font-size: 2rem;
+  text-shadow: 2px 2px 2px #000;
+  font-family: Neutron Demo;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cui-heading-color);
+  margin-bottom: 0.5rem;
+}
+
+.field--name-field-skill > .field__items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+}
+
+.field--name-field-skill > .field__items > .field__item {
+  background: var(--emc-black);
+  padding: 1rem;
+}
+
+.field--name-field-skill > .field__items .field__item > a {
+  font-size: 1.25rem;
+}
+
+.client .layout-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.client .layout-container .main {
+  flex: 1 0 960px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.client .layout-container .sidebar-2 {
+  flex: 1 0 280px;
+}
+
+@media only screen and (min-width: 1366px) {
+  .game__wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+  }
+
+  .client .layout-container {
+    display: flex;
+  }
+
+  .client .layout-container .main {
+    flex: 1 0 960px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .client .layout-container .sidebar-2 {
+    flex: 1 0 280px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .client .layout-container {
+    display: flex;
+  }
+
+  .client .layout-container .main {
+    flex: 1 0 960px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .client .layout-container .sidebar-2 {
+    flex: 0 1 auto;
+  }
+}
+
+/* Increase width of sidebar on small screens */
+@media only screen and (min-width: 1600px) {
+  .client .layout-container .sidebar-2 {
+    flex: 1 0 280px;
+  }
+}

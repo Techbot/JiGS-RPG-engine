@@ -61,3 +61,18 @@ client:
     - jigs/vue
     - jigs/axios
 
+
+jigs-theme:
+  css:
+    component:
+      css/styles.css: {}
+
+coreui:
+  css:
+    component:
+      'https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css':
+        type: external
+        minified: true
+        attributes:
+          crossorigin: anonymous
+          integrity: "sha384-2E9/b2fZ+VJoP6eRIpzzMFkuqbh0qDkIFVLzJJwkESsdKPEwzb0n6E55enZ+Ee8V"

@@ -115,3 +115,26 @@ function jigs_entity_field_storage_info(\Drupal\Core\Entity\EntityTypeInterface 
   }
 }
  */
+
+function jigs_theme($existing, $type, $theme, $path) {
+  return [
+    'node__game' => [
+      'template' => 'node--game',
+      'base hook' => 'node',
+      'path' => \Drupal::service('extension.list.module')->getPath('jigs') . '/templates',
+    ],
+    'profile__player__player' => [
+      'template' => 'profile--player--player',
+      'base hook' => 'profile',
+      'path' => \Drupal::service('extension.list.module')->getPath('jigs') . '/templates',
+    ],
+
+  ];
+}
+
+function jigs_preprocess_page(&$variables) {
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $variables['#attached']['library'][] =  'jigs/jigs-theme';
+   // $variables['#attached']['library'][] =  'jigs/coreui';
+  }
+}
