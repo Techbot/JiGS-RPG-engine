@@ -80,11 +80,10 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class
   ]
 %}
-  {# {% if logged_in %} #}
+  {% if logged_in %}
     <div id="module-name-game" class="game__wrapper">
-
     </div>
-  {# {% endif %} #}
+  {% endif %}
 
 <article{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
@@ -95,9 +94,9 @@
   {% endif %}
   {{ title_suffix }}
 
-  {# {% if not logged_in %} #}
+  {% if not logged_in %}
     <div{{ content_attributes.addClass('node__content') }}>
       {{ content }}
     </div>
-  {# {% endif %} #}
+  {% endif %}
 </article>
