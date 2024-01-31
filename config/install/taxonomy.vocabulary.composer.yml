@@ -1,0 +1,8 @@
+uuid: 9b980c79-0a75-4c36-8eec-78fefebb07bf
+langcode: en
+status: true
+dependencies: {  }
+name: Composer
+vid: composer
+description: ''
+weight: 0

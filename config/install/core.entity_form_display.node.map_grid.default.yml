@@ -17,7 +17,7 @@ dependencies:
     - field.field.node.map_grid.field_npc
     - field.field.node.map_grid.field_portals
     - field.field.node.map_grid.field_rewards
-    - field.field.node.map_grid.field_sound_track
+    - field.field.node.map_grid.field_soundtrack
     - field.field.node.map_grid.field_switches
     - field.field.node.map_grid.field_tiled
     - field.field.node.map_grid.field_walls
@@ -198,11 +198,14 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
-  field_sound_track:
-    type: number
-    weight: 21
+  field_soundtrack:
+    type: entity_reference_autocomplete
+    weight: 104
     region: content
     settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   field_switches:

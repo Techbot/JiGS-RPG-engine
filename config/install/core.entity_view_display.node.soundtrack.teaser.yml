@@ -1,0 +1,34 @@
+uuid: 0d4728fa-14c6-4d86-bfe8-8e4c2cdff7da
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.soundtrack.body
+    - field.field.node.soundtrack.field_composer
+    - field.field.node.soundtrack.field_track
+    - node.type.soundtrack
+  module:
+    - text
+    - user
+id: node.soundtrack.teaser
+targetEntityType: node
+bundle: soundtrack
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_composer: true
+  field_track: true

@@ -1,0 +1,24 @@
+uuid: 557bf03f-a4a0-4d5f-acf4-c8db14b2402a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.soundtrack
+  module:
+    - text
+id: node.soundtrack.body
+field_name: body
+entity_type: node
+bundle: soundtrack
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

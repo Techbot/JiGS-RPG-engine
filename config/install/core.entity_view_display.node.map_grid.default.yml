@@ -17,7 +17,7 @@ dependencies:
     - field.field.node.map_grid.field_npc
     - field.field.node.map_grid.field_portals
     - field.field.node.map_grid.field_rewards
-    - field.field.node.map_grid.field_sound_track
+    - field.field.node.map_grid.field_soundtrack
     - field.field.node.map_grid.field_switches
     - field.field.node.map_grid.field_tiled
     - field.field.node.map_grid.field_walls
@@ -151,14 +151,13 @@ content:
     third_party_settings: {  }
     weight: 13
     region: content
-  field_sound_track:
-    type: number_integer
-    label: inline
+  field_soundtrack:
+    type: entity_reference_label
+    label: above
     settings:
-      thousand_separator: ''
-      prefix_suffix: true
+      link: true
     third_party_settings: {  }
-    weight: 15
+    weight: 19
     region: content
   field_switches:
     type: entity_reference_revisions_entity_view
