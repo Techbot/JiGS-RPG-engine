@@ -72,7 +72,6 @@ export class MainScene extends Phaser.Scene {
     sys: any;
     plugins: any;
     messenger: Messenger;
-    walkSound: Phaser.Sound.BaseSound;
     Portals: Portals;
     Switches: Switches;
     Walls: Walls;
@@ -80,6 +79,7 @@ export class MainScene extends Phaser.Scene {
     NPCs: NPCs;
     Rewards: Rewards;
     Folio: Folios;
+    walkSound: Phaser.Sound.BaseSound;
 
     constructor() {
         super({ key: "main" });
@@ -112,10 +112,11 @@ export class MainScene extends Phaser.Scene {
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
         await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
-        this.walkSound = this.sound.add('walk', { volume: 0.1 });
+        this.walkSound = this.sound.add('walk',{ volume: 0.3 });
         this.messenger.initMessages(self);
+
         this.room.state.players.onAdd((player, sessionId) => {
-            this.localPlayer = new Player(this, this.room, this.scene, player);
+            this.localPlayer = new Player(this, this.room, player);
             var entity: any;
             // is current player
             if (sessionId === this.room.sessionId) {
@@ -182,7 +183,7 @@ export class MainScene extends Phaser.Scene {
         this.jigs.profileId     = parseInt(response.data[0].value["player"]["profileId"]);
         this.jigs.playerName    = response.data[0].value["player"]["name"];
 
-        this.jigs.gameState     = response.data[0].value["player"]["userState"];
+        //this.jigs.gameState     = response.data[0].value["player"]["userState"];
         this.jigs.userMapGrid   = parseInt(response.data[0].value["player"]["userMG"]);
 
         this.jigs.tiled         = parseInt(response.data[0].value["MapGrid"]["tiled"]);
@@ -212,9 +213,9 @@ export class MainScene extends Phaser.Scene {
     hydrateMission(response) {
         this.jigs.title   = response.data[0].value["title"];
         this.jigs.content = response.data[0].value["content"];
-        let no  = { text: 'No I am not ready.', value: 0 }
-        let yes = { text: response.data[0].value["choice"], value: response.data[0].value["value"] };
-        this.jigs.choice = new Array;
+        let no            = { text: 'No I am not ready.', value: 0 }
+        let yes           = { text: response.data[0].value["choice"], value: response.data[0].value["value"] };
+        this.jigs.choice  = new Array;
         this.jigs.choice.push(yes);
         this.jigs.choice.push(no);
         console.log(this.jigs.choice);

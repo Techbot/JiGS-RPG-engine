@@ -17,7 +17,6 @@ export default class Player {
     drones: any;
     jigs: any;
     room: any;
-    scene: any;
     staticNum: number;
     walls: any;
     entity: any;
@@ -25,21 +24,21 @@ export default class Player {
     sword: Sword;
     playerMovement: PlayerMovement;
 
-    constructor(self, room, scene, player) {
+    constructor(self, room, player) {
         this.room = room;
-        this.scene = scene;
         this.jigs = useJigsStore();
-        this.playerMovement = new PlayerMovement;
+        this.playerMovement = new PlayerMovement(self);
         this.staticNum = 0;
 
         this.entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
             .setDepth(7)
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
             .on('pointerdown', this.onPlayerDown.bind(self))
-            .setScale(.85);
-    }
+            .setScale(.85)
+        }
 
     add(self, player, colliderMap) {
+
         this.colliderMap = colliderMap
         this.light = new Light(self, player.x, player.y, null);
         this.gun = new Gun(self, player.x, player.y, 'gun');

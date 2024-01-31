@@ -79,7 +79,9 @@ Will you find my Balls?`,
 
     tiled: 0,
 
-  
+   weapon: 0,
+
+
     /** @type {{ text: string }[]} */
     content: "Blank",
 
@@ -168,7 +170,7 @@ Will you find my Balls?`,
           this.profileId = parseInt(response.data[0].value["player"]["profileId"]);
           this.playerName = response.data[0].value["player"]["name"];
 
-          this.gameState = response.data[0].value["player"]["userState"];
+          // this.gameState = response.data[0].value["player"]["userState"];
           this.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
 
           this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);

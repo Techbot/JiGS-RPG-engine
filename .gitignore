@@ -49,6 +49,8 @@ tiled
 /server/reports
 /server/arena.config.ts
 /server/services/db.ts
+server/services/db.ts
+
 
 /vendor
 
@@ -60,3 +62,5 @@ tiled
 
 node_modules
 LICENSE.md
+
+/config_init

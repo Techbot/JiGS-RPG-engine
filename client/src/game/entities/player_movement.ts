@@ -2,14 +2,17 @@
  * -------Player Movement---------
  */
 
+import { Game } from 'phaser';
 import { useJigsStore } from '../../stores/jigs';
 
 export default class PlayerMovement {
 
   jigs: any;
+  scene: any;
 
-  constructor() {
-    this.jigs = useJigsStore();
+  constructor(scene) {
+    this.jigs  = useJigsStore();
+    this.scene = scene;
   }
   move(self, velocity, colliderMap) {
 
@@ -78,42 +81,14 @@ export default class PlayerMovement {
         self.currentPlayer.dir = 'down';
         self.currentPlayer.speed = 'go';
       }
+
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (self.currentPlayer.speed == 'go') {
+      console.log('play');
+      if (!this.scene.walkSound.isPlaying) {
+        this.scene.walkSound.play();
+      }
+    }
   }
-
-
-
-
-
 }

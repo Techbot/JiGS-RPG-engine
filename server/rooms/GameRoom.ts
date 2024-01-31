@@ -1,12 +1,12 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// JiGS ColyseusJs Server
+//////////////////////////////////////////////////////////////////////////////
 import { Room, Client } from "colyseus";
 const db = require("../services/db");
 import { InputData, MyRoomState, Player, ZombieState } from "./GameState";
 
-
-//var Bridge = require('../services/bridge.ts');
 var roomModel = require('../models/room.ts');
-
-
 
 var p2 = require('p2');
 const fs = require('fs');
@@ -73,8 +73,10 @@ export class GameRoom extends Room<MyRoomState> {
   }
 
   async onCreate(options: any) {
+    
     this.indexNumber = 1;
     this.setState(new MyRoomState());
+
     await this.Mobs.load(this, options.nodeNumber, this.share);
     await this.Portals.load(this.world, options.nodeNumber, this.share);
     //await this.Switches.load(this.world, options.nodeNumber, this.share);
@@ -83,6 +85,8 @@ export class GameRoom extends Room<MyRoomState> {
     await this.Npcs.load(this.world, options.nodeNumber, this.share);
     //await this.Layers.load(options.nodeName, this.share);
     await this.Collisions.add(this);
+
+
     await roomModel.getRoom(options.nodeNumber).then((result: any) => {
       this.state.mapWidth = result[0].field_map_width_value * 16;
       this.state.mapHeight = result[0].field_map_height_value * 16;
@@ -90,6 +94,8 @@ export class GameRoom extends Room<MyRoomState> {
     }).catch(function (err) {
       console.log('room error' + err)
     });
+
+
 
     this.onMessage(0, (client, input) => {
       const player = this.state.players.get(client.sessionId);

@@ -84,45 +84,49 @@ export class Mob {
         self.P2mobBodies[i].setZeroForce();
         ////////////////////////////////////////////////////////////////////////////
         self.state.mobResult.forEach(mobState => {
-          if (self.P2mobBodies[i].field_mob_name_value == mobState.field_mob_name_value) {
-            //if  not following someone, do the test
-            if (mobState.following == 0) {
-              //if state x,y is out of date
-              if (parseInt(mobState.field_x_value) != parseInt(self.P2mobBodies[i].position[0])
-                || parseInt(mobState.field_y_value) != parseInt(self.P2mobBodies[i].position[1])) {
-                this.sendObject(self, mobState, i);
-              }
+          if (mobState.dead != 1) {
 
-              self.state.players.forEach(player => {
-                //find distance
-                var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[1]));
-                if (mobPlayerDist < 160) {
-                  // this is to update the mobs follower
-                  mobState.following = player.playerId;
+            if (self.P2mobBodies[i].field_mob_name_value == mobState.field_mob_name_value) {
+              //if  not following someone, do the test
+
+              if (mobState.following == 0) {
+                //if state x,y is out of date
+                if (parseInt(mobState.field_x_value) != parseInt(self.P2mobBodies[i].position[0])
+                  || parseInt(mobState.field_y_value) != parseInt(self.P2mobBodies[i].position[1])) {
+                  this.sendObject(self, mobState, i);
                 }
-                this.sendObject(self, mobState, i)
-              })
-            }
-            if (mobState.following) {
-              self.state.players.forEach(player => {
-                //follow the first player in the array
-                if (player.playerId == mobState.following && !mobState.dead) {
+
+                self.state.players.forEach(player => {
+                  //find distance
                   var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[1]));
-                  if (mobPlayerDist > 160) {
+                  if (mobPlayerDist < 160) {
                     // this is to update the mobs follower
-                    mobState.following = 0;
-                    self.P2mobBodies[i].velocity[0] = 0;
-                    self.P2mobBodies[i].velocity[1] = 0;
+                    mobState.following = player.playerId;
                   }
-                  else {
-                    this.adjustVelocity(self.P2mobBodies[i], player.p2Player.Body, 20);
-                    this.sendObject(self, mobState, i)
+                  this.sendObject(self, mobState, i)
+                })
+              }
+              if (mobState.following) {
+                self.state.players.forEach(player => {
+                  //follow the first player in the array
+                  if (player.playerId == mobState.following && !mobState.dead) {
+                    var mobPlayerDist = Math.hypot(player.x - parseInt(self.P2mobBodies[i].position[0]), player.y - parseInt(self.P2mobBodies[i].position[1]));
+                    if (mobPlayerDist > 160) {
+                      // this is to update the mobs follower
+                      mobState.following = 0;
+                      self.P2mobBodies[i].velocity[0] = 0;
+                      self.P2mobBodies[i].velocity[1] = 0;
+                    }
+                    else {
+                      this.adjustVelocity(self.P2mobBodies[i], player.p2Player.Body, 20);
+                      this.sendObject(self, mobState, i)
+                    }
                   }
-                }
-              })
-            };
-          }
-          if (mobState.dead) {
+                })
+              };
+            }
+          } else {
+            console.log('dead');
             self.P2mobBodies[i].velocity[0] = 0;
             self.P2mobBodies[i].velocity[1] = 0;
           }
@@ -187,15 +191,18 @@ export class Mob {
         )
         if (self.state.mobResult[input.mobClick].health > 0) {
           self.state.mobResult[input.mobClick].health -= 20;
-          self.state.mobResult[input.mobClick].mass = 0;
+
           //    console.log(input.mobClick + "with " + self.state.mobResult[input.mobClick].health + "health, was attacked by " + player.playerId);
 
           if (self.state.mobResult[input.mobClick].health == 0) {
             //   console.log('zombie dead');
             // if mob is dead update health and dead and following
-            const mobItem = Mob.updateZombieState(self, undefined, undefined, undefined,
-              undefined, 0, 0, 1, self.state.mobResult[input.mobClick], undefined
+            const death = 1;
+            self.state.mobResult[input.mobClick].mass = 0;
+             const mobItem = Mob.updateZombieState(self, undefined, undefined, undefined,
+              undefined, 0, 0, death, self.state.mobResult[input.mobClick], undefined
             )
+
             self.state.mobResult.set(mobItem, mobItem);
             const promise1 = Promise.resolve(playerModel.updatePlayer(player.profileId, 'credits', 10, 0));
             promise1.then(() => {
