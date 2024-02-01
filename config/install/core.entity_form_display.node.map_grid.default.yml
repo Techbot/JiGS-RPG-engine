@@ -1,4 +1,3 @@
-uuid: 1e80a5c1-261e-4589-ab0b-65f9cbc50b3e
 langcode: en
 status: true
 dependencies:
@@ -26,8 +25,6 @@ dependencies:
     - paragraphs
     - path
     - text
-_core:
-  default_config_hash: OG9iX7L4CG3CHlDXiFojKphWcNx4rMuQi8zyirTQ20s
 id: node.map_grid.default
 targetEntityType: node
 bundle: map_grid

@@ -1,4 +1,3 @@
-uuid: 2e99ad87-ae46-4b8b-92de-7445b57714dc
 langcode: en
 status: true
 dependencies:
@@ -6,7 +5,6 @@ dependencies:
     - field.field.node.weapon.body
     - field.field.node.weapon.field_ammo_type
     - field.field.node.weapon.field_magazine
-    - field.field.node.weapon.field_materials
     - field.field.node.weapon.field_modifiers
     - node.type.weapon
   module:
@@ -46,24 +44,6 @@ content:
     region: content
     settings:
       placeholder: ''
-    third_party_settings: {  }
-  field_materials:
-    type: paragraphs
-    weight: 10
-    region: content
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 0
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-      features:
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
     third_party_settings: {  }
   field_modifiers:
     type: paragraphs

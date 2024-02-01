@@ -1,4 +1,3 @@
-uuid: 8b1bb7a2-f3b8-43d4-8606-0ac4bd802ea7
 langcode: en
 status: true
 dependencies:
@@ -26,8 +25,6 @@ dependencies:
     - entity_reference_revisions
     - text
     - user
-_core:
-  default_config_hash: tjfypo69-FCN_0b1wK35sjUk5z0Aq-VTgaNkeVPN21M
 id: node.map_grid.default
 targetEntityType: node
 bundle: map_grid

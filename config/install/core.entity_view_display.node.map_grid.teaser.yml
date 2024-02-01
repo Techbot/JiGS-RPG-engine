@@ -1,4 +1,3 @@
-uuid: 042378b7-86d6-49d5-b2d5-9fecf1b56db4
 langcode: en
 status: true
 dependencies:
@@ -25,8 +24,6 @@ dependencies:
     - node.type.map_grid
   module:
     - user
-_core:
-  default_config_hash: SX2KN7r_jaG7rPZLTSeIgg1AaRu0HSRw6N38lCvjxPo
 id: node.map_grid.teaser
 targetEntityType: node
 bundle: map_grid

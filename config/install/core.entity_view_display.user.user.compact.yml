@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.compact
+    - field.field.user.user.field_game_state
+    - field.field.user.user.field_sprite_sheet
+    - field.field.user.user.user_picture
+  module:
+    - user
+id: user.user.compact
+targetEntityType: user
+bundle: user
+mode: compact
+content:
+  player_profiles:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: player
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  faction_profiles: true
+  field_game_state: true
+  field_sprite_sheet: true
+  member_for: true
+  user_picture: true

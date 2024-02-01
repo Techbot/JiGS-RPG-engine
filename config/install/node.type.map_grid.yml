@@ -1,4 +1,3 @@
-uuid: 136212a7-2b07-4b26-8d23-8a949c08a9fd
 langcode: en
 status: true
 dependencies:
@@ -12,8 +11,6 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-_core:
-  default_config_hash: VMWMHBsHNIM-4AOBmciDqAxa0Xg1vnrhar78QFHz0Bw
 name: Map-Grid
 type: map_grid
 description: 'Content type that can be used to collate objects for <em>Map-Grids</em>'

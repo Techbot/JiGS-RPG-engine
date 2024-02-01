@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.skill.field_skill
+    - field.field.paragraph.skill.field_skill_level
+    - paragraphs.paragraphs_type.skill
+id: paragraph.skill.default
+targetEntityType: paragraph
+bundle: skill
+mode: default
+content:
+  field_skill:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_skill_level:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

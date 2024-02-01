@@ -1,4 +1,3 @@
-uuid: cbed0a26-d684-4c3f-a642-2f1ec814d659
 langcode: en
 status: true
 dependencies:
@@ -7,8 +6,6 @@ dependencies:
     - node.type.game
   module:
     - text
-_core:
-  default_config_hash: Vxc6WE2C-RBnyZDituMPHl_ksEZTEuLzJZJPkQ9kWl4
 id: node.game.body
 field_name: body
 entity_type: node

@@ -1,4 +1,3 @@
-uuid: c3223b53-c7c7-470d-85be-041910886836
 langcode: en
 status: true
 dependencies:
@@ -6,7 +5,6 @@ dependencies:
     - field.field.node.weapon.body
     - field.field.node.weapon.field_ammo_type
     - field.field.node.weapon.field_magazine
-    - field.field.node.weapon.field_materials
     - field.field.node.weapon.field_modifiers
     - node.type.weapon
   module:
@@ -41,15 +39,6 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_materials:
-    type: entity_reference_revisions_entity_view
-    label: inline
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 4
     region: content
   field_modifiers:
     type: entity_reference_revisions_entity_view

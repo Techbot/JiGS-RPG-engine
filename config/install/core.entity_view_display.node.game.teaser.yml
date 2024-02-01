@@ -1,4 +1,3 @@
-uuid: 23bb3233-e70c-4e15-ad23-f3c66a29b468
 langcode: en
 status: true
 dependencies:
@@ -10,8 +9,6 @@ dependencies:
   module:
     - text
     - user
-_core:
-  default_config_hash: ZZ_aI5YSe-bQsf2TC-0NnJiuJkz9u4sjIuTA4pkVlQY
 id: node.game.teaser
 targetEntityType: node
 bundle: game

@@ -1,4 +1,3 @@
-uuid: 5a90923c-90f4-458f-82cc-c4b4f312aa56
 langcode: en
 status: true
 dependencies:
@@ -8,11 +7,3 @@ id: player
 label: Player
 weight: 4
 is_admin: null
-permissions:
-  - 'update own faction profile'
-  - 'view any faction profile'
-  - 'view any player profile'
-  - 'view any profile'
-  - 'view own faction profile'
-  - 'view own player profile'
-  - 'view own profile'

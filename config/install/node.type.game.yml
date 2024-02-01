@@ -1,4 +1,3 @@
-uuid: a1cc8ef3-6076-40d8-be71-f7550d0028d2
 langcode: en
 status: true
 dependencies:
@@ -12,8 +11,6 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-_core:
-  default_config_hash: dDZJJLXtDIzYpteULS-S6NNJpt3tCcwkqLsXMdmVaa4
 name: Game
 type: game
 description: 'Content type that can be used to collate objects for <em>game</em>'
