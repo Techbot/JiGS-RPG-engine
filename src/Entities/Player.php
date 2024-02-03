@@ -31,13 +31,13 @@ class Player
         $player['userState']   = $this->userGamesState;
         $query                 = $this->database->query("SELECT profile_id FROM profile WHERE uid = " . $this->id   . " AND type = 'player'");
         $player['profileId']   = $query->fetchAll()[0]->profile_id;
-        $query                 = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " .$player['profileId']);
+        $query                 = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " . $player['profileId']);
         $player['userMG']      = $query->fetchAll()[0]->field_map_grid_target_id;
-        $query                 = $this->database->query("SELECT field_credits_value FROM profile__field_credits WHERE entity_id= " .$player['profileId']);
+        $query                 = $this->database->query("SELECT field_credits_value FROM profile__field_credits WHERE entity_id= " . $player['profileId']);
         $player['credits']     = $query->fetchAll()[0]->field_credits_value;
-        $query                 = $this->database->query("SELECT field_health_value FROM profile__field_health WHERE entity_id= " .$player['profileId']);
+        $query                 = $this->database->query("SELECT field_health_value FROM profile__field_health WHERE entity_id= " . $player['profileId']);
         $player['health']      = $query->fetchAll()[0]->field_health_value;
-        $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " .$player['profileId']);
+        $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " . $player['profileId']);
         $profile = $this->user->get('player_profiles')->entity;
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff
@@ -264,5 +264,23 @@ class Player
         $query    = $database->query("UPDATE paragraph__field_location SET field_location_value = 'Backpack' WHERE entity_id= " . $id);
         $query->execute();
         return $this->myInventory();
+    }
+
+    public function flickSwitch($id)
+    {
+        //$database = \Drupal::database();
+        //$account = \Drupal::currentUser(); // or load a specific user
+        $flag_service = \Drupal::service('flag');
+        $flag = $flag_service->getFlagById('paraflag'); // replace by flag machine name
+        // check if already flagged
+        $flagging = $flag_service->getFlagging($flag, $id, $this->user);
+        if (!$flagging) {
+            $flag_service->flag($flag, $id, $this->user);
+            return true;
+        } else {
+         //   $flag_service->unflag($flag, $id, $this->user);
+            return false;
+        }
+        return false;
     }
 }

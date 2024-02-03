@@ -70,6 +70,15 @@ jigs.my_missions:
   requirements:
     _permission: 'access content'
 
+
+jigs.flick_switch:
+  path: '/flickswitch'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::flickSwitch'
+    _title: 'flick switch'
+  requirements:
+    _permission: 'access content'
+
 jigs.my_switches:
   path: '/user/{user}/switches'
   defaults:

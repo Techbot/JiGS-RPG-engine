@@ -3,6 +3,7 @@
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
+import axios from "axios";
 export default class Switch extends Phaser.Physics.Arcade.Sprite {
   jigs: any;
 
@@ -15,15 +16,24 @@ export default class Switch extends Phaser.Physics.Arcade.Sprite {
 
     this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' });
 
-    this.on('pointerdown', this.onSwitchDown.bind(this, id));
+    this.on('pointerdown', this.onSwitchDown.bind(this, id, scene));
     console.log("id:" + id + "   startFrame:" + startFrame);
     this.setDepth(6);
   }
 
-  onSwitchDown(id) {
+  onSwitchDown(id,scene) {
     console.log('switchAnim_' + id);
-    this.play('switchAnim_' + id + "Off");
-    console.log('switch flicked');
+    this.play('switchAnim_' + id + 'Off');
+     if (id != 1) {
+      axios
+        .get("/myswitch?_wrapper_format=drupal_ajax&npc=" + id)
+        .then((response) => {
+          console.log("why");
+          scene.hydrateMission(response);
+          scene.events.emit('Switch', id);
+        })
+    }
+    console.log('switch ' + id + ' flicked');
     this.disableInteractive();
   }
 }
