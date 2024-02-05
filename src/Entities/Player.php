@@ -282,14 +282,13 @@ class Player
 
     public function flickSwitch($id)
     {
-        //$database = \Drupal::database();
-        //$account = \Drupal::currentUser(); // or load a specific user
+        $switchEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($id);
         $flag_service = \Drupal::service('flag');
         $flag = $flag_service->getFlagById('paraflag'); // replace by flag machine name
         // check if already flagged
-        $flagging = $flag_service->getFlagging($flag, $id, $this->user);
+        $flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
         if (!$flagging) {
-            $flag_service->flag($flag, $id, $this->user);
+            $flag_service->flag($flag, $switchEntity, $this->user);
             return true;
         } else {
             //   $flag_service->unflag($flag, $id, $this->user);

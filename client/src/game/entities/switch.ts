@@ -29,7 +29,7 @@ export default class Switch extends Phaser.Physics.Arcade.Sprite {
         .get("/flickswitch?_wrapper_format=drupal_ajax&id=" + id)
         .then((response) => {
           console.log("why");
-          scene.hydrateMission(response);
+          scene.hydrateSwitches(id, response);
           scene.events.emit('Switch', id);
         })
     }

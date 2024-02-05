@@ -221,6 +221,12 @@ export class MainScene extends Phaser.Scene {
         console.log(this.jigs.choice);
     }
 
+
+    hydrateSwitches(response,id) {
+        this.jigs.switchesArray.push(id);
+        //this.updatePhaser
+    }
+
     async connect(room) {
         // add connection status text
         const connectionStatusText = this.add
