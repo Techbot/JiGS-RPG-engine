@@ -17,11 +17,19 @@
 
 <h3>Steps to build a world from the engine.</h3>
 <ul>
-<li>Instal the default content - https://github.com/Techbot/JiGS-demo-content</li>
-<li>Design the content  (Drupal)</li>
+<li>Install Drupal</li>
+<li>Install Drupal/Paragraphs</li>
+<li>Install Drupal/Flag</li>
+<li>Install Drupal/Profile</li>
+<li>clone Jigs into modules/custom/jigs or </li>
+<li>Install Drupal/Jigs</li>
+ 
+<li>Install the default content - https://github.com/Techbot/JiGS-demo-content</li>
+<li> clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets</li>
+
+<li>Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling </li>
 <li>Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)</li>
 </ul>
-
 
 With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld.
 
