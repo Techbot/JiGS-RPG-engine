@@ -25,6 +25,8 @@
 <li>Instal Drupal/Jigs</li>
  
 <li>Instal the default content - https://github.com/Techbot/JiGS-demo-content</li>
+<li> clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets</li>
+
 <li>Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling </li>
 <li>Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)</li>
 </ul>
