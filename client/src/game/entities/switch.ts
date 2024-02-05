@@ -26,7 +26,7 @@ export default class Switch extends Phaser.Physics.Arcade.Sprite {
     this.play('switchAnim_' + id + 'Off');
      if (id != 1) {
       axios
-        .get("/myswitch?_wrapper_format=drupal_ajax&npc=" + id)
+        .get("/flickswitch?_wrapper_format=drupal_ajax&id=" + id)
         .then((response) => {
           console.log("why");
           scene.hydrateMission(response);

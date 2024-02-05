@@ -163,9 +163,6 @@ class GameController extends ControllerBase
     return $response;
   }
 
-
-
-
    public function mySwitches( Request $request) {
 
       $build = [

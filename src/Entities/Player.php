@@ -14,6 +14,7 @@ class Player
     public $userGamesState;
     public $database;
     public $userMG;
+    public $profileId;
 
     function __construct()
     {
@@ -31,6 +32,7 @@ class Player
         $player['userState']   = $this->userGamesState;
         $query                 = $this->database->query("SELECT profile_id FROM profile WHERE uid = " . $this->id   . " AND type = 'player'");
         $player['profileId']   = $query->fetchAll()[0]->profile_id;
+        $this->profileId       = $player['profileId'];
         $query                 = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " . $player['profileId']);
         $player['userMG']      = $query->fetchAll()[0]->field_map_grid_target_id;
         $query                 = $this->database->query("SELECT field_credits_value FROM profile__field_credits WHERE entity_id= " . $player['profileId']);
@@ -42,17 +44,18 @@ class Player
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff
         // $player['sprite_sheet'] = $profile->field_sprite_sheet->value;
-        $player['sprite_sheet'] = $this->user->field_sprite_sheet->value;
-        $player['level']        = $profile->field_level->value;
-        $player['intelligence'] = $profile->field_intelligence->value;
-        $player['strength']     = $profile->field_strength->value;
-        $player['dexterity']    = $profile->field_dexterity->value;
-        $player['endurance']    = $profile->field_endurance->value;
-        $player['charisma']     = $profile->field_charisma->value;
-        $player['psi']          = $profile->field_psi->value;
-        $player['losses']       = $profile->field_losses->value;
-        $player['wins']         = $profile->field_wins->value;
-        $player['xp']           = $profile->field_xp->value;
+        $player['sprite_sheet']     = $this->user->field_sprite_sheet->value;
+        $player['level']            = $profile->field_level->value;
+        $player['intelligence']     = $profile->field_intelligence->value;
+        $player['strength']         = $profile->field_strength->value;
+        $player['dexterity']        = $profile->field_dexterity->value;
+        $player['endurance']        = $profile->field_endurance->value;
+        $player['charisma']         = $profile->field_charisma->value;
+        $player['psi']              = $profile->field_psi->value;
+        $player['losses']           = $profile->field_losses->value;
+        $player['wins']             = $profile->field_wins->value;
+        $player['xp']               = $profile->field_xp->value;
+        $player['flickedSwitches']  = $this->getFlickedSwitches($player['userMG']);
 
         return $player;
     }
@@ -225,6 +228,17 @@ class Player
         return $responseData;
     }
 
+    public function getFlickedSwitches($room)
+    {
+        $database        = \Drupal::database();
+        $user            = \Drupal::currentUser()->id();
+        $query           = $database->query("SELECT flagging.entity_id FROM flagging WHERE flagging.uid = " . $user . " AND flagging.flag_id = 'paraflag'") ;
+        ////////////////////////////////////////////////////////////////////////
+        $stuff =  $query->fetchAll();
+         // $responseData    = $stuff[0]->entity_id;
+        return $stuff;
+    }
+
     public function getNewMission($handlerMission)
     {
         $database        = \Drupal::database();
@@ -278,7 +292,7 @@ class Player
             $flag_service->flag($flag, $id, $this->user);
             return true;
         } else {
-         //   $flag_service->unflag($flag, $id, $this->user);
+            //   $flag_service->unflag($flag, $id, $this->user);
             return false;
         }
         return false;
