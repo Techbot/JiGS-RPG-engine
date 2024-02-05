@@ -17,14 +17,14 @@
 
 <h3>Steps to build a world from the engine.</h3>
 <ul>
-<li>Instal Drupal</li>
-<li>Instal Drupal/Paragrapghs</li>
-<li>Instal Drupal/Flag</li>
-<li>Instal Drupal/Profile</li>
+<li>Install Drupal</li>
+<li>Install Drupal/Paragraphs</li>
+<li>Install Drupal/Flag</li>
+<li>Install Drupal/Profile</li>
 <li>clone Jigs into modules/custom/jigs or </li>
-<li>Instal Drupal/Jigs</li>
+<li>Install Drupal/Jigs</li>
  
-<li>Instal the default content - https://github.com/Techbot/JiGS-demo-content</li>
+<li>Install the default content - https://github.com/Techbot/JiGS-demo-content</li>
 <li> clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets</li>
 
 <li>Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling </li>
