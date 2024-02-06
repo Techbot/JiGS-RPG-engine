@@ -157,6 +157,7 @@ function getMobs(NodeNumber) {
        WHERE node__field_mobs.entity_id =
         ` + NodeNumber, function (error, results) {
       if (error) throw error;
+      console.log('The NodeNumber is: ', NodeNumber);
       console.log('The solution is: ', results);
       resolve(results);
     });

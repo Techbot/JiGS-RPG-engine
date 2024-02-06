@@ -2,7 +2,7 @@
 //
 // JiGS ColyseusJs Server
 //////////////////////////////////////////////////////////////////////////////
-import { Room, Client } from "colyseus";
+import { Room, Client, ServerError } from "colyseus";
 const db = require("../services/db");
 import { InputData, MyRoomState, Player, ZombieState } from "./GameState";
 
@@ -72,8 +72,19 @@ export class GameRoom extends Room<MyRoomState> {
     this.Collisions = new Collision;
   }
 
+  async onAuth(client, options, request) {
+
+    const userData = await this.checkAccess(client, options);
+    if (userData) {
+      return userData;
+
+    } else {
+      throw new ServerError(400, "bad access token");
+    }
+  }
+
   async onCreate(options: any) {
-    
+
     this.indexNumber = 1;
     this.setState(new MyRoomState());
 
@@ -94,8 +105,6 @@ export class GameRoom extends Room<MyRoomState> {
     }).catch(function (err) {
       console.log('room error' + err)
     });
-
-
 
     this.onMessage(0, (client, input) => {
       const player = this.state.players.get(client.sessionId);
@@ -132,6 +141,11 @@ export class GameRoom extends Room<MyRoomState> {
         this.fixedTick(this.fixedTimeStep);
       }
     });
+  }
+
+  checkAccess(client, options) {
+    console.log('Access Checked');
+    return true;
   }
 
   fixedTick(timeStep: number) {
