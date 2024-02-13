@@ -15,7 +15,6 @@ phaser:
     - core/jquery
     - core/drupalSettings
 
-
 polyfill:
   version: 3
   js:
@@ -56,18 +55,20 @@ client:
   version: 1.0
   js:
     client/dist/index.ccb13aa6.js: { minified: true }
+  css:
+    component:
+      client/dist/index.69c80916.css: {}
 
   dependencies:
     - jigs/vue
     - jigs/axios
 
-
 jigs-theme:
   css:
-    component:
+    theme:
       css/styles.css: {}
 
-coreui:
+coreui-styles:
   css:
     component:
       'https://cdn.jsdelivr.net/npm/@coreui/coreui@4.3.0/dist/css/coreui.min.css':
