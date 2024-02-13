@@ -30,6 +30,8 @@
   --cui-body-bg: #000000;
   --cui-nav-tabs-link-active-color: #fff;
   --cui-emphasis-color: #fff;
+  --cui-gutter-x: 1rem;
+  --cui-gutter-y: 1rem;
 }
 
 .path-frontpage:not(.user-logged-in) .wrapper-main {
@@ -37,6 +39,29 @@
   width: 960px;
   min-height: 85vh;
   margin: 2rem auto 0;
+}
+
+/* Generic Layout */
+.row {
+  --cui-gutter-x: 1.5rem;
+  --cui-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--cui-gutter-y));
+  margin-right: calc(-.5 * var(--cui-gutter-x));
+  margin-left: calc(-.5 * var(--cui-gutter-x));
+}
+
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--cui-gutter-x) * .5);
+  padding-left: calc(var(--cui-gutter-x) * .5);
+  margin-top: var(--cui-gutter-y);
+}
+.col {
+  flex: 1 0 0%;
 }
 
 .game__wrapper,
@@ -407,6 +432,7 @@ h1 {
   text-align: center;
   font-size: 0.75rem;
   padding: 0.25rem;
+  background-color: #000;
 }
 
 .list-group-item:hover,
