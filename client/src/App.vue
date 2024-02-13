@@ -115,15 +115,15 @@ export default {
         <CButton @click="game" component="button" color="primary"
           shape="rounded-pill" size="lg" active>Game</CButton>
         <CButton @click="char" component="button" color="primary"
-          shape="rounded-pill" size="sm">Char </CButton>
+          shape="rounded-pill" size="sm">Char</CButton>
         <CButton @click="inventory" component="button" color="primary"
-          shape="rounded-pill" size="sm">Inv </CButton>
+          shape="rounded-pill" size="sm">Inv</CButton>
         <CButton @click="skills" component="button" color="primary"
-          shape="rounded-pill" size="sm">Skills </CButton>
+          shape="rounded-pill" size="sm">Skills</CButton>
         <CButton @click="quests" component="button" color="primary"
-          shape="rounded-pill" size="sm">Quests </CButton>
+          shape="rounded-pill" size="sm">Quests</CButton>
         <CButton @click="log" component="button" color="primary"
-          shape="rounded-pill" size="sm">Log </CButton>
+          shape="rounded-pill" size="sm">Log</CButton>
       </div>
     </form>
     <ViewMain :msg="jigs.gameState" />
