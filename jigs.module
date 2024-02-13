@@ -134,7 +134,7 @@ function jigs_theme($existing, $type, $theme, $path) {
 
 function jigs_preprocess_page(&$variables) {
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    // $variables['#attached']['library'][] =  'jigs/coreui-styles';
     $variables['#attached']['library'][] =  'jigs/jigs-theme';
-   // $variables['#attached']['library'][] =  'jigs/coreui';
   }
 }
