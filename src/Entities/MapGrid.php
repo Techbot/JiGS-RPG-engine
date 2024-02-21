@@ -16,10 +16,17 @@ class MapGrid
   public $userCity;
   public $portals;
   public $tileset;
+  public $userId;
+  public $player;
+  public $playerSwitchesStates;
+  public $empty;
 
-  function __construct($userMG)
+  function __construct($userMG, $userId, $player)
   {
     $this->MapGrid =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG);
+    $this->userId = $userId;
+    $this->player = $player;
+    $this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
   }
 
   function create()
@@ -36,15 +43,20 @@ class MapGrid
     if ($this->MapGrid->field_city->getValue()) {
       $mapGrid['userCity']      = (int)$this->MapGrid->field_city->getValue()[0]['target_id'];
     }
-    $mapGrid['npcArray']      = $this->getNpcs();
-    $mapGrid['mobArray']      = $this->getMobs();
-    $mapGrid['portalsArray']  = $this->getPortals();
-    $mapGrid['switchesArray'] = $this->getSwitches();
-    $mapGrid['foliosArray']   = $this->getFolios();
-    $mapGrid['wallsArray']    = $this->getWalls();
-    $mapGrid['rewardsArray']  = $this->getRewards();
-    $mapGrid['tileset']       = $this->getLayers();
-    $mapGrid['name']          = $this->MapGrid->get('title')->value;
+    $mapGrid['npcArray']          = $this->getNpcs();
+    $mapGrid['mobArray']          = $this->getMobs();
+    $mapGrid['portalsArray']      = $this->getPortals();
+    $mapGrid['switchesArray']     = $this->getSwitches('switches');
+    $mapGrid['fireArray']         = $this->getSwitches('fire');
+    $mapGrid['fireBarrelsArray']  = $this->getSwitches('fireBarrel');
+    $mapGrid['leverArray']        = $this->getSwitches('lever');
+    $mapGrid['machineArray']      = $this->getSwitches('machine');
+    $mapGrid['crystalArray']      = $this->getSwitches('crystal');
+    $mapGrid['foliosArray']       = $this->getFolios();
+    $mapGrid['wallsArray']        = $this->getWalls();
+    $mapGrid['rewardsArray']      = $this->getRewards();
+    $mapGrid['tileset']           = $this->getLayers();
+    $mapGrid['name']              = $this->MapGrid->get('title')->value;
     return $mapGrid;
   }
 
@@ -64,10 +76,29 @@ class MapGrid
     return $portals;
   }
 
-  function getSwitches()
+  function getSwitches($type)
   {
+    switch ($type) {
+      case 'fire':
+        $this->empty = $this->MapGrid->field_fire;
+        break;
+      case 'fireBarrel':
+        $this->empty = $this->MapGrid->field_fire_barrel;
+        break;
+      case 'lever':
+        $this->empty = $this->MapGrid->field_lever;
+        break;
+      case 'machine':
+        $this->empty = $this->MapGrid->field_machine;
+        break;
+      case 'switches':
+        $this->empty = $this->MapGrid->field_switches;
+        break;
+    }
+
     $switches = [];
-    foreach ($this->MapGrid->field_switches->referencedEntities() as $switch) {
+    foreach ($this->empty->referencedEntities() as $switch) {
+
       $switches[] = [
         'id' => $switch->id->getValue()[0]['value'],
         // 'id' => $switch->field_switch_id->getValue()[0]['value'],
@@ -81,6 +112,7 @@ class MapGrid
         'repeat' => (int)$switch->field_repeatable->getValue()[0]['value'],
         'startFrame' => (int)$switch->field_starting_frame->getValue()[0]['value'],
         'endFrame' => (int)$switch->field_end_frame->getValue()[0]['value'],
+        'switchState' => in_array($switch->id->getValue()[0]['value'], $this->playerSwitchesStates)
       ];
     }
     return $switches;

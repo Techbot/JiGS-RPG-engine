@@ -77,15 +77,13 @@ class GameController extends ControllerBase
 
   public function myState()
   {
-
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
-
     $player                     = new Player();
     $responseData['player']     =  $player->create();
     $gameConfig                 = new Game();
     $responseData['gameConfig'] = $gameConfig->create();
-    $mapGrid                    = new MapGrid($responseData['player']['userMG']);
+    $mapGrid                    = new MapGrid($responseData['player']['userMG'], $responseData['player']['id'], $player);
     $responseData['MapGrid']    = $mapGrid->create();
     $city                       = new City($responseData['MapGrid']['userCity']);
     $responseData['City']       = $city->create();
@@ -159,6 +157,7 @@ class GameController extends ControllerBase
     $response           = new AjaxResponse();
     $player = new Player(\Drupal\user\Entity\User::load(\Drupal::currentUser()->id()));
     $responseData = $player->flickSwitch($request->query->get('id'));
+
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }

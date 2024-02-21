@@ -144,9 +144,14 @@ export class GameRoom extends Room<MyRoomState> {
   }
 
   checkAccess(client, options) {
+    console.log('client.id:' + client.id);
+    console.log(options);
+  //  this.p2player.getUnlockedRooms();
     console.log('Access Checked');
     return true;
   }
+
+
 
   fixedTick(timeStep: number) {
     const velocity = 2;

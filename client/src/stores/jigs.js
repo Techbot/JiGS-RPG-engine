@@ -17,6 +17,8 @@ export const useJigsStore = defineStore("jigs", {
     /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array ,mission: array}[]} */
     playerStats: [],
 
+    playerSwitches: [],
+
     missionTitle: "Bob",
 
     missionHandlerDialog: `The Evil Wizard has stolen the Balls of Loveliness. \n
@@ -28,7 +30,7 @@ Will you find my Balls?`,
         { text: 'Yes I will find your balls.', value: 433 }, // { text: 'A', value: 10 },
         { text: 'No I am not ready.', value: 0 }, // { text: 'B', value: 20 },
       ],
-    missionValue:0,
+    missionValue: 0,
 
 
     playerStorage: [],
@@ -79,7 +81,7 @@ Will you find my Balls?`,
 
     tiled: 0,
 
-   weapon: 0,
+    weapon: 0,
 
 
     /** @type {{ text: string }[]} */
@@ -98,17 +100,21 @@ Will you find my Balls?`,
     tilesetArray_3: [],
     tilesetArray_4: [],
     tilesetArray_5: [],
-
     portalsArray: [],
     switchesArray: [],
+    fireArray: [],
+    fireBarrelsArray: [],
+    leverArray: [],
+    machineArray: [],
+    crystalArray: [],
     foliosArray: [],
     folioClicked: 0,
     wallsArray: [
-  //    { x: 260, y: 440, width: 360, height:  10 },
-  //    { x: 440, y: 190, width:  10, height: 480 },
-   //   { x: 180, y: 540, width:  10, height: 180 },
-   //   { x: 140, y: 680, width:  10, height: 160 },
-  //    { x: 100, y: 600, width: 120, height:  10 },
+      //    { x: 260, y: 440, width: 360, height:  10 },
+      //    { x: 440, y: 190, width:  10, height: 480 },
+      //   { x: 180, y: 540, width:  10, height: 180 },
+      //   { x: 140, y: 680, width:  10, height: 160 },
+      //    { x: 100, y: 600, width: 120, height:  10 },
     ],
   }),
   getters: {
@@ -169,15 +175,18 @@ Will you find my Balls?`,
           this.playerId = parseInt(response.data[0].value["player"]["id"]);
           this.profileId = parseInt(response.data[0].value["player"]["profileId"]);
           this.playerName = response.data[0].value["player"]["name"];
-
-          // this.gameState = response.data[0].value["player"]["userState"];
+          this.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
           this.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
           this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
           this.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
           this.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
           this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
           this.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+          this.fireArray = response.data[0].value["MapGrid"]["fireArray"];
+          this.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
+          this.leverArray = response.data[0].value["MapGrid"]["leverArray"];
+          this.machineArray = response.data[0].value["MapGrid"]["machineArray"];
+          this.crystalArray = response.data[0].value["MapGrid"]["crystalArray"];
           this.foliosArray = response.data[0].value["MapGrid"]["foliosArray"];
           this.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
           this.npcArray = response.data[0].value["MapGrid"]["npcArray"];

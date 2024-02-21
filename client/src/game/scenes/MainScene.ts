@@ -191,6 +191,13 @@ export class MainScene extends Phaser.Scene {
         this.jigs.mapHeight     = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
         this.jigs.portalsArray  = response.data[0].value["MapGrid"]["portalsArray"];
         this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+
+        this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+        this.jigs.fireArray     = response.data[0].value["MapGrid"]["fireArray"];
+        this.jigs.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
+        this.jigs.leverArray = response.data[0].value["MapGrid"]["leverArray"];
+        this.jigs.machineArray = response.data[0].value["MapGrid"]["machineArray"];
+        this.jigs.crystalArray = response.data[0].value["MapGrid"]["crystalArray"];
         this.jigs.foliosArray   = response.data[0].value["MapGrid"]["foliosArray"];
         this.jigs.wallsArray    = response.data[0].value["MapGrid"]["wallsArray"];
         this.jigs.npcArray      = response.data[0].value["MapGrid"]["npcArray"];

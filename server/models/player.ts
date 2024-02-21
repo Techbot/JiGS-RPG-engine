@@ -40,6 +40,32 @@ function getPlayer(player) {
   })
 }
 
+function updateFlag(flag, player, key) {
+  return new Promise(function (resolve, reject) {
+
+    var http = require('https');
+    var options = {
+      host: 'localhost',
+      port: 80,
+      path: '/updateFlag?_wrapper_format=drupal_ajax&id=' + flag + 'id=' + player + 'key=' + key
+    };
+    var req = http.get(options, function (response) {
+      // handle the response
+      var res_data = '';
+      response.on('data', function (chunk) {
+        res_data += chunk;
+      });
+      response.on('end', function () {
+        console.log(res_data);
+      });
+    });
+    req.on('error', function (err) {
+      console.log("Request error: " + err.message);
+    });
+  })
+}
+
+
 function updateMap(id, map) {
 
   con.query(
@@ -84,4 +110,5 @@ module.exports = {
   getPlayer,
   updateMap,
   updatePlayer,
+  updateFlag
 }

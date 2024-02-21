@@ -44,19 +44,23 @@ class Player
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff
         // $player['sprite_sheet'] = $profile->field_sprite_sheet->value;
-        $player['sprite_sheet']     = $this->user->field_sprite_sheet->value;
-        $player['level']            = $profile->field_level->value;
-        $player['intelligence']     = $profile->field_intelligence->value;
-        $player['strength']         = $profile->field_strength->value;
-        $player['dexterity']        = $profile->field_dexterity->value;
-        $player['endurance']        = $profile->field_endurance->value;
-        $player['charisma']         = $profile->field_charisma->value;
-        $player['psi']              = $profile->field_psi->value;
-        $player['losses']           = $profile->field_losses->value;
-        $player['wins']             = $profile->field_wins->value;
-        $player['xp']               = $profile->field_xp->value;
-        $player['flickedSwitches']  = $this->getFlickedSwitches($player['userMG']);
-
+        $player['sprite_sheet'] = $this->user->field_sprite_sheet->value;
+        $player['level']        = $profile->field_level->value;
+        $player['intelligence'] = $profile->field_intelligence->value;
+        $player['strength']     = $profile->field_strength->value;
+        $player['dexterity']    = $profile->field_dexterity->value;
+        $player['endurance']    = $profile->field_endurance->value;
+        $player['charisma']     = $profile->field_charisma->value;
+        $player['psi']          = $profile->field_psi->value;
+        $player['losses']       = $profile->field_losses->value;
+        $player['wins']         = $profile->field_wins->value;
+        $player['xp']           = $profile->field_xp->value;
+        /*         $player['flickedSwitches']['switches']     = $this->getFlickedSwitches('switches');
+        $player['flickedSwitches']['fires']        = $this->getFlickedSwitches('fires');
+        $player['flickedSwitches']['fireBarrels']  = $this->getFlickedSwitches('switches');
+        $player['flickedSwitches']['questItems']   = $this->getFlickedSwitches('questItems');
+        $player['flickedSwitches']['levers']       = $this->getFlickedSwitches('levers');
+        $player['flickedSwitches']['machine']      = $this->getFlickedSwitches('machine'); */
         return $player;
     }
 
@@ -228,15 +232,32 @@ class Player
         return $responseData;
     }
 
-    public function getFlickedSwitches($room)
+    public function getFlickedSwitches($type)
     {
         $database        = \Drupal::database();
         $user            = \Drupal::currentUser()->id();
-        $query           = $database->query("SELECT flagging.entity_id FROM flagging WHERE flagging.uid = " . $user . " AND flagging.flag_id = 'paraflag'") ;
+        $query           = $database->query("
+        SELECT flagging.entity_id
+        FROM flagging
+        WHERE flagging.uid = " . $user . " AND flagging.flag_id =" . $type);
         ////////////////////////////////////////////////////////////////////////
-        $stuff =  $query->fetchAll();
-         // $responseData    = $stuff[0]->entity_id;
-        return $stuff;
+        return $query->fetchAll();
+    }
+
+    public function getAllFlickedSwitches()
+    {
+        $database        = \Drupal::database();
+        $user            = \Drupal::currentUser()->id();
+        $query           = $database->query("
+        SELECT flagging.entity_id
+        FROM flagging
+        WHERE flagging.uid = " . $user);
+        ////////////////////////////////////////////////////////////////////////
+        $result =  $query->fetchAll();
+        foreach ($result as $element) {
+            $responseData[]    = $element->entity_id;
+        }
+        return $responseData;
     }
 
     public function getNewMission($handlerMission)
@@ -284,7 +305,7 @@ class Player
     {
         $switchEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($id);
         $flag_service = \Drupal::service('flag');
-        $flag = $flag_service->getFlagById('paraflag'); // replace by flag machine name
+        $flag = $flag_service->getFlagById('switch'); // replace by flag machine name
         // check if already flagged
         $flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
         if (!$flagging) {
