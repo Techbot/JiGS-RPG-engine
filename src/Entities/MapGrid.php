@@ -56,6 +56,7 @@ class MapGrid
     $mapGrid['wallsArray']        = $this->getWalls();
     $mapGrid['rewardsArray']      = $this->getRewards();
     $mapGrid['tileset']           = $this->getLayers();
+    $mapGrid['soundtrack']        = $this->getSoundtrack();
     $mapGrid['name']              = $this->MapGrid->get('title')->value;
     return $mapGrid;
   }
@@ -74,6 +75,18 @@ class MapGrid
       ];
     }
     return $portals;
+  }
+
+  function getSoundtrack()
+  {
+    $sountrack = [];
+    foreach ($this->MapGrid->field_soundtrack->referencedEntities() as $soundtrack) {
+      $sountrack[] = [
+        'track' => $soundtrack->field_track->getValue()[0]['value'],
+        'composer' =>  \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($soundtrack->field_composer->getValue()[0]['target_id'])->get('name')->getValue()[0]['value']
+      ];
+    }
+    return $sountrack[0]['composer'] . "/" . $sountrack[0]['track'];
   }
 
   function getSwitches($type)
@@ -125,8 +138,8 @@ class MapGrid
       $FolioObject =  \Drupal::entityTypeManager()->getStorage('node')->load($folio->field_page->getValue()[0]['target_id']);
       $folios[] = [
         'id' => $folio->id->getValue()[0]['value'],
-        'node'=>$folio->field_page->getValue()[0]['target_id'],
-        'nodeBody'=>$FolioObject->get('body')->value,
+        'node' => $folio->field_page->getValue()[0]['target_id'],
+        'nodeBody' => $FolioObject->get('body')->value,
         'x' => (int)$folio->field_x->getValue()[0]['value'],
         'y' => (int)$folio->field_y->getValue()[0]['value']
       ];
@@ -200,7 +213,7 @@ class MapGrid
       $mArray[] =
         [
           $Mob->field_mobs->getValue()[0]['target_id'],
-         // $Mob->field_mob_name->getValue()[0]['value'],
+          // $Mob->field_mob_name->getValue()[0]['value'],
           $Mob->field_mob_name->value,
           $Mob->field_x->value,
           $Mob->field_y->value,
@@ -217,10 +230,10 @@ class MapGrid
     foreach ($this->MapGrid->field_walls->referencedEntities() as $Wall) {
       $wallsArray[] =
         [
-          'x'=>$Wall->field_x->value,
-          'y'=>$Wall->field_y->value,
-          'width'=>$Wall->field_width->value,
-          'height'=>$Wall->field_height->value,
+          'x' => $Wall->field_x->value,
+          'y' => $Wall->field_y->value,
+          'width' => $Wall->field_width->value,
+          'height' => $Wall->field_height->value,
         ];
     }
     return $wallsArray;

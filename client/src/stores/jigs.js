@@ -81,6 +81,8 @@ Will you find my Balls?`,
 
     tiled: 0,
 
+    soundtrack: 'blank',
+
     weapon: 0,
 
 
@@ -102,11 +104,12 @@ Will you find my Balls?`,
     tilesetArray_5: [],
     portalsArray: [],
     switchesArray: [],
-    fireArray: [],
+    firesArray: [],
     fireBarrelsArray: [],
-    leverArray: [],
+    leversArray: [],
     machineArray: [],
     crystalArray: [],
+    questsArray:[],
     foliosArray: [],
     folioClicked: 0,
     wallsArray: [
@@ -178,6 +181,7 @@ Will you find my Balls?`,
           this.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
           this.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
           this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+          this.soundtrack = response.data[0].value["MapGrid"]["soundtrack"];
           this.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
           this.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
           this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];

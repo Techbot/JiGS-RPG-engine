@@ -25,6 +25,9 @@ export default class Load {
 
     load(self) {
         const textureManager = self.textures;
+
+        self.load.audio(this.jigs.soundtrack, '/assets/soundtracks/' + this.jigs.soundtrack + '.mp3');
+
         self.load.image('black', '/assets/images/black.png');
         self.load.image('pink', '/assets/images/pink.png');
         self.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());

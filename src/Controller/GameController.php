@@ -181,11 +181,7 @@ class GameController extends ControllerBase
        <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
        <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
         </div>
-
-
        </fieldset>
-
-
  <fieldset>
       <legend>Dublin</legend>
        <div>
@@ -200,9 +196,7 @@ class GameController extends ControllerBase
        <input type='checkbox' id='009' name='009' /> <label for='009'>009</label>
        <input type='checkbox' id='010' name='010' /> <label for='010'>010</label>
         </div>
-
        </fieldset>
-
 "),
     ];
     return $build;

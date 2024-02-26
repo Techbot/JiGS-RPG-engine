@@ -80,6 +80,7 @@ export class MainScene extends Phaser.Scene {
     Rewards: Rewards;
     Folio: Folios;
     walkSound: Phaser.Sound.BaseSound;
+    soundtrack: Phaser.Sound.BaseSound;
 
     constructor() {
         super({ key: "main" });
@@ -113,6 +114,8 @@ export class MainScene extends Phaser.Scene {
         // connect with the room
         await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
         this.walkSound = this.sound.add('walk',{ volume: 0.3 });
+        this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 1.0 });
+        this.soundtrack.play();
         this.messenger.initMessages(self);
 
         this.room.state.players.onAdd((player, sessionId) => {
@@ -158,6 +161,7 @@ export class MainScene extends Phaser.Scene {
         axios
             .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
+                this.soundtrack.stop();
                 console.log("jump");
                 this.hydrate(response, 1);
                 var Loader = new Load;
@@ -187,6 +191,7 @@ export class MainScene extends Phaser.Scene {
         this.jigs.userMapGrid   = parseInt(response.data[0].value["player"]["userMG"]);
 
         this.jigs.tiled         = parseInt(response.data[0].value["MapGrid"]["tiled"]);
+        this.jigs.soundtrack    = response.data[0].value["MapGrid"]["soundtrack"];
         this.jigs.mapWidth      = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
         this.jigs.mapHeight     = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
         this.jigs.portalsArray  = response.data[0].value["MapGrid"]["portalsArray"];
