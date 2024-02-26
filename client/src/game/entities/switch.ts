@@ -7,15 +7,18 @@ import axios from "axios";
 export default class Switch extends Phaser.Physics.Arcade.Sprite {
   jigs: any;
 
-  constructor(scene, x, y,id, startFrame) {
+  constructor(scene, x, y,id, switchState, startFrame) {
     super(scene, x, y,null);
 
     scene.add.sprite(0, 0);
     this.setTexture('switch_' + id);
-    this.play('switchAnim_' + id + "On");
 
-    this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' });
-
+    if (switchState){
+    this.play('switchAnim_' + id + "Off");
+    }else{
+      this.play('switchAnim_' + id + "On");
+      this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' });
+    }
     this.on('pointerdown', this.onSwitchDown.bind(this, id, scene));
     console.log("id:" + id + "   startFrame:" + startFrame);
     this.setDepth(6);

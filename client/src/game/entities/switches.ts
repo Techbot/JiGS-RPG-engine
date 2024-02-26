@@ -14,6 +14,7 @@ export default class Switches {
                 switchesArray[index].x,
                 switchesArray[index].y,
                 switchesArray[index].id,
+                switchesArray[index].switchState,
                 switchesArray[index].startFrame
                 ), true);
         }
