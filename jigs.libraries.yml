@@ -5,51 +5,7 @@ phaser:
       css/phaserlayout.css: {}
     theme:
       css/phasertheme.css: {}
-  js:
-    https://cdn.socket.io/4.5.4/socket.io.min.js: { type: external, minified: true}
-    js/phaser.min.js: {minified: true}
-    https://labs.phaser.io/js/datgui.js: {type: external, minified: true}
-    js/game.js: {}
 
-  dependencies:
-    - core/jquery
-    - core/drupalSettings
-
-polyfill:
-  version: 3
-  js:
-    https://cdn.polyfill.io/v3/polyfill.min.js: { type: external, minified: true }
-
-vue:
-  version: 3
-  js:
-    https://unpkg.com/vue@3/dist/vue.global.js: { type: external, minified: true }
-  dependencies:
-    - jigs/polyfill
-
-vue-router:
-  version: 4
-  js:
-    https://unpkg.com/vue-router@4: { type: external, minified: true }
-  dependencies:
-    - jigs/vue
-
-vuex:
-  version: 4
-  js:
-    https://unpkg.com/vuex@4: { type: external, minified: true }
-  dependencies:
-    - jigs/vue
-
-axios:
-  version: 0.19.2
-  js:
-    https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js: { type: external, minified: true }
-
-socket:
-  version: 4
-  js:
-    https://cdn.socket.io/4.5.4/socket.io.min.js: { type: external, minified: true }
 
 client:
   version: 1.0
@@ -58,10 +14,6 @@ client:
   css:
     component:
       client/dist/index.69c80916.css: {}
-
-  dependencies:
-    - jigs/vue
-    - jigs/axios
 
 jigs-theme:
   css:
