@@ -254,6 +254,7 @@ class Player
         WHERE flagging.uid = " . $user);
         ////////////////////////////////////////////////////////////////////////
         $result =  $query->fetchAll();
+        $responseData = [];
         foreach ($result as $element) {
             $responseData[]    = $element->entity_id;
         }
