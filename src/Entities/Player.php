@@ -55,8 +55,8 @@ class Player
         $player['losses']       = $profile->field_losses->value;
         $player['wins']         = $profile->field_wins->value;
         $player['xp']           = $profile->field_xp->value;
-        /*         $player['flickedSwitches']['switches']     = $this->getFlickedSwitches('switches');
-        $player['flickedSwitches']['fires']        = $this->getFlickedSwitches('fires');
+        $player['flickedSwitches']['switches']     = $this->getFlickedSwitches('switches');
+       /* $player['flickedSwitches']['fires']        = $this->getFlickedSwitches('fires');
         $player['flickedSwitches']['fireBarrels']  = $this->getFlickedSwitches('switches');
         $player['flickedSwitches']['questItems']   = $this->getFlickedSwitches('questItems');
         $player['flickedSwitches']['levers']       = $this->getFlickedSwitches('levers');
@@ -239,7 +239,7 @@ class Player
         $query           = $database->query("
         SELECT flagging.entity_id
         FROM flagging
-        WHERE flagging.uid = " . $user . " AND flagging.flag_id =" . $type);
+        WHERE flagging.uid = " . $user . " AND flagging.flag_id ='" . $type . "'");
         ////////////////////////////////////////////////////////////////////////
         return $query->fetchAll();
     }

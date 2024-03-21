@@ -7,27 +7,30 @@ import axios from "axios";
 export default class Switch extends Phaser.Physics.Arcade.Sprite {
   jigs: any;
 
-  constructor(scene, x, y,id, switchState, startFrame) {
-    super(scene, x, y,null);
+  constructor(scene, x: number, y: number, id, switchState, startFrame) {
 
+    super(scene, x, y, null);
+    console.log('x' + x);
+    console.log('y' + y);
+    this.setDepth(7);
     scene.add.sprite(0, 0);
     this.setTexture('switch_' + id);
 
-    if (switchState){
-    this.play('switchAnim_' + id + "Off");
-    }else{
-      this.play('switchAnim_' + id + "On");
+    if (switchState) {
+      this.play('switchAnim_' + id + "Off");
+    } else {
+      this.play('switchAnim_' + id + "Off");
+      console.log('yo');
       this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' });
     }
     this.on('pointerdown', this.onSwitchDown.bind(this, id, scene));
-    console.log("id:" + id + "   startFrame:" + startFrame);
-    this.setDepth(6);
+    console.log("id:" + id);
   }
 
-  onSwitchDown(id,scene) {
+  onSwitchDown(id, scene) {
     console.log('switchAnim_' + id);
     this.play('switchAnim_' + id + 'Off');
-     if (id != 1) {
+    if (id != 1) {
       axios
         .get("/flickswitch?_wrapper_format=drupal_ajax&id=" + id)
         .then((response) => {

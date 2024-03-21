@@ -1,0 +1,5 @@
+services:
+  jigs.flag_subscriber:
+    class: Drupal\jigs\EventSubscriber\FlagSubscriber
+    tags:
+      - { name: event_subscriber }

@@ -71,13 +71,13 @@ export default class Load {
         }
 
         this.jigs.switchesArray.forEach(function loader(switchItem) {
-            self.load.spritesheet('switch_' + switchItem.id, '/assets/images/animations/' + switchItem.file + '.png',
-                { frameWidth: switchItem.frameWidth, frameHeight: switchItem.frameHeight });
+            self.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/animations/' + switchItem.field_file_value + '.png',
+                { frameWidth: parseInt(switchItem.field_framewidth_value), frameHeight: parseInt(switchItem.field_frameheight_value) });
         });
 
         this.jigs.firesArray.forEach(function loader(fireItem) {
             self.load.spritesheet('fire_' + fireItem.id, '/assets/images/fire/' + fireItem.file + '.png',
-                { frameWidth: fireItem.frameWidth, frameHeight: fireItem.frameHeight });
+                { frameWidth: fireItem.frameWidth, frameHeight: fireItem.frameheight });
         });
 
         this.jigs.fireBarrelsArray.forEach(function loader(fireBarrelsItem) {
@@ -122,10 +122,10 @@ export default class Load {
             if (this.jigs.switchesArray) {
                 this.jigs.switchesArray.forEach(function loader(switches) {
                     createSwitchesAnims(self.anims,
-                        'switch_' + switches.id,
-                        'switchAnim_' + switches.id,
-                        switches.type,
-                        switches.repeat
+                        'switch_' + switches.entity_id,
+                        'switchAnim_' + switches.entity_id,
+                        switches.field_switch_type_value,
+                        switches.field_repeatable_value
                     );
                 });
             }

@@ -11,11 +11,11 @@ export default class Switches {
 
         for (var index = 0; index < switchesArray.length; index++) {
             switches.add(new Switch(self,
-                switchesArray[index].x,
-                switchesArray[index].y,
-                switchesArray[index].id,
+                parseInt(switchesArray[index].field_x_value),
+                parseInt(switchesArray[index].field_y_value),
+                switchesArray[index].entity_id,
                 switchesArray[index].switchState,
-                switchesArray[index].startFrame
+                switchesArray[index].field_starting_frame_value
                 ), true);
         }
     }
