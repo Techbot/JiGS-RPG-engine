@@ -84,7 +84,6 @@ Or make a trading game or a dungeon crawler.
 
 <h3>Sept 2023</h4>
 <ul>
-<li>Mission System</li>
 <li>Mine and Farm world subscribers</li>
 </ul>
 
@@ -96,29 +95,27 @@ Or make a trading game or a dungeon crawler.
 <h3>Nov 2023</h4>
 <ul>
 <li>World Animations</li>
-<li>NPC Animation</li>
 </ul>
 
 <h3>Dec 2023</h4>
 <ul>
 <li>Dialoque Engine (Drupal)</li>
-
 </ul>
 
 <h3>Jan 2024</h4>
 <ul>
-<li>Release Ver 1.00</li>
+<li>NPC Animation</li>
 </ul>
 
 <h3>Feb 2024</h4>
 <ul>
-<li>Release Ver 1.0.1</li>
 <li>Crafting</li>
 <li>Trade</li>
 </ul>
 
 <h3>Mar 2024</h4>
 <ul>
+<li>Mission System</li>
 <li>NPC subscribers aka world simulator</li>
 </ul>
 
@@ -138,8 +135,12 @@ Or make a trading game or a dungeon crawler.
 
 <h3>Jun 2024</h4>
 <ul>
-<li>Release Ver 1.1</li>
+<li>Release Ver 1</li>
 </ul>
+
+
+
+
 
 <h3>Somebackground on the new architecture:</h3>
 
