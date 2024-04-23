@@ -3,6 +3,7 @@
 
 import { ref } from 'vue'
 import { useJigsStore } from "../../stores/jigs";
+import AudioController from './AudioController.vue';
 import CrystalSlider from './CrystalSlider.vue';
 import WeaponSelect from './WeaponSelect.vue';
 
@@ -12,6 +13,7 @@ var isNumber = function (n) {
 
 export default {
   components: {
+    AudioController,
     CrystalSlider,
     WeaponSelect
   },
@@ -219,6 +221,9 @@ export default {
 </script>
 
 <template>
+
+  <AudioController />
+
   <div class="character">
     <!-- <img src = "/assets/images/System/player-top.png"/> -->
     <div class="character-gauge">
