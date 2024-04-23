@@ -103,7 +103,7 @@ export class HudScene extends Scene {
     this.hud12.setText('Id: ' + this.jigs.playerId);
 
     // HUD2
-    this.hud6.setText('X: ' + this.x + ' Y: ' + this.y);
+    this.hud6.setText('X: ' + parseInt(this.x) + ' Y: ' + parseInt(this.y));
 
     if (this.jigs.portalsArray[0]) {
       this.hud7.setText('P1 X: ' + this.jigs.portalsArray[0].x + ' P1 Y: ' + this.jigs.portalsArray[0].y);
