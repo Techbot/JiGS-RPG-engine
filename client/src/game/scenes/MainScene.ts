@@ -114,7 +114,7 @@ export class MainScene extends Phaser.Scene {
         // connect with the room
         await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
         this.walkSound = this.sound.add('walk',{ volume: 0.3 });
-        this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 1.0 });
+        this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.6 });
         this.soundtrack.play();
         this.messenger.initMessages(self);
 
