@@ -402,85 +402,8 @@ h1 {
   border-color: var(--emc-teal-alt);
 }
 
-
 .tab-panels {
   height: 100%;
-}
-.character {
-  background: #111;
-  padding: 2rem;
-}
-
-.vue-simple-progress,
-.vue-simple-progress-bar {
-  height: 1rem !important;
-}
-
-.character h3 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 0 auto;
-  text-transform: uppercase;
-  color: white;
-  background-color: #333;
-  font-family: 'Neutron Demo';
-  font-size: 1.25rem;
-  font-weight: bold;
-  height: 2rem;
-  box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
-}
-
-.character-gauge {
-  margin-bottom: 0.5rem;
-}
-.character-gauge label {
-  display: inline-block;
-}
-.weapon label,
-.character-gauge label {
-  margin-inline-end: 0.5rem;
-}
-.weapon label::after,
-.character-gauge label::after {
-  content:': '
-}
-/* .character-gauge .gauge-value {
-  margin-inline-end: 0.5rem;
-} */
-
-.weapon {
-  /* padding: 1rem; */
-  /* background: #000; */
-  margin-top: 2rem;
-}
-
-.weapon--picked,
-.weapon--select {
-  margin-bottom: 0.5rem;
-}
-
-.weapon--select {
-  display: flex;
-  gap: 1rem;
-}
-.weapon--select .weapon-value {
-  flex: 1 0 auto;
-  padding: 1rem;
-  border: 2px solid transparent;
-}
-
-.weapon--select .weapon-value:hover {
-  border: 2px solid red;
-  background: #222;
-}
-.weapon--select .weapon-value {
-  border: 2px solid var(--emc-black);
-  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px var(--emc-black), 5px 5px 15px 5px rgba(0,0,0,0);
-}
-.weapon--select .weapon-value:first-child {
-  border: 2px solid red;
-  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
 /* Quests */
@@ -524,10 +447,6 @@ h1 {
 .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
-
-/* Chatacter */
-
-
 
 /* Profile */
 .emc-user > .form-item.form-no-label {

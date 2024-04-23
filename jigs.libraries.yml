@@ -13,7 +13,9 @@ client:
     client/dist/index.ccb13aa6.js: { minified: true }
   css:
     component:
+      client/dist/index.28e2aee5.css: {}
       client/dist/index.69c80916.css: {}
+
 
 jigs-theme:
   css:

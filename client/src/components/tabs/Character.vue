@@ -3,13 +3,18 @@
 
 import { ref } from 'vue'
 import { useJigsStore } from "../../stores/jigs";
+import CrystalSlider from './CrystalSlider.vue';
+import WeaponSelect from './WeaponSelect.vue';
 
 var isNumber = function (n) {
   return !isNaN(parseFloat(n)) && isFinite(n)
 }
 
 export default {
-
+  components: {
+    CrystalSlider,
+    WeaponSelect
+  },
   setup() {
     const jigs = ref(useJigsStore());
     return {
@@ -213,7 +218,6 @@ export default {
 }
 </script>
 
-
 <template>
   <div class="character">
     <!-- <img src = "/assets/images/System/player-top.png"/> -->
@@ -308,33 +312,56 @@ export default {
       </span>
     </div>
 
-      <div class="character-gauge">
-        <label>Nanites</label>
-        <span class="gauge-value">
-          {{ this.jigs.playerStats.nanites }}
-        </span>
-      </div>
-
-    <div class="weapon">
-      <div class="weapon--picked">
-        <label>Weapon</label>
-        <!-- <span class="weapon-value">
-          {{ picked }}
-        </span> -->
-      </div>
-
-      <div class="weapon--select">
-        <div class="weapon-value">
-          <label for="sword">Sword</label>
-          <input type="radio" id="sword" value="Sword" v-model="picked">
-        </div>
-        <div class="weapon-value">
-          <label for="gun">Gun</label>
-          <input type="radio" id="gun" value="Gun" v-model="picked">
-        </div>
-      </div>
-
+    <div class="character-gauge">
+      <label>Nanites</label>
+      <span class="gauge-value">
+        {{ this.jigs.playerStats.nanites }}
+      </span>
     </div>
-
   </div>
+
+  <CrystalSlider />
+
+  <WeaponSelect />
+
 </template>
+
+<style>
+.character {
+  background: #111;
+  padding: 2rem 2rem 1rem;
+}
+
+.vue-simple-progress,
+.vue-simple-progress-bar {
+  height: 1rem !important;
+}
+
+.character h3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  text-transform: uppercase;
+  color: white;
+  background-color: #333;
+  font-family: 'Neutron Demo';
+  font-size: 1.25rem;
+  font-weight: bold;
+  height: 2rem;
+  box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
+}
+
+.character-gauge {
+  margin-bottom: 0.5rem;
+}
+.character-gauge label {
+  display: inline-block;
+}
+.character-gauge label {
+  margin-inline-end: 0.5rem;
+}
+.character-gauge label::after {
+  content:': '
+}
+</style>
