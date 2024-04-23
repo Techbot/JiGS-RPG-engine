@@ -23,6 +23,10 @@ export default class Player {
     gun: Gun;
     sword: Sword;
     playerMovement: PlayerMovement;
+    keyW: any;
+    keyA: any;
+    keyS: any;
+    keyD: any;
 
     constructor(self, room, player) {
         this.room = room;
@@ -68,10 +72,14 @@ export default class Player {
         var cam = self.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
 
-        self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        // self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        // self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        // self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        // self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        self.keyW = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        self.keyA = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        self.keyS = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        self.keyD = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         self.input.on("pointerdown", (event) => {
 
@@ -96,10 +104,16 @@ export default class Player {
             this.room.leave(); // Backend
         }
         const velocity = 80;
-        self.inputPayload.left = self.cursorKeys.left.isDown;
-        self.inputPayload.right = self.cursorKeys.right.isDown;
-        self.inputPayload.up = self.cursorKeys.up.isDown;
-        self.inputPayload.down = self.cursorKeys.down.isDown;
+        self.inputPayload.left = self.cursorKeys.left.isDown || self.keyA.isDown;
+        self.inputPayload.right = self.cursorKeys.right.isDown || self.keyD.isDown;
+        self.inputPayload.up = self.cursorKeys.up.isDown || self.keyW.isDown;
+        self.inputPayload.down = self.cursorKeys.down.isDown || self.keyS.isDown;
+
+        // if (self.keyW.isDown) {
+        //     console.log('W key pressed');
+        //     // console.log(self.keyW);
+        // }
+
         self.inputPayload.tick = self.currentTick;
         self.inputPayload.mobClick = this.jigs.mobClick;
 
