@@ -1,5 +1,56 @@
 <script>
 import { useJigsStore } from "../../stores/jigs";
+
+export default {
+  name: 'Character Page',
+  setup() {
+    const jigs = ref(useJigsStore());
+    return {
+      jigs,
+    };
+  },
+  data() {
+    return {
+      headgear: [
+        { id: 0, name: "None", image: "/assets/images/System/weapon_sword.png" },
+        { id: 1, name: "Helmet", image: "/assets/images/System/weapon_gun.png" },
+        { id: 2, name: "Visor", image: "/assets/images/System/weapon_gun.png" },
+      ],
+      weapons: [
+        { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
+        { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
+      ],
+      bionics: [
+        { id: 0, name: "None" },
+        { id: 1, name: "Fire" },
+        { id: 2, name: "Ice" },
+      ],
+      implant: [
+        { id: 0, name: "None" },
+        { id: 1, name: "Eye" },
+        { id: 2, name: "Brain" },
+        { id: 3, name: "Skin" },
+      ],
+      armour: [
+        { id: 0, name: "None" },
+        { id: 1, name: "Suit of armour" },
+        { id: 2, name: "Kevlar vest" },
+      ],
+      footwear: [
+        { id: 0, name: "None" },
+        { id: 1, name: "Steel toe boots" },
+        { id: 2, name: "Magnetic boots" },
+      ],
+      selectedHeadgear: "None",
+      selectedWeapon: "Gun",
+      selectedBionics: "None",
+      selectedImplant: "None",
+      selectedArmour: "None",
+      selectedFootwear: "None"
+    }
+  }
+}
+
 </script>
 
 <template>
@@ -10,23 +61,26 @@ import { useJigsStore } from "../../stores/jigs";
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Headgear</div>
-        <select>
+        <select v-model="selectedHeadgear">
+          <option>None</option>
           <option>Helmet</option>
-          <option>Viser</option>
+          <option>Visor</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Weapon</div>
-        <select>
+        <select v-model="selectedWeapon">
+          <option>None</option>
+          <option>Sword</option>
           <option>Gun</option>
-          <option selected>Sword</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Bionics</div>
-        <select>
+        <select v-model="selectedBionics">
+          <option>None</option>
           <option>Fire</option>
           <option>Ice</option>
         </select>
@@ -39,27 +93,42 @@ import { useJigsStore } from "../../stores/jigs";
           <div class="emc-char__body">
             <div class="emc-char__part headgear">
               <div class="emc-char__heading">Headgear</div>
+              {{ selectedHeadgear }}
             </div>
             <div class="emc-char__part head">
-              <img src="/assets/psibot-head.png" width="256" height="128"/>
+              <img v-if="selectedHeadgear === 'None'" src="/assets/psibot-head.png" width="256" height="128"/>
+              <img v-if="selectedHeadgear === 'Helmet'" src="/assets/psibot-head-helmet.png" width="256" height="128"/>
+              <img v-if="selectedHeadgear === 'Visor'" src="/assets/psibot-head-visor.png" width="256" height="128"/>
             </div>
             <div class="emc-char__part implant">
               <div class="emc-char__heading">Implant</div>
+              {{ selectedImplant }}
             </div>
             <div class="emc-char__part armour">
               <div class="emc-char__heading">Armour</div>
+              {{ selectedArmour }}
             </div>
             <div class="emc-char__part weapon_left">
               <div class="emc-char__heading">Weapon</div>
+              <strong>{{ selectedWeapon }}</strong>
+              <div class="weapon__thumb" v-if="selectedWeapon === 'Sword'">
+                <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
+              </div>
+              <div class="weapon__thumb" v-if="selectedWeapon === 'Gun'">
+                <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
+              </div>
             </div>
             <div class="emc-char__part weapon_right">
               <div class="emc-char__heading">Weapon</div>
+              {{ selectedWeapon }}
             </div>
             <div class="emc-char__part bionics">
               <div class="emc-char__heading">Bionics</div>
+              {{ selectedBionics }}
             </div>
             <div class="emc-char__part footwear">
               <div class="emc-char__heading">Footwear</div>
+              {{ selectedFootwear}}
             </div>
           </div>
     </div>
@@ -67,7 +136,8 @@ import { useJigsStore } from "../../stores/jigs";
     <div class="emc-char__right">
       <div class="emc-char__item">
         <div class="emc-char__heading">Implant</div>
-        <select>
+        <select v-model="selectedImplant">
+          <option>None</option>
           <option>Eye</option>
           <option>Brain</option>
           <option>Skin</option>
@@ -76,23 +146,25 @@ import { useJigsStore } from "../../stores/jigs";
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Weapon</div>
-        <select>
-          <option>Gun</option>
+        <select v-model="selectedWeapon">
           <option>Sword</option>
+          <option>Gun</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Armour</div>
-        <select>
-          <option>Suit of aromour</option>
+        <select v-model="selectedArmour">
+          <option>None</option>
+          <option>Suit of armour</option>
           <option>Kevlar vest</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Footwear</div>
-        <select>
+        <select v-model="selectedFootwear">
+          <option>None</option>
           <option>Steel toe boots</option>
           <option>Magnetic boots</option>
         </select>
