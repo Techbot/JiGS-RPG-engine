@@ -99,7 +99,7 @@
 
 <style>
 .crystals {
-  padding: 1rem;
+  padding: 1rem 1rem 0;
   background: #111;
 }
 
@@ -108,14 +108,16 @@
   justify-content: space-between;
   max-width: 500px;
   font-weight: 700;
-  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+  background: black;
 }
 
 .crystal {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 0 0 1rem;
+  padding: 0 0 0.5rem;
   max-width: 500px;
 }
 

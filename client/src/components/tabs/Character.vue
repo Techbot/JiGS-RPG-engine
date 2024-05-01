@@ -44,7 +44,7 @@ export default {
 <style>
 .character {
   background: #111;
-  padding: 2rem 2rem 1rem;
+  padding: 1rem 1rem 0;
 }
 
 .vue-simple-progress,
@@ -65,18 +65,5 @@ export default {
   font-weight: bold;
   height: 2rem;
   box-shadow: inset 0px 12px 25px 5px rgba(0, 0, 0, 0.4);
-}
-
-.character-gauge {
-  margin-bottom: 0.5rem;
-}
-.character-gauge label {
-  display: inline-block;
-}
-.character-gauge label {
-  margin-inline-end: 0.5rem;
-}
-.character-gauge label::after {
-  content:': '
 }
 </style>

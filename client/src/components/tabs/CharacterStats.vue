@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="character-stats">
     <div class="character-gauge">
       <label>Intelligence</label>
       <span class="gauge-value">
@@ -41,7 +41,9 @@
         {{this.jigs.playerStats.psi}}
       </span>
     </div>
+  </div>
 
+  <div class="character-stats__level">
     <div class="character-gauge">
       <label>Level</label>
       <span class="gauge-value">
@@ -55,7 +57,9 @@
         {{this.jigs.playerStats.xp}}
       </span>
     </div>
+  </div>
 
+  <div class="character-stats__xp">
     <div class="character-gauge">
       <label>Credits</label>
       <span class="gauge-value">
@@ -69,8 +73,8 @@
         {{ this.jigs.playerStats.nanites }}
       </span>
     </div>
-
   </div>
+
 </template>
 <script>
 import { ref } from 'vue'
@@ -92,5 +96,32 @@ export default {
 }
 </script>
 <style>
+.character-stats,
+.character-stats__level,
+.character-stats__xp {
+  column-count: 2;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+.character-stats__level {
+  background-color: var(--emc-teal-dark-rich);
+}
+.character-stats__xp {
+  background-color: var(--emc-dark);
+}
 
+.character-gauge {
+  margin-bottom: 0.5rem;
+
+}
+.character-gauge label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-inline-end: 0.5rem;
+  text-transform: uppercase;
+}
+.character-gauge label::after {
+  content:': '
+}
 </style>

@@ -54,7 +54,7 @@ export default {
 
 .weapons {
   background: #111;
-  padding: 1rem 2rem;
+  padding: 1rem;
 }
 .weapon__thumb {
   text-align: center;
@@ -66,13 +66,18 @@ export default {
 }
 
 .weapons--select {
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .weapons--select .weapon {
-  flex: 1 0 50%;
+  flex: 0 1 auto;
+  min-width: 25%;
 }
 
 .weapons--select input {
