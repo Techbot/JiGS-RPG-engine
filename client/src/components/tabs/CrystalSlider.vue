@@ -74,7 +74,7 @@
 
               // console.log('inputItem:' + inputItem);
               const inputId = inputItem.id;
-              console.log('inputId:' + inputId);
+              // console.log('inputId:' + inputId);
 
               const crystalStyles = getComputedStyle(inputItem);
               // console.log('crystalStyles:' + crystalStyles);
@@ -82,7 +82,7 @@
               const inputStyle = crystalStyles.getPropertyValue('--crystal-color');
 
               if (inputId == crystalId) {
-                console.log('inputStyle: ' + inputStyle);
+                // console.log('inputStyle: ' + inputStyle);
                 inputItem.style.setProperty('--crystal-color', crystalBg);
               }
 
