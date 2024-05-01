@@ -1,72 +1,106 @@
 <template>
-  <div class="weapon">
-    <div class="weapon--picked">
-      <label>Weapon</label>
-      <span class="weapon-value">
-        {{ picked }}
-      </span>
+  <div class="weapons">
+    <strong>Weapon: {{ selected }}</strong>
+    <div class="weapon__thumb" v-if="selected === 'Sword'">
+      <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
+    </div>
+    <div class="weapon__thumb" v-if="selected === 'Gun'">
+      <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
     </div>
 
-    <div class="weapon--select">
-      <div class="weapon-value">
-        <label for="sword">Sword</label>
-        <input type="radio" id="sword" value="Sword" v-model="picked">
-      </div>
-      <div class="weapon-value">
-        <label for="gun">Gun</label>
-        <input type="radio" id="gun" value="Gun" v-model="picked">
+    <div class="weapons--select">
+      <div class="weapon" :class="{ active: weapon.name === selected }" v-for="weapon in weapons" :key="weapon.id">
+        <label>
+          <input class="visually-hidden" type="radio" name="weapon-input" :value="weapon.name" :id="weapon.name" v-model="selected" />
+          <img :src="weapon.image" :alt="weapon.name" />
+          <span>{{ weapon.name }}</span>
+        </label>
       </div>
     </div>
   </div>
 </template>
 <script>
-export default {
-  name: 'WeaponSelect'
 
+import { ref } from 'vue'
+import { useJigsStore } from "../../stores/jigs";
+
+export default {
+  name: 'WeaponSelect',
+  setup() {
+    const jigs = ref(useJigsStore());
+    return {
+      jigs,
+    };
+  },
+  data() {
+    return {
+      weapons: [
+        { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
+        { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
+      ],
+      selected: "Gun",
+    }
+  }
 }
 </script>
 
 <style>
-.weapon label {
+/* .weapons label {
   margin-inline-end: 0.5rem;
-}
-.weapon label::after  {
+} */
+/* .weapon label::after {
   content:': '
-}
+} */
 
-.weapon {
+.weapons {
   background: #111;
   padding: 1rem 2rem;
 }
-
-.weapon--picked,
-.weapon--select {
-  margin-bottom: 0.5rem;
+.weapon__thumb {
+  text-align: center;
 }
 
-.weapon--select {
+.weapon__thumb img {
+  margin: 0 auto 1rem;
+  width: 4rem;
+}
+
+.weapons--select {
+  margin-bottom: 0.5rem;
   display: flex;
   gap: 1rem;
 }
 
-.weapon--select .weapon-value {
-  flex: 1 0 auto;
-  padding: 1rem;
-  border: 2px solid transparent;
+.weapons--select .weapon {
+  flex: 1 0 50%;
 }
 
-.weapon--select .weapon-value:hover {
+.weapons--select input {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.weapons--select .weapon label {
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  display: block;
+  text-align: center;
+  border: 2px solid var(--emc-black);
+  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px var(--emc-black), 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+.weapons--select .weapon label img {
+  width: 2rem;
+  margin: 0.25rem auto 0;
+}
+
+.weapons--select .weapon label:hover {
   border: 2px solid red;
   background: #222;
 }
 
-.weapon--select .weapon-value {
-  border: 2px solid var(--emc-black);
-  box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px var(--emc-black), 5px 5px 15px 5px rgba(0,0,0,0);
-}
-/* .weapon--select .weapon-value:first-child {
+.weapons--select .weapon.active label {
   border: 2px solid red;
   box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0);
-} */
-
+}
 </style>
