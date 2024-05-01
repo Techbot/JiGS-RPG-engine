@@ -1,17 +1,17 @@
 <template>
   <div class="weapons">
-    <strong>Weapon: {{ selected }}</strong>
-    <div class="weapon__thumb" v-if="selected === 'Sword'">
+    <strong>Weapon: {{ selectedWeapon }}</strong>
+    <div class="weapon__thumb" v-if="selectedWeapon === 'Sword'">
       <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
     </div>
-    <div class="weapon__thumb" v-if="selected === 'Gun'">
+    <div class="weapon__thumb" v-if="selectedWeapon === 'Gun'">
       <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
     </div>
 
     <div class="weapons--select">
-      <div class="weapon" :class="{ active: weapon.name === selected }" v-for="weapon in weapons" :key="weapon.id">
+      <div class="weapon" :class="{ active: weapon.name === selectedWeapon }" v-for="weapon in weapons" :key="weapon.id">
         <label>
-          <input class="visually-hidden" type="radio" name="weapon-input" :value="weapon.name" :id="weapon.name" v-model="selected" />
+          <input class="visually-hidden" type="radio" name="weapon-input" :value="weapon.name" :id="weapon.name" v-model="selectedWeapon" />
           <img :src="weapon.image" :alt="weapon.name" />
           <span>{{ weapon.name }}</span>
         </label>
@@ -38,7 +38,7 @@ export default {
         { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
         { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
       ],
-      selected: "Gun",
+      selectedWeapon: "Gun",
     }
   }
 }
