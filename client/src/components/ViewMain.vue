@@ -40,7 +40,7 @@ export default {
 
  <template>
   <div class="main">
-  <component :is=msg />
+    <component :is=msg />
   </div>
   </template>
 

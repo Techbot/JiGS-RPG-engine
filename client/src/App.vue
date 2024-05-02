@@ -52,7 +52,7 @@ export default {
     log(e) {
       e.preventDefault();
       this.toggleClass(e);
-      this.jigs.gameState = "Log";
+      this.jigs.gameState = "Logs";
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
@@ -123,7 +123,7 @@ export default {
         <CButton @click="quests" component="button" color="primary"
           shape="rounded-pill" size="sm">Quests</CButton>
         <CButton @click="log" component="button" color="primary"
-          shape="rounded-pill" size="sm">Log</CButton>
+          shape="rounded-pill" size="sm">Logs</CButton>
       </div>
     </form>
     <ViewMain :msg="jigs.gameState" />
