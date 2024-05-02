@@ -1,4 +1,5 @@
 <script>
+import { ref } from 'vue'
 import { useJigsStore } from "../../stores/jigs";
 
 export default {
@@ -12,41 +13,55 @@ export default {
   data() {
     return {
       headgear: [
-        { id: 0, name: "None", image: "/assets/images/System/weapon_sword.png" },
-        { id: 1, name: "Helmet", image: "/assets/images/System/weapon_gun.png" },
-        { id: 2, name: "Visor", image: "/assets/images/System/weapon_gun.png" },
+        { id: 0, name: "None", image: "/assets/images/System/psibot-head.png" },
+        { id: 1, name: "Helmet", image: "/assets/images/System/psibot-head-helmet.png" },
+        { id: 2, name: "Visor", image: "/assets/images/System/psibot-head-visor.png" },
       ],
-      weapons: [
+      weaponsLeft: [
+        { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
+        { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
+      ],
+      weaponsRight: [
         { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
         { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
       ],
       bionics: [
-        { id: 0, name: "None" },
-        { id: 1, name: "Fire" },
-        { id: 2, name: "Ice" },
+        { id: 0, name: "None", image: "/assets/images/System/psibot-bionics.png" },
+        { id: 1, name: "Fire", image: "/assets/images/System/psibot-bionics-fire.png" },
+        { id: 2, name: "Ice", image: "/assets/images/System/psibot-bionics-ice.png" },
       ],
       implant: [
-        { id: 0, name: "None" },
-        { id: 1, name: "Eye" },
-        { id: 2, name: "Brain" },
-        { id: 3, name: "Skin" },
+        { id: 0, name: "None", image: "/assets/images/System/psibot-implant.png" },
+        { id: 1, name: "Eye", image: "/assets/images/System/psibot-implant-eye.png" },
+        { id: 2, name: "Brain", image: "/assets/images/System/psibot-implant-brain.png" },
+        { id: 3, name: "Skin", image: "/assets/images/System/psibot-implant-skin.png" },
       ],
       armour: [
-        { id: 0, name: "None" },
-        { id: 1, name: "Suit of armour" },
-        { id: 2, name: "Kevlar vest" },
+        { id: 0, name: "None", image: "/assets/images/System/psibot-body.png" },
+        { id: 1, name: "Suit of armour", image: "/assets/images/System/psibot-body-suit-of-armour.png" },
+        { id: 2, name: "Kevlar vest", image: "/assets/images/System/psibot-body-kevlar.png" },
       ],
       footwear: [
-        { id: 0, name: "None" },
-        { id: 1, name: "Steel toe boots" },
-        { id: 2, name: "Magnetic boots" },
+        { id: 0, name: "None", image: "/assets/images/System/psibot-footwear.png" },
+        { id: 1, name: "Steel toe boots", image: "/assets/images/System/psibot-footwear.png" },
+        { id: 2, name: "Magnetic boots", image: "/assets/images/System/psibot-footwear.png" },
       ],
       selectedHeadgear: "None",
-      selectedWeapon: "Gun",
+      selectedWeaponLeft: "Gun",
+      selectedWeaponRight: "Sword",
       selectedBionics: "None",
       selectedImplant: "None",
       selectedArmour: "None",
       selectedFootwear: "None"
+    }
+  },
+  methods: {
+    mouseover: function(){
+      console.log('mouseover');
+      console.log(this);
+    },
+    mouseleave: function(){
+      console.log('mouseout')
     }
   }
 }
@@ -62,27 +77,21 @@ export default {
       <div class="emc-char__item">
         <div class="emc-char__heading">Headgear</div>
         <select v-model="selectedHeadgear">
-          <option>None</option>
-          <option>Helmet</option>
-          <option>Visor</option>
+          <option v-for="item in headgear">{{ item.name }}</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Weapon</div>
-        <select v-model="selectedWeapon">
-          <option>None</option>
-          <option>Sword</option>
-          <option>Gun</option>
+        <select v-model="selectedWeaponLeft">
+          <option v-for="weapon in weaponsLeft">{{ weapon.name }}</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Bionics</div>
         <select v-model="selectedBionics">
-          <option>None</option>
-          <option>Fire</option>
-          <option>Ice</option>
+          <option v-for="item in bionics">{{ item.name }}</option>
         </select>
       </div>
 
@@ -95,40 +104,59 @@ export default {
               <div class="emc-char__heading">Headgear</div>
               {{ selectedHeadgear }}
             </div>
-            <div class="emc-char__part head">
-              <img v-if="selectedHeadgear === 'None'" src="/assets/psibot-head.png" width="256" height="128"/>
-              <img v-if="selectedHeadgear === 'Helmet'" src="/assets/psibot-head-helmet.png" width="256" height="128"/>
-              <img v-if="selectedHeadgear === 'Visor'" src="/assets/psibot-head-visor.png" width="256" height="128"/>
+            <div class="emc-char__part head" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
+              <img v-if="selectedHeadgear === 'None'" src="/assets/psibot-head.png" width="224" height="200" />
+              <img v-if="selectedHeadgear === 'Helmet'" src="/assets/psibot-head-helmet.png" width="224" height="200" />
+              <img v-if="selectedHeadgear === 'Visor'" src="/assets/psibot-head-visor.png" width="224" height="200" />
             </div>
             <div class="emc-char__part implant">
               <div class="emc-char__heading">Implant</div>
-              {{ selectedImplant }}
+              <!-- {{ selectedImplant }} -->
+              <img v-if="selectedImplant === 'None'" src="/assets/psibot-implant.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'Eye'" src="/assets/psibot-implant-eye.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'Brain'" src="/assets/psibot-implant-brain.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'Skin'" src="/assets/psibot-implant-skin.png" width="64" height="64" />
             </div>
             <div class="emc-char__part armour">
-              <div class="emc-char__heading">Armour</div>
-              {{ selectedArmour }}
+              <!-- <div class="emc-char__heading">Armour</div> -->
+              <!-- {{ selectedArmour }} -->
+              <img v-if="selectedArmour === 'None'" src="/assets/psibot-body.png" width="236" height="112" />
+              <img v-if="selectedArmour === 'Suit of armour'" src="/assets/psibot-body-suit-of-armour.png" width="236" height="112" />
+              <img v-if="selectedArmour === 'Kevlar vest'" src="/assets/psibot-body-kevlar.png" width="236" height="112" />
             </div>
             <div class="emc-char__part weapon_left">
               <div class="emc-char__heading">Weapon</div>
-              <strong>{{ selectedWeapon }}</strong>
-              <div class="weapon__thumb" v-if="selectedWeapon === 'Sword'">
+              <strong>{{ selectedWeaponLeft }}</strong>
+              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Sword'">
                 <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
               </div>
-              <div class="weapon__thumb" v-if="selectedWeapon === 'Gun'">
+              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Gun'">
                 <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
               </div>
             </div>
             <div class="emc-char__part weapon_right">
               <div class="emc-char__heading">Weapon</div>
-              {{ selectedWeapon }}
+              <strong>{{ selectedWeaponRight }}</strong>
+              <div class="weapon__thumb" v-if="selectedWeaponRight === 'Sword'">
+                <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
+              </div>
+              <div class="weapon__thumb" v-if="selectedWeaponRight === 'Gun'">
+                <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
+              </div>
             </div>
             <div class="emc-char__part bionics">
               <div class="emc-char__heading">Bionics</div>
-              {{ selectedBionics }}
+              <!-- {{ selectedBionics }} -->
+              <img v-if="selectedBionics === 'None'" src="/assets/psibot-bionics.png" width="68" height="68" />
+              <img v-if="selectedBionics === 'Fire'" src="/assets/psibot-bionics-fire.png" width="68" height="68" />
+              <img v-if="selectedBionics === 'Ice'" src="/assets/psibot-bionics-ice.png" width="68" height="68" />
             </div>
             <div class="emc-char__part footwear">
-              <div class="emc-char__heading">Footwear</div>
-              {{ selectedFootwear}}
+              <!-- <div class="emc-char__heading">Footwear</div> -->
+              <!-- {{ selectedFootwear}} -->
+              <img v-if="selectedFootwear === 'None'" src="/assets/psibot-foot.png" width="224" height="100" />
+              <img v-if="selectedFootwear === 'Steel toe boots'" src="/assets/psibot-foot-steel-toe.png" width="224" height="100" />
+              <img v-if="selectedFootwear === 'Magnetic boots'" src="/assets/psibot-foot-magnetic.png" width="224" height="100" />
             </div>
           </div>
     </div>
@@ -137,36 +165,28 @@ export default {
       <div class="emc-char__item">
         <div class="emc-char__heading">Implant</div>
         <select v-model="selectedImplant">
-          <option>None</option>
-          <option>Eye</option>
-          <option>Brain</option>
-          <option>Skin</option>
+          <option v-for="item in implant">{{ item.name }}</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Weapon</div>
-        <select v-model="selectedWeapon">
-          <option>Sword</option>
-          <option>Gun</option>
+        <select v-model="selectedWeaponRight">
+          <option v-for="weapon in weaponsRight">{{ weapon.name }}</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Armour</div>
         <select v-model="selectedArmour">
-          <option>None</option>
-          <option>Suit of armour</option>
-          <option>Kevlar vest</option>
+          <option v-for="item in armour">{{ item.name }}</option>
         </select>
       </div>
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Footwear</div>
         <select v-model="selectedFootwear">
-          <option>None</option>
-          <option>Steel toe boots</option>
-          <option>Magnetic boots</option>
+          <option v-for="item in footwear">{{ item.name }}</option>
         </select>
       </div>
     </div>
@@ -175,8 +195,7 @@ export default {
 </template>
 
 <style>
-/* Chatacter */
-.emc-layout.emc-char {
+  .emc-layout.emc-char {
     display: flex;
     flex-wrap: nowrap;
     gap: 1rem;
@@ -220,7 +239,7 @@ export default {
     background-color: var(--emc-black);
     border-width: 8px;
     min-height: 600px;
-    padding: 3rem 1rem;
+    padding: 2rem 1rem;
   }
 
   .emc-char__item {
@@ -252,14 +271,14 @@ export default {
     grid-template-rows: repeat(7, 1fr);
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
-    grid-template-areas:
+    /* grid-template-areas:
       ". head ."
       "headgear head implant"
       ". armour . "
       "weapon_left armour weapon_right"
       "weapon_left armour weapon_right"
       "bionics footwear ."
-      ". footwear .";
+      ". footwear ."; */
   }
 
   .emc-char__body > div {
@@ -268,7 +287,6 @@ export default {
     box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #042A2B, 5px 5px 15px 5px rgba(0,0,0,0);
     cursor: pointer;
   }
-
   .emc-char__body > div:hover,
   .emc-char__body > div:focus {
     border: 4px solid var(--emc-teal-dark-alt);
@@ -284,7 +302,8 @@ export default {
   }
 
   .emc-char__body .head {
-    grid-area: 1 / 2 / 3 / 3;
+    grid-area: 2 / 2 / 4 / 3;
+    align-self: flex-end;
   }
 
   .emc-char__body .head img {
@@ -292,12 +311,19 @@ export default {
     object-fit: cover;
   }
 
+  .emc-char__body img {
+    object-position: 50% 50%;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+  }
+
   .emc-char__body .implant {
     grid-area: 2 / 3 / 4 / 4;
   }
 
   .emc-char__body .armour {
-    grid-area: 3 / 2 / 6 / 3;
+    grid-area: 4 / 2 / 5 / 3;
   }
 
   .emc-char__body .weapon_left {
@@ -313,7 +339,8 @@ export default {
   }
 
   .emc-char__body .footwear {
-    grid-area: 6 / 2 / 8 / 3;
+    grid-area: 5 / 2 / 6 / 3;
+
   }
 
 </style>
