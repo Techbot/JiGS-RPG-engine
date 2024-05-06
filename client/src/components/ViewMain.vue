@@ -13,10 +13,22 @@ import Skills from "./pages/Skills.vue";
 import Quests from "./pages/Quests.vue";
 import Logs from "./pages/Logs.vue";
 import GamePhaser from './GamePhaser.vue';
+import Messenger from '../components/messenger/Messenger.vue';
+
 
 export default {
   components: {
-    draggable, Crafting, Maps, Skills, Inventory, Character, Logs, Quests, coreui,  GamePhaser
+    draggable,
+    Crafting,
+    Maps,
+    Skills,
+    Inventory,
+    Character,
+    Logs,
+    Quests,
+    coreui,
+    GamePhaser,
+    Messenger
   },
   data() {
     return {
@@ -26,7 +38,6 @@ export default {
 
   },
   setup() {
-
     const jigs = useJigsStore();
     return {
       jigs,
@@ -41,6 +52,11 @@ export default {
  <template>
   <div class="main">
     <component :is=msg />
+
+    <section class="messenger">
+      <Messenger />
+    </section>
+
   </div>
   </template>
 
