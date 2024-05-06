@@ -27,68 +27,77 @@ export default class Player {
     keyA: any;
     keyS: any;
     keyD: any;
+    x: any;
+    y: any;
+    scene: any;
+    player: any;
 
-    constructor(self, room, player) {
+    constructor(scene, room, player) {
+        this.scene = scene;
         this.room = room;
+        this.player = player;
         this.jigs = useJigsStore();
-        this.playerMovement = new PlayerMovement(self);
+        this.playerMovement = new PlayerMovement(scene);
         this.staticNum = 0;
 
-        this.entity = self.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
+        this.entity = scene.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
             .setDepth(7)
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-            .on('pointerdown', this.onPlayerDown.bind(self))
+            .on('pointerdown', this.onPlayerDown.bind(scene))
             .setScale(.85)
-        }
+    }
 
-    add(self, player, colliderMap) {
+    add(colliderMap) {
+
+        this.x = this.player.x;
+        this.y = this.player.y;
 
         this.colliderMap = colliderMap
-        this.light = new Light(self, player.x, player.y, null);
-        this.gun = new Gun(self, player.x, player.y, 'gun');
-        this.sword = new Sword(self, player.x, player.y, null);
-        this.drones = new Drones(self, player.x, player.y);
+        this.light = new Light(this.scene, this.player.x, this.player.y, null);
+        this.gun = new Gun(this.scene, this.player.x, this.player.y, 'gun');
+        this.sword = new Sword(this.scene, this.player.x, this.player.y, null);
+        this.drones = new Drones(this.scene, this.player.x, this.player.y);
 
-        self.lights.enable().setAmbientColor(0x555555);
-        self.physics.add.existing(this.entity);
-        self.physics.world.enable([this.entity]);
-        self.cameras.main.startFollow(this.entity);
-        self.currentPlayer = this.entity;
+        this.scene.lights.enable().setAmbientColor(0x555555);
+        this.scene.physics.add.existing(this.entity);
+        this.scene.physics.world.enable([this.entity]);
+        this.scene.cameras.main.startFollow(this.entity);
+        this.scene.currentPlayer = this.entity;
 
         if (this.jigs.debug) {
-            self.localRef = self.add.rectangle(0, 0, 32, 40).setDepth(7);
-            self.localRef.setStrokeStyle(1, 0x00ff00);
-            self.remoteRef = self.add.rectangle(0, 0, 32, 40).setDepth(8);
-            self.remoteRef.setStrokeStyle(1, 0xff0000);
+            this.scene.localRef = this.scene.add.rectangle(0, 0, 32, 40).setDepth(7);
+            this.scene.localRef.setStrokeStyle(1, 0x00ff00);
+            this.scene.remoteRef = this.scene.add.rectangle(0, 0, 32, 40).setDepth(8);
+            this.scene.remoteRef.setStrokeStyle(1, 0xff0000);
         }
-        player.onChange(() => {
+        this.player.onChange(() => {
             if (this.jigs.debug) {
-                self.remoteRef.x = player.x;
-                self.remoteRef.y = player.y;
+                this.scene.remoteRef.x = this.player.x;
+                this.scene.remoteRef.y = this.player.y;
+                this.scene.localRef.x = this.scene.currentPlayer.x;
+                this.scene.localRef.y = this.scene.currentPlayer.y;
             }
-            this.lerp(self);
+            this.lerp(this.player);
         });
 
-        var cam = self.cameras.main;
+        var cam = this.scene.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
 
-        // self.key_left = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        // self.key_right = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        // self.key_up = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        // self.key_down = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
-        self.keyW = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-        self.keyA = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        self.keyS = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-        self.keyD = self.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.scene.key_left = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        this.scene.key_right = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        this.scene.key_up = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        this.scene.key_down = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        this.scene.keyW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.scene.keyA = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.scene.keyS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.scene.keyD = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-        self.input.on("pointerdown", (event) => {
-
-            this.sword.strike(self);
-            this.gun.shoot(self, event);
-
+        this.scene.input.on("pointerdown", (event) => {
+            this.sword.strike(this.scene);
+            this.gun.shoot(this.scene, event);
             //Send Mouse Co-ordinates from World point of view
-            self.inputPayload.inputX = parseInt(event.worldX);
-            self.inputPayload.inputY = parseInt(event.worldY);
+            this.scene.inputPayload.inputX = parseInt(event.worldX);
+            this.scene.inputPayload.inputY = parseInt(event.worldY);
         });
     }
 
@@ -98,63 +107,53 @@ export default class Player {
         this.scene.switch("main", "DeadScene");
     }
 
-    updatePlayer(self) {
+    updatePlayer() {
         if (this.jigs.leave == 1) {
             this.jigs.leave = 0;
             this.room.leave(); // Backend
         }
         const velocity = 80;
-        self.inputPayload.left = self.cursorKeys.left.isDown || self.keyA.isDown;
-        self.inputPayload.right = self.cursorKeys.right.isDown || self.keyD.isDown;
-        self.inputPayload.up = self.cursorKeys.up.isDown || self.keyW.isDown;
-        self.inputPayload.down = self.cursorKeys.down.isDown || self.keyS.isDown;
+        this.scene.inputPayload.left = this.scene.cursorKeys.left.isDown || this.scene.keyA.isDown;
+        this.scene.inputPayload.right = this.scene.cursorKeys.right.isDown || this.scene.keyD.isDown;
+        this.scene.inputPayload.up = this.scene.cursorKeys.up.isDown || this.scene.keyW.isDown;
+        this.scene.inputPayload.down = this.scene.cursorKeys.down.isDown || this.scene.keyS.isDown;
 
-        // if (self.keyW.isDown) {
-        //     console.log('W key pressed');
-        //     // console.log(self.keyW);
-        // }
-
-        self.inputPayload.tick = self.currentTick;
-        self.inputPayload.mobClick = this.jigs.mobClick;
+        this.scene.inputPayload.tick = this.scene.currentTick;
+        this.scene.inputPayload.mobClick = this.jigs.mobClick;
 
         ////////////////////////// SEND /////////////////////////////////
-        if (self.room.send && self.room.send !== undefined) {
+        if (this.scene.room.send && this.scene.room.send !== undefined) {
             if (this.jigs.playerState == "alive") {
-                self.room.send(0, self.inputPayload);
+                this.scene.room.send(0, this.scene.inputPayload);
             }
         }
-        if (!self.currentPlayer.anims || this.jigs.playerState != "alive") {
+        if (!this.scene.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
-        self.physics.world.collide(self.localPlayer.entity, self.Walls.walls);
-        this.playerMovement.move(self, velocity, this.colliderMap);
+        this.scene.physics.world.collide(this.scene.localPlayer.entity, this.scene.Walls.walls);
+        this.playerMovement.move(this.scene, velocity, this.colliderMap);
         this.jigs.mobClick = 0;
-
-        if (this.jigs.debug) {
-            self.localRef.x = self.currentPlayer.x;
-            self.localRef.y = self.currentPlayer.y;
-        }
 
         ///////////////////////////////////////////////////////////////////////
         //  Dispatch a Scene event
-        self.events.emit('position', self.currentPlayer.x, self.currentPlayer.y);
+        this.scene.events.emit('position', this.scene.currentPlayer.x, this.scene.currentPlayer.y);
     }
 
-    async lerp(self) {
+    async lerp(player) {
         if (this.staticNum == 0) {
             this.staticNum = 1;
             console.log('lerping');
-            if (self.currentPlayer.y > self.remoteRef.y) {
-                self.currentPlayer.setVelocityY((self.currentPlayer.y - self.remoteRef.y) * -1.9);
+            if (this.scene.currentPlayer.y > this.y) {
+                this.scene.currentPlayer.setVelocityY((this.scene.currentPlayer.y - player.y) * -1.9);
             }
-            if (self.currentPlayer.y < self.remoteRef.y) {
-                self.currentPlayer.setVelocityY((self.currentPlayer.y - self.remoteRef.y) * -1.9);
+            if (this.scene.currentPlayer.y < this.y) {
+                this.scene.currentPlayer.setVelocityY((this.scene.currentPlayer.y - player.y) * -1.9);
             }
-            if (self.currentPlayer.x > self.remoteRef.x) {
-                self.currentPlayer.setVelocityX((self.currentPlayer.x - self.remoteRef.x) * -1.9);
+            if (this.scene.currentPlayer.x > this.x) {
+                this.scene.currentPlayer.setVelocityX((this.scene.currentPlayer.x - player.x) * -1.9);
             }
-            if (self.currentPlayer.x < self.remoteRef.x) {
-                self.currentPlayer.setVelocityX((self.currentPlayer.x - self.remoteRef.x) * -1.9);
+            if (this.scene.currentPlayer.x < this.x) {
+                this.scene.currentPlayer.setVelocityX((this.scene.currentPlayer.x - player.x) * -1.9);
             }
             await this.skip(500);
             this.staticNum = 0;

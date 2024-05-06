@@ -133,7 +133,7 @@ export class MainScene extends Phaser.Scene {
                 this.Switches.add(this);
                 this.Walls.add(this);
                 this.Folio.add(this);
-                this.localPlayer.add(this, player, this.colliderMap);
+                this.localPlayer.add(this.colliderMap);
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
@@ -195,9 +195,12 @@ export class MainScene extends Phaser.Scene {
         this.jigs.mapWidth      = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
         this.jigs.mapHeight     = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
         this.jigs.portalsArray  = response.data[0].value["MapGrid"]["portalsArray"];
-        this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
 
+        if (response.data[0].value["MapGrid"]["switchesArray"]){
         this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+        }
+
+
         this.jigs.fireArray     = response.data[0].value["MapGrid"]["fireArray"];
         this.jigs.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
         this.jigs.leverArray = response.data[0].value["MapGrid"]["leverArray"];
@@ -276,7 +279,7 @@ export class MainScene extends Phaser.Scene {
     fixedTick(time, delta) {
         this.currentTick++;
         if (this.localPlayer !== undefined) {
-            this.localPlayer.updatePlayer(this);
+            this.localPlayer.updatePlayer();
         }
 
         if (this.jigs.mobArray != undefined) {
