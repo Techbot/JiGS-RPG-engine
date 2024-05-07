@@ -93,7 +93,7 @@ export default class Player {
         this.scene.keyD = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
         this.scene.input.on("pointerdown", (event) => {
-            this.sword.strike(this.scene);
+            this.sword.strike(this.scene.currentPlayer);
             this.gun.shoot(this.scene, event);
             //Send Mouse Co-ordinates from World point of view
             this.scene.inputPayload.inputX = parseInt(event.worldX);
@@ -131,7 +131,7 @@ export default class Player {
             return;
         }
         this.scene.physics.world.collide(this.scene.localPlayer.entity, this.scene.Walls.walls);
-        this.playerMovement.move(this.scene, velocity, this.colliderMap);
+        this.playerMovement.move(this.scene.currentPlayer, velocity, this.colliderMap);
         this.jigs.mobClick = 0;
 
         ///////////////////////////////////////////////////////////////////////

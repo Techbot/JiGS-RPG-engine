@@ -13,13 +13,13 @@ export default class Walls {
         this.jigs = useJigsStore();
     }
 
-    add(self) {
+    add(scene) {
         const wallsArray = this.jigs.wallsArray;
-        this.walls = self.physics.add.staticGroup({ allowGravity: false });
+        this.walls = scene.physics.add.staticGroup({ allowGravity: false });
         for (var index = 0; index < wallsArray.length; index++) {
-            const wall = new Wall(self, wallsArray[index].x, wallsArray[index].y, wallsArray[index].width, wallsArray[index].height);
+            const wall = new Wall(scene, wallsArray[index].x, wallsArray[index].y, wallsArray[index].width, wallsArray[index].height);
             this.walls.add(wall, true);
-            self.physics.add.existing(wall);
+            scene.physics.add.existing(wall);
         }
     }
 }
