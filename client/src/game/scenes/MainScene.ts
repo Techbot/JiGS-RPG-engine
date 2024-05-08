@@ -227,13 +227,13 @@ export class MainScene extends Phaser.Scene {
 
     hydrateMission(response) {
         this.jigs.title   = response.data[0].value["title"];
-        this.jigs.content = response.data[0].value["content"];
+        this.jigs.missionHandlerDialog = response.data[0].value["handler_dialog"];
         let no            = { text: 'No I am not ready.', value: 0 }
         let yes           = { text: response.data[0].value["choice"], value: response.data[0].value["value"] };
         this.jigs.choice  = new Array;
         this.jigs.choice.push(yes);
         this.jigs.choice.push(no);
-        console.log(this.jigs.choice);
+       // console.log(this.jigs.choice);
     }
 
 
