@@ -142,7 +142,6 @@ export default class Player {
     async lerp(player) {
         if (this.staticNum == 0) {
             this.staticNum = 1;
-            console.log('lerping');
             if (this.scene.currentPlayer.y > this.y) {
                 this.scene.currentPlayer.setVelocityY((this.scene.currentPlayer.y - player.y) * -1.9);
             }

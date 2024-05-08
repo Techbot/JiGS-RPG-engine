@@ -89,21 +89,16 @@ export default {
       </div>
 
       <div class="emc-char__item">
-        <div class="emc-char__heading">Bionics</div>
-        <select v-model="selectedBionics">
-          <option v-for="item in bionics">{{ item.name }}</option>
+        <div class="emc-char__heading">Footwear</div>
+        <select v-model="selectedFootwear">
+          <option v-for="item in footwear">{{ item.name }}</option>
         </select>
       </div>
-
     </div>
 
       <div class="emc-char__center">
           <!-- <div class="emc-char__heading">Character</div> -->
           <div class="emc-char__body">
-            <div class="emc-char__part headgear">
-              <div class="emc-char__heading">Headgear</div>
-              {{ selectedHeadgear }}
-            </div>
             <div class="emc-char__part head" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
               <img v-if="selectedHeadgear === 'None'" src="/assets/psibot-head.png" width="224" height="200" />
               <img v-if="selectedHeadgear === 'Helmet'" src="/assets/psibot-head-helmet.png" width="224" height="200" />
@@ -126,21 +121,11 @@ export default {
             </div>
             <div class="emc-char__part weapon_left">
               <div class="emc-char__heading">Weapon</div>
-              <strong>{{ selectedWeaponLeft }}</strong>
+              <!-- <strong>{{ selectedWeaponLeft }}</strong> -->
               <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Sword'">
                 <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
               </div>
               <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Gun'">
-                <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
-              </div>
-            </div>
-            <div class="emc-char__part weapon_right">
-              <div class="emc-char__heading">Weapon</div>
-              <strong>{{ selectedWeaponRight }}</strong>
-              <div class="weapon__thumb" v-if="selectedWeaponRight === 'Sword'">
-                <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
-              </div>
-              <div class="weapon__thumb" v-if="selectedWeaponRight === 'Gun'">
                 <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
               </div>
             </div>
@@ -162,6 +147,7 @@ export default {
     </div>
 
     <div class="emc-char__right">
+
       <div class="emc-char__item">
         <div class="emc-char__heading">Implant</div>
         <select v-model="selectedImplant">
@@ -169,12 +155,12 @@ export default {
         </select>
       </div>
 
-      <div class="emc-char__item">
+      <!-- <div class="emc-char__item">
         <div class="emc-char__heading">Weapon</div>
         <select v-model="selectedWeaponRight">
           <option v-for="weapon in weaponsRight">{{ weapon.name }}</option>
         </select>
-      </div>
+      </div> -->
 
       <div class="emc-char__item">
         <div class="emc-char__heading">Armour</div>
@@ -184,11 +170,12 @@ export default {
       </div>
 
       <div class="emc-char__item">
-        <div class="emc-char__heading">Footwear</div>
-        <select v-model="selectedFootwear">
-          <option v-for="item in footwear">{{ item.name }}</option>
+        <div class="emc-char__heading">Bionics</div>
+        <select v-model="selectedBionics">
+          <option v-for="item in bionics">{{ item.name }}</option>
         </select>
       </div>
+
     </div>
 
   </div>
@@ -260,25 +247,22 @@ export default {
   .emc-char__part .emc-char__heading {
     background-color: var(--emc-black);
     font-family: 'Roboto';
-    font-size: 1rem;
+    font-size: 12px;
     font-weight: bold;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
   }
 
   .emc-char__body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
     /* grid-template-areas:
-      ". head ."
-      "headgear head implant"
-      ". armour . "
-      "weapon_left armour weapon_right"
-      "weapon_left armour weapon_right"
-      "bionics footwear ."
-      ". footwear ."; */
+      ". head implant"
+      ". head implant "
+      "weapon_left armour bionics"
+      "weapon_left footwear bionics" */
   }
 
   .emc-char__body > div {
@@ -297,12 +281,8 @@ export default {
     border: 4px solid var(--emc-teal-alt);
   }
 
-  .emc-char__body .headgear {
-    grid-area: 1 / 1 / 3 / 2;
-  }
-
   .emc-char__body .head {
-    grid-area: 2 / 2 / 4 / 3;
+    grid-area: 1 / 2 / 3 / 3;
     align-self: flex-end;
   }
 
@@ -319,28 +299,23 @@ export default {
   }
 
   .emc-char__body .implant {
-    grid-area: 2 / 3 / 4 / 4;
+    grid-area: 1 / 3 / 3 / 4;
   }
 
   .emc-char__body .armour {
-    grid-area: 4 / 2 / 5 / 3;
+    grid-area: 3 / 2 / 4 / 3;
   }
 
   .emc-char__body .weapon_left {
-    grid-area: 4 / 1 / 6 / 2;
-  }
-
-  .emc-char__body .weapon_right {
-    grid-area: 4 / 3 / 6 / 4;
+    grid-area: 2 / 1 / 4 / 2;
   }
 
   .emc-char__body .bionics {
-    grid-area: 6 / 1 / 8 / 2;
+    grid-area: 3 / 3 / 5 / 4;
   }
 
   .emc-char__body .footwear {
-    grid-area: 5 / 2 / 6 / 3;
+    grid-area: 4 / 2 / 5 / 3;
 
   }
-
 </style>
