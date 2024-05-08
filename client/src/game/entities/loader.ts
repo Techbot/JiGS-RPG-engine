@@ -27,7 +27,6 @@ export default class Load {
         const textureManager = self.textures;
 
         self.load.audio(this.jigs.soundtrack, '/assets/soundtracks/' + this.jigs.soundtrack + '.mp3');
-
         self.load.image('black', '/assets/images/black.png');
         self.load.image('pink', '/assets/images/pink.png');
         self.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
@@ -70,35 +69,19 @@ export default class Load {
             }, this);
         }
 
-        this.jigs.switchesArray.forEach(function loader(switchItem) {
-            self.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/animations/' + switchItem.field_file_value + '.png',
-                { frameWidth: parseInt(switchItem.field_framewidth_value), frameHeight: parseInt(switchItem.field_frameheight_value) });
-        });
+        if (this.jigs.switchesArray) {
+            this.jigs.switchesArray.forEach(function loader(switchItem) {
+                self.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/animations/' + switchItem.field_file_value + '.png',
+                    { frameWidth: parseInt(switchItem.field_framewidth_value), frameHeight: parseInt(switchItem.field_frameheight_value) });
+            });
+        }
 
-        this.jigs.firesArray.forEach(function loader(fireItem) {
-            self.load.spritesheet('fire_' + fireItem.id, '/assets/images/fire/' + fireItem.file + '.png',
-                { frameWidth: fireItem.frameWidth, frameHeight: fireItem.frameheight });
-        });
-
-        this.jigs.fireBarrelsArray.forEach(function loader(fireBarrelsItem) {
-            self.load.spritesheet('firebarrel_' + fireBarrelsItem.id, '/assets/images/firebarrel/' + fireBarrelsItem.file + '.png',
-                { frameWidth: fireBarrelsItem.frameWidth, frameHeight: fireBarrelsItem.frameHeight });
-        });
-
-        this.jigs.questsArray.forEach(function loader(questsItem) {
-            self.load.spritesheet('quest_' + questsItem.id, '/assets/images/quest/' + questsItem.file + '.png',
-                { frameWidth: questsItem.frameWidth, frameHeight: questsItem.frameHeight });
-        });
-
-        this.jigs.leversArray.forEach(function loader(leversItem) {
-            self.load.spritesheet('lever_' + leversItem.id, '/assets/images/lever/' + leversItem.file + '.png',
-                { frameWidth: leversItem.frameWidth, frameHeight: leversItem.frameHeight });
-        });
-
-        this.jigs.machineArray.forEach(function loader(machineItem) {
-            self.load.spritesheet('machine_' + machineItem.id, '/assets/images/machine/' + machineItem.file + '.png',
-                { frameWidth: machineItem.frameWidth, frameHeight: machineItem.frameHeight });
-        });
+        if (this.jigs.questsArray) {
+            this.jigs.questsArray.forEach(function loader(questsItem) {
+                self.load.spritesheet('quest_' + questsItem.id, '/assets/images/quest/' + questsItem.file + '.png',
+                    { frameWidth: questsItem.frameWidth, frameHeight: questsItem.frameHeight });
+            });
+        }
 
         self.load.once(Phaser.Loader.Events.COMPLETE, () => {
             // texture loaded so use instead of the placeholder
