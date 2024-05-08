@@ -1,5 +1,5 @@
-<h1>JiGS</h1>
-<h2>An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS</h2>
+# JiGS
+## An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS
 
 
 
@@ -8,28 +8,38 @@
 
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot03.png)
 
-<h2>DEMO</h2>
+## DEMO
+
+
 <ul>
  <li>The Eclectic Meme Conspiracy - https://www.eclecticmeme.com</li>
  <li>JiGS DEMO Site - http://jigs.tilaa.cloud</li>
  <li>Your server here</li>
  </ul>
 
-<h3>Steps to build a world from the engine.</h3>
-<ul>
-<li>Install Drupal</li>
-<li>Install Drupal/Paragraphs</li>
-<li>Install Drupal/Flag</li>
-<li>Install Drupal/Profile</li>
-<li>clone Jigs into modules/custom/jigs or </li>
-<li>Install Drupal/Jigs</li>
+## Resources
  
-<li>Install the default content - https://github.com/Techbot/JiGS-demo-content</li>
-<li> clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets</li>
+* https://trello.com/b/l2K2UFWa/map</li>
+* https://trello.com/b/3Hdp3Bn5/characters</li>
+* https://trello.com/b/JGvVtu0x/objects</li>
+* [The Eclectic Meme Conspiracy - A Cut Up Novel](https://docs.google.com/document/d/1eicoImMLMuZXJ4on-QMaoZxIGC_-KHrYWSapbCrg_7c)
+* [The Eclectic Meme Conspiracy Online - Game Scripts](https://docs.google.com/document/d/1rdpK02PXfvUjwQLJgLXHzOeSbtBHymMo8Wq35UMY42s/)
+* [The Eclectic Meme Conspiracy - Game Information](https://docs.google.com/spreadsheets/d/18frZlc8CwXpQ6V0slhlR1qcUyX5OijrPhJUCGY2S6hw/edit#gid=1469334051)
 
-<li>Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling </li>
-<li>Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)</li>
-</ul>
+### Steps to build a world from the engine.
+
+* Install Drupal
+* Install Drupal/Paragraphs
+* Install Drupal/Flag
+* Install Drupal/Profile
+* clone Jigs into modules/custom/jigs or 
+* Install Drupal/Jigs
+ 
+* Install the default content - https://github.com/Techbot/JiGS-demo-content
+* clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets
+
+* Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling 
+* Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)
 
 With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld.
 
