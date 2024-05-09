@@ -5,7 +5,7 @@
     </div>
 
     <div class="crystal" v-for="crystal in crystals">
-      <img :src="'/assets/images/switches/crystal-A-' + crystal.id + '-sm.png'" alt="" width="24" height="24" class="crystal__image" />
+      <img :src="'/assets/images/gui/crystal-A-' + crystal.id + '-sm.png'" alt="" width="24" height="24" class="crystal__image" />
       <label class="crystal__label" :for="crystal.name">{{ crystal.name }}</label>
       <div class="crystal__total">{{ crystal.value }} : {{ crystal.total - crystal.value }} / {{ crystal.total }}</div>
       <input :id="crystal.id" class="crystal__slider" type="range" min="0" :max="crystal.total" :value="crystal.value"

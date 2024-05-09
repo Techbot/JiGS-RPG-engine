@@ -2,10 +2,10 @@
   <div class="weapons">
     <strong>Weapon: {{ selectedWeapon }}</strong>
     <div class="weapon__thumb" v-if="selectedWeapon === 'Sword'">
-      <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
+      <img src="/assets/images/gui/weapon_sword.png" alt="sword thumbnail" />
     </div>
     <div class="weapon__thumb" v-if="selectedWeapon === 'Gun'">
-      <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
+      <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
     </div>
 
     <div class="weapons--select">
@@ -35,8 +35,8 @@ export default {
   data() {
     return {
       weapons: [
-        { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
-        { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
+        { id: 0, name: "Sword", image: "/assets/images/gui/weapon_sword.png" },
+        { id: 1, name: "Gun", image: "/assets/images/gui/weapon_gun.png" },
       ],
       selectedWeapon: "Gun",
     }

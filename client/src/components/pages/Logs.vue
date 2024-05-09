@@ -45,7 +45,7 @@ export default {
 <template>
   <div class="logs">
     <div class="log" v-for="log in playerLogs" :key="log.id">
-      <img class="log__thumbnail" src="/assets/images/System/log.png" alt="log type thumbnail" />
+      <img class="log__thumbnail" src="/assets/images/gui/log.png" alt="log type thumbnail" />
       <h2 class="log__heading">
           {{ log.id }}: {{ log.title ? log.title : 'Log Title' }}
       </h2>

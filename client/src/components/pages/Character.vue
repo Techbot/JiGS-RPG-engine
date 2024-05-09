@@ -13,38 +13,38 @@ export default {
   data() {
     return {
       headgear: [
-        { id: 0, name: "None", image: "/assets/images/System/psibot-head.png" },
-        { id: 1, name: "Helmet", image: "/assets/images/System/psibot-head-helmet.png" },
-        { id: 2, name: "Visor", image: "/assets/images/System/psibot-head-visor.png" },
+        { id: 0, name: "None", image: "/assets/images/gui/psibot-head.png" },
+        { id: 1, name: "Helmet", image: "/assets/images/gui/psibot-head-helmet.png" },
+        { id: 2, name: "Visor", image: "/assets/images/gui/psibot-head-visor.png" },
       ],
       weaponsLeft: [
-        { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
-        { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
+        { id: 0, name: "Sword", image: "/assets/images/gui/weapon_sword.png" },
+        { id: 1, name: "Gun", image: "/assets/images/gui/weapon_gun.png" },
       ],
       weaponsRight: [
-        { id: 0, name: "Sword", image: "/assets/images/System/weapon_sword.png" },
-        { id: 1, name: "Gun", image: "/assets/images/System/weapon_gun.png" },
+        { id: 0, name: "Sword", image: "/assets/images/gui/weapon_sword.png" },
+        { id: 1, name: "Gun", image: "/assets/images/gui/weapon_gun.png" },
       ],
       bionics: [
-        { id: 0, name: "None", image: "/assets/images/System/psibot-bionics.png" },
-        { id: 1, name: "Fire", image: "/assets/images/System/psibot-bionics-fire.png" },
-        { id: 2, name: "Ice", image: "/assets/images/System/psibot-bionics-ice.png" },
+        { id: 0, name: "None", image: "/assets/images/gui/psibot-bionics.png" },
+        { id: 1, name: "Fire", image: "/assets/images/gui/psibot-bionics-fire.png" },
+        { id: 2, name: "Ice", image: "/assets/images/gui/psibot-bionics-ice.png" },
       ],
       implant: [
-        { id: 0, name: "None", image: "/assets/images/System/psibot-implant.png" },
-        { id: 1, name: "Eye", image: "/assets/images/System/psibot-implant-eye.png" },
-        { id: 2, name: "Brain", image: "/assets/images/System/psibot-implant-brain.png" },
-        { id: 3, name: "Skin", image: "/assets/images/System/psibot-implant-skin.png" },
+        { id: 0, name: "None", image: "/assets/images/gui/psibot-implant.png" },
+        { id: 1, name: "Eye", image: "/assets/images/gui/psibot-implant-eye.png" },
+        { id: 2, name: "Brain", image: "/assets/images/gui/psibot-implant-brain.png" },
+        { id: 3, name: "Skin", image: "/assets/images/gui/psibot-implant-skin.png" },
       ],
       armour: [
-        { id: 0, name: "None", image: "/assets/images/System/psibot-body.png" },
-        { id: 1, name: "Suit of armour", image: "/assets/images/System/psibot-body-suit-of-armour.png" },
-        { id: 2, name: "Kevlar vest", image: "/assets/images/System/psibot-body-kevlar.png" },
+        { id: 0, name: "None", image: "/assets/images/gui/psibot-body.png" },
+        { id: 1, name: "Suit of armour", image: "/assets/images/gui/psibot-body-suit-of-armour.png" },
+        { id: 2, name: "Kevlar vest", image: "/assets/images/gui/psibot-body-kevlar.png" },
       ],
       footwear: [
-        { id: 0, name: "None", image: "/assets/images/System/psibot-footwear.png" },
-        { id: 1, name: "Steel toe boots", image: "/assets/images/System/psibot-footwear.png" },
-        { id: 2, name: "Magnetic boots", image: "/assets/images/System/psibot-footwear.png" },
+        { id: 0, name: "None", image: "/assets/images/gui/psibot-footwear.png" },
+        { id: 1, name: "Steel toe boots", image: "/assets/images/gui/psibot-footwear.png" },
+        { id: 2, name: "Magnetic boots", image: "/assets/images/gui/psibot-footwear.png" },
       ],
       selectedHeadgear: "None",
       selectedWeaponLeft: "Gun",
@@ -100,48 +100,48 @@ export default {
           <!-- <div class="emc-char__heading">Character</div> -->
           <div class="emc-char__body">
             <div class="emc-char__part head" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
-              <img v-if="selectedHeadgear === 'None'" src="/assets/psibot-head.png" width="224" height="200" />
-              <img v-if="selectedHeadgear === 'Helmet'" src="/assets/psibot-head-helmet.png" width="224" height="200" />
-              <img v-if="selectedHeadgear === 'Visor'" src="/assets/psibot-head-visor.png" width="224" height="200" />
+              <img v-if="selectedHeadgear === 'None'" src="/assets/images/gui/psibot-head.png" width="224" height="200" />
+              <img v-if="selectedHeadgear === 'Helmet'" src="/assets/images/gui/psibot-head-helmet.png" width="224" height="200" />
+              <img v-if="selectedHeadgear === 'Visor'" src="/assets/images/gui/psibot-head-visor.png" width="224" height="200" />
             </div>
             <div class="emc-char__part implant">
               <div class="emc-char__heading">Implant</div>
               <!-- {{ selectedImplant }} -->
-              <img v-if="selectedImplant === 'None'" src="/assets/psibot-implant.png" width="64" height="64" />
-              <img v-if="selectedImplant === 'Eye'" src="/assets/psibot-implant-eye.png" width="64" height="64" />
-              <img v-if="selectedImplant === 'Brain'" src="/assets/psibot-implant-brain.png" width="64" height="64" />
-              <img v-if="selectedImplant === 'Skin'" src="/assets/psibot-implant-skin.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'None'" src="/assets/images/gui/psibot-implant.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'Eye'" src="/assets/images/gui/psibot-implant-eye.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'Brain'" src="/assets/images/gui/psibot-implant-brain.png" width="64" height="64" />
+              <img v-if="selectedImplant === 'Skin'" src="/assets/images/gui/psibot-implant-skin.png" width="64" height="64" />
             </div>
             <div class="emc-char__part armour">
               <!-- <div class="emc-char__heading">Armour</div> -->
               <!-- {{ selectedArmour }} -->
-              <img v-if="selectedArmour === 'None'" src="/assets/psibot-body.png" width="236" height="112" />
-              <img v-if="selectedArmour === 'Suit of armour'" src="/assets/psibot-body-suit-of-armour.png" width="236" height="112" />
-              <img v-if="selectedArmour === 'Kevlar vest'" src="/assets/psibot-body-kevlar.png" width="236" height="112" />
+              <img v-if="selectedArmour === 'None'" src="/assets/images/gui/psibot-body.png" width="236" height="112" />
+              <img v-if="selectedArmour === 'Suit of armour'" src="/assets/images/gui/psibot-body-suit-of-armour.png" width="236" height="112" />
+              <img v-if="selectedArmour === 'Kevlar vest'" src="/assets/images/gui/psibot-body-kevlar.png" width="236" height="112" />
             </div>
             <div class="emc-char__part weapon_left">
               <div class="emc-char__heading">Weapon</div>
               <!-- <strong>{{ selectedWeaponLeft }}</strong> -->
               <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Sword'">
-                <img src="/assets/images/System/weapon_sword.png" alt="sword thumbnail" />
+                <img src="/assets/images/gui/weapon_sword.png" alt="sword thumbnail" />
               </div>
               <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Gun'">
-                <img src="/assets/images/System/weapon_gun.png" alt="gun thumbnail" />
+                <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
               </div>
             </div>
             <div class="emc-char__part bionics">
               <div class="emc-char__heading">Bionics</div>
               <!-- {{ selectedBionics }} -->
-              <img v-if="selectedBionics === 'None'" src="/assets/psibot-bionics.png" width="68" height="68" />
-              <img v-if="selectedBionics === 'Fire'" src="/assets/psibot-bionics-fire.png" width="68" height="68" />
-              <img v-if="selectedBionics === 'Ice'" src="/assets/psibot-bionics-ice.png" width="68" height="68" />
+              <img v-if="selectedBionics === 'None'" src="/assets/images/gui/psibot-bionics.png" width="68" height="68" />
+              <img v-if="selectedBionics === 'Fire'" src="/assets/images/gui/psibot-bionics-fire.png" width="68" height="68" />
+              <img v-if="selectedBionics === 'Ice'" src="/assets/images/gui/psibot-bionics-ice.png" width="68" height="68" />
             </div>
             <div class="emc-char__part footwear">
               <!-- <div class="emc-char__heading">Footwear</div> -->
               <!-- {{ selectedFootwear}} -->
-              <img v-if="selectedFootwear === 'None'" src="/assets/psibot-foot.png" width="224" height="100" />
-              <img v-if="selectedFootwear === 'Steel toe boots'" src="/assets/psibot-foot-steel-toe.png" width="224" height="100" />
-              <img v-if="selectedFootwear === 'Magnetic boots'" src="/assets/psibot-foot-magnetic.png" width="224" height="100" />
+              <img v-if="selectedFootwear === 'None'" src="/assets/images/gui/psibot-foot.png" width="224" height="100" />
+              <img v-if="selectedFootwear === 'Steel toe boots'" src="/assets/images/gui/psibot-foot-steel-toe.png" width="224" height="100" />
+              <img v-if="selectedFootwear === 'Magnetic boots'" src="/assets/images/gui/psibot-foot-magnetic.png" width="224" height="100" />
             </div>
           </div>
     </div>
