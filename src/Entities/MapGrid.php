@@ -27,8 +27,8 @@ class MapGrid
     $this->MapGrid =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG);
     $this->userId = $userId;
     $this->player = $player;
-    $this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
-    $this->getMissionSwitches   = $this->getAllMissionSwitches($userMG);
+ //   $this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
+  //  $this->getMissionSwitches   = $this->getAllMissionSwitches($userMG);
 
   }
 
@@ -51,15 +51,15 @@ class MapGrid
     $mapGrid['portalsArray']      = $this->getPortals();
 
     // $mapGrid['switchesArray']     = $this->getSwitches('switches');
-    $mapGrid['switchesArray']     = $this->getMissionSwitches;
+  //  $mapGrid['switchesArray']     = $this->getMissionSwitches;
 
 
 
-    $mapGrid['fireArray']         = $this->getSwitches('fire');
-    $mapGrid['fireBarrelsArray']  = $this->getSwitches('fireBarrel');
-    $mapGrid['leverArray']        = $this->getSwitches('lever');
-    $mapGrid['machineArray']      = $this->getSwitches('machine');
-    $mapGrid['crystalArray']      = $this->getSwitches('crystal');
+  //  $mapGrid['fireArray']         = $this->getSwitches('fire');
+ //   $mapGrid['fireBarrelsArray']  = $this->getSwitches('fireBarrel');
+//    $mapGrid['leverArray']        = $this->getSwitches('lever');
+ //   $mapGrid['machineArray']      = $this->getSwitches('machine');
+   // $mapGrid['crystalArray']      = $this->getSwitches('crystal');
 
     $mapGrid['foliosArray']       = $this->getFolios();
     $mapGrid['wallsArray']        = $this->getWalls();
