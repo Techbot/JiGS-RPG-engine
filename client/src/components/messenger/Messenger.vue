@@ -1,9 +1,8 @@
 <template>
   <div class="messages">
-    <Message v-for="message in messages" :key="message.id" :class="[ 'message', { right: message.isMine } ]" :dark="message.isMine" :text="message.text" :author="message.author" />
+    <Message v-for="(message, i) in messages" :key="i" :class="[ 'message', { right: message.isMine } ]" :dark="message.isMine" :text="message.text" :author="message.author" />
   </div>
   <ChatBox class="chat-box" @submit="onSubmit" />
-  <RegisterDialog v-if="!user" @submit="onRegister" />
 </template>
 <script>
 import ChatBox from './ChatBox.vue';
@@ -15,28 +14,11 @@ export default {
     ChatBox,
     Message
   },
-  created() {
-    this.getChat();
-  },
   methods: {
-    onRegister(event, name) {
+    onSubmit(event, text, author = 'player id') {
       event.preventDefault();
-      // Generate a uuid for now.
-      this.user = { name, id: uid() };
-    },
-    getChat() {
-      listenChat((chat) => {
-        this.messages = chat.reverse().map(m => ({ ...m, isMine: m.uid && m.uid === this.user?.id }));
-      });
-    },
-    onSubmit(event, text) {
-      event.preventDefault();
-
-      sendMessage({
-        text,
-        uid: this.user?.id,
-        author: this.user?.name
-      });
+      event.stopPropagation();
+      this.messages.unshift({ text: text, author: author });
     }
   },
   data() {
@@ -65,10 +47,6 @@ export default {
         },
         {
           text: "Whad are ye lookin' at?! If ya wish to keep them eyes...",
-          author: "Hades"
-        },
-        {
-          text: "Algae slimes numbers are increasing rapidly, especially in the Red District near the Liffey.",
           author: "Khan the Road Warrior"
         }
       ]

@@ -1,8 +1,10 @@
 <template>
-  <form class="chat-box" @submit="onSubmit($event)">
-    <input v-model="text" placeholder="Write a message" type="text" />
-    <button :disabled="text === ''">Send</button>
-  </form>
+  <div class="chat-box-wrapper">
+    <form class="chat-box" @submit="onSubmit($event)">
+      <input v-model="text" placeholder="Write a message" type="text" />
+      <button :disabled="text === ''">Send</button>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -19,7 +21,7 @@ export default {
     onSubmit(event) {
       // This fires an event which we will handle
       // in the parent component
-      this.$emit("submit", event, this.text);
+      this.$emit("submit", event, this.text, this.author);
       this.text = "";
     }
   }
