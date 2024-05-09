@@ -27,9 +27,15 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
             axios
                 .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
                 .then((response) => {
-                    console.log("why");
-                    scene.hydrateMission(response);
-                    scene.events.emit('Mission', npc);
+                    console.log("why ");
+
+                    if (response.data[0].value.liveMission) {
+                        this.jigs.content = response.data[0].value.playerMission;
+                        scene.events.emit('content');
+                    } else {
+                        scene.hydrateMission(response);
+                        scene.events.emit('Mission', npc);
+                    }
                 })
         }
         else {
