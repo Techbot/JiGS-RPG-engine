@@ -196,12 +196,9 @@ h1 {
   height: 70vh;
 }
 
-
-
 .tab-panels {
   height: 100%;
 }
-
 
 /* Profile */
 .emc-user > .form-item.form-no-label {
@@ -299,6 +296,9 @@ h1 {
   }
 
   .client .layout-container .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     flex: 1 0 960px;
     max-width: 960px;
     margin: 0 auto;
