@@ -2,15 +2,16 @@
  * ------- Mission Dialog ---------
  */
 import axios from "axios";
+import WebFont from '../../assets/WebFont'
 
 export default class Mission {
   constructor() {
   }
 
   dialog(self, npc) {
-    const COLOR_PRIMARY = 0x333333;
-    const COLOR_LIGHT = 0xffffff;
-    const COLOR_DARK = 0x111111;
+    const COLOR_PRIMARY = 0x111111;
+    const COLOR_LIGHT = 0xF5EFED;
+    const COLOR_DARK = 0x04151F;
     var print = self.add.text(0, 0, '').setDepth(1);
     var choicesType = 'radio';
     var style = {
@@ -24,38 +25,42 @@ export default class Mission {
 
       background: {
         color: COLOR_PRIMARY,
-        strokeColor: COLOR_LIGHT,
-        radius: 20,
+        strokeColor: COLOR_PRIMARY,
+        radius: 10,
       },
 
       title: {
         space: { left: 5, right: 5, top: 5, bottom: 5 },
         text: {
-          fontSize: 16
+          font: '24px Roboto',
         },
         background: {
-          color: COLOR_DARK
+          color: COLOR_PRIMARY
         }
       },
 
       content: {
         space: { left: 5, right: 5, top: 5, bottom: 5 },
         text: {
-          fontSize: 14
+          font: '16px Roboto',
         },
       },
 
       buttonMode: 1,
       button: {
         space: { left: 10, right: 10, top: 10, bottom: 10 },
+        text: {
+          fontSize: 16,
+          color: COLOR_PRIMARY
+        },
         background: {
-          color: COLOR_DARK,
+          color: 0x19535F,
           strokeWidth: 0,
           radius: 10,
-          'hover.strokeColor': 0xffffff,
+          'hover.strokeColor': 0x009999,
           'hover.strokeWidth': 2,
-          'disable.color': 0x333333,
-        }
+          'disable.color': COLOR_PRIMARY
+        },
       },
 
       choicesType: choicesType,
@@ -65,9 +70,10 @@ export default class Mission {
           color: COLOR_DARK,
           strokeWidth: 0,
           radius: 10,
-          'hover.strokeColor': 0xffffff,
+          'hover.color': 0x000000,
+          'hover.strokeColor': 0x009999,
           'hover.strokeWidth': 2,
-          'active.color': 'red',
+          'active.color': 0x000000,
         }
       },
 
@@ -81,9 +87,10 @@ export default class Mission {
       .setDraggable('title')
       .setDraggable('content')
       .resetDisplayContent({
-        title: self.jigs.missionTitle,
+        title: self.jigs.title,
+        //content: 'dialogue',
         content: self.jigs.missionHandlerDialog,
-        choices: self.jigs.missionChoice,
+        choices: self.jigs.choice,
         buttonA: 'Ok'
       })
       .layout()
@@ -102,9 +109,9 @@ export default class Mission {
           sendPositive(data);
         }
         print.text = `\
-index: ${data.index}
-text : ${data.text}
-value : ${data.value}`
+        index: ${data.index}
+        text : ${data.text}
+        value : ${data.value}`
       })
   }
 
@@ -114,6 +121,7 @@ value : ${data.value}`
   }
 
   loadMission(npc) {
+
   }
 }
 
