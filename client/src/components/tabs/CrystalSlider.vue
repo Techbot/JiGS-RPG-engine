@@ -23,13 +23,6 @@
         crystalBg: '',
         crystals: [
           {
-            name: 'Amethyst',
-            id: 'amethyst',
-            value: 7,
-            total: 14,
-            color: '#3C1642'
-          },
-          {
             name: 'Emerald',
             id: 'emerald',
             value: 1,
@@ -37,25 +30,32 @@
             color: '#00CC66'
           },
           {
-            name: 'Ruby',
-            id: 'ruby',
-            value: 5,
-            total: 6,
-            color: '#D00A01'
+            name: 'Amethyst',
+            id: 'amethyst',
+            value: 0,
+            total: 0,
+            color: '#3C1642'
           },
           {
             name: 'Sapphire',
             id: 'sapphire',
-            value: 6,
-            total: 8,
+            value: 0,
+            total: 0,
             color: '#0A2463'
           },
           {
             name: 'Topaz',
             id: 'topaz',
-            value: 3,
-            total: 10,
+            value: 0,
+            total: 0,
             color: '#FFC43D'
+          },
+          {
+            name: 'Ruby',
+            id: 'ruby',
+            value: 0,
+            total: 0,
+            color: '#D00A01'
           },
         ],
       }
