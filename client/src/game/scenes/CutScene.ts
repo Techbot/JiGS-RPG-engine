@@ -9,28 +9,22 @@ const COLOR_DARK = 0x0B3C49;
 export class CutScene extends Phaser.Scene {
 
   jigs: any;
- // thisBox: Phaser.GameObjects.DOMElement;
   data: any;
-  constructor() {
 
+  constructor() {
     super({ key: "CutScene" });
     this.jigs = useJigsStore();
-
   }
 
   create() {
-    console.log('blob');
-
     this.jigs.foliosArray.forEach(element => {
       if (element.id == this.jigs.folioClicked) {
         this.data = element.nodeBody;
-        //  this.addDom(this.data);
         this.blobby(this);
-           }
+      }
     });
 
     this.events.on(Phaser.Scenes.Events.WAKE, function () {
-    //  this.thisBox.setVisible(false);
       this.jigs.foliosArray.forEach(element => {
         if (element.id == this.jigs.folioClicked) {
           this.data = element.nodeBody;
@@ -81,8 +75,8 @@ export class CutScene extends Phaser.Scene {
     this.AddDragCornerController(scrollablePanel)
 
     scene.add.text(0, 580, 'Drag top-left or bottom-right corner. Click here to close')
-    .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-    .on('pointerdown', this.onCutsceneDown.bind(this));
+      .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+      .on('pointerdown', this.onCutsceneDown.bind(this));
 
   }
 
@@ -102,12 +96,10 @@ export class CutScene extends Phaser.Scene {
   }
 
   addDom(data) {
-/*     this.thisBox = this.add.dom(450, 280, 'div', ' width: 820px; height: 300px; font: 14px Arial', data)
-      .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-      .on('pointerdown', this.onCutsceneDown.bind(this)); */
+    /*     this.thisBox = this.add.dom(450, 280, 'div', ' width: 820px; height: 300px; font: 14px Arial', data)
+          .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
+          .on('pointerdown', this.onCutsceneDown.bind(this)); */
   }
-
-
 
   CreatePanel(scene) {
     var sizer = scene.rexUI.add.fixWidthSizer({
@@ -137,7 +129,6 @@ export class CutScene extends Phaser.Scene {
 
     return sizer;
   }
-
 
   AddDragCornerController(sizer) {
     var scene = sizer.scene;
@@ -170,30 +161,22 @@ export class CutScene extends Phaser.Scene {
         sizer.x += dragX - topLeftController.x;
         sizer.y += dragY - topLeftController.y;
       })
-
     sizer.pin(topLeftController)
-
   }
-
-
 }
 
 var CreateHorizontalScrollBar = function (scene) {
   return scene.rexUI.add.scrollBar({
     width: 400,
     orientation: 'x',
-
     background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 0, COLOR_DARK),
-
     buttons: {
       left: scene.rexUI.add.triangle(0, 0, 20, 20, COLOR_PRIMARY).setDirection('left'),
       right: scene.rexUI.add.triangle(0, 0, 20, 20, COLOR_PRIMARY).setDirection('right'),
     },
-
     slider: {
       thumb: scene.rexUI.add.roundRectangle(0, 0, 40, 20, 10, COLOR_LIGHT),
     },
-
     space: {
       left: 5, right: 5, top: 5, bottom: 5, item: 5
     }
@@ -204,25 +187,17 @@ var CreateVerticalScrollBar = function (scene) {
   return scene.rexUI.add.scrollBar({
     height: 400,
     orientation: 'y',
-
     background: scene.rexUI.add.roundRectangle(0, 0, 0, 0, 0, COLOR_DARK),
-
     buttons: {
       left: scene.rexUI.add.triangle(0, 0, 20, 20, COLOR_PRIMARY).setDirection('up'),
       right: scene.rexUI.add.triangle(0, 0, 20, 20, COLOR_PRIMARY).setDirection('down'),
     },
-
     slider: {
       thumb: scene.rexUI.add.roundRectangle(0, 0, 20, 40, 10, COLOR_LIGHT),
     },
-
     space: {
       left: 5, right: 5, top: 5, bottom: 5, item: 5
     }
   })
 }
-
-
-
-
 
