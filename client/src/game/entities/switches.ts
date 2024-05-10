@@ -9,7 +9,7 @@ export default class Switches {
             const switchesArray = scene.jigs.switchesArray;
             const switches = scene.physics.add.group({ allowGravity: false });
             for (var index = 0; index < switchesArray.length; index++) {
-                switches.add(new Switch(self,
+                switches.add(new Switch(scene,
                     parseInt(switchesArray[index].field_x_value),
                     parseInt(switchesArray[index].field_y_value),
                     switchesArray[index].entity_id,

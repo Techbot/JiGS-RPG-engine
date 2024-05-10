@@ -135,8 +135,8 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     let OffArr = [];
 
     if (switchType == 1) {
-        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-        OffArr = [11];
+        OnArr = [0];
+        OffArr = [1];
     }
 
     if (switchType == 2) {
@@ -168,6 +168,11 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
         OnArr = [0, 3, 6]
         OffArr = [6]
     }
+   if (switchType == 8) {
+        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        OffArr = [11];
+    }
+
     console.log('create ' + entity);
     OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     OffArr = [11];

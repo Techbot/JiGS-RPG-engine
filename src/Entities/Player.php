@@ -55,6 +55,8 @@ class Player
         $player['losses']       = $profile->field_losses->value;
         $player['wins']         = $profile->field_wins->value;
         $player['xp']           = $profile->field_xp->value;
+        $player['weapon_left']  = $profile->field_left_weapon->value;
+        $player['weapon_right'] = $profile->field_right_weapon->value;
         $player['flickedSwitches']['switches']     = $this->getFlickedSwitches('switches');
        /* $player['flickedSwitches']['fires']        = $this->getFlickedSwitches('fires');
         $player['flickedSwitches']['fireBarrels']  = $this->getFlickedSwitches('switches');
@@ -156,11 +158,16 @@ class Player
     public function getAllPlayerMissionIds($id)
     {
         $database = \Drupal::database();
-        $query    = $database->query("SELECT field_missions_target_id FROM profile__field_missions WHERE entity_id= " . $id);
+        $query    = $database->query("SELECT profile__field_missions.field_missions_target_id,
+         paragraph__field_mission.field_mission_target_id
+        FROM profile__field_missions
+        LEFT JOIN  paragraph__field_mission
+        ON paragraph__field_mission.entity_id = profile__field_missions.field_missions_target_id
+        WHERE profile__field_missions.entity_id= " . $id);
         $result   = $query->fetchAll();
         $missionArray = [];
         foreach ($result as $mission) {
-            $missionArray[] = $mission->field_missions_target_id;
+            $missionArray[] = $mission->field_mission_target_id;
         }
         return $missionArray;
     }
@@ -168,7 +175,8 @@ class Player
     public function getCompletedMissions($id)
     {
         $database           = \Drupal::database();
-        $query              = $database->query(" SELECT paragraph__field_mission.field_mission_target_id
+        $query              = $database->query("
+        SELECT paragraph__field_mission.field_mission_target_id
             FROM profile
             LEFT JOIN profile__field_missions_completed
             ON profile.profile_id = profile__field_missions_completed.entity_id
@@ -201,10 +209,11 @@ class Player
         $playerName        = $this->user->get("name")->value;
         $playerId          = \Drupal::currentUser()->id();
         //Cached stuff
-        $userGamesState    = $this->user->field_game_state->value;
+        //$userGamesState    = $this->user->field_game_state->value;
         $database          = \Drupal::database();
         $responseData      = [];
-        $handlerObject     =  \Drupal::entityTypeManager()->getStorage('node')->load($npc);
+        $responseData['liveMission'] = 0;
+        //$handlerObject     =  \Drupal::entityTypeManager()->getStorage('node')->load($npc);
         $playerMissions    = $this->getAllPlayerMissionIds($playerId);
         $completedMissions = $this->getCompletedMissions($playerId); // paragraph id
         $handlerMissions   = $this->getAllHandlerMissions($npc); // node id
@@ -212,12 +221,12 @@ class Player
         // Does Player hold current mission from NPC
         foreach ($playerMissions as $mission) {
             if (in_array($mission,  $handlerMissions)) {
-                $responseData['connected'] = 1;
+                $responseData['liveMission'] = 1;
                 continue;
             }
         }
 
-        if ($responseData['connected'] == 0) {
+        if ($responseData['liveMission'] == 0) {
             // Are there any missions in handler mission not in completed
             foreach ($handlerMissions as $handlerMission) {
                 if (!in_array($handlerMission, $completedMissions)) {

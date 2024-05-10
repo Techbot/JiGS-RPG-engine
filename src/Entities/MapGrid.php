@@ -27,9 +27,8 @@ class MapGrid
     $this->MapGrid =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG);
     $this->userId = $userId;
     $this->player = $player;
- //   $this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
-  //  $this->getMissionSwitches   = $this->getAllMissionSwitches($userMG);
-
+    $this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
+    $this->getAllMissionSwitches   = $this->getAllMissionSwitches($userMG);
   }
 
   function create()
@@ -51,15 +50,13 @@ class MapGrid
     $mapGrid['portalsArray']      = $this->getPortals();
 
     // $mapGrid['switchesArray']     = $this->getSwitches('switches');
-  //  $mapGrid['switchesArray']     = $this->getMissionSwitches;
+    $mapGrid['switchesArray']     = $this->getAllMissionSwitches;
 
-
-
-  //  $mapGrid['fireArray']         = $this->getSwitches('fire');
- //   $mapGrid['fireBarrelsArray']  = $this->getSwitches('fireBarrel');
-//    $mapGrid['leverArray']        = $this->getSwitches('lever');
- //   $mapGrid['machineArray']      = $this->getSwitches('machine');
-   // $mapGrid['crystalArray']      = $this->getSwitches('crystal');
+    //  $mapGrid['fireArray']         = $this->getSwitches('fire');
+    //  $mapGrid['fireBarrelsArray']  = $this->getSwitches('fireBarrel');
+    //  $mapGrid['leverArray']        = $this->getSwitches('lever');
+    //  $mapGrid['machineArray']      = $this->getSwitches('machine');
+    //  $mapGrid['crystalArray']      = $this->getSwitches('crystal');
 
     $mapGrid['foliosArray']       = $this->getFolios();
     $mapGrid['wallsArray']        = $this->getWalls();
@@ -102,110 +99,76 @@ class MapGrid
   {
     $database        = \Drupal::database();
     $user            = \Drupal::currentUser()->id();
-    $query           = $database->query("
+    $query           = $database->query("SELECT paragraph__field_switch.entity_id,
+   paragraph__field_x.field_x_value,
+   paragraph__field_y.field_y_value,
+   node__field_image.field_image_target_id ,
+   file_managed.filename as field_file_value,
+   node__field_frame_height.field_frame_height_value,
+   node__field_frame_width.field_frame_width_value,
+   node__field_number_of_frames.field_number_of_frames_value,
+   node__field_switch_type.field_switch_type_value,
+   node__field_repeatable.field_repeatable_value,
+   node__field_starting_frame.field_starting_frame_value,
+   node__field_end_frame.field_end_frame_value
+FROM `profile__field_missions`
 
-    SELECT paragraph__field_map_grid.entity_id,
-           paragraph__field_x.field_x_value,
-           paragraph__field_y.field_y_value,
-           paragraph__field_file.field_file_value,
-           paragraph__field_frameheight.field_frameheight_value,
-           paragraph__field_framewidth.field_framewidth_value,
-           paragraph__field_number_of_frames.field_number_of_frames_value,
-           paragraph__field_switch_type.field_switch_type_value,
-           paragraph__field_repeatable.field_repeatable_value,
-           paragraph__field_starting_frame.field_starting_frame_value,
-           paragraph__field_end_frame.field_end_frame_value
+LEFT JOIN paragraph__field_mission
+ON profile__field_missions.field_missions_target_id = paragraph__field_mission.entity_id
 
-           FROM paragraph__field_map_grid
+LEFT JOIN node__field_switches
+ON node__field_switches.entity_id = paragraph__field_mission.field_mission_target_id
 
-           LEFT JOIN paragraph__field_x
-           ON paragraph__field_x.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN paragraph__field_switch
+ON paragraph__field_switch.entity_id = node__field_switches.field_switches_target_id
 
-           LEFT JOIN paragraph__field_y
-           ON paragraph__field_y.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN paragraph__field_map_grid
+ON paragraph__field_map_grid.entity_id = paragraph__field_switch.entity_id
 
-           LEFT JOIN paragraph__field_file
-           ON paragraph__field_file.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN paragraph__field_x
+ON paragraph__field_x.entity_id = paragraph__field_switch.entity_id
 
-           LEFT JOIN  paragraph__field_frameheight
-           ON paragraph__field_frameheight.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN paragraph__field_y
+ON paragraph__field_y.entity_id = paragraph__field_switch.entity_id
 
-           LEFT JOIN paragraph__field_framewidth
-           ON paragraph__field_framewidth.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN node__field_image
+ON node__field_image.entity_id = paragraph__field_switch.field_switch_target_id
 
-           LEFT JOIN paragraph__field_number_of_frames
-           ON paragraph__field_number_of_frames.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN file_managed
+ON node__field_image.field_image_target_id = file_managed.fid
 
-           LEFT JOIN  paragraph__field_switch_type
-           ON paragraph__field_switch_type.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN node__field_frame_height
+ON node__field_frame_height.entity_id = node__field_image.entity_id
 
-           LEFT JOIN   paragraph__field_repeatable
-           ON paragraph__field_repeatable.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN node__field_frame_width
+ON node__field_frame_width.entity_id = node__field_image.entity_id
 
-           LEFT JOIN   paragraph__field_starting_frame
-           ON paragraph__field_starting_frame.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN node__field_number_of_frames
+ON node__field_number_of_frames.entity_id = node__field_image.entity_id
 
-           LEFT JOIN   paragraph__field_end_frame
-           ON paragraph__field_end_frame.entity_id = paragraph__field_map_grid.entity_id
+LEFT JOIN node__field_switch_type
+ON node__field_switch_type.entity_id = node__field_image.entity_id
 
-          WHERE paragraph__field_map_grid.field_map_grid_target_id = " .  $MapGrid);
+LEFT JOIN node__field_repeatable
+ON node__field_repeatable.entity_id = node__field_image.entity_id
 
+LEFT JOIN node__field_starting_frame
+ON node__field_starting_frame.entity_id = node__field_image.entity_id
 
-    $query           = $database->query(
-      "SELECT
-      paragraph__field_map_grid.entity_id,
-      paragraph__field_x.field_x_value,
-      paragraph__field_y.field_y_value,
-      paragraph__field_file.field_file_value,
-      paragraph__field_frameheight.field_frameheight_value,
-      paragraph__field_framewidth.field_framewidth_value,
-           paragraph__field_number_of_frames.field_number_of_frames_value,
-           paragraph__field_switch_type.field_switch_type_value,
-           paragraph__field_repeatable.field_repeatable_value,
-           paragraph__field_starting_frame.field_starting_frame_value,
-           paragraph__field_end_frame.field_end_frame_value
+LEFT JOIN node__field_end_frame
+ON node__field_end_frame.entity_id = node__field_image.entity_id
 
-      FROM paragraph__field_map_grid
-
-       LEFT JOIN paragraph__field_x
-       ON paragraph__field_x.entity_id = paragraph__field_map_grid.entity_id
-
-       LEFT JOIN paragraph__field_y
-       ON paragraph__field_y.entity_id = paragraph__field_map_grid.entity_id
-
-       LEFT JOIN paragraph__field_file
-       ON paragraph__field_file.entity_id = paragraph__field_map_grid.entity_id
-
-       LEFT JOIN  paragraph__field_frameheight
-       ON paragraph__field_frameheight.entity_id = paragraph__field_map_grid.entity_id
-
-       LEFT JOIN paragraph__field_framewidth
-       ON paragraph__field_framewidth.entity_id = paragraph__field_map_grid.entity_id
-
-       LEFT JOIN paragraph__field_number_of_frames
-           ON paragraph__field_number_of_frames.entity_id = paragraph__field_map_grid.entity_id
-
-           LEFT JOIN  paragraph__field_switch_type
-           ON paragraph__field_switch_type.entity_id = paragraph__field_map_grid.entity_id
-
-           LEFT JOIN   paragraph__field_repeatable
-           ON paragraph__field_repeatable.entity_id = paragraph__field_map_grid.entity_id
-
-           LEFT JOIN   paragraph__field_starting_frame
-           ON paragraph__field_starting_frame.entity_id = paragraph__field_map_grid.entity_id
-
-           LEFT JOIN   paragraph__field_end_frame
-           ON paragraph__field_end_frame.entity_id = paragraph__field_map_grid.entity_id
-
-      WHERE paragraph__field_map_grid.field_map_grid_target_id =" .  $MapGrid
-    );
+WHERE profile__field_missions.entity_id = " . $user . " AND paragraph__field_map_grid.field_map_grid_target_id = " . $MapGrid);
 
     ////////////////////////////////////////////////////////////////////////
-    $thing = $query->fetchAll();
-    foreach ($thing as $switch) {
-      $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
-    }
-    return $thing;
+    // Now get the switches state and add it to the array item.
+    $switchesArray = $query->fetchAll();
+
+    foreach ($switchesArray as $switch) {
+         $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
+        }
+
+    return $switchesArray;
   }
 
   function getSwitches($type)
@@ -230,7 +193,6 @@ class MapGrid
 
     $switches = [];
     foreach ($this->empty->referencedEntities() as $switch) {
-
       $switches[] = [
         'id' => $switch->id->getValue()[0]['value'],
         // 'id' => $switch->field_switch_id->getValue()[0]['value'],
