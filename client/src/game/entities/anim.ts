@@ -169,13 +169,10 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
         OffArr = [6]
     }
    if (switchType == 8) {
-        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         OffArr = [11];
     }
 
-    console.log('create ' + entity);
-    OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    OffArr = [11];
     anims.create({
         key: texture + 'On',
         frames: anims.generateFrameNumbers(entity, { frames: OnArr }),
