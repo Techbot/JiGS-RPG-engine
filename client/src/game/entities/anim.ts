@@ -5,6 +5,37 @@
 import Phaser from 'phaser'
 
 const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityType, npcSheet) => {
+    const mobtypeA = ['Lizard-Green'];
+    const mobtypeB = ['Lizard-Bright-Green'];
+    const mobtypeC = ['Lizard-Topaz'];
+
+    if (mobtypeA.includes(entityType)) {
+        walkAnim('saber', 'saber');
+        hurtAnim('saber', 'saber');
+        stopAnim('saber', 'saber');
+        spellAnim('default');
+        slashAnim('saber', 'slash-oversize');
+    }
+
+    if (mobtypeB.includes(entityType)) {
+        walkAnim('scimitar', '128-scimitar');
+        hurtAnim('scimitar', 'default');
+        spellAnim('default');
+        slashAnim('scimitar', 'slash-128');
+        stopAnim('scimitar', '128-scimitar');
+    }
+
+    if (mobtypeC.includes(entityType)) {
+        walkAnim('flail', 'flail');
+        stopAnim('flail', 'flail');
+        hurtAnim('flail', 'flail');
+    }
+    if (entityType == 'npc') {
+        entityType = 'npc' + npcSheet;
+        console.log('define npc: ' + entityType);
+        stopAnim('default', 'default');
+    }
+
 
     if (entityType == 'player') {
         console.log('load player anims');
@@ -19,7 +50,6 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
 
         spellAnim('default');
 
-
         slashAnim('axe', 'slash-oversize');
         slashAnim('rapier', 'slash-oversize');
         slashAnim('glowsword', 'slash-oversize');
@@ -27,6 +57,14 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
         stopAnim('axe', 'axe');
         stopAnim('rapier', 'rapier');
         stopAnim('glowsword', 'glowsword');
+    }
+
+    if (entityType == 'Zombie-Green') {
+        console.log('define zombie: ' + entityType);
+
+        walkAnim('default', 'default');
+        stopAnim('default', 'default');
+        hurtAnim('default', 'default');
     }
 
     ////////////////////////////////////// Walk Anim 4 Directions //////////////////////////////
@@ -233,8 +271,6 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-
-
 
 ///////////////////////////////////////////////////////////////////////
 /*

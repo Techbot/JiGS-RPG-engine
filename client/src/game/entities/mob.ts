@@ -14,6 +14,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         this.jigs = useJigsStore();
         this.setTexture('mob' + sprite)
         this.play('walkDown_mob' + sprite);
+        this.play('Zombie-Green-walkDown-default');
         this.setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
         this.setScale(.85)
         this.on('pointerdown', this.onMobDown.bind(this, name));
