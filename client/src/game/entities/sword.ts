@@ -20,31 +20,44 @@ export default class Sword extends Phaser.Physics.Arcade.Sprite {
   strike(currentPlayer) {
 
     if (currentPlayer.dir == 'left') {
-      currentPlayer.play('thrustLeft_' + this.jigs.playerStats.sprite_sheet + '_slash');
+
+      //currentPlayer.play('thrustLeft_' + this.jigs.playerStats.sprite_sheet + '_slash');
+      currentPlayer.play('player-slashLeft-glowsword');
+
+
       if (currentPlayer.speed == 'go') {
-        currentPlayer.playAfterRepeat('walkLeft_' + this.jigs.playerStats.sprite_sheet);
+       // currentPlayer.playAfterRepeat('walkLeft_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.playAfterRepeat('player-walkLeft-' + 'glowsword');
       }
     }
     else if (currentPlayer.dir == 'right') {
-      currentPlayer.anims.play('thrustRight_' + this.jigs.playerStats.sprite_sheet + '_slash');
+      currentPlayer.play('player-slashLeft-glowsword');
+    //  currentPlayer.anims.play('thrustRight_' + this.jigs.playerStats.sprite_sheet + '_slash');
       if (currentPlayer.speed == 'go') {
-        currentPlayer.playAfterRepeat('walkRight_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.playAfterRepeat('player-walkRight-' + 'glowsword');
+       // currentPlayer.playAfterRepeat('walkRight_' + this.jigs.playerStats.sprite_sheet);
       }
     }
     else if (currentPlayer.dir == 'up') {
-      currentPlayer.anims.play('thrustUp_' + this.jigs.playerStats.sprite_sheet + '_slash');
+     // currentPlayer.anims.play('thrustUp_' + this.jigs.playerStats.sprite_sheet + '_slash');
+      currentPlayer.play('player-slashUp-glowsword');
+
       if (currentPlayer.speed == 'go') {
-        currentPlayer.playAfterRepeat('walkUp_' + this.jigs.playerStats.sprite_sheet);
+       // currentPlayer.playAfterRepeat('walkUp_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.playAfterRepeat('player-walkUp-' + 'glowsword');
       }
     }
     else if (currentPlayer.dir == 'down') {
-      currentPlayer.anims.play('thrustDown_' + this.jigs.playerStats.sprite_sheet + '_slash');
+     // currentPlayer.anims.play('thrustDown_' + this.jigs.playerStats.sprite_sheet + '_slash');
+      currentPlayer.play('player-slashDown-glowsword');
       if (currentPlayer.speed == 'go') {
-        currentPlayer.playAfterRepeat('walkDown_' + this.jigs.playerStats.sprite_sheet);
+        //currentPlayer.playAfterRepeat('walkDown_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.playAfterRepeat('player-walkDown-' + 'glowsword');
       }
     }
     else {
-      currentPlayer.anims.play('thrustDown_' + this.jigs.playerStats.sprite_sheet + '_slash');
+     // currentPlayer.anims.play('thrustDown_' + this.jigs.playerStats.sprite_sheet + '_slash');
+      currentPlayer.play('player-slashDown-glowsword');
     }
 
   }

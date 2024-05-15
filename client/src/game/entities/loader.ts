@@ -87,11 +87,14 @@ export default class Load {
             // texture loaded so use instead of the placeholder
             const Layer = new Layers;
             Layer.loadLayers(self);
-            createCharacterAnims(self.anims, 'PsibotF', 'slash_oversize');
-            createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize');
-            createCharacterAnims(self.anims, 'PsibotM', 'slash_oversize');
-            createCharacterAnims(self.anims, 'PsibotM_slash', 'slash_oversize');
+/*             createCharacterAnims(self.anims, 'PsibotF', 'slash_oversize');
+            createCharacterAnims(self.anims, 'PsibotF_slash', 'slash_oversize'); */
+
+            createCharacterAnims(self.anims, 'player', null);
+
+
             createCharacterAnims(self.anims, 'otherPlayer', 'default');
+            
             if (this.jigs.npcArray) {
                 this.jigs.npcArray.forEach(function loader(Npc) {
                     createCharacterAnims(self.anims, 'npc' + Npc[3], 'default');

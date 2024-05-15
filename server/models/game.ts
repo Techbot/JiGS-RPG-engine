@@ -31,7 +31,7 @@ function getRooms() {
     WHERE node.type ='map_grid'` ,
       function (err, result) {
         if (err) throw err;
-  //      console.log(result);
+        // console.log(result);
         resolve(result);
       }
     );

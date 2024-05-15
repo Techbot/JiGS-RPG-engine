@@ -85,7 +85,6 @@ Will you find my Balls?`,
 
     weapon: 0,
 
-
     /** @type {{ text: string }[]} */
     content: "Blank",
 

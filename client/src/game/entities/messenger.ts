@@ -49,7 +49,7 @@ export default class Messenger {
       while (i < self.jigs.mobArray.length) {
         if (self.jigs.mobArray[i][1] == message) {
           self.Mobs.SceneMobArray[i].play('hurt_mob' + self.jigs.mobArray[i][4]);
-          self.Mobs.SceneMobArray[i].body.setPosition(parseInt(self.jigs.mobArray[i].x), parseInt(self.jigs.mobArray[i].y));
+       //   self.Mobs.SceneMobArray[i].setPosition(parseInt(self.jigs.mobArray[i].x), parseInt(self.jigs.mobArray[i].y));
         }
         i++;
       }

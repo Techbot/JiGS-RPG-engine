@@ -19,7 +19,10 @@ export default class PlayerMovement {
     if (!this.scene.inputPayload.left && !this.scene.inputPayload.right &&
       !this.scene.inputPayload.up && !this.scene.inputPayload.down &&
       currentPlayer.speed != 'stopped') {
-      currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
+
+     //   currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
+      currentPlayer.anims.play('player-stop-' + 'glowsword');
+
       currentPlayer.speed = 'stopped';
       currentPlayer.dir = 'stopped';
       currentPlayer.setVelocityX(0);
@@ -36,7 +39,11 @@ export default class PlayerMovement {
         currentPlayer.y += velocity;
       }
       if (currentPlayer.dir != 'down') {
-        currentPlayer.anims.play('walkDown_' + this.jigs.playerStats.sprite_sheet);
+        //currentPlayer.anims.play('walkDown_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.anims.play('player-walkDown-' + 'glowsword');
+
+
+
         currentPlayer.dir = 'down';
         currentPlayer.speed = 'go';
       }
@@ -50,7 +57,9 @@ export default class PlayerMovement {
         currentPlayer.y -= velocity;
       }
       if (currentPlayer.dir != 'up') {
-        currentPlayer.anims.play('walkUp_' + this.jigs.playerStats.sprite_sheet);
+        //currentPlayer.anims.play('walkUp_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.anims.play('player-walkUp-' + 'glowsword');
+
         currentPlayer.dir = 'up';
         currentPlayer.speed = 'go';
       }
@@ -64,7 +73,11 @@ export default class PlayerMovement {
         currentPlayer.x += velocity;
       }
       if (currentPlayer.dir != 'right') {
-        currentPlayer.anims.play('walkRight_' + this.jigs.playerStats.sprite_sheet);
+      //  currentPlayer.anims.play('walkRight_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.anims.play('player-walkRight-' + 'glowsword');
+
+
+
         currentPlayer.dir = 'right';
         currentPlayer.speed = 'go';
       }
@@ -78,7 +91,11 @@ export default class PlayerMovement {
         currentPlayer.x -= velocity;
       }
       if (currentPlayer.dir != 'left') {
-        currentPlayer.anims.play('walkLeft_' + this.jigs.playerStats.sprite_sheet);
+        //currentPlayer.anims.play('walkLeft_' + this.jigs.playerStats.sprite_sheet);
+        currentPlayer.anims.play('player-walkLeft-' + 'glowsword');
+
+
+
         currentPlayer.dir = 'left';
         currentPlayer.speed = 'go';
       }

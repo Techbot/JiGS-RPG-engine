@@ -17,7 +17,7 @@ export default class Switch extends Phaser.Physics.Arcade.Sprite {
     this.setTexture('switch_' + id);
 
     if (switchState) {
-      this.play('switchAnim_' + id + "Off");
+      this.play('switchAnim_' + id + "On");
     } else {
       this.play('switchAnim_' + id + "Off");
       console.log('yo');

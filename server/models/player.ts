@@ -65,7 +65,6 @@ function updateFlag(flag, player, key) {
   })
 }
 
-
 function updateMap(id, map) {
 
   con.query(

@@ -49,6 +49,7 @@ export class Collision {
           bodyA.done = true;
         }
       }
+
       ///////////////////////    WALL      ///////////////////////////////////
       if (bodyA.isMob) {
         console.log('Body A mob');
