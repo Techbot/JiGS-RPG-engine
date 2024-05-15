@@ -15,6 +15,8 @@ class Player
     public $database;
     public $userMG;
     public $profileId;
+    public $flagging;
+    public $missionsArrayOfOne;
 
     function __construct()
     {
@@ -58,7 +60,7 @@ class Player
         $player['weapon_left']  = $profile->field_left_weapon->value;
         $player['weapon_right'] = $profile->field_right_weapon->value;
         $player['flickedSwitches']['switches']     = $this->getFlickedSwitches('switches');
-       /* $player['flickedSwitches']['fires']        = $this->getFlickedSwitches('fires');
+        /* $player['flickedSwitches']['fires']        = $this->getFlickedSwitches('fires');
         $player['flickedSwitches']['fireBarrels']  = $this->getFlickedSwitches('switches');
         $player['flickedSwitches']['questItems']   = $this->getFlickedSwitches('questItems');
         $player['flickedSwitches']['levers']       = $this->getFlickedSwitches('levers');
@@ -245,8 +247,7 @@ class Player
     {
         $database        = \Drupal::database();
         $user            = \Drupal::currentUser()->id();
-        $query           = $database->query("
-        SELECT flagging.entity_id
+        $query           = $database->query("SELECT flagging.entity_id
         FROM flagging
         WHERE flagging.uid = " . $user . " AND flagging.flag_id ='" . $type . "'");
         ////////////////////////////////////////////////////////////////////////
@@ -257,8 +258,7 @@ class Player
     {
         $database        = \Drupal::database();
         $user            = \Drupal::currentUser()->id();
-        $query           = $database->query("
-        SELECT flagging.entity_id
+        $query           = $database->query("SELECT flagging.entity_id
         FROM flagging
         WHERE flagging.uid = " . $user);
         ////////////////////////////////////////////////////////////////////////
@@ -273,8 +273,7 @@ class Player
     public function getNewMission($handlerMission)
     {
         $database        = \Drupal::database();
-        $query           = $database->query('
-        SELECT node_field_data.title,
+        $query           = $database->query('SELECT node_field_data.title,
         node__field_choice_a.field_choice_a_value,
         node__field_handler_dialog.field_handler_dialog_value
 
@@ -317,9 +316,13 @@ class Player
         $flag_service = \Drupal::service('flag');
         $flag = $flag_service->getFlagById('switch'); // replace by flag machine name
         // check if already flagged
-        $flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
-        if (!$flagging) {
+        $this->flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
+        if (!$this->flagging) {
             $flag_service->flag($flag, $switchEntity, $this->user);
+            if($this->MissionCompleteTest($switchEntity)){
+                $this->flagMission($this->missionsArrayOfOne[0]);
+                $this->addMissionReward($this->missionsArrayOfOne[0]);
+            };
             return true;
         } else {
             //   $flag_service->unflag($flag, $id, $this->user);
@@ -327,4 +330,66 @@ class Player
         }
         return false;
     }
+
+    public function flagMission($id)
+    {
+        $missionEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($id);
+        $flag_service = \Drupal::service('flag');
+        $flag = $flag_service->getFlagById('mission'); // replace by flag machine name
+        // check if already flagged
+        $this->flagging = $flag_service->getFlagging($flag, $missionEntity, $this->user);
+        if (!$this->flagging) {
+            $flag_service->flag($flag, $missionEntity, $this->user);
+            return true;
+        } else {
+            //   $flag_service->unflag($flag, $id, $this->user);
+            return false;
+        }
+        return false;
+    }
+
+    public function MissionCompleteTest($switchEntity)
+    {
+        $switchesArray = $this->getAllSwitchesOfMissionGivenOneSwitch($switchEntity);
+        $flag_service = \Drupal::service('flag');
+        $flag = $flag_service->getFlagById('switch');
+        foreach ($switchesArray as $switchEntity) {
+            $this->flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
+            if (!$this->flagging) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function getAllSwitchesOfMissionGivenOneSwitch($switchEntity)
+    {
+        $database = \Drupal::database();
+        $query           = $database->query("SELECT node__field_switches.entity_id
+        FROM node__field_switches
+        WHERE field_switches_target_id = " . $switchEntity);
+        ////////////////////////////////////////////////////////////////////////
+        $result =  $query->fetchAll();
+        $this->missionsArrayOfOne = [];
+        foreach ($result as $element) {
+            $this->missionsArrayOfOne[]    = $element->entity_id;
+        }
+
+        $query           = $database->query("SELECT node__field_switches.field_switches_target_ud
+        FROM node__field_switches
+        WHERE node_field_switches.entity_id = " . $this->missionsArrayOfOne[0]);
+        $result =  $query->fetchAll();
+        $missions = [];
+        foreach ($result as $element) {
+            $switches[]    = $element->entity_id;
+        }
+        return $switches;
+    }
+
+    public function addMissionReward($switchEntity)
+    {
+
+
+    }
+
 }
