@@ -109,38 +109,33 @@ Or make a trading game or a dungeon crawler.
 
 <h3>Dec 2023</h4>
 <ul>
-<li>Dialoque Engine (Drupal)</li>
+<li>Dialogue Engine (Drupal)</li>
 </ul>
 
 <h3>Jan 2024</h4>
 <ul>
 <li>NPC Animation</li>
+<li>Switches/Flags System</li>
 </ul>
 
 <h3>Feb 2024</h4>
 <ul>
-<li>Crafting</li>
-<li>Trade</li>
+<li>Switches/Flags System</li>
 </ul>
 
 <h3>Mar 2024</h4>
 <ul>
 <li>Mission System</li>
-<li>NPC subscribers aka world simulator</li>
 </ul>
-
 
 <h3>Apr 2024</h4>
 <ul>
-<li>Politics subscribers</li>
-<li>Temple Subscribers</li>
-<li>Jail and reputation System</li>
+<li>Gui</li>
 </ul>
-
 
 <h3>May 2024</h4>
 <ul>
-<li>PVP</li>
+Improve Animator
 </ul>
 
 <h3>Jun 2024</h4>
@@ -148,9 +143,17 @@ Or make a trading game or a dungeon crawler.
 <li>Release Ver 1</li>
 </ul>
 
-
-
-
+<h3>July Onwards 2024</h4>
+<ul>
+ <li>Inventory</li>
+<li>NPC subscribers aka world simulator</li>
+<li>Crafting</li>
+<li>Jail and reputation System</li>
+<li>Trade</li>
+<li>Politics subscribers</li>
+<li>Temple Subscribers</li>
+<li>PVP</li>
+</ul>
 
 <h3>Somebackground on the new architecture:</h3>
 
@@ -275,11 +278,7 @@ Grid: User Defined
 Uses cursor or button presses( see compass button) to move one tile at a time .
 Tiles 50 *50px
 
-
-
 <h3>Character Creation</h3> [On hold]
-
-
 
 In the main views , players see themselves represented by webstyle  avatars as opposed to game style representations. This allows players to upload their own images. The conflict of styles creates part of the cut’paste aesthetic.
 Extended Character selection is on hold until third party plugin system is complete to allow for more varied character selection systems.
