@@ -18,8 +18,8 @@ function getPlayer(player) {
       profile.profile_id,
       profile__field_x.field_x_value,
       profile__field_y.field_y_value,
-      profile__field_health.field_health_value
-
+      profile__field_health.field_health_value,
+      profile__field_missions.field_missions_target_id as missions
       FROM users_field_data
       LEFT JOIN profile
       ON  profile.uid                     =  users_field_data.uid
@@ -30,6 +30,8 @@ function getPlayer(player) {
       ON  profile__field_y.entity_id      =  profile.profile_id
       INNER JOIN profile__field_health
       ON  profile__field_health.entity_id =  profile.profile_id
+      LEFT JOIN profile__field_missions
+      ON profile__field_missions.entity_id = profile.profile_id
       WHERE  users_field_data.uid         = ` + player
       ,
       function (err, result) {

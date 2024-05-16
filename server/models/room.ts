@@ -12,13 +12,14 @@ var con = mysql.createPool({
 
 function getRoom(id) {
   return new Promise(function (resolve, reject) {
-    con.query(
-      `SELECT
-        node__field_map_width.field_map_width_value,
-        node__field_map_height.field_map_height_value
+    con.query(`SELECT node__field_map_width.field_map_width_value,
+        node__field_map_height.field_map_height_value,
+        node__field_mission_accepted.field_mission_accepted_target_id
         FROM node__field_map_width
         LEFT JOIN node__field_map_height
         ON node__field_map_width.entity_id = node__field_map_height.entity_id
+        LEFT JOIN node__field_mission_accepted
+        ON node__field_mission_accepted.entity_id = node__field_map_width.entity_id
         WHERE node__field_map_width.entity_id = ` + id,
       function (err, result) {
         if (err) throw err;

@@ -101,7 +101,9 @@ export class GameRoom extends Room<MyRoomState> {
     await roomModel.getRoom(options.nodeNumber).then((result: any) => {
       this.state.mapWidth = result[0].field_map_width_value * 16;
       this.state.mapHeight = result[0].field_map_height_value * 16;
-      console.log('--------------' + this.state.mapWidth);
+      this.state.missionAccepted = result[0].field_mission_accepted_target_id;
+
+      console.log('-----MA---------' + this.state.missionAccepted);
     }).catch(function (err) {
       console.log('room error' + err)
     });
