@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////////////////
 import { Room, Client, ServerError } from "colyseus";
 const db = require("../services/db");
-import { InputData, MyRoomState, Player, ZombieState } from "./GameState";
+import { InputData, MyRoomState, Player, PlayerMap, ZombieState } from "./GameState";
 
 var roomModel = require('../models/room.ts');
 
@@ -74,7 +74,7 @@ export class GameRoom extends Room<MyRoomState> {
 
   async onAuth(client, options, request) {
 
-    const userData = await this.checkAccess(client, options);
+    const userData = await this.checkAccess(client, options, this.state.playerMap);
     if (userData) {
       return userData;
 
@@ -97,13 +97,12 @@ export class GameRoom extends Room<MyRoomState> {
     //await this.Layers.load(options.nodeName, this.share);
     await this.Collisions.add(this);
 
-
     await roomModel.getRoom(options.nodeNumber).then((result: any) => {
       this.state.mapWidth = result[0].field_map_width_value * 16;
       this.state.mapHeight = result[0].field_map_height_value * 16;
       this.state.missionAccepted = result[0].field_mission_accepted_target_id;
-
       console.log('-----MA---------' + this.state.missionAccepted);
+
     }).catch(function (err) {
       console.log('room error' + err)
     });
@@ -145,15 +144,27 @@ export class GameRoom extends Room<MyRoomState> {
     });
   }
 
-  checkAccess(client, options) {
-    console.log('client.id:' + client.id);
-    console.log(options);
-  //  this.p2player.getUnlockedRooms();
-    console.log('Access Checked');
-    return true;
+  checkAccess(client, options, playerMap) {
+    if (playerMap.size == 0) {
+      console.log('no people');
+      return true
+    } else {
+      playerMap.forEach((value, key) => {
+        console.log("value" + value.profileId);
+
+        if (value == options.profile_id) {
+          console.log('Access failed');
+          return false;
+        }
+        //  console.log('client.id:' + client.id);
+        //  console.log(options);
+        //  this.p2player.getUnlockedRooms();
+        console.log('Access Checked');
+        return true;
+
+      })
+    }
   }
-
-
 
   fixedTick(timeStep: number) {
     const velocity = 2;
@@ -180,7 +191,11 @@ export class GameRoom extends Room<MyRoomState> {
       }, val);
     });
   }
+  ////////////////////////////////////////////////////////////////////////////////
 
+
+
+  /////////////////////////////////////////////////////////////////////////////////
   async onJoin(client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     console.log(options.playerId, "joined!");
@@ -191,14 +206,20 @@ export class GameRoom extends Room<MyRoomState> {
     player.profileId = options.profileId;
     player.p2Player = new P2player();
 
+    const playerMap = new PlayerMap();
+    playerMap.profileId = options.profileId;
+
     await player.p2Player.load(player.playerId, this.share, player, client, this);
     this.world.addBody(player.p2Player.Body);
     this.state.players.set(client.sessionId, player);
+    this.state.playerMap.set(client.sessionId, playerMap)
   }
-
+  ////////////////////////////////////////////////////////////////////////////////
   onLeave(client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.players.delete(client.sessionId);
+    this.state.playerMap.delete(client.sessionId);
+
   }
 
   onStateChange(state) {

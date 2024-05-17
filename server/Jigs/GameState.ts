@@ -42,6 +42,10 @@ export class ZombieState extends Schema {
   @type("number") dead: number;
 }
 
+export class PlayerMap extends Schema{
+  profileId: number;
+}
+
 export class MyRoomState extends Schema {
   npcResult: any;
   NpcResult: any;
@@ -50,7 +54,8 @@ export class MyRoomState extends Schema {
   @type("number") mapWidth: number;
   @type("number") mapHeight: number;
   @type({map: ZombieState}) mobResult = new MapSchema<ZombieState>();
-  @type({ map: Player }) players      = new MapSchema<Player>();
+  @type({map: Player }) players      = new MapSchema<Player>();
+  @type({map: PlayerMap }) playerMap = new MapSchema<PlayerMap>();
 
   destroySomething() {
     console.log('destroy all the things');
