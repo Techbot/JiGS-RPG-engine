@@ -3,85 +3,85 @@
  */
 export default class Messenger {
   room: any;
-  self: any;
+  scene: any;
 
-  initMessages(self) {
+  initMessages(scene) {
 
-    self.room.onMessage("portal", (message) => {
-      const promise1 = Promise.resolve(self.jump());
-      self.jigs.tiled = message;
+    scene.room.onMessage("portal", (message) => {
+      const promise1 = Promise.resolve(scene.jump());
+      scene.jigs.tiled = message;
       //  hide(this.localPlayer);
     });
 
-    self.room.onMessage("collide", (message) => {
+    scene.room.onMessage("collide", (message) => {
       let i = 0;
-      while (i < self.jigs.mobArray.length) {
-      //  self.MobContainerArray[i].x = self.jigs.mobArray[i][1];
-      //  self.MobContainerArray[i].y = self.jigs.mobArray[i][2];
+      while (i < scene.jigs.mobArray.length) {
+      //  scene.MobContainerArray[i].x = scene.jigs.mobArray[i][1];
+      //  scene.MobContainerArray[i].y = scene.jigs.mobArray[i][2];
         i++;
       }
     });
 
-    self.room.onMessage("dead", (message) => {
+    scene.room.onMessage("dead", (message) => {
       console.log('dead');
-      if (self.jigs.playerState != "dead") {
-        self.currentPlayer.anims.play('hurt_' + self.jigs.playerStats.sprite_sheet);
+      if (scene.jigs.playerState != "dead") {
+        scene.currentPlayer.anims.play('hurt_' + scene.jigs.playerStats.sprite_sheet);
       }
-      self.jigs.playerState = "dead";
+      scene.jigs.playerState = "dead";
     });
 
-    self.room.onMessage("reward", (message) => {
-      self.jigs.playerStats.credits++;
+    scene.room.onMessage("reward", (message) => {
+      scene.jigs.playerStats.credits++;
       //   this.incrementReward();
     });
 
-    self.room.onMessage("player hit", (message) => {
-      self.updateState();
+    scene.room.onMessage("player hit", (message) => {
+      scene.updateState();
     });
 
-    self.room.onMessage("struck", (message) => {
+    scene.room.onMessage("struck", (message) => {
       console.log('struck:' + message);
-      self.jigs.playerStats.health = message;
+      scene.jigs.playerStats.health = message;
     });
 
-    self.room.onMessage("zombie dead", (message) => {
+    scene.room.onMessage("zombie dead", (message) => {
       let i = 0;
-      while (i < self.jigs.mobArray.length) {
-        if (self.jigs.mobArray[i][1] == message) {
-          self.Mobs.SceneMobArray[i].play('hurt_mob' + self.jigs.mobArray[i][4]);
-       //   self.Mobs.SceneMobArray[i].setPosition(parseInt(self.jigs.mobArray[i].x), parseInt(self.jigs.mobArray[i].y));
+      while (i < scene.jigs.mobArray.length) {
+        if (scene.jigs.mobArray[i][1] == message) {
+          scene.Mobs.SceneMobArray[i].play('hurt_mob' + scene.jigs.mobArray[i][4]);
+       //   scene.Mobs.SceneMobArray[i].setPosition(parseInt(scene.jigs.mobArray[i].x), parseInt(scene.jigs.mobArray[i].y));
         }
         i++;
       }
-      self.updateState();
+      scene.updateState();
     });
 
-    self.room.onMessage("remove-reward", (message) => {
+    scene.room.onMessage("remove-reward", (message) => {
       let i = 0;
-      while (i < self.rewardsArray.length) {
-        if (self.rewardsArray[i].ref == message) {
-          //  self.rewardsArray[i].disableBody(true, true);
+      while (i < scene.rewardsArray.length) {
+        if (scene.rewardsArray[i].ref == message) {
+          //  scene.rewardsArray[i].disableBody(true, true);
         }
         i++;
       }
     });
 
-    self.room.onStateChange((state) => {
+    scene.room.onStateChange((state) => {
       //
     });
 
-    self.room.onStateChange.once((state) => {
+    scene.room.onStateChange.once((state) => {
       // console.log("the room state has been updated:", state);
     });
 
-    self.room.state.mobResult.onChange((value, key) => {
+    scene.room.state.mobResult.onChange((value, key) => {
 
       let i = 0;
-      while (i < self.jigs.mobArray.length) {
-        if (self.jigs.mobArray[i][1] == key) {
-          self.jigs.mobArray[i][2] = parseInt(value.field_x_value);
-          self.jigs.mobArray[i][3] = parseInt(value.field_y_value);
-          self.jigs.mobArray[i][6] = parseInt(value.health);
+      while (i < scene.jigs.mobArray.length) {
+        if (scene.jigs.mobArray[i][1] == key) {
+          scene.jigs.mobArray[i][2] = parseInt(value.field_x_value);
+          scene.jigs.mobArray[i][3] = parseInt(value.field_y_value);
+          scene.jigs.mobArray[i][6] = parseInt(value.health);
         }
         i++;
       }
