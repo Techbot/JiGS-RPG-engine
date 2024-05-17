@@ -94,6 +94,10 @@ class Player
                 $weapon = $record->field_weapon_target_id;
                 if ($weapon) {
                     $query             = $database->query("SELECT title FROM node_field_data  WHERE nid= " . $weapon);
+
+                    // Add Image to query here.
+
+
                     $name              = $query->fetchAll()[0]->title;
                     $query             = $database->query("SELECT field_location_value 	 FROM  paragraph__field_location WHERE entity_id= " . $invItem);
                     $location          = $query->fetchAll()[0]->field_location_value;
