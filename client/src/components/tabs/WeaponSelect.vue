@@ -1,31 +1,34 @@
 <template>
-  <div class="weapons">
-    <strong>Weapon: {{ selectedWeapon }}</strong>
-    <div class="weapon__thumb" v-if="selectedWeapon === 'Sword'">
+  <form class="weapons">
+    <strong>Weapon: {{ weaponName }} / {{event.weapon}}</strong>
+    <div class="weapon__thumb" v-if="event.weapon === 0">
       <img src="/assets/images/gui/weapon_sword.png" alt="sword thumbnail" />
     </div>
-    <div class="weapon__thumb" v-if="selectedWeapon === 'Gun'">
+    <div class="weapon__thumb" v-if="event.weapon === 1">
       <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
     </div>
 
     <div class="weapons--select">
-      <div class="weapon" :class="{ active: weapon.name === selectedWeapon }" v-for="weapon in weapons" :key="weapon.id">
-        <label>
-          <input class="visually-hidden" type="radio" name="weapon-input" :value="weapon.name" :id="weapon.name" v-model="selectedWeapon" />
-          <img :src="weapon.image" :alt="weapon.name" />
-          <span>{{ weapon.name }}</span>
-        </label>
-      </div>
+      <BaseRadioGroup
+        v-model="event.weapon"
+        name="weapon"
+        :options="weaponOptions"
+      />
+
     </div>
-  </div>
+  </form>
 </template>
 <script>
 
 import { ref } from 'vue'
 import { useJigsStore } from "../../stores/jigs";
+import BaseRadioGroup from './BaseRadioGroup.vue';
 
 export default {
   name: 'WeaponSelect',
+  components: {
+    BaseRadioGroup
+  },
   setup() {
     const jigs = ref(useJigsStore());
     return {
@@ -34,11 +37,22 @@ export default {
   },
   data() {
     return {
-      weapons: [
-        { id: 0, name: "Sword", image: "/assets/images/gui/weapon_sword.png" },
-        { id: 1, name: "Gun", image: "/assets/images/gui/weapon_gun.png" },
+      weaponOptions: [
+        { value: 0, label: "Sword", image: "/assets/images/gui/weapon_sword.png"},
+        { value: 1, label: "Gun", image: "/assets/images/gui/weapon_gun.png" },
       ],
-      selectedWeapon: "Gun",
+      event: {
+        weapon: 1,
+        label: '',
+        value: '',
+      },
+      selectedWeapon: 1
+    }
+  },
+  computed: {
+    weaponName() {
+      // Only works for 2 weapons.
+      return this.event.weapon === 0 ? 'Sword' : 'Gun'
     }
   }
 }
