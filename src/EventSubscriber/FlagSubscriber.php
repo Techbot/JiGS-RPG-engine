@@ -31,19 +31,30 @@ class FlagSubscriber implements EventSubscriberInterface
   {
     $flagging           = $event->getFlagging();
     $entity_nid         = $flagging->getFlaggable()->id();
-    $parentMission      = $this->getParentMission($entity_nid);
-    $AllMissionSwitches = $this->getAllMissionSwitches($parentMission);
-    $FlickedSwitches    = $this->player->getFlickedSwitches('switch');
-    $loopcheck          = $this->getLoopCheck($AllMissionSwitches, $FlickedSwitches);
-    if ($loopcheck){
-      $this->completeMission($parentMission);
+
+    $query             = $this->database->query("SELECT flagging.flag_id
+    FROM flagging WHERE flagging.entity_id = " .  $entity_nid);
+    $result = $query->fetchAll()[0]->flag_id;
+
+    ///////////////////////////Switch ////////////////////////////////////////
+    if ($result == 'switch') {
+      $parentMission      = $this->getParentMission($entity_nid);
+      $AllMissionSwitches = $this->getAllMissionSwitches($parentMission);
+      $FlickedSwitches    = $this->player->getFlickedSwitches('switch');
+      $loopcheck          = $this->getLoopCheck($AllMissionSwitches, $FlickedSwitches);
+      if ($loopcheck) {
+        $this->completeMission($parentMission);
+      }
+ ///////////////////////////Mission Completed ///////////////////////////
+
+
     }
   }
 
   public function getLoopCheck($AllMissionSwitches, $FlickedSwitches)
   {
     foreach ($AllMissionSwitches as $missionSwitch) {
-      if (!in_array($missionSwitch, $FlickedSwitches  )) {
+      if (!in_array($missionSwitch, $FlickedSwitches)) {
         return false;
       }
     }
