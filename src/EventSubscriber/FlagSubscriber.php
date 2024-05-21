@@ -79,8 +79,7 @@ class FlagSubscriber implements EventSubscriberInterface
   // Find the mission that has this flagging in node_field_switches.entity id where field_switches_target_id =$flagging
   public function getParentMission($flagging)
   {
-    $query             = $this->database->query("
-    SELECT node__field_switches.entity_id
+    $query             = $this->database->query("SELECT node__field_switches.entity_id
     FROM node__field_switches WHERE field_switches_target_id =" .  $flagging);
     return $query->fetchAll()[0]->entity_id;
   }
@@ -88,12 +87,10 @@ class FlagSubscriber implements EventSubscriberInterface
   // Find the mission that has this flagging in node_field_switches.entity id where field_switches_target_id =$flagging
   public function getAllMissionSwitches($parent)
   {
-    $query             = $this->database->query("
-    SELECT node__field_switches.field_switches_target_id
+    $query             = $this->database->query("SELECT node__field_switches.field_switches_target_id
     FROM node__field_switches WHERE node__field_switches.entity_id = " .  $parent);
     return $query->fetchAll();
   }
-
 
   public function completeMission($id)
   {
