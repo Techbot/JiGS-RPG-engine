@@ -6,7 +6,7 @@
 //var Bridge = require('../services/bridge.ts');
 var playerModel = require('../models/player.ts');
 import { portalCollider } from "../colliders/portalCollider";
-import { switchCollider } from "../colliders/switchCollider";
+//import { switchCollider } from "../colliders/switchCollider";
 import { wallCollider } from "../colliders/wallCollider";
 import { rewardCollider } from "../colliders/rewardCollider";
 import { mobCollider } from "../colliders/mobCollider";
@@ -14,14 +14,14 @@ import { mobCollider } from "../colliders/mobCollider";
 export class Collision {
 
   portalCollider: portalCollider;
-  switchCollider: switchCollider;
+ // switchCollider: switchCollider;
   wallCollider: wallCollider;
   rewardCollider: rewardCollider;
   mobCollider: mobCollider;
 
   constructor() {
     this.portalCollider = new portalCollider();
-    this.switchCollider = new switchCollider();
+ //   this.switchCollider = new switchCollider();
     this.wallCollider = new wallCollider();
     this.rewardCollider = new rewardCollider();
     this.mobCollider = new mobCollider();
@@ -34,7 +34,7 @@ export class Collision {
       var bodyB = evt.bodyB;
 
       this.portalCollider.do(room, bodyA, bodyB);
-      this.switchCollider.do(room, bodyA, bodyB);
+   //   this.switchCollider.do(room, bodyA, bodyB);
       this.wallCollider.do(room, bodyA, bodyB);
       this.rewardCollider.do(room,bodyA, bodyB);
       this.mobCollider.do(room, bodyA, bodyB);
