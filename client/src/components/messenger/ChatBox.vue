@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .chat-box {
   width: 100%;
   display: flex;

@@ -14,7 +14,7 @@ export default {
   ]
 }
 </script>
-<style scoped>
+<style>
 .message {
   display: flex;
   padding: 0.25rem;

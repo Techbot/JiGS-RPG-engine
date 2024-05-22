@@ -69,19 +69,29 @@ export default {
     <div class="row">
       <div class="col">
         <h3>Storage</h3>
-        <draggable class="list-group" :list="jigs.listStorage" group="people"
+        <draggable class="inventory__storage list-group" :list="jigs.listStorage" group="people"
           @change="log" @end="addToBackpack" :move="updateItem" itemKey="name">
           <template #item="{ element, index }">
-            <div class="list-group-item">{{ element.name }} {{ index }}</div>
+            <div class="inventory__item list-group-item">
+              <label>{{ element.name }}
+                <!-- {{ index }} -->
+              </label>
+              <img src="/sites/default/files/weapons/W_Sword017.png" alt="" width="34" height="34"/>
+            </div>
           </template>
         </draggable>
       </div>
       <div class="col">
         <h3>Backpack</h3>
-        <draggable class="list-group" :list="jigs.listBackpack" group="people"
+        <draggable class="inventory__backpack list-group" :list="jigs.listBackpack" group="people"
           @change="log" itemKey="name" @end="addToStorage" :move="updateItem" >
           <template #item="{ element, index }">
-            <div class="list-group-item">{{ element.name }} {{ index }}</div>
+            <div class="inventory__item list-group-item">
+              <label>{{ element.name }}
+                <!-- {{ index }} -->
+              </label>
+              <img src="sites/default/files/items/W_Gold_Mace.png" alt="" width="34" height="34"/>
+            </div>
           </template>
         </draggable>
       </div>
@@ -94,8 +104,31 @@ export default {
   margin-top: 1rem;
 }
 
-.inventory img {
-  margin-bottom: 1rem;
+.inventory__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 20%;
+  min-height: 80px;
+  flex: 1 0 20%;
+  border: 2px solid transparent;
+  border-radius: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  background-color: #000;
+}
+
+.inventory > img {
+  margin-block-end: 1rem;
+}
+
+.inventory__item label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-block-end: 0.5rem;
+  text-transform: uppercase;
 }
 
 .list-group {
@@ -110,29 +143,23 @@ export default {
   background-color: #111;
 }
 
-.list-group-item {
-  max-width: 20%;
-  min-height: 80px;
-  flex: 1 0 20%;
-  border: 0 none;
-  border-radius: 0;
-  text-align: center;
-  font-size: 0.75rem;
-  padding: 0.25rem;
-  background-color: #000;
+.inventory__item img {
+  margin: 0 auto;
+  margin-block-end: 0.5rem;
 }
 
-.list-group-item:hover,
-.list-group-item.sortable-chosen {
+.inventory__item:hover,
+.inventory__item.sortable-chosen {
   border: 2px solid red;
   background: #222;
 }
-.list-group-item.sortable-chosen {
+
+.inventory__item.sortable-chosen {
   box-shadow: 0px 0px 0px 5px #111111, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #A31925, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
-.list-group-item:first-child,
-.list-group-item:last-child {
+.inventory__item:first-child,
+.inventory__item:last-child {
   border-radius: 0;
 }
 </style>
