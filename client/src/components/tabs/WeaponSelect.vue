@@ -1,13 +1,15 @@
 <template>
   <form class="weapons">
-    <strong>Weapon: {{ weaponName }} / {{event.weapon}}</strong>
+    <strong>Weapon: {{ weaponName }} / {{ event.weapon }}</strong>
     <div class="weapon__thumb" v-if="event.weapon === 0">
       <img src="/assets/images/gui/weapon_sword.png" alt="sword thumbnail" />
     </div>
     <div class="weapon__thumb" v-if="event.weapon === 1">
       <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
     </div>
-
+    <div class="weapon__thumb" v-if="event.weapon === 2">
+      <img src="/assets/images/gui/weapon_bomb.png" alt="bomb thumbnail" />
+    </div>
     <div class="weapons--select">
       <BaseRadioGroup
         v-model="event.weapon"
@@ -38,8 +40,9 @@ export default {
   data() {
     return {
       weaponOptions: [
-        { value: 0, label: "Sword", image: "/assets/images/gui/weapon_sword.png"},
-        { value: 1, label: "Gun", image: "/assets/images/gui/weapon_gun.png" },
+        { value: 0, label: "Ranged", image: "/assets/images/gui/weapon_gun.png"},
+        { value: 1, label: "Melee", image: "/assets/images/gui/weapon_sword.png" },
+        { value: 2, label: "Bomb", image: "/assets/images/gui/weapon_bomb.png" },
       ],
       event: {
         weapon: 1,
@@ -51,8 +54,12 @@ export default {
   },
   computed: {
     weaponName() {
-      // Only works for 2 weapons.
-      return this.event.weapon === 0 ? 'Sword' : 'Gun'
+      if (this.event.weapon === 0)
+        return "Ranged"
+      else if (this.event.weapon === 1)
+        return "Gun"
+      else (this.event.weapon === 2)
+        return "Bomb"
     }
   }
 }

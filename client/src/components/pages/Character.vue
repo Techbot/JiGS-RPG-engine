@@ -18,8 +18,9 @@ export default {
         { id: 2, name: "Visor", image: "/assets/images/gui/psibot-head-visor.png" },
       ],
       weaponsLeft: [
-        { id: 0, name: "Sword", image: "/assets/images/gui/weapon_sword.png" },
-        { id: 1, name: "Gun", image: "/assets/images/gui/weapon_gun.png" },
+        { id: 0, name: "Ranged", image: "/assets/images/gui/weapon_gun.png" },
+        { id: 1, name: "Melee", image: "/assets/images/gui/weapon_sword.png" },
+        { id: 2, name: "Bomb", image: "/assets/images/gui/weapon_bomb.png" },
       ],
       weaponsRight: [
         { id: 0, name: "Sword", image: "/assets/images/gui/weapon_sword.png" },
@@ -122,11 +123,14 @@ export default {
             <div class="emc-char__part weapon_left">
               <div class="emc-char__heading">Weapon</div>
               <!-- <strong>{{ selectedWeaponLeft }}</strong> -->
-              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Sword'">
+              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Ranged'">
+                <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
+              </div>
+              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Melee'">
                 <img src="/assets/images/gui/weapon_sword.png" alt="sword thumbnail" />
               </div>
-              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Gun'">
-                <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
+              <div class="weapon__thumb" v-if="selectedWeaponLeft === 'Bomb'">
+                <img src="/assets/images/gui/weapon_bomb.png" alt="bomb thumbnail" />
               </div>
             </div>
             <div class="emc-char__part bionics">
