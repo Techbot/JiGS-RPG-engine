@@ -331,3 +331,64 @@ h1 {
     flex: 1 0 280px;
   }
 }
+
+.flag a {
+  padding: 0.25rem 0.75rem;
+  margin: 2rem 0;
+  display: inline-block;
+  border: 2px solid transparent !important;
+}
+
+.flag a:link,
+.flag a:focus
+.flag a:hover {
+  color: white;
+}
+
+.flag.action-unflag a {
+  background-color: var(--emc-dark);
+}
+
+.flag.action-flag a {
+  background-color: var(--emc-teal-dark-rich);
+}
+
+.flag a:hover {
+  background-color: var(--emc-black);
+  border: 2px solid white !important;
+}
+
+.field--name-field-switches {
+  margin-bottom: 1rem;
+}
+
+.region-user-content table {
+  width: 100%;
+}
+.region-user-content th,
+.region-user-content td {
+  padding: 0 0.25rem;
+  text-align: left;
+}
+.region-user-content th {
+  background-color: var(--emc-dark);
+}
+.region-user-content td {
+  background-color: var(--emc-black);
+}
+
+.region-user-content > div {
+  margin-bottom: 3rem;
+}
+
+.field--name-field-missions > .field__label,
+.field--name-field-missions-completed > .field__label,
+.block.block-views h3 {
+  font-size: 2rem;
+  text-shadow: 2px 2px 2px #000;
+  font-family: Neutron Demo;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--cui-heading-color);
+  margin-bottom: 0.5rem;
+}
