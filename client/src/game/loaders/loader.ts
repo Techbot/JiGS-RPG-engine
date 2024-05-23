@@ -77,7 +77,7 @@ export default class Load {
 
         if (this.jigs.switchesArray) {
             this.jigs.switchesArray.forEach(function loader(switchItem) {
-                scene.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/animations/' + switchItem.field_file_value ,
+                scene.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/switches/' + switchItem.field_file_value ,
                     { frameWidth: parseInt(switchItem.field_frame_width_value), frameHeight: parseInt(switchItem.field_frame_height_value) });
             });
         }
