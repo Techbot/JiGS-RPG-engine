@@ -103,6 +103,7 @@ Will you find my Balls?`,
     tilesetArray_5: [],
     portalsArray: [],
     switchesArray: [],
+    dialogueArray: [],
     firesArray: [],
     fireBarrelsArray: [],
     leversArray: [],
@@ -185,6 +186,7 @@ Will you find my Balls?`,
           this.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
           this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
           this.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
+          this.dialogueArray = response.data[0].value["MapGrid"]["dialogueArray"];
           this.fireArray = response.data[0].value["MapGrid"]["fireArray"];
           this.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
           this.leverArray = response.data[0].value["MapGrid"]["leverArray"];

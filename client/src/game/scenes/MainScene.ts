@@ -119,6 +119,7 @@ export class MainScene extends Phaser.Scene {
          try {
             const room = await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
             console.log("joined successfully " + this.room);
+
             if (this.room == undefined) {
                 console.log("undefined room ");
                 this.scene.start('DeadScene');
@@ -140,7 +141,7 @@ export class MainScene extends Phaser.Scene {
             // is current player
             if (sessionId === this.room.sessionId) {
                 this.jigs.playerState = "alive";
-                this.jigs.content = "City: " + this.jigs.city;
+                this.jigs.content = this.jigs.dialogueArray;
                 this.events.emit('content');
                 this.Rewards.add(this);
                 this.NPCs.add(this);
@@ -150,6 +151,9 @@ export class MainScene extends Phaser.Scene {
                 this.Walls.add(this);
                 this.Folio.add(this);
                 this.localPlayer.add(this.colliderMap);
+
+
+
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
@@ -216,7 +220,7 @@ export class MainScene extends Phaser.Scene {
             this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
         }
 
-
+        this.jigs.dialogueArray = response.data[0].value["MapGrid"]["dialogueArray"];
         this.jigs.fireArray = response.data[0].value["MapGrid"]["fireArray"];
         this.jigs.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
         this.jigs.leverArray = response.data[0].value["MapGrid"]["leverArray"];
