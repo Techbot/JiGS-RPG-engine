@@ -1,8 +1,6 @@
 # JiGS
 ## An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS
 
-
-EMC23/Steam-Power/master/images/start.png
 ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/warningL.png) Ready For Testing ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/warningR.png)
 
 
