@@ -79,8 +79,14 @@ function updateMap(id, map) {
   );
 }
 
-function updatePlayer(id, stat, value, replace) {
+function updatePlayerStats(id: string, stat: string | undefined, value: string, replace: any) {
   console.log("stat:" + id);
+
+if(stat==undefined){
+  return;
+}
+
+
   if (replace) {
 
     con.query(
@@ -110,6 +116,6 @@ function updatePlayer(id, stat, value, replace) {
 module.exports = {
   getPlayer,
   updateMap,
-  updatePlayer,
+  updatePlayerStats,
   updateFlag
 }

@@ -22,11 +22,11 @@ export class portalCollider {
           .then(() => { bodyB.portal = bodyA.tiled; })// defining .portal triggers the jump for the client
           .then(() => {
             //        console.log(bodyA.destination_x);
-            playerModel.updatePlayer(bodyB.profileId, 'x', bodyA.destination_x, 1)
+            playerModel.updatePlayerStats(bodyB.profileId, 'x', bodyA.destination_x, 1)
           })
           .then(() => {
             //         console.log(bodyA.destination_y);
-            playerModel.updatePlayer(bodyB.profileId, 'y', bodyA.destination_y, 1)
+            playerModel.updatePlayerStats(bodyB.profileId, 'y', bodyA.destination_y, 1)
           });
         bodyA.done = true;
         //   }
