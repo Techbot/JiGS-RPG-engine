@@ -1,15 +1,12 @@
 # JiGS
 ## An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS
 
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/warningL.png) Ready For Testing ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/warningR.png)
 
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningL.png) Ready For Testing ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/warningR.png)
-
-
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot03.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/screenshot03.png)
 
 ## DEMO
-
 
 <ul>
  <li>The Eclectic Meme Conspiracy - https://www.eclecticmeme.com</li>
@@ -170,7 +167,7 @@ A modular Drupal RPG and Trading Game engine - Wk 3 of 4 <https://groups.drupal.
 A modular Drupal RPG and Trading Game engine - Wk 4 of 4 <https://groups.drupal.org/node/536840>
 
 ---------------------------------------------
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot02.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/screenshot02.png)
 <hr>
 JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in php using Drupal to create Content and Phaser to present the game.
 
@@ -205,7 +202,7 @@ Featurelist:
     <li> Secret Societies, Conspiracies and Guild politics </li>
 </ul>
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/paragraph_types.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/paragraph_types.png)
 
 <ul>
    <li> Main Gameplay Screens</li>
@@ -234,7 +231,7 @@ Featurelist:
 <hr>
 <h2> Main Gameplay Screen</h2>
 
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/content.png)
+![JiGS]([https://github.com/EMC23/JiGS/blob/master/images/content.png)
 
 <h3>Default Modules:</h3>
 ![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
@@ -257,7 +254,7 @@ Featurelist:
 ![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot01.png)
 Default Modules:
 
-![Wavy Lines](https://github.com/EMC23/JiGS/blob/master/images/content2.png)
+![Wavy Lines](https://raw.githubusercontent.com/Techbot/JiGS/master/images/content2.png)
 
 WavyLines is the Universe in action. All people receive numerous ESP messages from the people and world around them. Some messages are esoteric and obscure others are simple messages. Typical Messages would be “John increased one level” “John has converted to buddhism” “ A zombie horde attacks the outer villages.”
 
@@ -361,7 +358,7 @@ Screenshot from 2014-10-19 14:27:48.png
     Navigation
     Trade
     
-![Folio](https://github.com/EMC23/JiGS/blob/master/images/folioandonstacles.png)
+![Folio](https://raw.githubusercontent.com/Techbot/JiGS/master/images/folioandonstacles.png)
 
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
