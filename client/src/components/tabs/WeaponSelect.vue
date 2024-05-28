@@ -2,10 +2,10 @@
   <form class="weapons">
     <strong>Weapon: {{ weaponName }} / {{ event.weapon }}</strong>
     <div class="weapon__thumb" v-if="event.weapon === 0">
-      <img src="/assets/images/gui/weapon_sword.png" alt="sword thumbnail" />
+      <img src="/assets/images/gui/weapon_gun.png" alt="sword thumbnail" />
     </div>
     <div class="weapon__thumb" v-if="event.weapon === 1">
-      <img src="/assets/images/gui/weapon_gun.png" alt="gun thumbnail" />
+      <img src="/assets/images/gui/weapon_sword.png" alt="gun thumbnail" />
     </div>
     <div class="weapon__thumb" v-if="event.weapon === 2">
       <img src="/assets/images/gui/weapon_bomb.png" alt="bomb thumbnail" />
