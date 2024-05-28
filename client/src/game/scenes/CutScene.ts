@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
 import axios from "axios";
 
-const COLOR_PRIMARY = 0x0A0908;
+const COLOR_PRIMARY = 0x04151F;
 const COLOR_LIGHT = 0x009999;
 const COLOR_DARK = 0x0B3C49;
 
@@ -49,6 +49,9 @@ export class CutScene extends Phaser.Scene {
       height: 500,
       scrollMode: 0,
       background: scene.rexUI.add.roundRectangle(0, 0, 2, 2, 10, COLOR_PRIMARY),
+      strokeColor: COLOR_LIGHT,
+      strokeAlpha: 1,
+      strokeWidth: 2,
       panel: {
         child: this.CreatePanel(scene),
 
@@ -74,7 +77,7 @@ export class CutScene extends Phaser.Scene {
 
     this.AddDragCornerController(scrollablePanel)
 
-    scene.add.text(0, 580, 'Drag top-left or bottom-right corner. Click here to close')
+    scene.add.text(0, 580, 'Drag top-left corner, resize bottom-right corner. Click here to close')
       .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
       .on('pointerdown', this.onCutsceneDown.bind(this));
 
@@ -104,12 +107,12 @@ export class CutScene extends Phaser.Scene {
   CreatePanel(scene) {
     var sizer = scene.rexUI.add.fixWidthSizer({
       space: {
-        left: 3,
-        right: 3,
-        top: 3,
-        bottom: 3,
+        left: 20,
+        right: 20,
+        top: 20,
+        bottom: 20,
         item: 8,
-        line: 8,
+        line: 16,
       }
     })
     var lines = this.data.split('\n');
@@ -118,7 +121,7 @@ export class CutScene extends Phaser.Scene {
       for (var wi = 0, wcnt = words.length; wi < wcnt; wi++) {
         sizer.add(
           scene.add.text(0, 0, words[wi], {
-            fontSize: 18
+            fontSize: 16
           })
         );
       }
@@ -133,8 +136,8 @@ export class CutScene extends Phaser.Scene {
   AddDragCornerController(sizer) {
     var scene = sizer.scene;
 
-    var bottomRighterController = scene.add.rectangle(sizer.right, sizer.bottom, 30, 30, 0x333333);
-    var topLeftController = scene.add.rectangle(sizer.left, sizer.top, 30, 30, 0x333333)
+    var bottomRighterController = scene.add.rectangle(sizer.right, sizer.bottom, 20, 20, 0xFFC43D);
+    var topLeftController = scene.add.rectangle(sizer.left, sizer.top, 20, 20, 0x00CC66)
 
     bottomRighterController
       .setInteractive({ draggable: true })
