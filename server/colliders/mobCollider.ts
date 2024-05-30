@@ -10,6 +10,10 @@ export class mobCollider {
 
   do(room, bodyA, bodyB) {
 
+    if (bodyA.isMob && bodyB.isWall) {
+      return;
+    }
+
     if (bodyA.isMob && !bodyA.dead) {
       //  if (!bodyA.done) {
       //      console.log('Mobstrike!!!!');
@@ -27,12 +31,12 @@ export class mobCollider {
         }
       });
       //When zombie is dead set dead health  and following
-/*       Mob.updateZombieState(self,
-        bodyA.field_mobs_target_id,
-        bodyA.field_mob_name_value,
-        parseInt(bodyA.position[0]),
-        parseInt(bodyA.position[1]),
-        0, 0, 1, undefined, undefined); */
+      /*       Mob.updateZombieState(self,
+              bodyA.field_mobs_target_id,
+              bodyA.field_mob_name_value,
+              parseInt(bodyA.position[0]),
+              parseInt(bodyA.position[1]),
+              0, 0, 1, undefined, undefined); */
       room.broadcast("player hit", bodyA.field_mob_name_value); // TODO change to player name
       bodyB.mobHit = bodyA.mob_name;
       //bodyA.done = true;
