@@ -31,7 +31,7 @@ export class BootScene extends Scene {
     this.load.spritesheet('player-slash-oversize-rapier', '/assets/images/animator/Psibot-Male/slash-oversize-rapier.png', { frameWidth: 192, frameHeight: 192 });
 
 
-    this.load.image('ship', '/assets/images/star_gold.png');
+    this.load.image('exit', '/assets/images/System/Exit.png');
     this.load.image('book', '/assets/images/book.png');
     this.load.image('star', '/assets/images/star_gold.png');
     this.load.image('gun', "/assets/images/gun.png");
