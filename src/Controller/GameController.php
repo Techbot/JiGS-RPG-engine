@@ -58,22 +58,6 @@ class GameController extends ControllerBase
    *  Never return NULL or invalid render arrays. This
    *  could/will break your forms.
    */
-  public function myData()
-  {
-    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-    $response                 = new AjaxResponse();
-    $loop                     = new Loop($this->round);
-    $this->round->update();
-    //$responseData = $loop->loop();
-    $responseData = [];
-    // $this->user->field_health = (int)$this->player->getHealth();
-    $this->user->field_losses = (int)$this->player->getLosses();
-    $this->user->field_wins   = (int)$this->player->getWins();
-    $this->user->credits      = (int)$this->player->getCredits();
-    $this->user->save();
-    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
-    return $response;
-  }
 
   public function myState()
   {
