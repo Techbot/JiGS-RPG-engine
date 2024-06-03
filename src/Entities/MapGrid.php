@@ -23,6 +23,7 @@ class MapGrid
   public $AllMissionSwitches;
   public $userMG;
   public $AllMissionDialogue;
+  public $AllMissionBosses;
 
   function __construct($userMG, $userId, $player)
   {
@@ -33,6 +34,7 @@ class MapGrid
     //$this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
     $this->AllMissionSwitches   = $this->getAllMissionSwitches($userMG);
     $this->AllMissionDialogue   = $this->getAllMissionDialogs($userMG);
+    $this->AllMissionBosses   = $this->getAllMissionBosses($userMG);
 
   }
 
@@ -222,6 +224,75 @@ return $dialogueFull;
 
     return $switchesArray;
   }
+
+  function getAllMissionBosses($userMG)
+  {
+    $database        = \Drupal::database();
+    $user            = \Drupal::currentUser()->id();
+    $query           = $database->query("SELECT profile__field_missions.entity_id as name,
+paragraph__field_mission.entity_id as pt,
+node__field_level_boss.field_level_boss_target_id,
+paragraph__field_boss.field_boss_target_id,
+paragraph__field_x.field_x_value,
+paragraph__field_y.field_y_value,
+node__field_image.field_image_target_id as image,
+file_managed.filename
+
+FROM profile__field_missions
+
+LEFT JOIN paragraph__field_mission
+ON paragraph__field_mission.entity_id= profile__field_missions.field_missions_target_id
+
+LEFT JOIN node__field_level_boss
+ON node__field_level_boss.entity_id = paragraph__field_mission.field_mission_target_id
+
+LEFT JOIN paragraph__field_boss
+ON paragraph__field_boss.entity_id = node__field_level_boss.field_level_boss_target_id
+
+LEFT JOIN paragraph__field_map_grid
+ON paragraph__field_map_grid.entity_id = paragraph__field_boss.entity_id
+
+LEFT JOIN paragraph__field_x
+ON paragraph__field_x.entity_id = paragraph__field_boss.entity_id
+
+LEFT JOIN paragraph__field_y
+ON paragraph__field_y.entity_id = paragraph__field_boss.entity_id
+
+LEFT JOIN node__field_image
+ON node__field_image.entity_id = paragraph__field_boss.field_boss_target_id
+
+LEFT JOIN file_managed
+ON file_managed.fid = node__field_image.field_image_target_id
+
+WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_map_grid_target_id =4");
+
+    ////////////////////////////////////////////////////////////////////////
+    // Now get the switches state and add it to the array item.
+    $switchesArray = $query->fetchAll();
+
+    foreach ($switchesArray as $switch) {
+
+      if ($this->playerSwitchesStates) {
+        $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
+      }
+    }
+
+    return $switchesArray;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function getSwitches($type)
   {
