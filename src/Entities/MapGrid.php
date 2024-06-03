@@ -65,6 +65,7 @@ class MapGrid
     //  $mapGrid['machineArray']      = $this->getSwitches('machine');
     //  $mapGrid['crystalArray']      = $this->getSwitches('crystal');
 
+    $mapGrid['bossesArray']       = $this->getBosses();
     $mapGrid['foliosArray']       = $this->getFolios();
     $mapGrid['wallsArray']        = $this->getWalls();
     $mapGrid['rewardsArray']      = $this->getRewards();
@@ -103,6 +104,10 @@ class MapGrid
     }
     return $sountrack[0]['composer'] . "/" . $sountrack[0]['track'];
   }
+
+
+
+
 
   function getAllMissionDialogs($userMG)
   {
@@ -278,6 +283,21 @@ WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_
     }
 
     return $switchesArray;
+  }
+
+  function getBosses()
+  {
+    $WorldBosses = [];
+    foreach ($this->MapGrid->field_mapgrid_boss->referencedEntities() as $boss) {
+      $BossObject =  \Drupal::entityTypeManager()->getStorage('node')->load($boss->field_boss->getValue()[0]['target_id']);
+      $WorldBosses[] = [
+       'boss'=> $BossObject->get('title')->value,
+        'x' => $boss->field_x->getValue()[0]['value'],
+        'y' => $boss->field_y->getValue()[0]['value'],
+
+      ];
+    }
+    return  $WorldBosses;
   }
 
   function getSwitches($type)
