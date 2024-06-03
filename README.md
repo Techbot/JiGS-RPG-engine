@@ -1,10 +1,10 @@
 # JiGS
 ## An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS
 
-![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/warningL.png) Ready For Testing ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/warningR.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/warningL.png) Ready For Testing ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/warningR.png)
 
 
-![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/screenshot03.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/003-grid-001-GPO.png)
 
 ## DEMO
 
@@ -15,7 +15,7 @@
  </ul>
 
 ## Resources
- 
+
 * https://trello.com/b/l2K2UFWa/map</li>
 * https://trello.com/b/3Hdp3Bn5/characters</li>
 * https://trello.com/b/JGvVtu0x/objects</li>
@@ -29,13 +29,13 @@
 * Install Drupal/Paragraphs
 * Install Drupal/Flag
 * Install Drupal/Profile
-* clone Jigs into modules/custom/jigs or 
+* clone Jigs into modules/custom/jigs or
 * Install Drupal/Jigs
- 
+
 * Install the default content - https://github.com/Techbot/JiGS-demo-content
 * clone assets into /web/assets/ - https://github.com/Techbot/JiGS-demo-assets
 
-* Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling 
+* Design the content (Drupal) see  https://www.emc23.com/jigs-drupal-and-content-modelling
 * Design relationships between the above content data and the players (mysql queries dropped into a folder triggered by the heartbeats- aka Agenda.js)
 
 With the JiGS engine, these two steps (while not trivial) are all thats required by the Games master to create an entirely new gameworld.
@@ -132,7 +132,7 @@ Or make a trading game or a dungeon crawler.
 </ul>
 
 <h3>May 2024</h4>
-<ul> 
+<ul>
 <li>Release Version 0.1</li>
 <li> Cutscenes - simple dialogue for the moment </li>
 <li>Flags for cutscenes viewed</li>
@@ -167,11 +167,11 @@ A modular Drupal RPG and Trading Game engine - Wk 3 of 4 <https://groups.drupal.
 A modular Drupal RPG and Trading Game engine - Wk 4 of 4 <https://groups.drupal.org/node/536840>
 
 ---------------------------------------------
-![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/screenshot02.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/master/images/007-inventory.png)
 <hr>
 JiGS (Jigs Interactive Game System) is an open source Online RPG engine built in php using Drupal to create Content and Phaser to present the game.
 
- The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.
+The universe can be forked by sysadmin/gamesmasters to create unique personal virtual worlds. Completely Open Source.
 
 [Installation:](https://github.com/Techbot/JiGS-PHP-RPG-engine/wiki/Installation)
 <ul>
@@ -231,28 +231,21 @@ Featurelist:
 <hr>
 <h2> Main Gameplay Screen</h2>
 
-![JiGS]([https://github.com/EMC23/JiGS/blob/master/images/content.png)
-
-<h3>Default Modules:</h3>
-![Default Modules](https://github.com/EMC23/JiGS/blob/master/images/image09.png)
+![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/003-grid-001-GPO.png)
 
 <ul>
 <li>Stats</li>
 <li>Login</li>
-<li> BackPack</li>
-<li> Weapons</li>
-<li> Metals</li>
-<li> Batteries</li>
-<li> Big Map -Main View Option 1</li>
-<li> Small Map - Main View 2</li>
-<li> Forums</li>
-<li> Factions</li>
-<li> Hobbits</li>
-<li> Profile</li>
-<li> Players</li>
+<li>Backpack</li>
+<li>Weapons</li>
+<li>Metals</li>
+<li>Batteries</li>
+<li>Maps</li>
+<li>Factions</li>
+<li>Hobbits</li>
+<li>Profile</li>
+<li>Players</li>
 </ul>
-![JiGS](https://github.com/EMC23/JiGS/blob/master/images/screenshot01.png)
-Default Modules:
 
 ![Wavy Lines](https://raw.githubusercontent.com/Techbot/JiGS/master/images/content2.png)
 
@@ -314,18 +307,11 @@ Screenshot from 2014-10-19 14:27:09.png
 Factories require blueprints, energy, workforce(hobbits) & materials to create objects - can be hacked/attacked.
 Objects vary in quality time and cost to produce.
 
-
-
 <h3>Farms</h3>
-
-
 Farms require seeds and workforce, energy, to grow food - can be hacked/attacked
 
 <h3>Mines</h3>
-![Mines ](https://github.com/EMC23/JiGS/blob/master/images/image14.png)
-Screenshot from 2014-10-19 14:27:48.png
-
- require energy workforce to mine oil,minerals( and crystals- on hold). - can be hacked/attacked
+Mines require energy workforce to mine oil,minerals( and crystals- on hold). - can be hacked/attacked
 
 <h3>Other Buildings</h3>
 
@@ -357,8 +343,8 @@ Screenshot from 2014-10-19 14:27:48.png
     Reprocessing
     Navigation
     Trade
-    
-![Folio](https://raw.githubusercontent.com/Techbot/JiGS/master/images/folioandonstacles.png)
+
+![Folio](https://raw.githubusercontent.com/Techbot/JiGS/main/images/folioandonstacles.png)
 
 <h3>Guilds, Groups, Crime Families, Gangs, Secret Societies and Factions</h3>
 
