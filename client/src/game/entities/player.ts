@@ -47,12 +47,10 @@ export default class Player {
             .setScale(.85)
     }
 
-    add(colliderMap) {
+    add() {
 
         this.x = this.player.x;
         this.y = this.player.y;
-
-        this.colliderMap = colliderMap
         this.light = new Light(this.scene, this.player.x, this.player.y, null);
         this.gun = new Gun(this.scene, this.player.x, this.player.y, 'gun');
         this.sword = new Sword(this.scene, this.player.x, this.player.y, null);
@@ -131,7 +129,7 @@ export default class Player {
             return;
         }
         this.scene.physics.world.collide(this.scene.localPlayer.entity, this.scene.Walls.walls);
-        this.playerMovement.move(this.scene.currentPlayer, velocity, this.colliderMap);
+        this.playerMovement.move(this.scene.currentPlayer, velocity, this.scene.colliderMap);
         this.jigs.mobClick = 0;
 
         ///////////////////////////////////////////////////////////////////////
