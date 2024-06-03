@@ -280,20 +280,6 @@ WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_
     return $switchesArray;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   function getSwitches($type)
   {
     switch ($type) {
