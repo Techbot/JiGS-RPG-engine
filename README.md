@@ -127,20 +127,20 @@ Or make a trading game or a dungeon crawler.
 
 <h3>Apr 2024</h4>
 <ul>
-<li>End Level Bosses</li>
 <li>Gui</li>
 </ul>
 
 <h3>May 2024</h4>
 <ul>
 <li>Release Version 0.1</li>
-<li> Cutscenes - simple dialogue for the moment </li>
+<li>Cutscenes - simple dialogue for the moment </li>
 <li>Flags for cutscenes viewed</li>
 <li>Improve Animator</li>
 </ul>
 
 <h3>Jun 2024</h4>
 <ul>
+<li>Level Bosses</li>
 <li>Release Ver 0.2</li>
 </ul>
 
