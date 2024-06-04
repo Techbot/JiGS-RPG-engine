@@ -9,18 +9,33 @@ import { createCharacterAnims } from "../entities/anim";
 import { createSwitchesAnims } from "../entities/anim";
 import { createBossAnims } from "../entities/anim";
 import  MobLoader  from "./mobLoader"
-
+import  BossLoader  from "./bossLoader"
+import  NpcLoader  from "./npcLoader"
+import  TilesetLoader  from "./tilesetLoader"
+import SwitchLoader from "./switchLoader"
+import QuestLoader from "./questLoader"
 
 export default class Load {
 
     jigs: any;
     npcs: any;
     sprite: any;
-    mobloader: any;
+    mobLoader: any;
+    bossLoader: any;
+    npcLoader: any;
+    tilesetLoader: any;
+    switchLoader: any;
+    questLoader: any;
 
     constructor() {
         this.jigs = useJigsStore();
-        this.mobloader= new MobLoader();
+        this.mobLoader= new MobLoader();
+        this.bossLoader = new BossLoader();
+        this.npcLoader = new NpcLoader();
+        this.tilesetLoader = new TilesetLoader();
+        this.switchLoader = new SwitchLoader();
+        this.questLoader = new QuestLoader();
+
     }
 
     padding(n, p, c) {
@@ -37,66 +52,12 @@ export default class Load {
         scene.load.image('pink', '/assets/images/pink.png');
         scene.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
 
-        this.jigs.tilesetArray_1.forEach(function loader(image) {
-            if (!textureManager.exists(image)) {
-                scene.load.image(image, '/assets/images/System/' + image + '.png');
-            }
-        }, this);
-
-        this.jigs.tilesetArray_2.forEach(function loader(image) {
-            if (!textureManager.exists(image)) {
-                scene.load.image(image, '/assets/images/System/' + image + '.png');
-            }
-        }, this);
-
-        this.jigs.tilesetArray_3.forEach(function loader(image) {
-            if (!textureManager.exists(image)) {
-                scene.load.image(image, '/assets/images/System/' + image + '.png');
-            }
-        }, this);
-
-        if (this.jigs.tilesetArray_4 !== undefined) {
-            this.jigs.tilesetArray_4.forEach(function loader(image) {
-                if (!textureManager.exists(image)) {
-                    scene.load.image(image, '/assets/images/System/' + image + '.png');
-                }
-            }, this);
-        }
-
-        if (this.jigs.npcArray) {
-            this.jigs.npcArray.forEach(function loader(Npc) {
-                scene.load.spritesheet('npc' + Npc[3], '/assets/images/sprites/' + Npc[3] + '.png', { frameWidth: 64, frameHeight: 64 });
-            }, this);
-        }
-
-/*         if (this.jigs.mobArray) {
-            this.jigs.mobArray.forEach(function loader(Mob) {
-                scene.load.spritesheet('mob' + Mob[4], '/assets/images/sprites/' + Mob[4] + '.png', { frameWidth: 64, frameHeight: 64 });
-            }, this);
-        } */
-        this.mobloader.add(scene);
-
-
-        if (this.jigs.bossesArray) {
-            this.jigs.bossesArray.forEach(function loader(boss) {
-                scene.load.spritesheet('boss_' + boss.boss, '/assets/images/Level Bosses/' + boss.boss +'.png',
-                    { frameWidth: parseInt(boss.field_frame_width), frameHeight: parseInt(boss.field_frame_height) });
-            });
-        }
-
-        if (this.jigs.switchesArray) {
-            this.jigs.switchesArray.forEach(function loader(switchItem) {
-                scene.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/switches/' + switchItem.field_file_value ,
-                    { frameWidth: parseInt(switchItem.field_frame_width_value), frameHeight: parseInt(switchItem.field_frame_height_value) });
-            });
-        }
-
-        if (this.jigs.questsArray) {
-            this.jigs.questsArray.forEach(function loader(questsItem) {
-                scene.load.spritesheet('quest_' + questsItem.id, '/assets/images/quest/' + questsItem.file + '.png',
-                    { frameWidth: questsItem.frameWidth, frameHeight: questsItem.frameHeight });
-            });
-        }
+        this.tilesetLoader.add(scene);
+        this.npcLoader.add(scene);
+        this.mobLoader.add(scene);
+        this.bossLoader.add(scene);
+        this.switchLoader.add(scene);
+        this.questLoader.add(scene);
 
         scene.load.once(Phaser.Loader.Events.COMPLETE, () => {
             const Layer = new Layers;
@@ -105,7 +66,6 @@ export default class Load {
             createCharacterAnims(scene.anims, 'PsibotF_slash', 'slash_oversize'); */
 
             createCharacterAnims(scene.anims, 'player', null);
-
             createCharacterAnims(scene.anims, 'otherPlayer', null);
 
             if (this.jigs.npcArray) {
@@ -113,11 +73,6 @@ export default class Load {
                     createCharacterAnims(scene.anims, 'npc' , Npc[3]);
                 });
             }
-/*             if (this.jigs.mobArray) {
-                this.jigs.mobArray.forEach(function loader(mob) {
-                    createCharacterAnims(scene.anims, 'mob' + mob[4], 'default');
-                });
-            } */
 
             if (this.jigs.mobArray) {
                 this.jigs.mobArray.forEach(function loader(mob) {
@@ -130,9 +85,6 @@ export default class Load {
                     createBossAnims(scene.anims, boss, "default");
                 });
             }
-
-
-
 
             if (this.jigs.switchesArray) {
                 this.jigs.switchesArray.forEach(function loader(switches) {
