@@ -150,7 +150,7 @@ export class MainScene extends Phaser.Scene {
                 this.Switches.add(this);
                 this.Walls.add(this);
                 this.Folio.add(this);
-                this.localPlayer.add(this.colliderMap);
+                this.localPlayer.add();
 
 
 
@@ -232,6 +232,8 @@ export class MainScene extends Phaser.Scene {
         if (incMob) {
             this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
         }
+        this.jigs.bossArray = response.data[0].value["MapGrid"]["bossArray"];
+
         this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
         this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
         this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
