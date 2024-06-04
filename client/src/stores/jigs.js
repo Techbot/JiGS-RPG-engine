@@ -53,8 +53,8 @@ Will you find my Balls?`,
     /** @type {{ target:number, name: string, x: number, y: number, sprite: number, type: string, health: number, following: number}[]} */
     mobArray: [],
 
-    /** @type {{ target:number, name: string, x: number, y: number, type: string, health: number}[]} */
-    bossArray: [],
+    /** @type {{ target:number, name: string, x: number, y: number, type: string, health: number, field_frame_width_value: number, field_frame_height_value: number,}[]} */
+    bossesArray: [],
 
     /** @type {{ text: string, x: number, y: number, sprite: number}[]} */
     rewardsArray: [],
@@ -201,7 +201,7 @@ Will you find my Balls?`,
           if (incMob) {
             this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
           }
-          this.bossArray = response.data[0].value["MapGrid"]["bossArray"];
+          this.bossesArray = response.data[0].value["MapGrid"]["bossesArray"];
           this.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
           this.nodeTitle = response.data[0].value["MapGrid"]["name"];
 

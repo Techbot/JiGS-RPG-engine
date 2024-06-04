@@ -24,6 +24,7 @@ import Portals from "../entities/portals";
 import Switches from "../entities/switches";
 import NPCs from "../entities/npcs";
 import Mobs from "../entities/mobs";
+import Bosses from "../entities/bosses";
 import Walls from "../entities/walls";
 import Folios from "../entities/folios";
 
@@ -76,6 +77,7 @@ export class MainScene extends Phaser.Scene {
     Switches: Switches;
     Walls: Walls;
     Mobs: Mobs;
+    Bosses: Bosses;
     NPCs: NPCs;
     Rewards: Rewards;
     Folio: Folios;
@@ -91,6 +93,7 @@ export class MainScene extends Phaser.Scene {
         this.Walls = new Walls;
         this.NPCs = new NPCs;
         this.Mobs = new Mobs;
+        this.Bosses = new Bosses;
         this.Rewards = new Rewards;
         this.Folio = new Folios;
     }
@@ -146,6 +149,7 @@ export class MainScene extends Phaser.Scene {
                 this.Rewards.add(this);
                 this.NPCs.add(this);
                 this.Mobs.add(this);
+                this.Bosses.add(this);
                 this.Portals.add(this);
                 this.Switches.add(this);
                 this.Walls.add(this);
@@ -232,7 +236,7 @@ export class MainScene extends Phaser.Scene {
         if (incMob) {
             this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
         }
-        this.jigs.bossArray = response.data[0].value["MapGrid"]["bossArray"];
+        this.jigs.bossesArray = response.data[0].value["MapGrid"]["bossesArray"];
 
         this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
         this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
