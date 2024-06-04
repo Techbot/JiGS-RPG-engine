@@ -294,7 +294,10 @@ WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_
        'boss'=> $BossObject->get('title')->value,
         'x' => $boss->field_x->getValue()[0]['value'],
         'y' => $boss->field_y->getValue()[0]['value'],
-
+        //     'field_frame_width_value' => $BossObject->get('field_frame_width_value')->value,
+        //     'field_frame_height_value' => $BossObject->get('field_frame_height_value')->value,
+        'field_frame_width' => $BossObject->field_frame_width->getValue()[0]['value'],
+        'field_frame_height' => $BossObject->field_frame_height->getValue()[0]['value']
       ];
     }
     return  $WorldBosses;

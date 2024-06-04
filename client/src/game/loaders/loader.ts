@@ -7,6 +7,7 @@ import { useJigsStore } from '../../stores/jigs';
 import Layers from "../entities/layers";
 import { createCharacterAnims } from "../entities/anim";
 import { createSwitchesAnims } from "../entities/anim";
+import { createBossAnims } from "../entities/anim";
 import  MobLoader  from "./mobLoader"
 
 
@@ -75,6 +76,14 @@ export default class Load {
         } */
         this.mobloader.add(scene);
 
+
+        if (this.jigs.bossesArray) {
+            this.jigs.bossesArray.forEach(function loader(boss) {
+                scene.load.spritesheet('boss_' + boss.boss, '/assets/images/Level Bosses/' + boss.boss +'.png',
+                    { frameWidth: parseInt(boss.field_frame_width), frameHeight: parseInt(boss.field_frame_height) });
+            });
+        }
+
         if (this.jigs.switchesArray) {
             this.jigs.switchesArray.forEach(function loader(switchItem) {
                 scene.load.spritesheet('switch_' + switchItem.entity_id, '/assets/images/switches/' + switchItem.field_file_value ,
@@ -115,6 +124,14 @@ export default class Load {
                     createCharacterAnims(scene.anims, "Zombie-Green", "default");
                 });
             }
+
+            if (this.jigs.bossesArray) {
+                this.jigs.bossesArray.forEach(function loader(boss) {
+                    createBossAnims(scene.anims, boss, "default");
+                });
+            }
+
+
 
 
             if (this.jigs.switchesArray) {
