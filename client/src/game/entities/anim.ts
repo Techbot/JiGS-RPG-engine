@@ -13,29 +13,36 @@ const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType, 
         console.log(entityType + '-walk-' + type)
 
         anims.create({
-            key: entityType + '-walkUp-' + weapon,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [0, 1, 2, 3, 4, 5, 6, 7, 8] }),
+
+            key: entityType + '-walkUp',
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [0, 1, 2] }),
+
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
-            key: entityType + '-walkLeft-' + weapon,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [9, 10, 11, 12, 13, 14, 15, 16, 17] }),
+
+            key: entityType + '-walkLeft' ,
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [3,4,5] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
-            key: entityType + '-walkDown-' + weapon,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [18, 19, 20, 21, 22, 23, 24, 25, 26] }),
+
+            key: entityType + '-walkDown' ,
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [6,7,8] }),
+
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
-            key: entityType + '-walkRight-' + weapon,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [27, 28, 29, 30, 31, 32, 33, 34, 35] }),
+
+            key: entityType + '-walkRight' ,
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [9,10,11] }),
+
             frameRate: 12,
             repeat: -1
         });
@@ -311,7 +318,8 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
         });
     }
 
-}
+
+d}
 
 
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
