@@ -13,36 +13,29 @@ const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType, 
         console.log(entityType + '-walk-' + type)
 
         anims.create({
-
             key: entityType + '-walkUp',
             frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [0, 1, 2] }),
-
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
-
-            key: entityType + '-walkLeft' ,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [3,4,5] }),
+            key: entityType + '-walkLeft',
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [3, 4, 5] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
-
-            key: entityType + '-walkDown' ,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [6,7,8] }),
-
+            key: entityType + '-walkDown',
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [6, 7, 8] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
-
-            key: entityType + '-walkRight' ,
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [9,10,11] }),
-
+            key: entityType + '-walkRight',
+            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [9, 10, 11] }),
             frameRate: 12,
             repeat: -1
         });
@@ -317,9 +310,8 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-
-
-d}
+    
+}
 
 
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
