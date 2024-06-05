@@ -16,6 +16,8 @@ import { Portal } from "./Portals";
 import { Switch } from "./Switches";
 import { Wall } from "./Walls";
 import { Npc } from "./Npcs";
+import { Boss } from "./Bosses";
+
 import { Reward } from "./Rewards";
 import { Layer } from "./Layers";
 import { Collision } from "./Collisions";
@@ -49,11 +51,13 @@ export class GameRoom extends Room<MyRoomState> {
   mapJson: any;
   indexNumber: any;
   P2mobBodies: any;
+  P2bossBodies: any;
   Mobs: Mob;
   Portals: Portal;
   Switches: Switch;
   Walls: Wall;
   Npcs: Npc;
+  Bosses: Boss;
   Rewards: Reward;
   Collisions: Collision;
   Layers: Layer;
@@ -62,13 +66,16 @@ export class GameRoom extends Room<MyRoomState> {
     super();
     this.world = new p2.World({ gravity: [0, 0] });
     this.P2mobBodies = [];
+    this.P2bossBodies = [];
     this.Mobs = new Mob;
     this.Portals = new Portal;
     this.Switches = new Switch;
     this.Walls = new Wall;
     this.Rewards = new Reward;
     this.Npcs = new Npc;
+    this.Bosses = new Boss;
     this.Layers = new Layer;
+
     this.Collisions = new Collision;
   }
 
@@ -89,6 +96,7 @@ export class GameRoom extends Room<MyRoomState> {
     this.setState(new MyRoomState());
 
     await this.Mobs.load(this, options.nodeNumber, this.share);
+    await this.Bosses.load(this, options.nodeNumber, this.share);
     await this.Portals.load(this.world, options.nodeNumber, this.share);
     //await this.Switches.load(this.world, options.nodeNumber, this.share);
     await this.Walls.load(this.world, options.nodeNumber, this.share);
@@ -171,6 +179,8 @@ export class GameRoom extends Room<MyRoomState> {
     var fixedTimeStep = 1 / 60;
     this.world.step(fixedTimeStep);
     this.Mobs.updateMob(this);
+    this.Bosses.updateBoss(this);
+
     this.state.players.forEach(player => {
       let input: InputData;
       // dequeue player inputs

@@ -41,8 +41,17 @@ export class ZombieState extends Schema {
   @type("number") following: number;
   @type("number") dead: number;
 }
+export class BossState extends Schema {
+  @type("number") field_boss_target_id: number;
+  @type("string") field_boss_name_value: string;
+  @type("number") field_x_value: number;
+  @type("number") field_y_value: number;
+  @type("number") health: number;
+  @type("number") following: number;
+  @type("number") dead: number;
+}
 
-export class PlayerMap extends Schema{
+export class PlayerMap extends Schema {
   profileId: number;
 }
 
@@ -53,9 +62,11 @@ export class MyRoomState extends Schema {
 
   @type("number") mapWidth: number;
   @type("number") mapHeight: number;
-  @type({map: ZombieState}) mobResult = new MapSchema<ZombieState>();
-  @type({map: Player }) players      = new MapSchema<Player>();
-  @type({map: PlayerMap }) playerMap = new MapSchema<PlayerMap>();
+  @type({ map: ZombieState }) mobResult = new MapSchema<ZombieState>();
+  @type({ map: BossState }) bossResult  = new MapSchema<BossState>();
+
+  @type({ map: Player }) players = new MapSchema<Player>();
+  @type({ map: PlayerMap }) playerMap = new MapSchema<PlayerMap>();
 
   destroySomething() {
     console.log('destroy all the things');
