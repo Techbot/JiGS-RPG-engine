@@ -165,6 +165,28 @@ function getMobs(NodeNumber) {
   })
 }
 
+
+
+function getBosses(NodeNumber) {
+  return new Promise(function (resolve, reject) {
+    con.query(`SELECT node__field_level_boss.field_level_boss_target_id,
+       paragraph__field_x.field_x_value,
+       paragraph__field_y.field_y_value
+       FROM node__field_level_boss
+       Left Join paragraph__field_x
+       On paragraph__field_x.entity_id = node__field_level_boss.field_level_boss_target_id
+       Left Join paragraph__field_y
+       On paragraph__field_y.entity_id = node__field_level_boss.field_level_boss_target_id
+       WHERE node__field_level_boss.entity_id =
+        ` + NodeNumber, function (error, results) {
+      if (error) throw error;
+      console.log('The NodeNumber is: ', NodeNumber);
+      console.log('The solution is: ', results);
+      resolve(results);
+    });
+  })
+}
+
 function getRewards(NodeNumber) {
   return new Promise(function (resolve, reject) {
 
@@ -210,5 +232,6 @@ module.exports = {
   getMobs,
   getSwitches,
   getRewards,
+  getBosses,
   updateBanks
 };

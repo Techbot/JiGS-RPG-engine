@@ -35,10 +35,9 @@ class MapGrid
     $this->AllMissionSwitches   = $this->getAllMissionSwitches($userMG);
     $this->AllMissionDialogue   = $this->getAllMissionDialogs($userMG);
     $this->AllMissionBosses   = $this->getAllMissionBosses($userMG);
-
   }
 
-   function create()
+  function create()
   {
     if ($this->MapGrid->field_tiled->getValue()) {
       $mapGrid['tiled']         = $this->MapGrid->field_tiled->getValue()[0]['value'];
@@ -144,9 +143,8 @@ class MapGrid
       $dialogueFull = $dialogueFull . $dialogue->field_line_dialog_value;
     }
     $dialogueArray[] = $dialogueFull;
- //   return $dialogueArray;
-return $dialogueFull;
-
+    //   return $dialogueArray;
+    return $dialogueFull;
   }
 
 
@@ -221,10 +219,9 @@ return $dialogueFull;
 
     foreach ($switchesArray as $switch) {
 
-     if( $this->playerSwitchesStates){
-      $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
-     }
-
+      if ($this->playerSwitchesStates) {
+        $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
+      }
     }
 
     return $switchesArray;
@@ -291,11 +288,10 @@ WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_
     foreach ($this->MapGrid->field_mapgrid_boss->referencedEntities() as $boss) {
       $BossObject =  \Drupal::entityTypeManager()->getStorage('node')->load($boss->field_boss->getValue()[0]['target_id']);
       $WorldBosses[] = [
-       'boss'=> $BossObject->get('title')->value,
+        'target' => $boss->id->getValue()[0]['value'],
+        'name' => $BossObject->get('title')->value,
         'x' => $boss->field_x->getValue()[0]['value'],
         'y' => $boss->field_y->getValue()[0]['value'],
-        //     'field_frame_width_value' => $BossObject->get('field_frame_width_value')->value,
-        //     'field_frame_height_value' => $BossObject->get('field_frame_height_value')->value,
         'field_frame_width' => $BossObject->field_frame_width->getValue()[0]['value'],
         'field_frame_height' => $BossObject->field_frame_height->getValue()[0]['value']
       ];
