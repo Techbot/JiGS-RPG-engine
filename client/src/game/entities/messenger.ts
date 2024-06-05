@@ -90,20 +90,18 @@ export default class Messenger {
 
       console.log('---------boss result-----------------------')
 
-      console.log(key)
-
-      console.log(value)
 
 
-      let i = 0;
+         let i = 0;
       while (i < scene.jigs.bossesArray.length) {
-        if (scene.jigs.bossesArray[i].target.toString() == key.toString()) {
 
-         console.log('x:' + value.x)
+        console.log('key' + value.entity_id)
+        console.log('2' +scene.jigs.bossesArray[i].target)
 
-          scene.jigs.bossesArray[i].x      = parseInt(value.x);
-          scene.jigs.bossesArray[i].y      = parseInt(value.y);
-          scene.jigs.bossesArray[i].health = parseInt(value.health);
+        if (scene.jigs.bossesArray[i].target == key) {
+          scene.jigs.bossesArray[i].x       = parseInt(value.x);
+          scene.jigs.bossesArray[i].y       = parseInt(value.y);
+          scene.jigs.bossesArray[i].health  = parseInt(value.health);
         }
         i++;
       }

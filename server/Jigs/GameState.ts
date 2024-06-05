@@ -43,6 +43,7 @@ export class ZombieState extends Schema {
 }
 export class BossState extends Schema {
   @type("number") field_boss_target_id: number;
+  @type("string") entity_id: number;
   @type("string") title: string;
   @type("number") x: number;
   @type("number") y: number;

@@ -174,8 +174,8 @@ function getBosses(NodeNumber) {
   return new Promise(function (resolve, reject) {
     con.query(`SELECT paragraph__field_boss.entity_id,
        paragraph__field_boss.field_boss_target_id,
-       paragraph__field_x.field_x_value,
-       paragraph__field_y.field_y_value,
+       paragraph__field_x.field_x_value as x,
+       paragraph__field_y.field_y_value as y,
        node_field_data.title
 
       FROM paragraph__field_boss

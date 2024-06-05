@@ -7,7 +7,9 @@
 import { BossState } from "./GameState";
 var roomModel = require('../models/room.ts');
 var p2 = require('p2');
+
 export class Boss {
+  pause = 0;
 
   async load(room, nodeNumber: number, share) {
     roomModel.getBosses(nodeNumber).then((result: any) => {
@@ -15,7 +17,7 @@ export class Boss {
         console.log('target' + bossState.entity_id);
 
         const bossItem = Boss.updateBossState(room, bossState,
-            undefined, undefined, undefined, undefined, 0, 0, undefined
+            undefined, undefined,undefined, undefined, undefined, 0, 0, undefined
           );
         room.state.bossResult.set(bossState.entity_id.toString(), bossItem);
       });
@@ -27,7 +29,7 @@ export class Boss {
         p2Boss.destinationX = 0;
         p2Boss.destinationY = 0;
         room.world.addBody(p2Boss);
-        room.P2mobBodies.push(p2Boss);
+        room.P2bossBodies.push(p2Boss);
       }
     }).catch(function (e) {
       console.log('Boss Error' + e);
@@ -35,14 +37,14 @@ export class Boss {
   }
 
   make(boss: any, share: any) {
-    console.log('place boss ' + boss.entity_id + ' @ ' + boss.field_x_value + ' X and ' + boss.field_y_value + ' Y');
+    console.log('place boss ' + boss.entity_id + ' @ ' + boss.x + ' X and ' + boss.y + ' Y');
     const circleShape = new p2.Circle({ radius: 10 });
     circleShape.collisionGroup = share.COL_ENEMY;
     circleShape.collisionMask = share.COL_PLAYER;
     // Create a typical dynamic body
     const circleBody = new p2.Body({
       mass: 1,
-      position: [boss.field_x_value, boss.field_y_value],
+      position: [boss.x, boss.y],
       type: p2.Body.DYNAMIC,
       collisionResponse: true,
       velocity: [0, 0],
@@ -50,6 +52,7 @@ export class Boss {
     });
     // console.log(' position:', circleBody.position);
     circleBody.isBoss = true;
+    circleBody.title = boss.title;
     circleBody.sensor = true;
     circleBody.motionState = 2; //STATIC
     // Add a circular shape to the body
@@ -60,35 +63,30 @@ export class Boss {
   }
 
   updateBoss(room) {
+
+
     if (room.P2bossBodies.length > 0) {
 
-      console.log('update boss');
-
       // Update destination every 2 seconds for one of the bosess
-      if (room.pause == 0) {
-        room.pause = 1;
-        const myPromise = new Promise((resolve, reject) => {
-          resolve(Math.ceil(Math.random() * room.P2bossBodies.length - 1));
-        });
-
-        myPromise.then((bossNumber) => {
-          this.updateBossForce(room.P2bossBodies[bossNumber]);
-          room.pause = 0;
-        });
-      }
 
       let i = 0;
       //////////////////////////Cycle through Boss bodies
       while (i < room.P2bossBodies.length) {
         room.P2bossBodies[i].setZeroForce();
+        this.updateBossForce(room.P2bossBodies[i]);
 
         /////////////////////// CYCLE THROUGH Boss  State /////////////////////////////
         room.state.bossResult.forEach(bossState => {
           if (bossState.dead != 1) {
 
-            if (room.P2bossBodies[i].field_boss_name_value == bossState.field_boss_name_value) {
+
+            console.log("a" + room.P2bossBodies[i].title);
+            console.log("b" + bossState.title);
+
+
+            if (room.P2bossBodies[i].title == bossState.title) {
               //if  not following someone, do the test
-              if (bossState.following == 0) {
+          //    if (bossState.following == 0) {
                 //if state x,y is out of date
                 if (parseInt(bossState.field_x_value) != parseInt(room.P2bossBodies[i].position[0])
                   || parseInt(bossState.field_y_value) != parseInt(room.P2bossBodies[i].position[1])) {
@@ -96,16 +94,16 @@ export class Boss {
                 }
                 room.state.players.forEach(player => {
                   //find distance
-                  var bossPlayerDist = Math.hypot(player.x - parseInt(room.P2bossBodies[i].position[0]), player.y - parseInt(room.P2bossBodies[i].position[1]));
-                  if (bossPlayerDist < 160) {
+                 // var bossPlayerDist = Math.hypot(player.x - parseInt(room.P2bossBodies[i].position[0]), player.y - parseInt(room.P2bossBodies[i].position[1]));
+/*                   if (bossPlayerDist < 160) {
                     // this is to update the bosss follower
                     bossState.following = player.playerId;
-                  }
-                  this.sendObject(room, bossState, i)
+                  } */
+              //    this.sendObject(room, bossState, i)
                 })
-              }
+          //    }
 
-              if (bossState.following) {
+/*               if (bossState.following) {
                 room.state.players.forEach(player => {
                   if (bossState.dead) {
                     room.P2bossBodies[i].velocity[0] = 0;
@@ -127,7 +125,7 @@ export class Boss {
                     }
                   }
                 })
-              };
+              }; */
             }
           }
         });
@@ -138,16 +136,22 @@ export class Boss {
 
   async updateBossForce(body) {
 
-    await this.skip(2000);
+    if (this.pause ==0){
+      this.pause=1
+   const x = await this.skip(4000);
+      console.log('--------------------------- ' + x)
+  }
+
+ //   console.log(body);
     // var forceX = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
     //  var forceY = (Math.ceil(Math.random() * 50) + 20) * (Math.round(Math.random()) ? 1 : -1);
     var forceX = (Math.ceil(Math.random() * 50) + 20);
     var forceY = (Math.ceil(Math.random() * 50) + 20);
 
-    if (body.dead != true) {
+ //   if (body.dead != true) {
       body.velocity[0] = forceX;
       body.velocity[1] = forceY;
-    }
+//    }
   }
 
   adjustVelocity(body, body2, amount) {
@@ -174,23 +178,29 @@ export class Boss {
   skip(val) {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve('resolved');
+        this.pause= 0;
+        console.log('-------------------------');
+        resolve(val);
       }, val);
     });
   }
 
+
+
+
   // Sets up a zombie state with the original values, then updates
 
   static updateBossState(room,bossState,
-    field_boss_target_id: number | undefined, title: string | undefined, x: number | undefined, y: number | undefined,
+    field_boss_target_id: number | undefined, entity_id: number | undefined, title: string | undefined, x: number | undefined, y: number | undefined,
     health: number | undefined, dead: number | undefined,  i: number | undefined
   ) {
     const bossItem = new BossState();
     if (bossState != undefined) {
       bossItem.field_boss_target_id = bossState.field_boss_target_id;
+      bossItem.entity_id = bossState.entity_id.toString();
       bossItem.title = bossState.title;
-      bossItem.x = bossState.field_x_value;
-      bossItem.y = bossState.field_y_value;
+      bossItem.x = bossState.x;
+      bossItem.y = bossState.y;
       bossItem.health = bossState.health;
       bossItem.dead = bossState.dead;
     }
@@ -202,10 +212,10 @@ export class Boss {
     if (title != undefined) { bossItem.title = title; }
     if (x != undefined) { bossItem.x = x; }
     if (y != undefined) { bossItem.y = y; }
+    if (entity_id != undefined) { bossItem.entity_id = entity_id; }
     if (health != undefined) { bossItem.health = health; }
     if (dead != undefined) { bossItem.dead = dead; }
 
-    //worldThing.state.mobResult.set(mobState.field_mob_name_value, mobItem);
     return bossItem;
   }
 
@@ -221,14 +231,15 @@ export class Boss {
     const bossItem = Boss.updateBossState(
       room,
       bossState,
-      bossState.target,
-      bossState.name,
+      bossState.field_boss_target_id,
+      bossState.entity_id.toString(),
+      bossState.title,
       x,
       y,
       undefined,
       undefined,
       i
     )
-    room.state.bossResult.set(bossState.target, bossItem);
+    room.state.bossResult.set(bossState.entity_id.toString(), bossItem);
   }
 }
