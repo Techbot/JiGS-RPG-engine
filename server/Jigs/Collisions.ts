@@ -10,7 +10,7 @@ import { portalCollider } from "../colliders/portalCollider";
 import { wallCollider } from "../colliders/wallCollider";
 import { rewardCollider } from "../colliders/rewardCollider";
 import { mobCollider } from "../colliders/mobCollider";
-
+import { bossCollider } from "../colliders/bossCollider";
 export class Collision {
 
   portalCollider: portalCollider;
@@ -18,6 +18,7 @@ export class Collision {
   wallCollider: wallCollider;
   rewardCollider: rewardCollider;
   mobCollider: mobCollider;
+  bossCollider: bossCollider;
 
   constructor() {
     this.portalCollider = new portalCollider();
@@ -25,6 +26,7 @@ export class Collision {
     this.wallCollider = new wallCollider();
     this.rewardCollider = new rewardCollider();
     this.mobCollider = new mobCollider();
+    this.bossCollider = new bossCollider();
   }
 
   add(room) {
@@ -38,12 +40,15 @@ export class Collision {
       this.wallCollider.do(room, bodyA, bodyB);
       this.rewardCollider.do(room,bodyA, bodyB);
       this.mobCollider.do(room, bodyA, bodyB);
+      this.bossCollider.do(room, bodyA, bodyB);
+
+
     })
     ////////////////////////////////////////////////////////////////////////////
     room.world.on('beginContact', function (evt: any) {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
-      //  console.log('Begin Contact');
+        console.log('Begin Contact');
       if (bodyA.isPlayer) {
         /*        console.log('endContact! --------------------------------------------------------------');
                   console.log('BODY A is the player!', bodyA.isPlayer, bodyA.id);
@@ -61,7 +66,7 @@ export class Collision {
       }
       //  console.log('----- .');
     });
-    room.world.on("endcontact", function (evt: any) {
+    room.world.on("endContact", function (evt: any) {
       var bodyA = evt.bodyA;
       var bodyB = evt.bodyB;
       console.log('-----------End Contact--- Pay Attention---');

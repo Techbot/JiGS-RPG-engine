@@ -8,16 +8,16 @@ import { useJigsStore } from '../../stores/jigs';
 export default class Boss extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
 
-    constructor(scene, x, y, sprite, name) {
+    constructor(scene, x, y, id, name) {
         super(scene, x, y, null);
         scene.add.sprite(x, y);
         this.jigs = useJigsStore();
-        this.setTexture('boss_' + sprite)
+        this.setTexture('boss_' + name)
      //   this.play('walkDown_boss' + sprite);
         this.setInteractive({ cursor: 'url(/assets/images/cursors/attack.cur), pointer' })
         this.setScale(.85)
         this.on('pointerdown', this.onBossDown.bind(this, name));
-        this.loadBoss(sprite);
+        this.loadBoss(name);
         this.setDepth(6);
     }
 
@@ -30,7 +30,7 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    loadBoss(sprite) {
-        console.log('boss added ' + sprite);
+    loadBoss(name) {
+        console.log('boss added ' + name);
     }
 }

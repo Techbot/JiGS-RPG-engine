@@ -86,5 +86,27 @@ export default class Messenger {
         i++;
       }
     });
+    scene.room.state.bossResult.onChange((value, key) => {
+
+      console.log('---------boss result-----------------------')
+
+      console.log(key)
+
+      console.log(value)
+
+
+      let i = 0;
+      while (i < scene.jigs.bossesArray.length) {
+        if (scene.jigs.bossesArray[i].target.toString() == key.toString()) {
+
+         console.log('x:' + value.x)
+
+          scene.jigs.bossesArray[i].x      = parseInt(value.x);
+          scene.jigs.bossesArray[i].y      = parseInt(value.y);
+          scene.jigs.bossesArray[i].health = parseInt(value.health);
+        }
+        i++;
+      }
+    });
   }
 }

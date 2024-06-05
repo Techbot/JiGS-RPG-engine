@@ -159,7 +159,7 @@ function getMobs(NodeNumber) {
         ` + NodeNumber, function (error, results) {
       if (error) throw error;
       console.log('The NodeNumber is: ', NodeNumber);
-      console.log('The solution is: ', results);
+      console.log('The zombie solution is: ', results);
       resolve(results);
     });
   })
@@ -168,20 +168,35 @@ function getMobs(NodeNumber) {
 
 
 function getBosses(NodeNumber) {
+
+  console.log('get bosses');
+
   return new Promise(function (resolve, reject) {
-    con.query(`SELECT node__field_level_boss.field_level_boss_target_id,
+    con.query(`SELECT paragraph__field_boss.entity_id,
+       paragraph__field_boss.field_boss_target_id,
        paragraph__field_x.field_x_value,
-       paragraph__field_y.field_y_value
-       FROM node__field_level_boss
+       paragraph__field_y.field_y_value,
+       node_field_data.title
+
+      FROM paragraph__field_boss
        Left Join paragraph__field_x
-       On paragraph__field_x.entity_id = node__field_level_boss.field_level_boss_target_id
+       On paragraph__field_x.entity_id = paragraph__field_boss.entity_id
+
        Left Join paragraph__field_y
-       On paragraph__field_y.entity_id = node__field_level_boss.field_level_boss_target_id
-       WHERE node__field_level_boss.entity_id =
+       On paragraph__field_y.entity_id = paragraph__field_boss.entity_id
+
+       Left JOIN node__field_mapgrid_boss
+       On node__field_mapgrid_boss.field_mapgrid_boss_target_id = paragraph__field_boss.entity_id
+
+       LEFT JOIN node_field_data
+       ON node_field_data.nid = paragraph__field_boss.field_boss_target_id
+
+
+       WHERE node__field_mapgrid_boss.entity_id =
         ` + NodeNumber, function (error, results) {
       if (error) throw error;
       console.log('The NodeNumber is: ', NodeNumber);
-      console.log('The solution is: ', results);
+      console.log('The monster solution is: ', results);
       resolve(results);
     });
   })

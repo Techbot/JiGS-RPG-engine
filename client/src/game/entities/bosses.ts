@@ -26,7 +26,7 @@ export default class Bosses {
       let i = 0;
       while (i < this.jigs.bossesArray.length) {
         this.BossContainerArray[i] = self.add.container(parseInt(this.jigs.bossesArray[i].x), parseInt(this.jigs.bossesArray[i].y));
-        this.SceneBossArray[i] = new Boss(self, 0, 0, this.jigs.bossesArray[i].boss, this.jigs.bossesArray[i].boss);
+        this.SceneBossArray[i] = new Boss(self, 0, 0, this.jigs.bossesArray[i].name, this.jigs.bossesArray[i].name);
         self.add.existing(this.SceneBossArray[i]);
         this.SceneBossHealthBarArray[i] = self.add.image(0, -30, 'healthBar');
         this.SceneBossHealthBarArray[i].displayWidth = 25;
@@ -43,8 +43,8 @@ export default class Bosses {
     let i = 0;
     while (i < this.BossContainerArray.length) {
       if (this.jigs.bossesArray[i] != undefined) {
-        this.BossContainerArray[i].x = this.jigs.bossesArray[i][1];
-        this.BossContainerArray[i].y = this.jigs.bossesArray[i][2];
+        this.BossContainerArray[i].x = this.jigs.bossesArray[i].x;
+        this.BossContainerArray[i].y = this.jigs.bossesArray[i].y;
      //   this.SceneBossHealthBarArray[i].displayWidth = this.jigs.bossesArray[i][6] / 4;
         this.SceneBossHealthBarArray[i].displayWidth = 100 / 4;
       }

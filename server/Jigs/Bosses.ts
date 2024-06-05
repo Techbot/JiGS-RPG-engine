@@ -9,21 +9,33 @@ var roomModel = require('../models/room.ts');
 var p2 = require('p2');
 export class Boss {
 
-  async load(world, nodeNumber, share) {
+  async load(room, nodeNumber: number, share) {
     roomModel.getBosses(nodeNumber).then((result: any) => {
-      // state.NpcResult = result;
+      result.forEach(bossState => {
+        console.log('target' + bossState.entity_id);
+
+        const bossItem = Boss.updateBossState(room, bossState,
+            undefined, undefined, undefined, undefined, 0, 0, undefined
+          );
+        room.state.bossResult.set(bossState.entity_id.toString(), bossItem);
+      });
       return result;
     }).then((newResult: any) => {
       for (let i = 0; i < newResult.length; i++) {
-        world.addBody(this.make(newResult[i], share));
+        newResult[i].health = 100;
+        var p2Boss = this.make(newResult[i], share);
+        p2Boss.destinationX = 0;
+        p2Boss.destinationY = 0;
+        room.world.addBody(p2Boss);
+        room.P2mobBodies.push(p2Boss);
       }
-    }).catch(function () {
-      console.log('Boss Error');
+    }).catch(function (e) {
+      console.log('Boss Error' + e);
     });
   }
 
   make(boss: any, share: any) {
-    // console.log('place');
+    console.log('place boss ' + boss.entity_id + ' @ ' + boss.field_x_value + ' X and ' + boss.field_y_value + ' Y');
     const circleShape = new p2.Circle({ radius: 10 });
     circleShape.collisionGroup = share.COL_ENEMY;
     circleShape.collisionMask = share.COL_PLAYER;
@@ -31,7 +43,6 @@ export class Boss {
     const circleBody = new p2.Body({
       mass: 1,
       position: [boss.field_x_value, boss.field_y_value],
-      angle: 0,
       type: p2.Body.DYNAMIC,
       collisionResponse: true,
       velocity: [0, 0],
@@ -170,16 +181,16 @@ export class Boss {
 
   // Sets up a zombie state with the original values, then updates
 
-  static updateBossState(room,
-    target: number | undefined, name: string | undefined, x: number | undefined, y: number | undefined,
-    health: number | undefined, dead: number | undefined, bossState, i: number | undefined
+  static updateBossState(room,bossState,
+    field_boss_target_id: number | undefined, title: string | undefined, x: number | undefined, y: number | undefined,
+    health: number | undefined, dead: number | undefined,  i: number | undefined
   ) {
     const bossItem = new BossState();
     if (bossState != undefined) {
-      bossItem.target = bossState.target;
-      bossItem.name = bossState.name;
-      bossItem.x = bossState.x;
-      bossItem.y = bossState.x;
+      bossItem.field_boss_target_id = bossState.field_boss_target_id;
+      bossItem.title = bossState.title;
+      bossItem.x = bossState.field_x_value;
+      bossItem.y = bossState.field_y_value;
       bossItem.health = bossState.health;
       bossItem.dead = bossState.dead;
     }
@@ -187,8 +198,8 @@ export class Boss {
       bossItem.x = parseInt(room.P2bossBodies[i].position[0]);
       bossItem.y = parseInt(room.P2bossBodies[i].position[1]);
     }
-    if (target != undefined) {bossItem.target = target; }
-    if (name != undefined) { bossItem.name = name; }
+    if (field_boss_target_id != undefined) { bossItem.field_boss_target_id = field_boss_target_id; }
+    if (title != undefined) { bossItem.title = title; }
     if (x != undefined) { bossItem.x = x; }
     if (y != undefined) { bossItem.y = y; }
     if (health != undefined) { bossItem.health = health; }
@@ -209,15 +220,15 @@ export class Boss {
     }
     const bossItem = Boss.updateBossState(
       room,
+      bossState,
       bossState.target,
       bossState.name,
       x,
       y,
       undefined,
       undefined,
-      bossState,
       i
     )
-    room.state.bossResult.set(bossItem.name, bossItem);
+    room.state.bossResult.set(bossState.target, bossItem);
   }
 }
