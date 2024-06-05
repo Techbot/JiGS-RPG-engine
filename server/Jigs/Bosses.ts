@@ -105,7 +105,7 @@ export class Boss {
                     var bossPlayerDist = Math.hypot(player.x - parseInt(room.P2bossBodies[i].position[0]), player.y - parseInt(room.P2bossBodies[i].position[1]));
 
                     if (bossPlayerDist > 160) {
-                      // this is to update the bosss follower
+                      // this is to update the boss follower
                       bossState.following = 0;
                       room.P2bossBodies[i].velocity[0] = 0;
                       room.P2bossBodies[i].velocity[1] = 0;
@@ -124,7 +124,6 @@ export class Boss {
       };
     };
   }
-
 
   async updateBossForce(body) {
 
@@ -169,32 +168,29 @@ export class Boss {
     });
   }
 
-
   // Sets up a zombie state with the original values, then updates
 
   static updateBossState(room,
-    target_id: number | undefined, name: string | undefined, x: number | undefined, y: number | undefined,
-    health: number | undefined, dead: number | undefined, following: number | undefined, bossState, i: number | undefined
+    target: number | undefined, name: string | undefined, x: number | undefined, y: number | undefined,
+    health: number | undefined, dead: number | undefined, bossState, i: number | undefined
   ) {
     const bossItem = new BossState();
     if (bossState != undefined) {
-      bossItem.field_mobs_target_id = bossState.field_mobs_target_id;
-      bossItem.field_mob_name_value = bossState.field_mob_name_value;
-      bossItem.field_x_value = bossState.field_x_value;
-      bossItem.field_y_value = bossState.field_y_value;
-      bossItem.following = bossState.following;
+      bossItem.target = bossState.target;
+      bossItem.name = bossState.name;
+      bossItem.x = bossState.x;
+      bossItem.y = bossState.x;
       bossItem.health = bossState.health;
       bossItem.dead = bossState.dead;
     }
     if (i != undefined) {
-      bossItem.field_x_value = parseInt(room.P2bossBodies[i].position[0]);
-      bossItem.field_y_value = parseInt(room.P2bossBodies[i].position[1]);
+      bossItem.x = parseInt(room.P2bossBodies[i].position[0]);
+      bossItem.y = parseInt(room.P2bossBodies[i].position[1]);
     }
-    if (target_id != undefined) {bossItem.field_mobs_target_id = target_id; }
-    if (name != undefined) { bossItem.field_mob_name_value = name; }
-    if (x != undefined) { bossItem.field_x_value = x; }
-    if (y != undefined) { bossItem.field_y_value = y; }
-    if (following != undefined) { bossItem.following = following; }
+    if (target != undefined) {bossItem.target = target; }
+    if (name != undefined) { bossItem.name = name; }
+    if (x != undefined) { bossItem.x = x; }
+    if (y != undefined) { bossItem.y = y; }
     if (health != undefined) { bossItem.health = health; }
     if (dead != undefined) { bossItem.dead = dead; }
 
@@ -213,17 +209,15 @@ export class Boss {
     }
     const bossItem = Boss.updateBossState(
       room,
-      bossState.field_bosss_target_id,
-      bossState.field_boss_name_value,
+      bossState.target,
+      bossState.name,
       x,
       y,
       undefined,
       undefined,
-      bossState.following,
       bossState,
       i
     )
-    room.state.bossResult.set(bossItem.field_boss_name_value, bossItem);
+    room.state.bossResult.set(bossItem.name, bossItem);
   }
-
 }

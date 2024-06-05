@@ -17,7 +17,7 @@ export default class BossLoader {
 
     if (this.jigs.bossesArray) {
       this.jigs.bossesArray.forEach(function loader(boss) {
-        scene.load.spritesheet('boss_' + boss.boss, '/assets/images/Level Bosses/' + boss.boss + '.png',
+        scene.load.spritesheet('boss_' + boss.name, '/assets/images/Level Bosses/' + boss.name + '.png',
           { frameWidth: parseInt(boss.field_frame_width), frameHeight: parseInt(boss.field_frame_height) });
       });
     }

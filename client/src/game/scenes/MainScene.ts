@@ -115,11 +115,11 @@ export class MainScene extends Phaser.Scene {
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         // connect with the room
-    //    const room =  await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
+        //    const room =  await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
 
-  //      console.log("room" + room);
+        //      console.log("room" + room);
 
-         try {
+        try {
             const room = await this.connect(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0));
             console.log("joined successfully " + this.room);
 
@@ -311,6 +311,10 @@ export class MainScene extends Phaser.Scene {
 
         if (this.jigs.mobArray != undefined) {
             this.Mobs.updateMobs(this);
+        }
+
+        if (this.jigs.bossesArray != undefined) {
+            this.Bosses.updateBosses(this);
         }
 
         for (let sessionId in this.playerEntities) {
