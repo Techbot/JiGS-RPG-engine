@@ -2,7 +2,7 @@
   <div class="chat-box-wrapper">
     <form class="chat-box" @submit="onSubmit($event)">
       <input v-model="text" placeholder="Write a message" type="text" />
-      <button :disabled="text === ''">Send</button>
+      <button type="submit" :disabled="text === ''">Send</button>
     </form>
   </div>
 </template>
