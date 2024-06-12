@@ -16,7 +16,7 @@ import { Portal } from "./Portals";
 import { Switch } from "./Switches";
 import { Wall } from "./Walls";
 import { Npc } from "./Npcs";
-import { Boss } from "./Bosses";
+import { Bosses } from "./Bosses";
 
 import { Reward } from "./Rewards";
 import { Layer } from "./Layers";
@@ -57,7 +57,7 @@ export class GameRoom extends Room<MyRoomState> {
   Switches: Switch;
   Walls: Wall;
   Npcs: Npc;
-  Bosses: Boss;
+  Bosses: Bosses;
   Rewards: Reward;
   Collisions: Collision;
   Layers: Layer;
@@ -73,7 +73,7 @@ export class GameRoom extends Room<MyRoomState> {
     this.Walls = new Wall;
     this.Rewards = new Reward;
     this.Npcs = new Npc;
-    this.Bosses = new Boss;
+    this.Bosses = new Bosses;
     this.Layers = new Layer;
 
     this.Collisions = new Collision;
@@ -179,7 +179,7 @@ export class GameRoom extends Room<MyRoomState> {
     var fixedTimeStep = 1 / 60;
     this.world.step(fixedTimeStep);
     this.Mobs.updateMob(this);
-    this.Bosses.updateBoss(this);
+    this.Bosses.updateBosses(this);
 
     this.state.players.forEach(player => {
       let input: InputData;
