@@ -1,5 +1,5 @@
 # JiGS
-## An Online Realtime Multiplayer RPG Trading game engine for DRUPAL CMS
+## An Online Realtime Multiplayer RPG Trading game engine
 
 ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/warningL.png) Ready For Testing ![JiGS](https://raw.githubusercontent.com/Techbot/JiGS/main/images/warningR.png)
 
