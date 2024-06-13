@@ -1,19 +1,19 @@
 <template>
-  <div :class="[ 'message', { dark } ]">
-    <small>{{ author }}: </small>
-    {{ text }}
+  <div v-for="message in chatMessages" :key="message.id" class="message">
+    <small>{{ message.author }}: </small>
+    {{ message.text }}
   </div>
 </template>
-<script>
-export default {
-  name: "Message",
-  props: [
-    "text", // Content of the message
-    "author", // Author of the message
-    "dark" // Background variant of the box
-  ]
-}
+
+<script setup>
+import { storeToRefs } from 'pinia';
+import { useChatMessageStore } from "../../stores/messages";
+
+  const store = useChatMessageStore()
+  const { chatMessages } = storeToRefs(store)
+
 </script>
+
 <style>
 .message {
   display: flex;

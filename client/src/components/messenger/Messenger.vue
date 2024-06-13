@@ -1,58 +1,26 @@
 <template>
   <div class="messages">
-    <Message v-for="(message, i) in messages" :key="i" :class="[ 'message', { right: message.isMine } ]" :dark="message.isMine" :text="message.text" :author="message.author" />
+    <Message />
   </div>
-  <ChatBox class="chat-box" @submit="onSubmit" />
+  <ChatBox class="chat-box-wrapper" />
 </template>
-<script>
+<script setup>
 import ChatBox from './ChatBox.vue';
 import Message from './Message.vue';
+import axios from 'axios';
 
-export default {
-  name: "Messenger",
-  components: {
-    ChatBox,
-    Message
-  },
-  methods: {
-    onSubmit(event, text, author = 'player id') {
-      event.preventDefault();
-      event.stopPropagation();
-      this.messages.unshift({ text: text, author: author });
-    }
-  },
-  data() {
-    return {
-      user: undefined,
-      messages: [
-        {
-          text: "I've got a job that might take yer fancy.",
-          author: "Pope Turlock"
-        },
-        {
-          text: "A large zombie horde is heading up O'Connel Street",
-          author: "World message"
-        },
-        {
-          text: "I see you have a soul. Care to sell it?",
-          author: "Hades"
-        },
-        {
-          text: "Algae slimes numbers are increasing rapidly, especially in the Red District near the Liffey.",
-          author: "World message"
-        },
-        {
-          text: "The subject is interpolated into a deconstructed theory of knowledge and experience as a totality.",
-          author: "~~ waveylines ~~"
-        },
-        {
-          text: "Whad are ye lookin' at?! If ya wish to keep them eyes...",
-          author: "Khan the Road Warrior"
-        }
-      ]
-    }
-  }
-}
+  // function onSubmit(event, id, text, author = 'player id') {
+  //   event.stopPropagation();
+  //   axios.post(
+  //     'https://my-json-server.typicode.com/left23/json-server/messages',
+  //     chatMessages
+  //   ).then(function (response) {
+  //     console.log('Response', response)
+  //   })
+  //   .catch(function (err) {
+  //     console.log('Error', err)
+  //   })
+  // }
 </script>
 <style>
 .messenger {
@@ -79,12 +47,4 @@ export default {
   background: var(--emc-black);
   height: 180px;
 }
-
-/* .message + .message {
-  margin-top: 0.25rem;
-}
-
-.message.right {
-  margin-left: auto;
-} */
 </style>

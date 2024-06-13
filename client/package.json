@@ -40,6 +40,7 @@
     "phaser": "3.55.2",
     "phaser3-rex-plugins": "1.1.85",
     "pinia": "2.0.33",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "sass": "^1.64.2",
     "socket.io": "^4.7.4",
     "vue": "^3.3.4",

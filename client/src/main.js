@@ -1,5 +1,8 @@
 //import { defineCustomElements as defineIonPhaser } from '@ion-phaser/core/loader';
 import { createApp } from "vue"
+
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+
 import { createPinia } from "pinia"
 import App from "./App.vue"
 
@@ -18,6 +21,7 @@ LogRocket.identify('THE_USER_ID_IN_YOUR_APP', {
   subscriptionType: 'pro'
 }); */
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 //Vue.config.productionTip = false
 //App.config.ignoredElements = [/ion-\w*/];
  let wrapper = window.document.querySelector('#module-name-game')
