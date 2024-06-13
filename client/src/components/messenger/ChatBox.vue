@@ -1,31 +1,24 @@
 <template>
-  <div class="chat-box-wrapper">
-    <form class="chat-box" @submit="onSubmit($event)">
-      <input v-model="text" placeholder="Write a message" type="text" />
-      <button type="submit" :disabled="text === ''">Send</button>
-    </form>
-  </div>
+  <form class="chat-box" @submit.prevent="addItemAndClear(text)">
+    <input v-model="text" placeholder="Write a message" type="text" />
+    <button type="submit" :disabled="message === ''">Send</button>
+  </form>
 </template>
 
-<script>
-export default {
-  name: "ChatBox",
-  data() {
-    return {
-      // To keep the state of the input content
-      text: ""
+<script setup>
+  import { ref } from "vue";
+  const text = ref('');
+  import { useChatMessageStore } from "../../stores/messages";
+  const store = useChatMessageStore()
+
+  function addItemAndClear(item) {
+
+    if(item.length === 0) {
+      return
     }
-  },
-  methods: {
-    // We will call this when the form is submitted
-    onSubmit(event) {
-      // This fires an event which we will handle
-      // in the parent component
-      this.$emit("submit", event, this.text, this.author);
-      this.text = "";
-    }
+    store.addChatMessage(item)
+    text.value = ''
   }
-}
 </script>
 
 <style>
