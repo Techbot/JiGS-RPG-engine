@@ -20,7 +20,7 @@ export class SceneSelector extends Phaser.Scene {
         // update menu background color
         this.cameras.main.setBackgroundColor(0x000000);
         // this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-        this.load.image('einstein', '/assets/images/8b0f172a-80ed-4fbd-b357-c512127970ce.png');
+        this.load.image('enter', '/assets/images/game-home.png');
         // preload demo assets
         // this.load.image('ship_0001', 'assets/ship_0001.png');
         //   this.load.image('ship_0001', 'https://cdn.glitch.global/3e033dcd-d5be-4db4-99e8-086ae90969ec/ship_0001.png?v=1649945243288');
@@ -28,7 +28,7 @@ export class SceneSelector extends Phaser.Scene {
     }
 
     create() {
-        this.image = this.add.image(480, 320, 'einstein')
+        this.image = this.add.image(480, 320, 'enter')
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' }).
             on("pointerdown", () => {
                 this.game.scene.switch("selector", 'main');
