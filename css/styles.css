@@ -167,9 +167,11 @@ h1 {
 .tabs .tab-buttons a:hover,
 .tabs .tab-buttons a:focus,
 .tabs .tab-buttons a.active,
+.user-logged-in.path-user .tabs .tab-buttons a:first-child,
 .tabs .tab-buttons button:hover,
 .tabs .tab-buttons button:focus,
-.tabs .tab-buttons button.active {
+.tabs .tab-buttons button.active,
+.user-logged-in.path-user .tabs .tab-buttons button:first-child {
   color: white;
   background-color: var(--emc-teal);
   border: 0 none;
@@ -177,13 +179,17 @@ h1 {
 }
 
 .tabs .tab-buttons a.active,
-.tabs .tab-buttons button.active {
+.tabs .tab-buttons button.active,
+.user-logged-in.path-user .tabs .tab-buttons a:first-child,
+.user-logged-in.path-user .tabs .tab-buttons button:first-child {
   background-color: var(--emc-teal-dark);
   width: 300px;
 }
 
 .tabs .tab-buttons a.active:hover,
-.tabs .tab-buttons button.active:hover {
+.tabs .tab-buttons button.active:hover,
+.user-logged-in.path-user .tabs .tab-buttons a:first-child:hover,
+.user-logged-in.path-user .tabs .tab-buttons button:first-child:hover {
   color: white;
   background-color: var(--emc-teal-alt);
 }
@@ -242,7 +248,7 @@ h1 {
   margin-bottom: 4rem;
 }
 
-.field--name-field-faction > .field__label,
+/* .field--name-field-faction > .field__label,
 .field--name-field-skill > .field__label {
   font-size: 2rem;
   text-shadow: 2px 2px 2px #000;
@@ -251,7 +257,7 @@ h1 {
   line-height: 1.2;
   color: var(--cui-heading-color);
   margin-bottom: 0.5rem;
-}
+} */
 
 .field--name-field-skill > .field__items {
   display: grid;
@@ -381,8 +387,6 @@ h1 {
   margin-bottom: 3rem;
 }
 
-.field--name-field-missions > .field__label,
-.field--name-field-missions-completed > .field__label,
 .block.block-views h3 {
   font-size: 2rem;
   text-shadow: 2px 2px 2px #000;
