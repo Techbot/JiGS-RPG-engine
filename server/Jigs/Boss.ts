@@ -14,23 +14,30 @@ enum Direction {
   LEFT,
   RIGHT
 }
-
-
 export class Boss {
 
   private direction = Direction.RIGHT
   pause: number;
   body: any;
+  share: any;
+  boss: any;
 
   constructor(boss: any, share: any) {
     console.log('place boss ' + boss.entity_id + ' @ ' + boss.x + ' X and ' + boss.y + ' Y');
+    this.share = share;
+    this.boss = boss;
+
+  }
+
+  make() {
     const circleShape = new p2.Circle({ radius: 10 });
-    circleShape.collisionGroup = share.COL_ENEMY;
-    circleShape.collisionMask = share.COL_PLAYER;
+    circleShape.collisionGroup = this.share.COL_ENEMY;
+    circleShape.collisionMask = this.share.COL_PLAYER;
     // Create a typical dynamic body
+
     this.body = new p2.Body({
       mass: 1,
-      position: [boss.x, boss.y],
+      position: [this.boss.x, this.boss.y],
       type: p2.Body.DYNAMIC,
       collisionResponse: true,
       velocity: [0, 0],
@@ -38,7 +45,7 @@ export class Boss {
     });
     // console.log(' position:', circleBody.position);
     this.body.isBoss = true;
-    this.body.title = boss.title;
+    this.body.title = this.boss.title;
     this.body.sensor = true;
     this.body.motionState = 2; //STATIC
     // Add a circular shape to the body
@@ -48,62 +55,72 @@ export class Boss {
     this.body.destinationX = 0;
     this.body.destinationY = 0;
     //return this.body;
-    this.body.something = (speed) => {
+    return this.body;
 
-      switch (this.body.direction) {
-        case Direction.UP:
-          console.log("body" + this.body.title + "Up")
-          this.body.velocity[0] = 0;
-          this.body.velocity[1] = -speed
-          break
+  }
 
-        case Direction.DOWN:
+    move(speed)  {
 
-          console.log("body" + this.body.title + "DOWN")
-          this.body.velocity[0] = 0;
-          this.body.velocity[1] = speed
-          break
+  switch (this.body.direction) {
+    case Direction.UP:
+      console.log("body" + this.body.title + "Up")
+      this.body.velocity[0] = 0;
+      this.body.velocity[1] = -speed
+      break
 
-        case Direction.LEFT:
+    case Direction.DOWN:
 
-          console.log("body" + this.body.title + "LEFT")
-          this.body.velocity[0] = -speed;
-          this.body.velocity[1] = 0
+      console.log("body" + this.body.title + "DOWN")
+      this.body.velocity[0] = 0;
+      this.body.velocity[1] = speed
+      break
 
-          break
+    case Direction.LEFT:
 
-        case Direction.RIGHT:
+      console.log("body" + this.body.title + "LEFT")
+      this.body.velocity[0] = -speed;
+      this.body.velocity[1] = 0
 
-          console.log("body" + this.body.title + "RIGHT")
-          this.body.velocity[0] = speed;
-          this.body.velocity[1] = 0;
-          break
-      }
+      break
 
-      this.body.updateBossForce = async () => {
+    case Direction.RIGHT:
 
-        if (this.pause == 0) {
-          this.pause = 1
-          const x = await this.body.skip(4000);
-          //   console.log('--------------------------- ' + x)
-          this.direction = this.body.randomDirection(this.direction)
-          this.body.something(25)
+      console.log("body" + this.body.title + "RIGHT")
+      this.body.velocity[0] = speed;
+      this.body.velocity[1] = 0;
+      break
+  }
 
-        }
-      }
-      this.body.skip = (val) => {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            this.pause = 0;
-            console.log('-------------------------');
-            resolve(val);
-          }, val);
-        });
-      }
+}
 
+  randomDirection = (exclude: Direction) => {
+    let newDirection = (Math.floor(Math.random() * 4))
+    while (newDirection === exclude) {
+      newDirection = (Math.floor(Math.random() * 4))
+    }
+    return newDirection
+  }
 
+  async updateBossDirection() {
+
+    if (this.pause == 0) {
+      this.pause = 1
+      const x = await this.skip(40);
+      //   console.log('--------------------------- ' + x)
+      this.direction = this.body.randomDirection(this.direction)
+      this.body.move(25)
 
     }
-    return this.body;
   }
+
+  skip(val) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.pause = 0;
+        console.log('---------skip-----------');
+        resolve(val);
+      }, val);
+    });
+  }
+
 }
