@@ -26,7 +26,7 @@ import Bosses from "../entities/bosses";
 import Walls from "../entities/walls";
 import Folios from "../entities/folios";
 import Load from "../loaders/loader";
-import Hydrater from '../../utils/hydrater';
+import Hydrater from '../../utils/Hydrater';
 
 export class MainScene extends Phaser.Scene {
     room: Room;
@@ -179,7 +179,7 @@ export class MainScene extends Phaser.Scene {
         });
     }
 
-    jump() {
+/*     jumpOLD() {
         axios
             .get("/mystate?_wrapper_format=drupal_ajax")
             .then((response) => {
@@ -191,9 +191,40 @@ export class MainScene extends Phaser.Scene {
                 this.room.leave(); // Backend
                 this.scene.start('main'); //Frontend)
             })
+    } */
+
+    async jump() {
+        console.log("********* jump up ");
+        await this.updatePlayer();
+        //  this.soundtrack.stop();
+        console.log("********** jump down");
     }
 
-    updateState() {
+    updatePlayer() {
+        axios
+            .get("states/myplayer?_wrapper_format=drupal_ajax")
+            .then((response) => {
+                //this.hydratePlayer(response);
+                this.hydrater.hydratePlayer(response);
+                this.updateMapState();
+            })
+    }
+
+    updateMapState() {
+        axios
+            .get("states/mystate?_wrapper_format=drupal_ajax")
+            .then((response) => {
+                this.hydrater.hydrateMap(response, 1);
+                //this.hydrateMap(response, 1);
+                var Loader = new Load;
+                Loader.load(this);
+                this.jigs.room.leave(); // Backend
+                this.scene.start('main'); //Frontend)
+            })
+    }
+
+
+/*     updateStateOLD() {
         if (this.jigs.playerState == "alive") {
             axios
                 .get("/mystate?_wrapper_format=drupal_ajax")
@@ -201,7 +232,13 @@ export class MainScene extends Phaser.Scene {
                     this.hydrater.hydrate(response, 0);
                 })
         }
-    }
+    } */
+
+
+
+
+
+
 
     hydrate(response, incMob) {
         this.jigs.playerStats = response.data[0].value["player"];
