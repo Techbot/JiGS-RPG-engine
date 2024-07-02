@@ -16,8 +16,8 @@ export default class Messenger {
     scene.room.onMessage("collide", (message) => {
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
-      //  scene.MobContainerArray[i].x = scene.jigs.mobArray[i][1];
-      //  scene.MobContainerArray[i].y = scene.jigs.mobArray[i][2];
+        //  scene.MobContainerArray[i].x = scene.jigs.mobArray[i][1];
+        //  scene.MobContainerArray[i].y = scene.jigs.mobArray[i][2];
         i++;
       }
     });
@@ -49,7 +49,7 @@ export default class Messenger {
       while (i < scene.jigs.mobArray.length) {
         if (scene.jigs.mobArray[i][1] == message) {
           scene.Mobs.SceneMobArray[i].play('hurt_mob' + scene.jigs.mobArray[i][4]);
-       //   scene.Mobs.SceneMobArray[i].setPosition(parseInt(scene.jigs.mobArray[i].x), parseInt(scene.jigs.mobArray[i].y));
+          //   scene.Mobs.SceneMobArray[i].setPosition(parseInt(scene.jigs.mobArray[i].x), parseInt(scene.jigs.mobArray[i].y));
         }
         i++;
       }
@@ -82,26 +82,25 @@ export default class Messenger {
           scene.jigs.mobArray[i][2] = parseInt(value.field_x_value);
           scene.jigs.mobArray[i][3] = parseInt(value.field_y_value);
           scene.jigs.mobArray[i][6] = parseInt(value.health);
+          scene.jigs.mobArray[i][7] = value.direction;
         }
         i++;
       }
     });
+
     scene.room.state.bossResult.onChange((value, key) => {
-
       console.log('---------boss result-----------------------')
-
-
-
-         let i = 0;
+      let i = 0;
       while (i < scene.jigs.bossesArray.length) {
 
         console.log('key' + value.entity_id)
-        console.log('2' +scene.jigs.bossesArray[i].target)
+        console.log('2' + scene.jigs.bossesArray[i].target)
 
         if (scene.jigs.bossesArray[i].target == key) {
-          scene.jigs.bossesArray[i].x       = parseInt(value.x);
-          scene.jigs.bossesArray[i].y       = parseInt(value.y);
-          scene.jigs.bossesArray[i].health  = parseInt(value.health);
+          scene.jigs.bossesArray[i].x = parseInt(value.x);
+          scene.jigs.bossesArray[i].y = parseInt(value.y);
+          scene.jigs.bossesArray[i].health = parseInt(value.health);
+          scene.jigs.bossesArray[i].direction = value.direction;
         }
         i++;
       }
