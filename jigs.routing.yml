@@ -6,6 +6,14 @@ jigs.my_state:
   requirements:
     _permission: 'access content'
 
+jigs.player_state:
+  path: 'states/myplayer'
+  defaults:
+    _controller: '\Drupal\jigs\Controller\GameController::myPlayerState'
+    _title: 'player state'
+  requirements:
+    _permission: 'access content'
+
 jigs.my_inventory:
   path: '/myinventory'
   defaults:

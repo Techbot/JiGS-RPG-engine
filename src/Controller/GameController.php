@@ -63,14 +63,28 @@ class GameController extends ControllerBase
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
-    $player                     = new Player();
-    $responseData['player']     =  $player->create();
+    //$player                     = new Player();
+    //$responseData['player']     =  $player->create();
     $gameConfig                 = new Game();
     $responseData['gameConfig'] = $gameConfig->create();
     $mapGrid                    = new MapGrid($responseData['player']['userMG'], $responseData['player']['id'], $player);
     $responseData['MapGrid']    = $mapGrid->create();
     $city                       = new City($responseData['MapGrid']['userCity']);
     $responseData['City']       = $city->create();
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+
+  public function myPlayerState(Request $request)
+  {
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response = new AjaxResponse();
+    $player                   = new Player();
+    //$player = new DiscordPlayer($discordName = $request->query->get('discordName'));
+
+    $responseData['player'] = $player->create();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
