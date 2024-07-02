@@ -16,6 +16,8 @@ import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
 import axios from "axios";
 import Player from "../entities/player";
+import OtherPlayer from "../entities/otherPlayer.js";
+
 import Messenger from "../entities/messenger";
 import Rewards from "../entities/rewards";
 import Portals from "../entities/portals";
@@ -31,7 +33,7 @@ import Hydrater from '../../utils/Hydrater';
 export class MainScene extends Phaser.Scene {
     room: Room;
     currentPlayer: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
-    playerEntities: { [sessionId: string]: Phaser.Types.Physics.Arcade.ImageWithDynamicBody } = {};
+    playerEntities: { [sessionId: string]: any } = {};
     debugFPS: Phaser.GameObjects.Text;
     cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
@@ -64,6 +66,7 @@ export class MainScene extends Phaser.Scene {
     cameras: any;
     client: Client;
     localPlayer: Player;
+    otherPlayer: OtherPlayer | undefined;
     Loader: Load;
     scene: any;
     game: any;
@@ -156,7 +159,12 @@ export class MainScene extends Phaser.Scene {
                 this.Walls.add(this);
                 this.Folio.add(this);
                 this.localPlayer.add();
+                this.playerEntities[sessionId] = entity;
             } else {
+
+
+/*
+
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
                 player.onChange(() => {
@@ -165,7 +173,11 @@ export class MainScene extends Phaser.Scene {
                     //
                     entity.setData('serverX', player.x);
                     entity.setData('serverY', player.y);
-                });
+                }); */
+
+                const otherPlayer = new OtherPlayer(this, player);
+                otherPlayer.add();
+                this.playerEntities[sessionId] = otherPlayer;
             }
             this.playerEntities[sessionId] = entity;
         });
@@ -351,18 +363,30 @@ export class MainScene extends Phaser.Scene {
         if (this.jigs.bossesArray != undefined) {
             this.Bosses.updateBosses(this);
         }
+        ////////////////////// Update Other Players ////////////////////////////////////
 
         for (let sessionId in this.playerEntities) {
             if (sessionId === this.room.sessionId) {
                 continue;
             }
             if (this.playerEntities[sessionId] !== undefined) {
-                const entity = this.playerEntities[sessionId];
+
+
+
+                this.playerEntities[sessionId].update();
+
+
+/*                 const entity = this.playerEntities[sessionId];
                 if (entity.data) {
                     const { serverX, serverY } = entity.data.values;
                     entity.x = Phaser.Math.Linear(entity.x, serverX, 0.2);
                     entity.y = Phaser.Math.Linear(entity.y, serverY, 0.2);
                 }
+ */
+
+
+
+
             }
         }
     }
