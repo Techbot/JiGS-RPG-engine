@@ -15,11 +15,9 @@ import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
 import axios from "axios";
-
 import Player from "../entities/player";
 import Messenger from "../entities/messenger";
 import Rewards from "../entities/rewards";
-import Load from "../loaders/loader";
 import Portals from "../entities/portals";
 import Switches from "../entities/switches";
 import NPCs from "../entities/npcs";
@@ -27,6 +25,8 @@ import Mobs from "../entities/mobs";
 import Bosses from "../entities/bosses";
 import Walls from "../entities/walls";
 import Folios from "../entities/folios";
+import Load from "../loaders/loader";
+import Hydrater from '../../utils/hydrater';
 
 export class MainScene extends Phaser.Scene {
     room: Room;
@@ -83,6 +83,7 @@ export class MainScene extends Phaser.Scene {
     Folio: Folios;
     walkSound: Phaser.Sound.BaseSound;
     soundtrack: Phaser.Sound.BaseSound;
+    hydrater: Hydrater;
 
     constructor() {
         super({ key: "main" });
@@ -96,6 +97,7 @@ export class MainScene extends Phaser.Scene {
         this.Bosses = new Bosses;
         this.Rewards = new Rewards;
         this.Folio = new Folios;
+        this.hydrater = new Hydrater;
     }
 
     preload() {
@@ -137,7 +139,6 @@ export class MainScene extends Phaser.Scene {
         this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.06 });
         this.soundtrack.play();
         this.messenger.initMessages(this);
-
         this.room.state.players.onAdd((player, sessionId) => {
             this.localPlayer = new Player(this, this.room, player);
             var entity: any;
@@ -155,9 +156,6 @@ export class MainScene extends Phaser.Scene {
                 this.Walls.add(this);
                 this.Folio.add(this);
                 this.localPlayer.add();
-
-
-
             } else {
                 entity = this.physics.add.sprite(player.x, player.y, 'otherPlayer').setDepth(5).setScale(.85);
                 // listening for server updates
@@ -200,7 +198,7 @@ export class MainScene extends Phaser.Scene {
             axios
                 .get("/mystate?_wrapper_format=drupal_ajax")
                 .then((response) => {
-                    this.hydrate(response, 0);
+                    this.hydrater.hydrate(response, 0);
                 })
         }
     }
