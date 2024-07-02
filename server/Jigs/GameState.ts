@@ -18,6 +18,7 @@ export class Player extends Schema {
   @type("number") mouseX: number;
   @type("number") mouseY: number;
   @type("number") health: number;
+  @type("string") direction: string;
 
   inputQueue: InputData[] = [];
   P2: Promise<void>;
@@ -40,6 +41,7 @@ export class ZombieState extends Schema {
   @type("number") health: number;
   @type("number") following: number;
   @type("number") dead: number;
+  @type("string") direction: string;
 }
 export class BossState extends Schema {
   @type("number") field_boss_target_id: number;
@@ -49,6 +51,7 @@ export class BossState extends Schema {
   @type("number") y: number;
   @type("number") health: number;
   @type("number") dead: number;
+  @type("string") direction: string;
 }
 
 export class PlayerMap extends Schema {
