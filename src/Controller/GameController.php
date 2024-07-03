@@ -59,7 +59,7 @@ class GameController extends ControllerBase
    *  could/will break your forms.
    */
 
-  public function myState()
+  public function myState(Request $request)
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
@@ -67,7 +67,10 @@ class GameController extends ControllerBase
     //$responseData['player']     =  $player->create();
     $gameConfig                 = new Game();
     $responseData['gameConfig'] = $gameConfig->create();
-    $mapGrid                    = new MapGrid($responseData['player']['userMG'], $responseData['player']['id'], $player);
+    //$mapGrid                    = new MapGrid($responseData['player']['userMG']);
+
+    $mapGrid = new MapGrid($request->query->get('mapGrid'));
+
     $responseData['MapGrid']    = $mapGrid->create();
     $city                       = new City($responseData['MapGrid']['userCity']);
     $responseData['City']       = $city->create();
