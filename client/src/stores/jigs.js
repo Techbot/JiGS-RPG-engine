@@ -4,6 +4,9 @@ import axios from "axios";
 
 export const useJigsStore = defineStore("jigs", {
   state: () => ({
+
+    room: {},
+
     playerName: "Blank",
 
     playerId: 0,

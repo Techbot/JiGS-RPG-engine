@@ -7,13 +7,19 @@ export default class Messenger {
 
   initMessages(scene) {
 
-    scene.room.onMessage("portal", (message) => {
+    console.log('innit one')
+
+
+    scene.jigs.room.onMessage("portal", (message) => {
       const promise1 = Promise.resolve(scene.jump());
       scene.jigs.tiled = message;
       //  hide(this.localPlayer);
     });
 
-    scene.room.onMessage("collide", (message) => {
+    console.log('innit two')
+
+
+    scene.jigs.room.onMessage("collide", (message) => {
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
         //  scene.MobContainerArray[i].x = scene.jigs.mobArray[i][1];
@@ -22,7 +28,7 @@ export default class Messenger {
       }
     });
 
-    scene.room.onMessage("dead", (message) => {
+    scene.jigs.room.onMessage("dead", (message) => {
       console.log('dead');
       if (scene.jigs.playerState != "dead") {
         scene.currentPlayer.anims.play('hurt_' + scene.jigs.playerStats.sprite_sheet);
@@ -30,21 +36,29 @@ export default class Messenger {
       scene.jigs.playerState = "dead";
     });
 
-    scene.room.onMessage("reward", (message) => {
+
+
+
+
+    scene.jigs.room.onMessage("reward", (message) => {
       scene.jigs.playerStats.credits++;
       //   this.incrementReward();
     });
 
-    scene.room.onMessage("player hit", (message) => {
+    scene.jigs.room.onMessage("player hit", (message) => {
       scene.updateState();
     });
 
-    scene.room.onMessage("struck", (message) => {
+
+    console.log('innit three')
+
+
+    scene.jigs.room.onMessage("struck", (message) => {
       console.log('struck:' + message);
       scene.jigs.playerStats.health = message;
     });
 
-    scene.room.onMessage("zombie dead", (message) => {
+    scene.jigs.room.onMessage("zombie dead", (message) => {
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
         if (scene.jigs.mobArray[i][1] == message) {
@@ -56,7 +70,8 @@ export default class Messenger {
       scene.updateState();
     });
 
-    scene.room.onMessage("remove-reward", (message) => {
+    console.log('innit four')
+    scene.jigs.room.onMessage("remove-reward", (message) => {
       let i = 0;
       while (i < scene.rewardsArray.length) {
         if (scene.rewardsArray[i].ref == message) {
@@ -66,15 +81,19 @@ export default class Messenger {
       }
     });
 
-    scene.room.onStateChange((state) => {
+    console.log('innit five')
+    scene.jigs.room.onStateChange((state) => {
       //
     });
 
-    scene.room.onStateChange.once((state) => {
+    scene.jigs.room.onStateChange.once((state) => {
       // console.log("the room state has been updated:", state);
     });
 
-    scene.room.state.mobResult.onChange((value, key) => {
+    console.log('innit six')
+
+
+    scene.jigs.room.state.mobResult.onChange((value, key) => {
 
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
@@ -88,13 +107,17 @@ export default class Messenger {
       }
     });
 
-    scene.room.state.bossResult.onChange((value, key) => {
-      console.log('---------boss result-----------------------')
+
+    console.log('innit seven')
+
+
+    scene.jigs.room.state.bossResult.onChange((value, key) => {
+      //console.log('---------boss result-----------------------')
       let i = 0;
       while (i < scene.jigs.bossesArray.length) {
 
-        console.log('key' + value.entity_id)
-        console.log('2' + scene.jigs.bossesArray[i].target)
+     //   console.log('key' + value.entity_id)
+    //    console.log('2' + scene.jigs.bossesArray[i].target)
 
         if (scene.jigs.bossesArray[i].target == key) {
           scene.jigs.bossesArray[i].x = parseInt(value.x);
@@ -105,5 +128,14 @@ export default class Messenger {
         i++;
       }
     });
+
+    console.log('innit eight')
+
   }
+
+
+
+
+
+
 }

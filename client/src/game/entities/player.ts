@@ -34,7 +34,7 @@ export default class Player {
 
     constructor(scene, room, player) {
         this.scene = scene;
-        this.room = room;
+        //this.room = room;
         this.player = player;
         this.jigs = useJigsStore();
         this.playerMovement = new PlayerMovement(scene);
@@ -101,14 +101,14 @@ export default class Player {
 
     onPlayerDown() {
         this.jigs.playerState = "dead";
-        this.room.leave(); // Backend
+        this.jigs.room.leave(); // Backend
         this.scene.switch("main", "DeadScene");
     }
 
     updatePlayer() {
         if (this.jigs.leave == 1) {
             this.jigs.leave = 0;
-            this.room.leave(); // Backend
+            this.jigs.room.leave(); // Backend
         }
         const velocity = 80;
         this.scene.inputPayload.left = this.scene.cursorKeys.left.isDown || this.scene.keyA.isDown;
@@ -120,15 +120,15 @@ export default class Player {
         this.scene.inputPayload.mobClick = this.jigs.mobClick;
 
         ////////////////////////// SEND /////////////////////////////////
-        if (this.scene.room.send && this.scene.room.send !== undefined) {
+        if (this.scene.jigs.room.send && this.scene.jigs.room.send !== undefined) {
             if (this.jigs.playerState == "alive") {
-                this.scene.room.send(0, this.scene.inputPayload);
+                this.scene.jigs.room.send(0, this.scene.inputPayload);
             }
         }
         if (!this.scene.currentPlayer.anims || this.jigs.playerState != "alive") {
             return;
         }
-        this.scene.physics.world.collide(this.scene.localPlayer.entity, this.scene.Walls.walls);
+       // this.scene.physics.world.collide(this.player.entity, this.scene.Walls.walls);
         this.playerMovement.move(this.scene.currentPlayer, velocity, this.scene.colliderMap);
         this.jigs.mobClick = 0;
 

@@ -1,7 +1,14 @@
 import Phaser from "phaser";
 // import WebFont from '../../assets/WebFont'
-
+import axios, { AxiosResponse } from "axios";
+import { useJigsStore } from '../../stores/jigs';
+import Hydrater from '../../utils/Hydrater';
 export class SceneSelector extends Phaser.Scene {
+
+
+
+    hydrater: Hydrater;
+    jigs: any;
 
     // parts = {
     //     '1': "Help",
@@ -12,6 +19,8 @@ export class SceneSelector extends Phaser.Scene {
 
     constructor() {
         super({ key: "selector" });
+        this.jigs = useJigsStore();
+        this.hydrater = new Hydrater;
     }
 
     image;
@@ -28,6 +37,10 @@ export class SceneSelector extends Phaser.Scene {
     }
 
     create() {
+
+        this.updatePlayer();
+
+
         this.image = this.add.image(480, 320, 'enter')
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' }).
             on("pointerdown", () => {
@@ -53,5 +66,20 @@ export class SceneSelector extends Phaser.Scene {
         //             this.game.scene.switch("selector", "main");
         //         });
         // }
+    }
+    updatePlayer() {
+        axios
+            .get("states/myplayer?_wrapper_format=drupal_ajax")
+            .then((response) => {
+                //this.hydratePlayer(response);
+                this.hydrater.hydratePlayer(response);
+                axios
+                    .get("states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
+                    .then((response) => {
+                        console.log(response);
+                        this.hydrater.hydrateMap(response, 1);
+                        //this.hydrateMap(response, 1);
+                    })
+            })
     }
 }

@@ -30,9 +30,9 @@ export default {
     };
   },
   mounted() {
-    this.room = new Room;
-    this.client = new Client(BACKEND_URL);
-    this.jigs = useJigsStore();
+   // this.room = new Room;
+   // this.client = new Client(BACKEND_URL);
+  //  this.jigs = useJigsStore();
   //  this.jigs.hydrateState(1);
   },
   methods: {
@@ -57,7 +57,7 @@ export default {
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.portalsArray);
-      this.room.leave();
+      this.jigs.room.leave();
     },
     char(e) {
       e.preventDefault();
@@ -66,7 +66,7 @@ export default {
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.tiled);
       console.log(this.jigs.gameState);
-      this.room.leave();
+      this.jigs.room.leave();
     },
     inventory(e) {
       e.preventDefault();
@@ -75,7 +75,7 @@ export default {
       console.log(this.jigs.userMapGrid);
       console.log(this.jigs.tiled);
       console.log(this.jigs.gameState);
-      this.room.leave();
+      this.jigs.room.leave();
     },
 
     skills(e) {
@@ -85,7 +85,7 @@ export default {
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.userMapGrid);
-      this.room.leave();
+      this.jigs.room.leave();
     },
     quests(e) {
       e.preventDefault();
@@ -94,7 +94,7 @@ export default {
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.userMapGrid);
-      this.room.leave();
+      this.jigs.room.leave();
     },
     game(e) {
       e.preventDefault();
