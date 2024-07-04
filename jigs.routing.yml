@@ -1,5 +1,5 @@
 jigs.my_state:
-  path: 'states/mystate'
+  path: '/states/mystate'
   defaults:
     _controller: '\Drupal\jigs\Controller\GameController::myState'
     _title: 'game state'
@@ -7,7 +7,7 @@ jigs.my_state:
     _permission: 'access content'
 
 jigs.player_state:
-  path: 'states/myplayer'
+  path: '/states/myplayer'
   defaults:
     _controller: '\Drupal\jigs\Controller\GameController::myPlayerState'
     _title: 'player state'

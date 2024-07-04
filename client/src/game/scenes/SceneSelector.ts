@@ -69,12 +69,12 @@ export class SceneSelector extends Phaser.Scene {
     }
     updatePlayer() {
         axios
-            .get("states/myplayer?_wrapper_format=drupal_ajax")
+            .get("/states/myplayer?_wrapper_format=drupal_ajax")
             .then((response) => {
                 //this.hydratePlayer(response);
                 this.hydrater.hydratePlayer(response);
                 axios
-                    .get("states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
+                    .get("/states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
                     .then((response) => {
                         console.log(response);
                         this.hydrater.hydrateMap(response, 1);
