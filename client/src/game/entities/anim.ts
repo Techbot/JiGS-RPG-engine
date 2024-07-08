@@ -4,43 +4,41 @@
 
 import Phaser from 'phaser'
 
-const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType, npcSheet) => {
+const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType: string) => {
 
-    walkAnim('saber', 'saber');
+    walkAnim();
 
-    function walkAnim(weapon, type) {
-
-        console.log(entityType + '-walk-' + type)
+    function walkAnim() {
+        console.log(entityType + '-walk')
 
         anims.create({
-            key: entityType + '-walkUp',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [0, 1, 2] }),
+            key: entityType + '-walkDown',
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [0, 1, 2] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
             key: entityType + '-walkLeft',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [3, 4, 5] }),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        anims.create({
-            key: entityType + '-walkDown',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [6, 7, 8] }),
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [3, 4, 5] }),
             frameRate: 12,
             repeat: -1
         });
 
         anims.create({
             key: entityType + '-walkRight',
-            frames: anims.generateFrameNumbers(entityType + '-walk-' + type, { frames: [9, 10, 11] }),
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [6, 7, 8] }),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        anims.create({
+            key: entityType + '-walkUp',
+            frames: anims.generateFrameNumbers('boss_' + entityType, { frames: [9, 10, 11] }),
             frameRate: 12,
             repeat: -1
         });
     }
-
 }
 
 const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityType, npcSheet) => {
@@ -310,7 +308,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-    
+
 }
 
 

@@ -47,6 +47,7 @@ export default class Bosses {
         this.BossContainerArray[i].y = this.jigs.bossesArray[i].y;
      //   this.SceneBossHealthBarArray[i].displayWidth = this.jigs.bossesArray[i][6] / 4;
         this.SceneBossHealthBarArray[i].displayWidth = 100 / 4;
+        this.SceneBossArray[i].updateAnim(this.jigs.bossesArray[i].direction, this.jigs.bossesArray[i].name);
       }
       i++;
     };

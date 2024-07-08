@@ -88,7 +88,7 @@ export default class Messenger {
     });
 
     scene.jigs.room.state.bossResult.onChange((value, key) => {
-      //console.log('---------boss result-----------------------')
+      console.log('---------boss result-----------------------' + value.direction )
       let i = 0;
       while (i < scene.jigs.bossesArray.length) {
         if (scene.jigs.bossesArray[i].target == key) {

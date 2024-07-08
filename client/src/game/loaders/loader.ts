@@ -79,7 +79,7 @@ export default class Load {
 
             if (this.jigs.bossesArray) {
                 this.jigs.bossesArray.forEach(function loader(boss) {
-                    createBossAnims(scene.anims, boss, "default");
+                    createBossAnims(scene.anims, boss.name);
                 });
             }
 
