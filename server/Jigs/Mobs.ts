@@ -17,7 +17,16 @@ export class Mob {
     roomModel.getMobs(nodeNumber).then((result: any) => {
       result.forEach(mobState => {
         const mobItem = Mob.updateZombieState(room,
-          undefined, undefined, undefined, undefined, 100, 0, 0, mobState, undefined
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          100,
+          0,
+          undefined,
+          mobState,
+          undefined,
+          undefined
         );
         room.state.mobResult.set(mobState.field_mob_name_value, mobItem);
       });
@@ -88,7 +97,7 @@ export class Mob {
 
             if (room.P2mobBodies[i].field_mob_name_value == mobState.field_mob_name_value) {
               //if  not following someone, do the test
-              if (mobState.following == 0) {
+              if (mobState.following == undefined) {
                 //if state x,y is out of date
                 if (parseInt(mobState.field_x_value) != parseInt(room.P2mobBodies[i].position[0])
                   || parseInt(mobState.field_y_value) != parseInt(room.P2mobBodies[i].position[1])) {
@@ -118,7 +127,7 @@ export class Mob {
 
                     if (mobPlayerDist > 160) {
                       // this is to update the mobs follower
-                      mobState.following = 0;
+                      mobState.following = undefined;
                       room.P2mobBodies[i].velocity[0] = 0;
                       room.P2mobBodies[i].velocity[1] = 0;
                     }
@@ -141,40 +150,47 @@ export class Mob {
 
     if (!body.dead) {
       body.velocity[0] = 0;
-      if (parseInt(body.position[0]) > body2.position[0]) {
-        body.velocity[0] = -amount;
-      }
-      if (parseInt(body.position[0]) < body2.position[0]) {
-        body.velocity[0] = amount;
-      }
-      body.velocity[1] = 0;
-      if (parseInt(body.position[1]) > body2.position[1]) {
-        body.velocity[1] = -amount;
-      }
-      if (parseInt(body.position[1]) < body2.position[1]) {
-        body.velocity[1] = amount;
-      }
+      console.log(body.direction)
 
+      if (parseInt(body.position[0]) > body2.position[0] + 50) {
+        body.velocity[0] = -amount;
+        body.velocity[1] = 0;
+        body.direction = 'Left'
+      }
+      if (parseInt(body.position[0]) < body2.position[0] - 50) {
+        body.velocity[0] = amount;
+        body.velocity[1] = 0;
+        body.direction = 'Right'
+      }
+      if (parseInt(body.position[1]) > body2.position[1] + 50) {
+        body.velocity[0] = 0;
+        body.velocity[1] = -amount;
+        body.direction = 'Up'
+      }
+      if (parseInt(body.position[1]) < body2.position[1] - 50) {
+        body.velocity[0] = 0;
+        body.velocity[1] = amount;
+        body.direction = 'Down'
+      }
     }
   }
 
   mobClicked(room, input, player) {
     if (input.mobClick != '') {
       room.state.mobResult.forEach(element => {
-
-
       });
 
       if (room.state.mobResult[input.mobClick] != undefined) {
         Mob.updateZombieState(room,
           room.state.mobResult[input.mobClick].field_mobs_target_id,
           room.state.mobResult[input.mobClick].field_mob_name_value,
-          undefined,
-          undefined,
+          undefined, // x
+          undefined, // y
           undefined,
           undefined,
           undefined,
           room.state.mobResult[input.mobClick],
+          undefined,
           undefined
         )
         if (room.state.mobResult[input.mobClick].health > 0) {
@@ -203,12 +219,16 @@ export class Mob {
             }
 
             const mobItem = Mob.updateZombieState(room,
+              undefined, //target_id
+              undefined, // name
+              undefined, //x
+              undefined, //y
+              0, //health
+              death, //dead
+              undefined,//following
+              room.state.mobResult[input.mobClick],
               undefined,
-              undefined,
-              undefined,
-              undefined,
-              0,
-              0, death, room.state.mobResult[input.mobClick], undefined
+              undefined
             )
 
             room.state.mobResult.set(room.state.mobResult[input.mobClick], mobItem);
@@ -255,9 +275,20 @@ export class Mob {
 
   // Sets up a zombie state with the original values, then updates
 
-  static updateZombieState(room,
-    target_id: number | undefined, name: string | undefined, x: number | undefined, y: number | undefined,
-    health: number | undefined, dead: number | undefined, following: number | undefined, mobState, i: number | undefined
+  static updateZombieState(
+    room: { P2mobBodies: { position: string[]; }[]; },
+    target_id: number | undefined,
+    name: string | undefined,
+    x: number | undefined,
+    y: number | undefined,
+    health: number | undefined,
+    dead: number | undefined,
+    following: number | undefined,
+    mobState: {
+      direction: string | undefined; field_mobs_target_id: number; field_mob_name_value: string; field_x_value: number; field_y_value: number; following: number; health: number; dead: number;
+    },
+    i: number | undefined,
+    direction: string | undefined,
   ) {
     const mobItem = new ZombieState();
     if (mobState != undefined) {
@@ -265,9 +296,10 @@ export class Mob {
       mobItem.field_mob_name_value = mobState.field_mob_name_value;
       mobItem.field_x_value = mobState.field_x_value;
       mobItem.field_y_value = mobState.field_y_value;
-      mobItem.following = mobState.following;
       mobItem.health = mobState.health;
       mobItem.dead = mobState.dead;
+      mobItem.following = mobState.following;
+      mobItem.direction = mobState.direction;
     }
     if (i != undefined) {
       mobItem.field_x_value = parseInt(room.P2mobBodies[i].position[0]);
@@ -277,9 +309,11 @@ export class Mob {
     if (name != undefined) { mobItem.field_mob_name_value = name; }
     if (x != undefined) { mobItem.field_x_value = x; }
     if (y != undefined) { mobItem.field_y_value = y; }
-    if (following != undefined) { mobItem.following = following; }
     if (health != undefined) { mobItem.health = health; }
     if (dead != undefined) { mobItem.dead = dead; }
+    if (following != undefined) { mobItem.following = following; }
+    if (direction != undefined) { mobItem.direction = direction; }
+
 
     //worldThing.state.mobResult.set(mobState.field_mob_name_value, mobItem);
     return mobItem;
@@ -294,17 +328,21 @@ export class Mob {
     if (parseInt(room.P2mobBodies[i].position[1])) {
       y = parseInt(room.P2mobBodies[i].position[1]);
     }
+
+    mobState.direction = room.P2mobBodies[i].direction;
+
     const mobItem = Mob.updateZombieState(
       room,
       mobState.field_mobs_target_id,
       mobState.field_mob_name_value,
-      x,
-      y,
-      undefined,
-      undefined,
+      mobState.x,
+      mobState.y,
+      undefined, //health
+      undefined, //dead
       mobState.following,
       mobState,
-      i
+      i,
+      mobState.direction
     )
     room.state.mobResult.set(mobItem.field_mob_name_value, mobItem);
   }

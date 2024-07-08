@@ -46,6 +46,7 @@ export default class Mobs {
         this.MobContainerArray[i].x = this.jigs.mobArray[i][2];
         this.MobContainerArray[i].y = this.jigs.mobArray[i][3];
         this.SceneMobHealthBarArray[i].displayWidth = this.jigs.mobArray[i][6] / 4;
+        this.SceneMobArray[i].updateAnim(this.jigs.mobArray[i][7]);
       }
       i++;
     };

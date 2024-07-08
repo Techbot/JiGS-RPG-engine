@@ -74,6 +74,7 @@ export default class Messenger {
     });
 
     scene.jigs.room.state.mobResult.onChange((value, key) => {
+      console.log('---------mob result-----------------------' + value.direction)
 
       let i = 0;
       while (i < scene.jigs.mobArray.length) {

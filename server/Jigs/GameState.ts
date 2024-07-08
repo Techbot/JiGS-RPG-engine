@@ -39,9 +39,9 @@ export class ZombieState extends Schema {
   @type("number") field_x_value: number;
   @type("number") field_y_value: number;
   @type("number") health: number;
-  @type("number") following: number;
   @type("number") dead: number;
-  @type("string") direction: string;
+  @type("number") following: number | undefined;
+  @type("string") direction: string | undefined;
 }
 export class BossState extends Schema {
   @type("number") field_boss_target_id: number;
@@ -51,7 +51,7 @@ export class BossState extends Schema {
   @type("number") y: number;
   @type("number") health: number;
   @type("number") dead: number;
-  @type("string") direction: string;
+  @type("string") direction: string | undefined;
 }
 
 export class PlayerMap extends Schema {

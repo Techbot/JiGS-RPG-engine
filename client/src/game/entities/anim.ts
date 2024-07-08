@@ -41,7 +41,7 @@ const createBossAnims = (anims: Phaser.Animations.AnimationManager, entityType: 
     }
 }
 
-const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityType, npcSheet) => {
+const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityType: string, npcSheet: string | null) => {
     const mobtypeA = ['Lizard-Green'];
     const mobtypeB = ['Lizard-Bright-Green'];
     const mobtypeC = ['Lizard-Topaz'];
@@ -105,9 +105,9 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
     }
 
     ////////////////////////////////////// Walk Anim 4 Directions //////////////////////////////
-    function walkAnim(weapon, type) {
+    function walkAnim(weapon: string, type: string) {
 
-        console.log(entityType + '-walk-' + type)
+        console.log('*************************' + entityType + '-walk-' + type)
 
         anims.create({
             key: entityType + '-walkUp-' + weapon,
@@ -223,7 +223,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             key: entityType + '-shootUp-' + weapon,
             frames: anims.generateFrameNumbers(entityType + '-shoot-' + weapon, { frames: [0] }),
             frameRate: 12,
-            repeat: -1
+            repeat: 0
         });
 
         anims.create({
