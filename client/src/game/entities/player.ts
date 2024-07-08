@@ -39,7 +39,6 @@ export default class Player {
         this.jigs = useJigsStore();
         this.playerMovement = new PlayerMovement(scene);
         this.staticNum = 0;
-
         this.entity = scene.physics.add.sprite(player.x, player.y, this.jigs.playerStats.sprite_sheet)
             .setDepth(7)
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
@@ -55,7 +54,6 @@ export default class Player {
         this.gun = new Gun(this.scene, this.player.x, this.player.y, 'gun');
         this.sword = new Sword(this.scene, this.player.x, this.player.y, null);
         this.drones = new Drones(this.scene, this.player.x, this.player.y);
-
         this.scene.lights.enable().setAmbientColor(0x555555);
         this.scene.physics.add.existing(this.entity);
         this.scene.physics.world.enable([this.entity]);
@@ -80,7 +78,6 @@ export default class Player {
 
         var cam = this.scene.cameras.main;
         cam.setBounds(0, 0, this.jigs.mapWidth * 16, this.jigs.mapHeight * 16);
-
         this.scene.key_left = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         this.scene.key_right = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         this.scene.key_up = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);

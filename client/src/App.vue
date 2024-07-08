@@ -30,10 +30,7 @@ export default {
     };
   },
   mounted() {
-   // this.room = new Room;
-   // this.client = new Client(BACKEND_URL);
-  //  this.jigs = useJigsStore();
-  //  this.jigs.hydrateState(1);
+
   },
   methods: {
     formSubmit(e) {

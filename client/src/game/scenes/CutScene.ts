@@ -135,7 +135,6 @@ export class CutScene extends Phaser.Scene {
 
   AddDragCornerController(sizer) {
     var scene = sizer.scene;
-
     var bottomRighterController = scene.add.rectangle(sizer.right, sizer.bottom, 20, 20, 0xFFC43D);
     var topLeftController = scene.add.rectangle(sizer.left, sizer.top, 20, 20, 0x00CC66)
 
@@ -146,12 +145,9 @@ export class CutScene extends Phaser.Scene {
           topY = sizer.top;
         var width = dragX - topX,
           height = dragY - topY;
-
         sizer.setChildPosition(bottomRighterController, dragX, dragY);
         sizer.setChildPosition(topLeftController, topX, topY);
-
         sizer.setMinSize(width, height).layout();
-
         sizer.left = topX;
         sizer.top = topY;
       })
@@ -203,4 +199,3 @@ var CreateVerticalScrollBar = function (scene) {
     }
   })
 }
-

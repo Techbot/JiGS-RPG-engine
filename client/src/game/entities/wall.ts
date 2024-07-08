@@ -11,13 +11,13 @@ export default class Wall extends Phaser.Physics.Arcade.Sprite {
     super(scene, parseInt(x), parseInt(y), 'black');
     this.setDisplaySize(parseInt(width), parseInt(height));
     this.setDepth(7);
-    this.wallWidth  = width;
+    this.wallWidth = width;
     this.wallHeight = height;
-    this.x          = x;
-    this.y          = y;
-    this.jigs       = useJigsStore();
+    this.x = x;
+    this.y = y;
+    this.jigs = useJigsStore();
     this.setVisible(this.jigs.debug);
-    this.alpha      = 0.5;
+    this.alpha = 0.5;
     this.setTexture('black');
     const obstacle = this;
     if (this.jigs.debug) {
@@ -30,6 +30,6 @@ export default class Wall extends Phaser.Physics.Arcade.Sprite {
   }
 
   onWallDown() {
-    console.log("X: " + this.x + " Y: " + this.y + "Width: " + this.wallWidth + " Height: " + this.wallHeight )
+    console.log("X: " + this.x + " Y: " + this.y + "Width: " + this.wallWidth + " Height: " + this.wallHeight)
   }
 }

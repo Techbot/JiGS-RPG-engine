@@ -109,15 +109,11 @@ export class MainScene extends Phaser.Scene {
         this.Folio = new Folios;
         this.messenger = new Messenger;
         this.hydrater = new Hydrater;
-
     }
 
     preload() {
-        //  var self = this;
-
         this.Loader = new Load;
         this.Loader.load(this);
-
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
         //this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
@@ -131,17 +127,12 @@ export class MainScene extends Phaser.Scene {
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
         this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
         this.jigs.room = await this.client.joinOrCreate(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0),
-                {
-                    playerId: this.jigs.playerId,
-                    profileId: this.jigs.profileId,
-                });
+            {
+                playerId: this.jigs.playerId,
+                profileId: this.jigs.profileId,
+            });
         this.messenger = new Messenger;
 
-        /*        this.jigs.room = await colyseusSDK.joinOrCreate<MyRoomState>(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0),
-                   {
-                       channelId: discordSDK.channelId, // join by channel ID
-
-                   }); */
         console.log("------------------room--------------------" + this.jigs.room);
         // connection successful!
         // connectionStatusText.destroy();
@@ -162,7 +153,7 @@ export class MainScene extends Phaser.Scene {
             var entity: any;
             // is current player
             if (sessionId === this.jigs.room.sessionId) {
-                this.jigs.playerId = player.username;
+                // this.jigs.playerId = player.username;
                 this.jigs.localPlayer = new MyPlayer(this, this.jigs.room, player);
                 this.jigs.playerState = "alive";
                 this.jigs.content = this.jigs.dialogueArray;
@@ -178,7 +169,6 @@ export class MainScene extends Phaser.Scene {
                 this.jigs.localPlayer.add();
                 this.playerEntities[sessionId] = entity;
             } else {
-
                 const otherPlayer = new OtherPlayer(this, player);
                 otherPlayer.add();
                 this.playerEntities[sessionId] = otherPlayer;
@@ -194,38 +184,38 @@ export class MainScene extends Phaser.Scene {
         });
     }
 
-    async jump() {
-        console.log("********* jump up ");
-        await this.updatePlayer();
+    jump() {
+        this.updatePlayerData()
         //  this.soundtrack.stop();
-        console.log("********** jump down");
-
-        var Loader = new Load;
-        Loader.load(this);
-        this.jigs.room.leave(); // Backend
-        this.scene.start('main'); //Frontend)
-
     }
 
-    updatePlayer() {
-        axios
-            .get("/states/myplayer?_wrapper_format=drupal_ajax")
-            .then((response) => {
-                //this.hydratePlayer(response);
-                this.hydrater.hydratePlayer(response);
-            })
-            .then(() => {
-                axios
-                    .get("/states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
-
-            })
-            .then((response) => {
-                this.hydrater.hydrateMap(response, 1);
-                //this.hydrateMap(response, 1);
-            })
+    updatePlayerData() {
+        return new Promise((resolve) => {
+            axios
+                .get("/states/myplayer?_wrapper_format=drupal_ajax")
+                .then((response) => {
+                    //this.hydratePlayer(response);
+                    this.hydrater.hydratePlayer(response);
+                    this.updateMapData()
+                })
+        })
     }
 
-
+    updateMapData() {
+        return new Promise((resolve) => {
+            axios
+                .get("/states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
+                .then((response) => {
+                    this.hydrater.hydrateMap(response, 1);
+                })
+                .then((response) => {
+                    var Loader = new Load;
+                    Loader.load(this);
+                    this.jigs.room.leave(); // Backend
+                    this.scene.start('main'); //Frontend)
+                })
+        })
+    }
 
     async connect(room) {
         // add connection status text
@@ -248,7 +238,6 @@ export class MainScene extends Phaser.Scene {
     }
 
     update(time: number, delta: number): void {
-
         if (this.jigs.localPlayer) {
             this.physics.world.collide(this.jigs.localPlayer, this.Walls.walls);
         }
@@ -276,7 +265,7 @@ export class MainScene extends Phaser.Scene {
             this.Bosses.updateBosses(this);
         }
 
-        ////////////////////// Update Other Players ////////////////////////////////////
+        ////////////////////// Update Other Players ////////////////////////////
 
         for (let sessionId in this.playerEntities) {
             if (sessionId === this.jigs.room.sessionId) {

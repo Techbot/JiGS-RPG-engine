@@ -14,7 +14,6 @@ export class DeadScene extends Phaser.Scene {
     }
 
     image;
-
     preload() {
         // update menu background color
         this.cameras.main.setBackgroundColor(0x000000);
@@ -25,7 +24,6 @@ export class DeadScene extends Phaser.Scene {
     }
 
     create() {
-
         this.image = this.add.image(320, 240, 'tesla');
         // automatically navigate to hash scene if provided
         if (window.location.hash) {

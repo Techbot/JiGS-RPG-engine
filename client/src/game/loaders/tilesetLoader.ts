@@ -10,7 +10,6 @@ export default class TilesetLoader {
 
   constructor() {
     this.jigs = useJigsStore();
-
   }
 
   add(scene) {
@@ -40,8 +39,6 @@ export default class TilesetLoader {
           scene.load.image(image, '/assets/images/System/' + image + '.png');
         }
       }, this);
-
-
     }
   }
 }

@@ -24,66 +24,10 @@ export default class Hydrater {
     this.jigs.playerName = response.data[0].value["player"]["name"];
     this.jigs.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
     this.jigs.userMapGrid = response.data[0].value["player"]["userMG"];
-    //this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-
     return response;
-
   }
 
   hydrateMap(response, incMob) {
-    //  this.jigs.playerStats = response.data[0].value["player"];
-    // this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
-    // this.jigs.profileId = parseInt(response.data[0].value["player"]["profileId"]);
-    // this.jigs.playerName = response.data[0].value["player"]["name"];
-    // this.jigs.gameState     = response.data[0].value["player"]["userState"];
-    //  this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
-    this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-    this.jigs.soundtrack = response.data[0].value["MapGrid"]["soundtrack"];
-    this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-    this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-    this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-
-    if (response.data[0].value["MapGrid"]["switchesArray"]) {
-      this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
-    }
-
-    this.jigs.dialogueArray = response.data[0].value["MapGrid"]["dialogueArray"];
-    this.jigs.fireArray = response.data[0].value["MapGrid"]["fireArray"];
-    this.jigs.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
-    this.jigs.leverArray = response.data[0].value["MapGrid"]["leverArray"];
-    this.jigs.machineArray = response.data[0].value["MapGrid"]["machineArray"];
-    this.jigs.crystalArray = response.data[0].value["MapGrid"]["crystalArray"];
-    this.jigs.foliosArray = response.data[0].value["MapGrid"]["foliosArray"];
-    this.jigs.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
-    this.jigs.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-    if (incMob) {
-      this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-    }
-    this.jigs.bossesArray = response.data[0].value["MapGrid"]["bossesArray"];
-
-    this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-    this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
-    this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-    this.jigs.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-    this.jigs.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-    this.jigs.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-    this.jigs.city = response.data[0].value["City"];
-    // Regex replaces close/open p with \n new line
-    // And replaces all other html tags with null.
-    this.jigs.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
-    this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
-  }
-
-  hydrate(response, incMob) {
-    this.jigs.playerStats = response.data[0].value["player"];
-    this.jigs.playerId = parseInt(response.data[0].value["player"]["id"]);
-    this.jigs.profileId = parseInt(response.data[0].value["player"]["profileId"]);
-    this.jigs.playerName = response.data[0].value["player"]["name"];
-
-    //this.jigs.gameState     = response.data[0].value["player"]["userState"];
-    this.jigs.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-
     this.jigs.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
     this.jigs.soundtrack = response.data[0].value["MapGrid"]["soundtrack"];
     this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);

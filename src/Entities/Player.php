@@ -178,25 +178,7 @@ class Player
         return $missionArray;
     }
 
-    public function getCompletedMissions($id)
-    {
-        $database           = \Drupal::database();
-        $query              = $database->query("
-        SELECT paragraph__field_mission.field_mission_target_id
-            FROM profile
-            LEFT JOIN profile__field_missions_completed
-            ON profile.profile_id = profile__field_missions_completed.entity_id
-            LEFT JOIN paragraph__field_mission
-            ON paragraph__field_mission.entity_id = profile__field_missions_completed.field_missions_completed_target_id
-            WHERE profile.type = 'player'
-            AND profile.uid = " . $id);
-        $result = $query->fetchAll();
-        $missionArray = [];
-        foreach ($result as $mission) {
-            $missionArray[] = $mission->field_mission_target_id;
-        }
-        return $missionArray;
-    }
+
 
     public function getAllHandlerMissions($id)
     {
@@ -260,6 +242,9 @@ class Player
 
     public function getAllFlickedSwitches()
     {
+
+
+
         $database        = \Drupal::database();
         $user            = \Drupal::currentUser()->id();
         $query           = $database->query("SELECT flagging.entity_id
@@ -272,6 +257,10 @@ class Player
             $responseData[]    = $element->entity_id;
         }
         return $responseData;
+
+
+
+
     }
 
     public function getNewMission($handlerMission)
@@ -366,6 +355,41 @@ class Player
         return true;
     }
 
+
+    public function getCompletedMissions($id)
+    {
+        $database = \Drupal::database();
+        $user = \Drupal::currentUser()->id();
+        $query = $database->query("SELECT flagging.entity_id
+        FROM flagging
+        WHERE flagging.uid = " . $user . " AND flag_id = 'mission_complete'");
+        ////////////////////////////////////////////////////////////////////////
+        $result = $query->fetchAll();
+        $responseData = [];
+        foreach ($result as $element) {
+            $responseData[] = $element->entity_id;
+        }
+        return $responseData;
+
+        /*
+                $database           = \Drupal::database();
+                $query              = $database->query("
+                SELECT paragraph__field_mission.field_mission_target_id
+                    FROM profile
+                    LEFT JOIN profile__field_missions_completed
+                    ON profile.profile_id = profile__field_missions_completed.entity_id
+                    LEFT JOIN paragraph__field_mission
+                    ON paragraph__field_mission.entity_id = profile__field_missions_completed.field_missions_completed_target_id
+                    WHERE profile.type = 'player'
+                    AND profile.uid = " . $id);
+                $result = $query->fetchAll();
+                $missionArray = [];
+                foreach ($result as $mission) {
+                    $missionArray[] = $mission->field_mission_target_id;
+                }
+                return $missionArray;
+         */
+    }
     public function getAllSwitchesOfMissionGivenOneSwitch($switchEntity)
     {
         $database = \Drupal::database();

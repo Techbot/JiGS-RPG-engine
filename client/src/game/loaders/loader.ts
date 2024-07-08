@@ -62,9 +62,6 @@ export default class Load {
         scene.load.once(Phaser.Loader.Events.COMPLETE, () => {
             const Layer = new Layers;
             Layer.loadLayers(scene);
-/*          createCharacterAnims(scene.anims, 'PsibotF', 'slash_oversize');
-            createCharacterAnims(scene.anims, 'PsibotF_slash', 'slash_oversize'); */
-
             createCharacterAnims(scene.anims, 'player', null);
             createCharacterAnims(scene.anims, 'otherPlayer', null);
 

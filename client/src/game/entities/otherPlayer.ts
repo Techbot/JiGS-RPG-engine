@@ -1,11 +1,7 @@
-
-
-
-
-
 /**
  * -------Other Player ---------
  */
+
 import Phaser from "phaser";
 /* import Drones from "../entities/drones.ts";
 import Gun from "./gun.ts";
@@ -16,7 +12,6 @@ import Light from "./light.ts"; */
 import { useJigsStore } from '../../stores/jigs.ts';
 
 export default class OtherPlayer {
-
   entity: any;
   lastDirection: string | undefined;
   scene: Phaser.Scene;
@@ -28,7 +23,6 @@ export default class OtherPlayer {
     this.scene = scene;
     this.player = player;
     this.lastDirection = undefined;
-
   }
 
   add() {
@@ -38,9 +32,7 @@ export default class OtherPlayer {
     this.entity = this.scene.physics.add.sprite(this.player.x, this.player.y, 'otherPlayer')
       .setDepth(5)
       .setScale(.85);
-
     this.entity.setTint(hsv[i].color);
-
     // listening for server updates
     this.player.onChange(() => {
       //
@@ -55,9 +47,7 @@ export default class OtherPlayer {
   }
 
   update() {
-    //   const entity = this.playerEntities[sessionId];
     if (this.entity.data) {
-
       const { serverX, serverY, serverDirection, discordName } = this.entity.data.values;
       this.entity.x = Phaser.Math.Linear(this.entity.x, serverX, 0.2);
       this.entity.y = Phaser.Math.Linear(this.entity.y, serverY, 0.2);
@@ -70,11 +60,8 @@ export default class OtherPlayer {
   }
 
   updateDirection(serverDirection: string | undefined) {
-
     if (serverDirection == this.lastDirection || serverDirection == undefined) { return; }
-
     this.entity.anims.play('player-walk' + serverDirection + '-glowsword');
-
     this.lastDirection = serverDirection;
   }
 

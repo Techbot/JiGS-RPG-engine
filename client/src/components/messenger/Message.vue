@@ -23,7 +23,7 @@ import { useChatMessageStore } from "../../stores/messages";
   font-size: 14px;
 }
 
-small {
+.message small {
   margin: 0 .25rem 0 0;
   flex: 1 0 auto;
   font-size: 12px;

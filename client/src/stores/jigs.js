@@ -175,51 +175,5 @@ Will you find my Balls?`,
         i++;
       }
     },
-    hydrate(incMob) {
-      axios
-        .get("/mystate?_wrapper_format=drupal_ajax")
-        .then((response) => {
-
-          this.playerStats = response.data[0].value["player"];
-          this.playerId = parseInt(response.data[0].value["player"]["id"]);
-          this.profileId = parseInt(response.data[0].value["player"]["profileId"]);
-          this.playerName = response.data[0].value["player"]["name"];
-          this.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
-          this.userMapGrid = parseInt(response.data[0].value["player"]["userMG"]);
-          this.tiled = parseInt(response.data[0].value["MapGrid"]["tiled"]);
-          this.soundtrack = response.data[0].value["MapGrid"]["soundtrack"];
-          this.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
-          this.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
-          this.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-          this.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
-          this.dialogueArray = response.data[0].value["MapGrid"]["dialogueArray"];
-          this.fireArray = response.data[0].value["MapGrid"]["fireArray"];
-          this.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
-          this.leverArray = response.data[0].value["MapGrid"]["leverArray"];
-          this.machineArray = response.data[0].value["MapGrid"]["machineArray"];
-          this.crystalArray = response.data[0].value["MapGrid"]["crystalArray"];
-          this.foliosArray = response.data[0].value["MapGrid"]["foliosArray"];
-          this.wallsArray = response.data[0].value["MapGrid"]["wallsArray"];
-          this.npcArray = response.data[0].value["MapGrid"]["npcArray"];
-          if (incMob) {
-            this.mobArray = response.data[0].value["MapGrid"]["mobArray"];
-          }
-          this.bossesArray = response.data[0].value["MapGrid"]["bossesArray"];
-          this.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
-          this.nodeTitle = response.data[0].value["MapGrid"]["name"];
-
-          this.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
-          this.tilesetArray_2 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_2"];
-          this.tilesetArray_3 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_3"];
-          this.tilesetArray_4 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_4"];
-
-          this.city = response.data[0].value["City"];
-
-          // Regex replaces close/open p with \n new line
-          // And replaces all other html tags with null.
-          this.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
-          this.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
-        })
-    },
   },
 });

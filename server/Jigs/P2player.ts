@@ -11,7 +11,6 @@ var playerModel = require('../models/player.ts');
 
 export class P2player {
   Body: any;
-
   constructor() {
   }
 
@@ -19,7 +18,6 @@ export class P2player {
     await playerModel.getPlayer(id).then((result: any) => {
       this.Body = new p2.Body({
         mass: 1,
-      //  position: [result[0].field_x_value, result[0].field_y_value],
         angle: 0,
         type: p2.Body.DYNAMIC,
         collisionResponse: true,

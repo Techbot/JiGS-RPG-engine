@@ -14,7 +14,6 @@ export default class BossLoader {
 
   add(scene) {
     console.log("---------------Boss Loader-------------")
-
     if (this.jigs.bossesArray) {
       this.jigs.bossesArray.forEach(function loader(boss) {
         scene.load.spritesheet('boss_' + boss.name, '/assets/images/Level Bosses/' + boss.name + '.png',

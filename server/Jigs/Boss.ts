@@ -15,7 +15,6 @@ enum Direction {
   RIGHT
 }
 
-
 export class Boss {
 
   private direction = Direction.RIGHT
@@ -48,8 +47,8 @@ export class Boss {
     this.body.destinationX = 0;
     this.body.destinationY = 0;
     //return this.body;
-    this.body.something = (speed) => {
 
+    this.body.updateToDirection = (speed) => {
       switch (this.body.direction) {
         case Direction.UP:
           console.log("body" + this.body.title + "Up")
@@ -58,51 +57,50 @@ export class Boss {
           break
 
         case Direction.DOWN:
-
-          console.log("body" + this.body.title + "DOWN")
+          console.log("body" + this.body.title + "Up")
           this.body.velocity[0] = 0;
           this.body.velocity[1] = speed
           break
 
         case Direction.LEFT:
-
-          console.log("body" + this.body.title + "LEFT")
+          console.log("body" + this.body.title + "Up")
           this.body.velocity[0] = -speed;
           this.body.velocity[1] = 0
-
           break
 
         case Direction.RIGHT:
-
-          console.log("body" + this.body.title + "RIGHT")
+          console.log("body" + this.body.title + "Up")
           this.body.velocity[0] = speed;
           this.body.velocity[1] = 0;
           break
       }
 
-      this.body.updateBossForce = async () => {
-
+      this.body.changeDirection = async () => {
         if (this.pause == 0) {
           this.pause = 1
           const x = await this.body.skip(4000);
-          //   console.log('--------------------------- ' + x)
           this.direction = this.body.randomDirection(this.direction)
           this.body.something(25)
 
         }
       }
+
+      this.body.randomDirection = (exclude: Direction) => {
+        let newDirection = (Math.floor(Math.random() * 4))
+        while (newDirection === exclude) {
+          newDirection = (Math.floor(Math.random() * 4))
+        }
+        return newDirection
+      }
+
       this.body.skip = (val) => {
         return new Promise((resolve) => {
           setTimeout(() => {
             this.pause = 0;
-            console.log('-------------------------');
             resolve(val);
           }, val);
         });
       }
-
-
-
     }
     return this.body;
   }

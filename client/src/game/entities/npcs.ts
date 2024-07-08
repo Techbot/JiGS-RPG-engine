@@ -26,7 +26,6 @@ export default class NPCs {
       while (i < this.jigs.npcArray.length) {
         this.NpcContainerArray[i] = self.add.container(parseInt(this.jigs.npcArray[i][1]), parseInt(this.jigs.npcArray[i][2]));
         this.SceneNpcArray[i] = new Npc(self, this.jigs.npcArray[i]);
-
         this.SceneNpcNameArray[i] = self.add.text(10, -10, this.jigs.npcArray[i][0], {
           font: "12px Neutron Demo",
           fill: 'white',
@@ -36,13 +35,14 @@ export default class NPCs {
         this.NpcContainerArray[i].add(this.SceneNpcArray[i]);
         this.NpcContainerArray[i].add(this.SceneNpcNameArray[i]);
         this.NpcContainerArray[i].setDepth(5);
-        this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
+        //this.SceneNpcArray[i].anims.play('walkDown_npc' + this.jigs.npcArray[i][3]);
         self.npcGroup.add(this.NpcContainerArray[i], true);
         console.log("add container " + this.jigs.npcArray[i][0]);
         i++;
       }
     }
   }
+  
   onNPCDown(npc, self) {
     if (npc[5] == 1) {
       axios

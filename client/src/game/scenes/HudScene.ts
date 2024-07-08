@@ -50,11 +50,6 @@ export class HudScene extends Scene {
       wrapWidth: 500,
     }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
 
-    // HUD1 bg
-    // var r1 = this.add.rectangle(10, 10, 190, 120, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
-    // HUD2 bg
-    // var r2 = this.add.rectangle(730, 10, 160, 90, 0x6666ff).setDisplayOrigin(0, 0).setBlendMode(Phaser.BlendModes.MULTIPLY);
-
     // Grab a reference to the Game Scene
     let ourGame = this.scene.get('main');
 
@@ -220,7 +215,6 @@ export class HudScene extends Scene {
     }
     return this.jigs.content + '\n' + numbers.join('\n');
   }
-
 }
 
 var createLabel = function (scene, text) {

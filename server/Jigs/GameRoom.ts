@@ -174,33 +174,6 @@ export class GameRoom extends Room<MyRoomState> {
     }
   }
 
-  fixedTick(timeStep: number) {
-    const velocity = 2;
-    var fixedTimeStep = 1 / 60;
-    this.world.step(fixedTimeStep);
-    this.Mobs.updateMob(this);
-    this.Bosses.updateBosses(this);
-
-    this.state.players.forEach(player => {
-      let input: InputData;
-      // dequeue player inputs
-      while (input = player.inputQueue.shift()) {
-        if (this.Mobs.mobClicked(this, input, player) == 1) {
-          this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
-        }
-        player.p2Player.update(input, player, velocity);
-        player.tick = input.tick;
-      }
-    });
-  }
-
-  skip(val) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve('resolved');
-      }, val);
-    });
-  }
   ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -240,7 +213,7 @@ export class GameRoom extends Room<MyRoomState> {
     console.log("room", this.roomId, "disposing...");
   }
 
-  loadMaps(nodeName: string) {
+/*   loadMaps(nodeName: string) {
     var cityName = nodeName.split("-")[0];
     var cityNumber = nodeName.split("-")[1];
     try {
@@ -250,6 +223,35 @@ export class GameRoom extends Room<MyRoomState> {
       console.log(err);
       console.log('shit');
     }
+  } */
+
+
+  fixedTick(timeStep: number) {
+    const velocity = 2;
+    var fixedTimeStep = 1 / 60;
+    this.world.step(fixedTimeStep);
+    this.Mobs.updateMob(this);
+    this.Bosses.updateBosses(this);
+
+    this.state.players.forEach(player => {
+      let input: InputData;
+      // dequeue player inputs
+      while (input = player.inputQueue.shift()) {
+        if (this.Mobs.mobClicked(this, input, player) == 1) {
+          this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
+        }
+        player.p2Player.update(input, player, velocity);
+        player.tick = input.tick;
+      }
+    });
+  }
+
+  skip(val) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('resolved');
+      }, val);
+    });
   }
 
   checkHits() {

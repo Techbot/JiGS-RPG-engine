@@ -4,8 +4,6 @@
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
 
-
-
 export default class Light  {
   jigs: any;
   angle: any;

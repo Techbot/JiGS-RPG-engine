@@ -1,13 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// https://github.com/damian-pastorini/p2js-tiledmap-demo/blob/master/test-town.html
+//
 //
 //////////////////////////////////////////////////////////////////////////////
 //var Bridge = require('../services/bridge.ts');
 import { BossState } from "./GameState";
 var roomModel = require('../models/room.ts');
 import { Boss } from "./Boss.ts";
-
 
 enum Direction {
   UP,
@@ -16,12 +15,10 @@ enum Direction {
   RIGHT
 }
 
-
 export class Bosses {
   pause = 0;
 
   async load(room, nodeNumber: number, share) {
-    room.P2bosses = new Array;
     roomModel.getBosses(nodeNumber).then((result: any) => {
       result.forEach(bossState => {
         console.log('target' + bossState.entity_id);
@@ -38,7 +35,6 @@ export class Bosses {
 
         //var p2Boss = this.make(newResult[i], share);
         var p2Boss = new Boss(newResult[i], share);
-       // var p2BossBody = p2Boss.make()
         room.world.addBody(p2Boss);
         room.P2bossBodies.push(p2Boss);
       }
@@ -53,11 +49,9 @@ export class Bosses {
 
     if (room.P2bossBodies.length > 0) {
 
-      // Update destination every 2 seconds for one of the bosess
-
       room.P2bossBodies.forEach(P2BossBody => {
         room.state.bossResult.forEach(bossState => {
-          this.something(P2BossBody, 25);
+          P2BossBody.updateToDirection(25);
           if (bossState.dead != 1) {
             //console.log("a " + room.P2bossBodies[i].title);
             //console.log("b " + bossState.title);
@@ -66,16 +60,9 @@ export class Bosses {
                 || parseInt(bossState.field_y_value) != parseInt(P2BossBody.position[1])) {
                 this.sendObject(room, bossState, undefined, P2BossBody);
               }
-              /*               room.state.players.forEach(player => {
-                            }) */
             }
           }
-
         });
-
-        //  room.P2bossBodies[i].setZeroForce();
-        //   console.log('update force: ' + room.P2bossBodies[i].title)
-        /////////////////////// CYCLE THROUGH Boss  State /////////////////////////////
       }
       );
       this.updateBossForce(room.P2bossBodies);
@@ -88,49 +75,13 @@ export class Bosses {
       const x = await this.skip(4051);
       P2bossBodies.forEach(P2BossBody => {
 
-        P2BossBody.direction = this.randomDirection(P2BossBody.direction)
+        P2BossBody.direction = P2BossBody.randomDirection(P2BossBody.direction)
         console.log('---------title ---------- ' + P2BossBody.title);
-        this.something(P2BossBody, 25);
-
+        P2BossBody.updateToDirection(25);
       })
-
     }
-    //  console.log('---------title ---------- ' + body.title)
   }
 
-  something(body, speed) {
-
-    switch (body.direction) {
-      case Direction.UP:
-        console.log("body" + body.title + "Up")
-        body.velocity[0] = 0;
-        body.velocity[1] = -speed
-        break
-
-      case Direction.DOWN:
-
-        console.log("body" + body.title + "DOWN")
-        body.velocity[0] = 0;
-        body.velocity[1] = speed
-        break
-
-      case Direction.LEFT:
-
-        console.log("body" + body.title + "LEFT")
-        body.velocity[0] = -speed;
-        body.velocity[1] = 0
-
-        break
-
-      case Direction.RIGHT:
-
-        console.log("body" + body.title + "RIGHT")
-        body.velocity[0] = speed;
-        body.velocity[1] = 0;
-        break
-    }
-
-  }
   randomDirection = (exclude: Direction) => {
     let newDirection = (Math.floor(Math.random() * 4))
     while (newDirection === exclude) {
@@ -138,31 +89,6 @@ export class Bosses {
     }
     return newDirection
   }
-  async updateBossDirection(room) {
-
-    var proceed = 0;
-    var thing = 0
-    while (thing < room.P2bossBodies.length + 1) {
-      if (proceed == 1) {
-        if (this.pause == 0) {
-          this.pause = 1;
-          if (thing == room.P2bossBodies.length) { thing =0;}
-       //   const y = await room.P2bosses[thing].skip(4051);
-          //const x = await this.skip(4051);
-          room.P2bossBodies[thing].direction = room.P2bosses[thing].randomDirection(room.P2bossBodies[thing].direction)
-          console.log('---------title ---------- ' + room.P2bossBodies[thing].title);
-          room.P2bosses[thing].move( 25);
-        }
-        thing = thing + 1;
-        proceed = 0;
-      }
-      proceed++;
-    }
-    //  console.log('---------title ---------- ' + body.title)
-  }
-
-
-
 
   skip = (val) => {
     return new Promise((resolve) => {
@@ -174,11 +100,11 @@ export class Bosses {
     });
   }
 
-  // Sets up a zombie state with the original values, then updates
+  // Sets up a state with the original values, then updates
 
   updateBossState(room, bossState,
     field_boss_target_id: number | undefined, entity_id: number | undefined, title: string | undefined, x: number | undefined, y: number | undefined,
-    health: number | undefined, dead: number | undefined, i: number | undefined, direction:string|undefined
+    health: number | undefined, dead: number | undefined, i: number | undefined
   ) {
     const bossItem = new BossState();
     if (bossState != undefined) {
@@ -189,7 +115,6 @@ export class Bosses {
       bossItem.y = bossState.y;
       bossItem.health = bossState.health;
       bossItem.dead = bossState.dead;
-      bossItem.direction = bossState.direction;
     }
     if (i != undefined) {
       bossItem.x = parseInt(room.P2bossBodies[i].position[0]);
@@ -202,7 +127,7 @@ export class Bosses {
     if (entity_id != undefined) { bossItem.entity_id = entity_id; }
     if (health != undefined) { bossItem.health = health; }
     if (dead != undefined) { bossItem.dead = dead; }
-    if (direction != undefined) { bossItem.direction = dead; }
+
     return bossItem;
   }
 
@@ -225,8 +150,7 @@ export class Bosses {
       y,
       undefined,
       undefined,
-      i,
-      bossState.direction
+      i
     )
     room.state.bossResult.set(bossState.entity_id.toString(), bossItem);
   }

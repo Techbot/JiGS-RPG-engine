@@ -34,15 +34,10 @@ export class Wall {
       velocity: [0, 0],
       angularVelocity: 0
     });
-/*  Body.destination_x = wall.field_destination_x_value;
-    Body.destination_y = wall.field_destination_y_value;
-    Body.destination = wall.field_destination_target_id;
-    Body.tiled = wall.field_tiled_value; */
 
-    // console.log(' position:', circleBody.position);
     Body.isWall = true;
     Body.sensor = true;
-    //Body.motionState = 2; //STATIC
+
     // Add a circular shape to the body
     Body.addShape(Shape);
     //this.circleBody.onBeginContact.add(this.checkHits(), this);

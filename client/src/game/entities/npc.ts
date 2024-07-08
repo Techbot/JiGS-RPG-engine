@@ -12,9 +12,9 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, data) {
         super(scene, 0, 0, null);
         scene.add.sprite(0, 0);
-        this.setTexture('npc' + data[3]);
+        this.setTexture('npc' + data[3], 30);
         this.setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' })
-        this.play('walkDown_npc' + data[3]);
+        //this.play('walkDown_npc' + data[3]);
         this.setScale(.85);
         this.on('pointerdown', this.onNPCDown.bind(scene, data, scene));
         this.setDepth(5)
@@ -28,7 +28,6 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
                 .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
                 .then((response) => {
                     console.log("why ");
-
                     if (response.data[0].value.liveMission) {
                         this.jigs.content = response.data[0].value.playerMission;
                         scene.events.emit('content');

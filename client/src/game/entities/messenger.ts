@@ -7,17 +7,10 @@ export default class Messenger {
 
   initMessages(scene) {
 
-    console.log('innit one')
-
-
     scene.jigs.room.onMessage("portal", (message) => {
       const promise1 = Promise.resolve(scene.jump());
       scene.jigs.tiled = message;
-      //  hide(this.localPlayer);
     });
-
-    console.log('innit two')
-
 
     scene.jigs.room.onMessage("collide", (message) => {
       let i = 0;
@@ -36,10 +29,6 @@ export default class Messenger {
       scene.jigs.playerState = "dead";
     });
 
-
-
-
-
     scene.jigs.room.onMessage("reward", (message) => {
       scene.jigs.playerStats.credits++;
       //   this.incrementReward();
@@ -48,10 +37,6 @@ export default class Messenger {
     scene.jigs.room.onMessage("player hit", (message) => {
       scene.updateState();
     });
-
-
-    console.log('innit three')
-
 
     scene.jigs.room.onMessage("struck", (message) => {
       console.log('struck:' + message);
@@ -70,7 +55,6 @@ export default class Messenger {
       scene.updateState();
     });
 
-    console.log('innit four')
     scene.jigs.room.onMessage("remove-reward", (message) => {
       let i = 0;
       while (i < scene.rewardsArray.length) {
@@ -81,7 +65,6 @@ export default class Messenger {
       }
     });
 
-    console.log('innit five')
     scene.jigs.room.onStateChange((state) => {
       //
     });
@@ -89,9 +72,6 @@ export default class Messenger {
     scene.jigs.room.onStateChange.once((state) => {
       // console.log("the room state has been updated:", state);
     });
-
-    console.log('innit six')
-
 
     scene.jigs.room.state.mobResult.onChange((value, key) => {
 
@@ -107,18 +87,10 @@ export default class Messenger {
       }
     });
 
-
-    console.log('innit seven')
-
-
     scene.jigs.room.state.bossResult.onChange((value, key) => {
       //console.log('---------boss result-----------------------')
       let i = 0;
       while (i < scene.jigs.bossesArray.length) {
-
-     //   console.log('key' + value.entity_id)
-    //    console.log('2' + scene.jigs.bossesArray[i].target)
-
         if (scene.jigs.bossesArray[i].target == key) {
           scene.jigs.bossesArray[i].x = parseInt(value.x);
           scene.jigs.bossesArray[i].y = parseInt(value.y);
@@ -128,14 +100,5 @@ export default class Messenger {
         i++;
       }
     });
-
-    console.log('innit eight')
-
   }
-
-
-
-
-
-
 }
