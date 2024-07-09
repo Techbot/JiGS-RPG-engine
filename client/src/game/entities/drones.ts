@@ -25,21 +25,4 @@ export default class Drones {
       }, this);
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

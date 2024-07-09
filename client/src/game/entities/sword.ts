@@ -26,7 +26,6 @@ export default class Sword extends Phaser.Physics.Arcade.Sprite {
       currentPlayer.play('player-slashLeft-glowsword');
       if (currentPlayer.speed == 'go') {
         currentPlayer.playAfterRepeat('player-walkRight-' + 'glowsword');
-
       }
     }
     else if (currentPlayer.dir == 'up') {

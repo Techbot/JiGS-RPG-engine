@@ -4,7 +4,6 @@
 import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
 
-
 export default class Boss extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
     previousDirection: string;

@@ -35,7 +35,6 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
         }
         this.anims.play('Zombie-Green-walk' + direction + '-default', true);
 
-
         console.log('***************************** update anim ' + direction)
         // this.anims.play(name + '-walk' + direction);
 
