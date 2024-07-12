@@ -15,7 +15,7 @@ export default class Mission {
     var print = self.add.text(0, 0, '').setDepth(1);
     var choicesType = 'radio';
     var style = {
-      width: 300,
+      width: 500,
       space: {
         left: 20, right: 20, top: 20, bottom: 20,
         title: 20,
@@ -42,8 +42,9 @@ export default class Mission {
       content: {
         space: { left: 5, right: 5, top: 5, bottom: 5 },
         text: {
-          font: '16px Roboto',
+          font: '22px Roboto',
         },
+        wrapText: true,
       },
 
       buttonMode: 1,

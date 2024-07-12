@@ -26,7 +26,7 @@ export default class Boss extends Phaser.Physics.Arcade.Sprite {
         if (direction == undefined || direction == this.previousDirection) {
             return;
         }
-        console.log('***************************** update anim ' + direction)
+        //console.log('***************************** update anim ' + direction)
         this.anims.play(name + '-walk' + direction);
         this.previousDirection = direction;
     }

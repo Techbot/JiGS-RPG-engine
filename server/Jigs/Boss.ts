@@ -18,6 +18,7 @@ enum Direction {
 
 
 export class Boss {
+  title: any;
 
   updateBossForce() {
     throw new Error("Method not implemented.");
@@ -98,7 +99,7 @@ export class Boss {
       if (this.pause == 0) {
         this.pause = 1
         const x = await this.body.skip(4000);
-        console.log('******************************** ' + x)
+       // console.log('******************************** ' + x)
         this.direction = this.body.randomDirection(this.direction)
         this.body.updateDirection(25)
 
@@ -108,7 +109,7 @@ export class Boss {
       return new Promise((resolve) => {
         setTimeout(() => {
           this.pause = 0;
-          console.log('***************************');
+       //   console.log('***************************');
           resolve(val);
         }, val);
       });

@@ -23,7 +23,7 @@ export default {
       .get("/mymissions?_wrapper_format=drupal_ajax")
       .then((response) => {
         this.jigs.playerQuests = response.data[0].value["playerMissions"];
-        console.log(this.jigs.playerQuests)
+       // console.log('this.jigs.playerQuests' + this.jigs.playerQuests)
       });
   }
 }
@@ -32,7 +32,7 @@ export default {
 <template>
   <div class="quests">
     <img src="/assets/images/header2.png" />
-    <div class="accordion accordion-flush" id="accordionFlushExample" v-for="quest in jigs.playerQuests.quests" :key="quest.id">
+    <div class="accordion accordion-flush" id="accordionFlushExample" v-for="quest in jigs.playerQuests" :key="quest.id">
       <div class="quest accordion-item">
         <img class="quest__thumbnail" src="/assets/images/gui/quest.png" alt="quest type thumbnail" />
         <h2 class="accordion-header">

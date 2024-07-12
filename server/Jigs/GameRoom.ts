@@ -17,7 +17,6 @@ import { Switch } from "./Switches";
 import { Wall } from "./Walls";
 import { Npc } from "./Npcs";
 import { Bosses } from "./Bosses";
-
 import { Reward } from "./Rewards";
 import { Layer } from "./Layers";
 import { Collision } from "./Collisions";
@@ -75,11 +74,12 @@ export class GameRoom extends Room<MyRoomState> {
     this.Npcs = new Npc;
     this.Bosses = new Bosses;
     this.Layers = new Layer;
-
     this.Collisions = new Collision;
   }
 
   async onAuth(client, options, request) {
+
+    return true;
 
     const userData = await this.checkAccess(client, options, this.state.playerMap);
     if (userData) {
@@ -91,10 +91,8 @@ export class GameRoom extends Room<MyRoomState> {
   }
 
   async onCreate(options: any) {
-
     this.indexNumber = 1;
     this.setState(new MyRoomState());
-
     await this.Mobs.load(this, options.nodeNumber, this.share);
     await this.Bosses.load(this, options.nodeNumber, this.share);
     await this.Portals.load(this.world, options.nodeNumber, this.share);
@@ -160,7 +158,7 @@ export class GameRoom extends Room<MyRoomState> {
       playerMap.forEach((value, key) => {
         console.log("value" + value.profileId);
 
-        if (value == options.profile_id) {
+        if (value.profileId == options.profile_id) {
           console.log('Access failed');
           return false;
         }
@@ -174,11 +172,7 @@ export class GameRoom extends Room<MyRoomState> {
     }
   }
 
-  ////////////////////////////////////////////////////////////////////////////////
-
-
-
-  /////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
   async onJoin(client: Client, options: any) {
     console.log(client.sessionId, "joined!");
     console.log(options.playerId, "joined!");
@@ -197,12 +191,11 @@ export class GameRoom extends Room<MyRoomState> {
     this.state.players.set(client.sessionId, player);
     this.state.playerMap.set(client.sessionId, playerMap)
   }
-  ////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
   onLeave(client: Client, consented: boolean) {
     console.log(client.sessionId, "left!");
     this.state.players.delete(client.sessionId);
     this.state.playerMap.delete(client.sessionId);
-
   }
 
   onStateChange(state) {
@@ -213,34 +206,26 @@ export class GameRoom extends Room<MyRoomState> {
     console.log("room", this.roomId, "disposing...");
   }
 
-/*   loadMaps(nodeName: string) {
-    var cityName = nodeName.split("-")[0];
-    var cityNumber = nodeName.split("-")[1];
-    try {
-      const data = require(`../../../../../assets/cities/` + cityName + `/json/` + cityNumber + `.json`);
-      return data;
-    } catch (err) {
-      console.log(err);
-      console.log('shit');
-    }
-  } */
-
-
   fixedTick(timeStep: number) {
     const velocity = 2;
     var fixedTimeStep = 1 / 60;
     this.world.step(fixedTimeStep);
-    this.Mobs.updateMob(this);
-    this.Bosses.updateBosses(this);
-
+    this.Mobs.update(this);
+    this.Bosses.update(this);
     this.state.players.forEach(player => {
       let input: InputData;
+
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
+
         if (this.Mobs.mobClicked(this, input, player) == 1) {
           this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
         }
-        player.p2Player.update(input, player, velocity);
+    //    if (this.Bosses.mobClicked(this, input, player) == 1) {
+    //      this.broadcast("zombie dead", this.state.mobResult[input.mobClick].field_mob_name_value);
+    //    }
+
+        player.p2Player.update(this, input, player, velocity);
         player.tick = input.tick;
       }
     });

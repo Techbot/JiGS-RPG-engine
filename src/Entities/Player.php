@@ -22,26 +22,26 @@ class Player
     {
         $this->user           = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
         $this->database       = \Drupal::database();
+        $this->id = \Drupal::currentUser()->id();
+        $query = $this->database->query("SELECT profile_id FROM profile WHERE uid = " . $this->id . " AND type = 'player'");
+        $this->profileId  = $query->fetchAll()[0]->profile_id;
     }
 
     public function create()
     {
         //$this->name           = $this->user->get("name")->value;
-        $this->id              = \Drupal::currentUser()->id();
         $player['id']          = \Drupal::currentUser()->id();
         $player['name']        = $this->user->get("name")->value;
         $this->userGamesState  = $this->user->field_game_state->value;
         $player['userState']   = $this->userGamesState;
-        $query                 = $this->database->query("SELECT profile_id FROM profile WHERE uid = " . $this->id   . " AND type = 'player'");
-        $player['profileId']   = $query->fetchAll()[0]->profile_id;
-        $this->profileId       = $player['profileId'];
-        $query                 = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " . $player['profileId']);
+
+        $query                 = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " . $this->profileId);
         $player['userMG']      = $query->fetchAll()[0]->field_map_grid_target_id;
-        $query                 = $this->database->query("SELECT field_credits_value FROM profile__field_credits WHERE entity_id= " . $player['profileId']);
+        $query                 = $this->database->query("SELECT field_credits_value FROM profile__field_credits WHERE entity_id= " . $this->profileId);
         $player['credits']     = $query->fetchAll()[0]->field_credits_value;
-        $query                 = $this->database->query("SELECT field_health_value FROM profile__field_health WHERE entity_id= " . $player['profileId']);
+        $query                 = $this->database->query("SELECT field_health_value FROM profile__field_health WHERE entity_id= " . $this->profileId);
         $player['health']      = $query->fetchAll()[0]->field_health_value;
-        $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " . $player['profileId']);
+        $query                 = $this->database->query("SELECT field_energy_value FROM profile__field_energy WHERE entity_id= " . $this->profileId);
         $profile = $this->user->get('player_profiles')->entity;
         $player['energy']      = $query->fetchAll()[0]->field_energy_value;
         //Cached stuff
@@ -130,15 +130,15 @@ class Player
         return $profile->save();
     }
 
-    public function myMissions()
-    {
-        $playerName         = $this->user->get("name")->value;
-        $playerId           = \Drupal::currentUser()->id();
+    public function myMissions()// used by quests page
+        {
         //Cached stuff
         //$userGamesState     = $this->user->field_game_state->value;
         $database           = \Drupal::database();
         ////////////////////////////////////////////////////////////////////////////////
-        $player['missions'] = $this->getAllPlayerMissionIds($playerId);
+
+        $player['missions'] = $this->getAllPlayerMissionIds();
+
         foreach ($player['missions'] as $mission) {
             // $mission = $record->field_missions_target_id;
             if ($mission) {
@@ -150,26 +150,28 @@ class Player
                 ON node_field_data.nid = node__body.entity_id
                 WHERE node_field_data.nid = " . $mission);
                 $row              = $result->fetchAssoc();
-                $player['quests'][] = array(
+                $data[] = array(
                     'id' => $mission,
                     'title' => $row['title'],
                     'content' => $row['body_value'],
                 );
             }
         }
-        $responseData['playerMissions']          = $player;
+        $responseData['playerMissionArray'] =  $player['missions'];
+        $responseData['playerMissions']     = $data;
         return $responseData;
     }
 
-    public function getAllPlayerMissionIds($id)
+    public function getAllPlayerMissionIds()
     {
         $database = \Drupal::database();
-        $query    = $database->query("SELECT profile__field_missions.field_missions_target_id,
-         paragraph__field_mission.field_mission_target_id
+        $query    = $database->query("SELECT
+        profile__field_missions.field_missions_target_id,
+        paragraph__field_mission.field_mission_target_id
         FROM profile__field_missions
         LEFT JOIN  paragraph__field_mission
         ON paragraph__field_mission.entity_id = profile__field_missions.field_missions_target_id
-        WHERE profile__field_missions.entity_id= " . $id);
+        WHERE profile__field_missions.entity_id=$this->profileId");
         $result   = $query->fetchAll();
         $missionArray = [];
         foreach ($result as $mission) {
@@ -240,11 +242,8 @@ class Player
         return $query->fetchAll();
     }
 
-    public function getAllFlickedSwitches()
+    static public function getAllFlickedSwitches()
     {
-
-
-
         $database        = \Drupal::database();
         $user            = \Drupal::currentUser()->id();
         $query           = $database->query("SELECT flagging.entity_id
@@ -308,11 +307,14 @@ class Player
         $switchEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($id);
         $flag_service = \Drupal::service('flag');
         $flag = $flag_service->getFlagById('switch'); // replace by flag machine name
+
         // check if already flagged
         $this->flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
         if (!$this->flagging) {
+
             $flag_service->flag($flag, $switchEntity, $this->user);
-            if($this->MissionCompleteTest($switchEntity)){
+
+            if($this->MissionCompleteTest($id)){
                 $this->flagMission($this->missionsArrayOfOne[0]);
                 $this->addMissionReward($this->missionsArrayOfOne[0]);
             };
@@ -403,7 +405,7 @@ class Player
             $this->missionsArrayOfOne[]    = $element->entity_id;
         }
 
-        $query           = $database->query("SELECT node__field_switches.field_switches_target_ud
+        $query           = $database->query("SELECT node__field_switches.field_switches_target_id
         FROM node__field_switches
         WHERE node_field_switches.entity_id = " . $this->missionsArrayOfOne[0]);
         $result =  $query->fetchAll();

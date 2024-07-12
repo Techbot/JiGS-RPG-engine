@@ -11,6 +11,9 @@ var playerModel = require('../models/player.ts');
 
 export class P2player {
   Body: any;
+  boundaryWidth: any;
+  boundaryHeight: any;
+  
   constructor() {
   }
 
@@ -44,10 +47,16 @@ export class P2player {
     });
   }
 
-  update(input: InputData,
-    player: { lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any; },
+  update(room: any, input: InputData,
+    player: {
+      direction: string; lastX: any; lastY: any; Body: { collide: any; position: any[]; }; x: number; y: number; tick: any;
+},
     velocity: number) {
-      velocity = 76;
+
+    this.boundaryWidth = room.state.mapWidth;
+    this.boundaryHeight = room.state.mapHeight;
+
+    velocity = 76;
 
     this.Body.velocity[0] = 0;
     this.Body.velocity[1] = 0;
@@ -62,6 +71,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = velocity;
         this.Body.velocity[0] = 0;
+        player.direction = "Down"
       }
       else {
         this.Body.position[0] += 32;
@@ -72,6 +82,7 @@ export class P2player {
 
         this.Body.velocity[1] = -velocity;
         this.Body.velocity[0] = 0;
+        player.direction = "Up"
       }
       else {
         this.Body.position[0] -= 32;
@@ -81,6 +92,7 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = 0;
         this.Body.velocity[0] = velocity;
+        player.direction = "Right"
       }
       else {
         this.Body.position[1] += 32;
@@ -90,13 +102,20 @@ export class P2player {
       if (!this.Body.collide) {
         this.Body.velocity[1] = 0;
         this.Body.velocity[0] = -velocity;
+        player.direction = "Left"
       }
       else {
         this.Body.position[1] -= 32;
       }
     }
+
+
+    this.boundaryTest(this.Body);
+
+
     player.x = this.Body.position[0];
     player.y = this.Body.position[1];
+
     /*   if (this.last_step_x != player.playerBody.position[0] || this.last_step_y != player.playerBody.position[1]) {
       //  console.log(player.playerBody.position[0], player.playerBody.position[1])
         this.last_step_x = player.playerBody.position[0];
@@ -105,4 +124,25 @@ export class P2player {
     player.tick = input.tick;
     return player;
   }
+
+
+
+  boundaryTest(body) {
+    if (body.position[0] <= 20){
+      body.position[0] += 32;
+    }
+    if (body.position[1] <= 20) {
+      body.position[1] += 32;
+    }
+
+    if (body.position[0] >= this.boundaryWidth) {
+      body.position[0] -= 32;
+
+    }
+    if (body.position[1] >= this.boundaryHeight) {
+      body.position[1] -= 32;
+    }
+  }
+
+
 }

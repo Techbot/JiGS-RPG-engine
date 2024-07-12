@@ -2,9 +2,10 @@
 
 namespace Drupal\jigs\Entities;
 
+use Drupal\jigs\Entities\Player;
+
 class Mission
 {
-
   public $MapGrid;
   //public $userId;
   public $player;
@@ -14,23 +15,27 @@ class Mission
   public $AllMissionDialogue;
   public $AllMissionBosses;
 
+  public $profileId;
 
-  function __construct($userMG, $userId, $player)
+  function __construct()
   {
-    $this->MapGrid = \Drupal::entityTypeManager()->getStorage('node')->load($userMG);
-    //$this->userId = $userId;
-    $this->$userMG = $userMG;
-    $this->player = $player;
-    //$this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
-    $this->AllMissionSwitches = $this->getAllMissionSwitches($this->userMG);
-    $this->AllMissionDialogue = $this->getAllMissionDialogs($userMG);
-    $this->AllMissionBosses = $this->getAllMissionBosses($userMG);
+
+    $this->playerSwitchesStates = Player::getAllFlickedSwitches();
+    //  $this->AllMissionSwitches = $this->getAllMissionSwitches($this->userMG);
+    //  $this->AllMissionDialogue = $this->getAllMissionDialogs($userMG);
+    //  $this->AllMissionBosses = $this->getAllMissionBosses($userMG);
   }
 
-  function getAllMissionSwitches($userMG)
+  function getMissionSwitches($userMG)// used by canvas
   {
     $database = \Drupal::database();
     $user = \Drupal::currentUser()->id();
+
+
+    $query = $database->query("SELECT profile_id FROM profile WHERE uid = " . $user . " AND type = 'player'");
+    $player['profileId'] = $query->fetchAll()[0]->profile_id;
+    $this->profileId = $player['profileId'];
+
     $query = $database->query("SELECT paragraph__field_switch.entity_id,
     paragraph__field_x.field_x_value,
     paragraph__field_y.field_y_value,
@@ -90,7 +95,7 @@ class Mission
    LEFT JOIN node__field_end_frame
    ON node__field_end_frame.entity_id = node__field_image.entity_id
 
-   WHERE profile__field_missions.entity_id = " . $user . " AND paragraph__field_map_grid.field_map_grid_target_id = " . $userMG);
+   WHERE profile__field_missions.entity_id = " . $this->profileId . " AND paragraph__field_map_grid.field_map_grid_target_id = " . $userMG);
 
     ////////////////////////////////////////////////////////////////////////
     // Now get the switches state and add it to the array item.
@@ -131,7 +136,7 @@ class Mission
     ON node__field_dialog_line.entity_id = paragraph__field_dialog.field_dialog_target_id
     LEFT JOIN paragraph__field_line_dialog
     ON  paragraph__field_line_dialog.entity_id = node__field_dialog_line.field_dialog_line_target_id
-    WHERE profile__field_missions.entity_id = $user
+    WHERE profile__field_missions.entity_id = $this->profileId
     AND paragraph__field_map_grid.field_map_grid_target_id = " . $userMG);
 
     $dialogueArray = $query->fetchAll();
@@ -144,9 +149,6 @@ class Mission
     //   return $dialogueArray;
     return $dialogueFull;
   }
-
-
-
 
   function getAllMissionBosses($userMG)
   {
@@ -187,7 +189,7 @@ ON node__field_image.entity_id = paragraph__field_boss.field_boss_target_id
 LEFT JOIN file_managed
 ON file_managed.fid = node__field_image.field_image_target_id
 
-WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_map_grid_target_id =4");
+WHERE profile__field_missions.entity_id = $user AND paragraph__field_map_grid.field_map_grid_target_id =". $userMG);
 
     ////////////////////////////////////////////////////////////////////////
     // Now get the switches state and add it to the array item.
@@ -202,9 +204,5 @@ WHERE profile__field_missions.entity_id = 1 AND paragraph__field_map_grid.field_
 
     return $switchesArray;
   }
-
-
-
-
 
 }

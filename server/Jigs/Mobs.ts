@@ -9,6 +9,8 @@ var playerModel = require('../models/player.ts');
 var p2 = require('p2');
 export class Mob {
   pause: number;
+  boundaryWidth: any;
+  boundaryHeight: any;
   constructor() {
     this.pause = 0;
   }
@@ -71,7 +73,11 @@ export class Mob {
     return circleBody
   }
 
-  updateMob(room) {
+  update(room) {
+
+    this.boundaryWidth = room.state.mapWidth;
+    this.boundaryHeight = room.state.mapHeight;
+
     if (room.P2mobBodies.length > 0) {
       // Update destination every 2 seconds for one of the mobs
       if (room.pause == 0) {
@@ -172,6 +178,7 @@ export class Mob {
         body.velocity[1] = amount;
         body.direction = 'Down'
       }
+    //  this.boundaryTest(body);
     }
   }
 
@@ -262,6 +269,23 @@ export class Mob {
     if (body.dead != true) {
       body.velocity[0] = forceX;
       body.velocity[1] = forceY;
+    }
+  //  this.boundaryTest(body);
+
+  }
+
+  boundaryTest(body) {
+    if (body.position[0] || body.position[1] < 0) {
+      body.velocity[0] = 0;
+      body.velocity[1] = 0;
+    }
+    if (body.position[0] >= this.boundaryWidth) {
+      body.velocity[0] = 0;
+      body.velocity[1] = 0;
+    }
+    if (body.position[1] >= this.boundaryHeight) {
+      body.velocity[0] = 0;
+      body.velocity[1] = 0;
     }
   }
 

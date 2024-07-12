@@ -8,10 +8,10 @@ import Layers from "../entities/layers";
 import { createCharacterAnims } from "../entities/anim";
 import { createSwitchesAnims } from "../entities/anim";
 import { createBossAnims } from "../entities/anim";
-import  MobLoader  from "./mobLoader"
-import  BossLoader  from "./bossLoader"
-import  NpcLoader  from "./npcLoader"
-import  TilesetLoader  from "./tilesetLoader"
+import MobLoader from "./mobLoader"
+import BossLoader from "./bossLoader"
+import NpcLoader from "./npcLoader"
+import TilesetLoader from "./tilesetLoader"
 import SwitchLoader from "./switchLoader"
 import QuestLoader from "./questLoader"
 
@@ -29,7 +29,7 @@ export default class Load {
 
     constructor() {
         this.jigs = useJigsStore();
-        this.mobLoader= new MobLoader();
+        this.mobLoader = new MobLoader();
         this.bossLoader = new BossLoader();
         this.npcLoader = new NpcLoader();
         this.tilesetLoader = new TilesetLoader();
@@ -67,7 +67,7 @@ export default class Load {
 
             if (this.jigs.npcArray) {
                 this.jigs.npcArray.forEach(function loader(Npc) {
-                    createCharacterAnims(scene.anims, 'npc' , Npc[3]);
+                    createCharacterAnims(scene.anims, 'npc', Npc[3]);
                 });
             }
 
@@ -86,8 +86,17 @@ export default class Load {
             if (this.jigs.switchesArray) {
                 this.jigs.switchesArray.forEach(function loader(switches) {
                     createSwitchesAnims(scene.anims,
-                        'switch_' + switches.entity_id,
-                        'switchAnim_' + switches.entity_id,
+                        switches.entity_id,
+                        switches.field_switch_type_value,
+                        switches.field_repeatable_value
+                    );
+                });
+            }
+            if (this.jigs.missionSwitchesArray) {
+                this.jigs.missionSwitchesArray.forEach(function loader(switches) {
+                    console.log("creating switch anim " + switches.entity_id)
+                    createSwitchesAnims(scene.anims,
+                        switches.entity_id,
                         switches.field_switch_type_value,
                         switches.field_repeatable_value
                     );

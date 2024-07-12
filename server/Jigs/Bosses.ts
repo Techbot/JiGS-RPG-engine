@@ -9,14 +9,12 @@ import { BossState } from "./GameState";
 var roomModel = require('../models/room.ts');
 import { Boss } from "./Boss.ts";
 
-
 enum Direction {
   UP,
   DOWN,
   LEFT,
   RIGHT
 }
-
 
 export class Bosses {
   pause = 0;
@@ -53,21 +51,16 @@ export class Bosses {
       console.log('Boss Error' + e);
     });
   }
-
   /////////////////////////////////////////////////////////////////////////////
 
-  updateBosses(room: any) {
-
+  update(room: any) {
     if (room.P2bossBodies.length > 0) {
       room.P2bossBodies.forEach((P2BossBody: Boss) => {
         P2BossBody.updateBossForce()
       });
-
     }
     // Update destination every 2 seconds for one of the bosess
-
     room.P2bossBodies.forEach((P2BossBody: Boss) => {
-
       room.state.bossResult.forEach((bossState) => {
         if (bossState.dead != 1) {
           //console.log("a " + room.P2bossBodies[i].title);
@@ -81,21 +74,10 @@ export class Bosses {
         }
       }
       );
-
       P2BossBody.updateBossForce();
     })
 
   };
-
-/*   skip = (val) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        this.pause = 0;
-        console.log('-------------------------');
-        resolve(val);
-      }, val);
-    });
-  } */
 
   // Sets up a zombie state with the original values, then updates
 
@@ -120,7 +102,6 @@ export class Bosses {
       bossItem.y = parseInt(room.P2bossBodies[i].position[1]);
       bossItem.direction = room.P2bossBodies[i].body.direction;
     }
-
 
     if (field_boss_target_id != undefined) { bossItem.field_boss_target_id = field_boss_target_id; }
     if (title != undefined) { bossItem.title = title; }

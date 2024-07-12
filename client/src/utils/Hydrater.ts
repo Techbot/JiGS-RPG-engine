@@ -63,6 +63,9 @@ export default class Hydrater {
     // And replaces all other html tags with null.
     this.jigs.debug = parseInt(response.data[0].value["gameConfig"]["Debug"]);
     this.jigs.content = response.data[0].value["gameConfig"]["Body"].replaceAll('</p><p>', '\n').replaceAll(/(<([^>]+)>)/ig, '');
+
+    this.jigs.missionSwitchesArray = response.data[0].value["missionSwitches"];
+
   }
 
   hydrateMission(response) {

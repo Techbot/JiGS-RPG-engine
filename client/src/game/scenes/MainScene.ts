@@ -27,7 +27,8 @@ import Messenger from "../entities/messenger";
 import Rewards from "../entities/rewards";
 import Load from "../loaders/loader";
 import Portals from "../entities/portals";
-import Switches from "../entities/switches";
+import WorldSwitches from "../entities/worldSwitches";
+import MissionSwitches from "../entities/missionSwitches";
 import NPCs from "../entities/npcs";
 import Mobs from "../entities/mobs";
 import Bosses from "../entities/bosses";
@@ -82,7 +83,8 @@ export class MainScene extends Phaser.Scene {
     plugins: any;
     messenger: Messenger;
     Portals: Portals;
-    Switches: Switches;
+    WorldSwitches: WorldSwitches;
+    MissionSwitches: MissionSwitches;
     Walls: Walls;
     Mobs: Mobs;
     Bosses: Bosses;
@@ -100,7 +102,8 @@ export class MainScene extends Phaser.Scene {
         this.jigs = useJigsStore();
         this.client = new Client(BACKEND_URL);
         this.Portals = new Portals;
-        this.Switches = new Switches;
+        this.WorldSwitches = new WorldSwitches;
+        this.MissionSwitches = new MissionSwitches;
         this.Walls = new Walls;
         this.NPCs = new NPCs;
         this.Mobs = new Mobs;
@@ -115,7 +118,7 @@ export class MainScene extends Phaser.Scene {
         this.Loader = new Load;
         this.Loader.load(this);
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
-        this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+        this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
         //this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
@@ -159,13 +162,14 @@ export class MainScene extends Phaser.Scene {
                 this.jigs.content = this.jigs.dialogueArray;
                 this.Portals.add(this);
                 // this.events.emit('content');
-                //this.Rewards.add(this);
+                this.Rewards.add(this);
                 this.Mobs.add(this);
                 this.NPCs.add(this);
                 this.Bosses.add(this);
-                //this.Switches.add(this);
+                this.WorldSwitches.add(this);
+                this.MissionSwitches.add(this);
                 this.Walls.add(this);
-                //this.Folio.add(this);
+                this.Folio.add(this);
                 this.jigs.localPlayer.add();
                 this.playerEntities[sessionId] = entity;
             } else {
@@ -178,7 +182,7 @@ export class MainScene extends Phaser.Scene {
         this.jigs.room.state.players.onRemove((player, sessionId) => {
             const entity = this.playerEntities[sessionId];
             if (entity) {
-                entity.destroy();
+                entity.entity.destroy();
                 delete this.playerEntities[sessionId];
             }
         });

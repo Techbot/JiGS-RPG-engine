@@ -38,7 +38,7 @@ export class BootScene extends Scene {
     this.load.image('bullet', "/assets/images/star_gold.png");
     this.load.image('healthBar', "/assets/images/health_bar.png");
     this.load.image('reward', '/assets/images/various-32-greyout_69.png');
-    this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+    this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
     this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
     this.load.image('cursor', '/assets/images/cursors/blank.cur');
     this.load.image('cursor2', '/assets/images/cursors/attack.cur');
