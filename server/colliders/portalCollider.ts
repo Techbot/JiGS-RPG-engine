@@ -11,7 +11,7 @@ export class portalCollider {
   do(room, bodyA, bodyB) {
     if (bodyA.isPortal) {
         console.log('portal ');
-      if (!bodyA.done) {
+   //   if (!bodyA.done) {
         //    const missionAccepted = room.state.missionAccepted;
         //    const player = bodyB.client_id;
         //    const playerFlags = bodyB.flags;
@@ -28,9 +28,9 @@ export class portalCollider {
             //         console.log(bodyA.destination_y);
             playerModel.updatePlayerStats(bodyB.profileId, 'y', bodyA.destination_y, 1)
           });
-        bodyA.done = true;
+   //     bodyA.done = true;
         //   }
-      }
+     // }
     }
   }
 }

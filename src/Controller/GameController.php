@@ -15,6 +15,8 @@ use Drupal\jigs\Entities\Player;
 use Drupal\jigs\Entities\MapGrid;
 use Drupal\jigs\Entities\Game;
 use Drupal\jigs\Entities\City;
+use Drupal\jigs\Entities\Mission;
+
 use Drupal\jigs\Game\FactionDecorator;
 use Drupal\jigs\Game\WeaponDecorator;
 use Drupal\Core\Form\FormStateInterface;
@@ -40,6 +42,8 @@ class GameController extends ControllerBase
   public $faction;
   public $weapon;
 
+  public $mapGridNode;
+
   public function __construct()
   {
   }
@@ -63,17 +67,24 @@ class GameController extends ControllerBase
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response                   = new AjaxResponse();
-    //$player                     = new Player();
-    //$responseData['player']     =  $player->create();
     $gameConfig                 = new Game();
     $responseData['gameConfig'] = $gameConfig->create();
     //$mapGrid                    = new MapGrid($responseData['player']['userMG']);
-
-    $mapGrid = new MapGrid($request->query->get('mapGrid'));
+    $mapGridNode = $request->query->get('mapGrid');
+    $mapGrid = new MapGrid($mapGridNode);
+    $this->mapGridNode = $mapGridNode;
 
     $responseData['MapGrid']    = $mapGrid->create();
     $city                       = new City($responseData['MapGrid']['userCity']);
     $responseData['City']       = $city->create();
+
+/////////////////////////////Missions Payload //////////////////////////////////
+
+    $mission = new Mission();
+    $responseData['missionSwitches'] = $mission->getMissionSwitches($this->mapGridNode);
+    //$responseData['missionBosses'] = $mission->getMissionBosses($this->mapGrid);
+    //$responseData['missionPortals]'] = $mission->getMissionPortals($this->mapGrid);
+
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
   }
@@ -90,6 +101,17 @@ class GameController extends ControllerBase
     $responseData['player'] = $player->create();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
+  }
+
+  public function missionSwitches(Request $request){
+
+    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
+    $response = new AjaxResponse();
+
+
+    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
+    return $response;
+
   }
 
   public function myMissions()

@@ -19,7 +19,8 @@ export default class PlayerMovement {
       !this.scene.inputPayload.up && !this.scene.inputPayload.down &&
       currentPlayer.speed != 'stopped') {
      //   currentPlayer.anims.play('stop_' + this.jigs.playerStats.sprite_sheet);
-      currentPlayer.anims.play('player-stop-' + 'glowsword');
+
+     currentPlayer.anims.play('player-stop-' + 'glowsword');
       currentPlayer.speed = 'stopped';
       currentPlayer.dir = 'stopped';
       currentPlayer.setVelocityX(0);
@@ -42,6 +43,9 @@ export default class PlayerMovement {
       }
     }
     else if (this.scene.inputPayload.up) {
+
+
+
       const tile = colliderMap.getTileAtWorldXY(currentPlayer.x, currentPlayer.y - 16, true);
       if (tile) {
         currentPlayer.setVelocityY(-velocity);
@@ -57,6 +61,7 @@ export default class PlayerMovement {
       }
     }
     else if (this.scene.inputPayload.right) {
+
       const tile = colliderMap.getTileAtWorldXY(currentPlayer.x + 16, currentPlayer.y, true);
       if (tile) {
         currentPlayer.setVelocityX(velocity);
@@ -93,5 +98,24 @@ export default class PlayerMovement {
         this.scene.walkSound.play();
       } */
     }
+  this.boundaryTest(currentPlayer)
+
   }
+
+  boundaryTest(body) {
+    if (body.x <= 20) {
+      body.x =20
+    }
+    if (body.y <= 20) {
+     body.y = 20;
+    }
+    if (body.x >= this.jigs.mapWidth * 16) {
+      body.x = this.jigs.mapWidth * 16;
+
+    }
+    if (body.y >= this.jigs.mapHeight * 16) {
+      body.y = this.jigs.mapHeight * 16;
+    }
+  }
+
 }

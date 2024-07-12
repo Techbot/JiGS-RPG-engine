@@ -5,9 +5,11 @@ import Phaser from "phaser";
 import { useJigsStore } from '../../stores/jigs';
 import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
+import Hydrater from '../../utils/Hydrater';
 
 export default class Npc extends Phaser.Physics.Arcade.Sprite {
     jigs: any;
+    hydrater: Hydrater;
 
     constructor(scene, data) {
         super(scene, 0, 0, null);
@@ -19,6 +21,7 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
         this.on('pointerdown', this.onNPCDown.bind(scene, data, scene));
         this.setDepth(5)
         this.loadNPC();
+        this.hydrater = new Hydrater;
     }
 
     onNPCDown(npc, scene) {
@@ -32,7 +35,7 @@ export default class Npc extends Phaser.Physics.Arcade.Sprite {
                         this.jigs.content = response.data[0].value.playerMission;
                         scene.events.emit('content');
                     } else {
-                        scene.hydrateMission(response);
+                        this.hydrater.hydrateMission(response);
                         scene.events.emit('Mission', npc);
                     }
                 })

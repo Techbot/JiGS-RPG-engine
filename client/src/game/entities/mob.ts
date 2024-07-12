@@ -10,7 +10,7 @@ export default class Mob extends Phaser.Physics.Arcade.Sprite {
 
     constructor(scene, x, y, sprite, name) {
         super(scene, x, y, null);
-
+        this.jigs = useJigsStore();
         scene.children.add(this).play('Zombie-Green-stop-default', true);
 
         // scene.add.sprite(x, y);

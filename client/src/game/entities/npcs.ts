@@ -42,8 +42,8 @@ export default class NPCs {
       }
     }
   }
-  
-  onNPCDown(npc, self) {
+
+/*   onNPCDown(npc, self) {
     if (npc[5] == 1) {
       axios
         .get("/mymission?_wrapper_format=drupal_ajax&npc=" + npc[6])
@@ -60,5 +60,5 @@ export default class NPCs {
       this.jigs.content = npc[4];
       self.events.emit('content');
     }
-  }
+  } */
 }

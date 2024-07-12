@@ -6,7 +6,6 @@ export default class Messenger {
   scene: any;
 
   initMessages(scene) {
-
     scene.jigs.room.onMessage("portal", (message) => {
       const promise1 = Promise.resolve(scene.jump());
       scene.jigs.tiled = message;
@@ -35,7 +34,7 @@ export default class Messenger {
     });
 
     scene.jigs.room.onMessage("player hit", (message) => {
-      scene.updateState();
+    //  scene.updateState();
     });
 
     scene.jigs.room.onMessage("struck", (message) => {
@@ -47,12 +46,12 @@ export default class Messenger {
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
         if (scene.jigs.mobArray[i][1] == message) {
-          scene.Mobs.SceneMobArray[i].play('hurt_mob' + scene.jigs.mobArray[i][4]);
+          scene.Mobs.SceneMobArray[i].play('Zombie-Green-hurt-default');
           //   scene.Mobs.SceneMobArray[i].setPosition(parseInt(scene.jigs.mobArray[i].x), parseInt(scene.jigs.mobArray[i].y));
         }
         i++;
       }
-      scene.updateState();
+     // scene.updateState();
     });
 
     scene.jigs.room.onMessage("remove-reward", (message) => {
@@ -74,7 +73,7 @@ export default class Messenger {
     });
 
     scene.jigs.room.state.mobResult.onChange((value, key) => {
-      console.log('---------mob result-----------------------' + value.direction)
+      // console.log('---------mob result-----------------------' + value.direction)
 
       let i = 0;
       while (i < scene.jigs.mobArray.length) {
@@ -89,7 +88,7 @@ export default class Messenger {
     });
 
     scene.jigs.room.state.bossResult.onChange((value, key) => {
-      console.log('---------boss result-----------------------' + value.direction )
+      // console.log('---------boss result-----------------------' + value.direction )
       let i = 0;
       while (i < scene.jigs.bossesArray.length) {
         if (scene.jigs.bossesArray[i].target == key) {

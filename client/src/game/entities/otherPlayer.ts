@@ -40,7 +40,7 @@ export default class OtherPlayer {
       //
       this.entity.setData('serverX', this.player.x);
       this.entity.setData('serverY', this.player.y);
-      this.entity.setData('discordName', this.player.username);
+      //this.entity.setData('discordName', this.player.username);
       this.entity.setData('serverDirection', this.player.direction);
 
     });
@@ -48,12 +48,12 @@ export default class OtherPlayer {
 
   update() {
     if (this.entity.data) {
-      const { serverX, serverY, serverDirection, discordName } = this.entity.data.values;
+      const { serverX, serverY, serverDirection} = this.entity.data.values;
       this.entity.x = Phaser.Math.Linear(this.entity.x, serverX, 0.2);
       this.entity.y = Phaser.Math.Linear(this.entity.y, serverY, 0.2);
       //  entity.direction = serverDirection;
-      console.log('************************** discordName ' + discordName);
-      console.log('************************** direction ' + serverDirection);
+      //console.log('************************** discordName ' + discordName);
+     // console.log('************************** direction ' + serverDirection);
 
       this.updateDirection(serverDirection);
     }

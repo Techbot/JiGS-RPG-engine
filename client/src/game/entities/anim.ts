@@ -208,7 +208,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
         });
     }
 
-    ////////////////////////////////////// Hurt Anim 1 Direction //////////////////////////////
+    ////////////////////////////////////// Hurt Anim 1 Direction ///////////////
     function hurtAnim(weapon, type) {
         anims.create({
             key: entityType + '-hurt-' + weapon,
@@ -217,7 +217,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: 0
         });
     }
-    ////////////////////////////////////// Shoot Anim 4 Directions //////////////////////////////
+    ////////////////////////////////////// Shoot Anim 4 Directions /////////////
     function shootAnim(weapon) {
         anims.create({
             key: entityType + '-shootUp-' + weapon,
@@ -314,7 +314,6 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
 
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     entity,
-    texture,
     switchType,
     repeat) => {
 
@@ -322,8 +321,8 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     let OffArr = [];
 
     if (switchType == 1) {
-        OnArr = [0];
-        OffArr = [1];
+        OnArr = [1];
+        OffArr = [0];
     }
 
     if (switchType == 2) {
@@ -361,17 +360,17 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     }
 
     anims.create({
-        key: texture + 'On',
+        key: entity + 'On',
         frames: anims.generateFrameNumbers(entity, { frames: OnArr }),
         frameRate: 12,
-        repeat: -1
+        repeat: 0
     });
 
     anims.create({
-        key: texture + 'Off',
+        key: entity + 'Off',
         frames: anims.generateFrameNumbers(entity, { frames: OffArr }),
         frameRate: 12,
-        repeat: -1
+        repeat: 0
     });
 
 }
