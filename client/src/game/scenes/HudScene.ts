@@ -26,6 +26,7 @@ export class HudScene extends Scene {
   thing: any;
   timedEvent: any;
   mission: any;
+  npc: any;
 
   constructor() {
     super({ key: 'HudScene', active: true });
@@ -34,6 +35,7 @@ export class HudScene extends Scene {
     this.content = `Phaser is a fast, free, and fun open source HTML5 game framework that offers WebGL and Canvas rendering across desktop and mobile web browsers. Games can be compiled to iOS, Android and native apps by using 3rd party tools. You can use JavaScript or TypeScript for development.`;
 
     this.credits = this.jigs.playerStats.credits;
+    this.npc = 'eve';
     const COLOR_PRIMARY = 0x4e342e;
     const COLOR_LIGHT = 0x7b5e57;
     const COLOR_DARK = 0x260e04;
@@ -41,10 +43,11 @@ export class HudScene extends Scene {
 
   preload() {
     this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-    this.load.image('nextPage', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png');
+    this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
+    // this.load.atlas('avatar', '/assets/images/gui/psibot-head.png', '/assets/images/gui/avatar.json');
+    this.load.image('avatar', '/assets/images/gui/' + this.npc + '.png');
   }
   create() {
-
     // Dialogue.
     this.thing = this.createTextBox(this, 10, 380, {
       wrapWidth: 500,
@@ -129,6 +132,11 @@ export class HudScene extends Scene {
       text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
       action: scene.add.image(0, 0, 'nextPage').setVisible(false),
       title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
+      // icon: scene.rexUI.add.transitionImagePack({
+      //   width: 40, height: 40,
+      //   key: 'avatar', frame: 'A-smile'
+      //  }),
+      icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
       align: {
         title: 'left'
       }
@@ -137,8 +145,8 @@ export class HudScene extends Scene {
     textBox
       .setInteractive()
       .on('pointerdown', function () {
-        var icon = this.getElement('action').setVisible(false);
-        this.resetChildVisibleState(icon);
+        var arrow = this.getElement('action').setVisible(false);
+        this.resetChildVisibleState(arrow);
         if (this.isTyping) {
           this.stop(true);
         } else if (!this.isLastPage) {
@@ -152,11 +160,11 @@ export class HudScene extends Scene {
           return;
         }
 
-        var icon = this.getElement('action').setVisible(true);
-        this.resetChildVisibleState(icon);
-        icon.y -= 30;
+        var arrow = this.getElement('action').setVisible(true);
+        this.resetChildVisibleState(arrow);
+        arrow.y -= 30;
         var tween = scene.tweens.add({
-          targets: icon,
+          targets: arrow,
           y: '+=30', // '+=100'
           ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
           duration: 500,
