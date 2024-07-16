@@ -320,44 +320,56 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     let OnArr = [];
     let OffArr = [];
 
+    //////////////// Standard 2 state switch ///////////////////////////////
     if (switchType == 1) {
-        OnArr = [1];
         OffArr = [0];
+        OnArr = [1];
     }
 
     if (switchType == 2) {
-        OnArr = [1];
         OffArr = [1, 4, 7, 10];
+        OnArr = [1];
     }
 
     if (switchType == 3) {
-        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         OffArr = [11];
+        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
     }
 
     if (switchType == 4) {
-        OnArr = [0];
         OffArr = [0, 3, 6, 9];
+        OnArr = [0];
+
     }
 
     if (switchType == 5) {
-        OnArr = [0, 3, 6, 10];
         OffArr = [3];
+        OnArr = [0, 3, 6, 10];
+
     }
 
     if (switchType == 6) {
-        OnArr = [0, 1, 2, 3, 4, 5];
         OffArr = [4];
+        OnArr = [0, 1, 2, 3, 4, 5];
     }
 
     if (switchType == 7) {
-        OnArr = [0, 3, 6]
         OffArr = [6]
+        OnArr = [0, 3, 6]
     }
+
     if (switchType == 8) {
-        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
         OffArr = [11];
+        OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     }
+
+    ////////////////// Steampunk Lever //////////////////////////////
+    if (switchType == 9) {
+        OnArr = [0];
+        OffArr = [1,2];
+    }
+
 
     anims.create({
         key: entity + 'On',
