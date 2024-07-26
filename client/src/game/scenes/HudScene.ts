@@ -35,7 +35,7 @@ export class HudScene extends Scene {
     this.content = `Phaser is a fast, free, and fun open source HTML5 game framework that offers WebGL and Canvas rendering across desktop and mobile web browsers. Games can be compiled to iOS, Android and native apps by using 3rd party tools. You can use JavaScript or TypeScript for development.`;
 
     this.credits = this.jigs.playerStats.credits;
-    this.npc = 'eve';
+
     const COLOR_PRIMARY = 0x4e342e;
     const COLOR_LIGHT = 0x7b5e57;
     const COLOR_DARK = 0x260e04;
@@ -45,7 +45,7 @@ export class HudScene extends Scene {
     this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
     this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
     // this.load.atlas('avatar', '/assets/images/gui/psibot-head.png', '/assets/images/gui/avatar.json');
-    this.load.image('avatar', '/assets/images/gui/' + this.npc + '.png');
+    // this.load.image('avatar', '/assets/images/gui/' + this.npc + '.png');
   }
   create() {
     // Dialogue.
@@ -70,6 +70,32 @@ export class HudScene extends Scene {
         wrapWidth: 600,
       }).start(this.jigs.content, 50).setDepth(7)
     }, this);
+
+    ourGame.events.on('cutscene', function () {
+      if (this.jigs.cutscene[this.jigs.cutscenePosition]) {
+        this.thing.destroy();
+        this.thing = this.createDialogTextBox(
+          this, 10, 500, {
+          wrapWidth: 600,
+          iconText: this.jigs.cutscene[this.jigs.cutscenePosition].npc,
+        }).start(this.jigs.cutscene[this.jigs.cutscenePosition].dialog_line, 50).setDepth(7);
+        this.jigs.cutscenePosition++;
+      }
+    },
+    this);
+
+    this.events.on('cutscene', function () {
+      if (this.jigs.cutscene[this.jigs.cutscenePosition]) {
+        this.thing.destroy();
+        this.thing = this.createDialogTextBox(
+          this, 10, 500, {
+          wrapWidth: 600,
+          iconText: this.jigs.cutscene[this.jigs.cutscenePosition].npc,
+        }).start(this.jigs.cutscene[this.jigs.cutscenePosition].dialog_line, 50).setDepth(7);
+        this.jigs.cutscenePosition++;
+      }
+    },
+      this);
 
     ourGame.events.on('position', function (x: number, y: number) {
       this.x = x;
@@ -128,7 +154,7 @@ export class HudScene extends Scene {
 
     var textBox = scene.rexUI.add.textBox({
       x: 10,
-      y: 480,
+      y: 460,
       text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
       action: scene.add.image(0, 0, 'nextPage').setVisible(false),
       title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
@@ -136,7 +162,7 @@ export class HudScene extends Scene {
       //   width: 40, height: 40,
       //   key: 'avatar', frame: 'A-smile'
       //  }),
-      icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
+      // icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
       align: {
         title: 'left'
       }
@@ -178,51 +204,122 @@ export class HudScene extends Scene {
     return textBox;
   }
 
+
+  ////////////////////////////////////////////////////////////////////////////////
+
+  createDialogTextBox = function (scene, x, y, config) {
+    var wrapWidth = this.GetValue(config, 'wrapWidth', 0);
+    var fixedWidth = this.GetValue(config, 'fixedWidth', 0);
+    var fixedHeight = this.GetValue(config, 'fixedHeight', 0);
+    var titleText = this.GetValue(config, 'title', undefined);
+    var iconText = this.GetValue(config, 'iconText', undefined);
+
+    var textBox = scene.rexUI.add.textBox({
+      x: 10,
+      y: 460,
+      text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
+      action: scene.add.image(0, 0, 'nextPage').setVisible(false),
+      title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
+      // icon: scene.rexUI.add.transitionImagePack({
+      //   width: 40, height: 40,
+      //   key: 'avatar', frame: 'A-smile'
+      //  }),
+      // icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
+      icon: scene.add.text(0, 0, iconText, { font: 'bold 16px Neutron Demo', fill: '#ffffff' }),
+
+      align: {
+        title: 'left'
+      }
+    }).setDisplayOrigin(0, 0);
+
+    textBox
+      .setInteractive()
+      .on('pointerdown', function () {
+        var arrow = this.getElement('action').setVisible(false);
+        this.resetChildVisibleState(arrow);
+        if (this.isTyping) {
+          this.stop(true);
+        } else if (!this.isLastPage) {
+          this.typeNextPage();
+        } else {
+          textBox.destroy();
+        }
+      }, textBox)
+      .on('pageend', function () {
+        if (this.isLastPage) {
+          return;
+        }
+
+        var arrow = this.getElement('action').setVisible(true);
+        this.resetChildVisibleState(arrow);
+        arrow.y -= 30;
+        var tween = scene.tweens.add({
+          targets: arrow,
+          y: '+=30', // '+=100'
+          ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
+          duration: 500,
+          repeat: 0, // -1: infinity
+          yoyo: false
+        });
+      }, textBox)
+      .on('complete', function () {
+        if (scene.jigs.cutscenePosition < scene.jigs.cutscene.length) {
+          console.log("more");
+
+          setTimeout(() => {
+            scene.events.emit('cutscene');
+          },1000);
+        }
+
+      })
+    return textBox;
+  }
+
   getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
     return scene.rexUI.add.BBCodeText(0, 0, '', {
-      fontFamily: 'Neutron Demo',
+      // fontFamily: 'Neutron Demo',
       fontWeight: 'bold',
       fontSize: '24px',
       fill: 'white',
       backgroundColor: 'rgba(0, 0, 0, 0.6)',
       wrap: {
         mode: 'word',
-        width: 600
+        width: 660
       },
-      maxLines: 4,
+      maxLines: 6,
     }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 })
   }
 
-  CreateDialog = function (scene, content) {
-    return scene.rexUI.add.textArea({
-      x: 0,
-      y: 260,
-      width: 500,
-      height: 400,
-      // text: scene.add.text(),
-      text: scene.rexUI.add.BBCodeText(),
-      // textMask: true,
-      scroller: {
-        pointerOutRelease: false,
-      },
-      mouseWheelScroller: {
-        focus: false,
-        speed: 0.1
-      },
-      content: this.jigs.content,
-      expand: {
-        footer: false
-      }
-    }).setDisplayOrigin(0, 0)
-  }
+  // CreateDialog = function (scene, content) {
+  //   return scene.rexUI.add.textArea({
+  //     x: 0,
+  //     y: 260,
+  //     width: 500,
+  //     height: 400,
+  //     // text: scene.add.text(),
+  //     text: scene.rexUI.add.BBCodeText(),
+  //     // textMask: true,
+  //     scroller: {
+  //       pointerOutRelease: false,
+  //     },
+  //     mouseWheelScroller: {
+  //       focus: false,
+  //       speed: 0.1
+  //     },
+  //     content: this.jigs.content,
+  //     expand: {
+  //       footer: false
+  //     }
+  //   }).setDisplayOrigin(0, 0)
+  // }
 
-  CreateContent = function (linesCount) {
-    var numbers = [];
-    for (var i = 0; i < linesCount; i++) {
-      numbers.push('[color=' + ((i % 2) ? 'green' : 'yellow') + ']' + i.toString() + '[/color]');
-    }
-    return this.jigs.content + '\n' + numbers.join('\n');
-  }
+  // CreateContent = function (linesCount) {
+  //   var numbers = [];
+  //   for (var i = 0; i < linesCount; i++) {
+  //     numbers.push('[color=' + ((i % 2) ? 'green' : 'yellow') + ']' + i.toString() + '[/color]');
+  //   }
+  //   return this.jigs.content + '\n' + numbers.join('\n');
+  // }
 }
 
 var createLabel = function (scene, text) {
