@@ -225,7 +225,7 @@ export class HudScene extends Scene {
       //   key: 'avatar', frame: 'A-smile'
       //  }),
       // icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
-      icon: scene.add.text(0, 0, iconText, { font: 'bold 16px Neutron Demo', fill: '#ffffff' }),
+      icon: scene.add.text(0, 0, iconText.toUpperCase() + ': ', { font: 'bold 14px Roboto', fill: '#ffffff', backgroundColor: 'rgba(25, 83, 95, 0.8)' }).setPadding({ left: 16, right: 16, top: 8, bottom: 8 }),
 
       align: {
         title: 'left'
