@@ -117,8 +117,6 @@ export class MainScene extends Phaser.Scene {
     preload() {
         this.Loader = new Load;
         this.Loader.load(this);
-        this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
-        this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
         //this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
         this.load.scenePlugin('AnimatedTiles', '/assets/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
@@ -147,9 +145,9 @@ export class MainScene extends Phaser.Scene {
             return;
         }
         console.log("**************** Init Messages ************" + this.jigs.room);
-        // this.walkSound = this.sound.add('walk', { volume: 0.03 });
-        // this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.06 });
-        //  this.soundtrack.play();
+        this.walkSound = this.sound.add('walk', { volume: 0.1 });
+        this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.6 });
+        this.soundtrack.play();
         this.messenger.initMessages(this);
         this.jigs.room.state.players.onAdd((player, sessionId: string | number) => {
             var entity: any;
@@ -194,7 +192,7 @@ export class MainScene extends Phaser.Scene {
 
     jump() {
         this.updatePlayerData()
-        //  this.soundtrack.stop();
+        this.soundtrack.stop();
     }
 
     updatePlayerData() {

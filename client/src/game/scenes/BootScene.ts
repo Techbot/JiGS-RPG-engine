@@ -1,14 +1,14 @@
 import { Scene } from 'phaser'
 import WebFont from '../../assets/WebFont'
-/* import thudMp3 from '../assets/thud.mp3'
-import thudOgg from '../assets/thud.ogg'
- */
 export class BootScene extends Scene {
   constructor () {
     super({ key: 'BootScene', active: true })
   }
 
   preload () {
+    this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
+    this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
+
 /*  this.load.spritesheet('PsibotF', '/assets/images/sprites/avatars/1000.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('PsibotF_slash', '/assets/images/sprites/avatars/1000.png', { frameWidth: 192, frameHeight: 192 });
     this.load.spritesheet('PsibotF_walk128', '/assets/images/sprites/avatars/1000.png', { frameWidth: 128, frameHeight: 128 });

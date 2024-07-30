@@ -94,12 +94,12 @@ export default class PlayerMovement {
 
     if (currentPlayer.speed == 'go') {
       //console.log('play');
-/*       if (!this.scene.walkSound.isPlaying) {
+      if (!this.scene.walkSound.isPlaying) {
         this.scene.walkSound.play();
-      } */
+      }
     }
-  this.boundaryTest(currentPlayer)
 
+  this.boundaryTest(currentPlayer)
   }
 
   boundaryTest(body) {
