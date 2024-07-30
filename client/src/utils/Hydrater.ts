@@ -33,11 +33,9 @@ export default class Hydrater {
     this.jigs.mapWidth = parseInt(response.data[0].value["MapGrid"]["mapWidth"]);
     this.jigs.mapHeight = parseInt(response.data[0].value["MapGrid"]["mapHeight"]);
     this.jigs.portalsArray = response.data[0].value["MapGrid"]["portalsArray"];
-
     if (response.data[0].value["MapGrid"]["switchesArray"]) {
       this.jigs.switchesArray = response.data[0].value["MapGrid"]["switchesArray"];
     }
-
     this.jigs.dialogueArray = response.data[0].value["MapGrid"]["dialogueArray"];
     this.jigs.fireArray = response.data[0].value["MapGrid"]["fireArray"];
     this.jigs.fireBarrelsArray = response.data[0].value["MapGrid"]["fireBarrelsArray"];
@@ -51,7 +49,6 @@ export default class Hydrater {
       this.jigs.mobArray = response.data[0].value["MapGrid"]["mobArray"];
     }
     this.jigs.bossesArray = response.data[0].value["MapGrid"]["bossesArray"];
-
     this.jigs.rewardsArray = response.data[0].value["MapGrid"]["rewardsArray"];
     this.jigs.nodeTitle = response.data[0].value["MapGrid"]["name"];
     this.jigs.tilesetArray_1 = response.data[0].value["MapGrid"]["tileset"]["tilesetArray_1"];
@@ -66,6 +63,11 @@ export default class Hydrater {
 
     this.jigs.missionSwitchesArray = response.data[0].value["missionSwitches"];
 
+    if (response.data[0].value["MapGrid"]["cutscene"]) {
+      this.jigs.cutscene = response.data[0].value["MapGrid"]["cutscene"];
+      this.jigs.cutscenePosition = 0;
+
+    }
   }
 
   hydrateMission(response) {

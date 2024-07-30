@@ -19,18 +19,19 @@ class Mission
 
   function __construct()
   {
-
     $this->playerSwitchesStates = Player::getAllFlickedSwitches();
-    //  $this->AllMissionSwitches = $this->getAllMissionSwitches($this->userMG);
-    //  $this->AllMissionDialogue = $this->getAllMissionDialogs($userMG);
-    //  $this->AllMissionBosses = $this->getAllMissionBosses($userMG);
   }
 
-  function getMissionSwitches($userMG)// used by canvas
+
+  ////////////////////////////////////////////////////////////////////////////////
+//
+// Get all of the switches the player has accepted and return their state
+//
+////////////////////////////////////////////////////////////////////////////////
+  function getAllMissionSwitches($userMG)// used by canvas
   {
     $database = \Drupal::database();
     $user = \Drupal::currentUser()->id();
-
 
     $query = $database->query("SELECT profile_id FROM profile WHERE uid = " . $user . " AND type = 'player'");
     $player['profileId'] = $query->fetchAll()[0]->profile_id;
@@ -102,12 +103,10 @@ class Mission
     $switchesArray = $query->fetchAll();
 
     foreach ($switchesArray as $switch) {
-
       if ($this->playerSwitchesStates) {
         $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
       }
     }
-
     return $switchesArray;
   }
 
@@ -189,20 +188,17 @@ ON node__field_image.entity_id = paragraph__field_boss.field_boss_target_id
 LEFT JOIN file_managed
 ON file_managed.fid = node__field_image.field_image_target_id
 
-WHERE profile__field_missions.entity_id = $user AND paragraph__field_map_grid.field_map_grid_target_id =". $userMG);
+WHERE profile__field_missions.entity_id = $user AND paragraph__field_map_grid.field_map_grid_target_id =" . $userMG);
 
     ////////////////////////////////////////////////////////////////////////
     // Now get the switches state and add it to the array item.
     $switchesArray = $query->fetchAll();
 
     foreach ($switchesArray as $switch) {
-
       if ($this->playerSwitchesStates) {
         $switch->switchState = in_array($switch->entity_id, $this->playerSwitchesStates);
       }
     }
-
     return $switchesArray;
   }
-
 }

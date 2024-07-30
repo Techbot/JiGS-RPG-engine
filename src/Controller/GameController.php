@@ -4,22 +4,11 @@ namespace Drupal\jigs\Controller;
 
 use Drupal\node\Entity\Node;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\jigs\Game\Loop;
-use Drupal\jigs\Game\Dice;
-use Drupal\jigs\Game\Npc;
-use Drupal\jigs\Game\Player as old_player;
-use Drupal\jigs\Game\Faction;
-use Drupal\jigs\Game\Round;
-use Drupal\jigs\Game\Weapon;
 use Drupal\jigs\Entities\Player;
 use Drupal\jigs\Entities\MapGrid;
 use Drupal\jigs\Entities\Game;
 use Drupal\jigs\Entities\City;
 use Drupal\jigs\Entities\Mission;
-
-use Drupal\jigs\Game\FactionDecorator;
-use Drupal\jigs\Game\WeaponDecorator;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\InvokeCommand;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,9 +70,9 @@ class GameController extends ControllerBase
 /////////////////////////////Missions Payload //////////////////////////////////
 
     $mission = new Mission();
-    $responseData['missionSwitches'] = $mission->getMissionSwitches($this->mapGridNode);
-    //$responseData['missionBosses'] = $mission->getMissionBosses($this->mapGrid);
-    //$responseData['missionPortals]'] = $mission->getMissionPortals($this->mapGrid);
+    $responseData['missionSwitches'] = $mission->getAllMissionSwitches($this->mapGridNode);
+    //$responseData['missionBosses']   = $mission->getAllMissionBosses($this->mapGrid);
+    //$responseData['missionPortals]'] = $mission->getAllMissionPortals($this->mapGrid);
 
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
@@ -101,17 +90,6 @@ class GameController extends ControllerBase
     $responseData['player'] = $player->create();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
     return $response;
-  }
-
-  public function missionSwitches(Request $request){
-
-    /** @var \Drupal\Core\Ajax\AjaxResponse $response */
-    $response = new AjaxResponse();
-
-
-    $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));
-    return $response;
-
   }
 
   public function myMissions()

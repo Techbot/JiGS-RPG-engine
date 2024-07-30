@@ -63,8 +63,13 @@ export class SceneSelector extends Phaser.Scene {
                     .then((response) => {
                         console.log(response);
                         this.hydrater.hydrateMap(response, 1);
-                        //this.hydrateMap(response, 1);
                     })
+
             })
+            .then(() => {
+                this.events.emit('content')
+            })
+
+
     }
 }

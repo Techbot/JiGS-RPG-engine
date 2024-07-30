@@ -2,6 +2,9 @@
 
 namespace Drupal\jigs\Entities;
 
+use Drupal\paragraphs\Entity\Paragraph;
+use stdClass;
+
 class MapGrid
 {
   public $MapGrid;
@@ -25,68 +28,149 @@ class MapGrid
   public $AllMissionDialogue;
   public $AllMissionBosses;
 
+  public $userId;
+  public $user;
+
   function __construct($userMG)
   {
-    $this->MapGrid =  \Drupal::entityTypeManager()->getStorage('node')->load($userMG);
-    //$this->userId = $userId;
-    $this->$userMG = $userMG;
-  //  $this->player = $player;
+    $this->MapGrid = \Drupal::entityTypeManager()->getStorage('node')->load($userMG);
+    $this->userId = \Drupal::currentUser()->id();
+    $this->user = \Drupal\user\Entity\User::load($this->userId);
+
+    $this->userMG = $userMG;
+    //  $this->player = $player;
     //$this->playerSwitchesStates = $this->player->getAllFlickedSwitches();
-/*     $this->AllMissionSwitches   = $this->getAllMissionSwitches($userMG);
+/*  $this->AllMissionSwitches   = $this->getAllMissionSwitches($userMG);
     $this->AllMissionDialogue   = $this->getAllMissionDialogs($userMG);
     $this->AllMissionBosses   = $this->getAllMissionBosses($userMG); */
   }
 
   function create()
   {
+    $mapGrid['name'] = $this->MapGrid->get('title')->value;
+
     if ($this->MapGrid->field_tiled->getValue()) {
-      $mapGrid['tiled']         = $this->MapGrid->field_tiled->getValue()[0]['value'];
+      $mapGrid['tiled'] = $this->MapGrid->field_tiled->getValue()[0]['value'];
     }
     if ($this->MapGrid->field_map_width->getValue()) {
-      $mapGrid['mapWidth']      = $this->MapGrid->field_map_width->getValue()[0]['value'];
+      $mapGrid['mapWidth'] = $this->MapGrid->field_map_width->getValue()[0]['value'];
     }
     if ($this->MapGrid->field_map_height->getValue()) {
-      $mapGrid['mapHeight']     = $this->MapGrid->field_map_height->getValue()[0]['value'];
+      $mapGrid['mapHeight'] = $this->MapGrid->field_map_height->getValue()[0]['value'];
     }
     if ($this->MapGrid->field_city->getValue()) {
-      $mapGrid['userCity']      = (int)$this->MapGrid->field_city->getValue()[0]['target_id'];
+      $mapGrid['userCity'] = (int) $this->MapGrid->field_city->getValue()[0]['target_id'];
     }
-    $mapGrid['npcArray']          = $this->getNpcs();
-    $mapGrid['mobArray']          = $this->getMobs();
-    $mapGrid['portalsArray']      = $this->getPortals();
+    $mapGrid['npcArray'] = $this->getNpcs();
+    $mapGrid['mobArray'] = $this->getMobs();
+    $mapGrid['portalsArray'] = $this->getPortals();
 
     // $mapGrid['switchesArray']     = $this->getSwitches('switches');
-    $mapGrid['switchesArray']     = $this->AllMissionSwitches;
-    $mapGrid['dialogueArray']          = $this->AllMissionDialogue;
+    $mapGrid['switchesArray'] = $this->AllMissionSwitches;
+    $mapGrid['dialogueArray'] = $this->AllMissionDialogue;
     //  $mapGrid['fireArray']         = $this->getSwitches('fire');
     //  $mapGrid['fireBarrelsArray']  = $this->getSwitches('fireBarrel');
     //  $mapGrid['leverArray']        = $this->getSwitches('lever');
     //  $mapGrid['machineArray']      = $this->getSwitches('machine');
     //  $mapGrid['crystalArray']      = $this->getSwitches('crystal');
 
-    $mapGrid['bossesArray']       = $this->getBosses();
-    $mapGrid['foliosArray']       = $this->getFolios();
-    $mapGrid['wallsArray']        = $this->getWalls();
-    $mapGrid['rewardsArray']      = $this->getRewards();
-    $mapGrid['tileset']           = $this->getLayers();
-    $mapGrid['soundtrack']        = $this->getSoundtrack();
-
-    $mapGrid['name']              = $this->MapGrid->get('title')->value;
-
+    $mapGrid['bossesArray'] = $this->getBosses();
+    $mapGrid['foliosArray'] = $this->getFolios();
+    $mapGrid['wallsArray'] = $this->getWalls();
+    $mapGrid['rewardsArray'] = $this->getRewards();
+    $mapGrid['tileset'] = $this->getLayers();
+    $mapGrid['soundtrack'] = $this->getSoundtrack();
+    $mapGrid['cutscene'] = $this->getCutScene();
     return $mapGrid;
   }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Get All missions accepted where mapgrid=usermapgrid
+  // Get All cutscenes from all missions accepted (PTs added to user profile)
+  // Get all dialog flagged
+  // If id is in already flagged don't include.
+  // If there are more than one cutscene report an error
+  //
+  //////////////////////////////////////////////////////////////////////////////
+
+  function getCutScene()
+  {
+    $cutsceneArray = array();
+
+    $profile = $this->user->get('player_profiles')->entity;
+    $flaggedDialogArray = $this->GetAllFlaggedDialog();
+    // Get All missions
+    foreach ($profile->field_missions->referencedEntities() as $mission) {
+      $missions[] = \Drupal::entityTypeManager()->getStorage('node')->load($mission->field_mission->getValue()[0]['target_id']);
+    }
+    foreach ($missions as $mission) {
+      foreach ($mission->field_cutscene->referencedEntities() as $cutscene) {
+        if (in_array((int) $cutscene->field_map_grid->getValue()[0]['target_id'], $flaggedDialogArray)) {
+          continue;
+        }
+        if ((int) $cutscene->field_map_grid->getValue()[0]['target_id'] == (int) $this->userMG) {
+          $cutsceneArray[] = $cutscene->field_dialog->getValue()[0]['target_id'];
+          $this->flagDialog($cutscene->field_dialog->getValue()[0]['target_id']);
+        }
+      }
+    }
+    if (count($cutsceneArray) == 0) {
+      $dialog[] = "no cutscene";
+    } else if (count($cutsceneArray) > 1) {
+      $dialog[] = "Error: there's seems to be two cutscenes. Please contact your local law enforcement Officer";
+    } else {
+      $dialogNode = \Drupal::entityTypeManager()->getStorage('node')->load($cutsceneArray[0]);
+      foreach ($dialogNode->field_dialog_line->referencedEntities() as $dialog_line) {
+        $line = new stdClass();
+        $line->dialog_line = $dialog_line->field_line_dialog->getValue()[0]['value'];
+        $line->position_dialog = $dialog_line->field_position_dialog->getValue()[0]['value'];
+        $line->npc = \Drupal::entityTypeManager()->getStorage('node')->load($dialog_line->field_npc->getValue()[0]['target_id'])->get('title')->value;
+
+        $dialog[]=$line;
+      }
+    }
+    return $dialog;
+  }
+  public function GetAllFlaggedDialog()
+  {
+    $database = \Drupal::database();
+    $query = $database->query("SELECT flagging.entity_id
+    FROM flagging WHERE flagging.entity_id = $this->userId
+    AND flagging.flag_id = 'dialogue' ");
+    $flaggedDialogArray = $query->fetchAll();
+    return $flaggedDialogArray;
+  }
+  public function flagDialog($id)
+  {
+    $dialogEntity = \Drupal::entityTypeManager()->getStorage('node')->load($id);
+    if ($dialogEntity == null) {
+      return false;
+    }
+    $flag_service = \Drupal::service('flag');
+    $flag = $flag_service->getFlagById('dialogue');
+    // check if already flagged
+    $flagging = $flag_service->getFlagging($flag, $dialogEntity, $this->user);
+    if (!$flagging) {
+      $flag_service->flag($flag, $dialogEntity, $this->user);
+      return true;
+    } else {
+      //   $flag_service->unflag($flag, $id, $this->user);
+      return false;
+    }
+  }
+
 
   function getPortals()
   {
     $portals = [];
     foreach ($this->MapGrid->field_portals->referencedEntities() as $portal) {
       $portals[] = [
-        'destination'   => (int)$portal->field_destination->getValue()[0]['target_id'],
-        'destination_x' => (int)$portal->field_destination_x->getValue()[0]['value'],
-        'destination_y' => (int)$portal->field_destination_y->getValue()[0]['value'],
-        'tiled' => (int)$portal->field_tiled->getValue()[0]['value'],
-        'x' => (int)$portal->field_x->getValue()[0]['value'],
-        'y' => (int)$portal->field_y->getValue()[0]['value']
+        'destination' => (int) $portal->field_destination->getValue()[0]['target_id'],
+        'destination_x' => (int) $portal->field_destination_x->getValue()[0]['value'],
+        'destination_y' => (int) $portal->field_destination_y->getValue()[0]['value'],
+        'tiled' => (int) $portal->field_tiled->getValue()[0]['value'],
+        'x' => (int) $portal->field_x->getValue()[0]['value'],
+        'y' => (int) $portal->field_y->getValue()[0]['value']
       ];
     }
     return $portals;
@@ -98,21 +182,17 @@ class MapGrid
     foreach ($this->MapGrid->field_soundtrack->referencedEntities() as $soundtrack) {
       $sountrack[] = [
         'track' => $soundtrack->field_track->getValue()[0]['value'],
-        'composer' =>  \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($soundtrack->field_composer->getValue()[0]['target_id'])->get('name')->getValue()[0]['value']
+        'composer' => \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($soundtrack->field_composer->getValue()[0]['target_id'])->get('name')->getValue()[0]['value']
       ];
     }
     return $sountrack[0]['composer'] . "/" . $sountrack[0]['track'];
   }
 
-
-
-
-
   function getAllMissionDialogs($userMG)
   {
-    $database        = \Drupal::database();
-    $user            = \Drupal::currentUser()->id();
-    $query           = $database->query("SELECT profile__field_missions.field_missions_target_id,
+    $database = \Drupal::database();
+
+    $query = $database->query("SELECT profile__field_missions.field_missions_target_id,
     profile__field_missions.entity_id,
     paragraph__field_mission.field_mission_target_id,
     node__field_cutscene.field_cutscene_target_id,
@@ -133,7 +213,7 @@ class MapGrid
     ON node__field_dialog_line.entity_id = paragraph__field_dialog.field_dialog_target_id
     LEFT JOIN paragraph__field_line_dialog
     ON  paragraph__field_line_dialog.entity_id = node__field_dialog_line.field_dialog_line_target_id
-    WHERE profile__field_missions.entity_id = $user
+    WHERE profile__field_missions.entity_id = $this->userId
     AND paragraph__field_map_grid.field_map_grid_target_id = " . $userMG);
 
     $dialogueArray = $query->fetchAll();
@@ -147,13 +227,11 @@ class MapGrid
     return $dialogueFull;
   }
 
-
-
   function getBosses()
   {
     $WorldBosses = [];
     foreach ($this->MapGrid->field_mapgrid_boss->referencedEntities() as $boss) {
-      $BossObject =  \Drupal::entityTypeManager()->getStorage('node')->load($boss->field_boss->getValue()[0]['target_id']);
+      $BossObject = \Drupal::entityTypeManager()->getStorage('node')->load($boss->field_boss->getValue()[0]['target_id']);
       $WorldBosses[] = [
         'target' => $boss->id->getValue()[0]['value'],
         'name' => $BossObject->get('title')->value,
@@ -163,7 +241,7 @@ class MapGrid
         'field_frame_height' => $BossObject->field_frame_height->getValue()[0]['value']
       ];
     }
-    return  $WorldBosses;
+    return $WorldBosses;
   }
 
   function getSwitches($type)
@@ -191,16 +269,16 @@ class MapGrid
       $switches[] = [
         'id' => $switch->id->getValue()[0]['value'],
         // 'id' => $switch->field_switch_id->getValue()[0]['value'],
-        'x' => (int)$switch->field_x->getValue()[0]['value'],
-        'y' => (int)$switch->field_y->getValue()[0]['value'],
-        'file' =>  $switch->field_file->getValue()[0]['value'],
-        'frameHeight' => (int)$switch->field_frameheight->getValue()[0]['value'],
-        'frameWidth' => (int)$switch->field_framewidth->getValue()[0]['value'],
-        'numberOfFrames' => (int)$switch->field_number_of_frames->getValue()[0]['value'],
-        'type' => (int)$switch->field_switch_type->getValue()[0]['value'],
-        'repeat' => (int)$switch->field_repeatable->getValue()[0]['value'],
-        'startFrame' => (int)$switch->field_starting_frame->getValue()[0]['value'],
-        'endFrame' => (int)$switch->field_end_frame->getValue()[0]['value'],
+        'x' => (int) $switch->field_x->getValue()[0]['value'],
+        'y' => (int) $switch->field_y->getValue()[0]['value'],
+        'file' => $switch->field_file->getValue()[0]['value'],
+        'frameHeight' => (int) $switch->field_frameheight->getValue()[0]['value'],
+        'frameWidth' => (int) $switch->field_framewidth->getValue()[0]['value'],
+        'numberOfFrames' => (int) $switch->field_number_of_frames->getValue()[0]['value'],
+        'type' => (int) $switch->field_switch_type->getValue()[0]['value'],
+        'repeat' => (int) $switch->field_repeatable->getValue()[0]['value'],
+        'startFrame' => (int) $switch->field_starting_frame->getValue()[0]['value'],
+        'endFrame' => (int) $switch->field_end_frame->getValue()[0]['value'],
         'switchState' => in_array($switch->id->getValue()[0]['value'], $this->playerSwitchesStates)
       ];
     }
@@ -211,13 +289,13 @@ class MapGrid
   {
     $folios = [];
     foreach ($this->MapGrid->field_folio->referencedEntities() as $folio) {
-      $FolioObject =  \Drupal::entityTypeManager()->getStorage('node')->load($folio->field_page->getValue()[0]['target_id']);
+      $FolioObject = \Drupal::entityTypeManager()->getStorage('node')->load($folio->field_page->getValue()[0]['target_id']);
       $folios[] = [
         'id' => $folio->id->getValue()[0]['value'],
         'node' => $folio->field_page->getValue()[0]['target_id'],
         'nodeBody' => $FolioObject->get('body')->value,
-        'x' => (int)$folio->field_x->getValue()[0]['value'],
-        'y' => (int)$folio->field_y->getValue()[0]['value']
+        'x' => (int) $folio->field_x->getValue()[0]['value'],
+        'y' => (int) $folio->field_y->getValue()[0]['value']
       ];
     }
     return $folios;
@@ -230,8 +308,8 @@ class MapGrid
       foreach ($this->MapGrid->field_rewards->referencedEntities as $reward) {
         $rewards[] = [
           'ref' => $reward->field_ref->getValue()[0]['value'],
-          'x' => (int)$reward->field_x->getValue()[0]['value'],
-          'y' => (int)$reward->field_y->getValue()[0]['value']
+          'x' => (int) $reward->field_x->getValue()[0]['value'],
+          'y' => (int) $reward->field_y->getValue()[0]['value']
         ];
       }
     }
@@ -265,7 +343,7 @@ class MapGrid
 
     if (is_array($this->MapGrid->field_npc->referencedEntities())) {
       foreach ($this->MapGrid->field_npc->referencedEntities() as $Npc) {
-        $NpcObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
+        $NpcObject = \Drupal::entityTypeManager()->getStorage('node')->load($Npc->field_name->getValue()[0]['target_id']);
         $NpcArray[] =
           [
             $NpcObject->getTitle(),
@@ -285,7 +363,7 @@ class MapGrid
   {
     $mArray = [];
     foreach ($this->MapGrid->field_mobs->referencedEntities() as $Mob) {
-      $MobObject =  \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
+      $MobObject = \Drupal::entityTypeManager()->getStorage('node')->load($Mob->field_mobs->getValue()[0]['target_id']);
       $mArray[] =
         [
           $Mob->field_mobs->getValue()[0]['target_id'],

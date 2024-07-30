@@ -116,7 +116,7 @@ Will you find my Balls?`,
     leversArray: [],
     machineArray: [],
     crystalArray: [],
-    questsArray:[],
+    questsArray: [],
     foliosArray: [],
     folioClicked: 0,
     wallsArray: [
@@ -126,6 +126,8 @@ Will you find my Balls?`,
       //   { x: 140, y: 680, width:  10, height: 160 },
       //    { x: 100, y: 600, width: 120, height:  10 },
     ],
+    cutscene: [],
+    cutscenePosition: 0,
   }),
   getters: {
     finishedTodos(state) {

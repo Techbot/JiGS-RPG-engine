@@ -104,7 +104,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
         hurtAnim('default', 'default');
     }
 
-    ////////////////////////////////////// Walk Anim 4 Directions //////////////////////////////
+    ////////////////////////////////////// Walk Anim 4 Directions //////////////
     function walkAnim(weapon: string, type: string) {
 
         console.log('*************************' + entityType + '-walk-' + type)
@@ -138,7 +138,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
         });
     }
 
-    ////////////////////////////////////// Stop Anim 1 Direction //////////////////////////////
+    ////////////////////////////////////// Stop Anim 1 Direction ///////////////
     function stopAnim(weapon, type) {
         anims.create({
             key: entityType + '-stop-' + weapon,
@@ -147,7 +147,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-    ////////////////////////////////////// Spell Anim 4 Directions //////////////////////////////
+    ////////////////////////////////////// Spell Anim 4 Directions /////////////
     function spellAnim(weapon) {
         anims.create({
             key: entityType + '-spellUp-' + weapon,
@@ -177,7 +177,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-    ////////////////////////////////////// Thrust Anim 4 Directions //////////////////////////////
+    ////////////////////////////////////// Thrust Anim 4 Directions ////////////
     function thrustAnim(weapon, type) {
         anims.create({
             key: entityType + '-thrustUp-' + weapon,
@@ -247,7 +247,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     function slashAnim(weapon, type) {
         console.log(entityType + '-slash-' + weapon)
         anims.create({
@@ -308,9 +308,7 @@ const createCharacterAnims = (anims: Phaser.Animations.AnimationManager, entityT
             repeat: -1
         });
     }
-
 }
-
 
 const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     entity,
@@ -334,19 +332,16 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     if (switchType == 3) {
         OffArr = [11];
         OnArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
     }
 
     if (switchType == 4) {
         OffArr = [0, 3, 6, 9];
         OnArr = [0];
-
     }
 
     if (switchType == 5) {
         OffArr = [3];
         OnArr = [0, 3, 6, 10];
-
     }
 
     if (switchType == 6) {
@@ -367,9 +362,8 @@ const createSwitchesAnims = (anims: Phaser.Animations.AnimationManager,
     ////////////////// Steampunk Lever //////////////////////////////
     if (switchType == 9) {
         OnArr = [0];
-        OffArr = [1,2];
+        OffArr = [1, 2];
     }
-
 
     anims.create({
         key: entity + 'On',

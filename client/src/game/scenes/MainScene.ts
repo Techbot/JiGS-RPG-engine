@@ -120,11 +120,10 @@ export class MainScene extends Phaser.Scene {
         this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
         this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
         //this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-        this.load.scenePlugin('AnimatedTiles', 'https://raw.githubusercontent.com/nkholski/phaser-animated-tiles/master/dist/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+        this.load.scenePlugin('AnimatedTiles', '/assets/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
     }
 
     async create() {
-        var self = this;
 
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
@@ -159,9 +158,14 @@ export class MainScene extends Phaser.Scene {
                 // this.jigs.playerId = player.username;
                 this.jigs.localPlayer = new MyPlayer(this, this.jigs.room, player);
                 this.jigs.playerState = "alive";
-                this.jigs.content = this.jigs.dialogueArray;
+                if (this.jigs.dialogueArray){
+                    this.jigs.content = this.jigs.dialogueArray;
+                }
+
+                if(this.jigs.cutscene[0].dialog_line){
+                this.events.emit('cutscene');
+                }
                 this.Portals.add(this);
-                // this.events.emit('content');
                 this.Rewards.add(this);
                 this.Mobs.add(this);
                 this.NPCs.add(this);
@@ -217,6 +221,7 @@ export class MainScene extends Phaser.Scene {
                     Loader.load(this);
                     this.jigs.room.leave(); // Backend
                     this.scene.start('main'); //Frontend)
+
                 })
         })
     }
@@ -290,7 +295,6 @@ export class MainScene extends Phaser.Scene {
     async portalJump(self) {
         await self.room.leave(); // Backend
         await self.scene.start('main'); //Frontend
-
     }
 
     async hide(entity) {

@@ -16,7 +16,7 @@ class Player
     public $userMG;
     public $profileId;
     public $flagging;
-    public $missionsArrayOfOne;
+    public $parentMission;
 
     function __construct()
     {
@@ -313,15 +313,25 @@ class Player
             $flag_service->flag($flag, $switchEntity, $this->user);
             $responseData['dialogId'] = $switchEntity->field_dialog->target_id;
             $responseData['dialog'] = $this->getSwitchDialog($switchEntity->field_dialog->target_id);
-
-            if ($this->MissionCompleteTest($id)) {
-                $this->flagMission($this->missionsArrayOfOne[0]);
-                $this->addMissionReward($this->missionsArrayOfOne[0]);
-                $responseData['missionDialog'] = $this->getMissionDialog($this->missionsArrayOfOne[0]);
+            $switchesArray = $this->getAllSwitchesOfMissionGivenOneSwitch($id);
+            $responseData['all'] = $switchesArray;
+            if ($switchesArray == null) {
+                $responseData['flagged'] = false;
+                return $responseData;
             }
-
+            $MissionComplete = $this->MissionCompleteTest($switchesArray);
+            $responseData['numberOfFlags'] = $MissionComplete['numberOfFlags'];
+            $responseData['complete'] = $MissionComplete['complete'];
+            if ($MissionComplete['complete']) {
+                $this->flagMission($this->parentMission);
+                //  $this->addMissionReward($this->parentMission);
+                $missionEntity = \Drupal::entityTypeManager()->getStorage('node')->load($this->parentMission);
+                $responseData['missionEntity'] = $missionEntity->field_dialog_mission_complete;
+                $dialogId = $missionEntity->field_dialog_mission_complete->target_id;
+                $responseData['dialogId'] = $dialogId;
+                $responseData['missionDialog'] = $this->getSwitchDialog($dialogId);
+            }
             $responseData['flagged'] = true;
-            true;
         } else {
             //   $flag_service->unflag($flag, $id, $this->user);
             $responseData['flagged'] = false;
@@ -332,16 +342,22 @@ class Player
     function getSwitchDialog($dialogId)
     {
         $dialog = \Drupal::entityTypeManager()->getStorage('node')->load($dialogId);
+        if (!$dialog->field_dialog_line) {
+            return null;
+        }
         foreach ($dialog->field_dialog_line->referencedEntities() as $line) {
             $dialogLines[] = $line->get('field_line_dialog')->value;
         }
         return $dialogLines;
     }
-    function getMissionDialog($mission)
+
+    function getMissionDialog($dialogId)
     {
-        $missionEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($mission);
-        $dialog = $missionEntity->field_dialog_mission_complete->value;
-        return $dialog;
+        $dialog = \Drupal::entityTypeManager()->getStorage('node')->load($dialogId);
+        foreach ($dialog->field_dialog_line->referencedEntities() as $line) {
+            $dialogLines[] = $line->get('field_line_dialog')->value;
+        }
+        return $dialogLines;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -349,6 +365,9 @@ class Player
     public function flagMission($id)
     {
         $missionEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($id);
+        if ($missionEntity == null) {
+            return false;
+        }
         $flag_service = \Drupal::service('flag');
         $flag = $flag_service->getFlagById('mission');
         // check if already flagged
@@ -360,30 +379,28 @@ class Player
             //   $flag_service->unflag($flag, $id, $this->user);
             return false;
         }
-        return false;
     }
 
-    public function MissionCompleteTest($switchId)
+    public function MissionCompleteTest($switchesArray)
     {
-        $switchesArray = $this->getAllSwitchesOfMissionGivenOneSwitch($switchId);
-        if ($switchesArray == null) {
-            return false;
-        }
-
         $flag_service = \Drupal::service('flag');
         $flag = $flag_service->getFlagById('switch');
+        $data['numberOfFlags'] = 0;
         foreach ($switchesArray as $otherSwitch) {
             $switchEntity = \Drupal::entityTypeManager()->getStorage('paragraph')->load($otherSwitch);
             if ($switchEntity == null) {
-                return false;
+                $data['complete'] = false;
+                return $data;
             }
             $this->flagging = $flag_service->getFlagging($flag, $switchEntity, $this->user);
             if (!$this->flagging) {
-                return false;
+                $data['complete'] = false;
+                return $data;
             }
-
+            $data['numberOfFlags']++;
         }
-        return true;
+        $data['complete'] = true;
+        return $data;
     }
 
     public function getCompletedMissions($id)
@@ -400,25 +417,6 @@ class Player
             $responseData[] = $element->entity_id;
         }
         return $responseData;
-
-        /*
-                $database           = \Drupal::database();
-                $query              = $database->query("
-                SELECT paragraph__field_mission.field_mission_target_id
-                    FROM profile
-                    LEFT JOIN profile__field_missions_completed
-                    ON profile.profile_id = profile__field_missions_completed.entity_id
-                    LEFT JOIN paragraph__field_mission
-                    ON paragraph__field_mission.entity_id = profile__field_missions_completed.field_missions_completed_target_id
-                    WHERE profile.type = 'player'
-                    AND profile.uid = " . $id);
-                $result = $query->fetchAll();
-                $missionArray = [];
-                foreach ($result as $mission) {
-                    $missionArray[] = $mission->field_mission_target_id;
-                }
-                return $missionArray;
-         */
     }
     public function getAllSwitchesOfMissionGivenOneSwitch($switchId)
     {
@@ -427,25 +425,18 @@ class Player
         FROM node__field_switches
         WHERE field_switches_target_id = " . $switchId);
         ////////////////////////////////////////////////////////////////////////
-        $result = $query->fetchAll();
-        $this->missionsArrayOfOne = [];
-        foreach ($result as $element) {
-            $this->missionsArrayOfOne[] = $element->entity_id;
-        }
-
+        $this->parentMission = $query->fetchAll()[0]->entity_id;
         $query = $database->query("SELECT node__field_switches.field_switches_target_id
         FROM node__field_switches
-        WHERE node__field_switches.entity_id = " . $this->missionsArrayOfOne[0]);
+        WHERE node__field_switches.entity_id = " . $this->parentMission);
         $result = $query->fetchAll();
         $missions = [];
         foreach ($result as $element) {
-            $switches[] = $element->entity_id;
+            $switches[] = $element->field_switches_target_id;
         }
         return $switches;
     }
-
     public function addMissionReward($switchEntity)
     {
     }
-
 }

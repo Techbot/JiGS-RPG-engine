@@ -79,14 +79,14 @@ export class GameRoom extends Room<MyRoomState> {
 
   async onAuth(client, options, request) {
 
-    return true;
+  //  return true;
 
-    const userData = await this.checkAccess(client, options, this.state.playerMap);
-    if (userData) {
-      return userData;
+    const loggedInTest = await this.checkAccess(client, options, this.state.playerMap);
+    if (loggedInTest) {
+      return loggedInTest;
 
     } else {
-      throw new ServerError(400, "bad access token");
+      throw new ServerError(400, "You are already logged in elsewhere.");
     }
   }
 
