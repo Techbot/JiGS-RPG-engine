@@ -85,4 +85,13 @@ export default class Hydrater {
     this.jigs.switchesArray.push(id);
     //this.updatePhaser
   }
+
+  hydrateCutscene(response) {
+    this.jigs.content = response.data[0].value.dialog;
+
+    if (response.data[0].value.missionCompleteDialog) {
+      this.jigs.missionCompleteDialog = response.data[0].value.missionCompleteDialog;
+    }
+  }
+
 }

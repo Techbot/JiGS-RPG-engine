@@ -32,11 +32,7 @@ export default class Switch extends Phaser.Physics.Arcade.Sprite {
       axios
         .get("/flickswitch?_wrapper_format=drupal_ajax&id=" + id)
         .then((response) => {
-          this.jigs.content = response.data[0].value.dialog;
-
-          if (response.data[0].value.missionDialog){
-          this.jigs.content += response.data[0].value.missionDialog;
-        }
+          scene.hydrater.hydrateCutscene(response);
           scene.events.emit('content');
           //this.jigs.switchesArray.push(id);
           scene.events.emit('Switch', id);

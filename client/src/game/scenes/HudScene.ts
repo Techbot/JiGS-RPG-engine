@@ -122,7 +122,8 @@ export class HudScene extends Scene {
 
 
     ourGame.events.on('missionComplete', function () {
-      this.missionComplete();
+     // this.missionComplete();
+      this.scene.start('Message');
     }, this);
 
 
@@ -438,10 +439,13 @@ export class HudScene extends Scene {
     text.playPromise(content)
       .then(function () {
         console.log('Play complete');
-         this.input.once('pointerdown', function (this) {
+
            console.log('hi');
-          this.destroy();
-         })
+
+           text.requestClose()
+
+
+
 
       })
     // text.showPage();  // Show all characters in this page

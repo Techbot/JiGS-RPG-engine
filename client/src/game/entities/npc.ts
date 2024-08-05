@@ -6,6 +6,7 @@ import { useJigsStore } from '../../stores/jigs';
 import { createCharacterAnims } from "../entities/anim";
 import axios from "axios";
 import Hydrater from '../../utils/Hydrater';
+import { useMissionStore } from '../../stores/missions';
 
 export default class Npc extends Phaser.Physics.Arcade.Sprite {
     jigs: any;

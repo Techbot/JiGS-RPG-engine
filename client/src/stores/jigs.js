@@ -17,7 +17,7 @@ export const useJigsStore = defineStore("jigs", {
 
     leave: 0,
 
-    /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array , mission: array}[]} */
+    /** @type {{ level: number, health: number, strength: number, stamina: number, losses: number, wins: number, xp: number, credits: number, skill: array, inventory : array , mission: array }[]} */
     playerStats: [],
 
     playerSwitches: [],
@@ -35,7 +35,7 @@ Will you find my Balls?`,
       ],
     missionValue: 0,
 
-
+    missionCompleteDialog: "",
     playerStorage: [],
 
     playerInventory: [],

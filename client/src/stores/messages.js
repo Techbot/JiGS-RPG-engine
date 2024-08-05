@@ -42,7 +42,7 @@ export const useChatMessageStore = defineStore("chatMessages", {
   },
   actions: {
     addChatMessage(message) {
-      this.chatMessages.unshift({ id: this.id++, text: message, author: 'You'})
+      this.chatMessages.unshift({ id: this.id++, text: message, author: 'You' })
     }
   },
 });
