@@ -6,6 +6,7 @@ import { HudScene }         from "./scenes/HudScene";
 import { BootScene }        from "./scenes/BootScene";
 import { DeadScene }        from "./scenes/DeadScene";
 import { CutScene }         from "./scenes/CutScene";
+import { Message }          from "./scenes/Message";
 
 import { BACKEND_HTTP_URL } from "./backend";
 import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
@@ -36,7 +37,7 @@ const config: Phaser.Types.Core.GameConfig = {
         createContainer: true
 },
     pixelArt: true,
-    scene: [BootScene, SceneSelector, MainScene, DeadScene, HudScene, CutScene],
+    scene: [BootScene, SceneSelector, MainScene, DeadScene, HudScene, CutScene, Message],
 };
 
 const game = new Phaser.Game(config);
