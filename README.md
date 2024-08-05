@@ -144,7 +144,13 @@ Or make a trading game or a dungeon crawler.
 <li>Release Ver 0.2</li>
 </ul>
 
-<h3>July Onwards 2024</h4>
+<h3>July 2024</h4>
+<ul>
+<li>Mission Complete</li>
+<li>Timebox Discord API discovery</li>
+</ul>
+
+<h3>Aug Onwards 2024</h4>
 <ul>
  <li>Inventory</li>
 <li>NPC subscribers aka world simulator</li>
