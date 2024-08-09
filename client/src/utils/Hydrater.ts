@@ -66,7 +66,6 @@ export default class Hydrater {
     if (response.data[0].value["MapGrid"]["cutscene"]) {
       this.jigs.cutscene = response.data[0].value["MapGrid"]["cutscene"];
       this.jigs.cutscenePosition = 0;
-
     }
   }
 
@@ -90,8 +89,7 @@ export default class Hydrater {
     this.jigs.content = response.data[0].value.dialog;
 
     if (response.data[0].value.missionCompleteDialog) {
-      this.jigs.missionCompleteDialog = response.data[0].value.missionCompleteDialog;
+      this.jigs.missionCompleteDialog = response.data[0].value.missionCompleteDialog[0];
     }
   }
-
 }
