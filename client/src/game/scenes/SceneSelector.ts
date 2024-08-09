@@ -18,7 +18,7 @@ export class SceneSelector extends Phaser.Scene {
     // };
 
     constructor() {
-        super({ key: "selector" });
+        super({ key: "SceneSelector" });
         this.jigs = useJigsStore();
         this.hydrater = new Hydrater;
     }
@@ -41,7 +41,7 @@ export class SceneSelector extends Phaser.Scene {
         this.image = this.add.image(480, 320, 'enter')
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' }).
             on("pointerdown", () => {
-                this.game.scene.switch("selector", 'main');
+                this.game.scene.switch("SceneSelector", 'MainScene');
             });
 
 

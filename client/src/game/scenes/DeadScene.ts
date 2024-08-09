@@ -46,7 +46,7 @@ export class DeadScene extends Phaser.Scene {
                 .setInteractive()
                 .setPadding(6)
                 .on("pointerdown", () => {
-                    this.game.scene.switch("DeadScene", "main")
+                    this.game.scene.switch("DeadScene", "MainScene")
                 });
         }
     }
