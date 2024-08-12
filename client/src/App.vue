@@ -96,8 +96,8 @@ export default {
     game(e) {
       e.preventDefault();
       this.toggleClass(e);
-      location.reload();
-      //this.jigs.gameState = "GamePhaser";
+    //  location.reload();
+      this.jigs.gameState = "GamePhaser";
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.userMapGrid);
