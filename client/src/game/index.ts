@@ -6,11 +6,11 @@ import { HudScene }         from "./scenes/HudScene";
 import { BootScene }        from "./scenes/BootScene";
 import { DeadScene }        from "./scenes/DeadScene";
 import { CutScene }         from "./scenes/CutScene";
-import { MessageScene }          from "./scenes/MessageScene";
+import { MessageScene }     from "./scenes/MessageScene";
 
 import { BACKEND_HTTP_URL } from "./backend";
 import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
-const config: Phaser.Types.Core.GameConfig = {
+export const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.WEBGL,
     fps: {
         target: 30,
@@ -40,4 +40,10 @@ const config: Phaser.Types.Core.GameConfig = {
     scene: [BootScene, SceneSelector, MainScene, DeadScene, HudScene, CutScene, MessageScene],
 };
 
-const game = new Phaser.Game(config);
+// const game2 = new Phaser.Game(config);
+const launch = (parent) => {
+
+    return new Phaser.Game({ ...config, parent });
+}
+
+export default launch;
