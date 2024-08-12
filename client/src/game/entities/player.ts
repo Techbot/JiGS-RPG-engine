@@ -47,7 +47,6 @@ export default class Player {
     }
 
     add() {
-
         this.x = this.player.x;
         this.y = this.player.y;
         this.light = new Light(this.scene, this.player.x, this.player.y, null);
@@ -97,9 +96,9 @@ export default class Player {
     }
 
     onPlayerDown() {
-        this.jigs.playerState = "dead";
-        this.jigs.room.leave(); // Backend
-        this.scene.switch("main", "DeadScene");
+    //    this.jigs.playerState = "dead";
+     //   this.jigs.room.leave(); // Backend
+        this.scene.switch("DeadScene");
     }
 
     updatePlayer() {

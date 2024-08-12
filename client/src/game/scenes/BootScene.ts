@@ -9,27 +9,17 @@ export class BootScene extends Scene {
     this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
     this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
 
-/*  this.load.spritesheet('PsibotF', '/assets/images/sprites/avatars/1000.png', { frameWidth: 64, frameHeight: 64 });
-    this.load.spritesheet('PsibotF_slash', '/assets/images/sprites/avatars/1000.png', { frameWidth: 192, frameHeight: 192 });
-    this.load.spritesheet('PsibotF_walk128', '/assets/images/sprites/avatars/1000.png', { frameWidth: 128, frameHeight: 128 });
-    this.load.spritesheet('PsibotM', '/assets/images/sprites/avatars/4351.png', { frameWidth: 64, frameHeight: 64 });
-    this.load.spritesheet('PsibotM_slash', '/assets/images/sprites/avatars/4351.png', { frameWidth: 192, frameHeight: 192 }); */
     this.load.spritesheet('otherPlayer', '/assets/images/sprites/avatars/4351.png', { frameWidth: 64, frameHeight: 64 });
-
     this.load.spritesheet('player-spell-default', '/assets/images/animator/Psibot-Male/spell-default.png', { frameWidth: 64, frameHeight: 64 });
-
     this.load.spritesheet('player-walk-glowsword', '/assets/images/animator/Psibot-Male/walk-glowsword.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('player-slash-oversize-glowsword', '/assets/images/animator/Psibot-Male/slash-oversize-glowsword.png', { frameWidth: 192, frameHeight: 192 });
     this.load.spritesheet('player-hurt-glowsword', '/assets/images/animator/Psibot-Male/hurt-glowsword.png', { frameWidth: 64, frameHeight: 64 });
-
     this.load.spritesheet('player-walk-axe', '/assets/images/animator/Psibot-Male/walk-axe.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('player-slash-oversize-axe', '/assets/images/animator/Psibot-Male/slash-oversize-axe.png', { frameWidth: 192, frameHeight: 192 });
     this.load.spritesheet('player-hurt-axe', '/assets/images/animator/Psibot-Male/hurt-axe.png', { frameWidth: 64, frameHeight: 64 });
-
     this.load.spritesheet('player-hurt-rapier', '/assets/images/animator/Psibot-Male/hurt-rapier.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('player-walk-rapier', '/assets/images/animator/Psibot-Male/walk-rapier.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('player-slash-oversize-rapier', '/assets/images/animator/Psibot-Male/slash-oversize-rapier.png', { frameWidth: 192, frameHeight: 192 });
-
 
     this.load.image('exit', '/assets/images/System/Exit.png');
     this.load.image('book', '/assets/images/book.png');
@@ -45,9 +35,14 @@ export class BootScene extends Scene {
     this.load.image('cursor3', '/assets/images/cursors/speak.cur');
     this.load.image('cursor4', '/assets/images/cursors/blank.cur');
     this.load.image('cursor4', '/assets/images/cursors/point.cur');
+
+    this.load.image('icon01', '/assets/images/gui/I_Book.png');
+    this.load.image('icon02', '/assets/images/gui/I_GoldCoin.png');
+    this.load.image('icon03', '/assets/images/gui/I_Scroll.png');
+    this.load.image('icon04', '/assets/images/gui/P_Yellow01.png');
   }
 
   create () {
-    this.scene.start("selector",'HudScene');
+    this.scene.start("SceneSelector",'HudScene');
   }
 }

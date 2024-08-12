@@ -35,7 +35,7 @@ Will you find my Balls?`,
       ],
     missionValue: 0,
 
-    missionCompleteDialog: "",
+    missionCompleteDialog: "Blank",
     playerStorage: [],
 
     playerInventory: [],
