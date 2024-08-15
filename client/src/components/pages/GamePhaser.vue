@@ -4,12 +4,8 @@ import { onMounted, onUnmounted } from 'vue'
 import { reactive } from 'vue'
 import { launch } from '../../game/index.ts'
 
-
 let gameInstance = null
 const containerId = 'game-container'
-
-
-import launch from '../../game/index.ts';
 
 onMounted(() => {
   if (!gameInstance) {
