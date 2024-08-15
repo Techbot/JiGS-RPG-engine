@@ -30,7 +30,7 @@ pinia.use(piniaPluginPersistedstate)
   app.setAttribute('id', 'client');
   app.setAttribute("class", "client");
   wrapper.insertBefore(app, wrapper.childNodes[0]);
-  createApp(App).use(pinia).mount('#client');
 }
 //defineIonPhaser(window);
 
+createApp(App).use(pinia).mount('#client');
