@@ -3,8 +3,13 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [
-    vue(),
-
+    vue({
+      template: {
+        transformAssetUrls: {
+          includeAbsolute: false,
+        },
+      },
+    }),
   ],
   server: {
     proxy: {
@@ -34,6 +39,6 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 5000,
-
+    copyPublicDir: false,
   },
 })
