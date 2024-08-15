@@ -1,5 +1,6 @@
 import { Scene } from 'phaser'
 import WebFont from '../../assets/WebFont'
+
 export class BootScene extends Scene {
   constructor () {
     super({ key: 'BootScene', active: true })
@@ -48,6 +49,6 @@ export class BootScene extends Scene {
   }
 
   create () {
-    this.scene.start("selector",'HudScene');
+    this.scene.start("SceneSelector");
   }
 }

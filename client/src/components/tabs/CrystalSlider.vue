@@ -8,8 +8,7 @@
       <img :src="'/assets/images/gui/crystal-A-' + crystal.id + '-sm.png'" alt="" width="24" height="24" class="crystal__image" />
       <label class="crystal__label" :for="crystal.name">{{ crystal.name }}</label>
       <div class="crystal__total">{{ crystal.value }} : {{ crystal.total - crystal.value }} / {{ crystal.total }}</div>
-      <input :id="crystal.id" class="crystal__slider" type="range" min="0" :max="crystal.total" :value="crystal.value"
-      :style="{ backgroundColor: crystal.color, accentColor: crystal.color, borderColor: crystal.color , boxShadowColor: crystal.color }" v-model="crystal.value">
+      <input :id="crystal.id" class="crystal__slider" type="range" min="0" :max="crystal.total" :style="{ backgroundColor: crystal.color, accentColor: crystal.color, borderColor: crystal.color , boxShadowColor: crystal.color }" v-model="crystal.value">
     </div>
   </div>
 
