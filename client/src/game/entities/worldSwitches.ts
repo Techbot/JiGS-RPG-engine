@@ -13,8 +13,7 @@ export default class WorldSwitches {
                     parseInt(switchesArray[index].field_x_value),
                     parseInt(switchesArray[index].field_y_value),
                     switchesArray[index].entity_id,
-                    switchesArray[index].switchState,
-                    switchesArray[index].field_starting_frame_value
+                    switchesArray[index].switchState
                 ), true);
             }
         }

@@ -5,10 +5,9 @@ import { useJigsStore } from '../../stores/jigs';
 import Hydrater from '../../utils/Hydrater';
 export class SceneSelector extends Phaser.Scene {
 
-
-
     hydrater: Hydrater;
     jigs: any;
+    image;
 
     // parts = {
     //     '1': "Help",
@@ -23,7 +22,6 @@ export class SceneSelector extends Phaser.Scene {
         this.hydrater = new Hydrater;
     }
 
-    image;
 
     preload() {
         // update menu background color
@@ -37,10 +35,12 @@ export class SceneSelector extends Phaser.Scene {
 
         this.updatePlayerData();
 
+        this.scene.launch('HudScene');
 
         this.image = this.add.image(480, 320, 'enter')
             .setInteractive({ cursor: 'url(/assets/images/cursors/speak.cur), pointer' }).
             on("pointerdown", () => {
+                console.log("switch")
                 this.game.scene.switch("SceneSelector", 'MainScene');
             });
 

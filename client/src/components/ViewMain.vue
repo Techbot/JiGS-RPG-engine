@@ -12,7 +12,7 @@ import Maps from "./pages/Maps.vue";
 import Skills from "./pages/Skills.vue";
 import Quests from "./pages/Quests.vue";
 import Logs from "./pages/Logs.vue";
-import GamePhaser from './GamePhaser.vue';
+import GamePhaser from './pages/GamePhaser.vue';
 import Messenger from '../components/messenger/Messenger.vue';
 
 

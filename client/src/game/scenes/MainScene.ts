@@ -98,7 +98,7 @@ export class MainScene extends Phaser.Scene {
     hydrater: Hydrater;
 
     constructor() {
-        super({ key: "main" });
+        super({ key: "MainScene" });
         this.jigs = useJigsStore();
         this.client = new Client(BACKEND_URL);
         this.Portals = new Portals;
@@ -218,7 +218,7 @@ export class MainScene extends Phaser.Scene {
                     var Loader = new Load;
                     Loader.load(this);
                     this.jigs.room.leave(); // Backend
-                    this.scene.start('main'); //Frontend)
+                    this.scene.start('MainScene'); //Frontend)
 
                 })
         })

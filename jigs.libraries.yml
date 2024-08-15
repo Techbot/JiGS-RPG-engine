@@ -9,7 +9,7 @@ phaser:
 client:
   version: 1.0
   js:
-    client/dist/index.ccb13aa6.js: { minified: true }
+    client/dist/assets/index.js: { minified: true }
   css:
     component:
       client/dist/index.951cabfd.css: {}
