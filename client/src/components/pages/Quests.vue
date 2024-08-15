@@ -31,10 +31,10 @@ export default {
 
 <template>
   <div class="quests">
-    <img src="/gui/header2.png" />
+    <img src="/assets/images/gui/header2.png" />
     <div class="accordion accordion-flush" id="accordionFlushExample" v-for="quest in jigs.playerQuests" :key="quest.id">
       <div class="quest accordion-item">
-        <img class="quest__thumbnail" src="/gui/quest.png" alt="quest type thumbnail" />
+        <img class="quest__thumbnail" src="/assets/images/gui/quest.png" alt="quest type thumbnail" />
         <h2 class="accordion-header">
           <button class="quest__heading accordion-button collapsed" type="button"
             data-coreui-toggle="collapse" data-coreui-target="#flush-collapseOne"

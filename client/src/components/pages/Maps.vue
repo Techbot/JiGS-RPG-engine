@@ -4,7 +4,7 @@ import { useJigsStore } from "../../stores/jigs";
 
 <template>
     <div>
-    <img src="/gui/header2.png" >
+    <img src="/assets/images/gui/header2.png" >
     Maps
 </div>
 </template>

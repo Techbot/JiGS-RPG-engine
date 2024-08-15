@@ -65,7 +65,7 @@ export default {
 </script>
 <template>
   <div class="inventory">
-    <img src="/gui/header.png" />
+    <img src="/assets/images/gui/header.png" />
     <div class="row">
       <div class="col">
         <h3>Storage</h3>
@@ -76,7 +76,7 @@ export default {
               <label>{{ element.name }}
                 <!-- {{ index }} -->
               </label>
-              <img src="/gui/W_Sword017.png" alt="" width="34" height="34"/>
+              <img src="/assets/images/gui/W_Sword017.png" alt="" width="34" height="34"/>
             </div>
           </template>
         </draggable>
@@ -90,7 +90,7 @@ export default {
               <label>{{ element.name }}
                 <!-- {{ index }} -->
               </label>
-              <img src="/gui/W_Gold_Mace.png" alt="" width="34" height="34"/>
+              <img src="/assets/images/gui/W_Gold_Mace.png" alt="" width="34" height="34"/>
             </div>
           </template>
         </draggable>
