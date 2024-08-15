@@ -97,6 +97,7 @@ export class MainScene extends Phaser.Scene {
   thing: boolean | undefined;
   hydrater: Hydrater;
 
+<<<<<<< HEAD
   constructor() {
     super({ key: "MainScene" });
     this.jigs = useJigsStore();
@@ -143,6 +144,23 @@ export class MainScene extends Phaser.Scene {
       console.log("undefined room ");
       this.scene.start('DeadScene');
       return;
+=======
+    constructor() {
+        super({ key: "MainScene" });
+        this.jigs = useJigsStore();
+        this.client = new Client(BACKEND_URL);
+        this.Portals = new Portals;
+        this.WorldSwitches = new WorldSwitches;
+        this.MissionSwitches = new MissionSwitches;
+        this.Walls = new Walls;
+        this.NPCs = new NPCs;
+        this.Mobs = new Mobs;
+        this.Bosses = new Bosses;
+        this.Rewards = new Rewards;
+        this.Folio = new Folios;
+        this.messenger = new Messenger;
+        this.hydrater = new Hydrater;
+>>>>>>> 34eb1743fc9044cbbfd861e48533519d3df8a185
     }
     console.log("**************** Init Messages ************" + this.jigs.room);
     this.walkSound = this.sound.add('walk', { volume: 0.1 });
@@ -205,6 +223,7 @@ export class MainScene extends Phaser.Scene {
         })
     })
   }
+
 
   updateMapData() {
     return new Promise((resolve) => {

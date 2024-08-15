@@ -5,7 +5,7 @@ import { CButton } from '@coreui/vue'
 import { useJigsStore } from "./stores/jigs";
 // import ViewTabs from "./components/ViewTabs";
 import Character from './components/tabs/Character.vue';
-import ViewMain from "./components/ViewMain";
+import ViewMain from "./components/ViewMain.vue";
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "./game/backend";
 
@@ -96,15 +96,18 @@ export default {
     game(e) {
       e.preventDefault();
       this.toggleClass(e);
+
     //  location.reload();
+
       this.jigs.gameState = "GamePhaser";
       console.log(this.jigs.gameState);
       console.log(this.jigs.tiled);
       console.log(this.jigs.userMapGrid);
-    },
-  },
-};
+    }
+  }
+}
 </script>
+
 <template>
   <div class="layout-container">
     <form @submit="formSubmit" class="tabs">
@@ -127,6 +130,7 @@ export default {
     <div class="sidebar-2">
       <div class="tab-panels">
         <Character />
+      </div>
     </div>
   </div>
-</div></template>
+</template>

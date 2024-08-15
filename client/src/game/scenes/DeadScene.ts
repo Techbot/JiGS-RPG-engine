@@ -27,7 +27,7 @@ export class DeadScene extends Phaser.Scene {
         this.image = this.add.image(320, 240, 'tesla');
         // automatically navigate to hash scene if provided
         if (window.location.hash) {
-            this.runScene(window.location.hash.substring(1));
+            this.scene.run(window.location.hash.substring(1));
             return;
         }
 
