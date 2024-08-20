@@ -108,7 +108,7 @@ h1 {
 
 @font-face {
   font-family: Neutron Demo;
-  src: local(" Neutron Demo"), url("../fonts/neutrond.ttf") format("truetype"), url("../fonts/neutrond.ttf") format("opentype");
+  src: local(" Neutron Demo"), url("../client/src/assets/fonts/neutrond.ttf") format("truetype"), url("../client/src/assets/fonts/neutrond.ttf") format("opentype");
   font-weight: bold;
   font-style: normal;
 }

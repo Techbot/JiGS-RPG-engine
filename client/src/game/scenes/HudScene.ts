@@ -44,9 +44,9 @@ export class HudScene extends Scene {
   preload() {
 
     this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-    this.load.image('nextPage', '/assets/images/assets/images/gui/arrow-down-left.png');
-    // this.load.atlas('avatar', '/assets/images/assets/images/gui/psibot-head.png', '/assets/images/assets/images/gui/avatar.json');
-    // this.load.image('avatar', '/assets/images/assets/images/gui/' + this.npc + '.png');
+    this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
+    // this.load.atlas('avatar', '/assets/images/gui/psibot-head.png', '/assets/images/gui/avatar.json');
+    // this.load.image('avatar', '/assets/images/gui/' + this.npc + '.png');
   }
   create() {
     // Dialogue.

@@ -8,7 +8,7 @@ export class BootScene extends Scene {
 
   preload () {
     this.load.audio('walk', ['/assets/audio/thud.ogg', '/assets/audio/thud.mp3']);
-    this.load.image('nextPage', '/assets/images/assets/images/gui/arrow-down-left.png');
+    this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
 
     this.load.spritesheet('otherPlayer', '/assets/images/sprites/avatars/4351.png', { frameWidth: 64, frameHeight: 64 });
     this.load.spritesheet('player-spell-default', '/assets/images/animator/Psibot-Male/spell-default.png', { frameWidth: 64, frameHeight: 64 });
@@ -29,7 +29,7 @@ export class BootScene extends Scene {
     this.load.image('bullet', "/assets/images/star_gold.png");
     this.load.image('healthBar', "/assets/images/health_bar.png");
     this.load.image('reward', '/assets/images/various-32-greyout_69.png');
-    this.load.image('nextPage', '/assets/images/assets/images/gui/arrow-down-left.png');
+    this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
     this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
     this.load.image('cursor', '/assets/images/cursors/blank.cur');
     this.load.image('cursor2', '/assets/images/cursors/attack.cur');
@@ -37,10 +37,10 @@ export class BootScene extends Scene {
     this.load.image('cursor4', '/assets/images/cursors/blank.cur');
     this.load.image('cursor4', '/assets/images/cursors/point.cur');
 
-    this.load.image('icon01', '/assets/images/assets/images/gui/I_Book.png');
-    this.load.image('icon02', '/assets/images/assets/images/gui/I_GoldCoin.png');
-    this.load.image('icon03', '/assets/images/assets/images/gui/I_Scroll.png');
-    this.load.image('icon04', '/assets/images/assets/images/gui/P_Yellow01.png');
+    this.load.image('icon01', '/assets/images/gui/I_Book.png');
+    this.load.image('icon02', '/assets/images/gui/I_GoldCoin.png');
+    this.load.image('icon03', '/assets/images/gui/I_Scroll.png');
+    this.load.image('icon04', '/assets/images/gui/P_Yellow01.png');
   }
 
   create () {
