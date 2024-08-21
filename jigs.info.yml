@@ -8,3 +8,9 @@ dependencies:
 - drupal:paragraphs
 - drupal:entity_reference_revisions
 - registration_role:registration_role
+- drupal:path
+- drupal:menu_ui
+- drupal:taxonomy
+- drupal:image
+- drupal:options
+- flag:flag
