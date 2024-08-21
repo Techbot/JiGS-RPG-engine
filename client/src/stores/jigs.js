@@ -1,6 +1,6 @@
 // stores/counter.js
 import { defineStore } from "pinia";
-import axios from "axios";
+import { jigsGet } from '../utils/JigsAPI.ts';
 
 export const useJigsStore = defineStore("jigs", {
   state: () => ({
@@ -156,8 +156,7 @@ Will you find my Balls?`,
   actions: {
     // any amount of arguments, return a promise or not
     myInventory() {
-      axios
-        .get("/myinventory?_wrapper_format=drupal_ajax")
+      jigsGet("/myinventory?_wrapper_format=drupal_ajax")
         .then((response) => {
           this.divideInventory(response);
         });

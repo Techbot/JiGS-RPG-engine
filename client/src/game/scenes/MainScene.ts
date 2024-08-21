@@ -13,14 +13,14 @@ import Phaser from "phaser";
 import { Room, Client } from "colyseus.js";
 import { BACKEND_URL } from "../backend";
 import { useJigsStore } from '../../stores/jigs';
-import axios, { AxiosResponse } from "axios";
+import { jigsGet } from '../../utils/JigsAPI.ts';
 
 /* import { discordSDK } from '../../utils/DiscordSDK.js';
 import { colyseusSDK } from '../../utils/Colyseus.js'; */
 //import type { MyRoomState, Player } from '../../utils/MyRoom.ts';
 //import { authenticate } from '../../utils/Auth.js';
 //import { PlayerObject } from '../../objects/PlayerObject.js';
-
+import AnimatedTiles from 'phaser-animated-tiles/dist/AnimatedTiles.min.js';
 import MyPlayer from "../entities/player";
 import OtherPlayer from "../entities/otherPlayer";
 import Messenger from "../entities/messenger";
@@ -35,6 +35,7 @@ import Bosses from "../entities/bosses";
 import Walls from "../entities/walls";
 import Folios from "../entities/folios";
 import Hydrater from '../../utils/Hydrater';
+const ASSETS_URL = import.meta.env.VITE_ASSETS_URL;
 
 export class MainScene extends Phaser.Scene {
   room: any;
@@ -118,7 +119,7 @@ export class MainScene extends Phaser.Scene {
     this.Loader = new Load;
     this.Loader.load(this);
     //this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
-    this.load.scenePlugin('AnimatedTiles', '/assets/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
+    this.load.scenePlugin('AnimatedTiles', ASSETS_URL + '/assets/AnimatedTiles.js', 'animatedTiles', 'animatedTiles');
   }
 
   async create() {
@@ -197,8 +198,7 @@ export class MainScene extends Phaser.Scene {
 
   updatePlayerData() {
     return new Promise((resolve) => {
-      axios
-        .get("/states/myplayer?_wrapper_format=drupal_ajax")
+      jigsGet("/states/myplayer?_wrapper_format=drupal_ajax")
         .then((response) => {
           //this.hydratePlayer(response);
           this.hydrater.hydratePlayer(response);
@@ -207,11 +207,9 @@ export class MainScene extends Phaser.Scene {
     })
   }
 
-
   updateMapData() {
     return new Promise((resolve) => {
-      axios
-        .get("/states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
+      jigsGet("/states/mystate?_wrapper_format=drupal_ajax&mapGrid=" + this.jigs.userMapGrid)
         .then((response) => {
           this.hydrater.hydrateMap(response, 1);
         })

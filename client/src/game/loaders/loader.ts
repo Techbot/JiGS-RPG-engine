@@ -15,6 +15,7 @@ import TilesetLoader from "./tilesetLoader"
 import SwitchLoader from "./switchLoader"
 import QuestLoader from "./questLoader"
 
+const ASSETS_URL = import.meta.env.VITE_ASSETS_URL;
 export default class Load {
 
     jigs: any;
@@ -46,11 +47,17 @@ export default class Load {
 
     load(scene) {
         const textureManager = scene.textures;
+        if (this.jigs.soundtrack) {
+            scene.load.audio(this.jigs.soundtrack, '/assets/soundtracks/' + this.jigs.soundtrack + '.mp3');
+        }
 
-        scene.load.audio(this.jigs.soundtrack, '/assets/soundtracks/' + this.jigs.soundtrack + '.mp3');
         scene.load.image('black', '/assets/images/black.png');
         scene.load.image('pink', '/assets/images/pink.png');
+
         scene.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random());
+
+        const jsonFile = ASSETS_URL + '/assets/cities/json/' + this.jigs.city + this.padding(this.jigs.tiled, 3, '0') + '.json?' + Math.random();
+        scene.load.tilemapTiledJSON(this.jigs.city + "_" + this.jigs.tiled, jsonFile);
 
         this.tilesetLoader.add(scene);
         this.npcLoader.add(scene);
