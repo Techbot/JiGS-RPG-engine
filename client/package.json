@@ -23,9 +23,7 @@
   "devDependencies": {
     "cloudflared": "^0.5.1",
     "typescript": "^5.2.2",
-    "vite": "^5.2.10",
-    "vue-loader": "^17.2.2",
-    "vue-template-compiler": "^2.7.14"
+    "vite": "^5.2.10"
   },
   "dependencies": {
     "@coreui/coreui": "^4.3.0",
@@ -46,6 +44,7 @@
     "d3-org-chart": "^2.7.0",
     "gauge": "^5.0.1",
     "phaser": "^3.8",
+    "phaser-animated-tiles": "^2.0.2",
     "phaser3-rex-plugins": "^1.8",
     "pinia": "2.0.33",
     "pinia-plugin-persistedstate": "^3.2.1",
