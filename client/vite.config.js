@@ -29,6 +29,8 @@ export default defineConfig({
   },
 
   build: {
+    outDir: 'public',
+    emptyOutDir: false,
     rollupOptions: {
       output: {
         manualChunks: undefined, // Ensure manualChunks is undefined to disable chunking
@@ -39,6 +41,5 @@ export default defineConfig({
       },
     },
     chunkSizeWarningLimit: 5000,
-    copyPublicDir: false,
   },
 })

@@ -9,10 +9,10 @@ phaser:
 client:
   version: 1.0
   js:
-    client/dist/assets/index.js: { minified: true }
+    client/public/assets/index.js: { minified: true }
   css:
     component:
-      client/dist/index.951cabfd.css: {}
+      client/public/assets/index.951cabfd.css: {}
 
 jigs-theme:
   css:
