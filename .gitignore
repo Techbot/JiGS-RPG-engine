@@ -64,3 +64,5 @@ node_modules
 LICENSE.md
 
 /config_init
+
+client/.env
