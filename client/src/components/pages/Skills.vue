@@ -9,8 +9,64 @@ export default {
     return {
       dataModel: [
         {
-          id: "Skills",
-          label: "Skills",
+          id: "lockPicking",
+          label: "Lock Picking",
+            treeNodeSpec: {
+            expandable: true,
+            selectable: true,
+            deletable: true,
+            input: {
+              type: 'checkbox',
+              name: 'lock picking'
+            },
+            state: {
+              expanded: true,
+              selected: false,
+              input: {
+                value: false,
+                disabled: false
+              }
+            }
+          },
+          children: [
+            { id: "lockPicking1", label: "Level One" },
+            { id: "lockPicking2", label: "Level Two" },
+            { id: "lockPicking3", label: "Level Three" },
+            { id: "lockPicking4", label: "Level Four" }
+          ]
+        },
+
+        {
+          id: "stealth",
+          label: "Stealth",
+            treeNodeSpec: {
+            expandable: true,
+            selectable: true,
+            deletable: true,
+            input: {
+              type: 'checkbox',
+              name: 'stealth'
+            },
+            state: {
+              expanded: true,
+              selected: false,
+              input: {
+                value: false,
+                disabled: false
+              }
+            }
+          },
+          children: [
+            { id: "stealth1", label: "Level One" },
+            { id: "stealth2", label: "Level Two" },
+            { id: "stealth3", label: "Level Three" },
+            { id: "stealth4", label: "Level Four" }
+          ]
+        },
+
+        {
+          id: "melee",
+          label: "Melee",
           treeNodeSpec: {
             expandable: true,
             selectable: true,
@@ -29,93 +85,110 @@ export default {
             }
           },
           children: [
-            {
-              id: 1,
-              label: "Lock Picking",
-                treeNodeSpec: {
-                expandable: true,
-                selectable: true,
-                deletable: true,
-                input: {
-                  type: 'checkbox',
-                  name: 'checkbox1'
-                },
-                state: {
-                  expanded: false,
-                  selected: false,
-                  input: {
-                    value: false,
-                    disabled: false
-                  }
-                }
-              },
-              children: [
-                { id: 1, label: "Level One" }, { id: 1, label: "Level Two" },
-                { id: 1, label: "Level Three" }, { id: 1, label: "Level Four" }
-              ]
-            },
+            { id: "suckerPunch", label: "Sucker punch" },
+            { id: "karateChop", label: "Karate chop" },
+            { id: "deathStab", label: "Death stab" },
+            { id: "headBanger", label: "Head banger" }
+          ]
+        },
 
-            {
-              id: "node2",
-              label: "Melee",
-              treeNodeSpec: {
-                expandable: true,
-                selectable: true,
-                deletable: true,
-                input: {
-                  type: 'checkbox',
-                  name: 'checkbox1'
-                },
-                state: {
-                  expanded: false,
-                  selected: false,
-                  input: {
-                    value: false,
-                    disabled: false
-                  }
-                }
-              },
-              children: [
-                { id: 1, label: "Level One" }, { id: 1, label: "Level Two" },
-                { id: 1, label: "Level Three" }, { id: 1, label: "Level Four" }
-              ]
+        {
+          id: "range",
+          label: "Range",
+          treeNodeSpec: {
+            expandable: true,
+            selectable: true,
+            // deletable: true,
+            input: {
+              type: 'checkbox',
+              name: 'checkbox1'
             },
-            {
-              id: 1,
-              label: "Range",
-              treeNodeSpec: {
-                expandable: true,
-                selectable: true,
-                deletable: true,
-                input: {
-                  type: 'checkbox',
-                  name: 'checkbox1'
-                },
-                state: {
-                  expanded: false,
-                  selected: false,
-                  input: {
-                    value: false,
-                    disabled: false
-                  }
-                }
-              },
-              children: [
-                { id: 1, label: "Level One" }, { id: 1, label: "Level Two" },
-                { id: 1, label: "Level Three" }, { id: 1, label: "Level Four" }
-              ]
-            },
-            {
-              id: "node2", label: "Heal", treeNodeSpec: {
-                state: {
-                  expanded: false,
-                }
-              },
-              children: [
-                { id: 1, label: "Level One" }, { id: 1, label: "Level Two" },
-                { id: 1, label: "Level Three" }, { id: 1, label: "Level Four" }
-              ],
+            state: {
+              expanded: true,
+              selected: false,
+              input: {
+                value: false,
+                disabled: false
+              }
             }
+          },
+          children: [
+            { id: "molotov", label: "Molotov" },
+            { id: "stinkBomb", label: "Stink bomb" },
+            { id: "explodingProjectiles", label: "Exploding projectiles" },
+            { id: "poisonArrows", label: "Poison arrows" }
+          ]
+        },
+
+        {
+          id: "heal",
+          label: "Heal",
+          treeNodeSpec: {
+            state: {
+              expanded: true,
+            }
+          },
+          children: [
+            { id: "heal1", label: "Level One" },
+            { id: "heal2", label: "Level Two" },
+            { id: "heal3", label: "Level Three" },
+            { id: "heal4", label: "Level Four" }
+          ],
+        },
+
+        {
+          id: "magic",
+          label: "Magic",
+            treeNodeSpec: {
+            expandable: true,
+            selectable: true,
+            deletable: true,
+            input: {
+              type: 'checkbox',
+              name: 'stealth'
+            },
+            state: {
+              expanded: true,
+              selected: false,
+              input: {
+                value: false,
+                disabled: false
+              }
+            }
+          },
+          children: [
+            { id: "magic1", label: "Level One" },
+            { id: "magic2", label: "Level Two" },
+            { id: "magic3", label: "Level Three" },
+            { id: "magic4", label: "Level Four" }
+          ]
+        },
+
+        {
+          id: "hacking",
+          label: "Hacking",
+            treeNodeSpec: {
+            expandable: true,
+            selectable: true,
+            deletable: true,
+            input: {
+              type: 'checkbox',
+              name: 'stealth'
+            },
+            state: {
+              expanded: true,
+              selected: false,
+              input: {
+                value: false,
+                disabled: false
+              }
+            }
+          },
+          children: [
+            { id: "hacking1", label: "Level One" },
+            { id: "hacking2", label: "Level Two" },
+            { id: "hacking3", label: "Level Three" },
+            { id: "hacking4", label: "Level Four" }
           ]
         }
       ]
@@ -125,7 +198,31 @@ export default {
 </script>
 
 <template>
-  <tree-view id="my-tree" :initial-model="dataModel"></tree-view>
+  <tree-view id="my-tree" :initial-model="dataModel">
+
+    <!-- <template #text="{ metaModel, customClasses }"><span>{{ metaModel.data[metaModel.labelProperty] }}. This is custom slot content.</span></template> -->
+
+    <template #expander="{ metaModel, customClasses, expanderId, canExpand, toggleNodeExpanded }">
+      <button :id="expanderId"
+              type="button"
+              v-if="canExpand"
+              aria-hidden="true"
+              tabindex="-1"
+              :title="metaModel.expanderTitle"
+              class="grtvn-self-expander"
+              :class="[customClasses.treeViewNodeSelfExpander,
+              metaModel.state.expanded ? 'grtvn-self-expanded' : '',
+              metaModel.state.expanded ? customClasses.treeViewNodeSelfExpanded : '']"
+              @click="toggleNodeExpanded">
+        {{ metaModel.state.expanded ? 'v' : '>' }}
+      </button>
+      <span v-else
+            class="grtvn-self-spacer"
+            :class="customClasses.treeViewNodeSelfSpacer"></span>
+    </template>
+
+
+  </tree-view>
 </template>
 
 <style>
@@ -164,14 +261,24 @@ export default {
   } */
 
   /* The node's content, excluding the list of child nodes */
-  .grtv-wrapper.grtv-default-skin .grtvn-self {
+  .grtv-wrapper.grtv-default-skin .grtvn > .grtvn-self {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
     /* line-height: 2rem; */
     margin-bottom: 1rem;
+  }
+  .grtv-wrapper.grtv-default-skin .grtvn-children .grtvn > .grtvn-self {
+    display: block;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .grtv-wrapper.grtv-default-skin .grtvn-children .grtvn-self {
+    margin-bottom: 0;
   }
   .grtv-wrapper.grtv-default-skin .grtvn-children .grtvn-children .grtvn-self {
     margin-bottom: 0;
@@ -233,10 +340,11 @@ export default {
   .grtv-wrapper.grtv-default-skin .grtvn-self-action {
     min-width: 1rem;
     flex: 0 1 2rem;
-    background-color: var(--emc-teal-alt);
+    /* background-color: var(--emc-teal-alt); */
+    background-color: var(--emc-black);
     font-weight: 700;
     font-size: 1.5rem;
-    padding: 0.5rem;
+    padding: 0 0.25rem;
     border: 4px solid transparent;
   }
 
@@ -297,32 +405,59 @@ export default {
   }
 
   .grtv-wrapper.grtv-default-skin .grtvn-children-wrapper {
-    margin: 0 0 0 calc(1rem + var(--itemSpacing));
+    background-color:black;
+    padding: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .grtv-wrapper.grtv-default-skin .grtvn-children-wrapper .grtvn-children-wrapper {
+    background-color:transparent;
+    padding: 0;
+    margin-bottom: 0;
   }
 
   /* The node's child list */
   .grtv-wrapper.grtv-default-skin .grtvn-children {
     padding: 0;
     list-style: none;
-    margin-bottom: 2rem;
+    /* margin-bottom: 4rem; */
   }
 
   .grtv-wrapper.grtv-default-skin .grtvn.grtvn-hidden {
     display: none;
   }
 
-  .grtvn-children-wrapper > ul > li > .grtvn-children-wrapper > .grtvn-children {
+  .grtvn-children-wrapper > .grtvn-children {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
-    grid-template-areas:s
+    grid-template-areas:
       "level1 level2 level3 level4"
   }
 
-  .grtvn-children-wrapper > ul > li > .grtvn-children-wrapper > .grtvn-children > li {
-    background-color: var(--emc-dark);
+  .grtvn-children-wrapper > .grtvn-children > li:nth-child(1) {
+    grid-area: level1;
+    background-color: var(--emc-teal-alt);
   }
+
+  .grtvn-children-wrapper > .grtvn-children > li:nth-child(2) {
+    grid-area: level2;
+    background-color: var(--emc-black-rich);
+  }
+
+  .grtvn-children-wrapper > .grtvn-children > li:nth-child(3) {
+    grid-area: level3;
+    background-color: var(--emc-black);
+  }
+
+  .grtvn-children-wrapper > .grtvn-children > li:nth-child(4) {
+    grid-area: level4;
+    background-color: var(--emc-black);
+  }
+  /* .grtvn-children-wrapper > .grtvn-children > li:first-child {
+    background-color: var(--emc-dark);
+  } */
   .grtv-wrapper.grtv-default-skin .grtvn-self-action {
     background-color: var(--emc-black);
   }
@@ -334,6 +469,28 @@ export default {
     border-color: var(--emc-teal-alt);
   }
 
+  #my-tree-range .grtvn-children-wrapper > .grtvn-children > li:nth-child(1),
+  #my-tree-melee .grtvn-children-wrapper > .grtvn-children > li:nth-child(1) {
+    grid-area: level1;
+    background-color: var(--emc-dark);
+  }
 
+  #my-tree-range .grtvn-children-wrapper > .grtvn-children > li:nth-child(2),
+  #my-tree-melee .grtvn-children-wrapper > .grtvn-children > li:nth-child(2) {
+    grid-area: level2;
+    background-color: var(--emc-black);
+  }
+
+  #my-tree-range .grtvn-children-wrapper > .grtvn-children > li:nth-child(3),
+  #my-tree-melee .grtvn-children-wrapper > .grtvn-children > li:nth-child(3) {
+    grid-area: level3;
+    background-color: var(--emc-black);
+  }
+
+  #my-tree-range .grtvn-children-wrapper > .grtvn-children > li:nth-child(4),
+  #my-tree-melee .grtvn-children-wrapper > .grtvn-children > li:nth-child(4) {
+    grid-area: level4;
+    background-color: var(--emc-black);
+  }
 
 </style>
