@@ -122,6 +122,9 @@ export class MainScene extends Phaser.Scene {
   }
 
   async create() {
+    // console.log('MainScene create - storing scene in store');
+    this.jigs.scene = this; // Store scene reference in the store
+    console.log('Scene stored:', this.jigs.scene);
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
@@ -147,7 +150,9 @@ export class MainScene extends Phaser.Scene {
     }
     console.log("**************** Init Messages ************" + this.jigs.room);
     this.walkSound = this.sound.add('walk', { volume: 0.1 });
+    // console.log('Creating soundtrack:', this.jigs.soundtrack);
     this.soundtrack = this.sound.add(this.jigs.soundtrack, { volume: 0.6 });
+    // console.log('Soundtrack created:', this.soundtrack);
     this.soundtrack.play();
     this.messenger.initMessages(this);
     this.jigs.room.state.players.onAdd((player, sessionId: string | number) => {

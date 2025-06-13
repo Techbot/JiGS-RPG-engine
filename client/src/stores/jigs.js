@@ -6,6 +6,11 @@ export const useJigsStore = defineStore("jigs", {
   state: () => ({
     channelId: "1",
     room: {},
+    scene: null, // Reference to the MainScene instance (for audio control)
+
+    // Audio control state
+    audioVolume: 60,
+    audioPreviousVolume: 60,
 
     playerName: "Guest",
     playerUuid: "",       // uuid for user in drupal db
