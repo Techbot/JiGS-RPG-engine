@@ -50,6 +50,7 @@ tiled
 /server/arena.config.ts
 /server/services/db.ts
 server/services/db.ts
+/server/build
 
 
 /vendor
