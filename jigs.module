@@ -138,3 +138,18 @@ function jigs_preprocess_page(&$variables) {
     $variables['#attached']['library'][] =  'jigs/jigs-theme';
   }
 }
+
+/**
+ * Force default fields on profiles that were created programmatically.
+ */
+function jigs_profile_presave(\Drupal\Core\Entity\EntityInterface $entity) {
+  foreach ($entity->getFields() as $field_name => $field) {
+    if ($field->isEmpty()) {
+      $field_definition = $entity->getFieldDefinition($field_name);
+      $default_value = $field_definition->getDefaultValue($entity);
+      if (!empty($default_value)) {
+        $entity->set($field_name, $default_value);
+      }
+    }
+  }
+}

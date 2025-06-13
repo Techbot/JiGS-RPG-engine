@@ -11,6 +11,7 @@ import { wallCollider } from "../colliders/wallCollider";
 import { rewardCollider } from "../colliders/rewardCollider";
 import { mobCollider } from "../colliders/mobCollider";
 import { bossCollider } from "../colliders/bossCollider";
+
 export class Collision {
 
   portalCollider: portalCollider;

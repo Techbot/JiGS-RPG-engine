@@ -13,11 +13,17 @@ export class P2player {
   Body: any;
   boundaryWidth: any;
   boundaryHeight: any;
-  
+
   constructor() {
   }
 
-  async load(id: any, share: any, player) {
+  async load(
+    id: string,
+    share: any,
+    player: { x: any; y: any; }
+   )
+
+  {
     await playerModel.getPlayer(id).then((result: any) => {
       this.Body = new p2.Body({
         mass: 1,

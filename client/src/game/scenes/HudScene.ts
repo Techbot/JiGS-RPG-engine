@@ -42,7 +42,6 @@ export class HudScene extends Scene {
   }
 
   preload() {
-
     this.load.addFile(new WebFont(this.load, ['Roboto', 'Neutron Demo']))
     this.load.image('nextPage', '/assets/images/gui/arrow-down-left.png');
     // this.load.atlas('avatar', '/assets/images/gui/psibot-head.png', '/assets/images/gui/avatar.json');
@@ -55,7 +54,7 @@ export class HudScene extends Scene {
     }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
 
     // Grab a reference to the Game Scene
-    let ourGame = this.scene.get('MainScene');
+    let ourGame = this.scene.get('main');
 
     ourGame.events.on('Mission', function (response, npc) {
       this.mission.dialog(this, npc, response);
@@ -83,7 +82,7 @@ export class HudScene extends Scene {
         this.jigs.cutscenePosition++;
       }
     },
-      this);
+    this);
 
     this.events.on('cutscene', function () {
       if (this.jigs.cutscene[this.jigs.cutscenePosition]) {
@@ -104,11 +103,6 @@ export class HudScene extends Scene {
       info.setText('Credits: ' + this.jigs.playerStats.credits);
     }, this);
 
-
-    ourGame.events.on('missionComplete', function () {
-      this.scene.switch('MessageScene');
-    }, this);
-
     //  Our Text object to display the Score
     let info = this.add.text(15, 15, 'Credits: ', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud2 = this.add.text(15, 30, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
@@ -124,7 +118,6 @@ export class HudScene extends Scene {
     this.hud10 = this.add.text(735, 75, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
   }
   update() {
-
     // HUD1
     this.hud2.setText('State: ' + this.jigs.gameState);
     this.hud3.setText('Node: ' + this.jigs.userMapGrid);
@@ -211,6 +204,7 @@ export class HudScene extends Scene {
     return textBox;
   }
 
+
   ////////////////////////////////////////////////////////////////////////////////
 
   createDialogTextBox = function (scene, x, y, config) {
@@ -274,7 +268,7 @@ export class HudScene extends Scene {
 
           setTimeout(() => {
             scene.events.emit('cutscene');
-          }, 1000);
+          },1000);
         }
 
       })
@@ -295,6 +289,37 @@ export class HudScene extends Scene {
       maxLines: 6,
     }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 })
   }
+
+  // CreateDialog = function (scene, content) {
+  //   return scene.rexUI.add.textArea({
+  //     x: 0,
+  //     y: 260,
+  //     width: 500,
+  //     height: 400,
+  //     // text: scene.add.text(),
+  //     text: scene.rexUI.add.BBCodeText(),
+  //     // textMask: true,
+  //     scroller: {
+  //       pointerOutRelease: false,
+  //     },
+  //     mouseWheelScroller: {
+  //       focus: false,
+  //       speed: 0.1
+  //     },
+  //     content: this.jigs.content,
+  //     expand: {
+  //       footer: false
+  //     }
+  //   }).setDisplayOrigin(0, 0)
+  // }
+
+  // CreateContent = function (linesCount) {
+  //   var numbers = [];
+  //   for (var i = 0; i < linesCount; i++) {
+  //     numbers.push('[color=' + ((i % 2) ? 'green' : 'yellow') + ']' + i.toString() + '[/color]');
+  //   }
+  //   return this.jigs.content + '\n' + numbers.join('\n');
+  // }
 }
 
 var createLabel = function (scene, text) {
@@ -314,5 +339,3 @@ var createLabel = function (scene, text) {
     }
   });
 }
-
-

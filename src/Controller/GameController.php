@@ -84,8 +84,11 @@ class GameController extends ControllerBase
   {
     /** @var \Drupal\Core\Ajax\AjaxResponse $response */
     $response = new AjaxResponse();
-    $player                   = new Player();
+
     //$player = new DiscordPlayer($discordName = $request->query->get('discordName'));
+
+    $player                   = new Player();
+    //$player = new Player($request->query->get('uid'));
 
     $responseData['player'] = $player->create();
     $response->addCommand(new \Drupal\Core\Ajax\DataCommand('#app', 'myKey', $responseData));

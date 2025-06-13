@@ -8,7 +8,9 @@ var playerModel = require('../models/player.ts');
 
 export class bossCollider {
 
-  do(room, bodyA, bodyB) {
+  do(room: { broadcast: (arg0: string, arg1: any) => void; },
+  bodyA: { isBoss: any; dead: any; done: boolean; },
+  bodyB: { isWall: any; struck: boolean; profileId: any; health: number; }) {
 
     if (bodyA.isBoss && bodyB.isWall) {
       return;

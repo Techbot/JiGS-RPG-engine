@@ -8,7 +8,20 @@ class Game
 
   function __construct()
   {
-    $this->gameNode  =  \Drupal::entityTypeManager()->getStorage('node')->load(2);
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    // Load the first node of type "game".
+    $nids = $node_storage->getQuery()
+      ->condition('type', 'game')
+      ->range(0, 1)
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if (!empty($nids)) {
+      $this->gameNode = $node_storage->load(reset($nids));
+    } else {
+      $this->gameNode = NULL;
+      \Drupal::logger('jigs')->error('No node of type "game" was found.');
+    }
   }
 
   function create()

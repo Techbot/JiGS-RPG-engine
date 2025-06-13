@@ -18,8 +18,10 @@ class Player
   public $flagging;
   public $parentMission;
 
-  function __construct()
+ // function __construct($uid)
+ function __construct()
   {
+    //$this->user = \Drupal\user\Entity\User::load($uid);
     $this->user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
     $this->database = \Drupal::database();
     $this->id = \Drupal::currentUser()->id();
@@ -32,8 +34,10 @@ class Player
     //$this->name           = $this->user->get("name")->value;
     $player['id'] = \Drupal::currentUser()->id();
     $player['name'] = $this->user->get("name")->value;
-    $this->userGamesState = $this->user->field_game_state->value;
-    $player['userState'] = $this->userGamesState;
+    //$this->userGamesState = $this->user->field_game_state->value;
+    //$player['userState'] = $this->userGamesState;
+
+    $player['profileId'] = $this->profileId;
 
     $query = $this->database->query("SELECT field_map_grid_target_id FROM profile__field_map_grid WHERE entity_id= " . $this->profileId);
     $player['userMG'] = $query->fetchAll()[0]->field_map_grid_target_id;

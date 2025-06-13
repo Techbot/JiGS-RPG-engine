@@ -8,6 +8,9 @@ dependencies:
 - drupal:paragraphs
 - drupal:entity_reference_revisions
 - registration_role:registration_role
+- drupal:jsonapi
+- drupal:file_field_replace
+- rest_api_authentication:rest_api_authentication
 - drupal:path
 - drupal:menu_ui
 - drupal:taxonomy

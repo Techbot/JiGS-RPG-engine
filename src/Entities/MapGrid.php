@@ -179,6 +179,11 @@ class MapGrid
   function getSoundtrack()
   {
     $sountrack = [];
+    
+    if ($this->MapGrid->field_soundtrack->referencedEntities() == null) {
+      return null;
+    }
+
     foreach ($this->MapGrid->field_soundtrack->referencedEntities() as $soundtrack) {
       $sountrack[] = [
         'track' => $soundtrack->field_track->getValue()[0]['value'],

@@ -84,7 +84,7 @@ export class CutScene extends Phaser.Scene {
   }
 
   onCutsceneDown() {
-    this.game.scene.switch("CutScene", "MainScene");
+    this.game.scene.switch("CutScene", "main");
   }
   hydrateCutscene(response) {
 

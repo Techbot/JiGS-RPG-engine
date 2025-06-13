@@ -54,11 +54,14 @@ export async function authenticate() {
   return data;
 }
 
-export async function authenticateLocal(playerId: string) {
+//export async function authenticateLocal(playerId: string) {
+export async function authenticateLocal(playerId) {
+
   try {
     console.log("Authenticating Local");
     // Attempt to authenticate with this player id
-    const { data } = await colyseusSDK.http.post('/local_token', {
+    playerId = 'bob';
+    const { data } = await colyseusSDK.http.post('/local_token:2567', {
       headers: { 'Content-Type': 'application/json', },
       body: JSON.stringify({ playerId, }),
     });

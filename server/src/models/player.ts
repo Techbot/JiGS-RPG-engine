@@ -9,7 +9,7 @@ var con = mysql.createPool({
   database: config.database
 });
 
-function getPlayer(player) {
+function getPlayer(player: string) {
   return new Promise(function (resolve, reject) {
     con.query(
       `SELECT

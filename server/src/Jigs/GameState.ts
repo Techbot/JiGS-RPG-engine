@@ -20,13 +20,20 @@ export class Player extends Schema {
   @type("number") health: number;
   @type("string") direction: string;
 
+  @type("number") playerId: number;
+  @type("string") playerUuid: string;
+  @type("number") profileId: number;
+  @type("string") profileUuid: string;
+  @type("string") playerName: string;
+  @type("string") channelId: string;
+
   inputQueue: InputData[] = [];
   P2: Promise<void>;
   id: string;
   portal: number;
   Body: any;
-  playerId: number;
-  profileId: number;
+  // playerId: number;
+  // profileId: number;
   lastX: number;
   lastY: number;
   p2Player: any;

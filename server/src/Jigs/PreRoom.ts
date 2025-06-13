@@ -2,13 +2,13 @@
 //
 // JiGS ColyseusJs Server
 //////////////////////////////////////////////////////////////////////////////
+import { JWT } from "@colyseus/auth";
 import { Room, Client, ServerError } from "colyseus";
-const db = require("../services/db");
 import { InputData, MyRoomState, Player, PlayerMap, ZombieState } from "./GameState";
 
-var roomModel = require('../models/room.ts');
+// var roomModel = require('../models/room.ts');
 
-var p2 = require('p2');
+const p2 = require('p2');
 const fs = require('fs');
 import { P2player } from "./P2player";
 import { Mob } from "./Mobs";
@@ -16,12 +16,16 @@ import { Portal } from "./Portals";
 import { Switch } from "./Switches";
 import { Wall } from "./Walls";
 import { Npc } from "./Npcs";
-import { Bosses } from "./Bosses";
+//import { Boss } from "./Bosses";
+
 import { Reward } from "./Rewards";
 import { Layer } from "./Layers";
 import { Collision } from "./Collisions";
 
-export class GameRoom extends Room<MyRoomState> {
+export class PreRoom extends Room<MyRoomState> {
+
+  maxClients = 4;
+
   fixedTimeStep = 1000 / 60;
   speedMultiplier = 1; // 20;
   share = {
@@ -56,68 +60,77 @@ export class GameRoom extends Room<MyRoomState> {
   Switches: Switch;
   Walls: Wall;
   Npcs: Npc;
-  Bosses: Bosses;
+  //Bosses: Boss;
   Rewards: Reward;
   Collisions: Collision;
   Layers: Layer;
 
   constructor() {
     super();
-    this.world = new p2.World({ gravity: [0, 0] });
-    this.P2mobBodies = [];
-    this.P2bossBodies = [];
-    this.Mobs = new Mob;
-    this.Portals = new Portal;
-    this.Switches = new Switch;
-    this.Walls = new Wall;
-    this.Rewards = new Reward;
-    this.Npcs = new Npc;
-    this.Bosses = new Bosses;
-    this.Layers = new Layer;
-    this.Collisions = new Collision;
+    //  this.world = new p2.World({ gravity: [0, 0] });
+    //  this.P2mobBodies = [];
+    // this.P2bossBodies = [];
+    //this.Mobs = new Mob;
+    // this.Portals = new Portal;
+    //this.Switches = new Switch;
+    //this.Walls = new Wall;
+    //this.Rewards = new Reward;
+    //this.Npcs = new Npc;
+    //this.Bosses = new Boss;
+    // this.Layers = new Layer;
+
+    // this.Collisions = new Collision;
   }
+  /*
+    async onAuth(client, options, request) {
 
-  async onAuth(client: any, options: any, request: any) {
+      const userData = await this.checkAccess(client, options, this.state.playerMap);
+      if (userData) {
+        return userData;
 
-  //  return true;
+      } else {
+        throw new ServerError(400, "bad access token");
+      }
+    } */
 
-    const loggedInTest = await this.checkAccess(client, options, this.state.playerMap);
-    if (loggedInTest) {
-      return loggedInTest;
+  static onAuth(token: string) {
+    return JWT.verify(token);
 
-    } else {
-      throw new ServerError(400, "You are already logged in elsewhere.");
-    }
   }
 
   async onCreate(options: any) {
+
     this.indexNumber = 1;
     this.setState(new MyRoomState());
-    await this.Mobs.load(this, options.nodeNumber, this.share);
-    await this.Bosses.load(this, options.nodeNumber, this.share);
-    await this.Portals.load(this.world, options.nodeNumber, this.share);
+
+    //  await this.Mobs.load(this, options.nodeNumber, this.share);
+    //  await this.Bosses.load(this, options.nodeNumber, this.share);
+    //   await this.Portals.load(this.world, options.nodeNumber, this.share);
     //await this.Switches.load(this.world, options.nodeNumber, this.share);
-    await this.Walls.load(this.world, options.nodeNumber, this.share);
-    await this.Rewards.load(this.world, options.nodeNumber, this.share);
-    await this.Npcs.load(this.world, options.nodeNumber, this.share);
+    //   await this.Walls.load(this.world, options.nodeNumber, this.share);
+    //   await this.Rewards.load(this.world, options.nodeNumber, this.share);
+    //   await this.Npcs.load(this.world, options.nodeNumber, this.share);
     //await this.Layers.load(options.nodeName, this.share);
-    await this.Collisions.add(this);
+    //    await this.Collisions.add(this);
 
-    await roomModel.getRoom(options.nodeNumber).then((result: any) => {
-      this.state.mapWidth = result[0].field_map_width_value * 16;
-      this.state.mapHeight = result[0].field_map_height_value * 16;
-      this.state.missionAccepted = result[0].field_mission_accepted_target_id;
-      console.log('-----MA---------' + this.state.missionAccepted);
+    /*     await roomModel.getRoom().then((result: any) => {
 
-    }).catch(function (err: any) {
-      console.log('room error' + err)
-    });
+          console.log('-----Pre Room ---------' );
+
+        }).catch(function (err) {
+          console.log('room error' + err)
+        }); */
 
     this.onMessage(0, (client, input) => {
+      //  console.log('yo');
       const player = this.state.players.get(client.sessionId);
       if (player.p2Player.Body.portal) {
+
+        console.log('send portal message' + player.p2Player.Body.portal);
+
         client.send("portal", player.p2Player.Body.portal);
         player.p2Player.Body.portal = false;
+
       }
       else if (player.p2Player.Body.collide) {
         client.send("collide", player.p2Player.Body.collide);
@@ -140,6 +153,15 @@ export class GameRoom extends Room<MyRoomState> {
         player.inputQueue.push(input);
       }
     });
+
+    /* //remove
+        this.onMessage("move", (client, message) => {
+          const player = this.state.players.get(client.sessionId);
+          player.position.x = message.x;
+          player.position.y = message.y;
+        }); */
+
+
     let elapsedTime = 0;
     this.setSimulationInterval((deltaTime) => {
       elapsedTime += deltaTime;
@@ -150,78 +172,15 @@ export class GameRoom extends Room<MyRoomState> {
     });
   }
 
-  checkAccess(client: any, options: any, playerMap: any) {
-    if (playerMap.size == 0) {
-      console.log('no people');
-      return true
-    } else {
-      playerMap.forEach((value: any, key: any) => {
-        console.log("value" + value.profileId);
-
-        if (value.profileId == options.profile_id) {
-          console.log('Access failed');
-          return false;
-        }
-        //  console.log('client.id:' + client.id);
-        //  console.log(options);
-        //  this.p2player.getUnlockedRooms();
-        console.log('Access Checked');
-        return true;
-
-      })
-    }
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-  async onJoin(client: Client, options: any) {
-    console.log(client.sessionId, "joined!");
-    console.log(options.playerId, "joined!");
-    console.log(options.profileId, "joined!");
-
-    const player = new Player();
-    player.channelId = options.channelId;
-    player.playerUuid = options.playerUuid;
-    player.playerId = options.playerId;
-    player.playerName = options.playerName;
-
-    player.profileId = options.profileId;
-    //player.p2Player = new P2player(player.playerUuid);
-    player.p2Player = new P2player();
-
-    const playerMap = new PlayerMap();
-    playerMap.profileId = options.profileId;
-
-    await player.p2Player.load(player.playerId, this.share, player);
-    //await player.p2Player.load(this.share, player);
-
-    this.world.addBody(player.p2Player.Body);
-    this.state.players.set(client.sessionId, player);
-    this.state.playerMap.set(client.sessionId, playerMap)
-  }
-  //////////////////////////////////////////////////////////////////////////////
-  onLeave(client: Client, consented: boolean) {
-    console.log(client.sessionId, "left!");
-    this.state.players.delete(client.sessionId);
-    this.state.playerMap.delete(client.sessionId);
-  }
-
-  onStateChange(state: any) {
-    console.log(this.roomId, "has new state:", state);
-  }
-
-  onDispose() {
-    console.log("room", this.roomId, "disposing...");
-  }
-
   fixedTick(timeStep: number) {
     const velocity = 2;
     var fixedTimeStep = 1 / 60;
-    this.world.step(fixedTimeStep);
-    this.Mobs.update(this);
-    this.Bosses.update(this);
+    //   this.world.step(fixedTimeStep);
+    //  this.Mobs.updateMob(this);
+    // this.Bosses.updateBoss(this);
+
     this.state.players.forEach(player => {
       let input: InputData;
-
       // dequeue player inputs
       while (input = player.inputQueue.shift()) {
         if (this.Mobs.mobClicked(this, input, player) == 1) {
@@ -232,8 +191,7 @@ export class GameRoom extends Room<MyRoomState> {
             console.error(`Mob result for key ${input.mobClick} not found.`);
           }
         }
-
-        player.p2Player.update(this, input, player, velocity);
+        player.p2Player.update(input, player, velocity);
         player.tick = input.tick;
       }
     });
@@ -245,6 +203,56 @@ export class GameRoom extends Room<MyRoomState> {
         resolve('resolved');
       }, val);
     });
+  }
+  ////////////////////////////////////////////////////////////////////////////////
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////
+  async onJoin(client: Client, options: any) {
+    const player = new Player();
+    player.channelId = options.channelId;
+    player.playerUuid = options.playerUuid;
+    player.playerId = options.playerId;
+    player.playerName = options.playerName;
+
+    // @TODO Why are these lines here?
+    player.p2Player = new P2player(player.playerUuid);
+    await player.p2Player.load(this.share, player);
+    //this.world.addBody(player.p2Player.Body);
+
+    const playerMap = new PlayerMap();
+    playerMap.profileId = options.profileId;
+
+    this.state.players.set(client.sessionId, player);
+    this.state.playerMap.set(client.sessionId, playerMap)
+  }
+  ////////////////////////////////////////////////////////////////////////////////
+  onLeave(client: Client, consented: boolean) {
+    console.log(client.sessionId, "left!");
+    /*     this.state.players.delete(client.sessionId);
+        this.state.playerMap.delete(client.sessionId); */
+
+  }
+
+  onStateChange(state: any) {
+    console.log(this.roomId, "has new state:", state);
+  }
+
+  onDispose() {
+    console.log("room", this.roomId, "disposing...");
+  }
+
+  loadMaps(nodeName: string) {
+    var cityName = nodeName.split("-")[0];
+    var cityNumber = nodeName.split("-")[1];
+    try {
+      const data = require(`../../../../../assets/cities/` + cityName + `/json/` + cityNumber + `.json`);
+      return data;
+    } catch (err) {
+      console.log(err);
+      console.log('shit');
+    }
   }
 
   checkHits() {
