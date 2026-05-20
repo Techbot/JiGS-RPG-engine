@@ -32,7 +32,6 @@ export class HudScene extends Scene {
     super({ key: 'HudScene', active: true });
     this.jigs = useJigsStore();
     this.mission = new Mission();
-    this.content = `Phaser is a fast, free, and fun open source HTML5 game framework that offers WebGL and Canvas rendering across desktop and mobile web browsers. Games can be compiled to iOS, Android and native apps by using 3rd party tools. You can use JavaScript or TypeScript for development.`;
 
     this.credits = this.jigs.playerStats.credits;
 
@@ -52,6 +51,12 @@ export class HudScene extends Scene {
     this.thing = this.createTextBox(this, 10, 380, {
       wrapWidth: 500,
     }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
+
+    this.time.delayedCall(6000, () => {
+      if (this.thing && this.thing.visible) {
+        this.thing.destroy();
+      }
+    });
 
     // Grab a reference to the Game Scene
     let ourGame = this.scene.get('main');
