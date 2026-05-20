@@ -1,5 +1,5 @@
 /**
- * ------- Hydrator ---------
+ * ------- Hydrater ---------
  */
 import Phaser from "phaser";
 import { useJigsStore } from '../stores/jigs.js';
@@ -24,6 +24,8 @@ export default class Hydrater {
     this.jigs.playerName = response.data[0].value["player"]["name"];
     this.jigs.playerSwitches = response.data[0].value["player"]["flickedSwitches"];
     this.jigs.userMapGrid = response.data[0].value["player"]["userMG"];
+    this.jigs.audioVolume = response.data[0].value["player"]["audioVolume"] || 60;
+    this.jigs.audioPreviousVolume = response.data[0].value["player"]["audioPreviousVolume"] || 60;
     return response;
   }
 
