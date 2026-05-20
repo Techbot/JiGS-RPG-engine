@@ -81,7 +81,7 @@ Will you find my Balls?`,
 
     nodeID: 0,
 
-    nodeTitle: "Blank",
+    nodeTitle: "",
 
     // type will be automatically inferred to number
     userMapGrid: 1,
@@ -97,7 +97,7 @@ Will you find my Balls?`,
     weapon: 0,
 
     /** @type {{ text: string }[]} */
-    content: "Blank",
+    content: "Everything you've read on the net is true.",
 
     npc: 0,
 
