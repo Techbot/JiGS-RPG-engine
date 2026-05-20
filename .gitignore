@@ -60,6 +60,7 @@ server/services/db.ts
 /client/.parcel-cache
 /client/src/game/backend.ts
 /client/src/assets/fonts/*
+/client/public/assets/index.js
 
 node_modules
 LICENSE.md
