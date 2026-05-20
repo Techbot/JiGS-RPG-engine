@@ -50,7 +50,7 @@ export class SceneSelector extends Phaser.Scene {
             fontSize: "32px",
             fontFamily: "Neutron Demo"
         };
-        this.scene.launch('Hudscene');
+        this.scene.launch('HudScene');
 
     }
     updatePlayerData() {
