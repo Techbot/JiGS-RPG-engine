@@ -98,7 +98,7 @@ export default class Player {
     onPlayerDown() {
     //    this.jigs.playerState = "dead";
      //   this.jigs.room.leave(); // Backend
-        this.scene.switch("DeadScene");
+        // this.scene.switch("DeadScene");
     }
 
     updatePlayer() {
