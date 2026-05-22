@@ -6,8 +6,9 @@ import WebFont from '../../assets/WebFont'
 export class HudScene extends Scene {
   jigs: any;
   score: number;
-  x: string;
-  y: string;
+  x: any;
+  y: any;
+  info: any;
   add: any;
   scene: any;
   hud2: any;
@@ -23,10 +24,11 @@ export class HudScene extends Scene {
   hud10: any;
   credits: any;
   content: string;
-  thing: any;
+  currentDialog: any;
   timedEvent: any;
   mission: any;
   npc: any;
+  dialogOpen: boolean = false;
 
   constructor() {
     super({ key: 'HudScene', active: true });
@@ -34,6 +36,7 @@ export class HudScene extends Scene {
     this.mission = new Mission();
 
     this.credits = this.jigs.playerStats.credits;
+    this.score = 0;
 
     const COLOR_PRIMARY = 0x4e342e;
     const COLOR_LIGHT = 0x7b5e57;
@@ -46,70 +49,55 @@ export class HudScene extends Scene {
     // this.load.atlas('avatar', '/assets/images/gui/psibot-head.png', '/assets/images/gui/avatar.json');
     // this.load.image('avatar', '/assets/images/gui/' + this.npc + '.png');
   }
+
+  closeDialog() {
+    if (this.currentDialog) {
+      // Stop typing animation before destroying
+      if (this.currentDialog.isTyping) {
+        this.currentDialog.stop(true);
+      }
+      if (this.currentDialog.destroy) {
+        this.currentDialog.destroy(true);
+      }
+    }
+    this.currentDialog = null;
+    this.dialogOpen = false;
+  }
+
   create() {
     // Dialogue.
-    this.thing = this.createTextBox(this, 10, 380, {
+    this.currentDialog = this.createTextBox(this, 10, 380, {
       wrapWidth: 500,
     }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
+    this.dialogOpen = true;
 
     this.time.delayedCall(6000, () => {
-      if (this.thing && this.thing.visible) {
-        this.thing.destroy();
+      if (this.currentDialog && this.currentDialog.visible) {
+        this.currentDialog.destroy();
       }
     });
 
     // Grab a reference to the Game Scene
     let ourGame = this.scene.get('main');
 
-    ourGame.events.on('Mission', function (response, npc) {
-      this.mission.dialog(this, npc, response);
-    }, this);
+    // Remove only HUD listeners (if previously attached)
+    ourGame.events.off('Mission', this.onMission, this);
+    ourGame.events.off('addScore', this.onAddScore, this);
+    ourGame.events.off('content', this.onContent, this);
+    ourGame.events.off('cutscene', this.onCutscene, this);
+    ourGame.events.off('position', this.onPosition, this);
 
-    ourGame.events.on('addScore', function () {
-      this.score += 10;
-    }, this);
-
-    ourGame.events.on('content', function () {
-      this.thing.destroy();
-      this.thing = this.createTextBox(this, 10, 500, {
-        wrapWidth: 600,
-      }).start(this.jigs.content, 50).setDepth(7)
-    }, this);
-
-    ourGame.events.on('cutscene', function () {
-      if (this.jigs.cutscene[this.jigs.cutscenePosition]) {
-        this.thing.destroy();
-        this.thing = this.createDialogTextBox(
-          this, 10, 500, {
-          wrapWidth: 600,
-          iconText: this.jigs.cutscene[this.jigs.cutscenePosition].npc,
-        }).start(this.jigs.cutscene[this.jigs.cutscenePosition].dialog_line, 50).setDepth(7);
-        this.jigs.cutscenePosition++;
-      }
-    },
-    this);
-
-    this.events.on('cutscene', function () {
-      if (this.jigs.cutscene[this.jigs.cutscenePosition]) {
-        this.thing.destroy();
-        this.thing = this.createDialogTextBox(
-          this, 10, 500, {
-          wrapWidth: 600,
-          iconText: this.jigs.cutscene[this.jigs.cutscenePosition].npc,
-        }).start(this.jigs.cutscene[this.jigs.cutscenePosition].dialog_line, 50).setDepth(7);
-        this.jigs.cutscenePosition++;
-      }
-    },
-      this);
-
-    ourGame.events.on('position', function (x: number, y: number) {
-      this.x = x;
-      this.y = y;
-      info.setText('Credits: ' + this.jigs.playerStats.credits);
-    }, this);
+    // Add listeners for events emitted by the Game Scene.
+    // Trigger methods to update the display.
+    ourGame.events.on('Mission', this.onMission, this);
+    ourGame.events.on('addScore', this.onAddScore, this);
+    // NPC handler barks and/or mission response data.
+    ourGame.events.on('content', this.onContent, this);
+    ourGame.events.on('cutscene', this.onCutscene, this);
+    ourGame.events.on('position', this.onPosition, this);
 
     //  Our Text object to display the Score
-    let info = this.add.text(15, 15, 'Credits: ', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
+    this.info = this.add.text(15, 15, 'Credits: ', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud2 = this.add.text(15, 30, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud3 = this.add.text(15, 45, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
     this.hud4 = this.add.text(15, 60, '', { font: '12px Roboto', fill: '#ffffff', backgroundColor: 'rgba(0, 0, 0, 0.6)' }).setPadding({ left: 4, right: 4, top: 2, bottom: 2 });
@@ -124,6 +112,7 @@ export class HudScene extends Scene {
   }
   update() {
     // HUD1
+    if (!this.hud2) { return; }
     this.hud2.setText('State: ' + this.jigs.gameState);
     this.hud3.setText('Node: ' + this.jigs.userMapGrid);
     this.hud4.setText('TileMap: ' + this.jigs.tiled);
@@ -149,6 +138,55 @@ export class HudScene extends Scene {
     this.hud10.setText('City: ' + this.jigs.city);
   }
 
+  onMission(response: any, npc: any) {
+    this.closeDialog();
+    this.mission.dialog(this, npc, response);
+  }
+
+  onAddScore() {
+    this.score += 10;
+  }
+
+  onContent() {
+    this.closeDialog();
+    this.currentDialog = this.createTextBox(this, 10, 500, {
+      wrapWidth: 600,
+    }).start(this.jigs.content, 50).setDepth(7);
+  }
+
+  onCutscene() {
+    console.log('Cutscene event fired');
+    console.log('cutscenePosition:', this.jigs.cutscenePosition);
+    console.log('cutscene array:', this.jigs.cutscene);
+    console.log('current entry:', this.jigs.cutscene[this.jigs.cutscenePosition]);
+
+    this.closeDialog();
+    if (this.jigs.cutscene[this.jigs.cutscenePosition]) {
+      const currentEntry = this.jigs.cutscene[this.jigs.cutscenePosition];
+      const npc = currentEntry.npc || 'Narrator';
+      const dialogLine = currentEntry.dialog_line || 'The story continues...';
+
+      console.log('Creating dialog with npc:', npc, 'and line:', dialogLine);
+
+      this.currentDialog = this.createDialogTextBox(
+        this, 10, 500, {
+          wrapWidth: 600,
+          iconText: npc,
+        }).start(dialogLine, 50).setDepth(7);
+      this.jigs.cutscenePosition++;
+    } else {
+      console.warn('No cutscene entry at position:', this.jigs.cutscenePosition);
+    }
+  }
+
+  onPosition(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+    if (this.info) {
+      this.info.setText('Credits: ' + this.jigs.playerStats.credits);
+    }
+  }
+
   GetValue = Phaser.Utils.Objects.GetValue;
 
   createTextBox = function (scene, x, y, config) {
@@ -172,6 +210,9 @@ export class HudScene extends Scene {
         title: 'left'
       }
     }).setDisplayOrigin(0, 0);
+
+    scene.currentDialog = textBox;
+    scene.dialogOpen = true;
 
     textBox
       .setInteractive()
@@ -205,7 +246,11 @@ export class HudScene extends Scene {
       }, textBox)
       .on('complete', function () {
         console.log('all pages typing complete')
-      })
+      }, textBox)
+      .on('destroy', function () {
+        scene.dialogOpen = false;
+        scene.currentDialog = null;
+      });
     return textBox;
   }
 
@@ -217,7 +262,10 @@ export class HudScene extends Scene {
     var fixedWidth = this.GetValue(config, 'fixedWidth', 0);
     var fixedHeight = this.GetValue(config, 'fixedHeight', 0);
     var titleText = this.GetValue(config, 'title', undefined);
-    var iconText = this.GetValue(config, 'iconText', undefined);
+    var iconText = this.GetValue(config, 'iconText', 'Narrator');
+
+    // Ensure iconText is a string and has a safe value
+    const safeIconText = (iconText && String(iconText).length > 0) ? String(iconText) : 'Narrator';
 
     var textBox = scene.rexUI.add.textBox({
       x: 10,
@@ -230,12 +278,15 @@ export class HudScene extends Scene {
       //   key: 'avatar', frame: 'A-smile'
       //  }),
       // icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
-      icon: scene.add.text(0, 0, iconText.toUpperCase() + ': ', { font: 'bold 14px Roboto', fill: '#ffffff', backgroundColor: 'rgba(25, 83, 95, 0.8)' }).setPadding({ left: 16, right: 16, top: 8, bottom: 8 }),
+      icon: scene.add.text(0, 0, safeIconText.toUpperCase() + ': ', { font: 'bold 14px Roboto', fill: '#ffffff', backgroundColor: 'rgba(25, 83, 95, 0.8)' }).setPadding({ left: 16, right: 16, top: 8, bottom: 8 }),
 
       align: {
         title: 'left'
       }
     }).setDisplayOrigin(0, 0);
+
+    scene.currentDialog = textBox;
+    scene.dialogOpen = true;
 
     textBox
       .setInteractive()
@@ -268,15 +319,20 @@ export class HudScene extends Scene {
         });
       }, textBox)
       .on('complete', function () {
+        console.log('Dialog complete - cutscene position:', scene.jigs.cutscenePosition, 'cutscene length:', scene.jigs.cutscene.length);
         if (scene.jigs.cutscenePosition < scene.jigs.cutscene.length) {
-          console.log("more");
-
+          console.log('Emitting next cutscene');
           setTimeout(() => {
-            scene.events.emit('cutscene');
-          },1000);
+            scene.scene.get('main').events.emit('cutscene');
+          }, 1000);
+        } else {
+          console.log('Cutscene complete - no more entries');
         }
-
-      })
+      }, textBox)
+      .on('destroy', function () {
+        scene.dialogOpen = false;
+        scene.currentDialog = null
+      });
     return textBox;
   }
 
