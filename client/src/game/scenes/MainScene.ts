@@ -126,14 +126,46 @@ export class MainScene extends Phaser.Scene {
     this.jigs.scene = this; // Store scene reference in the store
     console.log('Scene stored:', this.jigs.scene);
 
-    this.cursorKeys = this.input.keyboard.createCursorKeys();
-    this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
-    this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
-    this.jigs.room = await this.client.joinOrCreate(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0),
-      {
+    if (this.jigs.room?.connection?.isOpen) {
+    console.warn('Skipping join: room already open', this.jigs.room.id, this.jigs.room.sessionId);
+    return;
+  }
+
+    const roomName = `${this.jigs.city}-${this.padding(this.jigs.tiled, 3, 0)}`;
+    // console.log('Attempting to join room:', roomName);
+
+    // console.log('join state', {
+    //   city: this.jigs.city,
+    //   tiled: this.jigs.tiled,
+    //   playerId: this.jigs.playerId,
+    //   profileId: this.jigs.profileId,
+    // });
+
+    try {
+      this.jigs.room = await this.client.joinOrCreate(roomName, {
         playerId: this.jigs.playerId,
         profileId: this.jigs.profileId,
       });
+    } catch (error) {
+      console.error('joinOrCreate failed', error);
+      this.scene.start('DeadScene');
+      return;
+    }
+
+    if (!this.jigs.room) {
+      console.error('joinOrCreate returned undefined room');
+      this.scene.start('DeadScene');
+      return;
+    }
+
+    this.cursorKeys = this.input.keyboard.createCursorKeys();
+    this.input.setDefaultCursor('url(/assets/images/cursors/blank.cur), pointer');
+    this.debugFPS = this.add.text(4, 4, "", { color: "#ff0000", });
+    // this.jigs.room = await this.client.joinOrCreate(this.jigs.city + "-" + this.padding(this.jigs.tiled, 3, 0),
+    //   {
+    //     playerId: this.jigs.playerId,
+    //     profileId: this.jigs.profileId,
+    //   });
     this.messenger = new Messenger;
 
     console.log("------------------room--------------------" + this.jigs.room);
@@ -160,7 +192,9 @@ export class MainScene extends Phaser.Scene {
       // is current player
       if (sessionId === this.jigs.room.sessionId) {
         // this.jigs.playerId = player.username;
+        // console.log('server player state', player, sessionId);
         this.jigs.localPlayer = new MyPlayer(this, this.jigs.room, player);
+        // console.log('localPlayer object', this.jigs.localPlayer);
         this.jigs.playerState = "alive";
         if (this.jigs.dialogueArray) {
           this.jigs.content = this.jigs.dialogueArray;
@@ -220,12 +254,15 @@ export class MainScene extends Phaser.Scene {
         .then((response) => {
           this.hydrater.hydrateMap(response, 1);
         })
-        .then((response) => {
+        .then(async (response) => {
           var Loader = new Load;
           Loader.load(this);
-          this.jigs.room.leave(); // Backend
-          this.scene.start('main'); //Frontend)
-
+          // console.log('updateMapData: leaving room', this.jigs.room?.id, this.jigs.userMapGrid);
+          await this.jigs.room.leave(); // Backend
+          this.jigs.room = null;
+          this.jigs.localPlayer = undefined;
+          this.playerEntities = {};
+          this.scene.start('main'); //Frontend
         })
     })
   }
@@ -272,7 +309,7 @@ export class MainScene extends Phaser.Scene {
 
   fixedTick(time, delta) {
     this.currentTick++;
-    if (this.jigs.localPlayer !== undefined) {
+    if (this.jigs.localPlayer && this.jigs.room?.connection?.isOpen) {
       this.jigs.localPlayer.updatePlayer();
     }
 
