@@ -64,13 +64,119 @@ export class HudScene extends Scene {
     this.dialogOpen = false;
   }
 
+  createTextBox = function (
+    scene,
+    config,
+    {
+      icon,
+      onCompletePage,
+      onLastPage,
+    }: {
+      icon?: any,
+      onCompletePage?: Function,
+      onLastPage?: Function,
+    } = {}
+  ) {
+    const wrapWidth = this.GetValue(config, 'wrapWidth', 0);
+    const fixedWidth = this.GetValue(config, 'fixedWidth', 0);
+    const fixedHeight = this.GetValue(config, 'fixedHeight', 0);
+    const titleText = this.GetValue(config, 'title', undefined);
+
+    const textBox = scene.rexUI.add.textBox({
+      x: 10,
+      y: 460,
+
+      text: this.getBBcodeText(
+        scene,
+        wrapWidth,
+        fixedWidth,
+        fixedHeight
+      ),
+
+      action: scene.add.image(0, 0, 'nextPage').setVisible(false),
+
+      title: titleText
+        ? scene.add.text(0, 0, titleText, {
+            font: 'bold 24px Neutron Demo',
+            fill: '#ffffff'
+          })
+        : undefined,
+
+      icon,
+
+      align: {
+        title: 'left'
+      }
+    }).setDisplayOrigin(0, 0);
+
+    scene.currentDialog = textBox;
+    scene.dialogOpen = true;
+
+    textBox
+      .setInteractive()
+      .on('pointerdown', function () {
+        const arrow = this.getElement('action').setVisible(false);
+        this.resetChildVisibleState(arrow);
+
+        if (this.isTyping) {
+          this.stop(true);
+          return;
+        }
+
+        if (!this.isLastPage) {
+          this.typeNextPage();
+          return;
+        }
+
+        textBox.destroy();
+
+        if (onLastPage) {
+          onLastPage(scene);
+        }
+      }, textBox)
+
+      .on('pageend', function () {
+        if (this.isLastPage) {
+          return;
+        }
+
+        const arrow = this.getElement('action').setVisible(true);
+        this.resetChildVisibleState(arrow);
+        arrow.y -= 30;
+        scene.tweens.add({
+          targets: arrow,
+          y: '+=30',
+          ease: 'Bounce',
+          duration: 500,
+          repeat: 0,
+          yoyo: false
+        });
+
+        if (onCompletePage) {
+          onCompletePage(this);
+        }
+      }, textBox)
+
+      .on('complete', function () {
+        console.log('all pages typing complete');
+      }, textBox)
+
+      .on('destroy', function () {
+        scene.dialogOpen = false;
+        scene.currentDialog = null;
+      });
+
+    return textBox;
+  }
+
   create() {
-    // Dialogue.
-    this.currentDialog = this.createTextBox(this, 10, 380, {
+    // Intro text.
+    this.currentDialog = this.createIntroTextBox(this, 10, 380, {
       wrapWidth: 500,
-    }).setDisplayOrigin(0, 0).start(this.jigs.content, 50).setDepth(7);
+    }).setDisplayOrigin(0, 0).start(this.jigs.content, 50);
     this.dialogOpen = true;
 
+    // Intro text disappears after 6 seconds if no interaction.
     this.time.delayedCall(6000, () => {
       if (this.currentDialog && this.currentDialog.visible) {
         this.currentDialog.destroy();
@@ -149,9 +255,9 @@ export class HudScene extends Scene {
 
   onContent() {
     this.closeDialog();
-    this.currentDialog = this.createTextBox(this, 10, 500, {
+    this.currentDialog = this.createIntroTextBox(this, 10, 500, {
       wrapWidth: 600,
-    }).start(this.jigs.content, 50).setDepth(7);
+    }).start(this.jigs.content, 50);
   }
 
   onCutscene() {
@@ -172,7 +278,7 @@ export class HudScene extends Scene {
         this, 10, 500, {
           wrapWidth: 600,
           iconText: npc,
-        }).start(dialogLine, 50).setDepth(7);
+        }).start(dialogLine, 50);
       this.jigs.cutscenePosition++;
     } else {
       console.warn('No cutscene entry at position:', this.jigs.cutscenePosition);
@@ -189,153 +295,59 @@ export class HudScene extends Scene {
 
   GetValue = Phaser.Utils.Objects.GetValue;
 
-  createTextBox = function (scene, x, y, config) {
-    var wrapWidth = this.GetValue(config, 'wrapWidth', 0);
-    var fixedWidth = this.GetValue(config, 'fixedWidth', 0);
-    var fixedHeight = this.GetValue(config, 'fixedHeight', 0);
-    var titleText = this.GetValue(config, 'title', undefined);
-
-    var textBox = scene.rexUI.add.textBox({
-      x: 10,
-      y: 460,
-      text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
-      action: scene.add.image(0, 0, 'nextPage').setVisible(false),
-      title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
-      // icon: scene.rexUI.add.transitionImagePack({
-      //   width: 40, height: 40,
-      //   key: 'avatar', frame: 'A-smile'
-      //  }),
-      // icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
-      align: {
-        title: 'left'
-      }
-    }).setDisplayOrigin(0, 0);
-
-    scene.currentDialog = textBox;
-    scene.dialogOpen = true;
-
-    textBox
-      .setInteractive()
-      .on('pointerdown', function () {
-        var arrow = this.getElement('action').setVisible(false);
-        this.resetChildVisibleState(arrow);
-        if (this.isTyping) {
-          this.stop(true);
-        } else if (!this.isLastPage) {
-          this.typeNextPage();
-        } else {
-          textBox.destroy();
-        }
-      }, textBox)
-      .on('pageend', function () {
-        if (this.isLastPage) {
-          return;
-        }
-
-        var arrow = this.getElement('action').setVisible(true);
-        this.resetChildVisibleState(arrow);
-        arrow.y -= 30;
-        var tween = scene.tweens.add({
-          targets: arrow,
-          y: '+=30', // '+=100'
-          ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
-          duration: 500,
-          repeat: 0, // -1: infinity
-          yoyo: false
-        });
-      }, textBox)
-      .on('complete', function () {
-        console.log('all pages typing complete')
-      }, textBox)
-      .on('destroy', function () {
-        scene.dialogOpen = false;
-        scene.currentDialog = null;
-      });
-    return textBox;
+  // Intro text box.
+  createIntroTextBox = function (scene, x, y, config) {
+    return this.createTextBox(scene, config);
   }
 
-
-  ////////////////////////////////////////////////////////////////////////////////
-
+  // Cutscene dialog text box.
   createDialogTextBox = function (scene, x, y, config) {
-    var wrapWidth = this.GetValue(config, 'wrapWidth', 0);
-    var fixedWidth = this.GetValue(config, 'fixedWidth', 0);
-    var fixedHeight = this.GetValue(config, 'fixedHeight', 0);
-    var titleText = this.GetValue(config, 'title', undefined);
-    var iconText = this.GetValue(config, 'iconText', 'Narrator');
+    const iconText = this.GetValue(config, 'iconText', 'Narrator');
 
-    // Ensure iconText is a string and has a safe value
-    const safeIconText = (iconText && String(iconText).length > 0) ? String(iconText) : 'Narrator';
+    const safeIconText =
+      iconText && String(iconText).length > 0
+        ? String(iconText)
+        : 'Narrator';
 
-    var textBox = scene.rexUI.add.textBox({
-      x: 10,
-      y: 460,
-      text: this.getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
-      action: scene.add.image(0, 0, 'nextPage').setVisible(false),
-      title: (titleText) ? scene.add.text(0, 0, titleText, { font: 'bold 24px Neutron Demo', fill: '#ffffff' }) : undefined,
-      // icon: scene.rexUI.add.transitionImagePack({
-      //   width: 40, height: 40,
-      //   key: 'avatar', frame: 'A-smile'
-      //  }),
-      // icon: (this.npc) ? scene.add.image(0, 0, 'avatar').setVisible(true) : undefined,
-      icon: scene.add.text(0, 0, safeIconText.toUpperCase() + ': ', { font: 'bold 14px Roboto', fill: '#ffffff', backgroundColor: 'rgba(25, 83, 95, 0.8)' }).setPadding({ left: 16, right: 16, top: 8, bottom: 8 }),
-
-      align: {
-        title: 'left'
+    const icon = scene.add.text(
+      0,
+      0,
+      safeIconText.toUpperCase() + ': ',
+      {
+        font: 'bold 14px Roboto',
+        fill: '#ffffff',
+        backgroundColor: 'rgba(25, 83, 95, 0.8)'
       }
-    }).setDisplayOrigin(0, 0);
+    ).setPadding({
+      left: 16,
+      right: 16,
+      top: 8,
+      bottom: 8
+    });
 
-    scene.currentDialog = textBox;
-    scene.dialogOpen = true;
+    return this.createTextBox(scene, config, {
+      icon,
 
-    textBox
-      .setInteractive()
-      .on('pointerdown', function () {
-        var arrow = this.getElement('action').setVisible(false);
-        this.resetChildVisibleState(arrow);
-        if (this.isTyping) {
-          this.stop(true);
-        } else if (!this.isLastPage) {
-          this.typeNextPage();
-        } else {
-          textBox.destroy();
-        }
-      }, textBox)
-      .on('pageend', function () {
-        if (this.isLastPage) {
-          return;
-        }
+      onLastPage: (scene) => {
+        console.log(
+          'Dialog complete - cutscene position:',
+          scene.jigs.cutscenePosition,
+          'cutscene length:',
+          scene.jigs.cutscene.length
+        );
 
-        var arrow = this.getElement('action').setVisible(true);
-        this.resetChildVisibleState(arrow);
-        arrow.y -= 30;
-        var tween = scene.tweens.add({
-          targets: arrow,
-          y: '+=30', // '+=100'
-          ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
-          duration: 500,
-          repeat: 0, // -1: infinity
-          yoyo: false
-        });
-      }, textBox)
-      .on('complete', function () {
-        console.log('Dialog complete - cutscene position:', scene.jigs.cutscenePosition, 'cutscene length:', scene.jigs.cutscene.length);
         if (scene.jigs.cutscenePosition < scene.jigs.cutscene.length) {
           console.log('Emitting next cutscene');
-          setTimeout(() => {
-            scene.scene.get('main').events.emit('cutscene');
-          }, 1000);
+
+          scene.scene.get('main').events.emit('cutscene');
         } else {
           console.log('Cutscene complete - no more entries');
         }
-      }, textBox)
-      .on('destroy', function () {
-        scene.dialogOpen = false;
-        scene.currentDialog = null
-      });
-    return textBox;
+      }
+    });
   }
 
+  // Helper function to create BBCodeText with consistent styling.
   getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
     return scene.rexUI.add.BBCodeText(0, 0, '', {
       // fontFamily: 'Neutron Demo',
@@ -350,40 +362,9 @@ export class HudScene extends Scene {
       maxLines: 6,
     }).setShadow(2, 2, '#000000', 2, false, true).setPadding({ left: 5, right: 5, top: 5, bottom: 5 })
   }
-
-  // CreateDialog = function (scene, content) {
-  //   return scene.rexUI.add.textArea({
-  //     x: 0,
-  //     y: 260,
-  //     width: 500,
-  //     height: 400,
-  //     // text: scene.add.text(),
-  //     text: scene.rexUI.add.BBCodeText(),
-  //     // textMask: true,
-  //     scroller: {
-  //       pointerOutRelease: false,
-  //     },
-  //     mouseWheelScroller: {
-  //       focus: false,
-  //       speed: 0.1
-  //     },
-  //     content: this.jigs.content,
-  //     expand: {
-  //       footer: false
-  //     }
-  //   }).setDisplayOrigin(0, 0)
-  // }
-
-  // CreateContent = function (linesCount) {
-  //   var numbers = [];
-  //   for (var i = 0; i < linesCount; i++) {
-  //     numbers.push('[color=' + ((i % 2) ? 'green' : 'yellow') + ']' + i.toString() + '[/color]');
-  //   }
-  //   return this.jigs.content + '\n' + numbers.join('\n');
-  // }
 }
 
-var createLabel = function (scene, text) {
+const createLabel = function (scene, text) {
   return scene.rexUI.add.label({
     width: 40, // Minimum width of round-rectangle
     height: 40, // Minimum height of round-rectangle
